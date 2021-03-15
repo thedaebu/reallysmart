@@ -1,0 +1,427 @@
+  [1m[35m (434.0ms)[0m  [1m[35mCREATE DATABASE "reallysmart_development" ENCODING = 'unicode'[0m
+  ↳ bin/rails:9
+  [1m[35m (115.2ms)[0m  [1m[35mCREATE DATABASE "reallysmart_test" ENCODING = 'unicode'[0m
+  ↳ bin/rails:9
+  [1m[35m (201.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  ↳ bin/rails:9
+  [1m[35m (12.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ bin/rails:9
+  [1m[35m (2.9ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2301641705212315725)[0m
+  ↳ bin/rails:9
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to CreateUsers (20210314184459)
+  [1m[35m (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (39.1ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "username" character varying NOT NULL, "password_digest" character varying NOT NULL, "session_token" character varying NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20210314184459_create_users.rb:3
+  [1m[35m (3.4ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_username" ON "users"  ("username")[0m
+  ↳ db/migrate/20210314184459_create_users.rb:11
+  [1m[35m (1.9ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_session_token" ON "users"  ("session_token")[0m
+  ↳ db/migrate/20210314184459_create_users.rb:12
+  [1m[36mActiveRecord::SchemaMigration Create (28.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20210314184459"]]
+  ↳ bin/rails:9
+  [1m[35m (3.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Load (1.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Create (3.9ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-03-14 18:48:35.165563"], ["updated_at", "2021-03-14 18:48:35.165563"]]
+  ↳ bin/rails:9
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(2301641705212315725)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (7.8ms)[0m  [1m[35mCREATE DATABASE "reallysmart_development" ENCODING = 'unicode'[0m
+  ↳ bin/rails:9
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE DATABASE "reallysmart_test" ENCODING = 'unicode'[0m
+  ↳ bin/rails:9
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE DATABASE "reallysmart_development" ENCODING = 'unicode'[0m
+  ↳ bin/rails:9
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE DATABASE "reallysmart_test" ENCODING = 'unicode'[0m
+  ↳ bin/rails:9
+Started GET "/" for ::1 at 2021-03-15 13:50:19 -0400
+  [1m[35m (7.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/TheDaeBu/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.4.5/lib/active_record/log_subscriber.rb:98
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (2.2ms)
+Completed 500 Internal Server Error in 372ms (ActiveRecord: 0.0ms)
+
+
+
+Sprockets::FileNotFound - couldn't find file 'rails_ujs' with type 'application/javascript'
+Checked in these paths: 
+  /Users/TheDaeBu/Desktop/Programming/app_academy/reallysmart/app/assets/config
+  /Users/TheDaeBu/Desktop/Programming/app_academy/reallysmart/app/assets/images
+  /Users/TheDaeBu/Desktop/Programming/app_academy/reallysmart/app/assets/javascripts
+  /Users/TheDaeBu/Desktop/Programming/app_academy/reallysmart/app/assets/stylesheets
+  /Users/TheDaeBu/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/jquery-rails-4.4.0/vendor/assets/javascripts
+  /Users/TheDaeBu/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/coffee-rails-4.2.2/lib/assets/javascripts
+  /Users/TheDaeBu/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/actioncable-5.2.4.5/lib/assets/compiled
+  /Users/TheDaeBu/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activestorage-5.2.4.5/app/assets/javascripts
+  /Users/TheDaeBu/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/actionview-5.2.4.5/lib/assets/compiled
+  /Users/TheDaeBu/Desktop/Programming/app_academy/reallysmart/node_modules:
+  app/views/layouts/application.html.erb:8:in `_app_views_layouts_application_html_erb__3818962271129477555_70300178456680'
+
+Started POST "/__better_errors/a21ef740ed4d7677/variables" for ::1 at 2021-03-15 13:50:21 -0400
+Started GET "/" for ::1 at 2021-03-15 13:51:21 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 2713ms (Views: 2698.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2021-03-15 13:53:31 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 521ms (Views: 508.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/api/users" for ::1 at 2021-03-15 13:57:44 -0400
+Processing by Api::UsersController#create as JSON
+Completed 500 Internal Server Error in 71ms (ActiveRecord: 14.0ms)
+
+
+
+NoMethodError - undefined method `before_validations' for #<Class:0x00007fe011f5b628>
+Did you mean?  before_validation:
+  app/models/user.rb:9:in `<class:User>'
+  app/models/user.rb:1:in `<top (required)>'
+  app/controllers/api/users_controller.rb:3:in `create'
+
+Started POST "/api/users" for ::1 at 2021-03-15 13:58:21 -0400
+Processing by Api::UsersController#create as JSON
+Completed 500 Internal Server Error in 214ms (ActiveRecord: 0.0ms)
+
+
+
+NoMethodError - undefined method `before_validations' for #<Class:0x00007fe018e0d440>
+Did you mean?  before_validation:
+  app/models/user.rb:9:in `<class:User>'
+  app/models/user.rb:1:in `<top (required)>'
+  app/controllers/api/users_controller.rb:3:in `create'
+
+Started GET "/" for ::1 at 2021-03-15 13:59:25 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 84ms (Views: 74.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/api/users" for ::1 at 2021-03-15 13:59:29 -0400
+Processing by Api::UsersController#create as JSON
+Completed 400 Bad Request in 17ms (ActiveRecord: 0.0ms)
+
+
+
+ActionController::ParameterMissing - param is missing or the value is empty: user:
+  app/controllers/api/users_controller.rb:15:in `user_params'
+  app/controllers/api/users_controller.rb:3:in `create'
+
+Started POST "/api/users" for ::1 at 2021-03-15 14:00:34 -0400
+Processing by Api::UsersController#create as JSON
+Completed 400 Bad Request in 8ms (ActiveRecord: 0.0ms)
+
+
+
+ActionController::ParameterMissing - param is missing or the value is empty: user:
+  app/controllers/api/users_controller.rb:15:in `user_params'
+  app/controllers/api/users_controller.rb:3:in `create'
+
+Started POST "/api/users" for ::1 at 2021-03-15 14:02:04 -0400
+Processing by Api::UsersController#create as JSON
+Completed 400 Bad Request in 4ms (ActiveRecord: 0.0ms)
+
+
+
+ActionController::ParameterMissing - param is missing or the value is empty: user:
+  app/controllers/api/users_controller.rb:15:in `user_params'
+  app/controllers/api/users_controller.rb:3:in `create'
+
+Started POST "/api/users" for ::1 at 2021-03-15 14:02:23 -0400
+Processing by Api::UsersController#create as JSON
+Completed 400 Bad Request in 3ms (ActiveRecord: 0.0ms)
+
+
+
+ActionController::ParameterMissing - param is missing or the value is empty: user:
+  app/controllers/api/users_controller.rb:15:in `user_params'
+  app/controllers/api/users_controller.rb:3:in `create'
+
+Started POST "/api/users" for ::1 at 2021-03-15 14:03:17 -0400
+Processing by Api::UsersController#create as JSON
+Completed 400 Bad Request in 19ms (ActiveRecord: 0.0ms)
+
+
+
+ActionController::ParameterMissing - param is missing or the value is empty: user:
+  app/controllers/api/users_controller.rb:15:in `user_params'
+  app/controllers/api/users_controller.rb:3:in `create'
+
+Started POST "/api/sessions" for ::1 at 2021-03-15 14:05:22 -0400
+  
+ActionController::RoutingError (No route matches [POST] "/api/sessions"):
+  
+actionpack (5.2.4.5) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.4.5) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.4.5) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.4.5) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.4.5) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.4.5) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.4.5) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.4.5) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.4.5) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.4.5) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.4.5) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.4.5) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.4.5) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+railties (5.2.4.5) lib/rails/engine.rb:524:in `call'
+puma (3.12.6) lib/puma/configuration.rb:227:in `call'
+puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
+puma (3.12.6) lib/puma/server.rb:476:in `process_client'
+puma (3.12.6) lib/puma/server.rb:334:in `block in run'
+puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started POST "/api/users" for ::1 at 2021-03-15 14:05:30 -0400
+Processing by Api::UsersController#create as JSON
+Completed 400 Bad Request in 3ms (ActiveRecord: 0.0ms)
+
+
+
+ActionController::ParameterMissing - param is missing or the value is empty: user:
+  app/controllers/api/users_controller.rb:15:in `user_params'
+  app/controllers/api/users_controller.rb:3:in `create'
+
+Started GET "/" for ::1 at 2021-03-15 14:07:39 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 133ms (Views: 119.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/api/users" for ::1 at 2021-03-15 14:07:44 -0400
+Processing by Api::UsersController#create as JSON
+Completed 400 Bad Request in 6ms (ActiveRecord: 0.0ms)
+
+
+
+ActionController::ParameterMissing - param is missing or the value is empty: user:
+  app/controllers/api/users_controller.rb:15:in `user_params'
+  app/controllers/api/users_controller.rb:3:in `create'
+
+Started POST "/api/users" for ::1 at 2021-03-15 14:07:57 -0400
+Processing by Api::UsersController#create as JSON
+Completed 400 Bad Request in 4ms (ActiveRecord: 0.0ms)
+
+
+
+ActionController::ParameterMissing - param is missing or the value is empty: user:
+  app/controllers/api/users_controller.rb:15:in `user_params'
+  app/controllers/api/users_controller.rb:3:in `create'
+
+Started POST "/api/users" for ::1 at 2021-03-15 14:08:34 -0400
+Processing by Api::UsersController#create as JSON
+Completed 400 Bad Request in 5ms (ActiveRecord: 0.0ms)
+
+
+
+ActionController::ParameterMissing - param is missing or the value is empty: user:
+  app/controllers/api/users_controller.rb:15:in `user_params'
+  app/controllers/api/users_controller.rb:3:in `create'
+
+Started POST "/api/users" for ::1 at 2021-03-15 14:08:50 -0400
+Processing by Api::UsersController#create as JSON
+Completed 400 Bad Request in 7ms (ActiveRecord: 0.0ms)
+
+
+
+ActionController::ParameterMissing - param is missing or the value is empty: user:
+  app/controllers/api/users_controller.rb:15:in `user_params'
+  app/controllers/api/users_controller.rb:3:in `create'
+
+Started GET "/" for ::1 at 2021-03-15 14:10:17 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 123ms (Views: 113.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/api/users" for ::1 at 2021-03-15 14:10:19 -0400
+Processing by Api::UsersController#create as JSON
+Completed 400 Bad Request in 18ms (ActiveRecord: 0.0ms)
+
+
+
+ActionController::ParameterMissing - param is missing or the value is empty: user:
+  app/controllers/api/users_controller.rb:15:in `user_params'
+  app/controllers/api/users_controller.rb:3:in `create'
+
+Started POST "/api/users" for ::1 at 2021-03-15 14:13:21 -0400
+Processing by Api::UsersController#create as JSON
+Completed 400 Bad Request in 8ms (ActiveRecord: 0.0ms)
+
+
+
+ActionController::ParameterMissing - param is missing or the value is empty: user:
+  app/controllers/api/users_controller.rb:15:in `user_params'
+  app/controllers/api/users_controller.rb:3:in `create'
+
+Started POST "/api/users" for ::1 at 2021-03-15 14:13:36 -0400
+Processing by Api::UsersController#create as JSON
+Completed 400 Bad Request in 6ms (ActiveRecord: 0.0ms)
+
+
+
+ActionController::ParameterMissing - param is missing or the value is empty: user:
+  app/controllers/api/users_controller.rb:15:in `user_params'
+  app/controllers/api/users_controller.rb:3:in `create'
+
+Started POST "/api/users" for ::1 at 2021-03-15 14:14:35 -0400
+Processing by Api::UsersController#create as JSON
+Completed 400 Bad Request in 3ms (ActiveRecord: 0.0ms)
+
+
+
+ActionController::ParameterMissing - param is missing or the value is empty: user:
+  app/controllers/api/users_controller.rb:15:in `user_params'
+  app/controllers/api/users_controller.rb:3:in `create'
+
+Started POST "/api/users" for ::1 at 2021-03-15 14:17:06 -0400
+Processing by Api::UsersController#create as JSON
+Completed 400 Bad Request in 2ms (ActiveRecord: 0.0ms)
+
+
+
+ActionController::ParameterMissing - param is missing or the value is empty: user:
+  app/controllers/api/users_controller.rb:15:in `user_params'
+  app/controllers/api/users_controller.rb:3:in `create'
+
+Started POST "/api/users" for ::1 at 2021-03-15 14:18:56 -0400
+Processing by Api::UsersController#create as JSON
+Completed 400 Bad Request in 8ms (ActiveRecord: 0.0ms)
+
+
+
+ActionController::ParameterMissing - param is missing or the value is empty: user:
+  app/controllers/api/users_controller.rb:15:in `user_params'
+  app/controllers/api/users_controller.rb:3:in `create'
+
+Started GET "/" for ::1 at 2021-03-15 14:30:11 -0400
+  [1m[35m (2.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/TheDaeBu/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.4.5/lib/active_record/log_subscriber.rb:98
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (5.8ms)
+Completed 500 Internal Server Error in 304ms (ActiveRecord: 0.0ms)
+
+
+
+Sprockets::FileNotFound - couldn't find file 'rails_ujs' with type 'application/javascript'
+Checked in these paths: 
+  /Users/TheDaeBu/Desktop/Programming/app_academy/reallysmart/app/assets/config
+  /Users/TheDaeBu/Desktop/Programming/app_academy/reallysmart/app/assets/images
+  /Users/TheDaeBu/Desktop/Programming/app_academy/reallysmart/app/assets/javascripts
+  /Users/TheDaeBu/Desktop/Programming/app_academy/reallysmart/app/assets/stylesheets
+  /Users/TheDaeBu/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/jquery-rails-4.4.0/vendor/assets/javascripts
+  /Users/TheDaeBu/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/coffee-rails-4.2.2/lib/assets/javascripts
+  /Users/TheDaeBu/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/actioncable-5.2.4.5/lib/assets/compiled
+  /Users/TheDaeBu/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activestorage-5.2.4.5/app/assets/javascripts
+  /Users/TheDaeBu/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/actionview-5.2.4.5/lib/assets/compiled
+  /Users/TheDaeBu/Desktop/Programming/app_academy/reallysmart/node_modules:
+  app/views/layouts/application.html.erb:8:in `_app_views_layouts_application_html_erb___4483070543736295198_70181274150160'
+
+Started POST "/__better_errors/76d571c40de2c993/variables" for ::1 at 2021-03-15 14:30:12 -0400
+Started GET "/" for ::1 at 2021-03-15 14:30:36 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 2873ms (Views: 2862.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/api/users" for ::1 at 2021-03-15 14:30:43 -0400
+Processing by Api::UsersController#create as JSON
+Completed 400 Bad Request in 10ms (ActiveRecord: 0.0ms)
+
+
+
+ActionController::ParameterMissing - param is missing or the value is empty: user:
+  app/controllers/api/users_controller.rb:15:in `user_params'
+  app/controllers/api/users_controller.rb:3:in `create'
+
+Started POST "/api/users" for ::1 at 2021-03-15 14:33:46 -0400
+Processing by Api::UsersController#create as JSON
+  Parameters: {"user"=>{"username"=>"Eddie123", "password"=>"[FILTERED]"}}
+  [1m[35m (7.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:4
+  [1m[36mUser Exists (12.9ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Eddie123"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:4
+  [1m[36mUser Create (31.0ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "Eddie123"], ["password_digest", "$2a$12$OJlOfbUp1J6tsnQhxUt/a.3rL/JJIW31fw3vVWfRRPBAnyTRCmoc6"], ["session_token", "uDuYfqpKMXB31uXop-qemg"], ["created_at", "2021-03-15 18:33:47.109547"], ["updated_at", "2021-03-15 18:33:47.109547"]]
+  ↳ app/controllers/api/users_controller.rb:4
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:4
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:28
+  [1m[36mUser Exists (1.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "Eddie123"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:28
+  [1m[36mUser Update (5.9ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "rsy9EWaQq6-2YWHIrqPxIg"], ["updated_at", "2021-03-15 18:33:47.175548"], ["id", 1]]
+  ↳ app/models/user.rb:28
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:28
+  Rendering api/users/show.json.jbuilder
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+  Rendered api/users/show.json.jbuilder (5.8ms)
+Completed 200 OK in 586ms (Views: 32.8ms | ActiveRecord: 139.5ms)
+
+
+Started GET "/" for ::1 at 2021-03-15 14:34:19 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 118ms (Views: 104.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/api/session" for ::1 at 2021-03-15 14:34:26 -0400
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"user"=>{"username"=>"Eddie123", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Eddie123"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:12
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:28
+  [1m[36mUser Exists (1.0ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "Eddie123"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:28
+  [1m[36mUser Update (0.7ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "rIAisEzFeTkwcm1l7g66_A"], ["updated_at", "2021-03-15 18:34:26.703543"], ["id", 1]]
+  ↳ app/models/user.rb:28
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:28
+  Rendering api/users/show.json.jbuilder
+  Rendered api/users/_user.json.jbuilder (0.5ms)
+  Rendered api/users/show.json.jbuilder (4.0ms)
+Completed 200 OK in 380ms (Views: 25.9ms | ActiveRecord: 5.2ms)
+
+
+Started GET "/" for ::1 at 2021-03-15 15:14:56 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (9.0ms)
+Completed 200 OK in 563ms (Views: 542.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2021-03-15 15:15:13 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 654ms (Views: 645.5ms | ActiveRecord: 0.0ms)
+
+
