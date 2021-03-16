@@ -8,7 +8,12 @@ class SessionForm extends React.Component {
     render() {
         const {errors, formType, formLink, action} = this.props;
         return (
-            <h1>{formType}</h1>
+            <div className='session-form'>
+                <h1>{formType}</h1>
+                <p>{formType} or {formLink}</p>
+            </div>
+            
+
         )
     }
 };

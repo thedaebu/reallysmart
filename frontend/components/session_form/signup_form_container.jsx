@@ -8,7 +8,7 @@ const mSTP = (state, ownProps) => {
     return ({
         errors: state.errors.sessionErrors,
         formType: 'Sign Up',
-        formLink: <Link to='/signup'>Sign up here</Link>
+        formLink: <Link to='/login'>Log in here</Link>
     })
 }
 const mDTP = (dispatch, ownProps) => {
