@@ -1,24 +1,14 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+git checkout -b eddie
+git add .
+git commit -m "
 
-Things you may want to cover:
+git checkout main
+git merge eddie
+git -d eddie
+git add .
+git commit -m "
+git push heroku main
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+how to display upvotes, call upvotes, polymorphic associations of type
