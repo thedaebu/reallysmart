@@ -1,15 +1,25 @@
-/node_modules
-/app/assets/javascripts/bundle.js
-/bundle.js.map
+node_modules/
+bundle.js
+bundle.js.map
+
+config/initializers/secret_token.rb
+config/master.key
 
 /log/*
 /tmp/*
 !/log/.keep
 !/tmp/.keep
 
-tmp
-log
+/app/assets/javascripts/bundle.js
+app/assets/images/
+public/assets
 
-/config/master.key
+/.bundle
 
-public/assets/*
+/storage/*
+!/storage/.keep
+
+/yarn-error.log
+
+.byebug_history
+
