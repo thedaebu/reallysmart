@@ -1,29 +1,29 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-class NavBar extends React.Component {
+class Header extends React.Component {
     constructor(props){
         super(props)
     }
 
     render(){
-        const {currentUser, logout} = this.props
+        const {currentUser, logout} = this.props;
         if (currentUser) {
             return (
-                <>
+                <div className='header'>
                     <p>Hello, {currentUser.username}</p>
                     <button onClick={logout} >Log Out</button>
-                </>
+                </div>
             )
         } else {
             return (
-                <>
-                    <Link to='/signup' >Sign Up</Link>
-                    <Link to='/login' >Log In</Link>
-                </>
+                <div className='header'>
+                    <Link to='/signup' className='signup'>Sign Up</Link>
+                    <Link to='/login' className='login' >Log In</Link>
+                </div>
             )
         }
     }
 };
 
-export default NavBar;
+export default Header;
