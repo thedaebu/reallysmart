@@ -17,7 +17,7 @@ const App = () => (
     <div>
         <header>
             <input className='search-bar' type='text' value='Search...'/>
-            <h1>Really Smart</h1>
+            <Link to='/' className='logo'>REALLYSMART</Link>
             <div className='header-right'>
                 <HeaderContainer />
                 <DemoUserContainer />

@@ -1,0 +1,94 @@
+.session-form-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background-color: black;
+    color: white;
+
+    height: 650px;
+    
+}
+
+.session-form-h1 {
+    font-size: 40px;
+    font-family: 'Ubuntu Condensed', sans-serif;
+    font-weight: bolder;
+    padding-bottom: 30px;
+    padding-top: 40px;
+}
+
+.session-form-form {
+    padding: 15px 10px 8px 10px;
+    border-top: 1px solid rgb(41, 41, 41);
+    width: auto;
+    
+    border-radius: 2px;
+    background: rgb(19, 19, 19);
+    margin-bottom: 30px;
+}
+
+label {
+
+    font-size: 13px;
+    
+}
+
+#session-form-username, #session-form-password {
+    display: flex;
+    flex-direction: row; 
+    background-color: rgb(59, 59, 59);
+    border: 1px solid rgb(88, 88, 88);
+    border-radius: 2px;
+    width: 320px;
+    margin-bottom: 15px;
+    margin-top: 5px;
+    padding: 5px;
+}
+
+#form-submit {
+    font-size: 13px;
+    color: rgb(204, 204, 204);
+    background-color: #262626;
+    border: 1px solid rgb(88, 88, 88);
+    border-radius: 2px;
+    padding: 6px 10px 6px 10px;
+    
+    margin-top: 6px;
+
+}
+
+.session-form-last {
+    font-size: 15px;
+}
+
+.session-form-login, .session-form-signup {
+    color: #5BA7C2;
+    font-size: 15px;
+}
+
+.errors-main {
+    background: #1a1a1a;
+}
+
+.errors-header {
+    background-color: #990120;
+    color: rgb(201, 201, 201);
+    font-size: 14px;
+    padding: 12px 32px;
+    
+}
+
+.errors-message {
+    color: rgb(201, 201, 201);
+    font-size: 14px;
+    padding: 12px 32px;
+}
+
+.errors-item {
+    color: rgb(201, 201, 201);
+    list-style: circle;
+    font-size: 14px;
+    padding: 12px 32px;
+    margin-bottom: 10px;
+}

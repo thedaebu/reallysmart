@@ -21,7 +21,7 @@ class DemoUser extends React.Component {
             )
         } else {
             return (
-                <a className='demo' onClick={this.loginWithDemo}>Demo</a>
+                <a className='demo' onClick={this.loginWithDemo}>DEMO</a>
             )
         }
     }

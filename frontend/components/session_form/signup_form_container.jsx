@@ -8,9 +8,12 @@ const mSTP = (state, ownProps) => {
     return ({
         errors: state.errors.sessionErrors,
         formType: 'Sign Up',
-        formLink: <Link to='/login'>Log in here</Link>
+        formSubmit: 'Create Account',
+        formLink: <Link className='session-form-signup' to='/login'>Log in here.</Link>,
+        formLast: 'Already have an account?'
     })
 }
+
 const mDTP = (dispatch, ownProps) => {
     return ({
         action: user => dispatch(signup(user))
