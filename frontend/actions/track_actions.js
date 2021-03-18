@@ -11,6 +11,7 @@ const receiveTracks = tracks => {
     })
 }
 const receiveTrack = trackId => {
+    debugger
     return ({
         type: RECEIVE_TRACKS,
         trackId,

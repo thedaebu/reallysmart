@@ -54,8 +54,16 @@ header {
     text-align: center;
 }
 
+.demo:hover {
+    cursor: pointer;
+}
+
 .logout {
     text-decoration: none;
     color: black;
     padding-right: 10px;
+}
+
+.logout:hover {
+    cursor: pointer;
 }

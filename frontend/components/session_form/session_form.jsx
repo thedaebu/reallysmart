@@ -27,7 +27,7 @@ class SessionForm extends React.Component {
         return (
             <div className='errors-main'>
                 <h2 className='errors-header'>Ruh-roh!</h2>
-                <p className='errors-message'>You done messed up!</p>
+                <p className='errors-message'>Are you even a little smart?</p>
                 <ul className='errors-item'>
                 {this.props.errors.map((error, idx) => {
                     return <li className='error-message' key={idx}>{error}</li>

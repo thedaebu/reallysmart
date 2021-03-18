@@ -1,0 +1,58 @@
+.tracks-index-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tracks-index-h1 {
+    margin-top: 60px;
+    font-family: Programme, Arial, sans-serif;
+    font-size: 75px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    
+}
+
+.tracks-index-h2 {
+    color: rgb(255, 20, 100);
+    font-size: 14px;
+    padding-top: 15px;
+    
+
+}
+
+.track-index-item {
+    display: flex;
+
+}
+
+.track-index-item-id {
+
+}
+
+.track-index-item-title-div {
+    display: flex;
+}
+
+.track-index-item-title {
+
+}
+
+.track-index-item-artist {
+
+}
+
+.track-index-item-img {
+   width: 60px;
+   height: 60px;
+}
+
+.track-index-item-fire {
+   width: 20px;
+   height: 20px;
+}
+
+.track-index-item-eye {
+   width: 20px;
+   height: 20px;
+}

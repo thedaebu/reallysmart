@@ -22,11 +22,15 @@ class TrackIndex extends React.Component {
     render(){
         const { tracks, fetchTracks, fetchTrack } = this.props;
         return (
-            <ul>
-                {tracks.map(track => {
-                    return <TrackIndexItem track={track} fetchTrack={fetchTrack} key={track.id} />
-                })}
-            </ul>
+            <div className='tracks-index-main'>
+                <h1 className='tracks-index-h1' >CHARTS</h1>
+                <h2 className='tracks-index-h2' >WHAT'S UP ON REALLY SMART</h2>
+                <ul>
+                    {tracks.map(track => {
+                        return <TrackIndexItem track={track} fetchTrack={fetchTrack} key={track.id} />
+                    })}
+                </ul>
+            </div>
         )
     }
 }

@@ -26,9 +26,10 @@ const App = () => (
         </header>
         <Switch>
             
-            <AuthRoute exact path="/" component={TrackIndexContainer} />
+            <Route exact path="/" component={TrackIndexContainer} />
             <AuthRoute exact path="/signup" component={SignupFormContainer} />
             <AuthRoute exact path="/login"  component={LoginFormContainer}/>
+            {/* <Route path="/tracks/:trackId" component={} /> */}
         </Switch>
     </div>
 );

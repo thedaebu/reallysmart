@@ -5,7 +5,7 @@ class Api::TracksController < ApplicationController
     end
 
     def show
-        @tracks = Track.find(params[:id])
+        @track = Track.find(params[:id])
     end
 
 end

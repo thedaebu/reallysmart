@@ -4,7 +4,7 @@
     align-items: center;
 
     background-color: black;
-    color: white;
+    color: rgb(201, 201, 201);
 
     height: 650px;
     
@@ -29,14 +29,13 @@
 }
 
 label {
-
-    font-size: 13px;
-    
+    font-size: 13px;   
 }
 
 #session-form-username, #session-form-password {
     display: flex;
     flex-direction: row; 
+    color: rgb(201, 201, 201);
     background-color: rgb(59, 59, 59);
     border: 1px solid rgb(88, 88, 88);
     border-radius: 2px;
@@ -48,7 +47,7 @@ label {
 
 #form-submit {
     font-size: 13px;
-    color: rgb(204, 204, 204);
+    color: rgb(201, 201, 201);
     background-color: #262626;
     border: 1px solid rgb(88, 88, 88);
     border-radius: 2px;
@@ -73,20 +72,17 @@ label {
 
 .errors-header {
     background-color: #990120;
-    color: rgb(201, 201, 201);
     font-size: 14px;
     padding: 12px 32px;
     
 }
 
 .errors-message {
-    color: rgb(201, 201, 201);
     font-size: 14px;
     padding: 12px 32px;
 }
 
 .errors-item {
-    color: rgb(201, 201, 201);
     list-style: circle;
     font-size: 14px;
     padding: 12px 32px;
