@@ -1,15 +1,37 @@
+
 .navbar-main {
-    background:pink;
+    font-size: 15px;
+    background:black;
     display: flex;
-    color: black;
     text-decoration: none;
+    justify-content: space-around;
+    align-items: center;
+    height: 41px;
+
+}
+
+
+.navbar-item {
+    color: white;
+    position: relative;
+    left: 50px;
+    border-right: 1px solid white;
+    padding-right: 44px;
+    padding-left: 20px;
+    right: 20px
 }
 
 .navbar-image-main {
     display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 150px;
+    padding-left: 75px;
+    padding-right: 65px;
+
 }
 
 .navbar-image-item {
     width: 20px;
-   height: 20px;
+    height: 20px;
 }

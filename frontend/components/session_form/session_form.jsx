@@ -23,7 +23,7 @@ class SessionForm extends React.Component {
     }
 
     showErrors(){
-       if (this.props.errors) {
+       if (this.props.errors.length) {
         return (
             <div className='errors-main'>
                 <h2 className='errors-header'>Ruh-roh!</h2>
