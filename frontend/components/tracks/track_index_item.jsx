@@ -15,21 +15,22 @@ class TrackIndexItem extends React.Component {
     // Look down
     // 
     render () {
-      const {track} = this.props;
-      
+      const { track } = this.props; 
       return (
-        <li className="track-index-item">
-          <p className='track-index-item-id'>{track.id}</p>
-          <img className='track-index-item-img' src={window.elChapo} />
-          <div className='track-index-item-title-div'>
-              <p className='track-index-item-title'>{track.title}</p>
-              <p className='track-index-item-lyrics'>LYRICS</p>
-          </div>
-          <p className='track-index-item-artist'>{track.artist}</p>
-          <img className='track-index-item-fire' src={window.fireIcon} />
-          <img className='track-index-item-eye' src={window.eyeIcon} />
-          
-        </li>
+        
+          <Link className="track-index-item" to={`/tracks/${track.id}`}>
+        
+            <p className='track-index-item-id'>{track.id}</p>
+            <img className='track-index-item-img' src={window.elChapo} />
+            
+            <p className='track-index-item-title'>{track.title}</p>
+            <p className='track-index-item-lyrics'>LYRICS</p>
+
+            <p className='track-index-item-artist'>{track.artist}</p>
+            <img className='track-index-item-fire' src={window.fireIcon} />
+            <img className='track-index-item-eye' src={window.eyeIcon} />
+          </Link>
+
       )
     }
 }

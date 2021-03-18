@@ -10,7 +10,9 @@ const mSTP = (state, ownProps) => {
         formType: 'Sign Up',
         formSubmit: 'Create Account',
         formLink: <Link className='session-form-signup' to='/login'>Log in here.</Link>,
-        formLast: 'Already have an account?'
+        formLast: 'Already have an account?',
+        formPassword: '',
+        formTos: <p className='session-form-tos-agree' >By clicking “Create Account”, you are indicating that you have read and agree to the <a className='session-form-tos-link' href=''>Terms of Service</a>.</p>,
     })
 }
 

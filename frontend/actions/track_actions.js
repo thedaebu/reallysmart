@@ -4,22 +4,19 @@ export const RECEIVE_TRACKS = 'RECEIVE_TRACKS';
 export const RECEIVE_TRACK = 'RECEIVE_TRACK';
 
 const receiveTracks = tracks => {
-    
     return ({
         type: RECEIVE_TRACKS,
         tracks,
     })
 }
-const receiveTrack = trackId => {
-    debugger
+const receiveTrack = track => {
     return ({
-        type: RECEIVE_TRACKS,
-        trackId,
+        type: RECEIVE_TRACK,
+        track
     })
 }
 
-export const fetchTracks = () => dispatch => {
-    
+export const fetchTracks = () => dispatch => {  
     return (
         TrackApiUtil.fetchTracks().then(tracks => dispatch(receiveTracks(tracks)))
     )

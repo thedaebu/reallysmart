@@ -19,9 +19,9 @@
 }
 
 .session-form-form {
-    padding: 15px 10px 8px 10px;
+    padding: 12px 10px 8px 10px;
     border-top: 1px solid rgb(41, 41, 41);
-    width: auto;
+    width: 350px;
     
     border-radius: 2px;
     background: rgb(19, 19, 19);
@@ -32,29 +32,68 @@ label {
     font-size: 13px;   
 }
 
+.session-form-forgot-password {
+    font-size: 12px;
+    color: #5BA7C2;
+}
+
+.session-form-forgot-password:hover {
+    color: #7ecce9;
+}
+
 #session-form-username, #session-form-password {
     display: flex;
     flex-direction: row; 
-    color: rgb(201, 201, 201);
+    font-size: 14;
+    color: rgb(228, 228, 228);
     background-color: rgb(59, 59, 59);
     border: 1px solid rgb(88, 88, 88);
     border-radius: 2px;
-    width: 320px;
+    width: 335px;
     margin-bottom: 15px;
-    margin-top: 5px;
-    padding: 5px;
+    margin-top: 4px;
+    padding: 6px;
+    
+}
+
+#session-form-username:focus, #session-form-password:focus {
+    border: 1px solid rgb(143, 143, 143)
+}
+
+.session-form-tos-agree {
+    font-size: 13px;
+    padding-bottom: 16px;
+    line-height: 18px;
+}
+
+.session-form-tos-link {
+    color:#5BA7C2;
+    font-size: 13px;
+}
+
+.session-form-tos-link:hover {
+    color:#7ecce9;
 }
 
 #form-submit {
+    font-family: 'Programme Regular', sans-serif;
     font-size: 13px;
     color: rgb(201, 201, 201);
     background-color: #262626;
     border: 1px solid rgb(88, 88, 88);
     border-radius: 2px;
-    padding: 6px 10px 6px 10px;
+    padding: 5px 10px 5px 10px;
     
-    margin-top: 6px;
+    margin-top: 1px;
 
+}
+
+#form-submit:hover {
+    background-color: #2c2c2c;
+    cursor: pointer;
+}
+#form-submit:active {
+    background: linear-gradient(336deg, #3d3d3d, #262626 70.71%);   
 }
 
 .session-form-last {
@@ -66,25 +105,30 @@ label {
     font-size: 15px;
 }
 
+.session-form-login:hover, .session-form-signup:hover {
+    color: #7ecce9;
+}
+
 .errors-main {
-    background: #1a1a1a;
+    background: #242424;
+    margin-bottom: 26px;
 }
 
 .errors-header {
-    background-color: #990120;
+    background-color: #8d011d;
     font-size: 14px;
-    padding: 12px 32px;
+    padding: 9px 32px;
     
 }
 
 .errors-message {
-    font-size: 14px;
-    padding: 12px 32px;
+    font-size: 12px;
+    padding: 20px 32px;
 }
 
 .errors-item {
     list-style: circle;
     font-size: 14px;
-    padding: 12px 32px;
+    padding: 15px 32px;
     margin-bottom: 10px;
 }

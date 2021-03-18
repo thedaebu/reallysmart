@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { fetchTrack, fetchTracks } from '../../actions/track_actions';
+import { fetchTrack } from '../../actions/track_actions';
 import TrackShow from './track_show';
 
 const mSTP = (state, ownProps) => {
@@ -10,7 +10,6 @@ const mSTP = (state, ownProps) => {
 
 const mDTP = (dispatch, ownProps) => {
     return ({   
-        fetchTracks: tracks => dispatch(fetchTracks(tracks)),
         fetchTrack: trackId => dispatch(fetchTrack(trackId)),
     })
 }

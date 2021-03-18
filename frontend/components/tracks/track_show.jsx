@@ -12,11 +12,19 @@ class TrackShow extends React.Component {
         super(props)
     }
 
+    componentDidMount(){
+        
+        this.props.fetchTrack(this.props.match.params.trackId);
+    }
+
     render(){
+        const {track, fetchTrack} = this.props;
         return (
-            null
+            <div className='track-show-main'>
+                <p>{track.title}:{track.artist}</p>
+            </div>
         )
     }
-}
+};
 
-export default TrackShow
+export default TrackShow;

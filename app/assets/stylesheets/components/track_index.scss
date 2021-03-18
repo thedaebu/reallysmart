@@ -2,11 +2,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-family: 'Programme Regular', sans-serif;
+
 }
 
 .tracks-index-h1 {
     margin-top: 60px;
-    font-family: Programme, Arial, sans-serif;
     font-size: 75px;
     font-weight: bold;
     letter-spacing: 1px;
@@ -22,12 +23,16 @@
 }
 
 .track-index-item {
-    display: flex;
-
+    display: grid;
+    // grid-template-columns: [grid-start] repeat(3, minmax(14px, 44px)) [center-start] repeat(6, minmax(14px, 44px)) [center-end] repeat(3, minmax(14px, 44px)) [grid-end]
+    color: black;
+    align-items: center;
+    border-bottom: rgb(224, 224, 224) solid 2px;
+    width: 900px;
 }
 
 .track-index-item-id {
-
+    font-size: 25px;
 }
 
 .track-index-item-title-div {
@@ -35,11 +40,23 @@
 }
 
 .track-index-item-title {
+    font-size: 25px;
+    font-weight: bolder;
+}
 
+.track-index-item-lyrics {
+    display: flex;
+    align-items: center;
+    font-size: 10px;
+    color: rgb(156, 156, 156);
+    font-weight: 600px;
+    position: relative;
+    top: 4px;
+    letter-spacing: 1px;
 }
 
 .track-index-item-artist {
-
+    font-size: 25px;
 }
 
 .track-index-item-img {

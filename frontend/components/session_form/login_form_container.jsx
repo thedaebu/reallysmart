@@ -10,7 +10,8 @@ const mSTP = (state, ownProps) => {
         formType: 'Log In',
         formSubmit: 'Login',
         formLink: <Link className='session-form-login' to='/signup'>Sign up here.</Link>,
-        formLast: 'Don\'t have an account?'
+        formLast: 'Don\'t have an account?',
+        formPassword: '(I forgot my password)'
     })
 }
 const mDTP = (dispatch, ownProps) => {
