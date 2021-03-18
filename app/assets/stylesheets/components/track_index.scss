@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     font-family: 'Programme Regular', sans-serif;
-
+    
 }
 
 .tracks-index-h1 {
@@ -19,19 +19,29 @@
     font-size: 14px;
     padding-top: 15px;
     
+}
 
+.tracks-index-list {
+    width: 1150px;
 }
 
 .track-index-item {
     display: grid;
-    // grid-template-columns: [grid-start] repeat(3, minmax(14px, 44px)) [center-start] repeat(6, minmax(14px, 44px)) [center-end] repeat(3, minmax(14px, 44px)) [grid-end]
+    grid-template-columns: 95px 2fr 9fr 8fr 3fr 3fr;
     color: black;
     align-items: center;
+    height: 71px;
     border-bottom: rgb(224, 224, 224) solid 2px;
-    width: 900px;
+    width: auto;
+    
+}
+
+.track-index-item:hover {
+    background-color: rgb(228, 228, 228);
 }
 
 .track-index-item-id {
+    padding-left: 12px;
     font-size: 25px;
 }
 
@@ -44,6 +54,8 @@
     font-weight: bolder;
 }
 
+
+
 .track-index-item-lyrics {
     display: flex;
     align-items: center;
@@ -53,10 +65,13 @@
     position: relative;
     top: 4px;
     letter-spacing: 1px;
+    padding-left: 5px;
 }
 
 .track-index-item-artist {
+    font-family: 'Programme Regular', Arial;
     font-size: 25px;
+    font-weight: lighter;
 }
 
 .track-index-item-img {

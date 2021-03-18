@@ -25,13 +25,3 @@ boolean for upvotes for each user per track or annotation
 syntax for inclusion in migrations
 image without setting to window
 fetchtrack
-
-
-navbar
-
-sign up font
-weight
-terms of agreement
-spacing under create account button
-
-create account/log in button hover/click

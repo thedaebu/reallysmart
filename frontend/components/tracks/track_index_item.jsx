@@ -23,8 +23,10 @@ class TrackIndexItem extends React.Component {
             <p className='track-index-item-id'>{track.id}</p>
             <img className='track-index-item-img' src={window.elChapo} />
             
-            <p className='track-index-item-title'>{track.title}</p>
-            <p className='track-index-item-lyrics'>LYRICS</p>
+            <div className='track-index-item-title-div'>
+              <p className='track-index-item-title'>{track.title}</p>
+              <p className='track-index-item-lyrics'>LYRICS</p>
+            </div>
 
             <p className='track-index-item-artist'>{track.artist}</p>
             <img className='track-index-item-fire' src={window.fireIcon} />
