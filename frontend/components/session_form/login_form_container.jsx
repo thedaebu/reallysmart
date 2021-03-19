@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
-import { login } from '../../actions/session_actions';
+import { clearErrors, login } from '../../actions/session_actions';
 import SessionForm from './session_form';
 
 const mSTP = (state, ownProps) => {
@@ -16,7 +16,8 @@ const mSTP = (state, ownProps) => {
 }
 const mDTP = (dispatch, ownProps) => {
     return ({
-        action: user => dispatch(login(user))
+        action: user => dispatch(login(user)),
+        clearErrors: () => dispatch(clearErrors())
     })
 }
 

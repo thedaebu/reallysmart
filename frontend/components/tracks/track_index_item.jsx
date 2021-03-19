@@ -21,7 +21,7 @@ class TrackIndexItem extends React.Component {
           <Link className="track-index-item" to={`/tracks/${track.id}`}>
         
             <p className='track-index-item-id'>{track.id}</p>
-            <img className='track-index-item-img' src={window.elChapo} />
+            <img className='track-index-item-img' src={track.artwork_path} />
             
             <div className='track-index-item-title-div'>
               <p className='track-index-item-title'>{track.title}</p>

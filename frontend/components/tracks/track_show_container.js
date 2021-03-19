@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { fetchTrack } from '../../actions/track_actions';
+import { fetchTrack, fetchTracks } from '../../actions/track_actions';
 import TrackShow from './track_show';
 
 const mSTP = (state, ownProps) => {

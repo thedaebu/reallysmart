@@ -9,7 +9,7 @@ const mSTP = (state, ownProps) => {
         errors: state.errors.sessionErrors,
         formType: 'Sign Up',
         formSubmit: 'Create Account',
-        formLink: <Link className='session-form-signup' to='/login'>Log in here.</Link>,
+        formLink: <Link className='session-form-signup' to='/login' >Log in here.</Link>,
         formLast: 'Already have an account?',
         formPassword: '',
         formTos: <p className='session-form-tos-agree' >By clicking “Create Account”, you are indicating that you have read and agree to the <a className='session-form-tos-link' href=''>Terms of Service</a>.</p>,
@@ -18,7 +18,8 @@ const mSTP = (state, ownProps) => {
 
 const mDTP = (dispatch, ownProps) => {
     return ({
-        action: user => dispatch(signup(user))
+        action: user => dispatch(signup(user)),
+        clearErrors: () => dispatch(clearErrors())
     })
 }
 

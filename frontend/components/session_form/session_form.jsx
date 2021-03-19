@@ -12,6 +12,8 @@ class SessionForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    
+
     handleSubmit(e){
         e.preventDefault;
         const user = Object.assign({}, this.state);
@@ -43,7 +45,7 @@ class SessionForm extends React.Component {
     }
 
     render() {
-        const {formType, formSubmit, formLink, formLast, formPassword, formTos} = this.props;
+        const {formType, formSubmit, formLink, formLast, formPassword, formTos, clearErrors } = this.props;
         return (
             <div className='session-form-main'>
                 <h1 className='session-form-h1'>{formType}</h1>

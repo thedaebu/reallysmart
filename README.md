@@ -14,6 +14,9 @@ git push heroku main
 font-family: 'Programme Regular', sans-serif;
 font-family: 'Ubuntu Condensed', sans-serif;
 
+https://cdn.discordapp.com/attachments/793281103766618175/819599410466914304/Screen_Shot_2021-03-11_at_10.54.43_AM.png
+
+https://cdn.discordapp.com/attachments/801988471064494080/818884609102184468/Screen_Shot_2021-03-09_at_11.34.47_AM.png
 
 
 
@@ -22,6 +25,4 @@ how to display upvotes, call upvotes, polymorphic associations of type
 boolean for upvotes for each user per track or annotation
 .includes associations for annotations and upvotes and comments
 
-syntax for inclusion in migrations
-image without setting to window
-fetchtrack
+<script async src="//genius.codes"></script>
