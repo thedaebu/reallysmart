@@ -31,6 +31,7 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
+	width: 100%;
 	line-height: 1;
 }
 ol, ul {
@@ -54,4 +55,8 @@ select:focus,
 textarea:focus,
 button:focus {
     outline: none;
+}
+
+pre {
+	white-space: pre-wrap;
 }

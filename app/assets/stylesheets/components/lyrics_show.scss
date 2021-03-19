@@ -1,0 +1,37 @@
+.lyrics-show-main {
+    width: 100%;
+    background: rgb(236, 242, 255);
+    
+}
+
+.lyrics-show-shade {
+    width: 970px;
+    background: rgb(255, 255, 255);
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.lyrics-show-left {
+    padding-top: 18px;
+    padding-left: 16px;
+}
+
+.lyrics-show-top {
+    font-family: 'Programme Regular', sans-serif;
+    color: #9a9a9a;
+    font-size: 12px;
+    letter-spacing: 1px;
+    padding-bottom: 28px;
+
+}
+
+.lyrics-show-body {
+    font-family: 'Programme Light', sans-serif;    font-size: 18px;
+    font-weight: lighter;
+    line-height: 30px;
+}
+
+// .lyrics-show-right {
+
+// }

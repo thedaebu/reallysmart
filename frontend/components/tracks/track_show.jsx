@@ -28,7 +28,10 @@ class TrackShow extends React.Component {
             <div>
                 <NavBar />
                 <TrackShowHeader track={track} fetchTrack={fetchTrack} />
-                <LyricsShow lyrics={track.lyrics} />
+                <div className='track-show-bottom-main'>
+                    <LyricsShow track={track} />
+
+                </div>
             </div>
         )} else { return (
             null

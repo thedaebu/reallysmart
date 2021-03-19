@@ -11,10 +11,13 @@ class TrackIndexItem extends React.Component {
     constructor(props) {
         super (props) 
     }
-    // 
-    // Look down
-    // 
+    
+    randomNum() {
+      return Math.floor(Math.random() * 1000)
+    }
+
     render () {
+      
       const { track } = this.props; 
       return (
         
@@ -29,15 +32,19 @@ class TrackIndexItem extends React.Component {
             </div>
 
             <p className='track-index-item-artist'>{track.artist}</p>
-            <img className='track-index-item-fire' src={window.fireIcon} />
-            <img className='track-index-item-eye' src={window.eyeIcon} />
+            <div className='track-index-item-fire-main'>
+              <img className='track-index-item-fire' src={window.fireIcon} />
+              <p className='track-index-item-fire-number'>{this.randomNum()}</p>
+            </div>
+            <div className='track-index-item-eye-main'>
+              <img className='track-index-item-eye' src={window.eyeIcon} />
+              <p className='track-index-item-eye-number'>{this.randomNum() * 10}</p>
+            </div>
           </Link>
 
       )
     }
 }
 
-//
-// How to get images to show depending on song path
-//
+
 export default TrackIndexItem;

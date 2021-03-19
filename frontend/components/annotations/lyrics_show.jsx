@@ -1,4 +1,5 @@
 import React from 'react';
+import Annotation from './annotation';
 
 class LyricsShow extends React.Component {
     constructor(props){
@@ -6,9 +7,20 @@ class LyricsShow extends React.Component {
     }
 
     render () {
-        const { lyrics } = this.props;
+        const { track } = this.props;
         return (
-            <p>{lyrics}</p>
+            <div className='lyrics-show-main'>
+                <div className='lyrics-show-shade'>
+                    <div className='lyrics-show-left'>
+                        <p className='lyrics-show-top'>{track.title} LYRICS</p>
+                        <pre className='lyrics-show-body'>{track.lyrics}</pre>
+                        
+                    </div>
+                    <div className='lyrics-show-right'>
+                        <Annotation />
+                    </div>
+                </div>
+            </div>
         )
     }
 }

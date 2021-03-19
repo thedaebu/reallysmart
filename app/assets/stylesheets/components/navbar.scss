@@ -1,3 +1,10 @@
+.navbar-outside {
+    width: 100%;
+    height: 41px;
+    background: black;
+    display: flex;
+    justify-content: center;
+}
 
 .navbar-main {
     font-size: 15px;
@@ -6,32 +13,27 @@
     text-decoration: none;
     justify-content: space-around;
     align-items: center;
-    height: 41px;
-
+    height: inherit;
+    width: 84%;
 }
 
 
 .navbar-item {
     color: white;
-    position: relative;
-    left: 50px;
+    padding-right: 40px;
     border-right: 1px solid white;
-    padding-right: 42px;
-    padding-left: 20px;
-    right: 20px
+
 }
 
 .navbar-image-main {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 150px;
-    padding-left: 65px;
-    padding-right: 70px;
-
+    margin-left: -21px;
 }
 
 .navbar-image-item {
     width: 20px;
     height: 20px;
+    padding-left: 19px;
 }

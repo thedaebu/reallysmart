@@ -79,12 +79,37 @@
    height: 60px;
 }
 
+.track-index-item-fire-main {
+    display: flex;
+}
+
 .track-index-item-fire {
    width: 20px;
    height: 20px;
 }
 
+.track-index-item-fire-number {
+    color: red;
+    font-size: 12px;
+    position: relative;
+    top: 3px;
+    left: -4px;
+}
+
+.track-index-item-eye-main {
+    display: flex;
+}
+
+
 .track-index-item-eye {
    width: 20px;
    height: 20px;
+}
+
+.track-index-item-eye-number {
+    color: rgb(197, 197, 197);
+    font-size: 12px;
+    position: relative;
+    top: 3px;
+    left: -4px;
 }

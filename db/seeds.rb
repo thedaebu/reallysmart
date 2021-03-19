@@ -5,11 +5,17 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+User.destroy_all
+Track.destroy_all
 
 User.create(username: 'reallysmart', password: 'reallysmart')
 
-Track.create(title: 'El Chapo', artist: 'The Game', artwork_path: 'https://t2.genius.com/unsafe/440x440/https%3A%2F%2Fimages.genius.com%2F5c05a2749acfb8863d0eb5dc135d9d70.1000x1000x1.jpg', 
-    lyrics: "[Intro: The Game]
+Track.create(
+    title: 'El Chapo', 
+    artist: 'The Game', 
+    artwork_path: 'https://t2.genius.com/unsafe/440x440/https%3A%2F%2Fimages.genius.com%2F5c05a2749acfb8863d0eb5dc135d9d70.1000x1000x1.jpg', 
+    lyrics: 
+"[Intro: The Game]
 Skrillex
 Bangladesh
 I am the God (God, God, God)
@@ -111,4 +117,5 @@ El Chapo (whoo, whoo, whoo, whoo, whoo, whoo)
 Nigga, I am the God (God, God, God, God, God, God, God)
 
 [Outro: The Game]
-Nigga, I am the God")
+Nigga, I am the God"
+)
