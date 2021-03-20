@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_17_171519) do
+ActiveRecord::Schema.define(version: 2021_03_20_201935) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "annotations", force: :cascade do |t|
+    t.text "body", null: false
+    t.integer "annotator_id", null: false
+    t.integer "track_id", null: false
+    t.integer "start_index", null: false
+    t.integer "end_index", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["annotator_id"], name: "index_annotations_on_annotator_id"
+    t.index ["track_id"], name: "index_annotations_on_track_id"
+  end
 
   create_table "tracks", force: :cascade do |t|
     t.string "title", null: false

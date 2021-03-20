@@ -8,9 +8,12 @@
 User.destroy_all
 Track.destroy_all
 
-User.create(username: 'reallysmart', password: 'reallysmart')
+reallysmart = User.create(
+    username: 'reallysmart', 
+    password: 'reallysmart'
+)
 
-Track.create(
+el_chapo = Track.create(
     title: 'El Chapo', 
     artist: 'The Game', 
     artwork_path: 'https://i.ytimg.com/vi/RviOwY0OKyE/maxresdefault.jpg', 
@@ -120,7 +123,7 @@ Nigga, I am the God (God, God, God, God, God, God, God)
 Nigga, I am the God"
 )
 
-Track.create(
+selene = Track.create(
     title: 'Selene', 
     artist: 'NIKI', 
     artwork_path: 'https://i.ytimg.com/vi/GBqqoPSJ9GY/maxresdefault.jpg', 
@@ -186,53 +189,93 @@ Take me down to lift me high
 Higher, higher, ooh"
 )
 
-Track.create(
-    title: 'Revenge', 
-    artist: 'Tiffany Day', 
-    artwork_path: 'https://i1.sndcdn.com/artworks-gmFbAzVcPDjVJgzn-87w1Eg-t500x500.jpg', 
-    lyrics: "[Verse 1]
-I only want you for the night
-Yeah, when it's over, I think it's best to say goodbye to you
-Think I'm done with you, with you
-Don't think I let you in it twice
-'Cause after all you never cared as much as I do
-I was down for you, for you
+fake_love = Track.create(
+    title: 'Fake Love', 
+    artist: 'Drake', 
+    artwork_path: 'https://images.genius.com/65dacc63f81321a1cee1435f303a1bf5.1000x1000x1.jpg', 
+    lyrics: 
+"[Chorus]
+I've been down so long, it look like up to me
+They look up to me
+I got fake people showin' fake love to me
+Straight up to my face, straight up to my face
+I've been down so long, it look like up to me
+They look up to me
+I got fake people showin' fake love to me
+Straight up to my face, straight up to my face
 
-[Pre-Chorus 1]
-Now I'm a heartbreaker, never chasing after yo ass
-No, you can't take it when I make it up to first class
-Im a wild one, no love left in the past
-I'm new
-I'm new
+[Verse 1]
+Somethin' ain't right when we talkin'
+Somethin' ain't right when we talkin'
+Look like you hidin' your problems
+Really you never was solid
+No, you can't 'son' me
+You won't never get to run me
+Just when shit look out of reach
+I reach back like one, three
+Like one, three, yeah
+
+[Pre-Chorus]
+That's when they smile in my face
+Whole time they wanna take my place
+Whole time they wanna take my place
+Whole time they wanna take my place
+Yeah, I know they wanna take my place
+I can tell that love is fake
+I don't trust a word you say
+How you wanna clique up after your mistakes?
+Look you in the face, and it's just not the same
 
 [Chorus]
-You're mistaken, I'm not breaking and you don't get me again, yeah yeah
-Im not foolish, I've been through this and I don't want to pretend that you were allowed with it all from the start
-I know you've been fakin', it don't work too hard anymore
-A heartbreaker, you can't take it, and I will get my revenge, yeah yeah
+I've been down so long, it look like up to me
+They look up to me
+I got fake people showin' fake love to me
+Straight up to my face, straight up to my face
+I've been down so long, it look like up to me
+They look up to me
+I got fake people showin' fake love to me
+Straight up to my face, straight up to my face
 
 [Verse 2]
-Posing up on TV, now you wanna see me
-But you don't get to see shit
-Thinking that you know me, claiming that you own me
-But you never think about all the times you say you had it
-And all the lies you used, you had me down
-So very down
+Yeah, straight up to my face, tryna play it safe
+Vibe switch like night and day
+I can see it, like, right away
+I came up, you changed up
+I caught that whole play
+Since, things never been the same
 
-[Pre-Chorus 2]
-Now I'm a heartbreaking, never chasing after yo ass
-No, you can't take it when I make it up to first class
-Im a wild one, no love left in the past, it's true
-It's true
-
-You're a cloud chaser, always fakin' what you could be
-Never took the time to let me know what I should have seen
-I'm a wild one, no love
-I'm new, I'm new
+[Pre-Chorus]
+That's when they smile in my face
+Whole time they wanna take my place
+Whole time they wanna take my place
+Whole time they wanna take my place
+Yeah, I know they wanna take my place
+I can tell that love is fake (I can tell that love is fake)
+I don't trust a word you say (I don't trust a word)
+How you wanna clique up after your mistakes?
+(That's just what I heard)
+Look you in the face, and it's just not the same
 
 [Chorus]
-You're mistaken, I'm not breaking and you don't get me again, yeah yeah
-Im not foolish, I've been trough this and I don't want to pretend that you were allowed with it all from the start
-I know you've been fakin', it don't work too hard anymore
-A heartbreaker, you can't take it, and I will get my revenge, yeah yeah"
+I've been down so long, it look like up to me
+They look up to me
+I got fake people showin' fake love to me
+Straight up to my face, straight up to my face
+I've been down so long, it look like up to me
+They look up to me
+I got fake people showin' fake love to me
+Straight up to my face, straight up to my face
+
+[Outro]
+Skrrt
+And more chune for your headtop
+So watch how you speak on my name, you know?"
+)
+
+annotation1 = Annotation.create(
+    body: "This is a great line because it is.",
+    annotator_id: reallysmart.id,
+    track_id: fake_love.id,
+    start_index: 5,
+    end_index: 10,
 )

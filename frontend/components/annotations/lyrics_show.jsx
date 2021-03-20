@@ -12,7 +12,7 @@ class LyricsShow extends React.Component {
             <div className='lyrics-show-main'>
                 <div className='lyrics-show-shade'>
                     <div className='lyrics-show-left'>
-                        <p className='lyrics-show-top'>{track.title} LYRICS</p>
+                        <p className='lyrics-show-top'>{track.title.toUpperCase()} LYRICS</p>
                         <pre className='lyrics-show-body'>{track.lyrics}</pre>
                         
                     </div>

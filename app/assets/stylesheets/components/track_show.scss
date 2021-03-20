@@ -9,8 +9,7 @@
 }
 
 .track-show-header-background-image {
-    background-position: 50% 50%; 
-    background-size: cover;
+    
     width: auto;
 }
 
@@ -37,8 +36,7 @@
 .track-show-header-image {
     height: 220px;
     width: 220px;
-    background-position: 50% 50%; 
-    background-size: cover;
+
     border: 2px solid rgb(104, 104, 104);
     right: 22px;
     position: relative;
@@ -74,6 +72,8 @@
     display: flex;
     align-items: flex-end;
     margin-right: 290px;
+    position: relative;
+    top: 20px;
 }
 
 .track-index-item-eye, .track-index-item-fire {
