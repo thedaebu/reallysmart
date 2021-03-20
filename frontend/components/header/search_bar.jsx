@@ -20,7 +20,7 @@ class SearchBar extends React.Component {
                 value={this.state.field} 
                 onChange={this.onChange('field')} 
                 />
-                <AiOutlineSearch class='search-bar-glass' />
+                <AiOutlineSearch className='search-bar-glass' />
             </div>
             
             

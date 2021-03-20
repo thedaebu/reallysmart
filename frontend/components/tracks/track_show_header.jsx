@@ -18,7 +18,7 @@ class TrackShowHeader extends React.Component {
                 <div className='track-show-header-shade'>
                     <div className='track-show-header-content'>
                         <div className='track-show-header-left'>
-                            <img className='track-show-header-image' src={track.artwork_path} />
+                            <div className='track-show-header-image'style={{ background: `url(${art}`, backgroundPosition: 'center', backgroundSize: 'cover' }} ></div>
                             <div className='track-show-header-center'>
                                 <p className='track-show-header-title' >{track.title}</p>
                                 <p className='track-show-header-artist'>{track.artist}</p>

@@ -1,5 +1,6 @@
 import React from 'react';
 import DemoUserContainer from '../demo_user/demo_user_container';
+import NavBar from '../header/navbar';
 
 class SessionForm extends React.Component {
     constructor(props){
@@ -8,11 +9,8 @@ class SessionForm extends React.Component {
             username: '',
             password: ''
         };
-
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-
-    
 
     handleSubmit(e){
         e.preventDefault;
@@ -45,28 +43,28 @@ class SessionForm extends React.Component {
     }
 
     render() {
-        const {formType, formSubmit, formLink, formLast, formPassword, formTos, clearErrors } = this.props;
+        const {formType, formTypeSub, formSubmit, formLink, formLast, formPassword, formTos, clearErrors } = this.props;
         return (
-            <div className='session-form-main'>
-                <h1 className='session-form-h1'>{formType}</h1>
-                
-                <form className="session-form-form" onSubmit={this.handleSubmit}>
-                    {this.showErrors()}
-                    <label htmlFor='session-form-username' >Really Smart Nickname
-                        <input id='session-form-username' type='text' value={this.state.username} onChange={this.handleChange('username')}/>
-                    </label>
-                    <label htmlFor='session-form-password' >Really Smart Password <a className='session-form-forgot-password' href='' >{formPassword}</a>
-                        <input id='session-form-password' type='password' value={this.state.password} onChange={this.handleChange('password')}/>
-                    </label>
-                    {formTos}
-                    <input id='form-submit' type="submit" value={formSubmit} />
-                    
-                </form>
-                <p className='session-form-last' >{formLast} {formLink}</p>
-                
-            </div>
-            
-
+            <>
+                <NavBar/>
+                <div className='session-form-main'>
+                    {formType}
+                    {formTypeSub}                   
+                    <form className="session-form-form" onSubmit={this.handleSubmit}>
+                        {this.showErrors()}
+                        <label htmlFor='session-form-username' >Really Smart Nickname
+                            <input id='session-form-username' type='text' value={this.state.username} onChange={this.handleChange('username')}/>
+                        </label>
+                        <label htmlFor='session-form-password' >Really Smart Password <a className='session-form-forgot-password' href='' >{formPassword}</a>
+                            <input id='session-form-password' type='password' value={this.state.password} onChange={this.handleChange('password')}/>
+                        </label>
+                        {formTos}
+                        <input id='form-submit' type="submit" value={formSubmit} />
+                        
+                    </form>
+                    <p className='session-form-last' >{formLast} {formLink}</p>                  
+                </div>
+            </>
         )
     }
 };

@@ -13,7 +13,7 @@ User.create(username: 'reallysmart', password: 'reallysmart')
 Track.create(
     title: 'El Chapo', 
     artist: 'The Game', 
-    artwork_path: 'https://t2.genius.com/unsafe/440x440/https%3A%2F%2Fimages.genius.com%2F5c05a2749acfb8863d0eb5dc135d9d70.1000x1000x1.jpg', 
+    artwork_path: 'https://i.ytimg.com/vi/RviOwY0OKyE/maxresdefault.jpg', 
     lyrics: 
 "[Intro: The Game]
 Skrillex
@@ -118,4 +118,121 @@ Nigga, I am the God (God, God, God, God, God, God, God)
 
 [Outro: The Game]
 Nigga, I am the God"
+)
+
+Track.create(
+    title: 'Selene', 
+    artist: 'NIKI', 
+    artwork_path: 'https://i.ytimg.com/vi/GBqqoPSJ9GY/maxresdefault.jpg', 
+    lyrics: 
+"[Verse 1]
+She's taken over
+She's making me want your body closer
+Having a little trouble staying sober
+And she's got us all under her trance
+Oh, she's elusive (I know)
+She only rises with the music
+And all of my dreams, they're growing lucid
+That's how you know she's up to dance
+To dance, to dance, to dance
+
+[Pre-Chorus]
+And now she's taking over me
+A new notch on her belt, yeah
+And your face gleams like a prophecy
+I might just lose myself, yeah
+
+[Chorus]
+And I couldn't care less (Uh)
+I couldn't care less, baby
+Feeling just a little careless lately
+Push me back and pull me under (Ah-ah)
+She got me possessed (Uh)
+I'm looking to get hasty
+And I just want your body pressed against me
+Take me down to lift me high
+Take me down to lift me high
+Higher, higher, ooh
+
+[Verse 2]
+White flames on her torch, they're licking on the air tonight (Uh)
+Chariot skid marks all over the gravel behind my eyes
+Take my hand 'cause when this ends, I run
+No man's land sounds like a woman's fun
+We got all night long
+Oh, won't ya give it to me, give it to me, ah
+
+[Pre-Chorus]
+And oh, she's bubbling up again, and I do as I'm told
+May be losing all my self-control
+
+[Chorus]
+And I couldn't care less (Uh)
+I couldn't care less, baby
+Feeling just a little careless lately
+Push me back and pull me under (Ah-ah)
+She got me possessed (Uh)
+I'm looking to get hasty
+And I just want your body pressed against me
+Take me down to lift me high
+Take me down to lift me high
+Higher, higher, ooh
+
+[Outro]
+Higher, higher, ooh
+Higher, higher, ooh
+Take me down to lift me high
+Take me down to lift me high
+Higher, higher, ooh"
+)
+
+Track.create(
+    title: 'Revenge', 
+    artist: 'Tiffany Day', 
+    artwork_path: 'https://i1.sndcdn.com/artworks-gmFbAzVcPDjVJgzn-87w1Eg-t500x500.jpg', 
+    lyrics: "[Verse 1]
+I only want you for the night
+Yeah, when it's over, I think it's best to say goodbye to you
+Think I'm done with you, with you
+Don't think I let you in it twice
+'Cause after all you never cared as much as I do
+I was down for you, for you
+
+[Pre-Chorus 1]
+Now I'm a heartbreaker, never chasing after yo ass
+No, you can't take it when I make it up to first class
+Im a wild one, no love left in the past
+I'm new
+I'm new
+
+[Chorus]
+You're mistaken, I'm not breaking and you don't get me again, yeah yeah
+Im not foolish, I've been through this and I don't want to pretend that you were allowed with it all from the start
+I know you've been fakin', it don't work too hard anymore
+A heartbreaker, you can't take it, and I will get my revenge, yeah yeah
+
+[Verse 2]
+Posing up on TV, now you wanna see me
+But you don't get to see shit
+Thinking that you know me, claiming that you own me
+But you never think about all the times you say you had it
+And all the lies you used, you had me down
+So very down
+
+[Pre-Chorus 2]
+Now I'm a heartbreaking, never chasing after yo ass
+No, you can't take it when I make it up to first class
+Im a wild one, no love left in the past, it's true
+It's true
+
+You're a cloud chaser, always fakin' what you could be
+Never took the time to let me know what I should have seen
+I'm a wild one, no love
+I'm new, I'm new
+
+[Chorus]
+You're mistaken, I'm not breaking and you don't get me again, yeah yeah
+Im not foolish, I've been trough this and I don't want to pretend that you were allowed with it all from the start
+I know you've been fakin', it don't work too hard anymore
+A heartbreaker, you can't take it, and I will get my revenge, yeah yeah"
 )

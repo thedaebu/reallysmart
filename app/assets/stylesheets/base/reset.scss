@@ -30,8 +30,11 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
+html {
+   min-height: 100%;
+   width: 100%;
+}
 body {
-	width: 100%;
 	line-height: 1;
 }
 ol, ul {

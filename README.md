@@ -11,9 +11,12 @@ git add .
 git commit -m "
 git push heroku main
 
+font-family: 'Open Sans Condensed', sans-serif;
 font-family: 'Programme Regular', sans-serif;
 font-family: 'Programme Light', sans-serif;
 font-family: 'Ubuntu Condensed', sans-serif;
+font-family: 'Raleway', sans-serif;
+font-family: 'Barlow Condensed', sans-serif;
 
 https://cdn.discordapp.com/attachments/793281103766618175/819599410466914304/Screen_Shot_2021-03-11_at_10.54.43_AM.png
 

@@ -7,7 +7,8 @@ import SessionForm from './session_form';
 const mSTP = (state, ownProps) => {
     return ({
         errors: state.errors.sessionErrors,
-        formType: 'Sign Up',
+        formType: <h1 className='session-form-h1-signup'>SIGN UP</h1>,
+        formTypeSub: <h2 className='session-form-h2-signup'>and show off your really smartness</h2>, 
         formSubmit: 'Create Account',
         formLink: <Link className='session-form-signup' to='/login' >Log in here.</Link>,
         formLast: 'Already have an account?',

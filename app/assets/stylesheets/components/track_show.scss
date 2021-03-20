@@ -8,11 +8,9 @@
 }
 
 .track-show-header-background-image {
-    float: right;
     background-position: 50% 50%; 
     background-size: cover;
     width: auto;
-
 }
 
 .track-show-header-shade {
@@ -37,11 +35,12 @@
 
 .track-show-header-image {
     height: 220px;
+    width: 220px;
+    background-position: 50% 50%; 
+    background-size: cover;
     border: 2px solid rgb(104, 104, 104);
     right: 22px;
     position: relative;
-
-   
 }
 
 
@@ -66,6 +65,8 @@
     font-size: 25px;
     position: relative;
     top: 6px;
+    font-weight: lighter;
+    
 }
 
 .track-show-header-right {
