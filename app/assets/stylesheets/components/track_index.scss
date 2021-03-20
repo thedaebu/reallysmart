@@ -75,12 +75,15 @@
 }
 
 .track-index-item-img {
-   width: 60px;
-   height: 60px;
+    
+    width: 60px;
+    height: 60px;
 }
 
 .track-index-item-fire-main {
     display: flex;
+    position: relative;
+    top: 2px;
 }
 
 .track-index-item-fire {
@@ -98,12 +101,15 @@
 
 .track-index-item-eye-main {
     display: flex;
+    position: relative;
+    top: 2px;
 }
 
 
 .track-index-item-eye {
    width: 20px;
    height: 20px;
+   
 }
 
 .track-index-item-eye-number {
@@ -112,4 +118,22 @@
     position: relative;
     top: 3px;
     left: -4px;
+}
+
+.tracks-index-load-more {
+    margin-top: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 14px;
+    color: rgb(106, 153, 255);
+    border: 2px solid rgb(106, 153, 255);
+    text-align: center;
+    width: 90px;
+    padding: 12px 21px 12px 21px;
+}
+
+.tracks-index-load-more:hover {
+    background: rgb(106, 153, 255);
+    color: white;
+    cursor: pointer;
 }

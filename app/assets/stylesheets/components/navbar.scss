@@ -4,32 +4,90 @@
     background: black;
     display: flex;
     justify-content: center;
+    
 }
 
 .navbar-main {
-    font-size: 15px;
+    font-size: 14px;
     background:black;
     display: flex;
     text-decoration: none;
     justify-content: space-around;
     align-items: center;
     height: inherit;
-    width: 84%;
+    
+    
 }
 
-
-.navbar-item {
+.collective-sounds {
     color: white;
     padding-right: 40px;
     border-right: 1px solid white;
+    width: 154px;
+    padding-right: 36px;
+    padding-left: 36px;
+    margin: auto;
+}
 
+.genius-live {
+    color: white;
+    padding-right: 40px;
+    border-right: 1px solid white;
+    width: 90px;
+    padding-right: 36px;
+    padding-left: 36px;
+    margin: auto;
+}
+
+.featured {
+    color: white;
+    padding-right: 40px;
+    border-right: 1px solid white;
+    width: 76px;
+    padding-right: 36px;
+    padding-left: 36px;
+    margin: auto;
+}
+
+.charts {
+    color: white;
+    padding-right: 40px;
+    border-right: 1px solid white;
+    width: 57px;
+    padding-right: 36px;
+    padding-left: 36px;
+    margin: auto;
+}
+
+.videos {
+    color: white;
+    padding-right: 40px;
+    border-right: 1px solid white;
+    width: 54px;
+    padding-right: 36px;
+    padding-left: 36px;
+    margin: auto;
+}
+
+.shop {
+    color: white;
+    padding-right: 40px;
+    border-right: 1px solid white;
+    width: 40px;
+    padding-right: 36px;
+    padding-left: 36px;
+    margin: auto;
 }
 
 .navbar-image-main {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    margin-left: -21px;
+    
+    width: 127px;
+    padding-right: 36px;
+    padding-left: 36px;
+    margin: auto;
 }
 
 .navbar-image-item {

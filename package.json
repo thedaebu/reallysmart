@@ -8,6 +8,7 @@
     "babel-loader": "^8.2.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-icons": "^4.2.0",
     "react-redux": "^7.2.2",
     "react-router-dom": "^5.2.0",
     "redux": "^4.0.5",
@@ -42,5 +43,7 @@
     "url": "https://github.com/thedaebu/reallysmart/issues"
   },
   "homepage": "https://github.com/thedaebu/reallysmart#readme",
-  "devDependencies": {"redux-logger": "^3.0.6"}
+  "devDependencies": {
+    "redux-logger": "^3.0.6"
+  }
 }

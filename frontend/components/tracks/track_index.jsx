@@ -33,6 +33,7 @@ class TrackIndex extends React.Component {
                         })}
                     </ul>
                 </div>
+                <p className='tracks-index-load-more'>LOAD MORE</p>
             </>
         )
     }

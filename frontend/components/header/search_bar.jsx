@@ -1,4 +1,5 @@
 import React from 'react';
+import { AiOutlineSearch } from "react-icons/ai"
 
 class SearchBar extends React.Component {
     constructor(props){
@@ -19,7 +20,7 @@ class SearchBar extends React.Component {
                 value={this.state.field} 
                 onChange={this.onChange('field')} 
                 />
-                <img className='search-bar-glass' src={window.search} />
+                <AiOutlineSearch class='search-bar-glass' />
             </div>
             
             

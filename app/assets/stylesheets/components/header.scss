@@ -18,15 +18,20 @@ header {
     font-size: 15px;  
     color: black;
     height: 27px;
-    width: 170px;
+    width: 180px;
     border: none;
     font-weight: 800px;
     padding-left: 10px;
 }
 
 .search-bar-glass {
-    height: 29px;
-    width: 32px;
+    height: 25px;
+    width: 25px;
+    background: white;
+    
+    
+    padding-top: 2px;
+    padding-bottom: 2px;
 }
 
 .header-right {
