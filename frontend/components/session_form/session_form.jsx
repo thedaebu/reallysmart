@@ -12,6 +12,10 @@ class SessionForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    componentWillUnmount(){
+        this.props.clearErrors()
+    }
+
     handleSubmit(e){
         e.preventDefault;
         const user = Object.assign({}, this.state);
@@ -59,7 +63,7 @@ class SessionForm extends React.Component {
                             <input id='session-form-password' type='password' value={this.state.password} onChange={this.handleChange('password')}/>
                         </label>
                         {formTos}
-                        <input id='form-submit' type="submit" value={formSubmit} />
+                        <input id='form-submit' type="submit" value={formSubmit}/>
                         
                     </form>
                     <p className='session-form-last' >{formLast} {formLink}</p>                  
