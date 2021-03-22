@@ -33,14 +33,8 @@ how to display upvotes, call upvotes, polymorphic associations of type
 boolean for upvotes for each user per track or annotation
 .includes associations for annotations and upvotes and comments
 
-push into array depedning on index of string
-always have p tag in between annotations
 
-# all modals should show up by the same position of where the annotation is or is trying to be made
-
-# work on getting annotations to show up on lyrics
 # if annotation exists, then on click the annotation modal should show up
-
 
 # work on creating annotations
 # if there is no current user, then the warning that one is not logged in modal should show up
