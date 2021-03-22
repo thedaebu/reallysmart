@@ -19,8 +19,7 @@ class TrackIndexItem extends React.Component {
     render () {
       
       const { track } = this.props; 
-      return (
-        
+      return ( 
           <Link className="track-index-item" to={`/tracks/${track.id}`}>
         
             <p className='track-index-item-id'>{track.id}</p>

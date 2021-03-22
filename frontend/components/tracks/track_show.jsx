@@ -9,6 +9,7 @@ import {
 import NavBar from '../header/navbar';
 import LyricsShow from '../annotations/lyrics_show';
 import TrackShowHeader from './track_show_header';
+import LyricsShowContainer from '../annotations/lyrics_show_container';
 
 
 class TrackShow extends React.Component {
@@ -29,8 +30,7 @@ class TrackShow extends React.Component {
                 <NavBar />
                 <TrackShowHeader track={track} fetchTrack={fetchTrack} />
                 <div className='track-show-bottom-main'>
-                    <LyricsShow track={track} />
-
+                    <LyricsShowContainer track={track} />
                 </div>
             </div>
         )} else { return (

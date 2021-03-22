@@ -1,4 +1,4 @@
-import { CREATE_ANNOTATION, RECEIVE_ANNOTATION } from "../actions/annotation_actions";
+import { RECEIVE_ANNOTATION } from "../actions/annotation_actions";
 
 const annotationReducer = (state = {}, action) => {
     Object.freeze(state);

@@ -11,6 +11,7 @@ const mSTP = (state, ownProps) => {
 const mDTP = (dispatch, ownProps) => {
     return ({   
         fetchTrack: trackId => dispatch(fetchTrack(trackId)),
+        
     })
 }
 

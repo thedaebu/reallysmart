@@ -1,11 +1,9 @@
 
-
 .tracks-index-main {
     display: flex;
     flex-direction: column;
     align-items: center;
     font-family: 'Programme Regular', sans-serif;
-    
 }
 
 .tracks-index-h1 {
@@ -13,14 +11,12 @@
     font-size: 75px;
     font-weight: bold;
     letter-spacing: 1px;
-    
 }
 
 .tracks-index-h2 {
     color: rgb(255, 20, 100);
     font-size: 14px;
     padding-top: 15px;
-    
 }
 
 .tracks-index-list {
@@ -37,7 +33,6 @@
     width: auto;
     padding-top: 2px;
     padding-bottom: 3px;
-    
 }
 
 .track-index-item:hover {
@@ -60,8 +55,6 @@
     font-family: 'Programme Regular', sans-serif;
 }
 
-
-
 .track-index-item-lyrics {
     display: flex;
     align-items: center;
@@ -79,8 +72,7 @@
     
 }
 
-.track-index-item-image {
-    
+.track-index-item-image { 
     width: 60px;
     height: 60px;
 }

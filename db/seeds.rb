@@ -279,3 +279,11 @@ annotation1 = Annotation.create(
     start_index: 5,
     end_index: 10,
 )
+
+annotation2 = Annotation.create(
+    body: "This shows everything and everythang and everythin and every thing and keeps on going. Whoooooooo!",
+    annotator_id: reallysmart.id,
+    track_id: fake_love.id,
+    start_index: 15,
+    end_index: 20,
+)

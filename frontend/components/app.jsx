@@ -31,7 +31,7 @@ const App = () => (
             <Route exact path="/" component={TrackIndexContainer} />
             <AuthRoute exact path="/signup" component={SignupFormContainer} />
             <AuthRoute exact path="/login"  component={LoginFormContainer}/>
-            <Route exact path="/tracks/:trackId" component={TrackShowContainer} />
+            <Route path="/tracks/:trackId" component={TrackShowContainer} />
         </Switch>
     </div>
 );
