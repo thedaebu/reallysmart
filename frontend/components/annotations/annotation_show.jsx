@@ -14,7 +14,7 @@ class AnnotationShow extends React.Component {
         
         if (annotationId) {
             return (
-                <div className='annotation-show-main' style={{position: 'relative', top: yCoord-420}} >
+                <div className='annotation-show-main' style={{position: 'relative', top: yCoord-370}} >
                     <p className='annotation-show-name'>Really Smart Annotation by {annotation.annotator}</p>
                     <p className='annotation-show-body'>{annotation.body}</p>
                 </div>

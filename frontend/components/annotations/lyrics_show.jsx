@@ -9,9 +9,10 @@ class LyricsShow extends React.Component {
             yCoord: null,
         })
 
-        this.mouseUp = this.mouseUp.bind(this);
         this.annotatedLyrics = this.annotatedLyrics.bind(this);
         this.annotateLyrics = this.annotateLyrics.bind(this);
+        this.mouseUp = this.mouseUp.bind(this);
+        this.outsideMouseUp = this.outsideMouseUp.bind(this);
     }
 
     componentDidMount(){
@@ -69,10 +70,6 @@ class LyricsShow extends React.Component {
         this.setState({['annotationId']: id})
     }
 
-    closeAnnotation() {
-        this.setState({['annotationId']: null})
-    }
-
     mouseUp(e){
         let highlight = window.getSelection();
         let startPos = highlight.anchorOffset;
@@ -84,13 +81,17 @@ class LyricsShow extends React.Component {
         this.setState({['yCoord']: e.pageY})
     }
 
+    outsideMouseUp(e){
+        this.setState({['annotationId']: null})
+    }
+
     render () {
         const { track, annotations, fetchAnnotation} = this.props;
         
         return (
             <div className='lyrics-show-main'>
                 <div className='lyrics-show-shade'>
-                    <div className='lyrics-show-left' >
+                    <div className='lyrics-show-left' onMouseUp={this.outsideMouseUp}>
                         <p className='lyrics-show-top'>{track.title.toUpperCase()} LYRICS</p>
                         <pre onMouseUp={this.mouseUp} className='lyrics-show-body'>
                             {this.annotatedLyrics()}
