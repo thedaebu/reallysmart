@@ -7,8 +7,6 @@ class Annotation extends React.Component {
         this.state = {
             createStatus: this.props.createStatus,
             body: '',
-            annotatorId: this.props.currentUser.id,
-            trackId: this.props.track.id,
             openness: 'a',
         };
 
@@ -51,8 +49,8 @@ class Annotation extends React.Component {
         const annotation = Object.assign({},
             {
                 body: this.state.body,
-                annotator_id: this.state.annotatorId,
-                track_id: this.state.trackId,
+                annotator_id: this.props.currentUser.id,
+                track_id: this.props.track.id,
                 start_index: this.props.startIndex,
                 end_index: this.props.endIndex,
             })
