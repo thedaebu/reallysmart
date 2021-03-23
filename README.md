@@ -33,12 +33,15 @@ how to display upvotes, call upvotes, polymorphic associations of type
 boolean for upvotes for each user per track or annotation
 .includes associations for annotations and upvotes and comments
 
+# get the correct index for start_index and end_index for backend use
+# if the node's data-name has is-an-anno in it, then make it not be able to annotate
+# also both nodes' data-name has to be the same for it to annotate
+# put the start-index of the annotation in the data and then add the number to the indices
+# change what is given to the props
 
-# if annotation exists, then on click the annotation modal should show up
-
-# work on creating annotations
-# if there is no current user, then the warning that one is not logged in modal should show up
-# if there is a current user, then the create modal should show up
+# .toString()
+# put stuff into the data key and then use the data
+# track the index of the first character of each node
 
 <script async src="//genius.codes"></script>
 

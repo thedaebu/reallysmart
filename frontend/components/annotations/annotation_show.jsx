@@ -16,7 +16,6 @@ class Annotation extends React.Component {
     }
 
     componentDidMount () {
-        // this.props.fetchAnnotation(this.props.annotationId);
     }
 
     componentDidUpdate(prevProps) {
@@ -51,18 +50,21 @@ class Annotation extends React.Component {
             })
             
 
-        this.props.createAnnotation(annotation);
-        // this.setState({['openness']: 'a'})
+        this.props.createAnnotation(annotation).then(() => this.props.fetchTrack(this.props.track.id));
+        this.props.closeModal();
+        
     }
 
     handleCancel(e) {
         e.preventDefault;
         this.setState({['createStatus']: false})
-        // this.setState({['openness']: 'a'})
+        this.props.closeModal();
+        debugger
+        
     }
 
     render() {
-        const {annotation, currentUser, track, yCoord, startIndex, endIndex, annotationStatus, fetchAnnotation, createAnnotation, annotationId} = this.props;
+        const {annotation, currentUser, openModal, closeModal, track, yCoord, startIndex, endIndex, annotationStatus, fetchAnnotation, createAnnotation, annotationId} = this.props;
        
         if (annotation) {
             return (
@@ -72,7 +74,7 @@ class Annotation extends React.Component {
                     <p className='annotation-show-body'>{annotation.body}</p>
                 </div>
             )
-        } else if (currentUser && startIndex && annotationStatus === true && startIndex !== endIndex && this.state.createStatus === false){
+        } else if (currentUser && startIndex && annotationStatus === true && startIndex !== endIndex && this.state.createStatus === false && this.props.modal){
             return (
                 <div className='annotation-show-create-main' style={{position: 'relative', top: yCoord-370}} >
                     <span className='annotation-show-create-begin' onClick={this.handleOnClick} >
@@ -81,7 +83,7 @@ class Annotation extends React.Component {
                     </span>
                 </div>
             )
-        } else if (currentUser && startIndex && annotationStatus === true && this.state.createStatus === true){
+        } else if (currentUser && startIndex && annotationStatus === true && this.state.createStatus === true && this.props.modal){
             return (
                 <div className='annotation-show-create-form-main' style={{position: 'relative', top: yCoord-370}} >
                     <form id='annotation-show-create-form' onSubmit={this.handleFormSubmit}>

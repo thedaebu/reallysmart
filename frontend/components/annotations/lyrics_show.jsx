@@ -20,10 +20,19 @@ class LyricsShow extends React.Component {
     }
 
     componentDidMount(){
-        this.props.track.annotation_ids.map((id) => {
-            this.props.fetchAnnotation(id);         
-        })
+        // this.props.track.annotation_ids.map((id) => {
+        //     this.props.fetchAnnotation(id);         
+        // })
+        this.setState({['annotationStatus']: false})
+        
     }
+
+    // componentDidUpdate(){
+    //     this.props.track.annotation_ids.map((id) => {
+    //         this.props.fetchAnnotation(id);         
+    //     })
+    //     this.setState({['annotationStatus']: false})
+    // }
 
     annotatedLyrics() {
         let lyrics
@@ -43,34 +52,50 @@ class LyricsShow extends React.Component {
    
         let lyricsParts = [];
         let currentIndex = 0;
-    
-        sortedAnnotations.forEach((annotation, idx) => {
-            let startIndex = annotation.start_index;
-            let endIndex = annotation.end_index;
+        if (annotations) {
+            sortedAnnotations.forEach((annotation, idx) => {
+                let startIndex = annotation.start_index;
+                let endIndex = annotation.end_index;
 
-            if (currentIndex === startIndex) {
-                lyricsParts.push(<span className='is-an-anno' onClick={() => this.openAnnotation(annotation.id)} onMouseUp={this.mouseUp} 
-                key={`is-anno-${annotation.id}`}>
-                    {lyrics.slice(currentIndex, endIndex - startIndex)}
-                </span>)     
-            } else {
-                lyricsParts.push(<span className='not-an-anno' onMouseUp={this.mouseUp} 
-                key={`is-not-anno-${idx}`}>
-                    {lyrics.slice(currentIndex, startIndex)}
-                </span>)
-                lyricsParts.push(<span className='is-an-anno' onClick={() => this.openAnnotation(annotation.id)} onMouseUp={this.mouseUp} 
-                key={`is-anno-${annotation.id}`}>
-                    {lyrics.slice(startIndex, endIndex)}
-                </span>)
-            }
-            if (idx === sortedAnnotations.length - 1) {
-                lyricsParts.push(<span className='not-an-anno' onMouseUp={this.mouseUp} 
-                key='is-not-anno-last'>
-                    {lyrics.slice(endIndex)}
-                </span>)
-            }
-            currentIndex = endIndex + 1;
-        })
+                if (currentIndex === startIndex) {
+                    lyricsParts.push(
+                        <span 
+                            className='is-an-anno' 
+                            onClick={() => this.openAnnotation(annotation.id)} 
+                            onMouseUp={this.mouseUp} 
+                            key={`is-anno-${annotation.id}`}
+                            data-start="">
+                            {lyrics.slice(currentIndex, endIndex + 1)}
+                        </span>)     
+                } else {
+                    lyricsParts.push(
+                        <span 
+                            className='not-an-anno' 
+                            onMouseUp={this.mouseUp} 
+                            key={`is-not-anno-${idx}`}>
+                            {lyrics.slice(currentIndex, startIndex)}
+                        </span>)
+                    lyricsParts.push(
+                        <span 
+                            className='is-an-anno' 
+                            onClick={() => this.openAnnotation(annotation.id)} 
+                            onMouseUp={this.mouseUp} 
+                            key={`is-anno-${annotation.id}`}>
+                            {lyrics.slice(startIndex, endIndex+1)}
+                        </span>)
+                }
+                if (idx === sortedAnnotations.length - 1) {
+                    lyricsParts.push(
+                        <span 
+                            className='not-an-anno' 
+                            onMouseUp={this.mouseUp} 
+                            key='is-not-anno-last'>
+                            {lyrics.slice(endIndex +1, lyrics.length + 1)}
+                        </span>)
+                }
+                currentIndex = endIndex + 1;
+            })
+        }
         return lyricsParts;
     }
 
@@ -90,16 +115,18 @@ class LyricsShow extends React.Component {
         this.setState({['startIndex']: arr[0]});
         this.setState({['endIndex']: arr[1]});
         this.setState({['yCoord']: e.pageY});   
+        this.props.openModal({hello: 'hello'})
     }
 
     mouseDown(e){
         this.setState({['annotationId']: null})
         this.setState({['annotationStatus']: false})
         this.setState({['createStatus']: false})
+        this.props.closeModal()
     }
 
     render () {
-        const { track, annotations, currentUser, fetchAnnotation} = this.props;
+        const { track, annotations, currentUser, fetchAnnotation, openModal, closeModal} = this.props;
         
         return (
             <div className='lyrics-show-main'>
@@ -112,8 +139,8 @@ class LyricsShow extends React.Component {
                     </div>
                     <div className='lyrics-show-right'>
                         <AnnotationContainer 
-                            currentUser={currentUser} 
                             track={track}
+                            currentUser={currentUser} 
                             yCoord={this.state.yCoord} 
                             annotationId={this.state.annotationId} 
                             startIndex={this.state.startIndex} 
@@ -125,7 +152,7 @@ class LyricsShow extends React.Component {
                     </div>
                 </div>
             </div>
-        )
+        ) 
     }
 }
 
