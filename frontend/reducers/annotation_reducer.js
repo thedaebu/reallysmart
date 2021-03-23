@@ -10,7 +10,6 @@ const annotationReducer = (state = {}, action) => {
             action.annotations.forEach((annotation)=>{
                 annotations[annotation.id] = annotation
             })
-            debugger
             return Object.assign({}, state, annotations);
         case RECEIVE_ANNOTATION:
             return Object.assign({}, state, {[action.annotation.id]: action.annotation});

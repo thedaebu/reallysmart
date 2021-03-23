@@ -20,7 +20,7 @@ class NavBar extends React.Component {
                         <a href='https://www.linkedin.com/in/edkim163/' target="_blank" rel="noopener noreferrer"><img className='navbar-image-item' src={window.linkedin} /></a>
                         <a href='https://www.instagram.com/thedaebu/' target="_blank" rel="noopener noreferrer"><img className='navbar-image-item' src={window.instagram} /></a>
                         <a href='https://www.youtube.com/user/thedaebu' target="_blank" rel="noopener noreferrer"><img className='navbar-image-item' src={window.youtube} /></a>
-                                                                   
+                                  
                     </div>
                 </div>
             </div>

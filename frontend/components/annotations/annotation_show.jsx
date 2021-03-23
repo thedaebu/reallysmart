@@ -59,7 +59,7 @@ class Annotation extends React.Component {
         e.preventDefault;
         this.setState({['createStatus']: false})
         this.props.closeModal();
-        debugger
+        
         
     }
 
@@ -70,6 +70,9 @@ class Annotation extends React.Component {
             return (
                 
                 <div className='annotation-show-main' style={{position: 'relative', top: yCoord-370}} >
+                    <div>
+                        {startIndex}:{endIndex}
+                    </div>
                     <p className='annotation-show-name'>Really Smart Annotation by {annotation.annotator}</p>
                     <p className='annotation-show-body'>{annotation.body}</p>
                 </div>
@@ -77,6 +80,9 @@ class Annotation extends React.Component {
         } else if (currentUser && startIndex && annotationStatus === true && startIndex !== endIndex && this.state.createStatus === false && this.props.modal){
             return (
                 <div className='annotation-show-create-main' style={{position: 'relative', top: yCoord-370}} >
+                    <div>
+                        {startIndex}:{endIndex}
+                    </div>
                     <span className='annotation-show-create-begin' onClick={this.handleOnClick} >
                         <p className='annotation-show-create-h1'>Start the Really Smart Annotation</p>
                         <p className='annotation-show-create-h2'>(+5 RSQ)</p>

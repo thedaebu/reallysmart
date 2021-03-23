@@ -20,19 +20,8 @@ class LyricsShow extends React.Component {
     }
 
     componentDidMount(){
-        // this.props.track.annotation_ids.map((id) => {
-        //     this.props.fetchAnnotation(id);         
-        // })
         this.setState({['annotationStatus']: false})
-        
     }
-
-    // componentDidUpdate(){
-    //     this.props.track.annotation_ids.map((id) => {
-    //         this.props.fetchAnnotation(id);         
-    //     })
-    //     this.setState({['annotationStatus']: false})
-    // }
 
     annotatedLyrics() {
         let lyrics
@@ -54,6 +43,14 @@ class LyricsShow extends React.Component {
         let currentIndex = 0;
         if (annotations) {
             sortedAnnotations.forEach((annotation, idx) => {
+
+                let addIndex
+                if (idx === 0 && annotation.startIndex !== 0) {
+                    addIndex = 0
+                } else {
+                    addIndex = sortedAnnotations[idx-1].end_index
+                }
+
                 let startIndex = annotation.start_index;
                 let endIndex = annotation.end_index;
 
@@ -63,8 +60,12 @@ class LyricsShow extends React.Component {
                             className='is-an-anno' 
                             onClick={() => this.openAnnotation(annotation.id)} 
                             onMouseUp={this.mouseUp} 
-                            key={`is-anno-${annotation.id}`}
-                            data-start="">
+                            key={`is-anno-${annotation.id}`} 
+                            
+                            id={`is-anno-${annotation.id}`}
+
+                            data-name={`is-anno-${annotation.id}`}     
+                            >
                             {lyrics.slice(currentIndex, endIndex + 1)}
                         </span>)     
                 } else {
@@ -72,7 +73,14 @@ class LyricsShow extends React.Component {
                         <span 
                             className='not-an-anno' 
                             onMouseUp={this.mouseUp} 
-                            key={`is-not-anno-${idx}`}>
+                            key={`not-anno-${idx}`}
+                            
+                            id={`not-anno-${idx}`}
+
+                            data-add={addIndex}
+                            data-name={`not-anno-${idx}`}
+                            >
+
                             {lyrics.slice(currentIndex, startIndex)}
                         </span>)
                     lyricsParts.push(
@@ -80,7 +88,12 @@ class LyricsShow extends React.Component {
                             className='is-an-anno' 
                             onClick={() => this.openAnnotation(annotation.id)} 
                             onMouseUp={this.mouseUp} 
-                            key={`is-anno-${annotation.id}`}>
+                            key={`is-anno-${annotation.id}`} 
+
+                            id={`is-anno-${annotation.id}`}
+                            
+                            data-name={`is-anno-${annotation.id}`} 
+                            >
                             {lyrics.slice(startIndex, endIndex+1)}
                         </span>)
                 }
@@ -89,9 +102,22 @@ class LyricsShow extends React.Component {
                         <span 
                             className='not-an-anno' 
                             onMouseUp={this.mouseUp} 
-                            key='is-not-anno-last'>
+                            key={`not-anno-${idx + 1}`}
+                            
+                            id={`not-anno-${idx + 1}`}
+                            
+                            data-add={endIndex}
+                            data-name={`not-anno-${idx + 1}`}
+                            >
                             {lyrics.slice(endIndex +1, lyrics.length + 1)}
                         </span>)
+                }
+                let docarr = document.querySelector(`#not-anno-${idx}`) || null
+                // let num = docarr.map((doc) => {return doc.dataset})
+                // console.log(num)
+                if (docarr) {
+
+                    console.log(docarr.dataset.add)
                 }
                 currentIndex = endIndex + 1;
             })
@@ -105,17 +131,46 @@ class LyricsShow extends React.Component {
 
     mouseUp(e){
         e.preventDefault();
-        const highlight = window.getSelection();
-        const start = highlight.anchorOffset;
-        const end = highlight.extentOffset;
-        const arr = [start, end].sort()
-        console.log(start);
-        console.log(end);
+        const highlighted = window.getSelection();
+        console.log(highlighted.baseOffset);
+        console.log(highlighted.extentOffset);
+
+        const newIndices = this.makeNewIndices(highlighted);
+
+        const orderedIndices = newIndices.sort();
+
         this.setState({['annotationStatus']: true})
-        this.setState({['startIndex']: arr[0]});
-        this.setState({['endIndex']: arr[1]});
+        this.setState({['startIndex']: orderedIndices[0]});
+        this.setState({['endIndex']: orderedIndices[1]});
         this.setState({['yCoord']: e.pageY});   
         this.props.openModal({hello: 'hello'})
+    }
+
+    makeNewIndices(highlighted) {
+        let newIndices = null;
+
+        let baseName = highlighted.baseNode.parentNode.dataset.name;
+        let extentName = highlighted.extentNode.parentNode.dataset.name;
+
+        let add = parseInt(highlighted.baseNode.parentNode.dataset.add);
+
+        if (baseName.includes(`not-anno`) && extentName.includes(`not-anno`) && baseName === extentName) {
+            let a = highlighted.baseOffset + add
+            let b = highlighted.extentOffset + add
+            
+            newIndices = [a, b]
+        } 
+        
+        // window.getSelection().anchorNode.parentNode.dataset.add
+        // window.getSelection().anchorNode.parentNode.dataset.name
+
+        // window.getSelection().focusNode.parentNode.dataset.add
+        // window.getSelection().focusNode.parentNode.dataset.name
+        
+        // if name includes is-anno, return null for both
+        // if name includes not-anno, add 'add' to value of number
+
+        return newIndices;
     }
 
     mouseDown(e){
