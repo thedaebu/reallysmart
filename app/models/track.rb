@@ -6,4 +6,7 @@ class Track < ApplicationRecord
 
     has_many :annotations
 
+    has_many :comments,
+        as: :commentable
+
 end
