@@ -9,7 +9,6 @@ class LyricsShow extends React.Component {
             yCoord: null,
             startIndex: null,
             endIndex: null,
-            annotationStatus: false,
             createStatus: false,
         }
 
@@ -19,16 +18,19 @@ class LyricsShow extends React.Component {
         this.mouseDown = this.mouseDown.bind(this);
     }
 
-    componentDidMount(){
-        this.setState({['annotationStatus']: false})
-    }
-
     annotatedLyrics() {
         let lyrics
         if (this.props.annotations[this.props.annotations.length - 1] !== undefined ) {
             lyrics = this.annotateLyrics(this.props.track.lyrics);
         } else {
-            lyrics = <span className='not-an-anno' onMouseUp={this.mouseUp} >{this.props.track.lyrics}</span>;
+            lyrics = <span 
+                className='not-an-anno' 
+                data-add="0"
+                data-name={`not-anno-0`}
+                onMouseUp={this.mouseUp} 
+                >
+                    {this.props.track.lyrics}
+                </span>;
         }
         return lyrics; 
     }
@@ -112,13 +114,7 @@ class LyricsShow extends React.Component {
                             {lyrics.slice(endIndex +1, lyrics.length + 1)}
                         </span>)
                 }
-                let docarr = document.querySelector(`#not-anno-${idx}`) || null
-                // let num = docarr.map((doc) => {return doc.dataset})
-                // console.log(num)
-                if (docarr) {
 
-                    console.log(docarr.dataset.add)
-                }
                 currentIndex = endIndex + 1;
             })
         }
@@ -132,14 +128,11 @@ class LyricsShow extends React.Component {
     mouseUp(e){
         e.preventDefault();
         const highlighted = window.getSelection();
-        console.log(highlighted.baseOffset);
-        console.log(highlighted.extentOffset);
 
         const newIndices = this.makeNewIndices(highlighted);
 
         const orderedIndices = newIndices.sort();
 
-        this.setState({['annotationStatus']: true})
         this.setState({['startIndex']: orderedIndices[0]});
         this.setState({['endIndex']: orderedIndices[1]});
         this.setState({['yCoord']: e.pageY});   
@@ -175,7 +168,6 @@ class LyricsShow extends React.Component {
 
     mouseDown(e){
         this.setState({['annotationId']: null})
-        this.setState({['annotationStatus']: false})
         this.setState({['createStatus']: false})
         this.props.closeModal()
     }
@@ -200,7 +192,6 @@ class LyricsShow extends React.Component {
                             annotationId={this.state.annotationId} 
                             startIndex={this.state.startIndex} 
                             endIndex={this.state.endIndex} 
-                            annotationStatus={this.state.annotationStatus}
                             createStatus={this.state.createStatus}
                             key={this.state.annotationId}
                         />

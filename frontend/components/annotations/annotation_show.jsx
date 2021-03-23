@@ -64,7 +64,7 @@ class Annotation extends React.Component {
     }
 
     render() {
-        const {annotation, currentUser, openModal, closeModal, track, yCoord, startIndex, endIndex, annotationStatus, fetchAnnotation, createAnnotation, annotationId} = this.props;
+        const {annotation, currentUser, openModal, closeModal, track, yCoord, startIndex, endIndex, fetchAnnotation, createAnnotation, annotationId} = this.props;
        
         if (annotation) {
             return (
@@ -77,7 +77,7 @@ class Annotation extends React.Component {
                     <p className='annotation-show-body'>{annotation.body}</p>
                 </div>
             )
-        } else if (currentUser && startIndex && annotationStatus === true && startIndex !== endIndex && this.state.createStatus === false && this.props.modal){
+        } else if (currentUser && startIndex && startIndex !== endIndex && this.state.createStatus === false && this.props.modal){
             return (
                 <div className='annotation-show-create-main' style={{position: 'relative', top: yCoord-370}} >
                     <div>
@@ -89,7 +89,7 @@ class Annotation extends React.Component {
                     </span>
                 </div>
             )
-        } else if (currentUser && startIndex && annotationStatus === true && this.state.createStatus === true && this.props.modal){
+        } else if (currentUser && startIndex && this.state.createStatus === true && this.props.modal){
             return (
                 <div className='annotation-show-create-form-main' style={{position: 'relative', top: yCoord-370}} >
                     <form id='annotation-show-create-form' onSubmit={this.handleFormSubmit}>
@@ -130,7 +130,7 @@ class Annotation extends React.Component {
                     </form>         
                 </div>
             )
-        } else if (currentUser === undefined && startIndex && annotationStatus === true) {
+        } else if (currentUser === undefined && startIndex) {
             return (
                 <div className='annotation-show-main-signup' style={{position: 'relative', top: yCoord-370}} >
                     <Link to='/signup' className='annotation-show-signup'>Sign Up to Start Really Smarting</Link>
