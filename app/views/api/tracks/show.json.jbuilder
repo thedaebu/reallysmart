@@ -3,3 +3,5 @@ json.track do
 end
 
 json.annotations @track.annotations
+
+json.comments @track.comments

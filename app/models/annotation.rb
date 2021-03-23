@@ -8,5 +8,10 @@ class Annotation < ApplicationRecord
     belongs_to :annotator,
         foreign_key: :annotator_id,
         class_name: "User"
+
     belongs_to :track
+        foreign_key: :track_id,
+        class_name: "Track"
+
+    has_many :comments, :as => :commentable
 end
