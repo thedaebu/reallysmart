@@ -28,10 +28,10 @@ const App = () => (
         </header>
         <Switch>
             
-            <Route exact path="/tracks/:trackId" component={TrackShowContainer} />
-            <Route path="/" component={TrackIndexContainer} />
+            <Route exact path="/" component={TrackIndexContainer} />
             <AuthRoute exact path="/signup" component={SignupFormContainer} />
             <AuthRoute exact path="/login"  component={LoginFormContainer}/>
+            <Route path="/tracks/:trackId" component={TrackShowContainer} />
         </Switch>
     </div>
 );

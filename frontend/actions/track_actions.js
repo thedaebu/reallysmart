@@ -9,11 +9,12 @@ const receiveTracks = tracks => {
         tracks,
     })
 }
-const receiveTrack = ({track, annotations}) => {
+const receiveTrack = ({track, annotations, comments}) => {
     return ({
         type: RECEIVE_TRACK,
         track,
-        annotations
+        annotations,
+        comments
     })
 }
 

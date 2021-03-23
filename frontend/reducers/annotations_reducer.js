@@ -1,7 +1,7 @@
 import { RECEIVE_ANNOTATION } from "../actions/annotation_actions";
 import { RECEIVE_TRACK } from "../actions/track_actions";
 
-const annotationReducer = (state = {}, action) => {
+const annotationsReducer = (state = {}, action) => {
     Object.freeze(state);
 
     switch (action.type) {
@@ -18,4 +18,4 @@ const annotationReducer = (state = {}, action) => {
     }
 };
 
-export default annotationReducer;
+export default annotationsReducer;
