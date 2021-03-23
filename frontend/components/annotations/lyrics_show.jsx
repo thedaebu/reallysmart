@@ -49,19 +49,23 @@ class LyricsShow extends React.Component {
             let endIndex = annotation.end_index;
 
             if (currentIndex === startIndex) {
-                lyricsParts.push(<span className='is-an-anno' onClick={() => this.openAnnotation(annotation.id)} onMouseUp={this.mouseUp} key={`is-anno-${annotation.id}`}>
+                lyricsParts.push(<span className='is-an-anno' onClick={() => this.openAnnotation(annotation.id)} onMouseUp={this.mouseUp} 
+                key={`is-anno-${annotation.id}`}>
                     {lyrics.slice(currentIndex, endIndex - startIndex)}
                 </span>)     
             } else {
-                lyricsParts.push(<span className='not-an-anno' onMouseUp={this.mouseUp} key={`is-not-anno-${annotation.id}`}>
+                lyricsParts.push(<span className='not-an-anno' onMouseUp={this.mouseUp} 
+                key={`is-not-anno-${idx}`}>
                     {lyrics.slice(currentIndex, startIndex)}
                 </span>)
-                lyricsParts.push(<span className='is-an-anno' onClick={() => this.openAnnotation(annotation.id)} onMouseUp={this.mouseUp} key={`is-anno-${annotation.id}`}>
+                lyricsParts.push(<span className='is-an-anno' onClick={() => this.openAnnotation(annotation.id)} onMouseUp={this.mouseUp} 
+                key={`is-anno-${annotation.id}`}>
                     {lyrics.slice(startIndex, endIndex)}
                 </span>)
             }
             if (idx === sortedAnnotations.length - 1) {
-                lyricsParts.push(<span className='not-an-anno' onMouseUp={this.mouseUp} key={`is-not-anno-${annotation.id+1}`}>
+                lyricsParts.push(<span className='not-an-anno' onMouseUp={this.mouseUp} 
+                key='is-not-anno-last'>
                     {lyrics.slice(endIndex)}
                 </span>)
             }
@@ -77,7 +81,7 @@ class LyricsShow extends React.Component {
     mouseUp(e){
         e.preventDefault();
         const highlight = window.getSelection();
-        const start = highlight.baseOffset;
+        const start = highlight.anchorOffset;
         const end = highlight.extentOffset;
         const arr = [start, end].sort()
         console.log(start);
@@ -85,12 +89,10 @@ class LyricsShow extends React.Component {
         this.setState({['annotationStatus']: true})
         this.setState({['startIndex']: arr[0]});
         this.setState({['endIndex']: arr[1]});
-        this.setState({['yCoord']: e.pageY});
-        
+        this.setState({['yCoord']: e.pageY});   
     }
 
     mouseDown(e){
-        
         this.setState({['annotationId']: null})
         this.setState({['annotationStatus']: false})
         this.setState({['createStatus']: false})
@@ -112,7 +114,6 @@ class LyricsShow extends React.Component {
                         <AnnotationContainer 
                             currentUser={currentUser} 
                             track={track}
-                            fetchAnnotation={fetchAnnotation} 
                             yCoord={this.state.yCoord} 
                             annotationId={this.state.annotationId} 
                             startIndex={this.state.startIndex} 

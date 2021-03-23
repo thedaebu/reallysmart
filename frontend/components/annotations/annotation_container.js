@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { createAnnotation } from '../../actions/annotation_actions';
+import { createAnnotation, fetchAnnotation } from '../../actions/annotation_actions';
 import Annotation from './annotation_show';
 
 const mSTP = ( state, ownProps ) => {
@@ -10,6 +10,7 @@ const mSTP = ( state, ownProps ) => {
 const mDTP = ( dispatch, ownProps ) => {
     return ({
         createAnnotation: (annotation) => dispatch(createAnnotation(annotation)),
+        fetchAnnotation: (annotationId) => dispatch(fetchAnnotation(annotationId))
     })
 }
 
