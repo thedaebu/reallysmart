@@ -1,7 +1,6 @@
 import * as AnnotationApiUtil from './../util/annotation_api_util'
 
 export const RECEIVE_ANNOTATION = 'RECEIVE_ANNOTATION';
-export const CREATE_ANNOTATION = 'CREATE_ANNOTATION';
 export const RECEIVE_ANNOTATION_ERRORS = 'RECEIVE_ANNOTATION_ERRORS';
 
 const receiveAnnotation = ({annotation, comments}) => {

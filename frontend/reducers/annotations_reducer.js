@@ -13,10 +13,8 @@ const annotationsReducer = (state = {}, action) => {
             })
             
             return Object.assign({}, state, annotations);
-        case RECEIVE_ANNOTATION:
-            
+        case RECEIVE_ANNOTATION:   
             return Object.assign({}, state, {[action.annotation.id]: action.annotation});
-            
         default:
             return state;
     }

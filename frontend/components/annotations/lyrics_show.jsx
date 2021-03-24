@@ -4,18 +4,35 @@ import AnnotationContainer from './annotation_container';
 class LyricsShow extends React.Component {
     constructor(props){
         super(props)
+
+        let annotations = {}
+        
+        if (props.annotations[0]) {
+            props.annotations.forEach((annotation) => {
+                annotations[annotation.id] = annotation
+            })
+        }
+
         this.state = {
             annotationId: null,
             yCoord: null,
             startIndex: null,
             endIndex: null,
             createStatus: false,
+            currentAnnotation: null,
+            annotations: annotations
         }
-
+        
         this.annotatedLyrics = this.annotatedLyrics.bind(this);
         this.annotateLyrics = this.annotateLyrics.bind(this);
         this.mouseUp = this.mouseUp.bind(this);
         this.mouseDown = this.mouseDown.bind(this);
+    }
+
+    componentDidMount(){
+        this.props.track.annotation_ids.forEach(id => {
+            this.props.fetchAnnotation(id)
+        })
     }
 
     annotatedLyrics() {
@@ -45,7 +62,7 @@ class LyricsShow extends React.Component {
         let currentIndex = 0;
         if (annotations) {
             sortedAnnotations.forEach((annotation, idx) => {
-
+                
                 let addIndex
                 if (idx === 0 && annotation.startIndex !== 0) {
                     addIndex = 0
@@ -55,18 +72,19 @@ class LyricsShow extends React.Component {
 
                 let startIndex = annotation.start_index;
                 let endIndex = annotation.end_index;
-
-                if (currentIndex === startIndex) {
+               
+                if (currentIndex === startIndex) {                
                     lyricsParts.push(
                         <span 
                             className='is-an-anno' 
-                            onClick={() => this.openAnnotation(annotation.id)} 
+                            onClick={this.openAnnotation(annotation.id)} 
                             onMouseUp={this.mouseUp} 
                             key={`is-anno-${annotation.id}`} 
                             
                             id={`is-anno-${annotation.id}`}
 
-                            data-name={`is-anno-${annotation.id}`}     
+                            data-name={`is-anno-${annotation.id}`}
+                            data-id={`${annotation.id}`}     
                             >
                             {lyrics.slice(currentIndex, endIndex + 1)}
                         </span>)     
@@ -95,6 +113,7 @@ class LyricsShow extends React.Component {
                             id={`is-anno-${annotation.id}`}
                             
                             data-name={`is-anno-${annotation.id}`} 
+                            data-id={`${annotation.id}`}
                             >
                             {lyrics.slice(startIndex, endIndex+1)}
                         </span>)
@@ -114,7 +133,7 @@ class LyricsShow extends React.Component {
                             {lyrics.slice(endIndex +1, lyrics.length + 1)}
                         </span>)
                 }
-
+                
                 currentIndex = endIndex + 1;
             })
         }
@@ -122,7 +141,12 @@ class LyricsShow extends React.Component {
     }
 
     openAnnotation(id) {
+        console.log(this.state)
         this.setState({['annotationId']: id})
+        console.log(this.state)
+        this.setState({['currentAnnotation']: '1'})
+        console.log(this.state)
+        
     }
 
     mouseUp(e){
@@ -174,7 +198,6 @@ class LyricsShow extends React.Component {
 
     render () {
         const { track, annotations, currentUser, fetchAnnotation, openModal, closeModal} = this.props;
-        
         return (
             <div className='lyrics-show-main'>
                 <div className='lyrics-show-shade'>
@@ -193,7 +216,7 @@ class LyricsShow extends React.Component {
                             startIndex={this.state.startIndex} 
                             endIndex={this.state.endIndex} 
                             createStatus={this.state.createStatus}
-                            key={this.state.annotationId}
+                            currentAnnotation={this.state.currentAnnotation}        
                         />
                     </div>
                 </div>

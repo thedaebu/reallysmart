@@ -9,7 +9,7 @@ class Annotation extends React.Component {
             body: '',
             
         };
-
+        
         this.handleOnClick = this.handleOnClick.bind(this);
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.handleCancel = this.handleCancel.bind(this);   
@@ -65,8 +65,8 @@ class Annotation extends React.Component {
     }
 
     render() {
-        const {annotation, currentUser, openModal, closeModal, track, yCoord, startIndex, endIndex, fetchAnnotation, createAnnotation, annotationId} = this.props;
-       
+        const {annotation, currentUser, currentAnnotation, openModal, closeModal, track, yCoord, startIndex, endIndex, fetchAnnotation, createAnnotation, annotationId} = this.props;
+        
         if (annotation) {
             return (
                 <div className='annotation-show-main' style={{position: 'relative', top: yCoord-370}} >
@@ -101,10 +101,10 @@ class Annotation extends React.Component {
                             <p className='annotation-show-create-form-middle-tools'>Tools:</p>
                             
                             <div className='annotation-show-create-form-middle-items'>    
-                                <a href='/' className='annotation-show-create-form-middle-item' >Add Image</a>
-                                <a href='/' className='annotation-show-create-form-middle-item' >Formatting Help</a>
+                                <a className='annotation-show-create-form-middle-item' >Add Image</a>
+                                <a className='annotation-show-create-form-middle-item' >Formatting Help</a>
                                 <div>
-                                    <a href='/' className='annotation-show-create-form-middle-item'>How To Annotate</a>                       
+                                    <a className='annotation-show-create-form-middle-item'>How To Annotate</a>                       
                                 </div>
                             </div>
                         </div>

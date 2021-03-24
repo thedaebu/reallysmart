@@ -8,8 +8,13 @@ class User < ApplicationRecord
 
   after_initialize :ensure_session_token
 
-  has_many :annotations
-  has_many :comments
+  has_many :annotations,
+    foreign_key: :annotator_id,
+    class_name: "Annotation"
+
+  has_many :comments,
+    foreign_key: :commenter_id,
+    class_name: "Comment"
 
   def self.find_by_credentials(username, password)
     user = User.find_by(username: username)
