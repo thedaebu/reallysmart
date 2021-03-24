@@ -65,7 +65,7 @@ class Annotation extends React.Component {
     }
 
     render() {
-        const {annotation, currentUser, currentAnnotation, openModal, closeModal, track, yCoord, startIndex, endIndex, fetchAnnotation, createAnnotation, annotationId} = this.props;
+        const {annotation, currentUser, openModal, closeModal, track, yCoord, startIndex, endIndex, fetchAnnotation, createAnnotation, annotationId} = this.props;
         
         if (annotation) {
             return (

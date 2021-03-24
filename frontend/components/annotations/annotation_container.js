@@ -5,9 +5,11 @@ import { fetchTrack } from '../../actions/track_actions';
 import Annotation from './annotation_show';
 
 const mSTP = ( state, ownProps ) => {
+    let annotators = state.entities.annotators;
     return ({
         annotation: state.entities.annotations[ownProps.annotationId],
         modal: state.modal,
+        annotators: annotators,
     })
 }
 const mDTP = ( dispatch, ownProps ) => {

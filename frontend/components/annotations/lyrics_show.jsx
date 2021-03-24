@@ -14,12 +14,11 @@ class LyricsShow extends React.Component {
         }
 
         this.state = {
-            annotationId: null,
-            yCoord: null,
-            startIndex: null,
-            endIndex: null,
+            annotationId: undefined,
+            yCoord: undefined,
+            startIndex: undefined,
+            endIndex: undefined,
             createStatus: false,
-            currentAnnotation: null,
             annotations: annotations
         }
         
@@ -27,6 +26,7 @@ class LyricsShow extends React.Component {
         this.annotateLyrics = this.annotateLyrics.bind(this);
         this.mouseUp = this.mouseUp.bind(this);
         this.mouseDown = this.mouseDown.bind(this);
+        this.openAnnotation = this.openAnnotation.bind(this);
     }
 
     componentDidMount(){
@@ -77,8 +77,8 @@ class LyricsShow extends React.Component {
                     lyricsParts.push(
                         <span 
                             className='is-an-anno' 
-                            onClick={this.openAnnotation(annotation.id)} 
-                            onMouseUp={this.mouseUp} 
+                            onClick={() => this.openAnnotation(annotation.id)} 
+                            
                             key={`is-anno-${annotation.id}`} 
                             
                             id={`is-anno-${annotation.id}`}
@@ -92,7 +92,7 @@ class LyricsShow extends React.Component {
                     lyricsParts.push(
                         <span 
                             className='not-an-anno' 
-                            onMouseUp={this.mouseUp} 
+                             
                             key={`not-anno-${idx}`}
                             
                             id={`not-anno-${idx}`}
@@ -107,7 +107,7 @@ class LyricsShow extends React.Component {
                         <span 
                             className='is-an-anno' 
                             onClick={() => this.openAnnotation(annotation.id)} 
-                            onMouseUp={this.mouseUp} 
+                             
                             key={`is-anno-${annotation.id}`} 
 
                             id={`is-anno-${annotation.id}`}
@@ -122,7 +122,7 @@ class LyricsShow extends React.Component {
                     lyricsParts.push(
                         <span 
                             className='not-an-anno' 
-                            onMouseUp={this.mouseUp} 
+                            
                             key={`not-anno-${idx + 1}`}
                             
                             id={`not-anno-${idx + 1}`}
@@ -141,11 +141,11 @@ class LyricsShow extends React.Component {
     }
 
     openAnnotation(id) {
-        console.log(this.state)
-        this.setState({['annotationId']: id})
-        console.log(this.state)
-        this.setState({['currentAnnotation']: '1'})
-        console.log(this.state)
+        console.log(id)
+        this.setState({createStatus: true})
+        this.setState({annotationId: id})
+        console.log(this.state.annotationId)
+        console.log(this.state.createStatus)
         
     }
 
@@ -203,7 +203,7 @@ class LyricsShow extends React.Component {
                 <div className='lyrics-show-shade'>
                     <div className='lyrics-show-left' onMouseDown={this.mouseDown} >
                         <p className='lyrics-show-top'>{track.title.toUpperCase()} LYRICS</p>
-                        <pre className='lyrics-show-body'>
+                        <pre className='lyrics-show-body' onMouseUp={this.mouseUp}>
                             {this.annotatedLyrics()}
                         </pre>                
                     </div>
@@ -215,8 +215,7 @@ class LyricsShow extends React.Component {
                             annotationId={this.state.annotationId} 
                             startIndex={this.state.startIndex} 
                             endIndex={this.state.endIndex} 
-                            createStatus={this.state.createStatus}
-                            currentAnnotation={this.state.currentAnnotation}        
+                            createStatus={this.state.createStatus}      
                         />
                     </div>
                 </div>
