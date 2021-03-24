@@ -8,16 +8,27 @@ const commentsReducer = (state = {}, action) => {
 
     switch (action.type) {
         case RECEIVE_TRACK:
-            action.comments.forEach((comment)=>{
-                comments[comment.id] = comment
-            })  
+            
+            if (action.comments instanceof Array) {
+                action.comments.forEach((comment)=>{
+                    comments[comment.id] = comment
+                })
 
+            } else {
+                comments = action.comments
+            }
             return Object.assign({}, state, comments)
            
         case RECEIVE_ANNOTATION:
-            action.comments.forEach((comment)=>{
-                comments[comment.id] = comment
-            })  
+            
+            if (action.comments instanceof Array) {
+                action.comments.forEach((comment)=>{
+                    comments[comment.id] = comment
+                })
+
+            } else {
+                comments = action.comments
+            } 
 
             return Object.assign({}, state, comments)
 

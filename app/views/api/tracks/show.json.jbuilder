@@ -16,16 +16,21 @@ json.annotations do
   end  
 end
 
-
-
-
-json.comments @track.comments
-
 json.annotators Hash.new()
 json.annotators do
   @track.annotations.each do |annotation|
     json.set! annotation.annotator.id do
       json.extract! annotation.annotator, :id, :username
+    end
+  end
+end
+
+json.comments Hash.new()
+json.comments do
+  @track.comments.each do |comment|
+    json.set! comment.id do
+      json.extract! comment, :id, :body, :commenter_id, :commentable_id
+      json.commenter comment.commenter.username
     end
   end
 end

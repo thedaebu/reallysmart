@@ -1,5 +1,5 @@
 import React from 'react';
-import AnnotationContainer from './annotation_container';
+import AnnotationShowContainer from './annotation_show_container';
 
 class LyricsShow extends React.Component {
     constructor(props){
@@ -141,22 +141,23 @@ class LyricsShow extends React.Component {
     }
 
     openAnnotation(id) {
-        console.log(id)
-        this.setState({createStatus: true})
+
         this.setState({annotationId: id})
-        console.log(this.state.annotationId)
-        console.log(this.state.createStatus)
-        
     }
 
     mouseUp(e){
         e.preventDefault();
         this.setState({['yCoord']: e.pageY}); 
         const highlighted = window.getSelection();
+        let newIndices
+        let orderedIndices
+        console.log(highlighted.anchorOffset)
+        console.log(highlighted.focusOffset)
         
-        if (highlighted.baseOffset !== highlighted.extentOffset) {
-            const newIndices = this.makeNewIndices(highlighted);
-            const orderedIndices = newIndices.sort();
+        if (highlighted.anchorOffset !== highlighted.focusOffset) {
+            newIndices = this.makeNewIndices(highlighted);
+            orderedIndices = newIndices.sort();
+            console.log(orderedIndices)
             this.setState({['startIndex']: orderedIndices[0]+1});
             this.setState({['endIndex']: orderedIndices[1]});  
             this.props.openModal({hello: 'hello'})
@@ -166,14 +167,16 @@ class LyricsShow extends React.Component {
     makeNewIndices(highlighted) {
         let newIndices = null;
 
-        let baseName = highlighted.baseNode.parentNode.dataset.name;
-        let extentName = highlighted.extentNode.parentNode.dataset.name;
+        let anchorName = highlighted.anchorNode.parentNode.dataset.name;
+        let focusName = highlighted.focusNode.parentNode.dataset.name;
 
-        let add = parseInt(highlighted.baseNode.parentNode.dataset.add);
+        
 
-        if (baseName.includes(`not-anno`) && extentName.includes(`not-anno`) && baseName === extentName) {
-            let a = highlighted.baseOffset + add
-            let b = highlighted.extentOffset + add
+        let add = parseInt(highlighted.focusNode.parentNode.dataset.add);
+
+        if (anchorName.includes(`not-anno`) && focusName.includes(`not-anno`) && anchorName === focusName) {
+            let a = highlighted.anchorOffset + add
+            let b = highlighted.focusOffset + add
             
             newIndices = [a, b]
         } 
@@ -208,7 +211,7 @@ class LyricsShow extends React.Component {
                         </pre>                
                     </div>
                     <div className='lyrics-show-right'>
-                        <AnnotationContainer 
+                        <AnnotationShowContainer 
                             track={track}
                             currentUser={currentUser} 
                             yCoord={this.state.yCoord} 
