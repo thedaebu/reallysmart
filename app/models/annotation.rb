@@ -13,5 +13,7 @@ class Annotation < ApplicationRecord
         foreign_key: :track_id,
         class_name: "Track"
 
-    has_many :comments, :as => :commentable
+    has_many :comments, 
+        as: :commentable
+
 end

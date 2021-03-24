@@ -127,16 +127,16 @@ class LyricsShow extends React.Component {
 
     mouseUp(e){
         e.preventDefault();
+        this.setState({['yCoord']: e.pageY}); 
         const highlighted = window.getSelection();
-
-        const newIndices = this.makeNewIndices(highlighted);
-
-        const orderedIndices = newIndices.sort();
-
-        this.setState({['startIndex']: orderedIndices[0]});
-        this.setState({['endIndex']: orderedIndices[1]});
-        this.setState({['yCoord']: e.pageY});   
-        this.props.openModal({hello: 'hello'})
+        
+        if (highlighted.baseOffset !== highlighted.extentOffset) {
+            const newIndices = this.makeNewIndices(highlighted);
+            const orderedIndices = newIndices.sort();
+            this.setState({['startIndex']: orderedIndices[0]+1});
+            this.setState({['endIndex']: orderedIndices[1]});  
+            this.props.openModal({hello: 'hello'})
+        }
     }
 
     makeNewIndices(highlighted) {

@@ -39,7 +39,7 @@ class Annotation extends React.Component {
 
     handleFormSubmit(e) {
         e.preventDefault;
-        
+       
         const annotation = Object.assign({},
             {
                 body: this.state.body,
@@ -51,6 +51,7 @@ class Annotation extends React.Component {
             
 
         this.props.createAnnotation(annotation).then(() => this.props.fetchTrack(this.props.track.id));
+        this.setState({['body']: ''})
         this.props.closeModal();
         
     }

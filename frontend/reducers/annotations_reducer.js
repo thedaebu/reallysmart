@@ -7,12 +7,16 @@ const annotationsReducer = (state = {}, action) => {
     switch (action.type) {
         case RECEIVE_TRACK:
             let annotations = {}
+ 
             action.annotations.forEach((annotation)=>{
                 annotations[annotation.id] = annotation
             })
+            
             return Object.assign({}, state, annotations);
         case RECEIVE_ANNOTATION:
+            
             return Object.assign({}, state, {[action.annotation.id]: action.annotation});
+            
         default:
             return state;
     }

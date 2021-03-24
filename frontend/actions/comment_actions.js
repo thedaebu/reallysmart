@@ -1,22 +1,21 @@
-import * as CommentApiUtil from './../util/annotation_api_util'
+import * as CommentApiUtil from './../util/comment_api_util'
 
 export const RECEIVE_COMMENT = 'RECEIVE_COMMENT';
 
 const receiveComment = ({comment, commenter}) => {
     return ({
         type: RECEIVE_COMMENT,
-        comment,
-        commenter
+        comment
     })
 }
 
-export default fetchComment = commentId => dispatch => {
+export const fetchComment = commentId => dispatch => {
     return (
         CommentApiUtil.fetchComment(commentId).then(comment => dispatch(receiveComment(comment)))
     )
 }
 
-export default createComment = comment => dispatch => {
+export const createComment = comment => dispatch => {
     return (
         CommentApiUtil.createComment(comment).then(comment => dispatch(receiveComment(comment)))
     )

@@ -1,5 +1,5 @@
-json.partial! '/api/annotations/annotation', annotation: @annotation
-
-json.annotator @annotation.annotator.username
+json.annotation do
+    json.partial! '/api/annotations/annotation', annotation: @annotation
+end
 
 json.comments @annotation.comments

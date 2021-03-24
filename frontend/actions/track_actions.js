@@ -15,6 +15,7 @@ const receiveTrack = ({track, annotations, comments}) => {
         track,
         annotations,
         comments
+        
     })
 }
 
