@@ -1,0 +1,46 @@
+.comment-list-main {
+    width: 101%;
+    position: relative;
+    right: 4px;
+}
+
+.comment-list-track-item {
+    margin-left: 15px; 
+    width: min(95%, 537px);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid #99a7ee;
+}
+
+.comment-list-anno-item {
+    margin-left: 15px;
+    width: min(93%, 314px);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid #99a7ee;
+}
+
+.comment-list-item-top {
+    display: flex;
+}
+
+.comment-list-item-baby {
+    width: 20px;
+    height: 20px;
+    position: relative;
+    top: 2px;
+}
+
+.comment-list-item-commenter {
+    font-size: 15px;
+    position: relative;
+    top: 5px;
+    left: 5px;
+}
+
+.comment-list-item-body {
+    font-family: 'Programme Light', sans-serif;
+    font-size: 17px;
+    padding-top: 17px;
+    line-height: 23px;
+}

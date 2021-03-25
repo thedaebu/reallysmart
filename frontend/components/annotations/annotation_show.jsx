@@ -68,6 +68,7 @@ class Annotation extends React.Component {
                 <div className='annotation-show-main' style={{position: 'relative', top: yCoord-370}} >
                     <p className='annotation-show-name'>Really Smart Annotation by {annotation.annotator}</p>
                     <p className='annotation-show-body'>{annotation.body}</p>
+                    <CommentShowContainer parent={annotation} currentUser={currentUser} commentableType="Annotation" commentableId={annoId}/>
                 </div>
             )
         } else if (currentUser && startIndex && startIndex !== endIndex && this.state.createStatus === false && this.props.modal){

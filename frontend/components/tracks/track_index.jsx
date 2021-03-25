@@ -26,7 +26,7 @@ class TrackIndex extends React.Component {
                 <NavBar />
                 <div className='tracks-index-main'>
                     <h1 className='tracks-index-h1' >CHARTS</h1>
-                    <h2 className='tracks-index-h2' >WHAT'S UP ON REALLY SMART</h2>
+                    <h2 className='tracks-index-h2' >REALLY POPULAR ON REALLY SMART</h2>
                     <ul className='tracks-index-list'>
                         {tracks.map(track => {
                             return <TrackIndexItem track={track} key={track.id} />

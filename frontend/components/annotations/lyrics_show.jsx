@@ -157,9 +157,7 @@ class LyricsShow extends React.Component {
         let newIndices
         let min
         let max
-        console.log([highlighted.anchorOffset, highlighted.focusOffset])
      
-        
         if (highlighted.anchorOffset !== highlighted.focusOffset) {
             newIndices = this.makeNewIndices(highlighted);
             min = Math.min(...newIndices);
@@ -169,9 +167,6 @@ class LyricsShow extends React.Component {
             this.setState({['endIndex']: max});  
             this.props.openModal({hello: 'hello'})
         }
-
-        console.log(this.state.startIndex)
-        console.log(this.state.endIndex)
     }
 
     makeNewIndices(highlighted) {
@@ -223,6 +218,7 @@ class LyricsShow extends React.Component {
                         <pre className='lyrics-show-body' onMouseUp={this.mouseUp}>
                             {this.annotatedLyrics()}
                         </pre> 
+                        <CommentShowContainer parent={track} commentableType="Track" currentUser={currentUser} commentableId={track.id} />               
                     </div>
                     <div className='lyrics-show-right'>
                         <AnnotationShowContainer 

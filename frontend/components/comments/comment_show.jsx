@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import CommentItem from './comment_item';
 
 class CommentShow extends React.Component {
     constructor(props) {
@@ -21,7 +22,7 @@ class CommentShow extends React.Component {
 
     componentDidMount(){
         this.props.parent.comment_ids.forEach(id => {
-            this.props.fetchAction(id)
+            this.props.fetchComment(id)
         })
     }
 
@@ -62,6 +63,7 @@ class CommentShow extends React.Component {
                 commentable_id: parent.id,
             })
         createComment(comment).then(() => fetchAction(parent.id))
+        this.setState({['createTrackStatus'] : false})
     }
 
     handleAnnoSubmit(e) {
@@ -77,6 +79,7 @@ class CommentShow extends React.Component {
                 commentable_id: parent.id,
             })
         createComment(comment).then(() => fetchAction(parent.id))
+        this.setState({['createAnnoStatus'] : false})
     }
 
     render() {
@@ -139,7 +142,11 @@ class CommentShow extends React.Component {
         return (
             <div className='comment-main'>
                 {commentPart} 
-                <p>comments</p>
+                <ul className='comment-list-main'>
+                    {comments.map(comment => {
+                        return <CommentItem comment={comment} commentableType={commentableType} key={comment.id} />
+                    })}
+                </ul>
             </div>
             )               
     }
@@ -148,3 +155,4 @@ class CommentShow extends React.Component {
 export default CommentShow;
 
 // parent.comment_ids
+

@@ -844,56 +844,38 @@ Okay, okay, 난 너만 원하면 oh yeah
 넌 쉬고 놀기만 해 go play"
 )
 
+annotation1 = Annotation.create(
+    body: "This shows everything and everythang and everythin and every thing and keeps on going. Whoooooooo!",
+    annotator_id: reallysmart.id,
+    track_id: selene.id,
+    start_index: 15,
+    end_index: 20,
+)
 
+comment1 = Comment.create(
+    body: "This is fire! This is a test for length. This is a test for length. This is a test for length. This is a test for length. This is a test for length. This is a test for length. This is a test for length. This is a test for length. ",
+    commenter_id: reallysmart.id,
+    commentable_type: "Track",
+    commentable_id: selene.id
+)
 
-# annotation1 = Annotation.create(
-#     body: "This is a great line because it is.",
-#     annotator_id: reallysmart.id,
-#     track_id: fake_love.id,
-#     start_index: 5,
-#     end_index: 10,
-# )
+comment2 = Comment.create(
+    body: "OOOOOHHHHHHH!",
+    commenter_id: reallysmart.id,
+    commentable_type: "Track",
+    commentable_id: selene.id
+)
 
-# annotation2 = Annotation.create(
-#     body: "This shows everything and everythang and everythin and every thing and keeps on going. Whoooooooo!",
-#     annotator_id: reallysmart.id,
-#     track_id: selene.id,
-#     start_index: 15,
-#     end_index: 20,
-# )
+comment3 = Comment.create(
+    body: "I think I'm smart. This is a test for length. This is a test for length. This is a test for length. This is a test for length. This is a test for length. This is a test for length. This is a test for length. ",
+    commenter_id: reallysmart.id,
+    commentable_type: "Annotation",
+    commentable_id: selene.id
+)
 
-# annotation3 = Annotation.create(
-#     body: "Yizzurd",
-#     annotator_id: reallysmart.id,
-#     track_id: selene.id,
-#     start_index: 45,
-#     end_index: 65,
-# )
-
-# comment1 = Comment.create(
-#     body: "This is fire! This is a test for length. This is a test for length. This is a test for length. This is a test for length. This is a test for length. This is a test for length. This is a test for length. This is a test for length. ",
-#     commenter_id: reallysmart.id,
-#     commentable_type: "Track",
-#     commentable_id: selene.id
-# )
-
-# comment2 = Comment.create(
-#     body: "OOOOOHHHHHHH!",
-#     commenter_id: reallysmart.id,
-#     commentable_type: "Track",
-#     commentable_id: selene.id
-# )
-
-# comment3 = Comment.create(
-#     body: "I think I'm smart. This is a test for length. This is a test for length. This is a test for length. This is a test for length. This is a test for length. This is a test for length. This is a test for length. ",
-#     commenter_id: reallysmart.id,
-#     commentable_type: "Annotation",
-#     commentable_id: selene.id
-# )
-
-# comment4 = Comment.create(
-#     body: "This is fire!",
-#     commenter_id: reallysmart.id,
-#     commentable_type: "Annotation",
-#     commentable_id: selene.id
-# )
+comment4 = Comment.create(
+    body: "This is fire!",
+    commenter_id: reallysmart.id,
+    commentable_type: "Annotation",
+    commentable_id: selene.id
+)
