@@ -324,108 +324,6 @@ When will my reflection show who I am inside?
 When will my reflection show who I am inside?"
 )
 
-are_you_that_somebody = Track.create(
-    title: 'Are You That Somebody', 
-    artist: 'Aaliyah', 
-    artwork_path: 'https://mediaserver-cont-sv5-1-v4v6.pandora.com/images/public/rovi/albumart/8/2/7/9/044006009728_1080W_1080H.jpg', 
-    lyrics: 
-"[Intro: Timbaland]
-Dirty South, can y'all really feel me?
-East Coast, feel me, West Coast, feel me
-Dirty South, can y'all really feel me?
-East Coast, feel me, West Coast, feel me
-Dirty South, can y'all really feel me?
-East Coast, feel me, West Coast, feel me
-Dirty South, can y'all really feel me?
-East Coast, feel me, West Coast, feel me
-
-[Verse 1: Aaliyah]
-Boy, I've been watching you like the hawk in the sky
-That flies, but you were my prey (My prey)
-Boy, I promise you if we keep bumpin' heads
-I know that one of these days (Days)
-We gon' hook it up, pro'ly talk on the phone
-But see, I don't know if that's good
-I've been holdin' back this secret from you
-I probably shouldn't tell it
-
-[Hook: Aaliyah]
-But if I, If I let you know
-You can't tell nobody, I'm talkin' 'bout nobody
-Are you responsible?
-Boy, I gotta watch my back, 'cause I'm not just anybody
-Is it my go, is it your go?
-Sometimes I'm goody-goody
-Right now I'm naughty-naughty
-Say yes or say no, 'cause I really need somebody
-Tell me are you that somebody?
-
-[Verse 2: Aaliyah]
-Boy, won't you pick me up at the park right now
-Up the block, while everyone sleep, sleep, sleep
-I'll be waiting there with my trench, my locs, my hat
-Just so I'm lowkey, If you tell the world
-(Don't speak, you know that would be weak)
-Oh boy, see I'm trusting you with my heart, my soul
-I probably shouldn't let you
-
-[Hook 2: Aaliyah]
-But if I, If I let this go
-You can't tell nobody, I'm talkin' 'bout nobody
-I hope you're responsible
-Boy, I gotta watch my back, 'cause I'm not just anybody
-Is it my go, is it your go?
-Sometimes I'm goody-goody
-Right now I'm naughty-naughty
-Say yes or say no, 'cause I really need somebody
-Tell me are you that somebody
-
-[Verse 3: Timbaland]
-Baby girl, I'm the man from the big VA
-Won't you come play round my way
-And listen to what I gotta say
-Timbaland (What) don't you know I am the man
-Rock shows here to Japan
-Have people shaking, shaking my hand
-Baby girl, better known as Aaliyah
-Give me goosebumps and high fevers
-Makin' playa haters believers
-Don'tcha know, gotta tell somebody, cause
-
-[Bridge: Aaliyah]
-'Cause I really need somebody (What?)
-Tell me you're that somebody (What?)
-
-[Hook 2: Aaliyah]
-If I let this go
-You can't tell nobody, I'm talkin' 'bout nobody
-Are you responsible?
-Boy I gotta watch my back, 'cause I'm not just anybody
-Is it my go, is it your go?
-Sometimes I'm goody-goody
-Right now I'm naughty-naughty
-Say yes or say no, 'cause I really need somebody
-Tell me are you that somebody?
-
-You can't tell nobody, I'm talkin' 'bout nobody
-I hope you're responsible
-Boy, I gotta watch my back, 'cause I'm not just anybody
-Is it my go, is it your go?
-Sometimes I'm goody-goody
-Right now I'm naughty-naughty
-Say yes or say no, 'cause I really need somebody
-Tell me are you that somebody?
-
-[Instrumental Break]
-
-[Hook: Aaliyah]
-Is it my go, is it your go?
-Sometimes I'm goody-goody
-Right now I'm bout naughty naughty
-'Cause I really need somebody
-Tell me are you that somebody?"
-)
-
 stay = Track.create(
     title: 'Stay', 
     artist: 'Ne-Yo', 
@@ -844,38 +742,73 @@ Okay, okay, 난 너만 원하면 oh yeah
 넌 쉬고 놀기만 해 go play"
 )
 
-annotation1 = Annotation.create(
-    body: "This shows everything and everythang and everythin and every thing and keeps on going. Whoooooooo!",
-    annotator_id: reallysmart.id,
-    track_id: selene.id,
-    start_index: 15,
-    end_index: 20,
+dirty_water = Track.create(
+    title: 'Dirty Water', 
+    artist: 'The Standells', 
+    artwork_path: 'https://www.culturesonar.com/wp-content/uploads/2020/02/standells-dirty-water-album.jpg', 
+    lyrics: 
+"I'm gonna tell you a story
+I'm gonna tell you about my town
+I'm gonna tell you a big bad story, baby
+Aww, it's all about my town
+
+Yeah, down by the river
+Down by the banks of the river Charles (aw, that's what's happenin' baby)
+That's where you'll find me
+Along with lovers, muggers, and thieves (aw, but they're cool, too)
+Well I love that dirty water
+Oh, Boston, you're my home (oh, you're the Number One place)
+Frustrated women (I mean they're frustrated)
+Have to be in by twelve o'clock (oh, that's a shame)
+But I'm wishin' and a-hopin, oh
+That just once those doors weren't locked (I like to save time for
+My baby to walk around)
+Well I love that dirty water
+Oh, Boston, you're my home (oh, yeah)
+
+Because I love that dirty water
+Oh, oh, Boston, you're my home (oh, yeah)
+
+Well, I love that dirty water (I love it, baby)
+I love that dirty water (I love Baw-stun)
+I love that dirty water (Have you heard about the Strangler?)
+I love that dirty water (I'm the man, I'm the man)
+I love that dirty water (Owww!)
+I love that dirty water (Come on, come on)"
 )
 
-comment1 = Comment.create(
-    body: "This is fire! This is a test for length. This is a test for length. This is a test for length. This is a test for length. This is a test for length. This is a test for length. This is a test for length. This is a test for length. ",
-    commenter_id: reallysmart.id,
-    commentable_type: "Track",
-    commentable_id: selene.id
-)
+# annotation1 = Annotation.create(
+#     body: "This shows everything and everythang and everythin and every thing and keeps on going. Whoooooooo!",
+#     annotator_id: reallysmart.id,
+#     track_id: selene.id,
+#     start_index: 15,
+#     end_index: 20,
+# )
 
-comment2 = Comment.create(
-    body: "OOOOOHHHHHHH!",
-    commenter_id: reallysmart.id,
-    commentable_type: "Track",
-    commentable_id: selene.id
-)
+# comment1 = Comment.create(
+#     body: "This is fire! This is a test for length. This is a test for length. This is a test for length. This is a test for length. This is a test for length. This is a test for length. This is a test for length. This is a test for length. ",
+#     commenter_id: reallysmart.id,
+#     commentable_type: "Track",
+#     commentable_id: selene.id
+# )
 
-comment3 = Comment.create(
-    body: "I think I'm smart. This is a test for length. This is a test for length. This is a test for length. This is a test for length. This is a test for length. This is a test for length. This is a test for length. ",
-    commenter_id: reallysmart.id,
-    commentable_type: "Annotation",
-    commentable_id: selene.id
-)
+# comment2 = Comment.create(
+#     body: "OOOOOHHHHHHH!",
+#     commenter_id: reallysmart.id,
+#     commentable_type: "Track",
+#     commentable_id: selene.id
+# )
 
-comment4 = Comment.create(
-    body: "This is fire!",
-    commenter_id: reallysmart.id,
-    commentable_type: "Annotation",
-    commentable_id: selene.id
-)
+# comment3 = Comment.create(
+#     body: "I think I'm smart. This is a test for length. This is a test for length. This is a test for length. This is a test for length. This is a test for length. This is a test for length. This is a test for length. ",
+#     commenter_id: reallysmart.id,
+#     commentable_type: "Annotation",
+#     commentable_id: selene.id
+# )
+
+# comment4 = Comment.create(
+#     body: "This is fire!",
+#     commenter_id: reallysmart.id,
+#     commentable_type: "Annotation",
+#     commentable_id: selene.id
+# )
