@@ -29,7 +29,7 @@ class TrackIndex extends React.Component {
                     <h2 className='tracks-index-h2' >WHAT'S UP ON REALLY SMART</h2>
                     <ul className='tracks-index-list'>
                         {tracks.map(track => {
-                            return <TrackIndexItem track={track} fetchTrack={fetchTrack} key={track.id} />
+                            return <TrackIndexItem track={track} key={track.id} />
                         })}
                     </ul>
                 </div>

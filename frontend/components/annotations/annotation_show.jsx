@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import CommentShowContainer from '../comments/comment_show_container';
 
 class Annotation extends React.Component {
     constructor(props){
         super(props)
         this.state = {
             createStatus: this.props.createStatus,
-            body: '',
-            
+            body: '',        
         };
         
         this.handleOnClick = this.handleOnClick.bind(this);
@@ -49,23 +49,19 @@ class Annotation extends React.Component {
                 end_index: this.props.endIndex,
             })
             
-
         this.props.createAnnotation(annotation).then(() => this.props.fetchTrack(this.props.track.id));
         this.setState({['body']: ''})
-        this.props.closeModal();
-        
+        this.props.closeModal();    
     }
 
     handleCancel(e) {
         e.preventDefault;
         this.setState({['createStatus']: false})
-        this.props.closeModal();
-        
-        
+        this.props.closeModal();    
     }
 
     render() {
-        const {annotation, currentUser, openModal, closeModal, track, yCoord, startIndex, endIndex, fetchAnnotation, createAnnotation, annotationId} = this.props;
+        const {annotation, annoId, currentUser, openModal, closeModal, track, yCoord, startIndex, endIndex, fetchAnnotation, createAnnotation, annotationId} = this.props;
         
         if (annotation) {
             return (

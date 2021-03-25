@@ -1,4 +1,5 @@
 import React from 'react';
+import CommentShowContainer from '../comments/comment_show_container';
 import AnnotationShowContainer from './annotation_show_container';
 
 class LyricsShow extends React.Component {
@@ -15,6 +16,7 @@ class LyricsShow extends React.Component {
 
         this.state = {
             annotationId: undefined,
+            annoId: undefined,
             yCoord: undefined,
             startIndex: undefined,
             endIndex: undefined,
@@ -57,10 +59,11 @@ class LyricsShow extends React.Component {
         
         let sortedAnnotations = annotations.sort((a,b) => (a.start_index > b.start_index ? 1 : -1));
         //list.sort((a, b) => (a.color > b.color) ? 1 : -1)
-   
+       
         let lyricsParts = [];
         let currentIndex = 0;
-        if (annotations) {
+        
+        if (annotations[0] !== undefined) {
             sortedAnnotations.forEach((annotation, idx) => {
                 
                 let addIndex
@@ -148,37 +151,41 @@ class LyricsShow extends React.Component {
     mouseUp(e){
         e.preventDefault();
         this.setState({['yCoord']: e.pageY}); 
+        this.setState({['annoId']: e.target.dataset.id})
+        
         const highlighted = window.getSelection();
         let newIndices
-        let orderedIndices
-        console.log(highlighted.anchorOffset)
-        console.log(highlighted.focusOffset)
+        let min
+        let max
+        console.log([highlighted.anchorOffset, highlighted.focusOffset])
+     
         
         if (highlighted.anchorOffset !== highlighted.focusOffset) {
             newIndices = this.makeNewIndices(highlighted);
-            orderedIndices = newIndices.sort();
-            console.log(orderedIndices)
-            this.setState({['startIndex']: orderedIndices[0]+1});
-            this.setState({['endIndex']: orderedIndices[1]});  
+            min = Math.min(...newIndices);
+            max = Math.max(...newIndices);
+
+            this.setState({['startIndex']: min});
+            this.setState({['endIndex']: max});  
             this.props.openModal({hello: 'hello'})
         }
+
+        console.log(this.state.startIndex)
+        console.log(this.state.endIndex)
     }
 
     makeNewIndices(highlighted) {
-        let newIndices = null;
+        let a;
+        let b;
 
         let anchorName = highlighted.anchorNode.parentNode.dataset.name;
         let focusName = highlighted.focusNode.parentNode.dataset.name;
 
-        
-
         let add = parseInt(highlighted.focusNode.parentNode.dataset.add);
 
         if (anchorName.includes(`not-anno`) && focusName.includes(`not-anno`) && anchorName === focusName) {
-            let a = highlighted.anchorOffset + add
-            let b = highlighted.focusOffset + add
-            
-            newIndices = [a, b]
+            a = highlighted.anchorOffset + add
+            b = highlighted.focusOffset + add
         } 
         
         // window.getSelection().anchorNode.parentNode.dataset.add
@@ -189,11 +196,18 @@ class LyricsShow extends React.Component {
         
         // if name includes is-anno, return null for both
         // if name includes not-anno, add 'add' to value of number
+       
+        if (anchorName.includes(`not-anno-0`)) {
+            b -= 1;
+        } else {
+            a += 1;
+        }
 
-        return newIndices;
+        return [a, b];
     }
 
     mouseDown(e){
+        
         this.setState({['annotationId']: null})
         this.setState({['createStatus']: false})
         this.props.closeModal()
@@ -208,7 +222,7 @@ class LyricsShow extends React.Component {
                         <p className='lyrics-show-top'>{track.title.toUpperCase()} LYRICS</p>
                         <pre className='lyrics-show-body' onMouseUp={this.mouseUp}>
                             {this.annotatedLyrics()}
-                        </pre>                
+                        </pre> 
                     </div>
                     <div className='lyrics-show-right'>
                         <AnnotationShowContainer 
@@ -218,7 +232,8 @@ class LyricsShow extends React.Component {
                             annotationId={this.state.annotationId} 
                             startIndex={this.state.startIndex} 
                             endIndex={this.state.endIndex} 
-                            createStatus={this.state.createStatus}      
+                            createStatus={this.state.createStatus} 
+                            annoId={this.state.annoId}     
                         />
                     </div>
                 </div>
