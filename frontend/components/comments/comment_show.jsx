@@ -141,10 +141,9 @@ class CommentShow extends React.Component {
             )
         }
 
-        let commentParts
+        let commentParts;
 
-        if (comments.length[0] !== undefined) {
-            
+        if (comments[0] !== undefined) {
             commentParts = (
                 <ul className='comment-list-main'>
                     {comments.map(comment => {
@@ -157,7 +156,7 @@ class CommentShow extends React.Component {
                 <p></p>
             )
         )
-
+        
         return (
             <div className='comment-main'>
                 {commentPart} 
