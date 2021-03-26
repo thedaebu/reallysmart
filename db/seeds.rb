@@ -6,9 +6,19 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+User.destroy_all
+Track.destroy_all
+Annotation.destroy_all
+Comment.destroy_all
+
 reallysmart = User.create(
     username: 'reallysmart', 
     password: 'reallysmart'
+)
+
+notsosmart = User.create(
+    username: 'notsosmart',
+    password: 'notsosmart'
 )
 
 lady = Track.create(
@@ -777,38 +787,24 @@ I love that dirty water (Owww!)
 I love that dirty water (Come on, come on)"
 )
 
-# annotation1 = Annotation.create(
-#     body: "This shows everything and everythang and everythin and every thing and keeps on going. Whoooooooo!",
-#     annotator_id: reallysmart.id,
-#     track_id: selene.id,
-#     start_index: 15,
-#     end_index: 20,
-# )
+annotation1 = Annotation.create(
+    body: "He is saying that this summer is ours. He says that if there is an angel near then it's you and he wants to get lost in the sky with you.",
+    annotator_id: reallysmart.id,
+    track_id: blue.id,
+    start_index: 597,
+    end_index: 685,
+)
 
-# comment1 = Comment.create(
-#     body: "This is fire! This is a test for length. This is a test for length. This is a test for length. This is a test for length. This is a test for length. This is a test for length. This is a test for length. This is a test for length. ",
-#     commenter_id: reallysmart.id,
-#     commentable_type: "Track",
-#     commentable_id: selene.id
-# )
+comment1 = Comment.create(
+    body: "대박!!! This is fire!",
+    commenter_id: reallysmart.id,
+    commentable_type: "Track",
+    commentable_id: blue.id
+)
 
-# comment2 = Comment.create(
-#     body: "OOOOOHHHHHHH!",
-#     commenter_id: reallysmart.id,
-#     commentable_type: "Track",
-#     commentable_id: selene.id
-# )
-
-# comment3 = Comment.create(
-#     body: "I think I'm smart. This is a test for length. This is a test for length. This is a test for length. This is a test for length. This is a test for length. This is a test for length. This is a test for length. ",
-#     commenter_id: reallysmart.id,
-#     commentable_type: "Annotation",
-#     commentable_id: selene.id
-# )
-
-# comment4 = Comment.create(
-#     body: "This is fire!",
-#     commenter_id: reallysmart.id,
-#     commentable_type: "Annotation",
-#     commentable_id: selene.id
-# )
+comment2 = Comment.create(
+    body: "OOOOOHHHHHHH! Now I get it.",
+    commenter_id: notsosmart.id,
+    commentable_type: "Annotation",
+    commentable_id: annotation1.id
+)
