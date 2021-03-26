@@ -3,6 +3,8 @@ import { fetchTrack, fetchTracks } from '../../actions/track_actions';
 import TrackShow from './track_show';
 
 const mSTP = (state, ownProps) => {
+
+    
     let track;
     if (state.entities.tracks) {
         track = state.entities.tracks[ownProps.match.params.trackId]
@@ -10,6 +12,7 @@ const mSTP = (state, ownProps) => {
     
     return ({
         track: track,
+        annotations: state.entities.annotations
     })
 }
 

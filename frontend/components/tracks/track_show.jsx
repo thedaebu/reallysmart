@@ -6,7 +6,6 @@ import {
   Link,
   HashRouter
 } from 'react-router-dom';
-import NavBar from '../header/navbar';
 import LyricsShow from '../annotations/lyrics_show';
 import TrackShowHeader from './track_show_header';
 import LyricsShowContainer from '../annotations/lyrics_show_container';
@@ -23,18 +22,17 @@ class TrackShow extends React.Component {
     }
 
     render(){
-        const {track, fetchTrack} = this.props;
-        if (track) {
+        const {track, annotations, fetchTrack} = this.props;
+        if (Object.keys(annotations).length !== 0) {
         return (
             <div>
-                <NavBar />
                 <TrackShowHeader track={track} fetchTrack={fetchTrack} />
                 <div className='track-show-bottom-main'>
                     <LyricsShowContainer track={track} />
                 </div>
             </div>
         )} else { return (
-            <NavBar />
+            null
         )}
     }
 };

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_23_212744) do
+ActiveRecord::Schema.define(version: 2021_03_26_014819) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 2021_03_23_212744) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
+    t.index ["commenter_id"], name: "index_comments_on_commenter_id"
   end
 
   create_table "tracks", force: :cascade do |t|
@@ -54,6 +55,16 @@ ActiveRecord::Schema.define(version: 2021_03_23_212744) do
     t.datetime "updated_at", null: false
     t.index ["session_token"], name: "index_users_on_session_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
+  end
+
+  create_table "votes", force: :cascade do |t|
+    t.integer "voter_id", null: false
+    t.string "voteable_type", null: false
+    t.bigint "voteable_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["voteable_type", "voteable_id"], name: "index_votes_on_voteable_type_and_voteable_id"
+    t.index ["voter_id"], name: "index_votes_on_voter_id"
   end
 
 end

@@ -7,7 +7,6 @@ import {
   Link,
   HashRouter
 } from 'react-router-dom';
-import NavBar from '../header/navbar';
 import TrackIndexItem from './track_index_item';
 
 class TrackIndex extends React.Component {
@@ -23,7 +22,6 @@ class TrackIndex extends React.Component {
         const { tracks, fetchTracks, fetchTrack } = this.props;
         return (
             <>
-                <NavBar />
                 <div className='tracks-index-main'>
                     <h1 className='tracks-index-h1' >CHARTS</h1>
                     <h2 className='tracks-index-h2' >REALLY POPULAR ON REALLY SMART</h2>

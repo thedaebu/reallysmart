@@ -1,6 +1,5 @@
 import React from 'react';
 import DemoUserContainer from '../demo_user/demo_user_container';
-import NavBar from '../header/navbar';
 
 class SessionForm extends React.Component {
     constructor(props){
@@ -50,7 +49,6 @@ class SessionForm extends React.Component {
         const {formType, formTypeSub, formSubmit, formLink, formLast, formPassword, formTos, clearErrors } = this.props;
         return (
             <>
-                <NavBar/>
                 <div className='session-form-main'>
                     {formType}
                     {formTypeSub}                   
