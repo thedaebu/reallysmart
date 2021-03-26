@@ -18,6 +18,7 @@ class TrackShow extends React.Component {
     }
 
     componentDidMount(){
+        
         this.props.fetchTrack(this.props.match.params.trackId);
     }
 
@@ -33,7 +34,7 @@ class TrackShow extends React.Component {
                 </div>
             </div>
         )} else { return (
-            null
+            <NavBar />
         )}
     }
 };

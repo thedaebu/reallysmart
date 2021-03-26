@@ -22,6 +22,11 @@
 
 .comment-list-item-top {
     display: flex;
+    justify-content: space-between;
+}
+
+.comment-list-item-top-top {
+    display: flex;
 }
 
 .comment-list-item-baby {
@@ -36,6 +41,10 @@
     position: relative;
     top: 5px;
     left: 5px;
+}
+
+.comment-list-item-time {
+    
 }
 
 .comment-list-item-body {

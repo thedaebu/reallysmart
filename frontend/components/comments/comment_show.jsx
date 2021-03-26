@@ -11,7 +11,7 @@ class CommentShow extends React.Component {
             createAnnoStatus: false,
             body: '',
         }
-
+        
         this.handleTrackStatus = this.handleTrackStatus.bind(this);
         this.handleAnnoStatus = this.handleAnnoStatus.bind(this);
         this.handleTrackCancel = this.handleTrackCancel.bind(this);
@@ -24,6 +24,7 @@ class CommentShow extends React.Component {
         this.props.parent.comment_ids.forEach(id => {
             this.props.fetchComment(id)
         })
+        
     }
 
     handleTrackStatus(e){
