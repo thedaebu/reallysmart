@@ -23,7 +23,7 @@ class TrackShow extends React.Component {
 
     render(){
         const {track, annotations, fetchTrack} = this.props;
-        if (Object.keys(annotations).length !== 0) {
+        if (track) {
         return (
             <div>
                 <TrackShowHeader track={track} fetchTrack={fetchTrack} />

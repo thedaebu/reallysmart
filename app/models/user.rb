@@ -16,6 +16,10 @@ class User < ApplicationRecord
     foreign_key: :commenter_id,
     class_name: "Comment"
 
+  has_many :votes,
+    foreign_key: :voter_id,
+    class_name: "Vote"
+
   def self.find_by_credentials(username, password)
     user = User.find_by(username: username)
     return nil unless user

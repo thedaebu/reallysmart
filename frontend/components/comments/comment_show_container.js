@@ -7,11 +7,13 @@ import { fetchTrack } from '../../actions/track_actions';
 
 const mSTP = (state, ownProps) => {
     let comments;
-    if (state.entities.comments) {
+    if (Object.keys(state.entities.comments).length !== 0) {
         comments = ownProps.parent.comment_ids.map(id => {
                 return state.entities.comments[id]
         })
-    }
+    } else (
+        comments = new Array()
+    )
     
     if (ownProps.commentableType === "Track") {
         return ({

@@ -2,6 +2,7 @@ class Comment < ApplicationRecord
     validates :body, presence: true
     validates :commenter_id, presence: true
     validates :commentable_type, presence: true
+    # in: %w(small medium large)
     validates :commentable_id, presence: true
 
     belongs_to :commenter,
@@ -10,4 +11,7 @@ class Comment < ApplicationRecord
 
     belongs_to :commentable, polymorphic: true
 
+    has_many :votes,
+        as: :voteable
+        
 end

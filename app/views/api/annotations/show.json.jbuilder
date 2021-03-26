@@ -8,6 +8,7 @@ json.comments do
     json.set! comment.id do
       json.extract! comment, :id, :body, :commenter_id, :commentable_id, :updated_at
       json.commenter comment.commenter.username
+      json.votes comment.votes.length
     end
   end
 end

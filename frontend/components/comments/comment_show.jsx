@@ -140,14 +140,28 @@ class CommentShow extends React.Component {
                 </div>
             )
         }
-        return (
-            <div className='comment-main'>
-                {commentPart} 
+
+        let commentParts
+
+        if (comments.length[0] !== undefined) {
+            
+            commentParts = (
                 <ul className='comment-list-main'>
                     {comments.map(comment => {
                         return <CommentItem comment={comment} commentableType={commentableType} key={comment.id} />
                     })}
                 </ul>
+            )
+        } else (
+            commentParts = (
+                <p></p>
+            )
+        )
+
+        return (
+            <div className='comment-main'>
+                {commentPart} 
+                {commentParts}
             </div>
             )               
     }
