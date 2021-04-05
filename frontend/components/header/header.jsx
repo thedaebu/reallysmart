@@ -2,11 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 class Header extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props)
     }
 
-    render(){
+    render() {
         const {currentUser, logout} = this.props;
         if (currentUser) {
             return (

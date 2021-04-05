@@ -4,7 +4,7 @@ import { RECEIVE_COMMENT } from "../actions/comment_actions";
 
 const commentsReducer = (state = {}, action) => {
     Object.freeze(state);
-    let comments = {}
+    let comments = {};
 
     switch (action.type) {
         case RECEIVE_TRACK:
@@ -37,6 +37,6 @@ const commentsReducer = (state = {}, action) => {
         default:
             return state;
     }
-}
+};
 
 export default commentsReducer;

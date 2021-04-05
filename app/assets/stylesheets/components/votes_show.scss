@@ -1,0 +1,30 @@
+.vote-show-main {
+    display: flex;
+    padding-top: 25px;
+    padding-bottom: 3px;
+}
+
+.vote-show-voted {
+    color: #0ec426;
+    height: 19px;
+    width: 19px; 
+    cursor: pointer;
+}
+
+.vote-show-not-voted {
+    font-size: 17px;
+    color: rgb(161, 161, 161);
+    height: 19px;
+    width: 19px; 
+    cursor: pointer;    
+}
+
+.vote-show-not-voted:hover {
+    color: #0ec426;
+}
+
+.vote-show-count {
+    color: #0ec426;
+    font-size: 17px;
+    margin-left: 7px;   
+}

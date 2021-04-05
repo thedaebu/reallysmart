@@ -26,8 +26,7 @@ const App = () => (
                 <HeaderContainer />
                 <DemoUserContainer />
             </div>
-        </header>
-        <NavBar />
+        </header>        
         <Switch>
             
             <Route exact path="/" component={TrackIndexContainer} />

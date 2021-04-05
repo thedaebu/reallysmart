@@ -1,21 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import CommentShowContainer from '../comments/comment_show_container';
+import VotesShowContainer from '../votes/votes_show_container';
 
 class Annotation extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props)
         this.state = {
             createStatus: this.props.createStatus,
             body: '',        
         };
         
-        this.handleOnClick = this.handleOnClick.bind(this);
+        this.handleClick = this.handleClick.bind(this);
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.handleCancel = this.handleCancel.bind(this);   
-    }
-
-    componentDidMount () {
     }
 
     componentDidUpdate(prevProps) {
@@ -27,8 +25,8 @@ class Annotation extends React.Component {
         }
     }
 
-    handleOnClick(e) {
-        e.preventDefault;
+    handleClick(e) {
+        e.preventDefault();
         this.setState({['createStatus']: true})     
         this.setState({['openness']: 'b'})     
     }
@@ -38,7 +36,7 @@ class Annotation extends React.Component {
     }
 
     handleFormSubmit(e) {
-        e.preventDefault;
+        e.preventDefault();
        
         const annotation = Object.assign({},
             {
@@ -55,7 +53,8 @@ class Annotation extends React.Component {
     }
 
     handleCancel(e) {
-        e.preventDefault;
+        e.preventDefault();
+        
         this.setState({['createStatus']: false})
         this.props.closeModal();    
     }
@@ -68,13 +67,14 @@ class Annotation extends React.Component {
                 <div className='annotation-show-main' style={{position: 'relative', top: yCoord-370}} >
                     <p className='annotation-show-name'>Really Smart Annotation by {annotation.annotator}</p>
                     <p className='annotation-show-body'>{annotation.body}</p>
-                    <CommentShowContainer parent={annotation} currentUser={currentUser} commentableType="Annotation" commentableId={annoId}/>
+                    <VotesShowContainer parent={annotation} voteableType="Annotation" voteableId={annotation.id} numberOfVotes={annotation.votes} />
+                    <CommentShowContainer parent={annotation} currentUser={currentUser} commentableType="Annotation" commentableId={annoId} />
                 </div>
             )
         } else if (currentUser && startIndex && startIndex !== endIndex && this.state.createStatus === false && this.props.modal){
             return (
                 <div className='annotation-show-create-main' style={{position: 'relative', top: yCoord-370}} >
-                    <span className='annotation-show-create-begin' onClick={this.handleOnClick} >
+                    <span className='annotation-show-create-begin' onClick={this.handleClick} >
                         <p className='annotation-show-create-h1'>Start the Really Smart Annotation</p>
                         <p className='annotation-show-create-h2'>(+5 RSQ)</p>
                     </span>

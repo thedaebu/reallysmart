@@ -3,7 +3,7 @@ import CommentShowContainer from '../comments/comment_show_container';
 import AnnotationShowContainer from './annotation_show_container';
 
 class LyricsShow extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props)
 
         let annotations = {}
@@ -31,7 +31,7 @@ class LyricsShow extends React.Component {
         this.openAnnotation = this.openAnnotation.bind(this);
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.props.track.annotation_ids.forEach(id => {
             this.props.fetchAnnotation(id)
         })
@@ -54,7 +54,7 @@ class LyricsShow extends React.Component {
         return lyrics; 
     }
 
-    annotateLyrics(lyrics){
+    annotateLyrics(lyrics) {
         let annotations = this.props.annotations
         
         let sortedAnnotations = annotations.sort((a,b) => (a.start_index > b.start_index ? 1 : -1));
@@ -148,7 +148,7 @@ class LyricsShow extends React.Component {
         this.setState({annotationId: id})
     }
 
-    mouseUp(e){
+    mouseUp(e) {
         e.preventDefault();
         this.setState({['yCoord']: e.pageY}); 
         this.setState({['annoId']: e.target.dataset.id})
@@ -201,7 +201,7 @@ class LyricsShow extends React.Component {
         return [a, b];
     }
 
-    mouseDown(e){
+    mouseDown(e) {
         
         this.setState({['annotationId']: null})
         this.setState({['createStatus']: false})

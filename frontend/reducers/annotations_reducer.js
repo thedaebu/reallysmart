@@ -13,7 +13,7 @@ const annotationsReducer = (state = {}, action) => {
                 })
 
             } else {
-                annotations = action.annotations
+                annotations = action.annotations;
             }
             
             return Object.assign({}, annotations);

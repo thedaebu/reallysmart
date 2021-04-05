@@ -1,11 +1,12 @@
 import React from 'react';
+import VotesShowContainer from '../votes/votes_show_container';
 
 class CommentItem extends React.Component {
     constructor(props) {
         super(props);
     }
 
-    handleTime(dateTime){
+    handleTime(dateTime) {
         let oldDate = new Date(Date.parse(dateTime));
         let currentDate = new Date();
         let yearDiff = oldDate.getFullYear() - currentDate.getFullYear();
@@ -28,7 +29,7 @@ class CommentItem extends React.Component {
     }
 
     render() {
-        const { comment, commentableType } = this.props;
+        const { comment, commentableType, parent, fetchAction} = this.props;
         
         if (commentableType === "Track") {
             return (
@@ -37,11 +38,11 @@ class CommentItem extends React.Component {
                         <div className='comment-list-item-top-top'>
                             <img className='comment-list-item-baby' src="https://assets.genius.com/images/default_avatar_100.png" />
                             <p className='comment-list-item-commenter'>{comment.commenter}</p>
-
                         </div>
                         <p className='comment-list-item-time'>{this.handleTime(comment.updated_at)}</p>
                     </div>
                     <p className='comment-list-item-body'>{comment.body}</p>
+                    <VotesShowContainer voteableType="Comment" voteableId={comment.id} parent={parent} fetchAction={fetchAction} numberOfVotes={comment.votes} />
                 </li>
             )
         } else {
@@ -56,6 +57,7 @@ class CommentItem extends React.Component {
                         <p className='comment-list-item-time'>{this.handleTime(comment.updated_at)}</p>
                     </div>
                     <p className='comment-list-item-body'>{comment.body}</p>
+                    <VotesShowContainer voteableType="Comment" voteableId={comment.id} parent={parent} fetchAction={fetchAction} numberOfVotes={comment.votes} />
                 </li>
             )
         }
