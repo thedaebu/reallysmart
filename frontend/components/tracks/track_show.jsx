@@ -9,6 +9,7 @@ import {
 import LyricsShow from '../annotations/lyrics_show';
 import TrackShowHeader from './track_show_header';
 import LyricsShowContainer from '../annotations/lyrics_show_container';
+import NavBar from '../header/navbar';
 
 
 class TrackShow extends React.Component {
@@ -16,16 +17,16 @@ class TrackShow extends React.Component {
         super(props)
     }
 
-    componentDidMount(){
-        
+    componentDidMount() {       
         this.props.fetchTrack(this.props.match.params.trackId);
     }
 
-    render(){
+    render() {
         const {track, annotations, fetchTrack} = this.props;
         if (track) {
         return (
             <div>
+                <NavBar />
                 <TrackShowHeader track={track} fetchTrack={fetchTrack} />
                 <div className='track-show-bottom-main'>
                     <LyricsShowContainer track={track} />

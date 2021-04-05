@@ -22,9 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const root = document.getElementById("root");
   
   window.getState = store.getState;
-  window.dispatch = store.dispatch;
-  window.signup = signup;
-  window.login = login;
+
 
   ReactDOM.render(<Root store={store} />, root);
 });

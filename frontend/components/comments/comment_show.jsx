@@ -20,34 +20,33 @@ class CommentShow extends React.Component {
         this.handleAnnoSubmit = this.handleAnnoSubmit.bind(this);
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.props.parent.comment_ids.forEach(id => {
             this.props.fetchComment(id)
-        })
-        
+        })  
     }
 
-    handleTrackStatus(e){
+    handleTrackStatus(e) {
         e.preventDefault();
         this.setState({['createTrackStatus'] : true})
     }
 
-    handleAnnoStatus(e){
+    handleAnnoStatus(e) {
         e.preventDefault();
         this.setState({['createAnnoStatus'] : true})
     }
 
-    handleTrackCancel(e){
+    handleTrackCancel(e) {
         e.preventDefault();
         this.setState({['createTrackStatus'] : false})
     }
 
-    handleAnnoCancel(e){
+    handleAnnoCancel(e) {
         e.preventDefault();
         this.setState({['createAnnoStatus'] : false})
     }
 
-    handleChange(type){
+    handleChange(type) {
         return e => this.setState({ [type]: e.target.value });
     }
 
@@ -147,7 +146,7 @@ class CommentShow extends React.Component {
             commentParts = (
                 <ul className='comment-list-main'>
                     {comments.map(comment => {
-                        return <CommentItem comment={comment} commentableType={commentableType} key={comment.id} />
+                        return <CommentItem parent={parent} fetchAction={fetchAction} comment={comment} commentableType={commentableType} key={comment.id} />
                     })}
                 </ul>
             )

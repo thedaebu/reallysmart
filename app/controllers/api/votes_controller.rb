@@ -1,8 +1,14 @@
 class Api::VotesController < ApplicationController
 
+    def show
+        @vote = Vote.find(params[:id])
+        render :show
+    end
+
     def create 
         @vote = Vote.new(vote_params)
         if @vote.save
+            render :show
         else
             render json: @vote.errors.full_messages, status: 422
         end

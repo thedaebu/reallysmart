@@ -2,7 +2,7 @@ import React from 'react';
 import DemoUserContainer from '../demo_user/demo_user_container';
 
 class SessionForm extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props)
         this.state = {
             username: '',
@@ -11,12 +11,12 @@ class SessionForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    componentWillUnmount(){
+    componentWillUnmount() {
         this.props.clearErrors()
     }
 
-    handleSubmit(e){
-        e.preventDefault;
+    handleSubmit(e) {
+        e.preventDefault();
         const user = Object.assign({}, this.state);
         this.props.action(user);
     }
@@ -25,7 +25,7 @@ class SessionForm extends React.Component {
         return e => this.setState({[type]: e.target.value});
     }
 
-    showErrors(){
+    showErrors() {
        if (this.props.errors.length) {
         return (
             <div className='errors-main'>

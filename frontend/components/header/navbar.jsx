@@ -1,11 +1,11 @@
 import React from 'react';
 
 class NavBar extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props)
     }
 
-    render(){
+    render() {
         return (
             <div className='navbar-outside'>
                 <div className='navbar-main'>

@@ -15,37 +15,33 @@ const mSTP = (state, ownProps) => {
         comments = new Array()
     )
     
+    let commentMessage;
     if (ownProps.commentableType === "Track") {
-        return ({
-            comments: comments,
-            commentMessage: "Add a comment",
-        })
+        commentMessage = "Add a comment";
     } else {
-        return({
-            comments: comments,
-            commentMessage: "You think you're smarter?",
-        })
+        commentMessage = "You think you're smarter?";
     }
+
+    return ({
+        comments: comments,
+        commentMessage: commentMessage,
+    })
+
 }
 
 const mDTP = (dispatch, ownProps) => {
-
+    let fetchAction;
     if (ownProps.commentableType === "Track") {
-        return ({
-            fetchComment: commentId => dispatch(fetchComment(commentId)),
-            createComment: comment => dispatch(createComment(comment)),
-            fetchAction: trackId => dispatch(fetchTrack(trackId))    
-        })
+        fetchAction = trackId => dispatch(fetchTrack(trackId))
     } else {
-        return ({
-            fetchComment: commentId => dispatch(fetchComment(commentId)),
-            createComment: comment => dispatch(createComment(comment)),
-            fetchAction: annotationId => dispatch(fetchAnnotation(annotationId)),
-        })
+        fetchAction = annotationId => dispatch(fetchAnnotation(annotationId))
     }
 
+    return ({
+        fetchComment: commentId => dispatch(fetchComment(commentId)),
+        createComment: comment => dispatch(createComment(comment)),
+        fetchAction: fetchAction,  
+    })
 }
 
 export default connect(mSTP, mDTP)(CommentShow);
-
-

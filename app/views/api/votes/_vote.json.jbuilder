@@ -1,0 +1,1 @@
+json.extract! vote, :id, :voter_id, :voteable_id, :voteable_type

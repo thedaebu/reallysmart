@@ -4,8 +4,8 @@ export const fetchComment = (commentId) => {
             method: "GET",
             url: `api/comments/${commentId}`
         })
-    )
-}
+    );
+};
 
 export const createComment = (comment) => {
     return (
@@ -14,5 +14,5 @@ export const createComment = (comment) => {
             url: `api/comments`,
             data: {comment}
         })
-    )
-}
+    );
+};

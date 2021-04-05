@@ -2,12 +2,12 @@ import React from 'react';
 import { AiOutlineSearch } from "react-icons/ai"
 
 class SearchBar extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props)
         this.state = {field: ''};
     }
 
-    onChange(field){
+    onChange(field) {
         return e => this.setState({[field]: e.target.value})
     }
 
@@ -21,9 +21,7 @@ class SearchBar extends React.Component {
                 onChange={this.onChange('field')} 
                 />
                 <AiOutlineSearch className='search-bar-glass' />
-            </div>
-            
-            
+            </div>          
         )
     }
 }

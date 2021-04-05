@@ -18,7 +18,7 @@ const mDTP = ( dispatch, ownProps ) => {
         fetchAnnotation: (annotationId) => dispatch(fetchAnnotation(annotationId)),
         fetchTrack: (trackId) => dispatch(fetchTrack(trackId)),
         openModal: data => dispatch(openModal(data)),
-        closeModal: () => dispatch(closeModal())
+        closeModal: () => dispatch(closeModal()),
     })
 }
 

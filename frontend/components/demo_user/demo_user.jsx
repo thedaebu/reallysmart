@@ -1,15 +1,15 @@
 import React from 'react';
 
 class DemoUser extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props)
 
         this.loginWithDemo = this.loginWithDemo.bind(this);
     }
 
-    loginWithDemo(e){
+    loginWithDemo(e) {
         const {login, info} = this.props;
-        e.preventDefault;
+        e.preventDefault();
         login(info);
     }
 
