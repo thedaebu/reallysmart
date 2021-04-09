@@ -21,72 +21,6 @@ notsosmart = User.create(
     password: 'notsosmart'
 )
 
-lady = Track.create(
-    title: 'Lady', 
-    artist: 'Modjo', 
-    artwork_path: 'https://i.ytimg.com/vi/Z0V4CtdXlhk/maxresdefault.jpg', 
-    lyrics: 
-"[Chorus]
-Lady, hear me tonight
-'Cause my feeling, is just so right
-As we dance, by the moonlight
-Can't you see, you're my delight
-Lady, I just feel like
-I won't get you, out of my mind
-I feel love, for the first time
-And I know that it's true, I can tell by the look in your eyes
-
-[Chorus]
-Lady, hear me tonight
-'Cause my feeling, is just so right
-As we dance, by the moonlight
-Can't you see, you're my delight
-Lady, I just feel like
-I won't get you, out of my mind
-I feel love, for the first time
-And I know that it's true, I can tell by the look in your eyes
-
-[Breakdown Chorus]
-Lady, hear me tonight
-'Cause my feeling, is just so right
-As we dance, by the moonlight
-Can't you see, you're my delight
-Lady, I just feel like
-I won't get you, out of my mind
-I feel love, for the first time
-And I know that it's true, I can tell by the look in your eyes
-
-[Verse 1]
-Lady (Lady)
-Hear me tonight (Hear me tonight)
-'Cause my feeling ('Cause my feeling)
-Is just so right (Is just so right)
-
-[Verse 2]
-Lady (Lady)
-I just feel like (I just feel like)
-I feel love (I feel love)
-For the first time (For the first time)
-
-[Verse 3]
-Lady (Lady)
-Hear me tonight (Hear me tonight)
-Can't you see (Can't you see)
-You're my delight (You're my delight)
-
-[Verse 4]
-Lady (Lady)
-I just feel like (I just feel like)
-I won't get you (I won't get you)
-Out of my mind (Out of my mind)
-
-[Verse 1]
-Lady (Lady)
-Hear me tonight (Hear me tonight)
-'Cause my feeling ('Cause my feeling)
-Is just so right (Is just so right)"
-)
-
 selene = Track.create(
     title: 'Selene', 
     artist: 'NIKI', 
@@ -151,6 +85,72 @@ Higher, higher, ooh
 Take me down to lift me high
 Take me down to lift me high
 Higher, higher, ooh"
+)
+
+lady = Track.create(
+    title: 'Lady', 
+    artist: 'Modjo', 
+    artwork_path: 'https://i.ytimg.com/vi/Z0V4CtdXlhk/maxresdefault.jpg', 
+    lyrics: 
+"[Chorus]
+Lady, hear me tonight
+'Cause my feeling, is just so right
+As we dance, by the moonlight
+Can't you see, you're my delight
+Lady, I just feel like
+I won't get you, out of my mind
+I feel love, for the first time
+And I know that it's true, I can tell by the look in your eyes
+
+[Chorus]
+Lady, hear me tonight
+'Cause my feeling, is just so right
+As we dance, by the moonlight
+Can't you see, you're my delight
+Lady, I just feel like
+I won't get you, out of my mind
+I feel love, for the first time
+And I know that it's true, I can tell by the look in your eyes
+
+[Breakdown Chorus]
+Lady, hear me tonight
+'Cause my feeling, is just so right
+As we dance, by the moonlight
+Can't you see, you're my delight
+Lady, I just feel like
+I won't get you, out of my mind
+I feel love, for the first time
+And I know that it's true, I can tell by the look in your eyes
+
+[Verse 1]
+Lady (Lady)
+Hear me tonight (Hear me tonight)
+'Cause my feeling ('Cause my feeling)
+Is just so right (Is just so right)
+
+[Verse 2]
+Lady (Lady)
+I just feel like (I just feel like)
+I feel love (I feel love)
+For the first time (For the first time)
+
+[Verse 3]
+Lady (Lady)
+Hear me tonight (Hear me tonight)
+Can't you see (Can't you see)
+You're my delight (You're my delight)
+
+[Verse 4]
+Lady (Lady)
+I just feel like (I just feel like)
+I won't get you (I won't get you)
+Out of my mind (Out of my mind)
+
+[Verse 1]
+Lady (Lady)
+Hear me tonight (Hear me tonight)
+'Cause my feeling ('Cause my feeling)
+Is just so right (Is just so right)"
 )
 
 fake_love = Track.create(
@@ -752,54 +752,234 @@ Okay, okay, 난 너만 원하면 oh yeah
 넌 쉬고 놀기만 해 go play"
 )
 
-dirty_water = Track.create(
-    title: 'Dirty Water', 
-    artist: 'The Standells', 
-    artwork_path: 'https://www.culturesonar.com/wp-content/uploads/2020/02/standells-dirty-water-album.jpg', 
+shiki_no_uta = Track.create(
+    title: 'Shiki No Uta', 
+    artist: 'Nujabes', 
+    artwork_path: 'https://i2.wp.com/www.otaquest.com/wp-content/uploads/2020/05/Shiki-No-Uta-Is-One-Of-The-All-Time-Great-Anime-Endings.png?fit=1920%2C1080&ssl=1', 
     lyrics: 
-"I'm gonna tell you a story
-I'm gonna tell you about my town
-I'm gonna tell you a big bad story, baby
-Aww, it's all about my town
+"Mata yo ga akereba owakare 
+yume wa tooki maboroshi ni 
+anata wo oikaketeita hikari no naka de 
+dakareru tabi atatakai kaze wo tayori
 
-Yeah, down by the river
-Down by the banks of the river Charles (aw, that's what's happenin' baby)
-That's where you'll find me
-Along with lovers, muggers, and thieves (aw, but they're cool, too)
-Well I love that dirty water
-Oh, Boston, you're my home (oh, you're the Number One place)
-Frustrated women (I mean they're frustrated)
-Have to be in by twelve o'clock (oh, that's a shame)
-But I'm wishin' and a-hopin, oh
-That just once those doors weren't locked (I like to save time for
-My baby to walk around)
-Well I love that dirty water
-Oh, Boston, you're my home (oh, yeah)
+Haru wo tsuge 
+odoridasu sansai 
+natsu wo miru uji 
+nohara karakusa kawaku wa 
+aki no tsuki 
+nobotta manmarusa oiwai 
+fuyu wo sugi 
+mata tsukihi wo kazore
 
-Because I love that dirty water
-Oh, oh, Boston, you're my home (oh, yeah)
+Mada mabuta no oku ni aru 
+itsuka no natsu 
+toosugita aozora (atatakakatta) 
+te wo tsunagu hanatsumi utau 
+itsuya omoide (ate wa naku) 
+Hadzuki kara mitsuki  
+kumo to karamu tsuki 
+mou itsuka kaeranu koto ni 
+mezameta toki 
+hitori kidzuki 
+anata sagasu tabi ni 
+ima yobisamasu kioku no naka de 
+iza arukidasu 
+anata no moto e
 
-Well, I love that dirty water (I love it, baby)
-I love that dirty water (I love Baw-stun)
-I love that dirty water (Have you heard about the Strangler?)
-I love that dirty water (I'm the man, I'm the man)
-I love that dirty water (Owww!)
-I love that dirty water (Come on, come on)"
+Mata yo ga akereba owakare 
+yume wa tooki maboroshi ni 
+anata wo oikaketeita hikari no naka de 
+dakareru tabi 
+atatakai kaze wo tayori
+
+Haru wo tsuge 
+odoridasu sansai 
+natsu wo miru uji 
+nohara karakusa kawaku wa 
+aki no tsuki 
+nobotta manmarusa oiwai 
+fuyu wo sugi 
+mata tsukihi wo kazoeru
+
+Kimi ni yori nana 
+hinoki kata yori ni 
+kimi ni mita hana no kaori katami ni 
+musubi yuku michi areba 
+mata kaeri mi mu 
+nagare ruru namida tome 
+soka netsu-ru
+
+Oikaze sakebu 
+seijaku wo kowasu no 
+nanimo osorezu susumu no 
+kogane no hana ga hakobu no 
+yasashisa ni anata ni futatabi ai ni 
+ima seijaku wo kowasu no 
+nanimo osorezu susumu no 
+kogane no hana ga hakobu no 
+yasashisa ni anata ni futatabi ai ni
+
+Haru wo tsuge 
+odoridasu sansai 
+natsu wo miru uji 
+nohara karakusa kawaku wa 
+aki no tsuki 
+nobotta manmarusa oiwai 
+fuyu wo sugi 
+mata tsukihi wo kazoeru
+
+Haru wo tsuge 
+odotte SANBA 
+natsu wo miru uji 
+nohara karakusa kawaku wa 
+aki no tsuki 
+nobotta manmarusa oiwai 
+fuyu wo sugi 
+mata tsukihi wo kazoeru
+
+Mata yo ga akereba owakare 
+yume wa tooki maboroshi ni 
+anata wo oikaketeita hikari no naka de 
+dakareru tabi 
+atatakai kaze wo tayori"
 )
 
+slippin = Track.create(
+    title: "Slippin'", 
+    artist: 'DMX', 
+    artwork_path: 'https://i.ytimg.com/vi/C1SjVKv86V8/hqdefault.jpg', 
+    lyrics: 
+"[Intro]
+Ha ha ha ha ha ha, uhh
+See, to live is to suffer
+But to survive…
+Well, that's to find meaning in the suffering
+
+[Chorus]
+Ayo I'm slippin', I'm fallin', I can't get up
+Ayo I'm slippin', I'm fallin', I can't get up
+Ayo I'm slippin', I'm fallin', I gots to get up
+Get me back on my feet so I can tear shit up
+Ayo I'm slippin', I'm fallin', I can't get up
+Ayo I'm slippin', I'm fallin', I can't get up
+Ayo I'm slippin', I'm fallin', I gots to get up
+Get me back on my feet so I can tear shit up
+
+[Verse 1]
+I've been through mad different phases like mazes to find my way
+And now I know that happy days are not far away
+If I'm strong enough I'll live long enough to see my kids
+Doin' somethin' more constructive with their time than bids
+I know because I been there, now I'm in there
+Sit back and look at what it took for me to get there
+First came the bullshit, the drama with my mama
+She got on some fly shit so I split and said that I'ma
+Be that seed that doesn't need much to succeed
+Strapped with mad greed and a heart that doesn't bleed
+I'm ready for the world or at least I thought I was
+Baggin' niggas when I caught a buzz
+For thinkin' about how short I was
+Goin' too fast, it wouldn't last, but yo I couldn't tell
+Group homes and institutions prepared my ass for jail
+They put me in a situation forcin' me to be a man
+When I was just learnin' to stand without a helping hand
+Damn, was it my fault, somethin' I did
+To make a father leave his first kid at seven doin' my first bid?
+Back on the scene at fourteen with a scheme
+To get more cream than I'd ever seen in a dream
+And by all means I will be livin' high off the hog
+And I never gave a fuck about much but my dog
+That's my only mothafucka I hit off with my last
+Just another lil nigga headed nowhere fast
+
+[Chorus]
+Ayo I'm slippin', I'm fallin', I can't get up
+Ayo I'm slippin', I'm fallin', I can't get up
+Ayo I'm slippin', I'm fallin', I gots to get up
+Get me back on my feet so I can tear shit up
+Ayo I'm slippin', I'm fallin', I can't get up
+Ayo I'm slippin', I'm fallin', I can't get up
+Ayo I'm slippin', I'm fallin', I gots to get up
+Get me back on my feet so I can tear shit up
+
+[Verse 2]
+That ain't the half, shit gets worse as I get older
+Actions become bolder, heart got colder
+Chip on my shoulder that I dared a nigga to touch
+Didn't need a clique 'cause I scared a nigga that much
+One deep with the pit startin' shit for kicks
+Catchin' vics, throwin' bricks, gettin' by bein' slick
+Used to get high, just to get by
+Used to have to puff my L in the morning before I could fly
+Ate somethin', a couple of forties made me hate somethin'
+I did some coke, now I'm ready to take somethin'
+Three years later showin' signs of stress
+Didn't keep my hair cut or give a fuck how I dressed
+I'm possessed by the darker side, livin' the cruddy life
+Shit like this kept a nigga with a bloody knife
+Wanna make records but I'm fuckin' it up
+I'm slippin', I'm fallin', I can't get up
+
+[Chorus]
+Ayo I'm slippin', I'm fallin', I can't get up
+Ayo I'm slippin', I'm fallin', I can't get up
+Ayo I'm slippin', I'm fallin', I gots to get up
+Get me back on my feet so I can tear shit up
+Ayo I'm slippin', I'm fallin', I can't get up
+Ayo I'm slippin', I'm fallin', I can't get up
+Ayo I'm slippin', I'm fallin', I gots to get up
+Get me back on my feet so I can tear shit up
+
+[Verse 3]
+Wasn't long before I hit rock bottom
+Niggas talkin' shit, was like, 'Damn, look how that rock got him!'
+Open like a window, no more indo
+Look at a video, sayin' to myself: 'That coulda been yo
+Ass on the TV,' believe me, it could be done
+Somethin's got to give, gots to change 'cause now I've got a son
+I gots to do the right thing for shorty
+And that means no more gettin' high, drinkin' 40s
+So I get back lookin' type slick again
+Fake niggas jump back on my dick again
+Nothin' but love for those that know how it feel
+And much respect to all my niggas that kept it real
+Kept a nigga strong, kept a nigga from doin' wrong
+Niggas know who they is and this is your fuckin' song
+And to my boo who stuck with a nigga through
+All the bullshit, you'll get yours because it's due
+
+[Chorus]
+Ayo I'm slippin', I'm fallin', I can't get up
+Ayo I'm slippin', I'm fallin', I can't get up
+Ayo I'm slippin', I'm fallin', I gots to get up
+Get me back on my feet so I can tear shit up
+Ayo I'm slippin', I'm fallin', I can't get up
+Ayo I'm slippin', I'm fallin', I can't get up
+Ayo I'm slippin', I'm fallin', I gots to get up
+Get me back on my feet so I can tear shit up"
+)    
+
 annotation1 = Annotation.create(
-    body: "He is saying that this summer is ours. He says that if there is an angel near then it's you and he wants to get lost in the sky with you.",
+    body: "Niki is singing about Selene, her alter-ego, who comes out when she becomes under the influence. She is claiming Selene is making her do things not of her own will but she is not trying to will herself against Selene.",
     annotator_id: reallysmart.id,
-    track_id: blue.id,
-    start_index: 597,
-    end_index: 685,
+    track_id: selene.id,
+    start_index: 9,
+    end_index: 140
+)
+
+annotation2 = Annotation.create(
+    body: "Niki is allowing Selene to take over she and Selene want the same thing.",
+    annotator_id: reallysmart.id,
+    track_id: selene.id,
+    start_index: 459,
+    end_index: 516
 )
 
 comment1 = Comment.create(
-    body: "대박!!! This is fire!",
+    body: "This is one of my new favorite songs now.",
     commenter_id: reallysmart.id,
     commentable_type: "Track",
-    commentable_id: blue.id
+    commentable_id: selene.id
 )
 
 comment2 = Comment.create(
@@ -807,4 +987,77 @@ comment2 = Comment.create(
     commenter_id: notsosmart.id,
     commentable_type: "Annotation",
     commentable_id: annotation1.id
+)
+
+comment3 = Comment.create(
+    body: "I wonder what these lyrics mean.",
+    commenter_id: notsosmart.id,
+    commentable_type: "Track",
+    commentable_id: selene.id
+)
+
+vote1 = Vote.create(
+    voter_id: 2,
+    voteable_type: "Annotation",
+    voteable_id: annotation1.id
+)
+vote2 = Vote.create(
+    voter_id: 2,
+    voteable_type: "Annotation",
+    voteable_id: annotation1.id
+)
+vote3 = Vote.create(
+    voter_id: 2,
+    voteable_type: "Annotation",
+    voteable_id: annotation1.id
+)
+vote4 = Vote.create(
+    voter_id: 2,
+    voteable_type: "Annotation",
+    voteable_id: annotation1.id
+)
+vote5 = Vote.create(
+    voter_id: 2,
+    voteable_type: "Annotation",
+    voteable_id: annotation1.id
+)
+vote6 = Vote.create(
+    voter_id: 2,
+    voteable_type: "Comment",
+    voteable_id: comment1.id
+)
+vote7 = Vote.create(
+    voter_id: 2,
+    voteable_type: "Comment",
+    voteable_id: comment1.id
+)
+vote8 = Vote.create(
+    voter_id: 2,
+    voteable_type: "Comment",
+    voteable_id: comment1.id
+)
+vote9 = Vote.create(
+    voter_id: 2,
+    voteable_type: "Annotation",
+    voteable_id: annotation2.id
+)
+vote10 = Vote.create(
+    voter_id: 2,
+    voteable_type: "Annotation",
+    voteable_id: annotation2.id
+)
+vote11 = Vote.create(
+    voter_id: 2,
+    voteable_type: "Annotation",
+    voteable_id: annotation2.id
+)
+vote12 = Vote.create(
+    voter_id: 2,
+    voteable_type: "Annotation",
+    voteable_id: annotation2.id
+)
+vote13 = Vote.create(
+    voter_id: 2,
+    voteable_type: "Annotation",
+    voteable_id: annotation2.id
 )
