@@ -29,7 +29,6 @@ font-family: 'Raleway', sans-serif;
 font-family: 'Barlow Condensed', sans-serif;
 
 boolean for upvotes for each user per track or annotation
-.includes associations for annotations and upvotes and comments
 
 <script async src="//genius.codes"></script>
 

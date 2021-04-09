@@ -93,18 +93,27 @@ class Annotation extends React.Component {
                         >
 
                         </textarea>
-                        
+{/*                         
                         <div className='annotation-show-create-form-middle'>
                             <p className='annotation-show-create-form-middle-tools'>Tools:</p>
                             
                             <div className='annotation-show-create-form-middle-items'>    
-                                <a className='annotation-show-create-form-middle-item' >Add Image</a>
-                                <a className='annotation-show-create-form-middle-item' >Formatting Help</a>
+                                <a className='annotation-show-create-form-middle-item' >
+                                    Add Image
+                                    <span class="tooltip">Link is for styling</span>
+                                </a>
+                                <a className='annotation-show-create-form-middle-item' >
+                                    Formatting Help
+                                    <span class="tooltip">Link is for styling</span>
+                                </a>
                                 <div>
-                                    <a className='annotation-show-create-form-middle-item'>How To Annotate</a>                       
+                                    <a className='annotation-show-create-form-middle-item'>
+                                        How To Annotate
+                                        <span class="tooltip">Link is for styling</span>
+                                    </a>                       
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
 
                         <div className='annotation-show-create-form-bottom'>
 

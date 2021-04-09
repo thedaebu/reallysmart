@@ -7,6 +7,7 @@ class Api::AnnotationsController < ApplicationController
     def create
         @annotation = Annotation.create(annotation_params)
         if @annotation.save
+            render :show
         else
             render json: @annotation.errors.full_messages, status: 422
         end

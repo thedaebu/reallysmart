@@ -23,8 +23,10 @@ class CommentItem extends React.Component {
             return `1 month ago`
         } else if (dayDiff > 1) {
             return `${dayDiff} days ago`
-        } else {
+        } else if (dayDiff === 1) {
             return `1 day ago`
+        } else {
+            return `<1 day ago`
         }
     }
 
