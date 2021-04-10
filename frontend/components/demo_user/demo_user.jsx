@@ -8,13 +8,13 @@ class DemoUser extends React.Component {
     }
 
     loginWithDemo(e) {
-        const {login, info} = this.props;
+        const { login, info } = this.props;
         e.preventDefault();
         login(info);
     }
 
     render () {
-        const { currentUser, info, login } = this.props;
+        const { currentUser } = this.props;
         if (currentUser) {
             return (
                 null

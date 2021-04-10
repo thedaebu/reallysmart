@@ -46,7 +46,7 @@ class SessionForm extends React.Component {
     }
 
     render() {
-        const {formType, formTypeSub, formSubmit, formLink, formLast, formPassword, formTos, clearErrors } = this.props;
+        const { formType, formTypeSub, formSubmit, formLink, formLast, formPassword, formTos } = this.props;
         return (
             <>
                 <div className='session-form-main'>

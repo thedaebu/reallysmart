@@ -970,6 +970,14 @@ annotation2 = Annotation.create(
     end_index: 516
 )
 
+annotation3= Annotation.create(
+    body: "The person is conveying to the woman whom he is with is the person he is finally meant to be with. He also knows by how the woman is reacting to him.",
+    annotator_id: reallysmart.id,
+    track_id: lady.id,
+    start_index: 0,
+    end_index: 279
+)
+
 comment1 = Comment.create(
     body: "This is one of my new favorite songs now.",
     commenter_id: reallysmart.id,

@@ -155,13 +155,18 @@ class LyricsShow extends React.Component {
         this.setState({['annoId']: e.target.dataset.id})
         
         const highlighted = window.getSelection();
-        let newIndices
-        let min
-        let max
+        let newIndices;
+        let min;
+        let max;
      
         if (highlighted.anchorOffset !== highlighted.focusOffset) {
             newIndices = this.makeNewIndices(highlighted);
-            min = Math.min(...newIndices);
+
+            if (Math.min(...newIndices) < 0) {
+                min = 0;
+            } else {
+                min = Math.min(...newIndices);
+            };          
             max = Math.max(...newIndices);
 
             this.setState({['startIndex']: min});
@@ -183,16 +188,7 @@ class LyricsShow extends React.Component {
             a = highlighted.anchorOffset + add
             b = highlighted.focusOffset + add
         } 
-        
-        // window.getSelection().anchorNode.parentNode.dataset.add
-        // window.getSelection().anchorNode.parentNode.dataset.name
 
-        // window.getSelection().focusNode.parentNode.dataset.add
-        // window.getSelection().focusNode.parentNode.dataset.name
-        
-        // if name includes is-anno, return null for both
-        // if name includes not-anno, add 'add' to value of number
-       
         if (anchorName.includes(`not-anno-0`)) {
             b -= 1;
         } else {
@@ -202,8 +198,7 @@ class LyricsShow extends React.Component {
         return [a, b];
     }
 
-    mouseDown(e) {
-        
+    mouseDown(e) {    
         this.setState({['annotationId']: null})
         this.setState({['createStatus']: false})
         this.props.closeModal()

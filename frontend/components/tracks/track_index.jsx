@@ -1,12 +1,4 @@
 import React from 'react';
-
-import {
-  Route,
-  Redirect,
-  Switch,
-  Link,
-  HashRouter
-} from 'react-router-dom';
 import NavBar from '../header/navbar';
 import TrackIndexItem from './track_index_item';
 
@@ -40,7 +32,7 @@ class TrackIndex extends React.Component {
     }
 
     render() {
-        const { tracks, fetchTracks } = this.props;
+        const { tracks } = this.props;
 
         let trackList;
         if (this.state.list === 5) {

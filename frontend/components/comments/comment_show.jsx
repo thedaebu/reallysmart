@@ -53,8 +53,7 @@ class CommentShow extends React.Component {
     handleTrackSubmit(e) {
         e.preventDefault();
 
-        const { currentUser, commentableType, parent, createComment, fetchAction} = this.props;
-
+        const { currentUser, commentableType, parent, createComment, fetchAction } = this.props;
         const comment = Object.assign({},
             {
                 body: this.state.body,
@@ -69,8 +68,7 @@ class CommentShow extends React.Component {
     handleAnnoSubmit(e) {
         e.preventDefault();
 
-        const { currentUser, commentableType, parent, createComment, fetchAction} = this.props;
-
+        const { currentUser, commentableType, parent, createComment, fetchAction } = this.props;
         const comment = Object.assign({},
             {
                 body: this.state.body,
@@ -83,7 +81,7 @@ class CommentShow extends React.Component {
     }
 
     render() {
-        const { comments, commentableId, currentUser, parent, commentableType, commentMessage, fetchComment, createComment, fetchAction } = this.props;
+        const { comments, currentUser, parent, commentableType, commentMessage, fetchAction } = this.props;
         
         let commentPart;
         if (currentUser && this.state.createTrackStatus === true && commentableType === "Track") {
@@ -141,7 +139,6 @@ class CommentShow extends React.Component {
         }
 
         let commentParts;
-
         if (comments[0] !== undefined) {
             commentParts = (
                 <ul className='comment-list-main'>
@@ -166,6 +163,3 @@ class CommentShow extends React.Component {
 }
 
 export default CommentShow;
-
-// parent.comment_ids
-
