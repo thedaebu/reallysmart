@@ -2,6 +2,7 @@ class Api::AnnotationsController < ApplicationController
 
     def show
         @annotation = Annotation.find_by(id: params[:id])
+        render :show
     end
 
     def create

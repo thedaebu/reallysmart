@@ -26,7 +26,6 @@ export const fetchAnnotation = annotationId => dispatch => {
 }
 
 export const createAnnotation = annotation => dispatch => {
-    debugger
     return (
         AnnotationApiUtil.createAnnotation(annotation).then(annotation => dispatch(receiveAnnotation(annotation)), errors => (dispatch(receiveAnnotationErrors(errors.responseJSON))))
     )

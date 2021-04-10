@@ -8,7 +8,7 @@ class LyricsShow extends React.Component {
 
         let annotations = {}
         
-        if (props.annotations[0]) {
+        if (props.annotations[0] !== undefined) {
             props.annotations.forEach((annotation) => {
                 annotations[annotation.id] = annotation
             })
@@ -63,7 +63,8 @@ class LyricsShow extends React.Component {
         let lyricsParts = [];
         let currentIndex = 0;
         
-        if (annotations[0] !== undefined) {
+        if (!annotations.includes(undefined)) {
+            
             sortedAnnotations.forEach((annotation, idx) => {
                 
                 let addIndex
