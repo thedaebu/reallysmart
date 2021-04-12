@@ -1,7 +1,7 @@
-## Really Smart
+<img src="https://github.com/thedaebu/reallysmart/tree/main/screenshots/reallysmart.png" >
 [Really Smart](https://really-smart.herokuapp.com/#/)
 <br>
-Really Smart is a clone of Genius created by Eddie Kim. The website shows the lyrics of tracks and allows users to annotate parts of the lyrics in order to explain what those parts may actually mean. 
+Really Smart is a clone of Genius created by Eddie Kim. The website shows the lyrics of tracks and allows users to annotate parts of the lyrics in order to explain what those parts may actually mean. The project is dedicated to DMX, who passed away on April 9, 2021.
 
 ## Technologies
 The technologies used in the development of the website were Node.js for the runtime environment, React/Redux for the front end, Ruby on Rails for the back end, and SCSS for HTML stlying.
@@ -115,7 +115,7 @@ mouseUp(e) {
 }
 ```
 
-Once the selected pieces of text passed the constraints, the indices taken from the getSelection function would then be reorganized so that the location of the annotation on the text would be in its proper place.
+Once the selected pieces of text passes the constraints, the indices retrieved from the data taken from the getSelection function would then be reorganized so that the location of the annotation on the text would be in its proper place on the text.
 
 ```js
 makeNewIndices(highlighted) {
