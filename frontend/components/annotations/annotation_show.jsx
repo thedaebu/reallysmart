@@ -35,8 +35,8 @@ class Annotation extends React.Component {
     }
 
     handleFormSubmit(e) {
-        e.preventDefault();
-       
+        e.preventDefault();     
+          
         const annotation = Object.assign({},
             {
                 body: this.state.body,
@@ -52,14 +52,14 @@ class Annotation extends React.Component {
     }
 
     handleCancel(e) {
-        e.preventDefault();
-        
+        e.preventDefault();  
+
         this.setState({['createStatus']: false})
         this.props.closeModal();    
     }
 
     render() {
-        const {annotation, annoId, currentUser, openModal, closeModal, track, yCoord, startIndex, endIndex, fetchAnnotation, createAnnotation, annotationId} = this.props;
+        const { annotation, annoId, currentUser, yCoord, startIndex, endIndex } = this.props;
         
         if (annotation) {
             return (

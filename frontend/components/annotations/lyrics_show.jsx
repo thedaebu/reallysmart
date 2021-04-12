@@ -55,16 +55,13 @@ class LyricsShow extends React.Component {
     }
 
     annotateLyrics(lyrics) {
-        let annotations = this.props.annotations
-        
+        let annotations = this.props.annotations        
         let sortedAnnotations = annotations.sort((a,b) => (a.start_index > b.start_index ? 1 : -1));
-        //list.sort((a, b) => (a.color > b.color) ? 1 : -1)
-       
+
         let lyricsParts = [];
         let currentIndex = 0;
         
-        if (!annotations.includes(undefined)) {
-            
+        if (!annotations.includes(undefined)) {            
             sortedAnnotations.forEach((annotation, idx) => {
                 
                 let addIndex
@@ -81,12 +78,9 @@ class LyricsShow extends React.Component {
                     lyricsParts.push(
                         <span 
                             className='is-an-anno' 
-                            onClick={() => this.openAnnotation(annotation.id)} 
-                            
-                            key={`is-anno-${annotation.id}`} 
-                            
+                            onClick={() => this.openAnnotation(annotation.id)}                             
+                            key={`is-anno-${annotation.id}`}       
                             id={`is-anno-${annotation.id}`}
-
                             data-name={`is-anno-${annotation.id}`}
                             data-id={`${annotation.id}`}     
                             >
@@ -95,27 +89,20 @@ class LyricsShow extends React.Component {
                 } else {
                     lyricsParts.push(
                         <span 
-                            className='not-an-anno' 
-                             
-                            key={`not-anno-${idx}`}
-                            
+                            className='not-an-anno'                              
+                            key={`not-anno-${idx}`}                            
                             id={`not-anno-${idx}`}
-
                             data-add={addIndex}
                             data-name={`not-anno-${idx}`}
                             >
-
                             {lyrics.slice(currentIndex, startIndex)}
                         </span>)
                     lyricsParts.push(
                         <span 
                             className='is-an-anno' 
-                            onClick={() => this.openAnnotation(annotation.id)} 
-                             
+                            onClick={() => this.openAnnotation(annotation.id)}                              
                             key={`is-anno-${annotation.id}`} 
-
                             id={`is-anno-${annotation.id}`}
-                            
                             data-name={`is-anno-${annotation.id}`} 
                             data-id={`${annotation.id}`}
                             >
@@ -125,19 +112,15 @@ class LyricsShow extends React.Component {
                 if (idx === sortedAnnotations.length - 1) {
                     lyricsParts.push(
                         <span 
-                            className='not-an-anno' 
-                            
-                            key={`not-anno-${idx + 1}`}
-                            
-                            id={`not-anno-${idx + 1}`}
-                            
+                            className='not-an-anno'                             
+                            key={`not-anno-${idx + 1}`}                            
+                            id={`not-anno-${idx + 1}`}                            
                             data-add={endIndex}
                             data-name={`not-anno-${idx + 1}`}
                             >
                             {lyrics.slice(endIndex +1, lyrics.length + 1)}
                         </span>)
-                }
-                
+                }              
                 currentIndex = endIndex + 1;
             })
         }
@@ -145,7 +128,6 @@ class LyricsShow extends React.Component {
     }
 
     openAnnotation(id) {
-
         this.setState({annotationId: id})
     }
 
@@ -176,11 +158,10 @@ class LyricsShow extends React.Component {
     }
 
     makeNewIndices(highlighted) {
-        let a;
-        let b;
-
         let anchorName = highlighted.anchorNode.parentNode.dataset.name;
         let focusName = highlighted.focusNode.parentNode.dataset.name;
+        let a;
+        let b;
 
         let add = parseInt(highlighted.focusNode.parentNode.dataset.add);
 
@@ -205,7 +186,7 @@ class LyricsShow extends React.Component {
     }
 
     render () {
-        const { track, annotations, currentUser, fetchAnnotation, openModal, closeModal} = this.props;
+        const { track, currentUser } = this.props;
         return (
             <div className='lyrics-show-main'>
                 <div className='lyrics-show-shade'>

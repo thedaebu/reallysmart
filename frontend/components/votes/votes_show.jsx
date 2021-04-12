@@ -23,6 +23,7 @@ class VotesShow extends React.Component {
 
     handleVote(e) {
         e.preventDefault();
+
         const { parent, currentUser, currentVote, voteableType, voteableId, deleteVote, createVote, fetchAction} = this.props;
 
         if (currentUser && this.state.currentVoteStatus) {
@@ -41,7 +42,7 @@ class VotesShow extends React.Component {
     }
 
     render () {
-        const { parent, voteableType, voteableId, numberOfVotes, currentUser, currentVote, currentVoteStatus, fetchVote, createVote, deleteVote, fetchAction} = this.props;
+        const { numberOfVotes, currentUser } = this.props;
         
         if (currentUser && this.state.currentVoteStatus === true) {
             return (

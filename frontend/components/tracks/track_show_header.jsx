@@ -11,8 +11,9 @@ class TrackShowHeader extends React.Component {
 
 
     render () {
-        const {track} = this.props;
+        const { track } = this.props;
         const art = this.props.track.artwork_path;
+
         return (
             <div className="track-show-header-main" style={{ background: `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(${art})`, backgroundPosition: 'center', backgroundSize: 'cover' }}>
                 <div className='track-show-header-shade'>

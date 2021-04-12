@@ -12,7 +12,7 @@ class SearchBar extends React.Component {
     }
 
     render() {
-        return  (
+        return (
             <div className='search-bar-main'>
                 <input className='search-bar-form' 
                 type='text' 

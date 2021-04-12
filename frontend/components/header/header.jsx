@@ -8,6 +8,7 @@ class Header extends React.Component {
 
     render() {
         const { currentUser, logout } = this.props;
+        
         if (currentUser) {
             return (
                 <div className='header-main'>

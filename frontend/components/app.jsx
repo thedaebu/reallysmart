@@ -9,7 +9,6 @@ import {
 import { AuthRoute } from '../util/route_util';
 import DemoUserContainer from './demo_user/demo_user_container';
 import HeaderContainer from './header/header_container';
-import NavBar from './header/navbar';
 import SearchBar from './header/search_bar';
 import LoginFormContainer from './session_form/login_form_container';
 import SignupFormContainer from './session_form/signup_form_container';
