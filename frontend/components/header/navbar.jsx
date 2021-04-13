@@ -18,8 +18,8 @@ class NavBar extends React.Component {
                     <div className='navbar-image-main'>
                         <a href='https://github.com/thedaebu/reallysmart' target="_blank" rel="noopener noreferrer"><img className='navbar-image-item' src={window.github} /></a>
                         <a href='https://www.linkedin.com/in/edkim163/' target="_blank" rel="noopener noreferrer"><img className='navbar-image-item' src={window.linkedin} /></a>
-                        <a href='https://www.instagram.com/thedaebu/' target="_blank" rel="noopener noreferrer"><img className='navbar-image-item' src={window.instagram} /></a>
-                        <a href='https://www.youtube.com/user/thedaebu' target="_blank" rel="noopener noreferrer"><img className='navbar-image-item' src={window.youtube} /></a>
+                        <a href='https://angel.co/u/edwardkim163' target="_blank" rel="noopener noreferrer"><img className='navbar-image-item' src={window.angellist} /></a>
+                        <a href='https://eddie-kim.com/' target="_blank" rel="noopener noreferrer"><img className='navbar-image-item' src={window.website} /></a>
                                   
                     </div>
                 </div>
