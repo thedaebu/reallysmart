@@ -4,7 +4,7 @@
 Really Smart is a clone of Genius created by Eddie Kim. The website shows the lyrics of tracks and allows users to annotate parts of the lyrics in order to explain what those parts may actually mean. The project is dedicated to DMX, who passed away on April 9, 2021.
 
 ## Technologies
-The technologies used in the development of the website were Node.js for the runtime environment, React/Redux for the front end, Ruby on Rails for the back end, and SCSS for HTML stlying.
+The technologies used in the development of the website were React/Redux for the front end, Ruby on Rails for the back end, and SCSS for HTML stlying.
 
 ## Annotations
 There were two major hurdles when it came to implementing the annotations: adding the current annotations directly onto the lyrics text and getting the correct part of the text to be annotated when an annotation is created.
