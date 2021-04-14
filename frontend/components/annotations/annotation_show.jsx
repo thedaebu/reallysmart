@@ -55,6 +55,7 @@ class Annotation extends React.Component {
         e.preventDefault();  
 
         this.setState({['createStatus']: false})
+        this.setState({['body']: ''})
         this.props.closeModal();    
     }
 
