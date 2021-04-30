@@ -12,7 +12,7 @@ export const createAnnotation = (annotation) => {
         $.ajax({
             method: 'POST',
             url: `api/annotations`,
-            data: {annotation}
+            data: { annotation }
         })
     );
 };
