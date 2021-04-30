@@ -7,7 +7,8 @@ class Vote < ApplicationRecord
         foreign_key: :voter_id,
         class_name: "User"
         
-    belongs_to :voteable, polymorphic: true
+    belongs_to :voteable, 
+        polymorphic: true
 
 
 end
