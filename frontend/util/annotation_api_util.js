@@ -4,8 +4,9 @@ export const fetchAnnotation = (annotationId) => {
             method: 'GET',
             url: `api/annotations/${annotationId}`
         })
-    )
-}
+    );
+};
+
 export const createAnnotation = (annotation) => {
     return (
         $.ajax({
@@ -13,5 +14,5 @@ export const createAnnotation = (annotation) => {
             url: `api/annotations`,
             data: {annotation}
         })
-    )
-}
+    );
+};

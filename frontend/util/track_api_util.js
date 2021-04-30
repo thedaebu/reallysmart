@@ -1,14 +1,17 @@
-export const fetchTracks = () => (
-    $.ajax({
-        method: 'GET',
-        url: `api/tracks`,
-        
-    })
-)
+export const fetchTracks = () => {
+    return (
+        $.ajax({
+            method: 'GET',
+            url: `api/tracks`
+        })
+    );
+};
 
-export const fetchTrack = (trackId) => (
-    $.ajax({
-        method: 'GET',
-        url: `api/tracks/${trackId}`
-    })
-)
+export const fetchTrack = (trackId) => {
+    return (
+        $.ajax({
+            method: 'GET',
+            url: `api/tracks/${trackId}`
+        })
+    );
+};

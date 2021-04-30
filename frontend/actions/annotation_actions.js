@@ -7,26 +7,25 @@ const receiveAnnotation = ({annotation, comments}) => {
     return({
         type: RECEIVE_ANNOTATION,
         annotation,
-        comments
-        
-    })
+        comments       
+    });
 };
 
 const receiveAnnotationErrors = (errors) => {
     return ({
         type: RECEIVE_ANNOTATION_ERRORS,
         errors
-    })
-}
+    });
+};
 
 export const fetchAnnotation = annotationId => dispatch => {
     return (
         AnnotationApiUtil.fetchAnnotation(annotationId).then(annotation => dispatch(receiveAnnotation(annotation)))
-    )
-}
+    );
+};
 
 export const createAnnotation = annotation => dispatch => {
     return (
         AnnotationApiUtil.createAnnotation(annotation).then(annotation => dispatch(receiveAnnotation(annotation)), errors => (dispatch(receiveAnnotationErrors(errors.responseJSON))))
-    )
-}
+    );
+};

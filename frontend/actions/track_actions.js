@@ -7,26 +7,25 @@ const receiveTracks = tracks => {
     return ({
         type: RECEIVE_TRACKS,
         tracks,
-    })
-}
+    });
+};
 const receiveTrack = ({track, annotations, comments}) => {
     return ({
         type: RECEIVE_TRACK,
         track,
         annotations,
-        comments
-        
-    })
-}
+        comments   
+    });
+};
 
 export const fetchTracks = () => dispatch => {  
     return (
         TrackApiUtil.fetchTracks().then(tracks => dispatch(receiveTracks(tracks)))
-    )
+    );
 };
 
 export const fetchTrack = trackId => dispatch => {
     return (
         TrackApiUtil.fetchTrack(trackId).then(track => dispatch(receiveTrack(track)))
-    )
+    );
 };

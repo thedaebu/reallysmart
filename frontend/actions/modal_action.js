@@ -4,13 +4,12 @@ export const CLOSE_MODAL = 'CLOSE_MODAL';
 export const openModal = data => {
     return ({
         type: OPEN_MODAL,
-        data,
+        data
     })
 }
 
 export const closeModal = () => {
     return ({
-        type: CLOSE_MODAL,
-        
+        type: CLOSE_MODAL    
     })
 }
