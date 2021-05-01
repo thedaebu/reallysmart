@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 class TrackShowHeader extends React.Component {
     constructor(props) {
@@ -6,11 +6,11 @@ class TrackShowHeader extends React.Component {
     }
 
     randomNum() {
-      return Math.floor(Math.random() * 1000)
+      return Math.floor(Math.random() * 1000);
     }
 
 
-    render () {
+    render() {
         const { track } = this.props;
         const art = this.props.track.artwork_path;
 

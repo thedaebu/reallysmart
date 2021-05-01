@@ -1,8 +1,7 @@
-import React from 'react';
-import TrackShowHeader from './track_show_header';
-import LyricsShowContainer from '../annotations/lyrics_show_container';
-import NavBar from '../header/navbar';
-
+import React from "react";
+import TrackShowHeader from "./track_show_header";
+import LyricsShowContainer from "../annotations/lyrics_show_container";
+import NavBar from "../header/navbar";
 
 class TrackShow extends React.Component {
     constructor(props) {
@@ -14,19 +13,22 @@ class TrackShow extends React.Component {
     }
 
     render() {
-        const {track, fetchTrack} = this.props;
+        const { track, fetchTrack } = this.props;
         if (track) {
-        return (
-            <div>
-                <NavBar />
-                <TrackShowHeader track={track} fetchTrack={fetchTrack} />
-                <div className='track-show-bottom-main'>
-                    <LyricsShowContainer track={track} />
+            return (
+                <div>
+                    <NavBar />
+                    <TrackShowHeader track={track} fetchTrack={fetchTrack} />
+                    <div className='track-show-bottom-main'>
+                        <LyricsShowContainer track={track} />
+                    </div>
                 </div>
-            </div>
-        )} else { return (
-            null
-        )}
+            );
+        } else { 
+            return (
+                null
+            );
+        }
     }
 };
 

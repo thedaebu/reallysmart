@@ -1,6 +1,6 @@
-import React from 'react';
-import NavBar from '../header/navbar';
-import TrackIndexItem from './track_index_item';
+import React from "react";
+import NavBar from "../header/navbar";
+import TrackIndexItem from "./track_index_item";
 
 class TrackIndex extends React.Component {
     constructor(props) {
@@ -8,7 +8,7 @@ class TrackIndex extends React.Component {
 
         this.state = {
             list: 5
-        }
+        };
 
         this.handleClick = this.handleClick.bind(this);
     }
@@ -28,7 +28,6 @@ class TrackIndex extends React.Component {
                 list: 11
             })
         }
-        
     }
 
     render() {
@@ -37,15 +36,15 @@ class TrackIndex extends React.Component {
         let trackList;
         if (this.state.list === 5) {
             trackList = tracks.slice(0,5).map(track => {
-                return <TrackIndexItem track={track} key={track.id} />
+                return <TrackIndexItem track={track} key={track.id} />;
             })
         } else if (this.state.list === 10) {
             trackList = tracks.slice(0,10).map(track => {
-                return <TrackIndexItem track={track} key={track.id} />
+                return <TrackIndexItem track={track} key={track.id} />;
             })
         } else {
             trackList = tracks.map(track => {
-                return <TrackIndexItem track={track} key={track.id} />
+                return <TrackIndexItem track={track} key={track.id} />;
             })
         }
 
@@ -59,19 +58,19 @@ class TrackIndex extends React.Component {
         }
 
         return (
-            <>
+            <div>
                 <NavBar />
                 <div className='tracks-index-main'>
                     <h1 className='tracks-index-h1' >CHARTS</h1>
                     <h2 className='tracks-index-h2' >REALLY POPULAR ON REALLY SMART</h2>
-                    {<ul className='tracks-index-list'>
+                    <ul className='tracks-index-list'>
                         {trackList}
-                    </ul>}
+                    </ul>
                 </div>
                 {loadMore}
-            </>
+            </div>
         )
     }
-}
+};
 
 export default TrackIndex;

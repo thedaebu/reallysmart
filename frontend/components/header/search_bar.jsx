@@ -5,7 +5,9 @@ class SearchBar extends React.Component {
     constructor(props) {
         super(props)
 
-        this.state = {searchField: ''};
+        this.state = {
+            searchField: ''
+        };
     }
 
     onChange(field) {
