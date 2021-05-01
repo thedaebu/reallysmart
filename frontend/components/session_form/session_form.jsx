@@ -1,13 +1,14 @@
-import React from 'react';
-import DemoUserContainer from '../demo_user/demo_user_container';
+import React from "react";
 
 class SessionForm extends React.Component {
     constructor(props) {
         super(props)
+
         this.state = {
             username: '',
             password: ''
         };
+        
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 

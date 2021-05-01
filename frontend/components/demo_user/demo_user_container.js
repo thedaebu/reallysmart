@@ -1,6 +1,6 @@
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 import { login } from "../../actions/session_actions";
-import DemoUser from './demo_user';
+import DemoUser from "./demo_user";
 
 const mSTP = ({session, entities: { users }}) => {
     return ({

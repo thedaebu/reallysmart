@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 class NavBar extends React.Component {
     constructor(props) {
@@ -26,6 +26,6 @@ class NavBar extends React.Component {
             </div>
         )
     }
-}
+};
 
 export default NavBar;

@@ -1,8 +1,8 @@
-import React from 'react';
-import { Link } from 'react-router-dom'
-import {connect} from 'react-redux';
-import { signup, clearErrors } from '../../actions/session_actions';
-import SessionForm from './session_form';
+import React from "react";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { signup, clearErrors } from "../../actions/session_actions";
+import SessionForm from "./session_form";
 
 const mSTP = (state, ownProps) => {
     return ({
@@ -15,13 +15,13 @@ const mSTP = (state, ownProps) => {
         formPassword: '',
         formTos: <p className='session-form-tos-agree' >By clicking “Create Account”, you are indicating that you have read and agree to the <a className='session-form-tos-link' href=''>Terms of Service</a>.</p>,
     })
-}
+};
 
 const mDTP = (dispatch, ownProps) => {
     return ({
         action: user => dispatch(signup(user)),
         clearErrors: () => dispatch(clearErrors())
     })
-}
+};
 
 export default connect(mSTP, mDTP)(SessionForm);
