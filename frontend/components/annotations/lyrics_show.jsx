@@ -1,16 +1,15 @@
-import React from 'react';
-import CommentShowContainer from '../comments/comment_show_container';
-import AnnotationShowContainer from './annotation_show_container';
+import React from "react";
+import CommentShowContainer from "../comments/comment_show_container";
+import AnnotationShowContainer from "./annotation_show_container";
 
 class LyricsShow extends React.Component {
     constructor(props) {
         super(props)
 
-        let annotations = {}
-        
+        let annotations = {};      
         if (props.annotations[0] !== undefined) {
             props.annotations.forEach((annotation) => {
-                annotations[annotation.id] = annotation
+                annotations[annotation.id] = annotation;
             })
         }
 
@@ -22,7 +21,7 @@ class LyricsShow extends React.Component {
             endIndex: undefined,
             createStatus: false,
             annotations: annotations
-        }
+        };
         
         this.annotatedLyrics = this.annotatedLyrics.bind(this);
         this.annotateLyrics = this.annotateLyrics.bind(this);
@@ -64,11 +63,11 @@ class LyricsShow extends React.Component {
         if (!annotations.includes(undefined)) {            
             sortedAnnotations.forEach((annotation, idx) => {
                 
-                let addIndex
+                let addIndex;
                 if (idx === 0 && annotation.startIndex !== 0) {
-                    addIndex = 0
+                    addIndex = 0;
                 } else {
-                    addIndex = sortedAnnotations[idx-1].end_index
+                    addIndex = sortedAnnotations[idx-1].end_index;
                 }
 
                 let startIndex = annotation.start_index;
@@ -128,13 +127,13 @@ class LyricsShow extends React.Component {
     }
 
     openAnnotation(id) {
-        this.setState({annotationId: id})
+        this.setState({annotationId: id});
     }
 
     mouseUp(e) {
         e.preventDefault();
         this.setState({['yCoord']: e.pageY}); 
-        this.setState({['annoId']: e.target.dataset.id})
+        this.setState({['annoId']: e.target.dataset.id});
         
         const highlighted = window.getSelection();
         let newIndices;
@@ -153,7 +152,7 @@ class LyricsShow extends React.Component {
 
             this.setState({['startIndex']: min});
             this.setState({['endIndex']: max});  
-            this.props.openModal({hello: 'hello'})
+            this.props.openModal({hello: 'hello'});
         }
     }
 
@@ -166,8 +165,8 @@ class LyricsShow extends React.Component {
         let add = parseInt(highlighted.focusNode.parentNode.dataset.add);
 
         if (anchorName.includes(`not-anno`) && focusName.includes(`not-anno`) && anchorName === focusName) {
-            a = highlighted.anchorOffset + add
-            b = highlighted.focusOffset + add
+            a = highlighted.anchorOffset + add;
+            b = highlighted.focusOffset + add;
         } 
 
         if (anchorName.includes(`not-anno-0`)) {
@@ -180,9 +179,9 @@ class LyricsShow extends React.Component {
     }
 
     mouseDown(e) {    
-        this.setState({['annotationId']: null})
-        this.setState({['createStatus']: false})
-        this.props.closeModal()
+        this.setState({['annotationId']: null});
+        this.setState({['createStatus']: false});
+        this.props.closeModal();
     }
 
     render () {
@@ -213,6 +212,6 @@ class LyricsShow extends React.Component {
             </div>
         ) 
     }
-}
+};
 
 export default LyricsShow;

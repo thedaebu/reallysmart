@@ -1,11 +1,12 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import CommentShowContainer from '../comments/comment_show_container';
-import VotesShowContainer from '../votes/votes_show_container';
+import React from "react";
+import { Link } from "react-router-dom";
+import CommentShowContainer from "../comments/comment_show_container";
+import VotesShowContainer from "../votes/votes_show_container";
 
 class Annotation extends React.Component {
     constructor(props) {
         super(props)
+
         this.state = {
             createStatus: this.props.createStatus,
             body: '',        
@@ -20,34 +21,33 @@ class Annotation extends React.Component {
         if (this.props !== prevProps) {
             this.setState({
                 createStatus: this.props.createStatus,
-            })
+            });
         }
     }
 
     handleClick(e) {
         e.preventDefault();
-        this.setState({['createStatus']: true})     
-        this.setState({['openness']: 'b'})     
+        this.setState({['createStatus']: true});
+        this.setState({['openness']: 'b'});
     }
 
     handleFormChange() { 
-        return e => this.setState({['body']: e.target.value})
+        return e => this.setState({['body']: e.target.value});
     }
 
     handleFormSubmit(e) {
         e.preventDefault();     
           
-        const annotation = Object.assign({},
-            {
-                body: this.state.body,
-                annotator_id: this.props.currentUser.id,
-                track_id: this.props.track.id,
-                start_index: this.props.startIndex,
-                end_index: this.props.endIndex,
-            })
+        const annotation = {
+            body: this.state.body,
+            annotator_id: this.props.currentUser.id,
+            track_id: this.props.track.id,
+            start_index: this.props.startIndex,
+            end_index: this.props.endIndex,
+        };
             
         this.props.createAnnotation(annotation).then(() => this.props.fetchTrack(this.props.track.id));
-        this.setState({['body']: ''})
+        this.setState({['body']: ''});
         this.props.closeModal();    
     }
 
@@ -70,7 +70,7 @@ class Annotation extends React.Component {
                     <VotesShowContainer parent={annotation} voteableType="Annotation" voteableId={annotation.id} numberOfVotes={annotation.votes} />
                     <CommentShowContainer parent={annotation} currentUser={currentUser} commentableType="Annotation" commentableId={annoId} />
                 </div>
-            )
+            );
         } else if (currentUser && startIndex && startIndex !== endIndex && this.state.createStatus === false && this.props.modal){
             return (
                 <div className='annotation-show-create-main' style={{position: 'relative', top: yCoord-370}} >
@@ -79,7 +79,7 @@ class Annotation extends React.Component {
                         <p className='annotation-show-create-h2'>(+5 RSQ)</p>
                     </span>
                 </div>
-            )
+            );
         } else if (currentUser && startIndex && this.state.createStatus === true && this.props.modal){
             return (
                 <div className='annotation-show-create-form-main' style={{position: 'relative', top: yCoord-370}} >
@@ -129,17 +129,17 @@ class Annotation extends React.Component {
                         </div>
                     </form>         
                 </div>
-            )
+            );
         } else if (currentUser === undefined && startIndex) {
             return (
                 <div className='annotation-show-main-signup' style={{position: 'relative', top: yCoord-370}} >
                     <Link to='/signup' className='annotation-show-signup'>Sign Up to Start Really Smarting</Link>
                 </div>
-            )
+            );
         } else {
             return(
                 null
-            )
+            );
         }
     }
 };
