@@ -25,8 +25,8 @@ class LyricsShow extends React.Component {
         
         this.annotatedLyrics = this.annotatedLyrics.bind(this);
         this.annotateLyrics = this.annotateLyrics.bind(this);
-        this.mouseUp = this.mouseUp.bind(this);
-        this.mouseDown = this.mouseDown.bind(this);
+        this.handleMouseUp = this.handleMouseUp.bind(this);
+        this.handleMouseDown = this.handleMouseDown.bind(this);
         this.openAnnotation = this.openAnnotation.bind(this);
     }
 
@@ -45,7 +45,7 @@ class LyricsShow extends React.Component {
                 className='not-an-anno' 
                 data-add="0"
                 data-name={`not-anno-0`}
-                onMouseUp={this.mouseUp} 
+                onMouseUp={this.handleMouseUp} 
                 >
                     {this.props.track.lyrics}
                 </span>;
@@ -130,7 +130,7 @@ class LyricsShow extends React.Component {
         this.setState({annotationId: id});
     }
 
-    mouseUp(e) {
+    handleMouseUp(e) {
         e.preventDefault();
         this.setState({['yCoord']: e.pageY}); 
         this.setState({['annoId']: e.target.dataset.id});
@@ -161,7 +161,6 @@ class LyricsShow extends React.Component {
         let focusName = highlighted.focusNode.parentNode.dataset.name;
         let a;
         let b;
-
         let add = parseInt(highlighted.focusNode.parentNode.dataset.add);
 
         if (anchorName.includes(`not-anno`) && focusName.includes(`not-anno`) && anchorName === focusName) {
@@ -178,7 +177,7 @@ class LyricsShow extends React.Component {
         return [a, b];
     }
 
-    mouseDown(e) {    
+    handleMouseDown(e) {    
         this.setState({['annotationId']: null});
         this.setState({['createStatus']: false});
         this.props.closeModal();
@@ -189,9 +188,9 @@ class LyricsShow extends React.Component {
         return (
             <div className='lyrics-show-main'>
                 <div className='lyrics-show-shade'>
-                    <div className='lyrics-show-left' onMouseDown={this.mouseDown} >
+                    <div className='lyrics-show-left' onMouseDown={this.handleMouseDown} >
                         <p className='lyrics-show-top'>{track.title.toUpperCase()} LYRICS</p>
-                        <pre className='lyrics-show-body' onMouseUp={this.mouseUp}>
+                        <pre className='lyrics-show-body' onMouseUp={this.handleMouseUp}>
                             {this.annotatedLyrics()}
                         </pre> 
                         <CommentShowContainer parent={track} commentableType="Track" currentUser={currentUser} commentableId={track.id} />               

@@ -1,6 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import CommentItem from './comment_item';
+import React from "react";
+import { Link } from "react-router-dom";
+import CommentItem from "./comment_item";
 
 class CommentShow extends React.Component {
     constructor(props) {
@@ -10,7 +10,7 @@ class CommentShow extends React.Component {
             createTrackStatus: false,
             createAnnoStatus: false,
             body: '',
-        }
+        };
         
         this.handleTrackStatus = this.handleTrackStatus.bind(this);
         this.handleAnnoStatus = this.handleAnnoStatus.bind(this);
@@ -28,22 +28,22 @@ class CommentShow extends React.Component {
 
     handleTrackStatus(e) {
         e.preventDefault();
-        this.setState({['createTrackStatus'] : true})
+        this.setState({['createTrackStatus'] : true});
     }
 
     handleAnnoStatus(e) {
         e.preventDefault();
-        this.setState({['createAnnoStatus'] : true})
+        this.setState({['createAnnoStatus'] : true});
     }
 
     handleTrackCancel(e) {
         e.preventDefault();
-        this.setState({['createTrackStatus'] : false})
+        this.setState({['createTrackStatus'] : false});
     }
 
     handleAnnoCancel(e) {
         e.preventDefault();
-        this.setState({['createAnnoStatus'] : false})
+        this.setState({['createAnnoStatus'] : false});
     }
 
     handleChange(type) {
@@ -54,36 +54,37 @@ class CommentShow extends React.Component {
         e.preventDefault();
 
         const { currentUser, commentableType, parent, createComment, fetchAction } = this.props;
-        const comment = Object.assign({},
-            {
-                body: this.state.body,
-                commenter_id: currentUser.id,
-                commentable_type: commentableType,
-                commentable_id: parent.id,
-            })
+        const comment = {
+            body: this.state.body,
+            commenter_id: currentUser.id,
+            commentable_type: commentableType,
+            commentable_id: parent.id,
+        };
+
         createComment(comment).then(() => fetchAction(parent.id))
-        this.setState({['createTrackStatus'] : false})
+        this.setState({['createTrackStatus'] : false});
     }
 
     handleAnnoSubmit(e) {
         e.preventDefault();
 
         const { currentUser, commentableType, parent, createComment, fetchAction } = this.props;
-        const comment = Object.assign({},
-            {
-                body: this.state.body,
-                commenter_id: currentUser.id,
-                commentable_type: commentableType,
-                commentable_id: parent.id,
-            })
+        const comment = {
+            body: this.state.body,
+            commenter_id: currentUser.id,
+            commentable_type: commentableType,
+            commentable_id: parent.id,
+        };
+
         createComment(comment).then(() => fetchAction(parent.id))
-        this.setState({['createAnnoStatus'] : false})
+        this.setState({['createAnnoStatus'] : false});
     }
 
     render() {
         const { comments, currentUser, parent, commentableType, commentMessage, fetchAction } = this.props;
         
         let commentPart;
+
         if (currentUser && this.state.createTrackStatus === true && commentableType === "Track") {
             commentPart = (
                 <form className='comment-show-create-end-main' onSubmit={this.handleTrackSubmit} >
@@ -158,8 +159,8 @@ class CommentShow extends React.Component {
                 {commentPart} 
                 {commentParts}
             </div>
-            )               
+        );               
     }
-}
+};
 
 export default CommentShow;
