@@ -1,6 +1,5 @@
-import React from 'react';
+import React from "react";
 import { RiThumbUpLine } from "react-icons/ri";
-// RiThumbUpLine
 
 class VotesShow extends React.Component {
     constructor(props) {
@@ -8,7 +7,7 @@ class VotesShow extends React.Component {
 
         this.state = {
             currentVoteStatus: this.props.currentVoteStatus
-        }
+        };
 
         this.handleVote = this.handleVote.bind(this);
     }
@@ -29,9 +28,7 @@ class VotesShow extends React.Component {
         if (currentUser && this.state.currentVoteStatus) {
             this.setState({currentVoteStatus: false});
             deleteVote(currentVote.id).then(() => fetchAction(parent.id))
-            
         } else if (currentUser) {
-            
             createVote({
                 voter_id: currentUser.id,
                 voteable_type: voteableType,
@@ -41,7 +38,7 @@ class VotesShow extends React.Component {
         }
     }
 
-    render () {
+    render() {
         const { numberOfVotes, currentUser } = this.props;
         
         if (currentUser && this.state.currentVoteStatus === true) {
@@ -50,23 +47,23 @@ class VotesShow extends React.Component {
                     <RiThumbUpLine className="vote-show-voted" onClick={this.handleVote} />
                     <div className="vote-show-count" >+{numberOfVotes}</div>
                 </div>
-            )
+            );
         } else if (currentUser && this.state.currentVoteStatus === false) {
             return (
                 <div className="vote-show-main" >
                     <RiThumbUpLine className="vote-show-not-voted" onClick={this.handleVote} />
                     <div className="vote-show-count" >+{numberOfVotes}</div>
                 </div>
-            )
+            );
         } else {
             return (
                 <div className="vote-show-main" >
                     <RiThumbUpLine className="vote-show-not-voted"/>
                     <div className="vote-show-count" >+{numberOfVotes}</div>
                 </div>
-            )
+            );
         }
     }
-}
+};
 
 export default VotesShow;

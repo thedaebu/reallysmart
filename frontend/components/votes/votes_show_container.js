@@ -1,9 +1,7 @@
-import {connect} from 'react-redux';
-import { fetchAnnotation } from '../../actions/annotation_actions';
-import { fetchComment } from '../../actions/comment_actions';
-import { createVote, deleteVote, fetchVote } from '../../actions/vote_actions';
-
-import VotesShow from './votes_show';
+import { connect } from "react-redux";
+import { fetchAnnotation } from "../../actions/annotation_actions";
+import { createVote, deleteVote, fetchVote } from "../../actions/vote_actions";
+import VotesShow from "./votes_show";
 
 const mSTP = (state, ownProps) => {
     let currentUser = state.entities.users[state.session.id];
@@ -13,7 +11,7 @@ const mSTP = (state, ownProps) => {
             if (state.entities.votes[id]) {
                 return state.entities.votes[id];
             } 
-        });
+        })
     }
     
     let currentVote;
@@ -27,29 +25,24 @@ const mSTP = (state, ownProps) => {
         currentUser: currentUser,  
         currentVote: currentVote,
         currentVoteStatus: currentVoteStatus
-    })
-}
+    });
+};
 
 const mDTP = (dispatch, ownProps) => {
-
-
-
     if (ownProps.voteableType === "Annotation") {
         return ({
             fetchVote: (voteId) => dispatch(fetchVote(voteId)),
             createVote: (vote) => dispatch(createVote(vote)),
             deleteVote: (voteId) => dispatch(deleteVote(voteId)),
             fetchAction: (annotationId) => dispatch(fetchAnnotation(annotationId))
-        })
+        });
     } else {
         return ({
             fetchVote: (voteId) => dispatch(fetchVote(voteId)),
             createVote: (vote) => dispatch(createVote(vote)),
-            deleteVote: (voteId) => dispatch(deleteVote(voteId)),
-        })
+            deleteVote: (voteId) => dispatch(deleteVote(voteId))
+        });
     }
-}
-//parent is either the annotation or track for the comments
-
+};
 
 export default connect(mSTP, mDTP)(VotesShow);
