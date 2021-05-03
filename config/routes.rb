@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :annotations, only: [:show, :create]
     resources :comments, only: [:show, :create]
     resources :votes, only: [:show, :create, :destroy]
+    resources :searches, only: [:index]
   end
   
 end
