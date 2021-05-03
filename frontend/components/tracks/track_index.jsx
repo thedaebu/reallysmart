@@ -1,5 +1,5 @@
 import React from "react";
-import NavBar from "../header/navbar";
+import Navbar from "../header/navbar";
 import TrackIndexItem from "./track_index_item";
 
 class TrackIndex extends React.Component {
@@ -59,7 +59,7 @@ class TrackIndex extends React.Component {
 
         return (
             <div className='tracks-index-main'>
-                <NavBar />
+                <Navbar />
                 <div className='tracks-index-top'>
                     <h1 className='tracks-index-h1' >CHARTS</h1>
                     <h2 className='tracks-index-h2' >REALLY POPULAR ON REALLY SMART</h2>

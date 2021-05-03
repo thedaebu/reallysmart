@@ -1,7 +1,7 @@
 import React from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 
-class SearchBar extends React.Component {
+class Searchbar extends React.Component {
     constructor(props) {
         super(props)
 
@@ -29,4 +29,4 @@ class SearchBar extends React.Component {
     }
 };
 
-export default SearchBar;
+export default Searchbar;
