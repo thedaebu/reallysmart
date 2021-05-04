@@ -1,8 +1,8 @@
-import * as VoteApiUtil from './../util/vote_api_util';
+import * as VoteApiUtil from "./../util/vote_api_util";
 
-export const RECEIVE_VOTE = 'RECEIVE_VOTE';
-export const RECEIVE_CREATED_VOTE = 'RECEIVE_CREATED_VOTE';
-export const REMOVE_VOTE = 'REMOVE_VOTE';
+export const RECEIVE_VOTE = "RECEIVE_VOTE";
+export const RECEIVE_CREATED_VOTE = "RECEIVE_CREATED_VOTE";
+export const REMOVE_VOTE = "REMOVE_VOTE";
 
 const receiveVote = ({vote, user}) => {
     return ({

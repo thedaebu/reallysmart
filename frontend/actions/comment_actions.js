@@ -1,6 +1,6 @@
-import * as CommentApiUtil from './../util/comment_api_util'
+import * as CommentApiUtil from "./../util/comment_api_util";
 
-export const RECEIVE_COMMENT = 'RECEIVE_COMMENT';
+export const RECEIVE_COMMENT = "RECEIVE_COMMENT";
 
 const receiveComment = (comment) => {
     return ({
