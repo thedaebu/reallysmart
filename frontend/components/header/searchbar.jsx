@@ -6,12 +6,18 @@ class Searchbar extends React.Component {
         super(props)
 
         this.state = {
-            searchField: ''
+            searchField: ""
         };
+
+        this.onChange = this.onChange.bind(this);
     }
 
-    onChange(field) {
-        return e => this.setState({[field]: e.target.value});
+    onChange(e) {
+        if (this.state.searchField !== "") {
+            this.props.fetchSearches(this.state.searchField);
+        }
+        console.log(this.state.searchField)
+        return e => this.setState({['searchField']: e.target.value});
     }
 
     render() {
@@ -21,7 +27,7 @@ class Searchbar extends React.Component {
                     type='text' 
                     placeholder='Search lyrics & more'
                     value={this.state.searchField} 
-                    onChange={this.onChange('searchField')} 
+                    onChange={this.onChange()} 
                 />
                 <AiOutlineSearch className='search-bar-glass' />
             </div>          
