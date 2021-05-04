@@ -12,7 +12,6 @@ class CommentItem extends React.Component {
         let yearDiff = currentDate.getFullYear() - oldDate.getFullYear();
         let monthDiff = currentDate.getMonth() - oldDate.getMonth();
         let dayDiff = currentDate.getDate() - oldDate.getDate();
-        debugger
         if (yearDiff > 1) {
             return `${yearDiff} years ago`;
         } else if (yearDiff === 1) {
