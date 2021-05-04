@@ -19,7 +19,7 @@ const mSTP = (state, ownProps) => {
     if (ownProps.commentableType === "Track") {
         commentMessage = "Add a comment";
     } else {
-        commentMessage = "You think you're smarter?";
+        commentMessage = "You think you're really smarter?";
     }
 
     return ({

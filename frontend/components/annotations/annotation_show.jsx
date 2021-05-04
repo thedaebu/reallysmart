@@ -91,10 +91,9 @@ class Annotation extends React.Component {
                         value={this.state.body}
                         onChange={this.handleFormChange()}
                         >
-
                         </textarea>
-{/*                         
-                        <div className='annotation-show-create-form-middle'>
+                        
+                        {/* <div className='annotation-show-create-form-middle'>
                             <p className='annotation-show-create-form-middle-tools'>Tools:</p>
                             
                             <div className='annotation-show-create-form-middle-items'>    
