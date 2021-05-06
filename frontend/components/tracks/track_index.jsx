@@ -33,17 +33,17 @@ class TrackIndex extends React.Component {
     render() {
         const { tracks } = this.props;
 
-        let trackList;
+        let trackIndexItems;
         if (this.state.list === 5) {
-            trackList = tracks.slice(0,5).map(track => {
+            trackIndexItems = tracks.slice(0, 5).map(track => {
                 return <TrackIndexItem track={track} key={track.id} />;
             })
         } else if (this.state.list === 10) {
-            trackList = tracks.slice(0,10).map(track => {
+            trackIndexItems = tracks.slice(0, 10).map(track => {
                 return <TrackIndexItem track={track} key={track.id} />;
             })
         } else {
-            trackList = tracks.map(track => {
+            trackIndexItems = tracks.map(track => {
                 return <TrackIndexItem track={track} key={track.id} />;
             })
         }
@@ -64,7 +64,7 @@ class TrackIndex extends React.Component {
                     <h1 className='tracks-index-h1' >CHARTS</h1>
                     <h2 className='tracks-index-h2' >REALLY POPULAR ON REALLY SMART</h2>
                     <ul className='tracks-index-list'>
-                        {trackList}
+                        {trackIndexItems}
                     </ul>
                 </div>
                 {loadMore}
