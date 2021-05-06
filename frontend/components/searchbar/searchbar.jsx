@@ -35,6 +35,8 @@ class Searchbar extends React.Component {
                         {searchbarItems}
                     </ul>
                 </div>
+        } else {
+            searchbarModal = null;
         }
 
         return (
