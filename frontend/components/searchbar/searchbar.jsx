@@ -1,12 +1,6 @@
 import React from "react";
-import {
-    Route,
-    Redirect,
-    Switch,
-    Link,
-    HashRouter
-} from "react-router-dom";
 import { AiOutlineSearch } from "react-icons/ai";
+import SearchbarItem from "./searchbar_item";
 
 class Searchbar extends React.Component {
     constructor(props) {
@@ -17,10 +11,6 @@ class Searchbar extends React.Component {
         };
 
         this.onChange = this.onChange.bind(this);
-    }
-
-    randomNum() {
-        return Math.floor(Math.random() * 1000);
     }
 
     onChange() {
@@ -34,28 +24,11 @@ class Searchbar extends React.Component {
         const { searches } = this.props;
 
         let searchbarItems;
-        if (searches) {
-            searchbarItems = searches.slice(0, 5).map(searchbarItem => {
-                return (
-                    <Link className='searchbar-item' to={`/tracks/${searchbarItem.id}`}>
-                        <div className='searchbar-item-image' style={{ background: `url(${searchbarItem.artwork_path}`, backgroundPosition: 'center', backgroundSize: 'cover' }}> </div>
-                        <div className='searchbar-item-right'>
-                            <div className='searchbar-item-right-top'>
-                                <p className='searchbar-item-title'>{searchbarItem.title}</p>
-                                <p className='searchbar-item-artist'>{searchbarItem.artist}</p>
-                            </div>
-                            <div className='searchbar-item-right-bottom'>
-                                <img className='track-index-item-eye' src={window.eyeIcon} />
-                                <p className='searchbar-item-views'>{this.randomNum()}</p>
-                            </div>
-                        </div>
-                    </Link>
-                );
-            })
-        }
-
         let searchbarModal;
         if (searches) {
+            searchbarItems = searches.slice(0, 5).map(searchbarItem => {
+                return <SearchbarItem searchbarItem={searchbarItem} key={searchbarItem.id} />;
+            })
             searchbarModal = 
                 <div className='searchbar-items-modal'>
                     <ul className='searchbar-items-list'>
