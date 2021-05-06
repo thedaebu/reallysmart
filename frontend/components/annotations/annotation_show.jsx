@@ -9,7 +9,7 @@ class Annotation extends React.Component {
 
         this.state = {
             createStatus: this.props.createStatus,
-            body: '',        
+            body: ''       
         };
         
         this.handleClick = this.handleClick.bind(this);
@@ -20,7 +20,7 @@ class Annotation extends React.Component {
     componentDidUpdate(prevProps) {
         if (this.props !== prevProps) {
             this.setState({
-                createStatus: this.props.createStatus,
+                createStatus: this.props.createStatus
             });
         }
     }
@@ -43,7 +43,7 @@ class Annotation extends React.Component {
             annotator_id: this.props.currentUser.id,
             track_id: this.props.track.id,
             start_index: this.props.startIndex,
-            end_index: this.props.endIndex,
+            end_index: this.props.endIndex
         };
             
         this.props.createAnnotation(annotation).then(() => this.props.fetchTrack(this.props.track.id));
