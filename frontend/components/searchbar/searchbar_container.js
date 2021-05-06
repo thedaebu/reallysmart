@@ -4,7 +4,7 @@ import Searchbar from "./searchbar";
 
 const mSTP = ( state, ownProps ) => {
     return ({
-
+        searches: state.props.entities.searches
     });
 };
 
