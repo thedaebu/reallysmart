@@ -3,13 +3,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-
     background-color: black;
     color: rgb(201, 201, 201);
-
     height: 100vh;
   	width: 100vw;
-    
 }
 
 .session-form-h1-signup {
@@ -33,7 +30,6 @@
 .session-form-h1-login {
     font-size: 40px;
     font-family: 'Ubuntu Condensed', sans-serif;
-
     font-weight: bolder;
     padding-bottom: 30px;
     padding-top: 40px;
@@ -46,7 +42,6 @@
     padding: 12px 10px 8px 10px;
     border-top: 1px solid rgb(34, 34, 34);
     width: 350px;
-    
     border-radius: 2px;
     background: rgb(15, 15, 15);
     margin-bottom: 30px;
@@ -107,9 +102,7 @@ label {
     border: 1px solid rgb(88, 88, 88);
     border-radius: 2px;
     padding: 5px 10px 5px 10px;
-    
     margin-top: 1px;
-
 }
 
 #form-submit:hover {
@@ -117,6 +110,7 @@ label {
     cursor: pointer;
     color: white;
 }
+
 #form-submit:active {
     background: linear-gradient(336deg, #3d3d3d, #262626 70.71%);   
 }
@@ -145,7 +139,6 @@ label {
     padding: 9px 32px;
     color: white;
     font-family: 'Barlow Condensed', sans-serif;
-    
 }
 
 .errors-message {

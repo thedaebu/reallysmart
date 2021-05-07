@@ -28,7 +28,6 @@
     color:rgb(7, 7, 7);
     line-height: 28px;
     position: relative;
-
     display: flex;
     cursor: pointer;
 }
@@ -72,8 +71,8 @@
     border: none;
     margin-top: 20px;
     margin-bottom: 19px;
-    
 }
+
 .annotation-show-create-form-top:focus {
     box-shadow: inset 0px 0px 2px 2px rgb(194, 213, 255);
     border: 1px, solid rgb(194, 213, 255);
