@@ -3,7 +3,7 @@ import SearchbarItems from "./searchbar_items";
 
 const mSTP = ( state, ownProps) => {
     return ({
-        searches: state.entities.searches
+        searches: Object.values(state.entities.searches)
     });
 };
 
