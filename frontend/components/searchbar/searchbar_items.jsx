@@ -10,12 +10,13 @@ class SearchbarItems extends React.Component {
         const { searches } = this.props;
 
         let searchbarItems;
-        if (searches) {
+        if (searches.length > 0) {
             searchbarItems = searches.slice(0, 5).map(searchbarItem => {
                 return <SearchbarItem searchbarItem={searchbarItem} key={searchbarItem.id} />;
             })
             return (
                 <div className='searchbar-items-modal'>
+                    <p>Search Results</p>
                     <ul className='searchbar-items-list'>
                         {searchbarItems}
                     </ul>
