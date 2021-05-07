@@ -1,6 +1,6 @@
 import React from "react";
 import { AiOutlineSearch } from "react-icons/ai";
-import SearchbarItem from "./searchbar_item";
+import SearchbarItemsContainer from "./searchbar_items_container";
 
 class Searchbar extends React.Component {
     constructor(props) {
@@ -21,24 +21,6 @@ class Searchbar extends React.Component {
     }
 
     render() {
-        const { searches } = this.props;
-
-        // let searchbarItems;
-        // let searchbarModal;
-        // if (searches) {
-        //     searchbarItems = searches.slice(0, 5).map(searchbarItem => {
-        //         return <SearchbarItem searchbarItem={searchbarItem} key={searchbarItem.id} />;
-        //     })
-        //     searchbarModal = 
-        //         <div className='searchbar-items-modal'>
-        //             <ul className='searchbar-items-list'>
-        //                 {searchbarItems}
-        //             </ul>
-        //         </div>
-        // } else {
-        //     searchbarModal = null;
-        // }
-
         return (
             <div>
                 <div className='search-bar-main'>
@@ -50,7 +32,7 @@ class Searchbar extends React.Component {
                     />
                     <AiOutlineSearch className='search-bar-glass' />
                 </div>   
-                {/* {searchbarModal} */}
+                <SearchbarItemsContainer />
             </div>
         )
     }
