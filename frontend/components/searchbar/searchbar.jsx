@@ -16,6 +16,8 @@ class Searchbar extends React.Component {
     onChange() {
         if (this.state.searchField !== "") {
             this.props.fetchSearches(this.state.searchField);
+        } else {
+            this.props.clearSearches();
         }
         
         return e => this.setState({['searchField']: e.target.value});

@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { fetchSearches } from "../../actions/search_actions";
+import { clearSearches, fetchSearches } from "../../actions/search_actions";
 import Searchbar from "./searchbar";
 
 const mSTP = ( state, ownProps ) => {
@@ -10,7 +10,8 @@ const mSTP = ( state, ownProps ) => {
 
 const mDTP = ( dispatch, ownProps ) => {
     return ({
-        fetchSearches: search => dispatch(fetchSearches(search))
+        fetchSearches: search => dispatch(fetchSearches(search)),
+        clearSearches: () => dispatch(clearSearches())
     });
 };
 
