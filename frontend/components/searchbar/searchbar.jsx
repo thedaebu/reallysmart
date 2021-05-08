@@ -16,8 +16,6 @@ class Searchbar extends React.Component {
     onChange() {
         if (this.state.searchField !== "") {
             this.props.fetchSearches(this.state.searchField);
-        } else {
-            this.props.clearSearches();
         }
         
         return e => this.setState({['searchField']: e.target.value});
@@ -35,7 +33,7 @@ class Searchbar extends React.Component {
                     />
                     <AiOutlineSearch className='search-bar-glass' />
                 </div>   
-                <SearchbarItemsContainer />
+                <SearchbarItemsContainer searchField={this.state.searchField} />
             </div>
         )
     }

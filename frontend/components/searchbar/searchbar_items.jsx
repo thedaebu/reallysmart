@@ -10,7 +10,7 @@ class SearchbarItems extends React.Component {
         const { searches } = this.props;
 
         let searchbarItems;
-        if (searches.length > 0) {
+        if (searches.length > 0 && this.props.searchField !== "") {
             searchbarItems = searches.slice(0, 5).map(searchbarItem => {
                 return <SearchbarItem searchbarItem={searchbarItem} key={searchbarItem.id} />;
             })
@@ -22,11 +22,18 @@ class SearchbarItems extends React.Component {
                         {searchbarItems}
                     </ul>
                 </div>
-            )  
+            );
+        } else if (searches.length === 0 && this.props.searchField !== "") {
+            return (
+                <div className='searchbar-items-modal'>
+                    <p className='searchbar-search-results-p'>SEARCH RESULTS</p>
+                    <p className='searchbar-search-no-results-p'>No results</p>
+                </div>
+            );
         } else {
             return (
                 null
-            )
+            );
         }
     }
 };

@@ -1,6 +1,6 @@
 .searchbar-items-modal {
     position: absolute;
-    background-color: red;
+    background-color: #f7f7f7;
     width: 370px;
     z-index: 2;
     top: 57px;
@@ -8,14 +8,19 @@
 }
 
 .searchbar-search-results-p {
-    background-color: #f7f7f7;
     font-size: 14px;
+    padding: 12px 0px 11px 16px;
+    border-bottom: 1px solid #ccc;
 }
 
 .searchbar-search-songs-p {
-    background-color: #f7f7f7;
     font-size: 12px;
     color: #a1a1a1;
+    padding: 21px 0px 12px 16px;
+}
+
+.searchbar-search-no-results-p {
+
 }
 
 .searchbar-items-list {
@@ -23,39 +28,47 @@
 }
 
 .searchbar-item-main {
-
+    display: flex;
+    cursor: pointer;
+    margin-bottom: 4px;
+    background-color: white;
 }
 
 .searchbar-item-image {
-    height: 25px;
-    width: 25px;
+    height: 75px;   
+    width: 75px;
 }
 
 .searchbar-item-right {
-
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 6px 6px 4px 6px;
 }
 
 .searchbar-item-right-top {
-
+    color: black;
 }
 
 .searchbar-item-title {
-
+    font-size: 16px;
 }
 
 .searchbar-item-artist {
-
+    font-size: 12px;
 }
 
 .searchbar-item-right-bottom {
-   
+    display: flex;
+    color: black;
 }
 
 .searchbar-item-eye {
-    height: 25px;
-    width: 25px;
+    height: 12px;
+    width: 12px;
 }
 
 .searchbar-item-views {
-
+    font-size: 12px;
+    margin: 0px 0px 0px 3px;
 }
