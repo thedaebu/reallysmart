@@ -1,5 +1,6 @@
 .searchbar-items-modal {
-
+    position: absolute;
+    background-color: white;
 }
 
 .searchbar-items-list {
@@ -11,7 +12,8 @@
 }
 
 .searchbar-item-image {
-
+    height: 25px;
+    width: 25px;
 }
 
 .searchbar-item-right {
@@ -35,9 +37,10 @@
 }
 
 .searchbar-item-eye {
-
+    height: 25px;
+    width: 25px;
 }
 
 .searchbar-item-views {
-    
+
 }
