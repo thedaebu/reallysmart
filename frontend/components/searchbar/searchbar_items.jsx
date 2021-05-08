@@ -16,7 +16,8 @@ class SearchbarItems extends React.Component {
             })
             return (
                 <div className='searchbar-items-modal'>
-                    <p>Search Results</p>
+                    <p className='searchbar-search-results-p'>SEARCH RESULTS</p>
+                    <p className='searchbar-search-songs-p'>SONGS</p>
                     <ul className='searchbar-items-list'>
                         {searchbarItems}
                     </ul>
