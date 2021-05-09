@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { fetchAnnotation } from "../../actions/annotation_actions";
-import { closeModal, openModal } from "../../actions/modal_action";
+import { closeAnnotationModal, openAnnotationModal } from "../../actions/annotation_modal_actions";
 import LyricsShow from "./lyrics_show";
 
 const mSTP = (state, ownProps) => {
@@ -16,8 +16,8 @@ const mSTP = (state, ownProps) => {
 const mDTP = (dispatch, ownProps) => {
     return ({
         fetchAnnotation: annotationId => dispatch(fetchAnnotation(annotationId)),
-        openModal: data => dispatch(openModal(data)),
-        closeModal: () => dispatch(closeModal())
+        openAnnotationModal: data => dispatch(openAnnotationModal(data)),
+        closeAnnotationModal: () => dispatch(closeAnnotationModal())
     });
 };
 
