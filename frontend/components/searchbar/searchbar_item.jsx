@@ -20,7 +20,7 @@ class SearchbarItem extends React.Component {
         const { searchbarItem } = this.props;
 
         return (
-            <Link className='searchbar-item-main' to={`/tracks/${searchbarItem.id}`}>
+            <Link className='searchbar-item-main' to={`/tracks/${searchbarItem.id}`} >
                 <div className='searchbar-item-image' style={{ background: `url(${searchbarItem.artwork_path}`, backgroundPosition: 'center', backgroundSize: 'cover' }}> </div>
                 <div className='searchbar-item-right'>
                     <div className='searchbar-item-right-top'>

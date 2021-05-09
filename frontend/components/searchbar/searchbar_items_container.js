@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+import { closeSearchbarModal } from "../../actions/searchbar_modal_actions";
 import SearchbarItems from "./searchbar_items";
 
 const mSTP = ( state, ownProps) => {
@@ -9,7 +10,7 @@ const mSTP = ( state, ownProps) => {
 
 const mDTP = (dispatch, ownProps) => {
     return ({
-
+        closeSearchbarModal: () => dispatch(closeSearchbarModal())
     });
 };
 

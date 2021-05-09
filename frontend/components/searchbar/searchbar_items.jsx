@@ -7,7 +7,7 @@ class SearchbarItems extends React.Component {
     }
 
     render() {
-        const { searches } = this.props;
+        const { searches, clearSearches } = this.props;
 
         let searchbarItems;
         if (searches.length > 0 && this.props.searchField !== "") {
