@@ -33,7 +33,7 @@ class Searchbar extends React.Component {
                     />
                     <AiOutlineSearch className='search-bar-glass' />
                 </div>   
-                <SearchbarItemsContainer searchField={this.state.searchField} />
+                {/* <SearchbarItemsContainer searchField={this.state.searchField} /> */}
             </div>
         )
     }
