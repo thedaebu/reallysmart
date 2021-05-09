@@ -110,7 +110,7 @@ mouseUp(e) {
 
         this.setState({['startIndex']: min});
         this.setState({['endIndex']: max});  
-        this.props.openModal({hello: 'hello'})
+        this.props.openAnnotationModal({hello: 'hello'})
     }
 }
 ```
