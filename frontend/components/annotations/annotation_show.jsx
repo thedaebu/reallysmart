@@ -71,7 +71,7 @@ class Annotation extends React.Component {
                     <CommentShowContainer parent={annotation} currentUser={currentUser} commentableType="Annotation" commentableId={annoId} />
                 </div>
             );
-        } else if (currentUser && startIndex && startIndex !== endIndex && this.state.createStatus === false && this.props.modal){
+        } else if (currentUser && startIndex && startIndex !== endIndex && this.state.createStatus === false && this.props.annotationModal){
             return (
                 <div className='annotation-show-create-main' style={{position: 'relative', top: yCoord-370}} >
                     <span className='annotation-show-create-begin' onClick={this.handleClick} >
@@ -80,7 +80,7 @@ class Annotation extends React.Component {
                     </span>
                 </div>
             );
-        } else if (currentUser && startIndex && this.state.createStatus === true && this.props.modal){
+        } else if (currentUser && startIndex && this.state.createStatus === true && this.props.annotationModal){
             return (
                 <div className='annotation-show-create-form-main' style={{position: 'relative', top: yCoord-370}} >
                     <form id='annotation-show-create-form' onSubmit={this.handleFormSubmit}>

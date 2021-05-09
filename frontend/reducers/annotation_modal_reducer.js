@@ -1,4 +1,4 @@
-import { CLOSE_ANNOTATION_MODAL, OPEN_ANNOTATION_MODAL } from "../actions/annotation_modal_action";
+import { CLOSE_ANNOTATION_MODAL, OPEN_ANNOTATION_MODAL } from "../actions/annotation_modal_actions";
 
 const annotationModalReducer = (state = {}, action) => {
     Object.freeze(state);
