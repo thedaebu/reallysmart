@@ -1,16 +1,10 @@
-import { CLOSE_MODAL, OPEN_MODAL } from "../actions/modal_action";
+import { combineReducers } from "redux";
+import annotationModalReducer from "./annotation_modal_reducer";
+import searchbarModalReducer from "./searchbar_modal_reducer";
 
-const modalReducer = (state = {}, action) => {
-    Object.freeze(state);
-
-    switch (action.type) {
-        case OPEN_MODAL:
-            return action.data;
-        case CLOSE_MODAL:
-            return null;
-        default:
-            return state;
-    }
-};
+const modalReducer = combineReducers({
+    searchbarModal: searchbarModalReducer,
+    annotationModal: annotationModalReducer
+});
 
 export default modalReducer;
