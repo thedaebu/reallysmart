@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { createAnnotation, fetchAnnotation } from "../../actions/annotation_actions";
-import { closeAnnotationModal, openAnnotationModal } from "../../actions/annotation_modal_actions";
+import { closeAnnotationModal } from "../../actions/annotation_modal_actions";
 import { fetchTrack } from "../../actions/track_actions";
 import Annotation from "./annotation_show";
 

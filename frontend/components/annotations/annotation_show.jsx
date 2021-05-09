@@ -48,7 +48,7 @@ class Annotation extends React.Component {
             
         this.props.createAnnotation(annotation).then(() => this.props.fetchTrack(this.props.track.id));
         this.setState({['body']: ''});
-        this.props.closeModal();    
+        this.props.closeAnnotationModal();    
     }
 
     handleCancel(e) {
@@ -56,7 +56,7 @@ class Annotation extends React.Component {
 
         this.setState({['createStatus']: false})
         this.setState({['body']: ''})
-        this.props.closeModal();    
+        this.props.closeAnnotationModal();    
     }
 
     render() {
