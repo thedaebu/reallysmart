@@ -13,6 +13,10 @@ class Searchbar extends React.Component {
         this.onChange = this.onChange.bind(this);
     }
 
+    componentDidMount() {
+        this.props.fetchTracks();
+    }
+
     onChange() {
         if (this.state.searchField !== "") {
             this.props.fetchSearches(this.state.searchField);

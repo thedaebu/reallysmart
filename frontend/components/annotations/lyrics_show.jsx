@@ -180,7 +180,7 @@ class LyricsShow extends React.Component {
     handleMouseDown(e) {    
         this.setState({['annotationId']: null});
         this.setState({['createStatus']: false});
-        this.props.closeModal();
+        this.props.closeAnnotationModal();
     }
 
     render () {
