@@ -95,57 +95,7 @@ Can't you see, you're my delight
 Lady, I just feel like
 I won't get you, out of my mind
 I feel love, for the first time
-And I know that it's true, I can tell by the look in your eyes
-
-[Chorus]
-Lady, hear me tonight
-'Cause my feeling, is just so right
-As we dance, by the moonlight
-Can't you see, you're my delight
-Lady, I just feel like
-I won't get you, out of my mind
-I feel love, for the first time
-And I know that it's true, I can tell by the look in your eyes
-
-[Breakdown Chorus]
-Lady, hear me tonight
-'Cause my feeling, is just so right
-As we dance, by the moonlight
-Can't you see, you're my delight
-Lady, I just feel like
-I won't get you, out of my mind
-I feel love, for the first time
-And I know that it's true, I can tell by the look in your eyes
-
-[Verse 1]
-Lady (Lady)
-Hear me tonight (Hear me tonight)
-'Cause my feeling ('Cause my feeling)
-Is just so right (Is just so right)
-
-[Verse 2]
-Lady (Lady)
-I just feel like (I just feel like)
-I feel love (I feel love)
-For the first time (For the first time)
-
-[Verse 3]
-Lady (Lady)
-Hear me tonight (Hear me tonight)
-Can't you see (Can't you see)
-You're my delight (You're my delight)
-
-[Verse 4]
-Lady (Lady)
-I just feel like (I just feel like)
-I won't get you (I won't get you)
-Out of my mind (Out of my mind)
-
-[Verse 1]
-Lady (Lady)
-Hear me tonight (Hear me tonight)
-'Cause my feeling ('Cause my feeling)
-Is just so right (Is just so right)"
+And I know that it's true, I can tell by the look in your eyes"
 )
 
 fake_love = Track.create(
@@ -621,7 +571,7 @@ I'm new, I'm new
 
 [Chorus]
 You're mistaken, I'm not breaking and you don't get me again, yeah yeah
-Im not foolish, I've been trough this and I don't want to pretend that you were allowed with it all from the start
+Im not foolish, I've been through this and I don't want to pretend that you were allowed with it all from the start
 I know you've been fakin', it don't work too hard anymore
 A heartbreaker, you can't take it, and I will get my revenge, yeah yeah"
 )
@@ -968,6 +918,13 @@ selene_annotation2 = Annotation.create(
     start_index: 459,
     end_index: 516
 )
+selene_annotation3 = Annotation.create(
+    body: "Selene is the Greek goddess of the moon and her symbols include the torch and the chariot. It is said that she drives her chariot  across the heavens carrying her torch. She is saying that when Selene takes over her, everyone will notice it as if the Greek goddess arrived.",
+    annotator_id: reallysmart.id,
+    track_id: selene.id,
+    start_index: 778,
+    end_index: 1049
+)
 
 selene_comment1 = Comment.create(
     body: "This is one of my new favorite songs now.",
@@ -1114,6 +1071,13 @@ fake_love_annotation2 = Annotation.create(
     start_index: 327,
     end_index: 465 
 )
+fake_love_annotation3 = Annotation.create(
+    body: "Now that he experienced all the fake affection and the ways people tried to use him, he is immediately able to see the deception of those around him.",
+    annotator_id: reallysmart.id,
+    track_id: fake_love.id,
+    start_index: 1277,
+    end_index: 1473
+)
 
 fake_love_comment1 = Comment.create(
     body: "This song really grew on me and I would say it's my favorite song ever.",
@@ -1145,13 +1109,13 @@ fake_love_vote3 = Vote.create(
 )
 fake_love_vote4 = Vote.create(
     voter_id: notsosmart.id,
-    voteable_type: "Track",
-    voteable_id: fake_love.id
+    voteable_type: "Comment",
+    voteable_id: fake_love_comment1.id
 )
 fake_love_vote5 = Vote.create(
     voter_id: notsosmart.id,
-    voteable_type: "Track",
-    voteable_id: fake_love.id
+    voteable_type: "Comment",
+    voteable_id: fake_love_comment1.id
 )
 
 river_annotation1 = Annotation.create(
@@ -1167,6 +1131,13 @@ river_annotation2 = Annotation.create(
     track_id: river.id,
     start_index: 149,
     end_index: 261
+)
+river_annotation3 = Annotation.create(
+    body: "She is saying that if he says anything, then the relationship will break. So, she just tells him to perform on her.",
+    annotator_id: reallysmart.id,
+    track_id: river.id,
+    start_index: 275,
+    end_index: 410
 )
 
 river_comment1 = Comment.create(
@@ -1203,17 +1174,17 @@ river_vote5 = Vote.create(
 )
 river_vote6 = Vote.create(
     voter_id: notsosmart.id,
-    voteable_type: "Track",
+    voteable_type: "Comment",
     voteable_id: river_comment1.id
 )
 river_vote7 = Vote.create(
     voter_id: notsosmart.id,
-    voteable_type: "Track",
+    voteable_type: "Comment",
     voteable_id: river_comment1.id
 )
 river_vote8 = Vote.create(
     voter_id: notsosmart.id,
-    voteable_type: "Track",
+    voteable_type: "Comment",
     voteable_id: river_comment1.id
 )
 
@@ -1333,6 +1304,13 @@ just_a_friend_2002_annotation1 = Annotation.create(
     start_index: 36,
     end_index: 324
 )
+just_a_friend_2002_annotation2 = Annotation.create(
+    body: "He wants to know everything about the girl he is talking with because he is obsessed with being with her. However, the girl is rebuffing his advancements by telling him that he is 'just a friend.'",
+    annotator_id: reallysmart.id,
+    track_id: just_a_friend_2002.id,
+    start_index: 623,
+    end_index: 905
+)
 
 just_a_friend_2002_comment1 = Comment.create(
     body: "This is one catchy song!",
@@ -1391,6 +1369,13 @@ revenge_annotation2 = Annotation.create(
     track_id: revenge.id,
     start_index: 434,
     end_index: 752
+)
+revenge_annotation3 = Annotation.create(
+    body: "She reiterates that she used to be in love with him. But, she no longer cares that he starts to want to be with her again after she became more successful.",
+    annotator_id: reallysmart.id,
+    track_id: revenge.id,
+    start_index: 763,
+    end_index: 998
 )
 
 revenge_comment1 = Comment.create(
@@ -1455,8 +1440,8 @@ blue_annotation1 = Annotation.create(
     body: "He says the sky is blue, you are next to him, the sea is blue, and it's hot.",
     annotator_id: reallysmart.id,
     track_id: blue.id,
-    start_index: 9,
-    end_index: 23
+    start_index: 23,
+    end_index: 303
 )
 blue_annotation2 = Annotation.create(
     body: "He says that the summer is ours and that if there is an angel then it is you so let's get lost in the sky.",
