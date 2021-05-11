@@ -28,7 +28,4 @@ font-family: 'Ubuntu Condensed', sans-serif;
 font-family: 'Raleway', sans-serif;
 font-family: 'Barlow Condensed', sans-serif;
 
-boolean for upvotes for each user per track or annotation
-
 <script async src="//genius.codes"></script>
-
