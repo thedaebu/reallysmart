@@ -18,13 +18,6 @@ class Searchbar extends React.Component {
         this.props.fetchTracks();
     }
 
-    componentDidUpdate() {
-        if (!this.props.searchbarModal) {
-            this.props.closeSearchbarModal();
-            this.setState({['searchField']: ""})
-        }
-    }
-
     onChange() {
         if (this.state.searchField !== "") {
             this.props.fetchSearches(this.state.searchField.toLowerCase());
