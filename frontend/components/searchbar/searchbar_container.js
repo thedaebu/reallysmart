@@ -6,7 +6,7 @@ import Searchbar from "./searchbar";
 
 const mSTP = ( state, ownProps ) => {
     return ({
-        
+        searchbarModal: state.modal.searchbarModal
     });
 };
 
