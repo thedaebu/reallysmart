@@ -36,6 +36,14 @@ class LyricsShow extends React.Component {
         })
     }
 
+    componentDidUpdate(prevProps) {
+        if (this.props.annotations === prevProps.annotations) {
+            this.props.track.annotation_ids.forEach(id => {
+                this.props.fetchAnnotation(id)
+            })
+        }
+    }
+
     annotatedLyrics() {
         let lyrics
         if (this.props.annotations[this.props.annotations.length - 1] !== undefined ) {

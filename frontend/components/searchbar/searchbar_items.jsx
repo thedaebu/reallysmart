@@ -1,9 +1,20 @@
 import React from "react";
+import {
+    Route,
+    Redirect,
+    Switch,
+    Link,
+    HashRouter
+} from "react-router-dom";
 import SearchbarItem from "./searchbar_item";
 
 class SearchbarItems extends React.Component {
     constructor(props) {
         super(props)
+    }
+
+    randomNum() {
+        return Math.floor(Math.random() * 1000);
     }
 
     render() {
@@ -12,7 +23,19 @@ class SearchbarItems extends React.Component {
         let searchbarItems;
         if (searches.length > 0 && this.props.searchField !== "") {
             searchbarItems = searches.slice(0, 5).map(searchbarItem => {
-                return <SearchbarItem searchbarItem={searchbarItem} key={searchbarItem.id}  />;
+                return <Link className='searchbar-item-main' to={`/tracks/${searchbarItem.id}`} key={searchbarItem.id} replace>
+                    <div className='searchbar-item-image' style={{ background: `url(${searchbarItem.artwork_path}`, backgroundPosition: 'center', backgroundSize: 'cover' }}> </div>
+                    <div className='searchbar-item-right'>
+                        <div className='searchbar-item-right-top'>
+                            <p className='searchbar-item-title'>{searchbarItem.title}</p>
+                            <p className='searchbar-item-artist'>{searchbarItem.artist}</p>
+                        </div>
+                        <div className='searchbar-item-right-bottom'>
+                            <img className='searchbar-item-eye' src={window.eyeIcon} />
+                            <p className='searchbar-item-views'>{this.randomNum()}</p>
+                        </div>
+                    </div>
+                </Link>
             })
             return (
                 <div className='searchbar-items-modal'>
