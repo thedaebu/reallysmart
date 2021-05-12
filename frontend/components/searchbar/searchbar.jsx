@@ -11,6 +11,7 @@ class Searchbar extends React.Component {
         };
 
         this.onChange = this.onChange.bind(this);
+        this.clearSearchField = this.clearSearchField.bind(this);
     }
 
     componentDidMount() {
@@ -32,6 +33,10 @@ class Searchbar extends React.Component {
         return e => this.setState({['searchField']: e.target.value});
     }
 
+    clearSearchField() {
+        this.setState({['searchField']: ""});
+    }
+
     render() {
         return (
             <div>
@@ -44,7 +49,7 @@ class Searchbar extends React.Component {
                     />
                     <AiOutlineSearch className='search-bar-glass' />
                 </div>   
-                {/* <SearchbarItemsContainer searchField={this.state.searchField} /> */}
+                <SearchbarItemsContainer searchField={this.state.searchField} clearSearchField={this.clearSearchField} />
             </div>
         )
     }

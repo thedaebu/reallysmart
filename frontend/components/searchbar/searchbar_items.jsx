@@ -7,18 +7,18 @@ class SearchbarItems extends React.Component {
     }
 
     render() {
-        const { searches, searchbarModal, closeSearchbarModal } = this.props;
-
+        const { searches, searchbarModal, closeSearchbarModal, clearSearchField } = this.props;
+        
         let searchbarItems;
-        if (searches.length > 0 && this.props.searchField !== "" && searchbarModal) {
+        if (searches.length > 0 && this.props.searchField !== "") {
             searchbarItems = searches.slice(0, 5).map(searchbarItem => {
-                return <SearchbarItem searchbarItem={searchbarItem} key={searchbarItem.id} onClick={closeSearchbarModal} />;
+                return <SearchbarItem searchbarItem={searchbarItem} key={searchbarItem.id}  />;
             })
             return (
                 <div className='searchbar-items-modal'>
                     <p className='searchbar-search-results-p'>SEARCH RESULTS</p>
                     <p className='searchbar-search-songs-p'>SONGS</p>
-                    <ul className='searchbar-items-list'>
+                    <ul className='searchbar-items-list' onClick={clearSearchField}>
                         {searchbarItems}
                     </ul>
                 </div>
