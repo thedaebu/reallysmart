@@ -142,4 +142,5 @@ makeNewIndices(highlighted) {
     return [a, b];
 }
 ```
+<a href="https://eddie-kim.com/" >Personal Site</a>
 <a href="https://www.linkedin.com/in/edkim163/" >LinkedIn</a>
