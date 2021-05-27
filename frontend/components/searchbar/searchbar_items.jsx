@@ -23,19 +23,9 @@ class SearchbarItems extends React.Component {
         let searchbarItems;
         if (searches.length > 0 && this.props.searchField !== "") {
             searchbarItems = searches.slice(0, 5).map(searchbarItem => {
-                return <Link className='searchbar-item-main' to={`/tracks/${searchbarItem.id}`} key={searchbarItem.id} replace>
-                    <div className='searchbar-item-image' style={{ background: `url(${searchbarItem.artwork_path}`, backgroundPosition: 'center', backgroundSize: 'cover' }}> </div>
-                    <div className='searchbar-item-right'>
-                        <div className='searchbar-item-right-top'>
-                            <p className='searchbar-item-title'>{searchbarItem.title}</p>
-                            <p className='searchbar-item-artist'>{searchbarItem.artist}</p>
-                        </div>
-                        <div className='searchbar-item-right-bottom'>
-                            <img className='searchbar-item-eye' src={window.eyeIcon} />
-                            <p className='searchbar-item-views'>{this.randomNum()}</p>
-                        </div>
-                    </div>
-                </Link>
+                return (
+                    <SearchbarItem searchbarItem={searchbarItem} />
+                )
             })
             return (
                 <div className='searchbar-items-modal'>

@@ -36,13 +36,15 @@ class LyricsShow extends React.Component {
         })
     }
 
-    componentDidUpdate(prevProps) {
-        if (this.props.annotations === prevProps.annotations) {
-            this.props.track.annotation_ids.forEach(id => {
-                this.props.fetchAnnotation(id)
-            })
-        }
-    }
+
+    // *used for refreshing page when entered from the search bar on an individual track's page    
+    // componentDidUpdate(prevProps) {
+    //     if (this.props.annotations === prevProps.annotations) {
+    //         this.props.track.annotation_ids.forEach(id => {
+    //             this.props.fetchAnnotation(id)
+    //         })
+    //     }
+    // }
 
     annotatedLyrics() {
         let lyrics
