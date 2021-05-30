@@ -1,19 +1,19 @@
 .lyrics-show-main {
-    width: 100%;
     background: #f7f7f7;
+    width: 100%;
 }
 
 .lyrics-show-shade {
+    display: flex;
     max-width: 970px;
     background: rgb(255, 255, 255);
-    display: flex;
     margin: 0px auto 0px auto;
 }
 
 .lyrics-show-left {
     max-width: 562px;
     padding: 16px; 
-    margin-bottom: 50px;
+    margin: 0px 0px 50px 0px;
 }
 
 .lyrics-show-top {
@@ -21,15 +21,15 @@
     color: #9a9a9a;
     font-size: 12px;
     letter-spacing: 0.2px;
-    padding-bottom: 28px;
+    padding: 0px 0px 28px 0px;
 }
 
 .lyrics-show-body {
+    width: 530px;
     font-family: 'Programme Light', sans-serif;    
     font-size: 18px;
     font-weight: lighter;
     line-height: 30px;
-    width: 530px;
 }
 
 .not-an-anno {
@@ -40,19 +40,19 @@
 }
 
 .is-an-anno {
+    background: rgb(224, 224, 224);
     font-family: 'Programme Light', sans-serif;    
     font-size: 18px;
     font-weight: lighter;
     line-height: 30px;
-    background: rgb(224, 224, 224);
 }
 
 .is-an-anno:hover {
-    background: rgb(121, 164, 255);
     cursor: pointer;
+    background: rgb(121, 164, 255);
 }
 
 .lyrics-show-right {
     width: min(100%, 371px);
-    margin-right: auto;
+    margin: 0px auto 0px 0px;
 }
