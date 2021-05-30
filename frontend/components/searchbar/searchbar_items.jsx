@@ -1,11 +1,4 @@
 import React from "react";
-import {
-    Route,
-    Redirect,
-    Switch,
-    Link,
-    HashRouter
-} from "react-router-dom";
 import SearchbarItem from "./searchbar_item";
 
 class SearchbarItems extends React.Component {
@@ -18,10 +11,10 @@ class SearchbarItems extends React.Component {
     }
 
     render() {
-        const { searches, clearSearchField } = this.props;
+        const { searches, searchField, clearSearchField } = this.props;
         
         let searchbarItems;
-        if (searches.length > 0 && this.props.searchField !== "") {
+        if (searches.length > 0 && searchField !== "") {
             searchbarItems = searches.slice(0, 5).map(searchbarItem => {
                 return (
                     <SearchbarItem searchbarItem={searchbarItem} />

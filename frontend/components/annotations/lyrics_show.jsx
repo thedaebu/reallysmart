@@ -34,11 +34,13 @@ class LyricsShow extends React.Component {
         this.props.track.annotation_ids.forEach(id => {
             this.props.fetchAnnotation(id)
         })
+        window.scrollTo(0, 0)
     }
 
 
     // *used for refreshing page when entered from the search bar on an individual track's page    
     // componentDidUpdate(prevProps) {
+    //     debugger
     //     if (this.props.annotations === prevProps.annotations) {
     //         this.props.track.annotation_ids.forEach(id => {
     //             this.props.fetchAnnotation(id)
