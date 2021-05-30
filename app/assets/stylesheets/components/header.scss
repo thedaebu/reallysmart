@@ -1,10 +1,8 @@
 header {
     display: flex;
-    background: rgb(106, 153, 255);
     justify-content: space-between;
-    padding: 5px;
-    padding-top: 6px;
-    padding-bottom: 6px;
+    background: rgb(106, 153, 255);
+    padding: 6px 5px 6px 5px;
 }
 
 .search-bar-main {
@@ -12,32 +10,30 @@ header {
 }
 
 .search-bar-form {
-    font-family: 'Programme Regular', sans-serif;
-    font-size: 15px;  
-    color: black;
     height: 27px;
     width: 180px;
-    border: none;
+    font-family: 'Programme Regular', sans-serif;
+    color: black;
+    font-size: 15px;  
     font-weight: 800px;
-    padding-left: 10px;
+    border: none;
+    padding: 1px 1px 1px 10px;
 }
 
 .search-bar-glass {
     height: 25px;
     width: 25px;
     background: white;
-    padding-top: 2px;
-    padding-bottom: 2px;
+    padding: 2px 0px 2px 0px;
 }
 
 .header-right {
     display: flex;
-    font-size: 12px;
     color: black;
+    font-size: 12px;
     text-align: center;
-    padding-top: 9px;
-    padding-right: 10px;
     letter-spacing: 1px;
+    padding: 9px 10px 0px 0px;
 }
 
 .header-main {
@@ -47,26 +43,26 @@ header {
 
 .login, .signup {
     font-family: 'Programme Regular', sans-serif;
-    text-decoration: none;
     color: black;
-    padding-right: 10px;
+    text-decoration: none;
     letter-spacing: 0.75px;
+    padding: 0px 10px 0px 0px;
 }
 
 .logo {
     position: relative;
     font-family: Programme, Arial, sans-serif;
-    letter-spacing: 8px;
-    font-size: 20px;
-    text-decoration: none;
     color: rgb(106, 153, 255);
+    font-size: 20px;
+    letter-spacing: 8px;
+    text-decoration: none;
     text-shadow: 2.4px -2.2px 0px #000000;
-    padding-top: 7px;
+    padding: 7px 0px 0px 0px;
 }
 
 .demo {
-    font-family: 'Programme Regular', sans-serif;
     position: relative;
+    font-family: 'Programme Regular', sans-serif;
     text-align: center;
     letter-spacing: -0.25px;
 }
@@ -78,8 +74,8 @@ header {
 .logout {
     text-decoration: none;
     color: black;
-    padding-right: 10px;
     letter-spacing: -0.25px;
+    padding: 0px 10px 0px 0px;
 }
 
 .logout:hover {
