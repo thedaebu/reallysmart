@@ -1,4 +1,3 @@
-
 .lyrics-show-main {
     width: 100%;
     background: #f7f7f7;
@@ -8,13 +7,13 @@
     max-width: 970px;
     background: rgb(255, 255, 255);
     display: flex;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0px auto 0px auto;
 }
 
 .lyrics-show-left {
     max-width: 562px;
     padding: 16px; 
+    margin-bottom: 50px;
 }
 
 .lyrics-show-top {
