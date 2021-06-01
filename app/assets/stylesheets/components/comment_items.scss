@@ -5,19 +5,17 @@
 }
 
 .comment-list-track-item {
-    margin-left: 15px; 
     width: min(95%, 537px);
-    padding-top: 20px;
-    padding-bottom: 20px;
     border-top: 1px solid #99a7ee;
+    padding: 20px 0px 20px 0px;
+    margin: 0px 0px 0px 15px;
 }
 
 .comment-list-anno-item {
-    margin-left: 15px;
     width: min(93%, 314px);
-    padding-top: 20px;
-    padding-bottom: 20px;
     border-top: 1px solid #99a7ee;
+    padding: 20px 0px 20px 0px;
+    margin: 0px 0px 0px 15px;
 }
 
 .comment-list-item-top {
@@ -30,17 +28,17 @@
 }
 
 .comment-list-item-baby {
-    width: 20px;
     height: 20px;
+    width: 20px;
     position: relative;
     top: 2px;
 }
 
 .comment-list-item-commenter {
-    font-size: 15px;
     position: relative;
     top: 5px;
     left: 5px;
+    font-size: 15px;
 }
 
 .comment-list-item-time {
@@ -50,6 +48,6 @@
 .comment-list-item-body {
     font-family: 'Programme Light', sans-serif;
     font-size: 17px;
-    padding-top: 17px;
     line-height: 23px;
+    padding: 17px 0px 0px 0px;
 }
