@@ -34,7 +34,7 @@ class LyricsShow extends React.Component {
         this.props.track.annotation_ids.forEach(id => {
             this.props.fetchAnnotation(id)
         })
-        window.scrollTo(0, 0)
+        window.scrollTo(0, 0);
     }
 
     annotatedLyrics() {

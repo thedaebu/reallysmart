@@ -14,7 +14,8 @@ class TrackIndex extends React.Component {
     }
 
     componentDidMount() {   
-        this.props.fetchTracks();     
+        this.props.fetchTracks();    
+        window.scrollTo(0, 0);
     }
 
     handleClick(e) {
