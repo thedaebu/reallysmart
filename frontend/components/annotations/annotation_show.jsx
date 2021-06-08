@@ -67,8 +67,18 @@ class Annotation extends React.Component {
                 <div className='annotation-show-main' style={{position: 'relative', top: yCoord-370}} >
                     <p className='annotation-show-name'>Really Smart Annotation by {annotation.annotator}</p>
                     <p className='annotation-show-body'>{annotation.body}</p>
-                    <VotesShowContainer parent={annotation} voteableType="Annotation" voteableId={annotation.id} numberOfVotes={annotation.votes} />
-                    <CommentShowContainer parent={annotation} currentUser={currentUser} commentableType="Annotation" commentableId={annoId} />
+                    <VotesShowContainer 
+                        parent={annotation} 
+                        voteableType="Annotation" 
+                        voteableId={annotation.id} 
+                        numberOfVotes={annotation.votes} 
+                    />
+                    <CommentShowContainer 
+                        parent={annotation} 
+                        currentUser={currentUser} 
+                        commentableType="Annotation" 
+                        commentableId={annoId} 
+                    />
                 </div>
             );
         } else if (currentUser && startIndex && startIndex !== endIndex && this.state.createStatus === false && this.props.annotationModal){
@@ -86,10 +96,10 @@ class Annotation extends React.Component {
                     <form id='annotation-show-create-form' onSubmit={this.handleFormSubmit}>
 
                         <textarea 
-                        className='annotation-show-create-form-top' 
-                        placeholder="Everything you teach us is for a reason, but none of it is important."
-                        value={this.state.body}
-                        onChange={this.handleFormChange()}
+                            className='annotation-show-create-form-top' 
+                            placeholder="Everything you teach us is for a reason, but none of it is important."
+                            value={this.state.body}
+                            onChange={this.handleFormChange()}
                         >
                         </textarea>
                         

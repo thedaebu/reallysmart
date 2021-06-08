@@ -38,7 +38,7 @@ class LyricsShow extends React.Component {
     }
    
     componentDidUpdate(prevProps) {
-        if (this.props.trackId !== prevProps.trackId) {
+        if (this.props.track.id !== prevProps.track.id) {
             this.props.track.annotation_ids.forEach(id => {
                 this.props.fetchAnnotation(id)
             })
@@ -202,7 +202,12 @@ class LyricsShow extends React.Component {
                         <pre className='lyrics-show-body' onMouseUp={this.handleMouseUp}>
                             {this.annotatedLyrics()}
                         </pre> 
-                        <CommentShowContainer parent={track} commentableType="Track" currentUser={currentUser} commentableId={track.id} />               
+                        <CommentShowContainer 
+                            parent={track} 
+                            currentUser={currentUser} 
+                            commentableType="Track" 
+                            commentableId={track.id} 
+                        />               
                     </div>
                     <div className='lyrics-show-right'>
                         <AnnotationShowContainer 

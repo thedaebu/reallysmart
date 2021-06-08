@@ -14,14 +14,18 @@ class TrackShow extends React.Component {
 
     render() {
         const { track, fetchTrack } = this.props;
-        const { trackId } = this.props.match.params;
         if (track) {
             return (
                 <div>
                     <NavBar />
-                    <TrackShowHeader track={track} fetchTrack={fetchTrack} />
+                    <TrackShowHeader 
+                        track={track} 
+                        fetchTrack={fetchTrack} 
+                    />
                     <div className='track-show-bottom-main'>
-                        <LyricsShowContainer track={track} trackId={trackId} />
+                        <LyricsShowContainer 
+                            track={track} 
+                        />
                     </div>
                 </div>
             );

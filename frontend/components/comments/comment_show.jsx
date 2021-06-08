@@ -26,6 +26,14 @@ class CommentShow extends React.Component {
         })  
     }
 
+    componentDidUpdate(prevProps) {
+        if (this.props.parent.id !== prevProps.parent.id) {
+            this.props.parent.comment_ids.forEach(id => {
+                this.props.fetchComment(id)
+            })  
+        }
+    }
+
     handleTrackStatus(e) {
         e.preventDefault();
         this.setState({['createTrackStatus'] : true});
