@@ -14,7 +14,7 @@ class DemoUser extends React.Component {
         login(info);
     }
 
-    render () {
+    render() {
         const { currentUser } = this.props;
         if (currentUser) {
             return (

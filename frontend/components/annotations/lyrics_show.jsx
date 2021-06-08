@@ -36,11 +36,9 @@ class LyricsShow extends React.Component {
         })
         window.scrollTo(0, 0)
     }
-
-
-    // *used for refreshing page when entered from the search bar on an individual track's page    
+   
     componentDidUpdate(prevProps) {
-        if (this.props.annotations === prevProps.annotations) {
+        if (this.props.trackId !== prevProps.trackId) {
             this.props.track.annotation_ids.forEach(id => {
                 this.props.fetchAnnotation(id)
             })
@@ -194,7 +192,7 @@ class LyricsShow extends React.Component {
         this.props.closeAnnotationModal();
     }
 
-    render () {
+    render() {
         const { track, currentUser } = this.props;
         return (
             <div className='lyrics-show-main'>
