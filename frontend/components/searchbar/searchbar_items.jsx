@@ -15,9 +15,9 @@ class SearchbarItems extends React.Component {
         
         let searchbarItems;
         if (searches.length > 0 && searchField !== "") {
-            searchbarItems = searches.slice(0, 5).map(searchbarItem => {
+            searchbarItems = searches.slice(0, 5).map((searchbarItem, key) => {
                 return (
-                    <SearchbarItem searchbarItem={searchbarItem} />
+                    <SearchbarItem searchbarItem={searchbarItem} key={key}/>
                 )
             })
             return (
