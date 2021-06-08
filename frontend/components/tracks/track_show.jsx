@@ -12,6 +12,12 @@ class TrackShow extends React.Component {
         this.props.fetchTrack(this.props.match.params.trackId);
     }
 
+    componentDidUpdate(prevProps) {
+        if (this.props.match.params.trackId !== prevProps.match.params.trackId) {
+            this.props.fetchTrack(this.props.match.params.trackId);
+        }
+    }
+
     render() {
         const { track, fetchTrack } = this.props;
         if (track) {

@@ -14,10 +14,6 @@ class Searchbar extends React.Component {
         this.clearSearchField = this.clearSearchField.bind(this);
     }
 
-    componentDidMount() {
-        this.props.fetchTracks();
-    }
-
     onChange() {
         if (this.state.searchField !== "") {
             this.props.fetchSearches(this.state.searchField.toLowerCase());

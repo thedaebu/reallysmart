@@ -17,14 +17,6 @@ class Annotation extends React.Component {
         this.handleCancel = this.handleCancel.bind(this);   
     }
 
-    componentDidUpdate(prevProps) {
-        if (this.props !== prevProps) {
-            this.setState({
-                createStatus: this.props.createStatus
-            });
-        }
-    }
-
     handleClick(e) {
         e.preventDefault();
         this.setState({['createStatus']: true});
