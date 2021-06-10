@@ -52,7 +52,7 @@ class Annotation extends React.Component {
     }
 
     render() {
-        const { annotation, annoId, currentUser, yCoord, startIndex, endIndex } = this.props;
+        const { track, annotation, annoId, currentUser, yCoord, startIndex, endIndex } = this.props;
         
         if (annotation) {
             return (
@@ -139,7 +139,9 @@ class Annotation extends React.Component {
             );
         } else {
             return(
-                null
+                <p>
+                    About "{track.title}"
+                </p>
             );
         }
     }
