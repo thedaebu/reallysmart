@@ -27,6 +27,18 @@ header {
     padding: 2px 0px 2px 0px;
 }
 
+.logo {
+    position: absolute;
+    left: 41.5%;
+    font-family: Programme, Arial, sans-serif;
+    color: rgb(106, 153, 255);
+    font-size: 20px;
+    letter-spacing: 8px;
+    text-decoration: none;
+    text-shadow: 2.4px -2.2px 0px #000000;
+    margin: 7px auto 0px auto;
+}
+
 .header-right {
     display: flex;
     color: black;
@@ -47,17 +59,6 @@ header {
     text-decoration: none;
     letter-spacing: 0.75px;
     padding: 0px 10px 0px 0px;
-}
-
-.logo {
-    position: relative;
-    font-family: Programme, Arial, sans-serif;
-    color: rgb(106, 153, 255);
-    font-size: 20px;
-    letter-spacing: 8px;
-    text-decoration: none;
-    text-shadow: 2.4px -2.2px 0px #000000;
-    padding: 7px 0px 0px 0px;
 }
 
 .demo {
