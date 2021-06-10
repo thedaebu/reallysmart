@@ -7,7 +7,7 @@
     flex-direction: column;
     align-items: center;
     font-family: 'Programme Regular', sans-serif;
-    margin: 0px 0px 50px 0px;
+    margin: 0px 0px 40px 0px;
 }
 
 .tracks-index-h1 {
@@ -20,7 +20,7 @@
 .tracks-index-h2 {
     color: rgb(255, 20, 100);
     font-size: 14px;
-    margin: 11px 0px 0px 0px;
+    margin: 11px 0px 20.5px 0px;
 }
 
 .tracks-index-list {
@@ -35,7 +35,7 @@
     align-items: center;
     color: black;
     border-bottom: rgb(224, 224, 224) solid 2px;
-    padding: 2px 0px 3px 0px;
+    padding: 2px 0px 2px 0px;
 }
 
 .track-index-item:hover {
@@ -52,24 +52,28 @@
 }
 
 .track-index-item-title {
+    position: relative;
+    bottom: 0.5px;
     font-family: 'Programme Regular', sans-serif;
-    font-size: 23px;
+    font-size: 24px;
     font-weight: normal;
 }
 
 .track-index-item-lyrics {
     position: relative;
-    top: 2px;
+    top: 1.5px;
     display: flex;
     align-items: center;
     color: rgb(156, 156, 156);
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 600px;
     letter-spacing: 1px;
-    padding: 0px 0px 0px 5px;
+    margin: 0px 0px 0px 5px;
 }
 
 .track-index-item-artist {
+    position: relative;
+    bottom: 1px;
     font-family: 'Raleway', sans-serif;    
     font-size: 23px;
 }
@@ -80,8 +84,6 @@
 }
 
 .track-index-item-fire-main {
-    position: relative;
-    top: 2px;
     display: flex;
 }
 
@@ -92,15 +94,13 @@
 
 .track-index-item-fire-number {
     position: relative;
-    top: 3px;
+    top: 3.5px;
     right: 4px;
     color: red;
     font-size: 12px;
 }
 
 .track-index-item-eye-main {
-    position: relative;
-    top: 2px;
     display: flex;
 }
 
@@ -112,7 +112,7 @@
 
 .track-index-item-eye-number {
     position: relative;
-    top: 3px;
+    top: 3.5px;
     right: 4px;
     color: rgb(197, 197, 197);
     font-size: 12px;
@@ -125,7 +125,7 @@
     border: 2px solid rgb(106, 153, 255);
     text-align: center;
     padding: 12px 21px 12px 21px;
-    margin: 40px auto 0px auto;
+    margin: 0px auto 0px auto;
 }
 
 .tracks-index-load-more:hover {
