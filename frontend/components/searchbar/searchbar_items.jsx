@@ -3,7 +3,7 @@ import SearchbarItem from "./searchbar_item";
 
 class SearchbarItems extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
     }
 
     randomNum() {
@@ -14,6 +14,7 @@ class SearchbarItems extends React.Component {
         const { searches, searchField, clearSearchField } = this.props;
         
         let searchbarItems;
+        
         if (searches.length > 0 && searchField !== "") {
             searchbarItems = searches.slice(0, 5).map((searchbarItem, key) => {
                 return (

@@ -6,7 +6,7 @@ export const RECEIVE_TRACK = "RECEIVE_TRACK";
 const receiveTracks = tracks => {
     return ({
         type: RECEIVE_TRACKS,
-        tracks,
+        tracks
     });
 };
 const receiveTrack = ({track, annotations, comments}) => {

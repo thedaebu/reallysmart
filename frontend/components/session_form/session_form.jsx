@@ -2,7 +2,7 @@ import React from "react";
 
 class SessionForm extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
 
         this.state = {
             username: '',
@@ -42,11 +42,11 @@ class SessionForm extends React.Component {
                     })}    
                     </ul>
                 </div>
-            )
+            );
         } else {
             return (
                 <p></p>
-            )
+            );
         }
     }
 
@@ -88,7 +88,7 @@ class SessionForm extends React.Component {
                 </form>
                 <p className='session-form-last' >{formLast} {formLink}</p>                  
             </div>            
-        )
+        );
     }
 };
 

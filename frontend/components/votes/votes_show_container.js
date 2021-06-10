@@ -17,7 +17,7 @@ const mSTP = (state, ownProps) => {
     let currentVote;
     let currentVoteStatus = false;
     if (!currentUserVotes.includes(undefined)) {
-        currentVote = currentUserVotes.filter(vote => vote.voteable_type === ownProps.voteableType && vote.voteable_id === ownProps.voteableId)[0]
+        currentVote = currentUserVotes.filter(vote => vote.voteable_type === ownProps.voteableType && vote.voteable_id === ownProps.voteableId)[0];
         currentVoteStatus = currentUserVotes.filter(vote => vote.voteable_type === ownProps.voteableType && vote.voteable_id === ownProps.voteableId).length > 0 ? true : false;
     }
     

@@ -2,7 +2,7 @@ import React from "react";
 
 class Navbar extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
     }
 
     render() {
@@ -16,15 +16,23 @@ class Navbar extends React.Component {
                     <a className='videos' href='' >VIDEOS</a>
                     <a className='shop' href=''>SHOP</a>
                     <div className='navbar-image-main'>
-                        <a href='https://github.com/thedaebu/reallysmart' target="_blank" rel="noopener noreferrer"><img className='navbar-image-item' src={window.github} /></a>
-                        <a href='https://www.linkedin.com/in/edkim163/' target="_blank" rel="noopener noreferrer"><img className='navbar-image-item' src={window.linkedin} /></a>
-                        <a href='https://angel.co/u/edwardkim163' target="_blank" rel="noopener noreferrer"><img className='navbar-image-item' src={window.angellist} /></a>
-                        <a href='https://eddie-kim.com/' target="_blank" rel="noopener noreferrer"><img className='navbar-image-item' src={window.website} /></a>
+                        <a href='https://github.com/thedaebu/reallysmart' target="_blank" rel="noopener noreferrer">
+                            <img className='navbar-image-item' src={window.github} />
+                        </a>
+                        <a href='https://www.linkedin.com/in/edkim163/' target="_blank" rel="noopener noreferrer">
+                            <img className='navbar-image-item' src={window.linkedin} />
+                        </a>
+                        <a href='https://angel.co/u/edwardkim163' target="_blank" rel="noopener noreferrer">
+                            <img className='navbar-image-item' src={window.angellist} />
+                        </a>
+                        <a href='https://eddie-kim.com/' target="_blank" rel="noopener noreferrer">
+                            <img className='navbar-image-item' src={window.website} />
+                        </a>
                                   
                     </div>
                 </div>
             </div>
-        )
+        );
     }
 };
 

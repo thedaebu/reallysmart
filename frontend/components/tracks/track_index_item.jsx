@@ -9,7 +9,7 @@ import {
 
 class TrackIndexItem extends React.Component {
     constructor(props) {
-        super (props) 
+        super (props);
     }
     
     randomNum() {
@@ -39,7 +39,7 @@ class TrackIndexItem extends React.Component {
                     <p className='track-index-item-eye-number'>{this.randomNum() * 10}</p>
                 </div>
             </Link>
-        )
+        );
     }
 };
 

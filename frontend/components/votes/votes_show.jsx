@@ -3,7 +3,7 @@ import { RiThumbUpLine } from "react-icons/ri";
 
 class VotesShow extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
 
         this.state = {
             currentVoteStatus: this.props.currentVoteStatus
@@ -15,7 +15,7 @@ class VotesShow extends React.Component {
     componentDidMount() {
         if (this.props.currentUser && this.props.currentUser.vote_ids.length > 0) {
             this.props.currentUser.vote_ids.forEach(id => {
-                this.props.fetchVote(id)
+                this.props.fetchVote(id);
             })
         }
     }

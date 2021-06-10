@@ -4,7 +4,7 @@ import SearchbarItemsContainer from "./searchbar_items_container";
 
 class Searchbar extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
 
         this.state = {
             searchField: ""
@@ -38,9 +38,12 @@ class Searchbar extends React.Component {
                     />
                     <AiOutlineSearch className='search-bar-glass' />
                 </div>   
-                <SearchbarItemsContainer searchField={this.state.searchField} clearSearchField={this.clearSearchField} />
+                <SearchbarItemsContainer 
+                    searchField={this.state.searchField} 
+                    clearSearchField={this.clearSearchField} 
+                />
             </div>
-        )
+        );
     }
 };
 

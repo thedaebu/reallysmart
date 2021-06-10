@@ -5,7 +5,7 @@ import NavBar from "../header/navbar";
 
 class TrackShow extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
     }
 
     componentDidMount() {       
@@ -22,6 +22,7 @@ class TrackShow extends React.Component {
 
     render() {
         const { track, fetchTrack } = this.props;
+        
         if (track) {
             return (
                 <div>

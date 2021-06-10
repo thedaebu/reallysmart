@@ -5,6 +5,7 @@ import Header from "./header";
 const mSTP = ({session, entities: { users }}) => ({
     currentUser: users[session.id]
 });
+
 const mDTP = dispatch => ({
     logout: () => dispatch(logout())
 });

@@ -4,7 +4,6 @@ import { fetchAnnotation } from "../../actions/annotation_actions";
 import { fetchTrack } from "../../actions/track_actions";
 import CommentShow from "./comment_show";
 
-
 const mSTP = (state, ownProps) => {
     let comments;
     if (Object.keys(state.entities.comments).length !== 0) {

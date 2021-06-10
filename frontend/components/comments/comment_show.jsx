@@ -22,8 +22,8 @@ class CommentShow extends React.Component {
 
     componentDidMount() {
         this.props.parent.comment_ids.forEach(id => {
-            this.props.fetchComment(id)
-        })  
+            this.props.fetchComment(id);
+        });
     }
 
     handleTrackStatus(e) {
@@ -58,7 +58,7 @@ class CommentShow extends React.Component {
             body: this.state.body,
             commenter_id: currentUser.id,
             commentable_type: commentableType,
-            commentable_id: parent.id,
+            commentable_id: parent.id
         };
 
         createComment(comment).then(() => fetchAction(parent.id))
@@ -73,7 +73,7 @@ class CommentShow extends React.Component {
             body: this.state.body,
             commenter_id: currentUser.id,
             commentable_type: commentableType,
-            commentable_id: parent.id,
+            commentable_id: parent.id
         };
 
         createComment(comment).then(() => fetchAction(parent.id))
@@ -88,7 +88,12 @@ class CommentShow extends React.Component {
         if (currentUser && this.state.createTrackStatus === true && commentableType === "Track") {
             commentPart = (
                 <form className='comment-show-create-end-main' onSubmit={this.handleTrackSubmit} >
-                    <textarea className='comment-show-create-end-track-text' placeholder={commentMessage} onChange={this.handleChange('body')} ></textarea>
+                    <textarea 
+                        className='comment-show-create-end-track-text' 
+                        placeholder={commentMessage} 
+                        onChange={this.handleChange('body')} 
+                    >
+                    </textarea>
                     <div className='comment-show-create-end-buttons'>
                         <button className='comment-show-create-end-submit'>
                             <p className='comment-show-create-end-submit-button'>Submit</p>
@@ -102,7 +107,12 @@ class CommentShow extends React.Component {
         } else if (currentUser && this.state.createAnnoStatus === true && commentableType === "Annotation") {
             commentPart = (
                 <form className='comment-show-create-end-main' onSubmit={this.handleAnnoSubmit} >
-                    <textarea className='comment-show-create-end-anno-text' placeholder={commentMessage} onChange={this.handleChange('body')} ></textarea>
+                    <textarea 
+                        className='comment-show-create-end-anno-text' 
+                        placeholder={commentMessage} 
+                        onChange={this.handleChange('body')} 
+                    >
+                    </textarea>
                     <div className='comment-show-create-end-buttons'>
                         <button className='comment-show-create-end-submit'>
                             <p className='comment-show-create-end-submit-button'>Submit</p>
@@ -117,7 +127,12 @@ class CommentShow extends React.Component {
             commentPart = (
                 <div className='comment-show-create-begin-main'>
                     <img className='comment-show-create-baby' src="https://assets.genius.com/images/default_avatar_100.png" />
-                    <textarea className='comment-show-create-begin-text' placeholder={commentMessage} onClick={this.handleTrackStatus}></textarea>
+                    <textarea 
+                        className='comment-show-create-begin-text' 
+                        placeholder={commentMessage} 
+                        onClick={this.handleTrackStatus}
+                    >
+                    </textarea>
                 </div>
             )
         } else if (currentUser && this.state.createAnnoStatus === false && commentableType === "Annotation") {
@@ -144,7 +159,13 @@ class CommentShow extends React.Component {
             commentParts = (
                 <ul className='comment-list-main'>
                     {comments.map(comment => {
-                        return <CommentItem parent={parent} fetchAction={fetchAction} comment={comment} commentableType={commentableType} key={comment.id} />
+                        return <CommentItem 
+                            parent={parent} 
+                            fetchAction={fetchAction} 
+                            comment={comment} 
+                            commentableType={commentableType} 
+                            key={comment.id} 
+                        />
                     })}
                 </ul>
             )

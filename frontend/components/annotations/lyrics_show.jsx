@@ -33,7 +33,7 @@ class LyricsShow extends React.Component {
     componentDidMount() {
         this.props.track.annotation_ids.forEach(id => {
             this.props.fetchAnnotation(id)
-        })
+        });
         window.scrollTo(0, 0);
     }
 
@@ -55,7 +55,7 @@ class LyricsShow extends React.Component {
     }
 
     annotateLyrics(lyrics) {
-        let annotations = this.props.annotations        
+        let annotations = this.props.annotations;        
         let sortedAnnotations = annotations.sort((a,b) => (a.start_index > b.start_index ? 1 : -1));
 
         let lyricsParts = [];
@@ -215,7 +215,7 @@ class LyricsShow extends React.Component {
                     </div>
                 </div>
             </div>
-        ) 
+        );
     }
 };
 

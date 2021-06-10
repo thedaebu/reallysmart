@@ -2,7 +2,7 @@ import React from "react";
 
 class TrackShowHeader extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
     }
 
     randomNum() {
@@ -38,7 +38,7 @@ class TrackShowHeader extends React.Component {
                     </div>
                 </div>
             </div>
-        )
+        );
     }
 };
 

@@ -6,8 +6,8 @@ const mSTP = ({session, entities: { users }}) => {
     return ({
         currentUser: users[session.id],
         info: {
-            username: 'reallysmart',
-            password: 'reallysmart'
+            username: 'notsosmart',
+            password: 'notsosmart'
         }
     })
 };

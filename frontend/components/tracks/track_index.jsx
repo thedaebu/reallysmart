@@ -4,7 +4,7 @@ import TrackIndexItem from "./track_index_item";
 
 class TrackIndex extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
 
         this.state = {
             list: 5
@@ -23,11 +23,11 @@ class TrackIndex extends React.Component {
         if (this.state.list === 5) {
             this.setState({
                 list: 10
-            })
+            });
         } else if (this.state.list === 10) {
             this.setState({
                 list: 11
-            })
+            });
         }
     }
 
@@ -38,22 +38,22 @@ class TrackIndex extends React.Component {
         if (this.state.list === 5) {
             trackIndexItems = tracks.slice(0, 5).map(track => {
                 return <TrackIndexItem track={track} key={track.id} />;
-            })
+            });
         } else if (this.state.list === 10) {
             trackIndexItems = tracks.slice(0, 10).map(track => {
                 return <TrackIndexItem track={track} key={track.id} />;
-            })
+            });
         } else {
             trackIndexItems = tracks.map(track => {
                 return <TrackIndexItem track={track} key={track.id} />;
-            })
+            });
         }
 
         let loadMore;
         if (this.state.list === 5) {
-            loadMore = <p onClick={this.handleClick} className='tracks-index-load-more'>LOAD MORE</p>
+            loadMore = <p onClick={this.handleClick} className='tracks-index-load-more'>LOAD MORE</p>;
         } else if (this.state.list === 10) { 
-            loadMore = <p onClick={this.handleClick} className='tracks-index-load-more'>We Miss You DMX!</p>
+            loadMore = <p onClick={this.handleClick} className='tracks-index-load-more'>We Miss You DMX!</p>;
         } else {
             loadMore = null;
         }
@@ -70,7 +70,7 @@ class TrackIndex extends React.Component {
                 </div>
                 {loadMore}
             </div>
-        )
+        );
     }
 };
 

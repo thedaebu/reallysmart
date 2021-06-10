@@ -43,7 +43,13 @@ class CommentItem extends React.Component {
                         <p className='comment-list-item-time'>{this.handleTime(comment.updated_at)}</p>
                     </div>
                     <p className='comment-list-item-body'>{comment.body}</p>
-                    <VotesShowContainer voteableType="Comment" voteableId={comment.id} parent={parent} fetchAction={fetchAction} numberOfVotes={comment.votes} />
+                    <VotesShowContainer 
+                        voteableType="Comment" 
+                        voteableId={comment.id} 
+                        parent={parent} 
+                        fetchAction={fetchAction} 
+                        numberOfVotes={comment.votes} 
+                    />
                 </li>
             );
         } else {
@@ -58,12 +64,18 @@ class CommentItem extends React.Component {
                         <p className='comment-list-item-time'>{this.handleTime(comment.updated_at)}</p>
                     </div>
                     <p className='comment-list-item-body'>{comment.body}</p>
-                    <VotesShowContainer voteableType="Comment" voteableId={comment.id} parent={parent} fetchAction={fetchAction} numberOfVotes={comment.votes} />
+                    <VotesShowContainer 
+                        voteableType="Comment" 
+                        voteableId={comment.id} 
+                        parent={parent} 
+                        fetchAction={fetchAction} 
+                        numberOfVotes={comment.votes} 
+                    />
                 </li>
-            )
+            );
         }
     }
-}
+};
 
 export default CommentItem;
 

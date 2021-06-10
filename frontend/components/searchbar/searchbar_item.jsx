@@ -9,7 +9,7 @@ import {
 
 class SearchbarItem extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
     }
 
     randomNum() {
@@ -33,7 +33,7 @@ class SearchbarItem extends React.Component {
                     </div>
                 </div>
             </Link>
-        )
+        );
     }
 };
 
