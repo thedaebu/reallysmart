@@ -24,7 +24,6 @@ class Api::VotesController < ApplicationController
     end
 
     private
-
     def vote_params
         params.require(:vote).permit(:voter_id, :voteable_type, :voteable_id)
     end

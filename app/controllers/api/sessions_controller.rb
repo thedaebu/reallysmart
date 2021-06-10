@@ -17,4 +17,5 @@ class Api::SessionsController < ApplicationController
       end
       render json: ['You are not logged in.'], status: 404
     end
+    
 end
