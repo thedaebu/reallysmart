@@ -4,7 +4,9 @@ class Api::SearchesController < ApplicationController
         
         if params[:search]
             name_search = params[:search]
-            @searches = Track.where("lower(title) LIKE ?", "%#{name_search}%")
+            titles = Track.where("lower(title) LIKE ?", "%#{name_search}%")
+            artists = Track.where("lower(artist) LIKE ?", "%#{name_search}%")
+            @searches = titles + artists
         end
 
         render :index
