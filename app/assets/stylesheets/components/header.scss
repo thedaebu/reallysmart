@@ -2,7 +2,7 @@ header {
     display: flex;
     justify-content: space-between;
     background: rgb(106, 153, 255);
-    padding: 6px 5px 6px 5px;
+    padding: 6px 5px 4px 5px;
 }
 
 .search-bar-main {
@@ -28,8 +28,6 @@ header {
 }
 
 .logo {
-    position: absolute;
-    left: 41.5%;
     font-family: Programme, Arial, sans-serif;
     color: rgb(106, 153, 255);
     font-size: 20px;
@@ -40,45 +38,29 @@ header {
 }
 
 .header-right {
+    width: 180px;
     display: flex;
+    justify-content: flex-end;
     color: black;
     font-size: 12px;
-    text-align: center;
     letter-spacing: 1px;
-    padding: 9px 10px 0px 0px;
+    padding: 8px 10px 0px 0px;
 }
 
 .header-main {
+    width: 130px;
     display: flex;
-    text-align: center;
+    justify-content: flex-end;
 }
 
-.login, .signup {
+.signup, .login, .demo, .logout {
     font-family: 'Programme Regular', sans-serif;
     color: black;
     text-decoration: none;
     letter-spacing: 0.75px;
-    padding: 0px 10px 0px 0px;
+    padding: 0px 0px 0px 15px;
 }
 
-.demo {
-    position: relative;
-    font-family: 'Programme Regular', sans-serif;
-    text-align: center;
-    letter-spacing: -0.25px;
-}
-
-.demo:hover {
-    cursor: pointer;
-}
-
-.logout {
-    text-decoration: none;
-    color: black;
-    letter-spacing: -0.25px;
-    padding: 0px 10px 0px 0px;
-}
-
-.logout:hover {
+.demo:hover, .logout:hover {
     cursor: pointer;
 }
