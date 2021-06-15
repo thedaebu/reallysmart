@@ -10,6 +10,12 @@ const receiveSearches = (searches) => {
     });
 };
 
+export const clearSearches = () => {
+    return ({
+        type: CLEAR_SEARCHES
+    });
+};
+
 export const fetchSearches = search => dispatch => {
     return (
         SearchApiUtil.fetchSearches(search).then(searches => dispatch(receiveSearches(searches)))

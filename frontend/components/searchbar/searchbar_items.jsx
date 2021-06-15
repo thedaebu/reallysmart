@@ -6,6 +6,12 @@ class SearchbarItems extends React.Component {
         super(props);
     }
 
+    componentDidUpdate(prevProps) {
+        if (this.props.siteLocation !== prevProps.siteLocation) {
+            this.props.clearSearchField();
+        }
+    }
+
     randomNum() {
         return Math.floor(Math.random() * 1000);
     }
