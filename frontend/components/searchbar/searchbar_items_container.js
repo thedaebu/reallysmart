@@ -10,7 +10,6 @@ import {
 } from 'react-router-dom';
 
 const mSTP = ( state, ownProps) => {
-    debugger
     return ({
         searches: Object.values(state.entities.searches),
         siteLocation: ownProps.location.pathname
