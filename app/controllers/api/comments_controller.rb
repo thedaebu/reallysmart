@@ -1,5 +1,4 @@
 class Api::CommentsController < ApplicationController
-
     def show
         @comment = Comment.find(params[:id])
         render :show
@@ -17,6 +16,5 @@ class Api::CommentsController < ApplicationController
     private
     def comment_params
         params.require(:comment).permit(:body, :commenter_id, :commentable_type, :commentable_id)
-    end
-    
+    end 
 end

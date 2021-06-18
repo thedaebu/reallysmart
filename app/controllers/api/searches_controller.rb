@@ -1,5 +1,4 @@
 class Api::SearchesController < ApplicationController
-
     def index
         if params[:search]
             name_search = params[:search]
@@ -9,5 +8,4 @@ class Api::SearchesController < ApplicationController
         end
         render :index
     end
-    
 end

@@ -1,5 +1,4 @@
 class Api::TracksController < ApplicationController
-    
     def index 
         @tracks = Track.all
         render :index
@@ -9,5 +8,4 @@ class Api::TracksController < ApplicationController
         @track = Track.find(params[:id])
         render :show
     end
-
 end

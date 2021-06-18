@@ -1,5 +1,4 @@
 class Api::AnnotationsController < ApplicationController
-
     def show
         @annotation = Annotation.find_by(id: params[:id])
         render :show
@@ -18,5 +17,4 @@ class Api::AnnotationsController < ApplicationController
     def annotation_params
         params.require(:annotation).permit(:body, :annotator_id, :track_id, :start_index, :end_index)
     end
-    
 end

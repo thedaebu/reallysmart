@@ -1,5 +1,4 @@
 class Api::VotesController < ApplicationController
-
     def show
         @vote = Vote.find(params[:id])
         render :show
@@ -27,5 +26,4 @@ class Api::VotesController < ApplicationController
     def vote_params
         params.require(:vote).permit(:voter_id, :voteable_type, :voteable_id)
     end
-
 end
