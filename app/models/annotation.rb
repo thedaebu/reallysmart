@@ -18,5 +18,4 @@ class Annotation < ApplicationRecord
 
     has_many :votes,
         as: :voteable
-
 end

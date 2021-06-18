@@ -12,6 +12,5 @@ class Comment < ApplicationRecord
         polymorphic: true
 
     has_many :votes,
-        as: :voteable
-        
+        as: :voteable   
 end

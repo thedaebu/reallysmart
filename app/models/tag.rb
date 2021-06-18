@@ -3,6 +3,6 @@ class Tag < ApplicationRecord
     validates :track_id, presence: true
 
     belongs_to :track,
-    foreign_key: :track_id,
-    class_name: "Track"
+        foreign_key: :track_id,
+        class_name: "Track"
 end
