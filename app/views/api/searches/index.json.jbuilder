@@ -1,5 +1,5 @@
 @searches.each do |search|
-    json.set! search.id do
+    json.set! search.track.id do
         json.partial! 'search', search: search
     end
 end

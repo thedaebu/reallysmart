@@ -1,1 +1,1 @@
-json.extract! search, :id, :title, :artist, :artwork_path
+json.extract! search, :track
