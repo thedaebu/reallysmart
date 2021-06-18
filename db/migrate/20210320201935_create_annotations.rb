@@ -6,7 +6,6 @@ class CreateAnnotations < ActiveRecord::Migration[5.2]
       t.integer :track_id, null: false
       t.integer :start_index, null: false
       t.integer :end_index, null: false
-
       t.timestamps
     end
     add_index :annotations, :annotator_id
