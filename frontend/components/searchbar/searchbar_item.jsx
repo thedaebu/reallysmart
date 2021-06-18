@@ -17,15 +17,15 @@ class SearchbarItem extends React.Component {
     }
 
     render() {
-        const { searchbarItem } = this.props;
+        const { track } = this.props.searchbarItem;
 
         return (
-            <Link className='searchbar-item-main' to={`/tracks/${searchbarItem.id}`} replace>
-                <div className='searchbar-item-image' style={{ backgroundImage: `url(${searchbarItem.artwork_path}`, backgroundPosition: 'center', backgroundSize: 'cover' }}> </div>
+            <Link className='searchbar-item-main' to={`/tracks/${track.id}`} replace>
+                <div className='searchbar-item-image' style={{ backgroundImage: `url(${track.artwork_path}`, backgroundPosition: 'center', backgroundSize: 'cover' }}> </div>
                 <div className='searchbar-item-right'>
                     <div className='searchbar-item-right-top'>
-                        <p className='searchbar-item-title'>{searchbarItem.title}</p>
-                        <p className='searchbar-item-artist'>{searchbarItem.artist}</p>
+                        <p className='searchbar-item-title'>{track.title}</p>
+                        <p className='searchbar-item-artist'>{track.artist}</p>
                     </div>
                     <div className='searchbar-item-right-bottom'>
                         <img className='searchbar-item-eye' src={window.eyeIcon} />
