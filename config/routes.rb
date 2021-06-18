@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :comments, only: [:show, :create]
     resources :votes, only: [:show, :create, :destroy]
     resources :searches, only: [:index]
+    resources :tags, only: [:index]
   end
   
 end
