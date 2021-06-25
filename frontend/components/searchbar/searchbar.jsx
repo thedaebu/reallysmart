@@ -18,7 +18,6 @@ class Searchbar extends React.Component {
         if (this.state.searchField !== "") {
             this.props.fetchSearches(this.state.searchField.toLowerCase());
         }
-
         return e => this.setState({['searchField']: e.target.value});
     }
 
