@@ -4,7 +4,7 @@ import { closeAnnotationModal, openAnnotationModal } from "../../actions/annotat
 import LyricsShow from "./lyrics_show";
 
 const mSTP = (state, ownProps) => {
-    let annotations = ownProps.track.annotation_ids.map(id => {
+    const annotations = ownProps.track.annotation_ids.map(id => {
         return state.entities.annotations[id];
     });
     
