@@ -5,14 +5,17 @@ import { fetchTrack } from "../../actions/track_actions";
 import CommentShow from "./comment_show";
 
 const mSTP = (state, ownProps) => {
-    let comments;
-    if (Object.keys(state.entities.comments).length !== 0) {
-        comments = ownProps.parent.comment_ids.map(id => {
-            return state.entities.comments[id];
-        })
-    } else (
-        comments = []
-    )
+    // let comments;
+    // if (Object.keys(state.entities.comments).length !== 0) {
+    //     comments = ownProps.parent.comment_ids.map(id => {
+    //         return state.entities.comments[id];
+    //     })
+    // } else (
+    //     comments = []
+    // )
+    const comments = ownProps.parent.comment_ids.map(id => {
+        return state.entities.comments[id];
+    })
 
     let commentMessage;
     if (ownProps.commentableType === "Track") {
