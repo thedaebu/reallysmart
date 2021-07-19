@@ -5,25 +5,8 @@ import { fetchTrack } from "../../actions/track_actions";
 import CommentShow from "./comment_show";
 
 const mSTP = (state, ownProps) => {
-    // let comments;
-    // if (Object.keys(state.entities.comments).length !== 0) {
-    //     comments = ownProps.parent.comment_ids.map(id => {
-    //         return state.entities.comments[id];
-    //     })
-    // } else (
-    //     comments = []
-    // )
-    const comments = ownProps.parent.comment_ids.map(id => {
-        return state.entities.comments[id];
-    })
-
-    let commentMessage;
-    if (ownProps.commentableType === "Track") {
-        commentMessage = "Add a comment";
-    } else {
-        commentMessage = "You think you're really smarter?";
-    }
-
+    const comments = ownProps.parent.comment_ids.map(id => state.entities.comments[id]);
+    const commentMessage = ownProps.commentableType === "Track" ? "Add a comment" : "You think you're really smarter?";
     return ({
         comments: comments,
         commentMessage: commentMessage
