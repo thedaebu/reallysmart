@@ -3,7 +3,7 @@ import { RECEIVE_CREATED_VOTE, RECEIVE_VOTE, REMOVE_VOTE } from "../actions/vote
 
 const votesReducer = (state = {}, action) => {
     Object.freeze(state);
-    let newState = Object.assign({}, state);
+    const newState = Object.assign({}, state);
     
     switch (action.type) {
         case RECEIVE_VOTE:
