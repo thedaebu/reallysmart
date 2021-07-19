@@ -7,11 +7,11 @@ class CommentItem extends React.Component {
     }
 
     handleTime(dateTime) {
-        let oldDate = new Date(Date.parse(dateTime));
-        let currentDate = new Date();
-        let yearDiff = currentDate.getFullYear() - oldDate.getFullYear();
-        let monthDiff = currentDate.getMonth() - oldDate.getMonth();
-        let dayDiff = currentDate.getDate() - oldDate.getDate();
+        const oldDate = new Date(Date.parse(dateTime));
+        const currentDate = new Date();
+        const yearDiff = currentDate.getFullYear() - oldDate.getFullYear();
+        const monthDiff = currentDate.getMonth() - oldDate.getMonth();
+        const dayDiff = currentDate.getDate() - oldDate.getDate();
         if (yearDiff > 1) {
             return `${yearDiff} years ago`;
         } else if (yearDiff === 1) {
