@@ -8,16 +8,16 @@ const mSTP = (state, ownProps) => {
     const currentUserVotes = currentUser && Object.keys(state.entities.votes).length !== 0 ? currentUser.vote_ids.map(id => {
         if (state.entities.votes[id]) {
             return state.entities.votes[id];
-        } 
-    }) : Array()
-    
-    let currentVote;
-    let currentVoteStatus = false;
-    if (!currentUserVotes.includes(undefined)) {
-        currentVote = currentUserVotes.filter(vote => vote.voteable_type === ownProps.voteableType && vote.voteable_id === ownProps.voteableId)[0];
-        currentVoteStatus = currentUserVotes.filter(vote => vote.voteable_type === ownProps.voteableType && vote.voteable_id === ownProps.voteableId).length > 0 ? true : false;
-    }
-    
+        }
+    })
+    : Array()
+    const currentVote = !currentUserVotes.includes(undefined) 
+    ? currentUserVotes.filter(vote => vote.voteable_type === ownProps.voteableType && vote.voteable_id === ownProps.voteableId)[0] 
+    : null;
+    const currentVoteStatus = !currentUserVotes.includes(undefined) && currentUserVotes.filter(vote => vote.voteable_type === ownProps.voteableType && vote.voteable_id === ownProps.voteableId).length > 0 
+    ? true 
+    : false
+
     return ({
         currentUser: currentUser,  
         currentVote: currentVote,
