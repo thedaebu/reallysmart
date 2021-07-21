@@ -4,15 +4,12 @@ import { createVote, deleteVote, fetchVote } from "../../actions/vote_actions";
 import VotesShow from "./votes_show";
 
 const mSTP = (state, ownProps) => {
-    let currentUser = state.entities.users[state.session.id];
-    let currentUserVotes = []
-    if (currentUser && Object.keys(state.entities.votes).length !== 0) {
-        currentUserVotes = currentUser.vote_ids.map(id => {
-            if (state.entities.votes[id]) {
-                return state.entities.votes[id];
-            } 
-        })
-    }
+    const currentUser = state.entities.users[state.session.id];
+    const currentUserVotes = currentUser && Object.keys(state.entities.votes).length !== 0 ? currentUser.vote_ids.map(id => {
+        if (state.entities.votes[id]) {
+            return state.entities.votes[id];
+        } 
+    }) : Array()
     
     let currentVote;
     let currentVoteStatus = false;
