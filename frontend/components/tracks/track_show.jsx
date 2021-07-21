@@ -16,8 +16,8 @@ class TrackShow extends React.Component {
     componentDidUpdate(prevProps) {
         if (this.props.match.params.trackId !== prevProps.match.params.trackId) {
             this.props.fetchTrack(this.props.match.params.trackId);
+            window.scrollTo(0, 0);
         }        
-        window.scrollTo(0, 0);
     }
 
     render() {
