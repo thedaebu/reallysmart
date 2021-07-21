@@ -84,7 +84,6 @@ class CommentShow extends React.Component {
         const { comments, currentUser, parent, commentableType, commentMessage, fetchAction } = this.props;
         
         let commentPart;
-
         if (currentUser && this.state.createTrackStatus === true && commentableType === "Track") {
             commentPart = (
                 <form className='comment-show-create-end-main' onSubmit={this.handleTrackSubmit} >
@@ -153,26 +152,23 @@ class CommentShow extends React.Component {
                 </div>
             )
         }
-
-        let commentParts;
-        if (comments[0] !== undefined) {
-            commentParts = (
-                <ul className='comment-list-main'>
-                    {comments.map(comment => {
-                        return <CommentItem 
-                            parent={parent} 
-                            fetchAction={fetchAction} 
-                            comment={comment} 
-                            commentableType={commentableType} 
-                            key={comment.id} 
-                        />
-                    })}
-                </ul>
+        
+        const commentParts = comments[0] !== undefined 
+        ? (
+            <ul className='comment-list-main'>
+                {comments.map(comment => {
+                    return <CommentItem 
+                        parent={parent} 
+                        fetchAction={fetchAction} 
+                        comment={comment} 
+                        commentableType={commentableType} 
+                        key={comment.id} 
+                    />
+                })}
+            </ul>
             )
-        } else (
-            commentParts = (
-                <p></p>
-            )
+        : (
+            null
         )
         
         return (
