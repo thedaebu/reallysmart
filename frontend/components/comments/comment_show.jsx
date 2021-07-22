@@ -83,9 +83,9 @@ class CommentShow extends React.Component {
     render() {
         const { comments, currentUser, parent, commentableType, commentMessage, fetchAction } = this.props;
         
-        let commentPart;
+        let commentForm;
         if (currentUser && this.state.createTrackStatus === true && commentableType === "Track") {
-            commentPart = (
+            commentForm = (
                 <form className='comment-show-create-end-main' onSubmit={this.handleTrackSubmit} >
                     <textarea 
                         className='comment-show-create-end-track-text' 
@@ -104,7 +104,7 @@ class CommentShow extends React.Component {
                 </form>
             )
         } else if (currentUser && this.state.createAnnoStatus === true && commentableType === "Annotation") {
-            commentPart = (
+            commentForm = (
                 <form className='comment-show-create-end-main' onSubmit={this.handleAnnoSubmit} >
                     <textarea 
                         className='comment-show-create-end-anno-text' 
@@ -123,7 +123,7 @@ class CommentShow extends React.Component {
                 </form>
             )
         } else if (currentUser && this.state.createTrackStatus === false && commentableType === "Track") {
-            commentPart = (
+            commentForm = (
                 <div className='comment-show-create-begin-main'>
                     <img className='comment-show-create-baby' src="https://assets.genius.com/images/default_avatar_100.png" />
                     <textarea 
@@ -135,14 +135,14 @@ class CommentShow extends React.Component {
                 </div>
             )
         } else if (currentUser && this.state.createAnnoStatus === false && commentableType === "Annotation") {
-            commentPart = (
+            commentForm = (
                 <div className='comment-show-create-begin-main'>
                     <img className='comment-show-create-baby' src="https://assets.genius.com/images/default_avatar_100.png" />
                     <textarea className='comment-show-create-begin-text' placeholder={commentMessage} onClick={this.handleAnnoStatus}></textarea>
                 </div>
             )
         } else {
-            commentPart = (
+            commentForm = (
                 <div className='comment-session-main'>                        
                     <p className='comment-session-text'>Please</p>
                     <Link to='/signup' className='comment-session-go'>Sign Up</Link>
@@ -153,7 +153,7 @@ class CommentShow extends React.Component {
             )
         }
         
-        const commentParts = comments[0] !== undefined 
+        const commentItems = comments[0] !== undefined 
         ? (
             <ul className='comment-list-main'>
                 {comments.map(comment => {
@@ -173,8 +173,8 @@ class CommentShow extends React.Component {
         
         return (
             <div className='comment-main'>
-                {commentPart} 
-                {commentParts}
+                {commentForm} 
+                {commentItems}
             </div>
         );               
     }
