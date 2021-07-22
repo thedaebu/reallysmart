@@ -4,6 +4,32 @@ import VotesShowContainer from "../votes/votes_show_container";
 class CommentItem extends React.Component {
     constructor(props) {
         super(props);
+
+        this.commentItem = this.commentItem.bind(this);
+    }
+
+    commentItem() {
+        const { comment, parent, fetchAction } = this.props;
+
+        return (
+            <>
+                <div className='comment-list-item-top'>
+                    <div className='comment-list-item-top-top'>
+                        <img className='comment-list-item-baby' src="https://assets.genius.com/images/default_avatar_100.png" />
+                        <p className='comment-list-item-commenter'>{comment.commenter}</p>
+                    </div>
+                    <p className='comment-list-item-time'>{this.handleTime(comment.updated_at)}</p>
+                </div>
+                <p className='comment-list-item-body'>{comment.body}</p>
+                <VotesShowContainer 
+                    voteableType="Comment" 
+                    voteableId={comment.id} 
+                    parent={parent} 
+                    fetchAction={fetchAction} 
+                    numberOfVotes={comment.votes} 
+                />
+            </>
+        )
     }
 
     handleTime(dateTime) {
@@ -30,47 +56,18 @@ class CommentItem extends React.Component {
     }
 
     render() {
-        const { comment, commentableType, parent, fetchAction } = this.props;
+        const { commentableType } = this.props;
         
         if (commentableType === "Track") {
             return (
                 <li className='comment-list-track-item'>
-                    <div className='comment-list-item-top'>
-                        <div className='comment-list-item-top-top'>
-                            <img className='comment-list-item-baby' src="https://assets.genius.com/images/default_avatar_100.png" />
-                            <p className='comment-list-item-commenter'>{comment.commenter}</p>
-                        </div>
-                        <p className='comment-list-item-time'>{this.handleTime(comment.updated_at)}</p>
-                    </div>
-                    <p className='comment-list-item-body'>{comment.body}</p>
-                    <VotesShowContainer 
-                        voteableType="Comment" 
-                        voteableId={comment.id} 
-                        parent={parent} 
-                        fetchAction={fetchAction} 
-                        numberOfVotes={comment.votes} 
-                    />
+                    {this.commentItem()}
                 </li>
             );
         } else {
             return (
                 <li className='comment-list-anno-item'>
-                    <div className='comment-list-item-top'>
-                        <div className='comment-list-item-top-top'>
-                            <img className='comment-list-item-baby' src="https://assets.genius.com/images/default_avatar_100.png" />
-                            <p className='comment-list-item-commenter'>{comment.commenter}</p>
-
-                        </div>
-                        <p className='comment-list-item-time'>{this.handleTime(comment.updated_at)}</p>
-                    </div>
-                    <p className='comment-list-item-body'>{comment.body}</p>
-                    <VotesShowContainer 
-                        voteableType="Comment" 
-                        voteableId={comment.id} 
-                        parent={parent} 
-                        fetchAction={fetchAction} 
-                        numberOfVotes={comment.votes} 
-                    />
+                    {this.commentItem()}
                 </li>
             );
         }
