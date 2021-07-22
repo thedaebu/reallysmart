@@ -30,7 +30,7 @@ class CommentItem extends React.Component {
     }
 
     render() {
-        const { comment, commentableType, parent, fetchAction} = this.props;
+        const { comment, commentableType, parent, fetchAction } = this.props;
         
         if (commentableType === "Track") {
             return (
@@ -78,4 +78,3 @@ class CommentItem extends React.Component {
 };
 
 export default CommentItem;
-
