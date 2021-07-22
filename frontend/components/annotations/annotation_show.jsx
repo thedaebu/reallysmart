@@ -12,12 +12,12 @@ class Annotation extends React.Component {
             body: ''       
         };
         
-        this.handleClick = this.handleClick.bind(this);
-        this.handleFormSubmit = this.handleFormSubmit.bind(this);
-        this.handleCancel = this.handleCancel.bind(this);   
+        this.handleCreateAnnotation = this.handleCreateAnnotation.bind(this);
+        this.handleSubmitAnnotation = this.handleSubmitAnnotation.bind(this);
+        this.handleCancelAnnotation = this.handleCancelAnnotation.bind(this);   
     }
 
-    handleClick(e) {
+    handleCreateAnnotation(e) {
         e.preventDefault();
         this.setState({['createStatus']: true});
         this.setState({['openness']: 'b'});
@@ -27,7 +27,7 @@ class Annotation extends React.Component {
         return e => this.setState({['body']: e.target.value});
     }
 
-    handleFormSubmit(e) {
+    handleSubmitAnnotation(e) {
         e.preventDefault();     
           
         const annotation = {
@@ -43,7 +43,7 @@ class Annotation extends React.Component {
         this.props.closeAnnotationModal();    
     }
 
-    handleCancel(e) {
+    handleCancelAnnotation(e) {
         e.preventDefault();  
 
         this.setState({['createStatus']: false})
@@ -76,7 +76,7 @@ class Annotation extends React.Component {
         } else if (currentUser && startIndex && startIndex !== endIndex && this.state.createStatus === false && this.props.annotationModal){
             return (
                 <div className='annotation-show-create-main' style={{position: 'relative', top: yCoord-370}} >
-                    <span className='annotation-show-create-begin' onClick={this.handleClick} >
+                    <span className='annotation-show-create-begin' onClick={this.handleCreateAnnotation} >
                         <p className='annotation-show-create-h1'>Start the Really Smart Annotation</p>
                         <p className='annotation-show-create-h2'>(+5 RSQ)</p>
                     </span>
@@ -85,7 +85,7 @@ class Annotation extends React.Component {
         } else if (currentUser && startIndex && this.state.createStatus === true && this.props.annotationModal){
             return (
                 <div className='annotation-show-create-form-main' style={{position: 'relative', top: yCoord-370}} >
-                    <form id='annotation-show-create-form' onSubmit={this.handleFormSubmit}>
+                    <form id='annotation-show-create-form' onSubmit={this.handleSubmitAnnotation}>
 
                         <textarea 
                             className='annotation-show-create-form-top' 
@@ -124,7 +124,7 @@ class Annotation extends React.Component {
                                 <p className='annotation-show-create-form-bottom-save-word'>Save</p>
                                 <p className='annotation-show-create-form-bottom-save-score'>(+5 RSQ)</p>
                             </button>
-                            <button className='annotation-show-create-form-bottom-cancel' onClick={this.handleCancel}>
+                            <button className='annotation-show-create-form-bottom-cancel' onClick={this.handleCancelAnnotation}>
                                 Cancel
                             </button>
                         </div>
