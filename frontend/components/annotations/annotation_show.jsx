@@ -18,7 +18,7 @@ class Annotation extends React.Component {
     }
 
     annotationForm() {
-        const {currentUser, yCoord, startIndex, endIndex} = this.props;
+        const { currentUser, yCoord, startIndex, endIndex } = this.props;
 
         if (currentUser && startIndex && startIndex !== endIndex && this.state.createStatus === false) {
             return (
@@ -116,14 +116,13 @@ class Annotation extends React.Component {
     handleCancelAnnotation(e) {
         e.preventDefault();  
 
-        this.setState({['createStatus']: false})
-        this.setState({['body']: ''})
+        this.setState({['createStatus']: false});
+        this.setState({['body']: ''});
         this.props.closeAnnotationModal();    
     }
 
     render() {
         const { track, annotation, annotationModal, annoId, currentUser, yCoord, startIndex } = this.props;
-        
         if (annotation) {
             return (
                 <AnnotationShowItem 
@@ -138,7 +137,7 @@ class Annotation extends React.Component {
                 <div>
                     {this.annotationForm()}
                 </div>
-            )
+            );
         } else {
             return(
                 <p>

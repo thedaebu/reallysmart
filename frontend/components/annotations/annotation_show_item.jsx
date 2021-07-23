@@ -9,7 +9,6 @@ class AnnotationShowItem extends React.Component {
 
     render() {
         const { annotation, yCoord, currentUser, annoId } = this.props;
-        
         return (
             <div className='annotation-show-main' style={{position: 'relative', top: yCoord-370}} >
                 <p className='annotation-show-name'>Really Smart Annotation by {annotation.annotator}</p>
@@ -27,7 +26,7 @@ class AnnotationShowItem extends React.Component {
                     commentableId={annoId} 
                 />
             </div>
-        )
+        );
     }
 }
 
