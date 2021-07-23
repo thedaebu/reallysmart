@@ -26,6 +26,104 @@ class CommentShow extends React.Component {
         });
     }
 
+    commentForm() {
+        const { currentUser, commentableType, commentMessage } = this.props;
+        const { createTrackStatus, createAnnoStatus } = this.state;
+
+        if (currentUser && createTrackStatus === true && commentableType === "Track") {
+            return (
+                <form className='comment-show-create-end-main' onSubmit={this.handleTrackSubmit} >
+                    <textarea 
+                        className='comment-show-create-end-track-text' 
+                        placeholder={commentMessage} 
+                        onChange={this.handleChange('body')} 
+                    >
+                    </textarea>
+                    <div className='comment-show-create-end-buttons'>
+                        <button className='comment-show-create-end-submit'>
+                            <p className='comment-show-create-end-submit-button'>Submit</p>
+                        </button>
+                        <button className='comment-show-create-end-cancel' onClick={this.handleTrackCancel}>
+                            <p className='comment-show-create-end-cancel-button'>Cancel</p>
+                        </button>
+                    </div>
+                </form>
+            );
+        } else if (currentUser && createAnnoStatus === true && commentableType === "Annotation") {
+            return (
+                <form className='comment-show-create-end-main' onSubmit={this.handleAnnoSubmit} >
+                    <textarea 
+                        className='comment-show-create-end-anno-text' 
+                        placeholder={commentMessage} 
+                        onChange={this.handleChange('body')} 
+                    >
+                    </textarea>
+                    <div className='comment-show-create-end-buttons'>
+                        <button className='comment-show-create-end-submit'>
+                            <p className='comment-show-create-end-submit-button'>Submit</p>
+                        </button>
+                        <button className='comment-show-create-end-cancel' onClick={this.handleAnnoCancel}>
+                            <p className='comment-show-create-end-cancel-button'>Cancel</p>
+                        </button>
+                    </div>
+                </form>
+            );
+        } else if (currentUser && createTrackStatus === false && commentableType === "Track") {
+            return (
+                <div className='comment-show-create-begin-main'>
+                    <img className='comment-show-create-baby' src="https://assets.genius.com/images/default_avatar_100.png" />
+                    <textarea 
+                        className='comment-show-create-begin-text' 
+                        placeholder={commentMessage} 
+                        onClick={this.handleTrackStatus}
+                    >
+                    </textarea>
+                </div>
+            );
+        } else if (currentUser && createAnnoStatus === false && commentableType === "Annotation") {
+            return (
+                <div className='comment-show-create-begin-main'>
+                    <img className='comment-show-create-baby' src="https://assets.genius.com/images/default_avatar_100.png" />
+                    <textarea className='comment-show-create-begin-text' placeholder={commentMessage} onClick={this.handleAnnoStatus}></textarea>
+                </div>
+            );
+        } else {
+            return (
+                <div className='comment-session-main'>     
+                    <p className='comment-session-text'>Please</p>
+                    <Link to='/signup' className='comment-session-go'>Sign Up</Link>
+                    <p className='comment-session-text'>or</p>
+                    <Link to='/login' className='comment-session-go'>Log In</Link>
+                    <p className='comment-session-text'> to comment.</p>
+                </div>
+            );
+        }
+    }
+
+    commentItems() {
+        const { comments, parent, commentableType, fetchAction } = this.props;
+        
+        if (comments[0] !== undefined) {
+            return (
+                <ul className='comment-list-main'>
+                    {comments.map(comment => {
+                        return <CommentItem 
+                            parent={parent} 
+                            fetchAction={fetchAction} 
+                            comment={comment} 
+                            commentableType={commentableType} 
+                            key={comment.id} 
+                        />
+                    })}
+                </ul>
+            );
+        } else {
+            return (
+                null
+            );
+        }
+    }
+
     handleTrackStatus(e) {
         e.preventDefault();
         this.setState({['createTrackStatus'] : true});
@@ -81,100 +179,10 @@ class CommentShow extends React.Component {
     }
 
     render() {
-        const { comments, currentUser, parent, commentableType, commentMessage, fetchAction } = this.props;
-        
-        let commentForm;
-        if (currentUser && this.state.createTrackStatus === true && commentableType === "Track") {
-            commentForm = (
-                <form className='comment-show-create-end-main' onSubmit={this.handleTrackSubmit} >
-                    <textarea 
-                        className='comment-show-create-end-track-text' 
-                        placeholder={commentMessage} 
-                        onChange={this.handleChange('body')} 
-                    >
-                    </textarea>
-                    <div className='comment-show-create-end-buttons'>
-                        <button className='comment-show-create-end-submit'>
-                            <p className='comment-show-create-end-submit-button'>Submit</p>
-                        </button>
-                        <button className='comment-show-create-end-cancel' onClick={this.handleTrackCancel}>
-                            <p className='comment-show-create-end-cancel-button'>Cancel</p>
-                        </button>
-                    </div>
-                </form>
-            )
-        } else if (currentUser && this.state.createAnnoStatus === true && commentableType === "Annotation") {
-            commentForm = (
-                <form className='comment-show-create-end-main' onSubmit={this.handleAnnoSubmit} >
-                    <textarea 
-                        className='comment-show-create-end-anno-text' 
-                        placeholder={commentMessage} 
-                        onChange={this.handleChange('body')} 
-                    >
-                    </textarea>
-                    <div className='comment-show-create-end-buttons'>
-                        <button className='comment-show-create-end-submit'>
-                            <p className='comment-show-create-end-submit-button'>Submit</p>
-                        </button>
-                        <button className='comment-show-create-end-cancel' onClick={this.handleAnnoCancel}>
-                            <p className='comment-show-create-end-cancel-button'>Cancel</p>
-                        </button>
-                    </div>
-                </form>
-            )
-        } else if (currentUser && this.state.createTrackStatus === false && commentableType === "Track") {
-            commentForm = (
-                <div className='comment-show-create-begin-main'>
-                    <img className='comment-show-create-baby' src="https://assets.genius.com/images/default_avatar_100.png" />
-                    <textarea 
-                        className='comment-show-create-begin-text' 
-                        placeholder={commentMessage} 
-                        onClick={this.handleTrackStatus}
-                    >
-                    </textarea>
-                </div>
-            )
-        } else if (currentUser && this.state.createAnnoStatus === false && commentableType === "Annotation") {
-            commentForm = (
-                <div className='comment-show-create-begin-main'>
-                    <img className='comment-show-create-baby' src="https://assets.genius.com/images/default_avatar_100.png" />
-                    <textarea className='comment-show-create-begin-text' placeholder={commentMessage} onClick={this.handleAnnoStatus}></textarea>
-                </div>
-            )
-        } else {
-            commentForm = (
-                <div className='comment-session-main'>                        
-                    <p className='comment-session-text'>Please</p>
-                    <Link to='/signup' className='comment-session-go'>Sign Up</Link>
-                    <p className='comment-session-text'>or</p>
-                    <Link to='/login' className='comment-session-go'>Log In</Link>
-                    <p className='comment-session-text'> to comment.</p>
-                </div>
-            )
-        }
-        
-        const commentItems = comments[0] !== undefined 
-        ? (
-            <ul className='comment-list-main'>
-                {comments.map(comment => {
-                    return <CommentItem 
-                        parent={parent} 
-                        fetchAction={fetchAction} 
-                        comment={comment} 
-                        commentableType={commentableType} 
-                        key={comment.id} 
-                    />
-                })}
-            </ul>
-            )
-        : (
-            null
-        )
-        
         return (
             <div className='comment-main'>
-                {commentForm} 
-                {commentItems}
+                {this.commentForm()} 
+                {this.commentItems()}
             </div>
         );               
     }
