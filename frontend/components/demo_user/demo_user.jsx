@@ -19,11 +19,11 @@ class DemoUser extends React.Component {
         if (currentUser) {
             return (
                 null
-            )
+            );
         } else {
             return (
-                <a className='demo' onClick={this.loginWithDemo}>DEMO</a>
-            )
+                <a className="demo" onClick={this.loginWithDemo}>DEMO</a>
+            );
         }
     }
 }

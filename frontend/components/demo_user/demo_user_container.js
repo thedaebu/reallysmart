@@ -6,15 +6,15 @@ const mSTP = ({session, entities: { users }}) => {
     return ({
         currentUser: users[session.id],
         info: {
-            username: 'notsosmart',
-            password: 'notsosmart'
+            username: "notsosmart",
+            password: "notsosmart"
         }
-    })
+    });
 };
 const mDTP = (dispatch, ownProps) => {
     return ({
         login: user => dispatch(login(user))
-    })
+    });
 };
 
 export default connect(mSTP, mDTP)(DemoUser);
