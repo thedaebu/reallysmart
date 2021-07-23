@@ -4,6 +4,8 @@ import SearchbarItem from "./searchbar_item";
 class SearchbarItems extends React.Component {
     constructor(props) {
         super(props);
+
+        this.searchbarItems = this.SearchbarItems.bind(this);
     }
 
     componentDidUpdate(prevProps) {
@@ -12,20 +14,30 @@ class SearchbarItems extends React.Component {
         }
     }
 
+    searchbarItems() {
+        const { searches, searchField } = this.props;
+
+        if (searches.length > 0 && searchField !== "") {
+            return (
+                searches.slice(0, 5).map((searchbarItem, key) => {
+                    return ( 
+                        <SearchbarItem searchbarItem={searchbarItem} key={key}/>
+                    );
+                })
+            )
+        } else {
+            return (
+                null
+            );
+        }
+    }
+
     randomNum() {
         return Math.floor(Math.random() * 1000);
     }
 
     render() {
-        const { searches, searchField, clearSearchField } = this.props;
-        
-        const searchbarItems = searches.length > 0 && searchField !== ""
-        ? searches.slice(0, 5).map((searchbarItem, key) => {
-            return (
-                <SearchbarItem searchbarItem={searchbarItem} key={key}/>
-            )
-        })
-        : null
+        const { clearSearchField } = this.props;
         
         if (searches.length > 0 && searchField !== "") {
             return (
@@ -33,7 +45,7 @@ class SearchbarItems extends React.Component {
                     <p className='searchbar-search-results-p'>SEARCH RESULTS</p>
                     <p className='searchbar-search-songs-p'>SONGS</p>
                     <ul className='searchbar-items-list' onClick={clearSearchField}>
-                        {searchbarItems}
+                        {this.searchbarItems()}
                     </ul>
                 </div>
             );
