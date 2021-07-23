@@ -9,9 +9,11 @@ class CommentShow extends React.Component {
         this.state = {
             createTrackStatus: false,
             createAnnoStatus: false,
-            body: '',
+            body: ''
         };
         
+        this.commentForm = this.commentForm.bind(this);
+        this.commentItems = this.commentItems.bind(this);
         this.handleTrackStatus = this.handleTrackStatus.bind(this);
         this.handleAnnoStatus = this.handleAnnoStatus.bind(this);
         this.handleTrackCancel = this.handleTrackCancel.bind(this);
