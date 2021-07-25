@@ -3,7 +3,9 @@ import { fetchTrack } from "../../actions/track_actions";
 import TrackShow from "./track_show";
 
 const mSTP = (state, ownProps) => {
-    const track = state.entities.tracks !== undefined ? state.entities.tracks[ownProps.match.params.trackId] : undefined;
+    const track = state.entities.tracks !== undefined 
+    ? state.entities.tracks[ownProps.match.params.trackId] 
+    : undefined;
     
     return ({
         track: track,
