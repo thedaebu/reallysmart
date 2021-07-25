@@ -5,7 +5,7 @@ class SearchbarItems extends React.Component {
     constructor(props) {
         super(props);
 
-        this.searchbarItems = this.SearchbarItems.bind(this);
+        this.searchbarItems = this.searchbarItems.bind(this);
     }
 
     componentDidUpdate(prevProps) {
@@ -37,6 +37,7 @@ class SearchbarItems extends React.Component {
     }
 
     render() {
+        const { searches, searchField } = this.props;
         const { clearSearchField } = this.props;
         
         if (searches.length > 0 && searchField !== "") {
@@ -49,7 +50,7 @@ class SearchbarItems extends React.Component {
                     </ul>
                 </div>
             );
-        } else if (searches.length === 0 && this.props.searchField !== "") {
+        } else if (searches.length === 0 && searchField !== "") {
             return (
                 <div className='searchbar-items-modal'>
                     <p className='searchbar-search-results-p'>SEARCH RESULTS</p>
