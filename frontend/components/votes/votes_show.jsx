@@ -24,8 +24,9 @@ class VotesShow extends React.Component {
         e.preventDefault();
 
         const { parent, currentUser, currentVote, voteableType, voteableId, deleteVote, createVote, fetchAction} = this.props;
+        const { currentVoteStatus } = this.state;
 
-        if (currentUser && this.state.currentVoteStatus) {
+        if (currentUser && currentVoteStatus === true) {
             this.setState({currentVoteStatus: false});
             deleteVote(currentVote.id).then(() => fetchAction(parent.id))
         } else if (currentUser) {
@@ -40,15 +41,16 @@ class VotesShow extends React.Component {
 
     render() {
         const { numberOfVotes, currentUser } = this.props;
-        
-        if (currentUser && this.state.currentVoteStatus === true) {
+        const { currentVoteStatus } = this.state;
+
+        if (currentUser && currentVoteStatus === true) {
             return (
                 <div className="vote-show-main" >
                     <RiThumbUpLine className="vote-show-voted" onClick={this.handleVote} />
                     <div className="vote-show-count" >+{numberOfVotes}</div>
                 </div>
             );
-        } else if (currentUser && this.state.currentVoteStatus === false) {
+        } else if (currentUser && currentVoteStatus === false) {
             return (
                 <div className="vote-show-main" >
                     <RiThumbUpLine className="vote-show-not-voted" onClick={this.handleVote} />
