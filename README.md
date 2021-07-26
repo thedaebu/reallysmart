@@ -15,30 +15,25 @@ In order to add the current annotations onto the text, each annotation had data 
 
 ```js
 annotateLyrics(lyrics) {
-    let annotations = this.props.annotations    
-    let sortedAnnotations = annotations.sort((a,b) => (a.start_index > b.start_index ? 1 : -1));
-
-    let lyricsParts = [];
+    const annotations = this.props.annotations;        
+    const sortedAnnotations = annotations.sort((a,b) => (a.start_index > b.start_index ? 1 : -1));
+    const lyricsParts = Array();
     let currentIndex = 0;
-        
-    if (!annotations.includes(undefined)) {            
-        sortedAnnotations.forEach((annotation, idx) => {             
-            let addIndex
-            if (idx === 0 && annotation.startIndex !== 0) {
-                addIndex = 0
-            } else {
-                addIndex = sortedAnnotations[idx-1].end_index
-            }
 
+    if (!annotations.includes(undefined)) {            
+        sortedAnnotations.forEach((annotation, idx) => {
+            let addIndex = idx === 0 && annotation.startIndex !== 0
+            ? 0
+            : addIndex = sortedAnnotations[idx-1].end_index;
             let startIndex = annotation.start_index;
             let endIndex = annotation.end_index;
-               
+
             if (currentIndex === startIndex) {                
                 lyricsParts.push(
                     <span 
-                        className='is-an-anno' 
-                        onClick={() => this.openAnnotation(annotation.id)}                         
-                        key={`is-anno-${annotation.id}`}                             
+                        className="is-an-anno" 
+                        onClick={() => this.openAnnotation(annotation.id)}                             
+                        key={`is-anno-${annotation.id}`}       
                         id={`is-anno-${annotation.id}`}
                         data-name={`is-anno-${annotation.id}`}
                         data-id={`${annotation.id}`}     
@@ -48,20 +43,20 @@ annotateLyrics(lyrics) {
             } else {
                 lyricsParts.push(
                     <span 
-                        className='not-an-anno'                             
-                        key={`not-anno-${idx}`}
+                        className="not-an-anno"                              
+                        key={`not-anno-${idx}`}                            
                         id={`not-anno-${idx}`}
                         data-add={addIndex}
                         data-name={`not-anno-${idx}`}
-                            >
+                        >
                         {lyrics.slice(currentIndex, startIndex)}
                     </span>)
                 lyricsParts.push(
                     <span 
-                        className='is-an-anno' 
-                        onClick={() => this.openAnnotation(annotation.id)}                             
+                        className="is-an-anno" 
+                        onClick={() => this.openAnnotation(annotation.id)}                              
                         key={`is-anno-${annotation.id}`} 
-                        id={`is-anno-${annotation.id}`}                            
+                        id={`is-anno-${annotation.id}`}
                         data-name={`is-anno-${annotation.id}`} 
                         data-id={`${annotation.id}`}
                         >
@@ -71,7 +66,7 @@ annotateLyrics(lyrics) {
             if (idx === sortedAnnotations.length - 1) {
                 lyricsParts.push(
                     <span 
-                        className='not-an-anno'                             
+                        className="not-an-anno"                             
                         key={`not-anno-${idx + 1}`}                            
                         id={`not-anno-${idx + 1}`}                            
                         data-add={endIndex}
@@ -90,29 +85,24 @@ annotateLyrics(lyrics) {
 An annotation can then be created by having the user select a part of the lyrics text to specify which part the user wants to annotate. The getSelection function was used to retrieve the proper data needed to determine the location of the desired annotation. Constraints had to be placed so that any of the text that is selected cannot be already part of an annotation. 
 
 ```js
-mouseUp(e) {
+handleMouseUp(e) {
     e.preventDefault();
-    this.setState({['yCoord']: e.pageY}); 
-    this.setState({['annoId']: e.target.dataset.id})
-        
+
+    this.setState({yCoord: e.pageY}); 
+    this.setState({annoId: e.target.dataset.id});
+    
     const highlighted = window.getSelection();
-    let newIndices;
-    let min;
-    let max;
-     
+    
     if (highlighted.anchorOffset !== highlighted.focusOffset) {
-        newIndices = this.makeNewIndices(highlighted);
+        const newIndices = this.makeNewIndices(highlighted);
+        const min = Math.min(...newIndices) < 0
+        ? 0
+        : Math.min(...newIndices);
+        const max = Math.max(...newIndices);
 
-        if (Math.min(...newIndices) < 0) {
-            min = 0;
-        } else {
-            min = Math.min(...newIndices);
-        };          
-        max = Math.max(...newIndices);
-
-        this.setState({['startIndex']: min});
-        this.setState({['endIndex']: max});  
-        this.props.openAnnotationModal({hello: 'hello'})
+        this.setState({startIndex: min});
+        this.setState({endIndex: max});  
+        this.props.openAnnotationModal({hello: "hello"});
     }
 }
 ```
@@ -121,25 +111,22 @@ Once the selected pieces of text passes the constraints, the indices retrieved f
 
 ```js
 makeNewIndices(highlighted) {
-    let anchorName = highlighted.anchorNode.parentNode.dataset.name;
-    let focusName = highlighted.focusNode.parentNode.dataset.name;
-    let a;
-    let b;
-
-    let add = parseInt(highlighted.focusNode.parentNode.dataset.add);
-
+    const anchorName = highlighted.anchorNode.parentNode.dataset.name;
+    const focusName = highlighted.focusNode.parentNode.dataset.name;
+    const add = parseInt(highlighted.focusNode.parentNode.dataset.add);
+    let beginning;
+    let end;
     if (anchorName.includes(`not-anno`) && focusName.includes(`not-anno`) && anchorName === focusName) {
-        a = highlighted.anchorOffset + add
-        b = highlighted.focusOffset + add
+        beginning = highlighted.anchorOffset + add;
+        end = highlighted.focusOffset + add;
     } 
-
     if (anchorName.includes(`not-anno-0`)) {
-        b -= 1;
+        end -= 1;
     } else {
-        a += 1;
+        beginning += 1;
     }
 
-    return [a, b];
+    return [beginning, end];
 }
 ```
 <a href="https://eddie-kim.com/" >Personal Site</a>
