@@ -1509,9 +1509,6 @@ blue_vote10 = Vote.create(
     voteable_id: blue_comment1.id
 )
 
-
-
-
 shiki_no_uta_annotation1 = Annotation.create(
     body: "When dawn breaks again, we'll say our farewells. Our dreams become distant phantoms. The times we were embraced. In the light that chased you, relying on the warm winds.",
     annotator_id: reallysmart.id,
@@ -1576,4 +1573,155 @@ shiki_no_uta_vote10 = Vote.create(
     voter_id: notsosmart.id,
     voteable_type: "Comment",
     voteable_id: shiki_no_uta_comment1.id
+)
+
+selene_tag1 = Tag.create(
+    name: "Selene",
+    track_id: selene.id
+)
+selene_tag2 = Tag.create(
+    name: "Niki",
+    track_id: selene.id
+)
+selene_tag3 = Tag.create(
+    name: "Pop",
+    track_id: selene.id
+)
+
+lady_tag1 = Tag.create(
+    name: "Lady",
+    track_id: lady.id
+)
+lady_tag2 = Tag.create(
+    name: "Modjo",
+    track_id: lady.id
+)
+lady_tag3 = Tag.create(
+    name: "Dance",
+    track_id: lady.id
+)
+
+fake_love_tag1 = Tag.create(
+    name: "Drake",
+    track_id: fake_love.id
+)
+fake_love_tag2 = Tag.create(
+    name: "Fake Love",
+    track_id: fake_love.id
+)
+fake_love_tag3 = Tag.create(
+    name: "R&B",
+    track_id: fake_love.id
+)
+
+river_tag1 = Tag.create(
+    name: "River",
+    track_id: river.id
+)
+river_tag2 = Tag.create(
+    name: "Bishop Briggs",
+    track_id: river.id
+)
+river_tag3 = Tag.create(
+    name: "Pop",
+    track_id: river.id
+)
+
+reflection_tag1 = Tag.create(
+    name: "Reflection",
+    track_id: reflection.id
+)
+reflection_tag2 = Tag.create(
+    name: "Lea Salonga",
+    track_id: reflection.id
+)
+reflection_tag3 = Tag.create(
+    name: "Pop",
+    track_id: reflection.id
+)
+
+stay_tag1 = Tag.create(
+    name: "Stay",
+    track_id: stay.id
+)
+stay_tag2 = Tag.create(
+    name: "Ne-Yo",
+    track_id: stay.id
+)
+stay_tag3 = Tag.create(
+    name: "R&B",
+    track_id: stay.id
+)
+
+just_a_friend_2002_tag1 = Tag.create(
+    name: "Just a Friend 2002",
+    track_id: just_a_friend_2002.id
+)
+just_a_friend_2002_tag2 = Tag.create(
+    name: "Mario",
+    track_id: just_a_friend_2002.id
+)
+just_a_friend_2002_tag3 = Tag.create(
+    name: "R&B",
+    track_id: just_a_friend_2002.id
+)
+
+revenge_tag1 = Tag.create(
+    name: "Revenge",
+    track_id: revenge.id
+)
+revenge_tag2 = Tag.create(
+    name: "Tiffany Day",
+    track_id: revenge.id
+)
+revenge_tag3 = Tag.create(
+    name: "Pop",
+    track_id: revenge.id
+)
+
+blue_tag1 = Tag.create(
+    name: "Blue",
+    track_id: blue.id
+)
+blue_tag2 = Tag.create(
+    name: "Dynamic Duo",
+    track_id: blue.id
+)
+blue_tag3 = Tag.create(
+    name: "Hip Hop",
+    track_id: blue.id
+)
+blue_tag4 = Tag.create(
+    name: "Rap",
+    track_id: blue.id
+)
+
+shiki_no_uta_tag1 = Tag.create(
+    name: "Shiki No Uta",
+    track_id: shiki_no_uta.id
+)
+shiki_no_uta_tag2 = Tag.create(
+    name: "Nujabes",
+    track_id: shiki_no_uta.id
+)
+shiki_no_uta_tag3 = Tag.create(
+    name: "Hip Hop",
+    track_id: shiki_no_uta.id
+)
+
+slippin_tag1 = Tag.create(
+    name: "Slippin'",
+    track_id: slippin.id
+)
+slippin_tag2 = Tag.create(
+    name: "DMX",
+    track_id: slippin.id
+)
+slippin_tag3 = Tag.create(
+    name: "Rap",
+    track_id: slippin.id
+)
+slippin_tag4 = Tag.create(
+    name: "Hip Hop",
+    track_id: slippin.id
 )
