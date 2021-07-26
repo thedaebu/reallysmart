@@ -37,7 +37,7 @@ class TrackIndex extends React.Component {
             );
         } else {
             return (
-                trackIndexItems = tracks.map(track => {
+                tracks.map(track => {
                     return <TrackIndexItem track={track} key={track.id} />;
                 })
             );
