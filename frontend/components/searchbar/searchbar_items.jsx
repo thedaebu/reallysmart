@@ -5,6 +5,7 @@ class SearchbarItems extends React.Component {
     constructor(props) {
         super(props);
 
+        this.searchbarResults = this.searchbarResults.bind(this);
         this.searchbarItems = this.searchbarItems.bind(this);
     }
 
@@ -14,29 +15,7 @@ class SearchbarItems extends React.Component {
         }
     }
 
-    searchbarItems() {
-        const { searches, searchField } = this.props;
-
-        if (searches.length > 0 && searchField !== "") {
-            return (
-                searches.slice(0, 5).map((searchbarItem, key) => {
-                    return ( 
-                        <SearchbarItem searchbarItem={searchbarItem} key={key}/>
-                    );
-                })
-            )
-        } else {
-            return (
-                null
-            );
-        }
-    }
-
-    randomNum() {
-        return Math.floor(Math.random() * 1000);
-    }
-
-    render() {
+    searchbarResults() {
         const { searches, searchField } = this.props;
         const { clearSearchField } = this.props;
         
@@ -55,6 +34,40 @@ class SearchbarItems extends React.Component {
                 <div className='searchbar-items-modal'>
                     <p className='searchbar-search-results-p'>SEARCH RESULTS</p>
                     <p className='searchbar-search-no-results-p'>No results</p>
+                </div>
+            );
+        }
+    }
+
+    searchbarItems() {
+        const { searches } = this.props;
+
+        if (searches.length > 0) {
+            return (
+                searches.slice(0, 5).map((searchbarItem, key) => {
+                    return ( 
+                        <SearchbarItem searchbarItem={searchbarItem} key={key}/>
+                    );
+                })
+            );
+        } else {
+            return (
+                null
+            );
+        }
+    }
+
+    randomNum() {
+        return Math.floor(Math.random() * 1000);
+    }
+
+    render() {
+        const { searchField } = this.props;
+        
+        if (searchField !== "") {
+            return (
+                <div>
+                    {this.searchbarResults()}
                 </div>
             );
         } else {
