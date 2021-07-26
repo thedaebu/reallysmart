@@ -1,27 +1,27 @@
-import React from 'react';
+import React from "react";
 import {
   Route,
   Redirect,
   Switch,
   Link,
   HashRouter
-} from 'react-router-dom';
-import { AuthRoute } from '../util/route_util';
-import DemoUserContainer from './demo_user/demo_user_container';
-import HeaderContainer from './header/header_container';
-import SearchbarContainer from './searchbar/searchbar_container';
-import LoginFormContainer from './session_form/login_form_container';
-import SignupFormContainer from './session_form/signup_form_container';
-import TrackIndexContainer from './tracks/track_index_container'
-import TrackShowContainer from './tracks/track_show_container';
+} from "react-router-dom";
+import { AuthRoute } from "../util/route_util";
+import DemoUserContainer from "./demo_user/demo_user_container";
+import HeaderContainer from "./header/header_container";
+import SearchbarContainer from "./searchbar/searchbar_container";
+import LoginFormContainer from "./session_form/login_form_container";
+import SignupFormContainer from "./session_form/signup_form_container";
+import TrackIndexContainer from "./tracks/track_index_container"
+import TrackShowContainer from "./tracks/track_show_container";
  
 
 const App = () => (
     <div>
         <header>
             <SearchbarContainer/>
-            <Link to='/' className='logo'>REALLYSMART</Link>
-            <div className='header-right'>
+            <Link to="/" className="logo">REALLYSMART</Link>
+            <div className="header-right">
                 <HeaderContainer />
                 <DemoUserContainer />
             </div>

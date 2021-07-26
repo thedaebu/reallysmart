@@ -47,11 +47,11 @@ class TrackIndex extends React.Component {
     listButton() {
         if (this.state.list === 5) {
             return ( 
-                <p onClick={this.handleClick} className='tracks-index-load-more'>LOAD MORE</p>
+                <p onClick={this.handleClick} className="tracks-index-load-more">LOAD MORE</p>
             );
         } else if (this.state.list === 10) { 
             return ( 
-                <p onClick={this.handleClick} className='tracks-index-load-more'>We Miss You DMX!</p>
+                <p onClick={this.handleClick} className="tracks-index-load-more">We Miss You DMX!</p>
             );
         } else {
             return (
@@ -76,12 +76,12 @@ class TrackIndex extends React.Component {
 
     render() {
         return (
-            <div className='tracks-index-main'>
+            <div className="tracks-index-main">
                 <Navbar />
-                <div className='tracks-index-top'>
-                    <h1 className='tracks-index-h1' >CHARTS</h1>
-                    <h2 className='tracks-index-h2' >REALLY POPULAR ON REALLY SMART</h2>
-                    <ul className='tracks-index-list'>
+                <div className="tracks-index-top">
+                    <h1 className="tracks-index-h1" >CHARTS</h1>
+                    <h2 className="tracks-index-h2" >REALLY POPULAR ON REALLY SMART</h2>
+                    <ul className="tracks-index-list">
                         {this.trackIndexItems()}
                     </ul>
                 </div>

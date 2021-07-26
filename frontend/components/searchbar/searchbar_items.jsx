@@ -21,19 +21,19 @@ class SearchbarItems extends React.Component {
         
         if (searches.length > 0 && searchField !== "") {
             return (
-                <div className='searchbar-items-modal'>
-                    <p className='searchbar-search-results-p'>SEARCH RESULTS</p>
-                    <p className='searchbar-search-songs-p'>SONGS</p>
-                    <ul className='searchbar-items-list' onClick={clearSearchField}>
+                <div className="searchbar-items-modal">
+                    <p className="searchbar-search-results-p">SEARCH RESULTS</p>
+                    <p className="searchbar-search-songs-p">SONGS</p>
+                    <ul className="searchbar-items-list" onClick={clearSearchField}>
                         {this.searchbarItems()}
                     </ul>
                 </div>
             );
         } else if (searches.length === 0 && searchField !== "") {
             return (
-                <div className='searchbar-items-modal'>
-                    <p className='searchbar-search-results-p'>SEARCH RESULTS</p>
-                    <p className='searchbar-search-no-results-p'>No results</p>
+                <div className="searchbar-items-modal">
+                    <p className="searchbar-search-results-p">SEARCH RESULTS</p>
+                    <p className="searchbar-search-no-results-p">No results</p>
                 </div>
             );
         }

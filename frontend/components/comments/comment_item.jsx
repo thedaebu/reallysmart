@@ -12,15 +12,15 @@ class CommentItem extends React.Component {
         const { comment, parent, fetchAction } = this.props;
 
         return (
-            <>
-                <div className='comment-list-item-top'>
-                    <div className='comment-list-item-top-top'>
-                        <img className='comment-list-item-baby' src="https://assets.genius.com/images/default_avatar_100.png" />
-                        <p className='comment-list-item-commenter'>{comment.commenter}</p>
+            <div>
+                <div className="comment-list-item-top">
+                    <div className="comment-list-item-top-top">
+                        <img className="comment-list-item-baby" src="https://assets.genius.com/images/default_avatar_100.png" />
+                        <p className="comment-list-item-commenter">{comment.commenter}</p>
                     </div>
-                    <p className='comment-list-item-time'>{this.handleTime(comment.updated_at)}</p>
+                    <p className="comment-list-item-time">{this.handleTime(comment.updated_at)}</p>
                 </div>
-                <p className='comment-list-item-body'>{comment.body}</p>
+                <p className="comment-list-item-body">{comment.body}</p>
                 <VotesShowContainer 
                     voteableType="Comment" 
                     voteableId={comment.id} 
@@ -28,7 +28,7 @@ class CommentItem extends React.Component {
                     fetchAction={fetchAction} 
                     numberOfVotes={comment.votes} 
                 />
-            </>
+            </div>
         )
     }
 
@@ -38,6 +38,7 @@ class CommentItem extends React.Component {
         const yearDiff = currentDate.getFullYear() - oldDate.getFullYear();
         const monthDiff = currentDate.getMonth() - oldDate.getMonth();
         const dayDiff = currentDate.getDate() - oldDate.getDate();
+        
         if (yearDiff > 1) {
             return `${yearDiff} years ago`;
         } else if (yearDiff === 1) {
@@ -60,13 +61,13 @@ class CommentItem extends React.Component {
         
         if (commentableType === "Track") {
             return (
-                <li className='comment-list-track-item'>
+                <li className="comment-list-track-item">
                     {this.commentItem()}
                 </li>
             );
         } else {
             return (
-                <li className='comment-list-anno-item'>
+                <li className="comment-list-anno-item">
                     {this.commentItem()}
                 </li>
             );

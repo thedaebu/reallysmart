@@ -61,6 +61,7 @@ class LyricsShow extends React.Component {
         const sortedAnnotations = annotations.sort((a,b) => (a.start_index > b.start_index ? 1 : -1));
         const lyricsParts = Array();
         let currentIndex = 0;
+
         if (!annotations.includes(undefined)) {            
             sortedAnnotations.forEach((annotation, idx) => {
                 let addIndex = idx === 0 && annotation.startIndex !== 0
@@ -68,6 +69,7 @@ class LyricsShow extends React.Component {
                 : addIndex = sortedAnnotations[idx-1].end_index;
                 let startIndex = annotation.start_index;
                 let endIndex = annotation.end_index;
+
                 if (currentIndex === startIndex) {                
                     lyricsParts.push(
                         <span 
@@ -132,6 +134,7 @@ class LyricsShow extends React.Component {
         this.setState({annoId: e.target.dataset.id});
         
         const highlighted = window.getSelection();
+        
         if (highlighted.anchorOffset !== highlighted.focusOffset) {
             const newIndices = this.makeNewIndices(highlighted);
             const min = Math.min(...newIndices) < 0

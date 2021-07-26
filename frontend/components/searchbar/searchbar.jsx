@@ -18,24 +18,24 @@ class Searchbar extends React.Component {
         if (this.state.searchField !== "") {
             this.props.fetchSearches(this.state.searchField.toLowerCase());
         }
-        return e => this.setState({['searchField']: e.target.value});
+        return e => this.setState({searchField: e.target.value});
     }
 
     clearSearchField() {
-        this.setState({['searchField']: ""});
+        this.setState({searchField: ""});
     }
 
     render() {
         return (
             <div>
-                <div className='search-bar-main'>
-                    <input className='search-bar-form' 
-                        type='text' 
-                        placeholder='Search lyrics & more'
+                <div className="search-bar-main">
+                    <input className="search-bar-form" 
+                        type="text" 
+                        placeholder="Search lyrics & more"
                         value={this.state.searchField} 
                         onChange={this.onChange()} 
                     />
-                    <AiOutlineSearch className='search-bar-glass' />
+                    <AiOutlineSearch className="search-bar-glass" />
                 </div>   
                 <SearchbarItemsContainer 
                     searchField={this.state.searchField} 

@@ -9,7 +9,7 @@ class CommentShow extends React.Component {
         this.state = {
             createTrackStatus: false,
             createAnnoStatus: false,
-            body: ''
+            body: ""
         };
         
         this.commentForm = this.commentForm.bind(this);
@@ -34,48 +34,48 @@ class CommentShow extends React.Component {
 
         if (currentUser && createTrackStatus === true && commentableType === "Track") {
             return (
-                <form className='comment-show-create-end-main' onSubmit={this.handleTrackSubmit} >
+                <form className="comment-show-create-end-main" onSubmit={this.handleTrackSubmit} >
                     <textarea 
-                        className='comment-show-create-end-track-text' 
+                        className="comment-show-create-end-track-text" 
                         placeholder={commentMessage} 
-                        onChange={this.handleChange('body')} 
+                        onChange={this.handleChange("body")} 
                     >
                     </textarea>
-                    <div className='comment-show-create-end-buttons'>
-                        <button className='comment-show-create-end-submit'>
-                            <p className='comment-show-create-end-submit-button'>Submit</p>
+                    <div className="comment-show-create-end-buttons">
+                        <button className="comment-show-create-end-submit">
+                            <p className="comment-show-create-end-submit-button">Submit</p>
                         </button>
-                        <button className='comment-show-create-end-cancel' onClick={this.handleTrackCancel}>
-                            <p className='comment-show-create-end-cancel-button'>Cancel</p>
+                        <button className="comment-show-create-end-cancel" onClick={this.handleTrackCancel}>
+                            <p className="comment-show-create-end-cancel-button">Cancel</p>
                         </button>
                     </div>
                 </form>
             );
         } else if (currentUser && createAnnoStatus === true && commentableType === "Annotation") {
             return (
-                <form className='comment-show-create-end-main' onSubmit={this.handleAnnoSubmit} >
+                <form className="comment-show-create-end-main" onSubmit={this.handleAnnoSubmit} >
                     <textarea 
-                        className='comment-show-create-end-anno-text' 
+                        className="comment-show-create-end-anno-text" 
                         placeholder={commentMessage} 
-                        onChange={this.handleChange('body')} 
+                        onChange={this.handleChange("body")} 
                     >
                     </textarea>
-                    <div className='comment-show-create-end-buttons'>
-                        <button className='comment-show-create-end-submit'>
-                            <p className='comment-show-create-end-submit-button'>Submit</p>
+                    <div className="comment-show-create-end-buttons">
+                        <button className="comment-show-create-end-submit">
+                            <p className="comment-show-create-end-submit-button">Submit</p>
                         </button>
-                        <button className='comment-show-create-end-cancel' onClick={this.handleAnnoCancel}>
-                            <p className='comment-show-create-end-cancel-button'>Cancel</p>
+                        <button className="comment-show-create-end-cancel" onClick={this.handleAnnoCancel}>
+                            <p className="comment-show-create-end-cancel-button">Cancel</p>
                         </button>
                     </div>
                 </form>
             );
         } else if (currentUser && createTrackStatus === false && commentableType === "Track") {
             return (
-                <div className='comment-show-create-begin-main'>
-                    <img className='comment-show-create-baby' src="https://assets.genius.com/images/default_avatar_100.png" />
+                <div className="comment-show-create-begin-main">
+                    <img className="comment-show-create-baby" src="https://assets.genius.com/images/default_avatar_100.png" />
                     <textarea 
-                        className='comment-show-create-begin-text' 
+                        className="comment-show-create-begin-text" 
                         placeholder={commentMessage} 
                         onClick={this.handleTrackStatus}
                     >
@@ -84,19 +84,19 @@ class CommentShow extends React.Component {
             );
         } else if (currentUser && createAnnoStatus === false && commentableType === "Annotation") {
             return (
-                <div className='comment-show-create-begin-main'>
-                    <img className='comment-show-create-baby' src="https://assets.genius.com/images/default_avatar_100.png" />
-                    <textarea className='comment-show-create-begin-text' placeholder={commentMessage} onClick={this.handleAnnoStatus}></textarea>
+                <div className="comment-show-create-begin-main">
+                    <img className="comment-show-create-baby" src="https://assets.genius.com/images/default_avatar_100.png" />
+                    <textarea className="comment-show-create-begin-text" placeholder={commentMessage} onClick={this.handleAnnoStatus}></textarea>
                 </div>
             );
         } else {
             return (
-                <div className='comment-session-main'>     
-                    <p className='comment-session-text'>Please</p>
-                    <Link to='/signup' className='comment-session-go'>Sign Up</Link>
-                    <p className='comment-session-text'>or</p>
-                    <Link to='/login' className='comment-session-go'>Log In</Link>
-                    <p className='comment-session-text'> to comment.</p>
+                <div className="comment-session-main">     
+                    <p className="comment-session-text">Please</p>
+                    <Link to="/signup" className="comment-session-go">Sign Up</Link>
+                    <p className="comment-session-text">or</p>
+                    <Link to="/login" className="comment-session-go">Log In</Link>
+                    <p className="comment-session-text"> to comment.</p>
                 </div>
             );
         }
@@ -107,7 +107,7 @@ class CommentShow extends React.Component {
         
         if (comments[0] !== undefined) {
             return (
-                <ul className='comment-list-main'>
+                <ul className="comment-list-main">
                     {comments.map(comment => {
                         return <CommentItem 
                             parent={parent} 
@@ -128,22 +128,22 @@ class CommentShow extends React.Component {
 
     handleTrackStatus(e) {
         e.preventDefault();
-        this.setState({['createTrackStatus'] : true});
+        this.setState({createTrackStatus : true});
     }
 
     handleAnnoStatus(e) {
         e.preventDefault();
-        this.setState({['createAnnoStatus'] : true});
+        this.setState({createAnnoStatus : true});
     }
 
     handleTrackCancel(e) {
         e.preventDefault();
-        this.setState({['createTrackStatus'] : false});
+        this.setState({createTrackStatus : false});
     }
 
     handleAnnoCancel(e) {
         e.preventDefault();
-        this.setState({['createAnnoStatus'] : false});
+        this.setState({createAnnoStatus : false});
     }
 
     handleChange(type) {
@@ -162,7 +162,7 @@ class CommentShow extends React.Component {
         };
 
         createComment(comment).then(() => fetchAction(parent.id))
-        this.setState({['createTrackStatus'] : false});
+        this.setState({createTrackStatus : false});
     }
 
     handleAnnoSubmit(e) {
@@ -177,12 +177,12 @@ class CommentShow extends React.Component {
         };
 
         createComment(comment).then(() => fetchAction(parent.id))
-        this.setState({['createAnnoStatus'] : false});
+        this.setState({createAnnoStatus : false});
     }
 
     render() {
         return (
-            <div className='comment-main'>
+            <div className="comment-main">
                 {this.commentForm()} 
                 {this.commentItems()}
             </div>
