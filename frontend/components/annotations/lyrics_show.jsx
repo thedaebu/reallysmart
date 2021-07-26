@@ -6,7 +6,7 @@ class LyricsShow extends React.Component {
     constructor(props) {
         super(props)
 
-        let annotations = {};      
+        const annotations = {};      
         if (props.annotations[0] !== undefined) {
             props.annotations.forEach((annotation) => {
                 annotations[annotation.id] = annotation;
@@ -38,46 +38,40 @@ class LyricsShow extends React.Component {
     }
 
     annotatedLyrics() {
-        let lyrics
         if (this.props.annotations[this.props.annotations.length - 1] !== undefined ) {
-            lyrics = this.annotateLyrics(this.props.track.lyrics);
+            return (
+                this.annotateLyrics(this.props.track.lyrics)
+            );  
         } else {
-            lyrics = <span 
-                className='not-an-anno' 
-                data-add="0"
-                data-name={`not-anno-0`}
-                onMouseUp={this.handleMouseUp} 
+            return (
+                <span 
+                    className="not-an-anno" 
+                    data-add="0"
+                    data-name={`not-anno-0`}
+                    onMouseUp={this.handleMouseUp} 
                 >
-                    {this.props.track.lyrics}
-                </span>;
+                {this.props.track.lyrics}
+                </span>
+            ) ;
         }
-        return lyrics; 
     }
 
     annotateLyrics(lyrics) {
-        let annotations = this.props.annotations;        
-        let sortedAnnotations = annotations.sort((a,b) => (a.start_index > b.start_index ? 1 : -1));
-
-        let lyricsParts = [];
+        const annotations = this.props.annotations;        
+        const sortedAnnotations = annotations.sort((a,b) => (a.start_index > b.start_index ? 1 : -1));
+        const lyricsParts = Array();
         let currentIndex = 0;
-        
         if (!annotations.includes(undefined)) {            
             sortedAnnotations.forEach((annotation, idx) => {
-                
-                let addIndex;
-                if (idx === 0 && annotation.startIndex !== 0) {
-                    addIndex = 0;
-                } else {
-                    addIndex = sortedAnnotations[idx-1].end_index;
-                }
-
+                let addIndex = idx === 0 && annotation.startIndex !== 0
+                ? 0
+                : addIndex = sortedAnnotations[idx-1].end_index;
                 let startIndex = annotation.start_index;
                 let endIndex = annotation.end_index;
-               
                 if (currentIndex === startIndex) {                
                     lyricsParts.push(
                         <span 
-                            className='is-an-anno' 
+                            className="is-an-anno" 
                             onClick={() => this.openAnnotation(annotation.id)}                             
                             key={`is-anno-${annotation.id}`}       
                             id={`is-anno-${annotation.id}`}
@@ -89,7 +83,7 @@ class LyricsShow extends React.Component {
                 } else {
                     lyricsParts.push(
                         <span 
-                            className='not-an-anno'                              
+                            className="not-an-anno"                              
                             key={`not-anno-${idx}`}                            
                             id={`not-anno-${idx}`}
                             data-add={addIndex}
@@ -99,7 +93,7 @@ class LyricsShow extends React.Component {
                         </span>)
                     lyricsParts.push(
                         <span 
-                            className='is-an-anno' 
+                            className="is-an-anno" 
                             onClick={() => this.openAnnotation(annotation.id)}                              
                             key={`is-anno-${annotation.id}`} 
                             id={`is-anno-${annotation.id}`}
@@ -112,7 +106,7 @@ class LyricsShow extends React.Component {
                 if (idx === sortedAnnotations.length - 1) {
                     lyricsParts.push(
                         <span 
-                            className='not-an-anno'                             
+                            className="not-an-anno"                             
                             key={`not-anno-${idx + 1}`}                            
                             id={`not-anno-${idx + 1}`}                            
                             data-add={endIndex}
@@ -133,65 +127,58 @@ class LyricsShow extends React.Component {
 
     handleMouseUp(e) {
         e.preventDefault();
-        this.setState({['yCoord']: e.pageY}); 
-        this.setState({['annoId']: e.target.dataset.id});
+
+        this.setState({yCoord: e.pageY}); 
+        this.setState({annoId: e.target.dataset.id});
         
         const highlighted = window.getSelection();
-        let newIndices;
-        let min;
-        let max;
-     
         if (highlighted.anchorOffset !== highlighted.focusOffset) {
-            newIndices = this.makeNewIndices(highlighted);
+            const newIndices = this.makeNewIndices(highlighted);
+            const min = Math.min(...newIndices) < 0
+            ? 0
+            : Math.min(...newIndices);
+            const max = Math.max(...newIndices);
 
-            if (Math.min(...newIndices) < 0) {
-                min = 0;
-            } else {
-                min = Math.min(...newIndices);
-            };          
-            max = Math.max(...newIndices);
-
-            this.setState({['startIndex']: min});
-            this.setState({['endIndex']: max});  
-            this.props.openAnnotationModal({hello: 'hello'});
+            this.setState({startIndex: min});
+            this.setState({endIndex: max});  
+            this.props.openAnnotationModal({hello: "hello"});
         }
     }
 
     makeNewIndices(highlighted) {
-        let anchorName = highlighted.anchorNode.parentNode.dataset.name;
-        let focusName = highlighted.focusNode.parentNode.dataset.name;
-        let a;
-        let b;
-        let add = parseInt(highlighted.focusNode.parentNode.dataset.add);
-
+        const anchorName = highlighted.anchorNode.parentNode.dataset.name;
+        const focusName = highlighted.focusNode.parentNode.dataset.name;
+        const add = parseInt(highlighted.focusNode.parentNode.dataset.add);
+        let beginning;
+        let end;
         if (anchorName.includes(`not-anno`) && focusName.includes(`not-anno`) && anchorName === focusName) {
-            a = highlighted.anchorOffset + add;
-            b = highlighted.focusOffset + add;
+            beginning = highlighted.anchorOffset + add;
+            end = highlighted.focusOffset + add;
         } 
-
         if (anchorName.includes(`not-anno-0`)) {
-            b -= 1;
+            end -= 1;
         } else {
-            a += 1;
+            beginning += 1;
         }
 
-        return [a, b];
+        return [beginning, end];
     }
 
-    handleMouseDown(e) {    
-        this.setState({['annotationId']: null});
-        this.setState({['createStatus']: false});
+    handleMouseDown() {    
+        this.setState({annotationId: null});
+        this.setState({createStatus: false});
         this.props.closeAnnotationModal();
     }
 
     render() {
         const { track, currentUser } = this.props;
+
         return (
-            <div className='lyrics-show-main'>
-                <div className='lyrics-show-shade'>
-                    <div className='lyrics-show-left' onMouseDown={this.handleMouseDown} >
-                        <p className='lyrics-show-top'>{track.title.toUpperCase()} LYRICS</p>
-                        <pre className='lyrics-show-body' onMouseUp={this.handleMouseUp}>
+            <div className="lyrics-show-main">
+                <div className="lyrics-show-shade">
+                    <div className="lyrics-show-left" onMouseDown={this.handleMouseDown} >
+                        <p className="lyrics-show-top">{track.title.toUpperCase()} LYRICS</p>
+                        <pre className="lyrics-show-body" onMouseUp={this.handleMouseUp}>
                             {this.annotatedLyrics()}
                         </pre> 
                         <CommentShowContainer 
@@ -201,7 +188,7 @@ class LyricsShow extends React.Component {
                             commentableId={track.id} 
                         />               
                     </div>
-                    <div className='lyrics-show-right'>
+                    <div className="lyrics-show-right">
                         <AnnotationShowContainer 
                             track={track}
                             currentUser={currentUser} 
