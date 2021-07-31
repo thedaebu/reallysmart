@@ -11,15 +11,15 @@ class Header extends React.Component {
         
         if (currentUser) {
             return (
-                <div className='header-main'>
-                    <a className='logout' onClick={logout} >LOG OUT</a>
+                <div className="header-main">
+                    <a className="logout" onClick={logout} >LOG OUT</a>
                 </div>
             );
         } else {
             return (
-                <div className='header-main'>
-                    <Link to='/signup' className='signup'>SIGN UP</Link>
-                    <Link to='/login' className='login' >LOG IN</Link>
+                <div className="header-main">
+                    <Link to="/signup" className="signup">SIGN UP</Link>
+                    <Link to="/login" className="login" >LOG IN</Link>
                 </div>
             );
         }

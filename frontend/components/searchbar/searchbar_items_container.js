@@ -7,7 +7,7 @@ import {
   Link,
   HashRouter, 
   withRouter
-} from 'react-router-dom';
+} from "react-router-dom";
 
 const mSTP = ( state, ownProps) => {
     return ({

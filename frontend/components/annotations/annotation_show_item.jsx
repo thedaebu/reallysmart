@@ -11,9 +11,9 @@ class AnnotationShowItem extends React.Component {
         const { annotation, yCoord, currentUser, annoId } = this.props;
         
         return (
-            <div className='annotation-show-main' style={{position: 'relative', top: yCoord-370}} >
-                <p className='annotation-show-name'>Really Smart Annotation by {annotation.annotator}</p>
-                <p className='annotation-show-body'>{annotation.body}</p>
+            <div className="annotation-show-main" style={{position: "relative", top: yCoord-370}} >
+                <p className="annotation-show-name">Really Smart Annotation by {annotation.annotator}</p>
+                <p className="annotation-show-body">{annotation.body}</p>
                 <VotesShowContainer 
                     parent={annotation} 
                     voteableType="Annotation" 

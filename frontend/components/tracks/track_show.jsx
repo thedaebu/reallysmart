@@ -31,7 +31,7 @@ class TrackShow extends React.Component {
                         track={track} 
                         fetchTrack={fetchTrack} 
                     />
-                    <div className='track-show-bottom-main'>
+                    <div className="track-show-bottom-main">
                         <LyricsShowContainer 
                             track={track} 
                         />

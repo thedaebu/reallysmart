@@ -1,5 +1,5 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from "react";
+import { connect } from "react-redux";
 import {
   Route,
   Redirect,
@@ -7,7 +7,7 @@ import {
   Link,
   HashRouter, 
   withRouter
-} from 'react-router-dom';
+} from "react-router-dom";
 
 const Auth = ({ component: Component, path, loggedIn, exact }) => (
   <Route
