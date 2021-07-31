@@ -1,7 +1,7 @@
 export const fetchComment = (commentId) => {
     return (
         $.ajax({
-            method: 'GET',
+            method: "GET",
             url: `api/comments/${commentId}`
         })
     );
@@ -10,7 +10,7 @@ export const fetchComment = (commentId) => {
 export const createComment = (comment) => {
     return (
         $.ajax({
-            method: 'POST',
+            method: "POST",
             url: `api/comments`,
             data: { comment }
         })

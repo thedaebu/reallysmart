@@ -1,7 +1,7 @@
 export const fetchAnnotation = (annotationId) => {
     return (
         $.ajax({
-            method: 'GET',
+            method: "GET",
             url: `api/annotations/${annotationId}`
         })
     );
@@ -10,7 +10,7 @@ export const fetchAnnotation = (annotationId) => {
 export const createAnnotation = (annotation) => {
     return (
         $.ajax({
-            method: 'POST',
+            method: "POST",
             url: `api/annotations`,
             data: { annotation }
         })

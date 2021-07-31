@@ -1,7 +1,7 @@
 export const fetchVote = voteId => {
     return (
         $.ajax({
-            method: 'GET',
+            method: "GET",
             url: `api/votes/${voteId}`
         })
     );
@@ -10,7 +10,7 @@ export const fetchVote = voteId => {
 export const createVote = vote => {
     return (
         $.ajax({
-            method: 'POST',
+            method: "POST",
             url: `api/votes`,
             data: { vote }
         })
@@ -20,7 +20,7 @@ export const createVote = vote => {
 export const deleteVote = voteId => {
     return (
         $.ajax({
-            method: 'DELETE',
+            method: "DELETE",
             url: `api/votes/${voteId}`
         })
     );
