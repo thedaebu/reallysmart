@@ -9,7 +9,7 @@ class Header extends React.Component {
     render() {
         const { currentUser, logout } = this.props;
         
-        if (currentUser) {
+        if (currentUser !== undefined) {
             return (
                 <div className="header-main">
                     <a className="logout" onClick={logout} >LOG OUT</a>
