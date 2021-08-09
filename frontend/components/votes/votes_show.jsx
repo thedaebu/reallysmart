@@ -13,9 +13,11 @@ class VotesShow extends React.Component {
     }
 
     componentDidMount() {
-        if (this.props.currentUser && this.props.currentUser.vote_ids.length > 0) {
-            this.props.currentUser.vote_ids.forEach(id => {
-                this.props.fetchVote(id);
+        const { currentUser, fetchVote } = this.props;
+
+        if (currentUser && currentUser.vote_ids.length > 0) {
+            currentUser.vote_ids.forEach(id => {
+                fetchVote(id);
             })
         }
     }

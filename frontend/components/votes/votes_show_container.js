@@ -5,18 +5,19 @@ import VotesShow from "./votes_show";
 
 const mSTP = (state, ownProps) => {
     const currentUser = state.entities.users[state.session.id];
-    const currentUserVotes = currentUser && Object.keys(state.entities.votes).length !== 0 ? currentUser.vote_ids.map(id => {
-        if (state.entities.votes[id]) {
-            return state.entities.votes[id];
-        }
-    })
-    : Array()
+    const currentUserVotes = currentUser && Object.keys(state.entities.votes).length !== 0 
+        ? currentUser.vote_ids.map(id => {
+            if (state.entities.votes[id]) {
+                return state.entities.votes[id];
+            }
+        })
+        : Array()
     const currentVote = !currentUserVotes.includes(undefined) 
-    ? currentUserVotes.filter(vote => vote.voteable_type === ownProps.voteableType && vote.voteable_id === ownProps.voteableId)[0] 
-    : null;
+        ? currentUserVotes.filter(vote => vote.voteable_type === ownProps.voteableType && vote.voteable_id === ownProps.voteableId)[0] 
+        : null;
     const currentVoteStatus = !currentUserVotes.includes(undefined) && currentUserVotes.filter(vote => vote.voteable_type === ownProps.voteableType && vote.voteable_id === ownProps.voteableId).length > 0 
-    ? true 
-    : false
+        ? true 
+        : false
 
     return ({
         currentUser: currentUser,  

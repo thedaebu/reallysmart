@@ -23,8 +23,10 @@ class CommentShow extends React.Component {
     }
 
     componentDidMount() {
-        this.props.parent.comment_ids.forEach(id => {
-            this.props.fetchComment(id);
+        const { parent, fetchComment } = this.props;
+
+        parent.comment_ids.forEach(id => {
+            fetchComment(id);
         });
     }
 

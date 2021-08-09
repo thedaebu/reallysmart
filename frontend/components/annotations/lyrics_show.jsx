@@ -38,9 +38,11 @@ class LyricsShow extends React.Component {
     }
 
     annotatedLyrics() {
-        if (this.props.annotations[this.props.annotations.length - 1] !== undefined ) {
+        const { annotations, track } = this.props;
+
+        if (annotations[annotations.length - 1] !== undefined ) {
             return (
-                this.annotateLyrics(this.props.track.lyrics)
+                this.annotateLyrics(track.lyrics)
             );  
         } else {
             return (
@@ -50,14 +52,14 @@ class LyricsShow extends React.Component {
                     data-name={"not-anno-0"}
                     onMouseUp={this.handleMouseUp} 
                 >
-                    {this.props.track.lyrics}
+                    {track.lyrics}
                 </span>
             ) ;
         }
     }
 
     annotateLyrics(lyrics) {
-        const annotations = this.props.annotations;        
+        const { annotations } = this.props;        
         const sortedAnnotations = annotations.sort((a,b) => (a.start_index > b.start_index ? 1 : -1));
         const lyricsParts = Array();
         let currentIndex = 0;
@@ -65,8 +67,8 @@ class LyricsShow extends React.Component {
         if (!annotations.includes(undefined)) {            
             sortedAnnotations.forEach((annotation, idx) => {
                 const addIndex = idx === 0 && annotation.startIndex !== 0
-                ? 0
-                : addIndex = sortedAnnotations[idx-1].end_index;
+                    ? 0
+                    : addIndex = sortedAnnotations[idx-1].end_index;
                 const startIndex = annotation.start_index;
                 const endIndex = annotation.end_index;
 
@@ -138,8 +140,8 @@ class LyricsShow extends React.Component {
         if (highlighted.anchorOffset !== highlighted.focusOffset) {
             const newIndices = this.makeNewIndices(highlighted);
             const min = Math.min(...newIndices) < 0
-            ? 0
-            : Math.min(...newIndices);
+                ? 0
+                : Math.min(...newIndices);
             const max = Math.max(...newIndices);
 
             this.setState({startIndex: min});

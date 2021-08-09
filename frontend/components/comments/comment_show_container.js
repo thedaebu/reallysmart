@@ -7,8 +7,8 @@ import CommentShow from "./comment_show";
 const mSTP = (state, ownProps) => {
     const comments = ownProps.parent.comment_ids.map(id => state.entities.comments[id]);
     const commentMessage = ownProps.commentableType === "Track" 
-    ? "Add a comment" 
-    : "You think you're really smarter?";
+        ? "Add a comment" 
+        : "You think you're really smarter?";
     
     return ({
         comments: comments,
