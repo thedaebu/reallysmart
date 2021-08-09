@@ -47,10 +47,10 @@ class LyricsShow extends React.Component {
                 <span 
                     className="not-an-anno" 
                     data-add="0"
-                    data-name={`not-anno-0`}
+                    data-name={"not-anno-0"}
                     onMouseUp={this.handleMouseUp} 
                 >
-                {this.props.track.lyrics}
+                    {this.props.track.lyrics}
                 </span>
             ) ;
         }
@@ -64,11 +64,11 @@ class LyricsShow extends React.Component {
 
         if (!annotations.includes(undefined)) {            
             sortedAnnotations.forEach((annotation, idx) => {
-                let addIndex = idx === 0 && annotation.startIndex !== 0
+                const addIndex = idx === 0 && annotation.startIndex !== 0
                 ? 0
                 : addIndex = sortedAnnotations[idx-1].end_index;
-                let startIndex = annotation.start_index;
-                let endIndex = annotation.end_index;
+                const startIndex = annotation.start_index;
+                const endIndex = annotation.end_index;
 
                 if (currentIndex === startIndex) {                
                     lyricsParts.push(
@@ -154,11 +154,11 @@ class LyricsShow extends React.Component {
         const add = parseInt(highlighted.focusNode.parentNode.dataset.add);
         let beginning;
         let end;
-        if (anchorName.includes(`not-anno`) && focusName.includes(`not-anno`) && anchorName === focusName) {
+        if (anchorName.includes("not-anno") && focusName.includes("not-anno") && anchorName === focusName) {
             beginning = highlighted.anchorOffset + add;
             end = highlighted.focusOffset + add;
         } 
-        if (anchorName.includes(`not-anno-0`)) {
+        if (anchorName.includes("not-anno-0")) {
             end -= 1;
         } else {
             beginning += 1;
