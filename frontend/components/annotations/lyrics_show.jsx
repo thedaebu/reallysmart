@@ -68,7 +68,7 @@ class LyricsShow extends React.Component {
             sortedAnnotations.forEach((annotation, idx) => {
                 const addIndex = idx === 0 && annotation.startIndex !== 0
                     ? 0
-                    : addIndex = sortedAnnotations[idx-1].end_index;
+                    : sortedAnnotations[idx-1].end_index;
                 const startIndex = annotation.start_index;
                 const endIndex = annotation.end_index;
 
