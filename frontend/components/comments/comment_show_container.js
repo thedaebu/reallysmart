@@ -18,8 +18,8 @@ const mSTP = (state, ownProps) => {
 
 const mDTP = (dispatch, ownProps) => {
     const fetchAction = ownProps.commentableType === "Track" 
-    ? trackId => dispatch(fetchTrack(trackId)) 
-    : annotationId => dispatch(fetchAnnotation(annotationId));
+        ? trackId => dispatch(fetchTrack(trackId)) 
+        : annotationId => dispatch(fetchAnnotation(annotationId));
 
     return ({
         fetchComment: commentId => dispatch(fetchComment(commentId)),
