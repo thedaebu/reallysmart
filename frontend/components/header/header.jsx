@@ -8,11 +8,13 @@ class Header extends React.Component {
 
     render() {
         const { currentUser, logout } = this.props;
-        
+        debugger
         if (currentUser !== undefined) {
             return (
                 <div className="header-main">
-                    <a className="logout" onClick={logout} >LOG OUT</a>
+                    <input type="file"/>
+                    <img src={currentUser.avatar_url}/>
+                    <a className="logout" onClick={logout}>LOG OUT</a>
                 </div>
             );
         } else {
