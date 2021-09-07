@@ -1,53 +1,48 @@
+$programmelight: 'Programme Light', sans-serif;
+
 .comment-list-main {
     width: 101%;
     position: relative;
     right: 4px;
-}
-
-.comment-list-track-item {
-    width: min(95%, 537px);
-    border-top: 1px solid #99a7ee;
-    padding: 20px 0px 20px 0px;
-    margin: 0px 0px 0px 15px;
-}
-
-.comment-list-anno-item {
-    width: min(93%, 314px);
-    border-top: 1px solid #99a7ee;
-    padding: 20px 0px 20px 0px;
-    margin: 0px 0px 0px 15px;
+    .comment-list-track-item {
+        width: min(95%, 537px);
+        border-top: 1px solid #99a7ee;
+        padding: 20px 0px 20px 0px;
+        margin: 0px 0px 0px 15px;
+    }
+    .comment-list-anno-item {
+        width: min(93%, 314px);
+        border-top: 1px solid #99a7ee;
+        padding: 20px 0px 20px 0px;
+        margin: 0px 0px 0px 15px;
+    }
 }
 
 .comment-list-item-top {
     display: flex;
     justify-content: space-between;
-}
-
-.comment-list-item-top-top {
-    display: flex;
-}
-
-.comment-list-item-baby {
-    height: 20px;
-    width: 20px;
-    position: relative;
-    top: 2px;
-}
-
-.comment-list-item-commenter {
-    position: relative;
-    top: 5px;
-    left: 5px;
-    font-size: 15px;
-}
-
-.comment-list-item-time {
-    font-size: 15px;
-}
-
-.comment-list-item-body {
-    font-family: 'Programme Light', sans-serif;
-    font-size: 17px;
-    line-height: 23px;
-    padding: 17px 0px 0px 0px;
+    .comment-list-item-top-top {
+        display: flex;
+        .comment-list-item-baby {
+            height: 20px;
+            width: 20px;
+            position: relative;
+            top: 2px;
+        }
+        .comment-list-item-commenter {
+            position: relative;
+            top: 5px;
+            left: 5px;
+            font-size: 15px;
+        }
+    }
+    .comment-list-item-time {
+        font-size: 15px;
+    }
+    .comment-list-item-body {
+        font-family: $programmelight;
+        font-size: 17px;
+        line-height: 23px;
+        padding: 17px 0px 0px 0px;
+    }
 }

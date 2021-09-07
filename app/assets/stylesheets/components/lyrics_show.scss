@@ -1,58 +1,57 @@
+$programmereg: 'Programme Regular', sans-serif;
+$programmelight: 'Programme Light', sans-serif;
+
+.track-show-bottom-main {
+    display: flex;
+}
+
 .lyrics-show-main {
     width: 100%;
     background: #f7f7f7;
-}
-
-.lyrics-show-shade {
-    max-width: 970px;
-    display: flex;
-    background: rgb(255, 255, 255);
-    margin: 0px auto 0px auto;
-}
-
-.lyrics-show-left {
-    max-width: 562px;
-    padding: 16px 0px 16px 16px; 
-}
-
-.lyrics-show-top {
-    font-family: 'Programme Regular', sans-serif;
-    color: #9a9a9a;
-    font-size: 12px;
-    letter-spacing: 0.2px;
-    margin: 2px 0px 26px 0px;
-}
-
-.lyrics-show-body {
-    width: 530px;
-    font-family: 'Programme Light', sans-serif;    
-    font-size: 18px;
-    font-weight: lighter;
-    line-height: 30px;
-}
-
-.not-an-anno {
-    font-family: 'Programme Light', sans-serif;    
-    font-size: 18px;
-    font-weight: lighter;
-    line-height: 30px;
-}
-
-.is-an-anno {
-    background: rgb(224, 224, 224);
-    font-family: 'Programme Light', sans-serif;    
-    font-size: 18px;
-    font-weight: lighter;
-    line-height: 30px;
-    padding: 3px 0px 4px 0px;
-}
-
-.is-an-anno:hover {
-    cursor: pointer;
-    background: rgb(121, 164, 255);
-}
-
-.lyrics-show-right {
-    width: min(100%, 371px);
-    margin: 0px auto 0px 0px;
+    .lyrics-show-shade {
+        max-width: 970px;
+        display: flex;
+        background: rgb(255, 255, 255);
+        margin: 0px auto 0px auto;
+        .lyrics-show-left {
+            max-width: 562px;
+            padding: 16px 0px 16px 16px; 
+            .lyrics-show-top {
+                font-family: $programmereg;
+                color: #9a9a9a;
+                font-size: 12px;
+                letter-spacing: 0.2px;
+                margin: 2px 0px 26px 0px;
+            }
+            .lyrics-show-body {
+                width: 530px;
+                font-family: $programmelight;    
+                font-size: 18px;
+                font-weight: lighter;
+                line-height: 30px;
+                .not-an-anno {
+                    font-family: $programmelight;    
+                    font-size: 18px;
+                    font-weight: lighter;
+                    line-height: 30px;
+                }
+                .is-an-anno {
+                    background: rgb(224, 224, 224);
+                    font-family: $programmelight;    
+                    font-size: 18px;
+                    font-weight: lighter;
+                    line-height: 30px;
+                    padding: 3px 0px 4px 0px;
+                    &:hover {
+                        cursor: pointer;
+                        background: rgb(121, 164, 255);
+                    }
+                }
+            }
+        }
+        .lyrics-show-right {
+            width: min(100%, 371px);
+            margin: 0px auto 0px 0px;
+        }
+    }
 }

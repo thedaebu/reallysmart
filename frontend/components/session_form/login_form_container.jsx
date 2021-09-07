@@ -7,10 +7,10 @@ import SessionForm from "./session_form";
 const mSTP = (state, ownProps) => {
     return ({
         errors: state.errors.sessionErrors,
-        formType: <h1 className="session-form-h1-login">Log In</h1>,
+        formType: <h1 className="session-form-login-h1">Log In</h1>,
         formTypeSub: "",
         formSubmit: "Login",
-        formLink: <Link className="session-form-login" to="/signup">Sign up here.</Link>,
+        formLink: <Link to="/signup">Sign up here.</Link>,
         formLast: "Don\'t have an account?",
         formPassword: "(I forgot my password)"
     })

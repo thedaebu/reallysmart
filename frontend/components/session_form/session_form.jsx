@@ -39,12 +39,12 @@ class SessionForm extends React.Component {
        if (errors.length) {
             return (
                 <div className="errors-main">
-                    <h2 className="errors-header">Ruh-roh!</h2>
-                    <p className="errors-message">Something is wrong</p>
-                    <ul className="errors-item">
-                    {errors.map((error, idx) => {
-                        return <li className="error-message" key={idx}>{error}</li>
-                    })}    
+                    <h2>Ruh-roh!</h2>
+                    <p>Something is wrong</p>
+                    <ul>
+                        {errors.map((error, idx) => {
+                            return <li className="error-message" key={idx}>{error}</li>
+                        })}    
                     </ul>
                 </div>
             );
@@ -86,12 +86,12 @@ class SessionForm extends React.Component {
                     </label>
                     {formTos}
                     <input 
-                        id="form-submit" 
+                        id="session-form-submit" 
                         type="submit" 
                         value={formSubmit}
                     />                        
                 </form>
-                <p className="session-form-last" >{formLast} {formLink}</p>                  
+                <p className="session-form-bottom" >{formLast} {formLink}</p>                  
             </div>            
         );
     }

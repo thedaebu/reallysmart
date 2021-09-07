@@ -1,74 +1,79 @@
-header {
-    height: 31px;
-    display: flex;
-    justify-content: space-between;
-    background: rgb(106, 153, 255);
-    padding: 6px 5px 4px 5px;
-}
-
-.search-bar-main {
-    display: flex;
-}
-
-.search-bar-form {
-    height: 27px;
-    width: 180px;
-    font-family: 'Programme Regular', sans-serif;
-    color: black;
-    font-size: 15px;  
-    font-weight: 800px;
-    border: none;
-    padding: 1px 1px 1px 10px;
-}
-
-.search-bar-form:focus::placeholder {
-    color: rgb(196, 196, 196);
-}
-
-.search-bar-glass {
-    height: 25px;
-    width: 25px;
-    background: white;
-    padding: 2px 0px 2px 0px;
-}
-
-.logo {
-    font-family: Programme, Arial, sans-serif;
-    color: rgb(106, 153, 255);
-    font-size: 20px;
-    letter-spacing: 8px;
-    text-decoration: none;
-    text-shadow: 2.4px -2.2px 0px #000000;
-    margin: 7px auto 0px auto;
-}
-
-.header-right {
-    width: 180px;
-    display: flex;
-    justify-content: flex-end;
-    color: black;
-    font-size: 12px;
-    letter-spacing: 1px;
-    padding: 9px 10px 0px 0px;
-}
-
-.header-main {
-    width: 108px;
-    display: flex;
-    justify-content: flex-end;
-}
-
-.signup, .login, .demo, .logout {
+header-right-buttons {
     font-family: 'Programme Regular', sans-serif;
     color: black;
     text-decoration: none;
     letter-spacing: 0.75px;
 }
 
-.login, .demo {
-    margin: 0px 0px 0px 15px;
-}
-
-.demo:hover, .logout:hover {
-    cursor: pointer;
+header {
+    height: 31px;
+    display: flex;
+    justify-content: space-between;
+    background: rgb(106, 153, 255);
+    padding: 6px 5px 4px 5px;
+    .search-bar-main {
+        display: flex;
+        input {
+            height: 27px;
+            width: 180px;
+            font-family: 'Programme Regular', sans-serif;
+            color: black;
+            font-size: 15px;  
+            font-weight: 800px;
+            border: none;
+            padding: 1px 1px 1px 10px;
+            &:focus::placeholder {
+                color: rgb(196, 196, 196);
+            }
+        }
+        .search-bar-glass {
+            height: 25px;
+            width: 25px;
+            background: white;
+            padding: 2px 0px 2px 0px;
+        }
+    }
+    .logo {
+        font-family: Programme, Arial, sans-serif;
+        color: rgb(106, 153, 255);
+        font-size: 20px;
+        letter-spacing: 8px;
+        text-decoration: none;
+        text-shadow: 2.4px -2.2px 0px #000000;
+        margin: 7px auto 0px auto;
+    }
+    .header-right {
+        width: 180px;
+        display: flex;
+        justify-content: flex-end;
+        color: black;
+        font-size: 12px;
+        letter-spacing: 1px;
+        padding: 9px 10px 0px 0px;
+        div {
+            width: 108px;
+            display: flex;
+            justify-content: flex-end;
+            .signup {
+                @extend header-right-buttons;
+            }
+            .login {
+                margin: 0px 0px 0px 15px;
+                @extend header-right-buttons;
+            }
+            .logout {
+                @extend header-right-buttons;
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+        .demo {
+            @extend header-right-buttons;
+            margin: 0px 0px 0px 15px;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
 }

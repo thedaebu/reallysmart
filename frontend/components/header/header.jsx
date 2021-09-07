@@ -11,7 +11,7 @@ class Header extends React.Component {
         
         if (currentUser !== undefined) {
             return (
-                <div className="header-main">
+                <div>
                     <input type="file"/>
                     <img src={currentUser.avatar_url}/>
                     <a className="logout" onClick={logout}>LOG OUT</a>
@@ -19,7 +19,7 @@ class Header extends React.Component {
             );
         } else {
             return (
-                <div className="header-main">
+                <div>
                     <Link to="/signup" className="signup">SIGN UP</Link>
                     <Link to="/login" className="login" >LOG IN</Link>
                 </div>

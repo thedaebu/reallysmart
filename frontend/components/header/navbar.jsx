@@ -17,16 +17,16 @@ class Navbar extends React.Component {
                     <a className="shop" href="">SHOP</a>
                     <div className="navbar-image-main">
                         <a href="https://github.com/thedaebu/reallysmart" target="_blank" rel="noopener noreferrer">
-                            <img className="navbar-image-item" src={window.github} />
+                            <img src={window.github} />
                         </a>
                         <a href="https://www.linkedin.com/in/edkim163/" target="_blank" rel="noopener noreferrer">
-                            <img className="navbar-image-item" src={window.linkedin} />
+                            <img src={window.linkedin} />
                         </a>
                         <a href="https://angel.co/u/edwardkim163" target="_blank" rel="noopener noreferrer">
-                            <img className="navbar-image-item" src={window.angellist} />
+                            <img src={window.angellist} />
                         </a>
                         <a href="https://eddie-kim.com/" target="_blank" rel="noopener noreferrer">
-                            <img className="navbar-image-item" src={window.website} />
+                            <img src={window.website} />
                         </a>
                                   
                     </div>
