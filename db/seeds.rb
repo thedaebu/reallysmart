@@ -6,15 +6,21 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+require "open-uri"
+
+avatar_file = open("https://really-smart-seeds.s3.amazonaws.com/default_avatar.png")
+
 reallysmart = User.create(
     username: 'reallysmart', 
     password: 'reallysmart'
 )
+reallysmart.avatar.attach(io: avatar_file, name: "default_avatar.png")
 
 notsosmart = User.create(
     username: 'notsosmart',
     password: 'notsosmart'
 )
+notsosmart.avatar.attach(io: avatar_file, name: "default_avatar.png")
 
 selene = Track.create(
     title: 'Selene', 
