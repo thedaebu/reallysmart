@@ -8,19 +8,19 @@
 
 require "open-uri"
 
-avatar_file = open("https://really-smart-seeds.s3.amazonaws.com/default_avatar.png")
-
+avatar_file = open('https://really-smart-seeds.s3.amazonaws.com/default_avatar.png')
 reallysmart = User.create(
     username: 'reallysmart', 
     password: 'reallysmart'
 )
-reallysmart.avatar.attach(io: avatar_file, name: "default_avatar.png")
+reallysmart.avatar.attach(io: avatar_file, filename: 'default_avatar.png')
 
+avatar_file = open('https://really-smart-seeds.s3.amazonaws.com/default_avatar.png')
 notsosmart = User.create(
     username: 'notsosmart',
     password: 'notsosmart'
 )
-notsosmart.avatar.attach(io: avatar_file, name: "default_avatar.png")
+notsosmart.avatar.attach(io: avatar_file, filename: 'default_avatar.png')
 
 selene = Track.create(
     title: 'Selene', 
