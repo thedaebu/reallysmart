@@ -29,7 +29,7 @@ class Searchbar extends React.Component {
         return (
             <div>
                 <div className="search-bar-main">
-                    <input className="search-bar-form" 
+                    <input
                         type="text" 
                         placeholder="Search lyrics & more"
                         value={this.state.searchField} 

@@ -5,74 +5,63 @@
     left: 16px;
     width: 370px;
     background-color: #f7f7f7;
-}
-
-.searchbar-search-results-p {
-    font-size: 14px;
-    border-bottom: 1px solid #ccc;
-    padding: 12px 0px 11px 16px;
-}
-
-.searchbar-search-songs-p {
-    color: #a1a1a1;
-    font-size: 12px;
-    padding: 21px 0px 12px 16px;
-}
-
-.searchbar-search-no-results-p {
-    height: 167px;
-    width: 355px;
-    font-size: 16px;
-    text-align: center;
-    line-height: 167px;
-}
-
-.searchbar-item-main {
-    cursor: pointer;
-    display: flex;
-    background-color: white;
-    margin: 0px 0px 4px 0px;
-}
-
-.searchbar-item-main:hover {
-    background-color: #dbdbdb;
-}
-
-.searchbar-item-image {
-    height: 75px;   
-    width: 75px;
-}
-
-.searchbar-item-right {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 6px 6px 4px 6px;
-}
-
-.searchbar-item-right-top {
-    color: black;
-}
-
-.searchbar-item-title {
-    font-size: 16px;
-}
-
-.searchbar-item-artist {
-    font-size: 12px;
-}
-
-.searchbar-item-right-bottom {
-    display: flex;
-    color: black;
-}
-
-.searchbar-item-eye {
-    height: 12px;
-    width: 12px;
-}
-
-.searchbar-item-views {
-    font-size: 12px;
-    margin: 0px 0px 0px 3px;
+    .searchbar-search-results {
+        font-size: 14px;
+        border-bottom: 1px solid #ccc;
+        padding: 12px 0px 11px 16px;
+    }
+    .searchbar-search-songs {
+        color: #a1a1a1;
+        font-size: 12px;
+        padding: 21px 0px 12px 16px;
+    }
+    .searchbar-search-no-results {
+        height: 167px;
+        width: 355px;
+        font-size: 16px;
+        text-align: center;
+        line-height: 167px;
+    }
+    ul{
+        .searchbar-item-main {
+            cursor: pointer;
+            display: flex;
+            background-color: white;
+            margin: 0px 0px 4px 0px;
+            :hover {
+                background-color: #dbdbdb;
+            }
+            .searchbar-item-image {
+                height: 75px;   
+                width: 75px;
+            }
+            .searchbar-item-body {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                padding: 6px 6px 4px 6px;
+                .searchbar-item-body-top {
+                    color: black;
+                    .searchbar-item-title {
+                        font-size: 16px;
+                    }
+                    .searchbar-item-artist {
+                        font-size: 12px;
+                    }
+                }
+                .searchbar-item-body-bottom {
+                    display: flex;
+                    color: black;
+                }
+                .searchbar-item-eye {
+                    height: 12px;
+                    width: 12px;
+                }
+                .searchbar-item-views {
+                    font-size: 12px;
+                    margin: 0px 0px 0px 3px;
+                }
+            }
+        }
+    }
 }

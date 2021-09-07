@@ -1,3 +1,9 @@
+index-item-number {
+    position: relative;
+    top: 3.5px;
+    right: 4px;
+    font-size: 12px;
+}
 
 .track-show-header-main {
     height: 280px;
@@ -5,72 +11,67 @@
     position: relative;
     display: flex;
     justify-content: space-around;
-}
-
-.track-show-header-background-image {
-    width: auto;
-}
-
-.track-show-header-shade {
-    z-index: 2;
-    height: inherit;
-    width: 970px;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-.track-show-header-content {
-    display: flex;
-    justify-content: space-between;
-}
-
-.track-show-header-left {
-    display: flex;
-    position: relative;
-    top: 34px;
-}
-
-.track-show-header-image {
-    height: 220px;
-    width: 220px;
-    position: relative;
-    right: 22px;
-    border: 2px solid rgb(145, 145, 145);
-}
-
-
-.track-show-header-center {
-    position: relative;
-    top: 14px;
-    right: 10px;
-    display: flex;
-    flex-direction: column;
-}
-
-.track-show-header-title {
-    color: rgb(106, 153, 255);
-    font-size: 35px;
-}
-
-.track-show-header-artist {
-    position: relative;
-    top: 6px;
-    color: white;
-    font-size: 25px;
-    font-weight: lighter;
-}
-
-.track-show-header-right {
-    position: relative;
-    top: 20px;
-    display: flex;
-    align-items: flex-end;
-    margin: 0px 290px 0px 0px;
-}
-
-.track-index-item-eye, .track-index-item-fire {
-   margin: 0px 15px 0px 15px;
-}
-
-.track-show-bottom-main {
-    display: flex;
+    .track-show-header-shade {
+        z-index: 2;
+        height: inherit;
+        width: 970px;
+        background-color: rgba(0, 0, 0, 0.5);
+        > div {
+            display: flex;
+            justify-content: space-between;
+            .track-show-header-left {
+                display: flex;
+                position: relative;
+                top: 34px;
+                .track-show-header-image {
+                    height: 220px;
+                    width: 220px;
+                    position: relative;
+                    right: 22px;
+                    border: 2px solid rgb(145, 145, 145);
+                }
+                .track-show-header-center {
+                    position: relative;
+                    top: 14px;
+                    right: 10px;
+                    display: flex;
+                    flex-direction: column;
+                    .track-show-header-title {
+                        color: rgb(106, 153, 255);
+                        font-size: 35px;
+                    }
+                    .track-show-header-artist {
+                        position: relative;
+                        top: 6px;
+                        color: white;
+                        font-size: 25px;
+                        font-weight: lighter;
+                    }
+                }
+            }
+            .track-show-header-right {
+                position: relative;
+                top: 20px;
+                display: flex;
+                align-items: flex-end;
+                margin: 0px 290px 0px 0px;
+                > div {
+                    display: flex;
+                    > img {
+                        height: 20px;
+                        width: 20px;
+                        margin: 0px 15px 0px 15px;  
+                    }
+                    .track-index-item-fire-number {
+                        @extend index-item-number;
+                        color: red;
+                    }
+                    .track-index-item-eye-number {
+                        @extend index-item-number;
+                        color: rgb(197, 197, 197);
+                    }
+                }
+            }
+        }
+    }
 }

@@ -1,29 +1,25 @@
 .vote-show-main {
     display: flex;
     padding: 25px 0px 3px 0px;
-}
-
-.vote-show-voted {
-    cursor: pointer;
-    height: 19px;
-    width: 19px; 
-    color: #0ec426;
-}
-
-.vote-show-not-voted {
-    cursor: pointer;    
-    height: 19px;
-    width: 19px; 
-    color: rgb(161, 161, 161);
-    font-size: 17px;
-}
-
-.vote-show-not-voted:hover {
-    color: #0ec426;
-}
-
-.vote-show-count {
-    color: #0ec426;
-    font-size: 17px; 
-    margin: 0px 0px 0px 7px; 
+    .vote-show-voted {
+        cursor: pointer;
+        height: 19px;
+        width: 19px; 
+        color: #0ec426;
+    }
+    .vote-show-not-voted {
+        cursor: pointer;    
+        height: 19px;
+        width: 19px; 
+        color: rgb(161, 161, 161);
+        font-size: 17px;
+        &:hover {
+            color: #0ec426;
+        }
+    }
+    .vote-show-count {
+        color: #0ec426;
+        font-size: 17px; 
+        margin: 0px 0px 0px 7px; 
+    }
 }

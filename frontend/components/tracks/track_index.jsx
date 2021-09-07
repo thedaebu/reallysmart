@@ -79,9 +79,9 @@ class TrackIndex extends React.Component {
             <div className="tracks-index-main">
                 <Navbar />
                 <div className="tracks-index-top">
-                    <h1 className="tracks-index-h1" >CHARTS</h1>
-                    <h2 className="tracks-index-h2" >REALLY POPULAR ON REALLY SMART</h2>
-                    <ul className="tracks-index-list">
+                    <h1 >CHARTS</h1>
+                    <h2 >REALLY POPULAR ON REALLY SMART</h2>
+                    <ul >
                         {this.trackIndexItems()}
                     </ul>
                 </div>

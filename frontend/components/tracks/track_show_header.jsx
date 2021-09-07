@@ -16,7 +16,7 @@ class TrackShowHeader extends React.Component {
         return (
             <div className="track-show-header-main" style={{ backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(${art})`, backgroundPosition: "center", backgroundSize: "cover" }}>
                 <div className="track-show-header-shade">
-                    <div className="track-show-header-content">
+                    <div>
                         <div className="track-show-header-left">
                             <div className="track-show-header-image" style={{ backgroundImage: `url(${art}`, backgroundPosition: "center", backgroundSize: "cover" }} ></div>
                             <div className="track-show-header-center">
@@ -25,12 +25,12 @@ class TrackShowHeader extends React.Component {
                             </div>
                         </div>
                         <div className="track-show-header-right">
-                            <div className="track-index-item-fire-main">
-                                <img className="track-index-item-fire" src={window.fireIcon} />
+                            <div>
+                                <img src={window.fireIcon} />
                                 <p className="track-index-item-fire-number">{this.randomNum()}</p>
                             </div>
-                            <div className="track-index-item-eye-main">
-                                <img className="track-index-item-eye" src={window.eyeIcon} />
+                            <div>
+                                <img src={window.eyeIcon} />
                                 <p className="track-index-item-eye-number">{this.randomNum() * 10}</p>
                             </div>
                         </div>

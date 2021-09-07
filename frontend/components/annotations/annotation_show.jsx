@@ -24,8 +24,8 @@ class Annotation extends React.Component {
             return (
                 <div className="annotation-show-create-main" style={{position: "relative", top: yCoord-370}} >
                     <span className="annotation-show-create-begin" onClick={this.handleCreateAnnotation} >
-                        <p className="annotation-show-create-h1">Start the Really Smart Annotation</p>
-                        <p className="annotation-show-create-h2">(+5 RSQ)</p>
+                        <h1>Start the Really Smart Annotation</h1>
+                        <h2>(+5 RSQ)</h2>
                     </span>
                 </div>
             ) 
@@ -33,7 +33,6 @@ class Annotation extends React.Component {
             return (
                 <div className="annotation-show-create-form-main" style={{position: "relative", top: yCoord-370}} >
                     <form id="annotation-show-create-form" onSubmit={this.handleSubmitAnnotation}>
-
                         <textarea 
                             className="annotation-show-create-form-top" 
                             placeholder="Everything you teach us is for a reason, but none of it is important."
@@ -64,7 +63,6 @@ class Annotation extends React.Component {
                         </div> */}
 
                         <div className="annotation-show-create-form-bottom">
-
                             <button className="annotation-show-create-form-bottom-save-main"
                             type="submit"                        
                             >
@@ -81,7 +79,7 @@ class Annotation extends React.Component {
         } else if (currentUser === undefined) {
             return (
                 <div className="annotation-show-main-signup" style={{position: "relative", top: yCoord-370}} >
-                    <Link to="/signup" className="annotation-show-signup">Sign Up to Start Really Smarting</Link>
+                    <Link to="/signup">Sign Up to Start Really Smarting</Link>
                 </div>
             );
         }

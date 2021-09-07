@@ -41,14 +41,13 @@ class CommentShow extends React.Component {
                         className="comment-show-create-end-track-text" 
                         placeholder={commentMessage} 
                         onChange={this.handleChange("body")} 
-                    >
-                    </textarea>
+                    />
                     <div className="comment-show-create-end-buttons">
                         <button className="comment-show-create-end-submit">
-                            <p className="comment-show-create-end-submit-button">Submit</p>
+                            <p>Submit</p>
                         </button>
                         <button className="comment-show-create-end-cancel" onClick={this.handleTrackCancel}>
-                            <p className="comment-show-create-end-cancel-button">Cancel</p>
+                            <p>Cancel</p>
                         </button>
                     </div>
                 </form>
@@ -60,14 +59,13 @@ class CommentShow extends React.Component {
                         className="comment-show-create-end-anno-text" 
                         placeholder={commentMessage} 
                         onChange={this.handleChange("body")} 
-                    >
-                    </textarea>
+                    />
                     <div className="comment-show-create-end-buttons">
                         <button className="comment-show-create-end-submit">
-                            <p className="comment-show-create-end-submit-button">Submit</p>
+                            <p>Submit</p>
                         </button>
                         <button className="comment-show-create-end-cancel" onClick={this.handleAnnoCancel}>
-                            <p className="comment-show-create-end-cancel-button">Cancel</p>
+                            <p>Cancel</p>
                         </button>
                     </div>
                 </form>
@@ -75,30 +73,32 @@ class CommentShow extends React.Component {
         } else if (currentUser && createTrackStatus === false && commentableType === "Track") {
             return (
                 <div className="comment-show-create-begin-main">
-                    <img className="comment-show-create-baby" src="https://assets.genius.com/images/default_avatar_100.png" />
+                    <img src="https://assets.genius.com/images/default_avatar_100.png" />
                     <textarea 
-                        className="comment-show-create-begin-text" 
                         placeholder={commentMessage} 
                         onClick={this.handleTrackStatus}
-                    >
-                    </textarea>
+                    />
                 </div>
             );
         } else if (currentUser && createAnnoStatus === false && commentableType === "Annotation") {
             return (
                 <div className="comment-show-create-begin-main">
-                    <img className="comment-show-create-baby" src="https://assets.genius.com/images/default_avatar_100.png" />
-                    <textarea className="comment-show-create-begin-text" placeholder={commentMessage} onClick={this.handleAnnoStatus}></textarea>
+                    <img src="https://assets.genius.com/images/default_avatar_100.png" />
+                    <textarea 
+                        placeholder={commentMessage} 
+                        onClick={this.handleAnnoStatus}
+                    />    
+                    
                 </div>
             );
         } else {
             return (
                 <div className="comment-session-main">     
-                    <p className="comment-session-text">Please</p>
-                    <Link to="/signup" className="comment-session-go">Sign Up</Link>
-                    <p className="comment-session-text">or</p>
-                    <Link to="/login" className="comment-session-go">Log In</Link>
-                    <p className="comment-session-text"> to comment.</p>
+                    <p>Please</p>
+                    <Link to="/signup">Sign Up</Link>
+                    <p>or</p>
+                    <Link to="/login">Log In</Link>
+                    <p> to comment.</p>
                 </div>
             );
         }
