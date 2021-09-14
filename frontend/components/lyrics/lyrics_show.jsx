@@ -1,6 +1,6 @@
 import React from "react";
 import CommentShowContainer from "../comments/comment_show_container";
-import AnnotationShowContainer from "./annotation_show_container";
+import AnnotationShowContainer from "../annotations/annotation_show_container";
 
 class LyricsShow extends React.Component {
     constructor(props) {
