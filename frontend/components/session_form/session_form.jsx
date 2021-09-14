@@ -7,7 +7,7 @@ class SessionForm extends React.Component {
         this.state = {
             username: "",
             password: "",
-            avatar: window.defaultAvatar
+            // avatar: window.defaultAvatar
         };
         
         this.handleSubmit = this.handleSubmit.bind(this);

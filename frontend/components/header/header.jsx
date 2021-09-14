@@ -12,8 +12,8 @@ class Header extends React.Component {
         if (currentUser !== undefined) {
             return (
                 <div>
-                    <input type="file"/>
-                    <img src={currentUser.avatar_url}/>
+                    {/* <input type="file"/> */}
+                    {/* <img src={currentUser.avatar_url}/> */}
                     <a className="logout" onClick={logout}>LOG OUT</a>
                 </div>
             );

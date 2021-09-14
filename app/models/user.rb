@@ -20,7 +20,7 @@ class User < ApplicationRecord
     foreign_key: :voter_id,
     class_name: "Vote"
 
-  has_one_attached :avatar
+  # has_one_attached :avatar
 
   def self.find_by_credentials(username, password)
     user = User.find_by(username: username)
