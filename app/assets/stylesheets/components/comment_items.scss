@@ -16,6 +16,15 @@ $programmelight: 'Programme Light', sans-serif;
         padding: 20px 0px 20px 0px;
         margin: 0px 0px 0px 15px;
     }
+    .comment-list-item-time {
+        font-size: 15px;
+    }
+    .comment-list-item-body {
+        font-family: $programmelight;
+        font-size: 17px;
+        line-height: 23px;
+        padding: 17px 0px 0px 0px;
+    }
 }
 
 .comment-list-item-top {
@@ -35,14 +44,5 @@ $programmelight: 'Programme Light', sans-serif;
             left: 5px;
             font-size: 15px;
         }
-    }
-    .comment-list-item-time {
-        font-size: 15px;
-    }
-    .comment-list-item-body {
-        font-family: $programmelight;
-        font-size: 17px;
-        line-height: 23px;
-        padding: 17px 0px 0px 0px;
     }
 }
