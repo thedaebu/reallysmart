@@ -1,6 +1,6 @@
 import React from "react";
 import TrackShowHeader from "./track_show_header";
-import LyricsShowContainer from "../annotations/lyrics_show_container";
+import LyricsShowContainer from "../lyrics/lyrics_show_container";
 import NavBar from "../header/navbar";
 
 class TrackShow extends React.Component {
