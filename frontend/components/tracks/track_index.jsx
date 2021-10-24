@@ -6,7 +6,6 @@ function TrackIndex(props) {
     const [list, setList] = useState(5);
 
     useEffect(() => {
-        debugger
         props.fetchTracks();
         window.scrollTo(0, 0);
     }, "")
