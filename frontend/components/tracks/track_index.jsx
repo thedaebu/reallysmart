@@ -4,6 +4,7 @@ import TrackIndexItem from "./track_index_item";
 
 function TrackIndex(props) {
     const [list, setList] = useState(5);
+    const { tracks } = props;
 
     useEffect(() => {
         props.fetchTracks();
@@ -11,8 +12,6 @@ function TrackIndex(props) {
     }, "")
 
     function trackIndexItems() {
-        const { tracks } = props;
-
         if (list === 5) {
             return (
                 tracks.slice(0, 5).map(track => {
