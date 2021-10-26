@@ -22,4 +22,4 @@ config/master.key
 .byebug_history
 
 setup.txt
-
+hooks_file.jsx
