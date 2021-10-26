@@ -1,10 +1,10 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../header/navbar";
 import TrackIndexItem from "./track_index_item";
 
 function TrackIndex(props) {
     const [list, setList] = useState(5);
-    const { tracks } = props;
+    
 
     useEffect(() => {
         props.fetchTracks();
