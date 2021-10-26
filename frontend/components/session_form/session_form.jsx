@@ -1,42 +1,33 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
-class SessionForm extends React.Component {
-    constructor(props) {
-        super(props);
+function SessionForm(props) {
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const { action, errors, clearErrors } = props;
+    const { formType, formTypeSub, formSubmit, formLink, formLast, formPassword, formTos } = props;
 
-        this.state = {
-            username: "",
-            password: "",
-            // avatar: window.defaultAvatar
-        };
-        
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
-
-    componentDidMount() {
+    useEffect(() => {
         window.scrollTo(0, 0);
-    }
+        clearErrors();
+    }, []);
 
-    componentWillUnmount() {
-        this.props.clearErrors();
-    }
-
-    handleSubmit(e) {
+    function handleSubmit(e) {
         e.preventDefault();
 
-        const { action } = this.props
-        const user = Object.assign({}, this.state);
+        const user = Object.assign({}, {username: username, password: password});
         action(user);
     }
 
-    handleChange(type) {
-        return e => this.setState({[type]: e.target.value});
+    function handleChange(type) {
+        if (type === "username") {
+            return e => setUsername(e.target.value);
+        } else {
+            return e => setPassword(e.target.value);
+        }
     }
 
-    showErrors() {
-        const { errors } = this.props;
-
-       if (errors.length) {
+    function showErrors() {
+        if (errors.length > 0) {
             return (
                 <div className="errors-main">
                     <h2>Ruh-roh!</h2>
@@ -55,46 +46,42 @@ class SessionForm extends React.Component {
         }
     }
 
-    render() {
-        const { formType, formTypeSub, formSubmit, formLink, formLast, formPassword, formTos } = this.props;
-
-        return (        
-            <div className="session-form-main">
-                {formType}
-                {formTypeSub}                   
-                <form className="session-form-form" onSubmit={this.handleSubmit}>
-                    {this.showErrors()}
-                    <label htmlFor="session-form-username" >Really Smart Nickname
-                        <input 
-                            id="session-form-username" 
-                            type="text" 
-                            value={this.state.username} 
-                            onChange={this.handleChange("username")}
-                        />
-                    </label>
-                    <label htmlFor="session-form-password" >Really Smart Password 
-                        <a 
-                            className="session-form-forgot-password" 
-                            href="" >{formPassword}
-                        </a>
-                        <input 
-                            id="session-form-password" 
-                            type="password" 
-                            value={this.state.password} 
-                            onChange={this.handleChange("password")}
-                        />
-                    </label>
-                    {formTos}
+    return (
+        <div className="session-form-main">
+            {formType}
+            {formTypeSub}                   
+            <form className="session-form-form" onSubmit={handleSubmit}>
+                {showErrors()}
+                <label htmlFor="session-form-username" >Really Smart Nickname
                     <input 
-                        id="session-form-submit" 
-                        type="submit" 
-                        value={formSubmit}
-                    />                        
-                </form>
-                <p className="session-form-bottom" >{formLast} {formLink}</p>                  
-            </div>            
-        );
-    }
-};
+                        id="session-form-username" 
+                        type="text" 
+                        value={username} 
+                        onChange={handleChange("username")}
+                    />
+                </label>
+                <label htmlFor="session-form-password" >Really Smart Password 
+                    <a 
+                        className="session-form-forgot-password" 
+                        href="" >{formPassword}
+                    </a>
+                    <input 
+                        id="session-form-password" 
+                        type="password" 
+                        value={password} 
+                        onChange={handleChange("password")}
+                    />
+                </label>
+                {formTos}
+                <input 
+                    id="session-form-submit" 
+                    type="submit" 
+                    value={formSubmit}
+                />                        
+            </form>
+            <p className="session-form-bottom" >{formLast} {formLink}</p>                  
+        </div>            
+    )
+}
 
 export default SessionForm;
