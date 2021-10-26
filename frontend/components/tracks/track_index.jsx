@@ -15,19 +15,19 @@ function TrackIndex(props) {
         if (list === 5) {
             return (
                 tracks.slice(0, 5).map(track => {
-                    return <TrackIndexItem track={track} key={track.id} />;
+                    return <TrackIndexItem track={track} key={track.id}/>;
                 })
             );
         } else if (list === 10) {
             return (
                 tracks.slice(0, 10).map(track => {
-                    return <TrackIndexItem track={track} key={track.id} />;
+                    return <TrackIndexItem track={track} key={track.id}/>;
                 })
             );
         } else {
             return (
                 tracks.map(track => {
-                    return <TrackIndexItem track={track} key={track.id} />;
+                    return <TrackIndexItem track={track} key={track.id}/>;
                 })
             );
         }
@@ -63,9 +63,9 @@ function TrackIndex(props) {
         <div className="tracks-index-main">
             <Navbar />
             <div className="tracks-index-top">
-                <h1 >CHARTS</h1>
-                <h2 >REALLY POPULAR ON REALLY SMART</h2>
-                <ul >
+                <h1>CHARTS</h1>
+                <h2>REALLY POPULAR ON REALLY SMART</h2>
+                <ul>
                     {trackIndexItems()}
                 </ul>
             </div>
