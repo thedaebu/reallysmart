@@ -22,8 +22,8 @@ function TrackIndexItem(props) {
                 style={{ 
                     background: `url(${track.artwork_path}`, 
                     backgroundPosition: "center", 
-                    backgroundSize: "cover" }
-                }
+                    backgroundSize: "cover" 
+                }}
             > 
             </div>
             <div className="track-index-item-title-main">
