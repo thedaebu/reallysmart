@@ -4,12 +4,12 @@ import TrackIndexItem from "./track_index_item";
 
 function TrackIndex(props) {
     const [list, setList] = useState(5);
-    
+    const { tracks } = props;
 
     useEffect(() => {
         props.fetchTracks();
         window.scrollTo(0, 0);
-    }, "")
+    }, [])
 
     function trackIndexItems() {
         if (list === 5) {
@@ -17,19 +17,19 @@ function TrackIndex(props) {
                 tracks.slice(0, 5).map(track => {
                     return <TrackIndexItem track={track} key={track.id}/>;
                 })
-            );
+            )
         } else if (list === 10) {
             return (
                 tracks.slice(0, 10).map(track => {
                     return <TrackIndexItem track={track} key={track.id}/>;
                 })
-            );
+            )
         } else {
             return (
                 tracks.map(track => {
                     return <TrackIndexItem track={track} key={track.id}/>;
                 })
-            );
+            )
         }
     }
 
@@ -37,15 +37,15 @@ function TrackIndex(props) {
         if (list === 5) {
             return ( 
                 <p onClick={handleClick} className="tracks-index-load-more">LOAD MORE</p>
-            );
+            )
         } else if (list === 10) { 
             return ( 
                 <p onClick={handleClick} className="tracks-index-load-more">We Miss You DMX!</p>
-            );
+            )
         } else {
             return (
                 null
-            );
+            )
         }
     }
 
@@ -71,7 +71,7 @@ function TrackIndex(props) {
             </div>
             {listButton()}
         </div>
-    );
+    )
 };
 
 export default TrackIndex;
