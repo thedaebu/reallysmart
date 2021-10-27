@@ -1,13 +1,6 @@
 import { connect } from "react-redux";
 import SearchbarItems from "./searchbar_items";
-import {
-  Route,
-  Redirect,
-  Switch,
-  Link,
-  HashRouter, 
-  withRouter
-} from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 const mSTP = (state, ownProps) => {
     return ({
