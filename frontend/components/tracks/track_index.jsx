@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "../header/navbar";
+import Navbar from "../navbar/navbar";
 import TrackIndexItem from "./track_index_item";
 
 function TrackIndex(props) {

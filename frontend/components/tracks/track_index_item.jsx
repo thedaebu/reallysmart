@@ -1,11 +1,5 @@
 import React from "react";
-import {
-    Route,
-    Redirect,
-    Switch,
-    Link,
-    HashRouter
-} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function TrackIndexItem(props) {
     const { track } = props; 
