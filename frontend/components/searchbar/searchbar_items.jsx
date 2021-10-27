@@ -1,31 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import SearchbarItem from "./searchbar_item";
 
-class SearchbarItems extends React.Component {
-    constructor(props) {
-        super(props);
+function SearchbarItems(props) {
+    const { searches, searchField, clearSearchField } = props;
+    const { siteLocation } = props.match.params;
 
-        this.searchbarResults = this.searchbarResults.bind(this);
-        this.searchbarItems = this.searchbarItems.bind(this);
-    }
+    useEffect(() => {
+        clearSearchField();
+    }, [siteLocation])
 
-    componentDidUpdate(prevProps) {
-        if (this.props.siteLocation !== prevProps.siteLocation) {
-            this.props.clearSearchField();
-        }
-    }
-
-    searchbarResults() {
-        const { searches, searchField } = this.props;
-        const { clearSearchField } = this.props;
-        
+    function searchbarResults() {
         if (searches.length > 0 && searchField !== "") {
             return (
                 <div className="searchbar-items-modal">
                     <p className="searchbar-search-results">SEARCH RESULTS</p>
                     <p className="searchbar-search-songs">SONGS</p>
                     <ul onClick={clearSearchField}>
-                        {this.searchbarItems()}
+                        {searchbarItems()}
                     </ul>
                 </div>
             );
@@ -39,9 +30,7 @@ class SearchbarItems extends React.Component {
         }
     }
 
-    searchbarItems() {
-        const { searches } = this.props;
-
+    function searchbarItems() {
         if (searches.length > 0) {
             return (
                 searches.slice(0, 5).map((searchbarItem, key) => {
@@ -57,25 +46,17 @@ class SearchbarItems extends React.Component {
         }
     }
 
-    randomNum() {
-        return Math.floor(Math.random() * 1000);
+    if (searchField !== "") {
+        return (
+            <div>
+                {searchbarResults()}
+            </div>
+        );
+    } else {
+        return (
+            null
+        );
     }
-
-    render() {
-        const { searchField } = this.props;
-        
-        if (searchField !== "") {
-            return (
-                <div>
-                    {this.searchbarResults()}
-                </div>
-            );
-        } else {
-            return (
-                null
-            );
-        }
-    }
-};
+}
 
 export default SearchbarItems;

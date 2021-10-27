@@ -1,49 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import SearchbarItemsContainer from "./searchbar_items_container";
 
-class Searchbar extends React.Component {
-    constructor(props) {
-        super(props);
+function Searchbar(props) {
+    const [searchField, setSearchField] = useState("");
+    const { fetchSearches } = props;
 
-        this.state = {
-            searchField: ""
-        };
-
-        this.onChange = this.onChange.bind(this);
-        this.clearSearchField = this.clearSearchField.bind(this);
-    }
-
-    onChange() {
-        if (this.state.searchField !== "") {
-            this.props.fetchSearches(this.state.searchField.toLowerCase());
+    function handleSearchChange() {
+        if (searchField !== "") {
+            fetchSearches(searchField.toLowerCase());
         }
-        return e => this.setState({searchField: e.target.value});
+        return e => setSearchField(e.target.value);
     }
 
-    clearSearchField() {
-        this.setState({searchField: ""});
+    function clearSearchField() {
+        setSearchField("");
     }
 
-    render() {
-        return (
-            <div>
-                <div className="search-bar-main">
-                    <input
-                        type="text" 
-                        placeholder="Search lyrics & more"
-                        value={this.state.searchField} 
-                        onChange={this.onChange()} 
-                    />
-                    <AiOutlineSearch className="search-bar-glass" />
-                </div>   
-                <SearchbarItemsContainer 
-                    searchField={this.state.searchField} 
-                    clearSearchField={this.clearSearchField} 
+    return (
+        <div>
+            <div className="search-bar-main">
+                <input
+                    type="text" 
+                    placeholder="Search lyrics & more"
+                    value={searchField} 
+                    onChange={handleSearchChange()} 
                 />
-            </div>
-        );
-    }
-};
+                <AiOutlineSearch className="search-bar-glass" />
+            </div>   
+            <SearchbarItemsContainer 
+                searchField={searchField} 
+                clearSearchField={clearSearchField} 
+            />
+        </div>
+    );
+}
 
 export default Searchbar;
