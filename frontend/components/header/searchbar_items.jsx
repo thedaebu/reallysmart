@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import SearchbarItem from "./searchbar_item";
+import SearchbarItem from "../header/searchbar_item";
 
 function SearchbarItems(props) {
     const { searches, searchField, clearSearchField } = props;
