@@ -11,14 +11,14 @@ function SessionForm(props) {
         clearErrors();
     }, []);
 
-    function handleSubmit(e) {
+    function handleFormSubmit(e) {
         e.preventDefault();
 
         const user = Object.assign({}, {username: username, password: password});
         action(user);
     }
 
-    function handleChange(type) {
+    function handleInputChange(type) {
         if (type === "username") {
             return e => setUsername(e.target.value);
         } else {
@@ -50,14 +50,14 @@ function SessionForm(props) {
         <div className="session-form-main">
             {formType}
             {formTypeSub}                   
-            <form className="session-form-form" onSubmit={handleSubmit}>
+            <form className="session-form-form" onSubmit={handleFormSubmit}>
                 {showErrors()}
                 <label htmlFor="session-form-username" >Really Smart Nickname
                     <input 
                         id="session-form-username" 
                         type="text" 
                         value={username} 
-                        onChange={handleChange("username")}
+                        onChange={handleInputChange("username")}
                     />
                 </label>
                 <label htmlFor="session-form-password" >Really Smart Password 
@@ -69,7 +69,7 @@ function SessionForm(props) {
                         id="session-form-password" 
                         type="password" 
                         value={password} 
-                        onChange={handleChange("password")}
+                        onChange={handleInputChange("password")}
                     />
                 </label>
                 {formTos}
