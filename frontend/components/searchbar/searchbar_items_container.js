@@ -9,7 +9,7 @@ import {
   withRouter
 } from "react-router-dom";
 
-const mSTP = ( state, ownProps) => {
+const mSTP = (state, ownProps) => {
     return ({
         searches: Object.values(state.entities.searches),
         siteLocation: ownProps.location.pathname
