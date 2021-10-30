@@ -10,11 +10,11 @@ function SearchbarItem(props) {
 
     return (
         <Link className="searchbar-item-main" to={`/tracks/${track.id}`} replace>
-            <div 
+            <div
                 className="searchbar-item-image" style={{ 
                     backgroundImage: `url(${track.artwork_path}`,
                     backgroundPosition: "center",
-                    backgroundSize: "cover" 
+                    backgroundSize: "cover"
                 }}> 
             </div>
             <div className="searchbar-item-body">

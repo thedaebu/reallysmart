@@ -23,14 +23,14 @@ function Searchbar(props) {
                 <input
                     type="text" 
                     placeholder="Search lyrics & more"
-                    value={searchField} 
+                    value={searchField}
                     onChange={handleSearchChange()} 
                 />
                 <AiOutlineSearch className="search-bar-glass" />
-            </div>   
+            </div>
             <SearchbarItemsContainer 
-                searchField={searchField} 
-                clearSearchField={clearSearchField} 
+                searchField={searchField}
+                clearSearchField={clearSearchField}
             />
         </div>
     );

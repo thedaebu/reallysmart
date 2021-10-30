@@ -79,8 +79,8 @@ function SessionForm(props) {
                     value={formSubmit}
                 />                        
             </form>
-            <p className="session-form-bottom" >{formLast} {formLink}</p>                  
-        </div>            
+            <p className="session-form-bottom" >{formLast} {formLink}</p>
+        </div>
     )
 }
 

@@ -20,12 +20,12 @@ function TrackShowHeader(props) {
             <div className="track-show-header-shade">
                 <div>
                     <div className="track-show-header-left">
-                        <div 
-                            className="track-show-header-image" 
-                            style={{ 
-                                backgroundImage: `url(${artworkPath}`, 
-                                backgroundPosition: "center", 
-                                backgroundSize: "cover" 
+                        <div
+                            className="track-show-header-image"
+                            style={{
+                                backgroundImage: `url(${artworkPath}`,
+                                backgroundPosition: "center",
+                                backgroundSize: "cover"
                             }}
                         >
                         </div>

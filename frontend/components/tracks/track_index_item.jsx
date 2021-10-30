@@ -2,21 +2,21 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function TrackIndexItem(props) {
-    const { track } = props; 
+    const { track } = props;
 
     function randomNum() {
         return Math.floor(Math.random() * 1000);
     }
 
     return ( 
-        <Link className="track-index-item" to={`/tracks/${track.id}`}>        
+        <Link className="track-index-item" to={`/tracks/${track.id}`}>
             <p className="track-index-item-id">{track.id}</p>
-            <div 
-                className="track-index-item-image" 
-                style={{ 
-                    background: `url(${track.artwork_path}`, 
-                    backgroundPosition: "center", 
-                    backgroundSize: "cover" 
+            <div
+                className="track-index-item-image"
+                style={{
+                    background: `url(${track.artwork_path}`,
+                    backgroundPosition: "center",
+                    backgroundSize: "cover"
                 }}
             > 
             </div>

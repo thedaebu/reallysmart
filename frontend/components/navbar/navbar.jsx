@@ -22,7 +22,7 @@ function Navbar(props) {
                     </a>
                     <a href="https://eddie-kim.com/" target="_blank" rel="noopener noreferrer">
                         <img src={window.website}/>
-                    </a>  
+                    </a>
                 </div>
             </div>
         </div>

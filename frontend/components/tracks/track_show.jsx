@@ -16,18 +16,18 @@ function TrackShow(props) {
         return (
             <div>
                 <NavBar />
-                <TrackShowHeader 
-                    track={track} 
-                    fetchTrack={fetchTrack} 
+                <TrackShowHeader
+                    track={track}
+                    fetchTrack={fetchTrack}
                 />
                 <div className="track-show-bottom-main">
-                    <LyricsShowContainer 
-                        track={track} 
+                    <LyricsShowContainer
+                        track={track}
                     />
                 </div>
             </div>
         );
-    } else { 
+    } else {
         return (
             null
         );
