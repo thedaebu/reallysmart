@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import { createAnnotation, fetchAnnotation } from "../../actions/annotation_actions";
 import { closeAnnotationModal } from "../../actions/annotation_modal_actions";
 import { fetchTrack } from "../../actions/track_actions";
-import Annotation from "./annotation_show";
+import AnnotationShow from "./annotation_show";
 
 const mSTP = ( state, ownProps ) => {
     return ({
@@ -20,4 +20,4 @@ const mDTP = ( dispatch, ownProps ) => {
     });
 };
 
-export default connect(mSTP, mDTP)(Annotation);
+export default connect(mSTP, mDTP)(AnnotationShow);

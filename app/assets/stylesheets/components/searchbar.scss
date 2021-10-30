@@ -23,14 +23,14 @@
         line-height: 167px;
     }
     ul{
-        .searchbar-item-main {
+        :hover {
+            background-color: #dbdbdb;
+        }
+        a {
             cursor: pointer;
             display: flex;
             background-color: white;
             margin: 0px 0px 4px 0px;
-            :hover {
-                background-color: #dbdbdb;
-            }
             .searchbar-item-image {
                 height: 75px;   
                 width: 75px;

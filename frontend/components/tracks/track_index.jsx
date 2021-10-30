@@ -1,5 +1,5 @@
-import React, { useState, useEffect} from "react";
-import Navbar from "../header/navbar";
+import React, { useState, useEffect } from "react";
+import Navbar from "../navbar/navbar";
 import TrackIndexItem from "./track_index_item";
 
 function TrackIndex(props) {
@@ -9,27 +9,27 @@ function TrackIndex(props) {
     useEffect(() => {
         props.fetchTracks();
         window.scrollTo(0, 0);
-    }, "")
+    }, [])
 
     function trackIndexItems() {
         if (list === 5) {
             return (
                 tracks.slice(0, 5).map(track => {
-                    return <TrackIndexItem track={track} key={track.id} />;
+                    return <TrackIndexItem track={track} key={track.id}/>;
                 })
-            );
+            )
         } else if (list === 10) {
             return (
                 tracks.slice(0, 10).map(track => {
-                    return <TrackIndexItem track={track} key={track.id} />;
+                    return <TrackIndexItem track={track} key={track.id}/>;
                 })
-            );
+            )
         } else {
             return (
                 tracks.map(track => {
-                    return <TrackIndexItem track={track} key={track.id} />;
+                    return <TrackIndexItem track={track} key={track.id}/>;
                 })
-            );
+            )
         }
     }
 
@@ -37,15 +37,15 @@ function TrackIndex(props) {
         if (list === 5) {
             return ( 
                 <p onClick={handleClick} className="tracks-index-load-more">LOAD MORE</p>
-            );
+            )
         } else if (list === 10) { 
             return ( 
                 <p onClick={handleClick} className="tracks-index-load-more">We Miss You DMX!</p>
-            );
+            )
         } else {
             return (
                 null
-            );
+            )
         }
     }
 
@@ -63,15 +63,15 @@ function TrackIndex(props) {
         <div className="tracks-index-main">
             <Navbar />
             <div className="tracks-index-top">
-                <h1 >CHARTS</h1>
-                <h2 >REALLY POPULAR ON REALLY SMART</h2>
-                <ul >
+                <h1>CHARTS</h1>
+                <h2>REALLY POPULAR ON REALLY SMART</h2>
+                <ul>
                     {trackIndexItems()}
                 </ul>
             </div>
             {listButton()}
         </div>
-    );
+    )
 };
 
 export default TrackIndex;

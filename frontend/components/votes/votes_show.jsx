@@ -1,72 +1,61 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { RiThumbUpLine } from "react-icons/ri";
 
-class VotesShow extends React.Component {
-    constructor(props) {
-        super(props);
+function VotesShow(props) {
+    const [currentVoteStatus, setCurrentVoteStatus] = useState(props.currentVoteStatus);
+    const { currentUser, fetchVote, parent, currentVote, voteableType, voteableId, deleteVote, createVote, fetchAction, numberOfVotes } = props;
 
-        this.state = {
-            currentVoteStatus: this.props.currentVoteStatus
-        };
-
-        this.handleVote = this.handleVote.bind(this);
-    }
-
-    componentDidMount() {
-        const { currentUser, fetchVote } = this.props;
-
+    useEffect(() => {
         if (currentUser && currentUser.vote_ids.length > 0) {
             currentUser.vote_ids.forEach(id => {
                 fetchVote(id);
             })
         }
-    }
+    }, []);
 
-    handleVote(e) {
+    function handleVote(e) {
         e.preventDefault();
 
-        const { parent, currentUser, currentVote, voteableType, voteableId, deleteVote, createVote, fetchAction} = this.props;
-        const { currentVoteStatus } = this.state;
-
         if (currentUser && currentVoteStatus === true) {
-            this.setState({currentVoteStatus: false});
+            setCurrentVoteStatus(false);
             deleteVote(currentVote.id).then(() => fetchAction(parent.id))
         } else if (currentUser) {
             createVote({
                 voter_id: currentUser.id,
                 voteable_type: voteableType,
                 voteable_id: voteableId
-            }).then(() => fetchAction(parent.id))
-            this.setState({currentVoteStatus: true});
+            }).then(() => fetchAction(parent.id));
+            setCurrentVoteStatus(true);
         }
     }
 
-    render() {
-        const { numberOfVotes, currentUser } = this.props;
-        const { currentVoteStatus } = this.state;
-
-        if (currentUser && currentVoteStatus === true) {
-            return (
-                <div className="vote-show-main" >
-                    <RiThumbUpLine className="vote-show-voted" onClick={this.handleVote} />
-                    <div className="vote-show-count" >+{numberOfVotes}</div>
-                </div>
-            );
-        } else if (currentUser && currentVoteStatus === false) {
-            return (
-                <div className="vote-show-main" >
-                    <RiThumbUpLine className="vote-show-not-voted" onClick={this.handleVote} />
-                    <div className="vote-show-count" >+{numberOfVotes}</div>
-                </div>
-            );
-        } else {
-            return (
-                <div className="vote-show-main" >
-                    <RiThumbUpLine className="vote-show-not-voted"/>
-                    <div className="vote-show-count" >+{numberOfVotes}</div>
-                </div>
-            );
-        }
+    if (currentUser && currentVoteStatus === true) {
+        return (
+            <div className="vote-show-main">
+                <RiThumbUpLine
+                    className="vote-show-voted"
+                    onClick={handleVote}
+                />
+                <div className="vote-show-count">+{numberOfVotes}</div>
+            </div>
+        );
+    } else if (currentUser && currentVoteStatus === false) {
+        return (
+            <div className="vote-show-main">
+                <RiThumbUpLine
+                    className="vote-show-not-voted"
+                    onClick={handleVote}
+                />
+                <div className="vote-show-count">+{numberOfVotes}</div>
+            </div>
+        );
+    } else {
+        return (
+            <div className="vote-show-main">
+                <RiThumbUpLine className="vote-show-not-voted"/>
+                <div className="vote-show-count">+{numberOfVotes}</div>
+            </div>
+        );
     }
 };
 

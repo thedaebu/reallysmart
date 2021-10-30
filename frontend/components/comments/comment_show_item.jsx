@@ -1,16 +1,10 @@
 import React from "react";
 import VotesShowContainer from "../votes/votes_show_container";
 
-class CommentItem extends React.Component {
-    constructor(props) {
-        super(props);
+function CommentShowItem(props) {
+    const { comment, parent, fetchAction, commentableType } = props;
 
-        this.commentItem = this.commentItem.bind(this);
-    }
-
-    commentItem() {
-        const { comment, parent, fetchAction } = this.props;
-
+    function commentItem() {
         return (
             <div>
                 <div className="comment-list-item-top">
@@ -18,7 +12,7 @@ class CommentItem extends React.Component {
                         <img className="comment-list-item-baby" src="https://assets.genius.com/images/default_avatar_100.png" />
                         <p className="comment-list-item-commenter">{comment.commenter}</p>
                     </div>
-                    <p className="comment-list-item-time">{this.handleTime(comment.updated_at)}</p>
+                    <p className="comment-list-item-time">{handleTime(comment.updated_at)}</p>
                 </div>
                 <p className="comment-list-item-body">{comment.body}</p>
                 <VotesShowContainer 
@@ -32,7 +26,7 @@ class CommentItem extends React.Component {
         )
     }
 
-    handleTime(dateTime) {
+    function handleTime(dateTime) {
         const oldDate = new Date(Date.parse(dateTime));
         const currentDate = new Date();
         const yearDiff = currentDate.getFullYear() - oldDate.getFullYear();
@@ -56,23 +50,19 @@ class CommentItem extends React.Component {
         }
     }
 
-    render() {
-        const { commentableType } = this.props;
-        
-        if (commentableType === "Track") {
-            return (
-                <li className="comment-list-track-item">
-                    {this.commentItem()}
-                </li>
-            );
-        } else {
-            return (
-                <li className="comment-list-anno-item">
-                    {this.commentItem()}
-                </li>
-            );
-        }
+    if (commentableType === "Track") {
+        return (
+            <li className="comment-list-track-item">
+                {commentItem()}
+            </li>
+        );
+    } else {
+        return (
+            <li className="comment-list-anno-item">
+                {commentItem()}
+            </li>
+        );
     }
-};
+}
 
-export default CommentItem;
+export default CommentShowItem;

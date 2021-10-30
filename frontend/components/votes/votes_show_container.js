@@ -20,7 +20,7 @@ const mSTP = (state, ownProps) => {
         : false
 
     return ({
-        currentUser: currentUser,  
+        currentUser: currentUser,
         currentVote: currentVote,
         currentVoteStatus: currentVoteStatus
     });

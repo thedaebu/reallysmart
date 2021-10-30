@@ -2,13 +2,9 @@ import { connect } from "react-redux";
 import { login } from "../../actions/session_actions";
 import DemoUser from "./demo_user";
 
-const mSTP = ({session, entities: { users }}) => {
+const mSTP = ({session, entities: { users }}, ownProps) => {
     return ({
-        currentUser: users[session.id],
-        info: {
-            username: "notsosmart",
-            password: "notsosmart"
-        }
+        currentUser: users[session.id]
     });
 };
 const mDTP = (dispatch, ownProps) => {

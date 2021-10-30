@@ -1,49 +1,37 @@
-import React from "react";
+import React, { useEffect } from "react";
 import TrackShowHeader from "./track_show_header";
 import LyricsShowContainer from "../lyrics/lyrics_show_container";
-import NavBar from "../header/navbar";
+import NavBar from "../navbar/navbar";
 
-class TrackShow extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+function TrackShow(props) {
+    const { track, fetchTrack } = props;
+    const { trackId } = props.match.params;
 
-    componentDidMount() {       
-        this.props.fetchTrack(this.props.match.params.trackId);
+    useEffect(() => {
+        fetchTrack(trackId);
         window.scrollTo(0, 0);
-    }
+    }, [trackId]);
 
-    componentDidUpdate(prevProps) {
-        if (this.props.match.params.trackId !== prevProps.match.params.trackId) {
-            this.props.fetchTrack(this.props.match.params.trackId);
-            window.scrollTo(0, 0);
-        }        
-    }
-
-    render() {
-        const { track, fetchTrack } = this.props;
-        
-        if (track) {
-            return (
-                <div>
-                    <NavBar />
-                    <TrackShowHeader 
-                        track={track} 
-                        fetchTrack={fetchTrack} 
+    if (track) {
+        return (
+            <div>
+                <NavBar />
+                <TrackShowHeader
+                    track={track}
+                    fetchTrack={fetchTrack}
+                />
+                <div className="track-show-bottom-main">
+                    <LyricsShowContainer
+                        track={track}
                     />
-                    <div className="track-show-bottom-main">
-                        <LyricsShowContainer 
-                            track={track} 
-                        />
-                    </div>
                 </div>
-            );
-        } else { 
-            return (
-                null
-            );
-        }
+            </div>
+        );
+    } else {
+        return (
+            null
+        );
     }
-};
+}
 
 export default TrackShow;
