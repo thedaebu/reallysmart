@@ -1,50 +1,56 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import AnnotationShowItem from "./annotation_show_item";
 
-class Annotation extends React.Component {
-    constructor(props) {
-        super(props)
+function AnnotationShow(props) {
+    const [createStatus, setCreateStatus] = useState(props.createStatus);
+    const [body, setBody] = useState("");
 
-        this.state = {
-            createStatus: this.props.createStatus,
-            body: ""      
-        };
-        
-        this.annotationForm = this.annotationForm.bind(this);
-        this.handleCreateAnnotation = this.handleCreateAnnotation.bind(this);
-        this.handleSubmitAnnotation = this.handleSubmitAnnotation.bind(this);
-        this.handleCancelAnnotation = this.handleCancelAnnotation.bind(this);   
-    }
+    const { currentUser, yCoord, startIndex, endIndex, track, annotation, annoId, createAnnotation, fetchTrack, annotationModal, closeAnnotationModal } = props;
 
-    annotationForm() {
-        const { currentUser, yCoord, startIndex, endIndex } = this.props;
-
-        if (currentUser && startIndex && startIndex !== endIndex && this.state.createStatus === false) {
+    function annotationForm() {
+        if (currentUser && startIndex && startIndex !== endIndex && createStatus === false) {
             return (
-                <div className="annotation-show-create-main" style={{position: "relative", top: yCoord-370}} >
-                    <span className="annotation-show-create-begin" onClick={this.handleCreateAnnotation} >
+                <div
+                    className="annotation-show-create-main" 
+                    style={{
+                        position: "relative",
+                        top: yCoord-370
+                    }}>
+                    <span
+                        className="annotation-show-create-begin"
+                        onClick={handleCreateAnnotation}
+                    >
                         <h1>Start the Really Smart Annotation</h1>
                         <h2>(+5 RSQ)</h2>
                     </span>
                 </div>
-            ) 
-        } else if (currentUser && startIndex && this.state.createStatus === true){
+            )
+        } else if (currentUser && startIndex && createStatus === true){
             return (
-                <div className="annotation-show-create-form-main" style={{position: "relative", top: yCoord-370}} >
-                    <form id="annotation-show-create-form" onSubmit={this.handleSubmitAnnotation}>
-                        <textarea 
+                <div
+                    className="annotation-show-create-form-main"
+                    style={{
+                        position: "relative",
+                        top: yCoord-370
+                    }}
+                >
+                    <form
+                        id="annotation-show-create-form"
+                        onSubmit={handleSubmitAnnotation}
+                    >
+                        <textarea
                             className="annotation-show-create-form-top" 
                             placeholder="Everything you teach us is for a reason, but none of it is important."
-                            value={this.state.body}
-                            onChange={this.handleFormChange()}
+                            value={body}
+                            onChange={handleFormChange()}
                         >
                         </textarea>
-                        
+
                         {/* <div className="annotation-show-create-form-middle">
                             <p className="annotation-show-create-form-middle-tools">Tools:</p>
-                            
-                            <div className="annotation-show-create-form-middle-items">    
+
+                            <div className="annotation-show-create-form-middle-items">
                                 <a className="annotation-show-create-form-middle-item" >
                                     Add Image
                                     <span class="tooltip">Link is for styling</span>
@@ -64,87 +70,91 @@ class Annotation extends React.Component {
 
                         <div className="annotation-show-create-form-bottom">
                             <button className="annotation-show-create-form-bottom-save-main"
-                            type="submit"                        
-                            >
+                            type="submit">
                                 <p className="annotation-show-create-form-bottom-save-word">Save</p>
                                 <p className="annotation-show-create-form-bottom-save-score">(+5 RSQ)</p>
                             </button>
-                            <button className="annotation-show-create-form-bottom-cancel" onClick={this.handleCancelAnnotation}>
+                            <button
+                                className="annotation-show-create-form-bottom-cancel"
+                                onClick={handleCancelAnnotation}
+                            >
                                 Cancel
                             </button>
                         </div>
-                    </form>         
+                    </form>
                 </div>
             );
         } else if (currentUser === undefined) {
             return (
-                <div className="annotation-show-main-signup" style={{position: "relative", top: yCoord-370}} >
+                <div
+                    className="annotation-show-main-signup"
+                    style={{
+                        position: "relative",
+                        top: yCoord-370
+                    }}
+                >
                     <Link to="/signup">Sign Up to Start Really Smarting</Link>
                 </div>
             );
         }
     }
 
-    handleCreateAnnotation(e) {
+    function handleCreateAnnotation(e) {
         e.preventDefault();
-        this.setState({createStatus: true});
-        this.setState({openness: "b"});
+
+        setCreateStatus(true);
     }
 
-    handleFormChange() { 
-        return e => this.setState({body: e.target.value});
+    function handleFormChange() { 
+        return e => setBody(e.target.value);
     }
 
-    handleSubmitAnnotation(e) {
-        e.preventDefault();     
-          
+    function handleSubmitAnnotation(e) {
+        e.preventDefault();
+
         const annotation = {
-            body: this.state.body,
-            annotator_id: this.props.currentUser.id,
-            track_id: this.props.track.id,
-            start_index: this.props.startIndex,
-            end_index: this.props.endIndex
+            body: body,
+            annotator_id: currentUser.id,
+            track_id: track.id,
+            start_index: startIndex,
+            end_index: endIndex
         };
-            
-        this.setState({body: ""});
-        this.props.createAnnotation(annotation).then(() => this.props.fetchTrack(this.props.track.id));
-        this.props.closeAnnotationModal();    
+
+        setBody("");
+        createAnnotation(annotation).then(() => fetchTrack(track.id));
+        closeAnnotationModal();
     }
 
-    handleCancelAnnotation(e) {
-        e.preventDefault();  
+    function handleCancelAnnotation(e) {
+        e.preventDefault();
 
-        this.setState({createStatus: false});
-        this.setState({body: ""});
-        this.props.closeAnnotationModal();    
+        setCreateStatus(false);
+        setBody("")
+        closeAnnotationModal();
     }
 
-    render() {
-        const { track, annotation, annotationModal, annoId, currentUser, yCoord, startIndex } = this.props;
-        
-        if (annotation) {
-            return (
-                <AnnotationShowItem 
-                    annotation={annotation} 
-                    yCoord={yCoord} 
-                    currentUser={currentUser} 
-                    annoId={annoId} 
-                />
-            );
-        } else if (startIndex && annotationModal) {
-            return (
-                <div>
-                    {this.annotationForm()}
-                </div>
-            );
-        } else {
-            return(
-                <p>
-                    About "{track.title}"
-                </p>
-            );
-        }
+    if (annotation) {
+        return (
+            <AnnotationShowItem
+                annotation={annotation}
+                yCoord={yCoord}
+                currentUser={currentUser}
+                annoId={annoId}
+            />
+        );
+    } else if (startIndex && annotationModal) {
+        return (
+            <div>
+                {annotationForm()}
+            </div>
+        );
+    } else {
+        return(
+            <p>
+                About "{track.title}"
+            </p>
+        );
     }
-};
+}
 
-export default Annotation;
+export default AnnotationShow;
