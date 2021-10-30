@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import CommentItem from "./comment_item";
+import CommentShowItem from "./comment_show_item";
 
 function CommentShow(props) {
     const [createTrackStatus, setCreateTrackStatus] = useState(false);
@@ -102,7 +102,7 @@ function CommentShow(props) {
             return (
                 <ul className="comment-list-main">
                     {comments.map(comment => {
-                        return <CommentItem
+                        return <CommentShowItem
                             parent={parent}
                             fetchAction={fetchAction}
                             comment={comment}

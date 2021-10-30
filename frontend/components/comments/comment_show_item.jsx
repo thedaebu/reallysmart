@@ -1,7 +1,7 @@
 import React from "react";
 import VotesShowContainer from "../votes/votes_show_container";
 
-class CommentItem extends React.Component {
+class CommentShowItem extends React.Component {
     constructor(props) {
         super(props);
 
@@ -75,4 +75,4 @@ class CommentItem extends React.Component {
     }
 };
 
-export default CommentItem;
+export default CommentShowItem;
