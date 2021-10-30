@@ -43,7 +43,7 @@ function AnnotationShow(props) {
                             className="annotation-show-create-form-top" 
                             placeholder="Everything you teach us is for a reason, but none of it is important."
                             value={body}
-                            onChange={handleFormChange()}
+                            onChange={handleBodyChange()}
                         >
                         </textarea>
 
@@ -105,7 +105,7 @@ function AnnotationShow(props) {
         setCreateStatus(true);
     }
 
-    function handleFormChange() { 
+    function handleBodyChange() { 
         return e => setBody(e.target.value);
     }
 
