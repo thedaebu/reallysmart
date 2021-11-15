@@ -1,6 +1,8 @@
 import React from "react";
 
-function Navbar(props) {
+declare const window: any;
+
+function Navbar() {
     return (
         <div className="navbar-outside">
             <div className="navbar-main">
