@@ -36,6 +36,7 @@ $programmelight: 'Programme Light', sans-serif;
                     line-height: 30px;
                 }
                 .is-an-anno {
+                    cursor: pointer;
                     background: rgb(224, 224, 224);
                     font-family: $programmelight;    
                     font-size: 18px;
@@ -43,7 +44,6 @@ $programmelight: 'Programme Light', sans-serif;
                     line-height: 30px;
                     padding: 3px 0px 4px 0px;
                     &:hover {
-                        cursor: pointer;
                         background: rgb(121, 164, 255);
                     }
                 }

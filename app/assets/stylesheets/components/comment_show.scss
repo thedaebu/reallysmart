@@ -85,6 +85,7 @@ $programmelight: 'Programme Light', sans-serif;
         bottom: 1px;
         display: flex;
         .comment-show-create-end-submit {
+            cursor: pointer;
             background: white;
             font-family: $programmereg;
             color:rgb(7, 7, 7);
@@ -93,7 +94,6 @@ $programmelight: 'Programme Light', sans-serif;
             padding: 0px 8px 0px 10px;
             margin: 10px 10px 10px 10px;
             &:hover {
-                cursor: pointer;
                 background: rgb(200, 255, 200);
             } 
             > p { 
@@ -104,6 +104,7 @@ $programmelight: 'Programme Light', sans-serif;
             }
         }
         .comment-show-create-end-cancel {
+            cursor: pointer;
             position: relative;
             left: 4px;
             background: rgb(215, 222, 255);
@@ -113,7 +114,6 @@ $programmelight: 'Programme Light', sans-serif;
             padding: 4px 6px 0px 6px;
             margin: 10px 10px 10px 10px;
             &:hover {
-                cursor: pointer;
                 background: rgb(196, 207, 255);
                 color:rgb(99, 99, 99);
                 border: 2px solid rgb(196, 207, 255);

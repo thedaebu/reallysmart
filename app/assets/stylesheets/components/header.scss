@@ -63,17 +63,13 @@ header {
             }
             .logout {
                 @extend header-right-buttons;
-                &:hover {
-                    cursor: pointer;
-                }
+                cursor: pointer;
             }
         }
         .demo {
             @extend header-right-buttons;
+            cursor: pointer;
             margin: 0px 0px 0px 15px;
-            &:hover {
-                cursor: pointer;
-            }
         }
     }
 }
