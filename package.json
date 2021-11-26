@@ -52,6 +52,7 @@
   },
   "homepage": "https://github.com/thedaebu/reallysmart#readme",
   "devDependencies": {
+    "@types/react-router-dom": "^5.3.2",
     "redux-logger": "^3.0.6"
   }
 }
