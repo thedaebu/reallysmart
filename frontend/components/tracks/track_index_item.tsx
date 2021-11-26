@@ -1,7 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function TrackIndexItem(props) {
+declare const window: any;
+
+interface TrackIndexItemProps {
+    track: TrackObject
+}
+
+interface TrackObject {
+    annotation_ids: Array<number>,
+    artist: string,
+    artwork_path: string,
+    comment_ids: Array<number>,
+    id: number,
+    lyrics: string,
+    title: string
+}
+
+function TrackIndexItem(props: TrackIndexItemProps) {
     const { track } = props;
 
     function randomNum() {
