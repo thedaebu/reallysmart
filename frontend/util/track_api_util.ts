@@ -7,7 +7,7 @@ export const fetchTracks = () => {
     );
 };
 
-export const fetchTrack = (trackId) => {
+export const fetchTrack = (trackId: number) => {
     return (
         $.ajax({
             method: "GET",
