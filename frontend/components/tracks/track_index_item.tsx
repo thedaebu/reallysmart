@@ -3,11 +3,10 @@ import { Link } from "react-router-dom";
 
 declare const window: any;
 
-interface TrackIndexItemProps {
-    track: TrackObject
+type TrackIndexItemProps = {
+    track: Track
 }
-
-interface TrackObject {
+interface Track {
     annotation_ids: Array<number>,
     artist: string,
     artwork_path: string,

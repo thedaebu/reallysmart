@@ -2,12 +2,11 @@ import React, { useState, useEffect } from "react";
 import Navbar from "../navbar/navbar";
 import TrackIndexItem from "./track_index_item";
 
-interface TrackIndexProps {
+type TrackIndexProps = {
     fetchTracks: Function,
-    tracks: Array<TrackObject>
+    tracks: Array<Track>
 }
-
-interface TrackObject {
+interface Track {
     annotation_ids: Array<number>,
     artist: string,
     artwork_path: string,

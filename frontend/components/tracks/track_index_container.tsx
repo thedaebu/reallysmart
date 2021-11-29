@@ -1,26 +1,33 @@
 import { Dispatch } from "react";
 import { connect } from "react-redux";
-import { AnyAction } from "redux";
 import { fetchTracks } from "../../actions/track_actions";
 import TrackIndex from "./track_index";
 
-interface State {
+type State = {
     entities: Entities;
 }
 interface Entities {
-    tracks: Array<object>
+    tracks: Array<Track>
+}
+interface Track {
+    annotation_ids: Array<number>,
+    artist: string,
+    artwork_path: string,
+    comment_ids: Array<number>,
+    id: number,
+    lyrics: string,
+    title: string
 }
 
 const mSTP = (state: State) => {
-    debugger
     return ({
         tracks: Object.values(state.entities.tracks)
     });
 };
 
-const mDTP = (dispatch: Dispatch<AnyAction>) => {
+const mDTP = (dispatch: Dispatch<any>) => {
     return ({   
-        fetchTracks: (tracks: Array<object>) => dispatch(fetchTracks(tracks))
+        fetchTracks: () => dispatch(fetchTracks())
     });
 };
 
