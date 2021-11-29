@@ -2,14 +2,11 @@ import React, { useEffect } from "react";
 import TrackShowHeader from "./track_show_header";
 import LyricsShowContainer from "../lyrics/lyrics_show_container";
 import NavBar from "../navbar/navbar";
-import { RouteComponentProps } from "react-router-dom";
 
-type Props = RouteComponentProps<RouterProps> & {
+type Props = {
     track: Track,
-    fetchTrack: Function,
-}
-interface RouterProps {
-    trackId: string
+    trackId: number,
+    fetchTrack: Function
 }
 interface Track {
     annotation_ids: Array<number>,
@@ -22,8 +19,7 @@ interface Track {
 }
 
 function TrackShow(props: Props) {
-    const { track, fetchTrack } = props;
-    const { trackId } = props.match.params;
+    const { track, trackId, fetchTrack } = props;
 
     useEffect(() => {
         fetchTrack(trackId);
