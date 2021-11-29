@@ -1,6 +1,21 @@
 import React from "react";
 
-function TrackShowHeader(props) {
+declare const window: any;
+
+type TrackShowHeaderProps = {
+    track: Track
+}
+interface Track {
+    annotation_ids: Array<number>,
+    artist: string,
+    artwork_path: string,
+    comment_ids: Array<number>,
+    id: number,
+    lyrics: string,
+    title: string
+}
+
+function TrackShowHeader(props: TrackShowHeaderProps) {
     const { track } = props;
     const artworkPath = track.artwork_path;
     
