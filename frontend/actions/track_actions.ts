@@ -63,7 +63,7 @@ export const fetchTracks = () => (dispatch: Dispatch<AnyAction>) => {
     );
 };
 
-export const fetchTrack = (trackId: number) => (dispatch: Dispatch<any>) => {
+export const fetchTrack = (trackId: number) => (dispatch: Dispatch<AnyAction>) => {
     return (
         TrackApiUtil.fetchTrack(trackId).then((track: ReceivedTrack) => dispatch(receiveTrack(track)))
     );
