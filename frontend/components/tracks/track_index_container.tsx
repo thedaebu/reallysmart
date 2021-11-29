@@ -1,4 +1,3 @@
-import { Dispatch } from "react";
 import { connect } from "react-redux";
 import { fetchTracks } from "../../actions/track_actions";
 import TrackIndex from "./track_index";
@@ -7,7 +6,10 @@ type State = {
     entities: Entities;
 }
 interface Entities {
-    tracks: Array<Track>
+    tracks: TrackKey
+}
+interface TrackKey {
+    [key: number]: Track
 }
 interface Track {
     annotation_ids: Array<number>,
@@ -25,7 +27,7 @@ const mSTP = (state: State) => {
     });
 };
 
-const mDTP = (dispatch: Dispatch<any>) => {
+const mDTP = (dispatch: Function) => {
     return ({   
         fetchTracks: () => dispatch(fetchTracks())
     });
