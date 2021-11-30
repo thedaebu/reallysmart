@@ -131,7 +131,7 @@ function LyricsShow(props) {
 
             setStartIndex(min);
             setEndIndex(max);
-            openAnnotationModal({hello: "hello"});
+            openAnnotationModal();
         }
     }
 
