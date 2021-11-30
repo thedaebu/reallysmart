@@ -59,7 +59,7 @@ const receiveTrack = ({track, annotations, comments}: {track: Track, annotations
 
 export const fetchTracks = () => (dispatch: Dispatch<AnyAction>) => {  
     return (
-        TrackApiUtil.fetchTracks().then((tracks: any) => dispatch(receiveTracks(tracks)))
+        TrackApiUtil.fetchTracks().then((tracks: ReceivedTracks) => dispatch(receiveTracks(tracks)))
     );
 };
 
