@@ -61,7 +61,6 @@ const receiveTracks = (tracks: ReceivedTracks) => {
     });
 };
 const receiveTrack = ({track, annotations, comments}: {track: Track, annotations: ReceivedAnnotations, comments: ReceivedComments}) => {
-    debugger
     return ({
         type: RECEIVE_TRACK,
         track,
