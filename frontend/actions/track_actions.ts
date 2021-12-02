@@ -9,8 +9,20 @@ type ReceivedTracks = {
 }
 type ReceivedTrack = {
     track: Track,
-    annotations: Annotation,
-    comments: Comment
+    annotations: ReceivedAnnotations,
+    comments: ReceivedComments
+}
+type ReceivedAnnotations = {
+    annotations: AnnotationKey
+}
+interface AnnotationKey {
+    [key: number]: Annotation
+}
+type ReceivedComments = {
+    comments: CommentKey
+}
+interface CommentKey {
+    [key: number]: Comment
 }
 interface Track {
     annotation_ids: Array<number>,
@@ -48,7 +60,8 @@ const receiveTracks = (tracks: ReceivedTracks) => {
         tracks
     });
 };
-const receiveTrack = ({track, annotations, comments}: {track: Track, annotations: Annotation, comments: Comment}) => {
+const receiveTrack = ({track, annotations, comments}: {track: Track, annotations: ReceivedAnnotations, comments: ReceivedComments}) => {
+    debugger
     return ({
         type: RECEIVE_TRACK,
         track,
