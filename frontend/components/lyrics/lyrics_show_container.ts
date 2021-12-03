@@ -56,7 +56,7 @@ const mSTP = (state: State, ownProps: OwnProps) => {
 const mDTP = (dispatch: Function) => {
     return ({
         fetchAnnotation: (annotationId: number) => dispatch(fetchAnnotation(annotationId)),
-        openAnnotationModal: (data: boolean) => dispatch(openAnnotationModal(data)),
+        openAnnotationModal: () => dispatch(openAnnotationModal()),
         closeAnnotationModal: () => dispatch(closeAnnotationModal())
     });
 };
