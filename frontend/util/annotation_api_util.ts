@@ -6,11 +6,11 @@ type NewAnnotation = {
     end_index: number
 }
 
-export const fetchAnnotation = (annotationId: string) => {
+export const fetchAnnotation = (annotationId: number) => {
     return (
         $.ajax({
             method: "GET",
-            url: `api/annotations/${annotationId}`
+            url: `api/annotations/${annotationId.toString()}`
         })
     );
 };

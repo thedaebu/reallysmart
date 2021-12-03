@@ -52,7 +52,7 @@ const receiveAnnotationErrors = (errors: Array<string>) => {
     });
 };
 
-export const fetchAnnotation = (annotationId: string) => (dispatch: Dispatch<AnyAction>) => {
+export const fetchAnnotation = (annotationId: number) => (dispatch: Dispatch<AnyAction>) => {
     return (
         AnnotationApiUtil.fetchAnnotation(annotationId)
         .then((annotation: ReceivedAnnotation) => dispatch(receiveAnnotation(annotation)))
