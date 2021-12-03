@@ -16,9 +16,6 @@ type ReceivedComments = {
 interface CommentKey {
     [key: number]: Comment
 }
-type ReceivedErrors = {
-    responseJSON: Array<string>
-}
 interface Annotation {
     annotator: string,
     annotator_id: number,
@@ -55,14 +52,16 @@ const receiveAnnotationErrors = (errors: Array<string>) => {
     });
 };
 
-export const fetchAnnotation = (annotationId: number) => (dispatch: Dispatch<AnyAction>) => {
+export const fetchAnnotation = (annotationId: string) => (dispatch: Dispatch<AnyAction>) => {
     return (
-        AnnotationApiUtil.fetchAnnotation(annotationId).then((annotation: ReceivedAnnotation) => dispatch(receiveAnnotation(annotation)))
+        AnnotationApiUtil.fetchAnnotation(annotationId)
+        .then((annotation: ReceivedAnnotation) => dispatch(receiveAnnotation(annotation)))
     );
 };
 
 export const createAnnotation = (annotation: Annotation) => (dispatch: Dispatch<AnyAction>) => {
     return (
-        AnnotationApiUtil.createAnnotation(annotation).then((annotation: ReceivedAnnotation) => dispatch(receiveAnnotation(annotation)), (errors: ReceivedErrors) => dispatch(receiveAnnotationErrors(errors.responseJSON)))
+        AnnotationApiUtil.createAnnotation(annotation)
+        .then(annotation => dispatch(receiveAnnotation(annotation)), errors => dispatch(receiveAnnotationErrors(errors.responseJSON)))
     );
 };
