@@ -29,12 +29,14 @@ interface Modal {
     annotationModal: boolean
 }
 type ownProps = {
-    annotationId: number
+    annotationId: number | null
 }
 
 const mSTP = (state: State, ownProps: ownProps) => {
     return ({
-        annotation: state.entities.annotations[ownProps.annotationId],
+        annotation: ownProps.annotationId === null 
+            ? null
+            : state.entities.annotations[ownProps.annotationId],
         annotationModal: state.modal.annotationModal
     });
 };
