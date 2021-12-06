@@ -1,8 +1,50 @@
-import React, { useState } from "react";
+import React, { FormEvent, MouseEvent, useState } from "react";
 import { Link } from "react-router-dom";
 import AnnotationShowItem from "./annotation_show_item";
 
-function AnnotationShow(props) {
+type Props = {
+    annoId: number,
+    annotation: Annotation | null,
+    annotationId: number,
+    annotationModal: boolean,
+    closeAnnotationModal: Function,
+    createAnnotation: Function,
+    createStatus: boolean,
+    currentUser: User,
+    endIndex: number,
+    fetchAnnotation: Function,
+    fetchTrack: Function,
+    startIndex: number,
+    track: Track,
+    yCoord: number
+}
+interface Annotation {
+    annotator: string,
+    annotator_id: number,
+    body: string,
+    comment_ids: Array<number>,
+    end_index: number,
+    id: number,
+    start_index: number,
+    track_id: number,
+    votes: number
+}
+interface User {
+    id: number,
+    username: string,
+    vote_ids: Array<number>
+}
+interface Track {
+    annotation_ids: Array<number>,
+    artist: string,
+    artwork_path: string,
+    comment_ids: Array<number>,
+    id: number,
+    lyrics: string,
+    title: string
+}
+
+function AnnotationShow(props: Props) {
     const [createStatus, setCreateStatus] = useState(props.createStatus);
     const [body, setBody] = useState("");
 
@@ -99,17 +141,17 @@ function AnnotationShow(props) {
         }
     }
 
-    function handleCreateAnnotation(e) {
+    function handleCreateAnnotation(e: MouseEvent<HTMLElement>) {
         e.preventDefault();
 
         setCreateStatus(true);
     }
 
     function handleBodyChange() { 
-        return e => setBody(e.target.value);
+        return (e: FormEvent<HTMLTextAreaElement>) => setBody(e.currentTarget.value);
     }
 
-    function handleSubmitAnnotation(e) {
+    function handleSubmitAnnotation(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
 
         const annotation = {
@@ -125,7 +167,7 @@ function AnnotationShow(props) {
         closeAnnotationModal();
     }
 
-    function handleCancelAnnotation(e) {
+    function handleCancelAnnotation(e: FormEvent<HTMLButtonElement>) {
         e.preventDefault();
 
         setCreateStatus(false);
