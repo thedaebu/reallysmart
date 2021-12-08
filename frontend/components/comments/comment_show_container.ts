@@ -31,7 +31,6 @@ interface Parent {
 }
 
 const mSTP = (state: State, ownProps: OwnProps) => {
-    debugger
     const comments = ownProps.parent.comment_ids.map((id: number) => state.entities.comments[id]);
     const commentMessage = ownProps.commentableType === "Track"
         ? "Add a comment"

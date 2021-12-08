@@ -15,7 +15,6 @@ interface Comment {
 }
 
 const receiveComment = (comment: Comment) => {
-    debugger
     return ({
         type: RECEIVE_COMMENT,
         comment
