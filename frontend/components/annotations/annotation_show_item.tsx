@@ -3,10 +3,10 @@ import CommentShowContainer from "../comments/comment_show_container";
 import VotesShowContainer from "../votes/votes_show_container";
 
 type Props = {
-    annoId: number,
+    annoId: string | null,
     annotation: Annotation,
     currentUser: User,
-    yCoord: number
+    yCoord: number | null
 }
 interface Annotation {
     annotator: string,
@@ -26,6 +26,7 @@ interface User {
 }
 
 function AnnotationShowItem(props: Props) {
+    debugger
     const { annotation, yCoord, currentUser, annoId } = props;
 
     return (
@@ -33,7 +34,9 @@ function AnnotationShowItem(props: Props) {
             className="annotation-show-main" 
             style={{
                 position: "relative", 
-                top: yCoord-370
+                top: yCoord !== null
+                    ? yCoord-370
+                    : -370
             }}
         >
             <p className="annotation-show-name">Really Smart Annotation by {annotation.annotator}</p>

@@ -3,20 +3,20 @@ import { Link } from "react-router-dom";
 import AnnotationShowItem from "./annotation_show_item";
 
 type Props = {
-    annoId: number,
+    annoId: string | null,
     annotation: Annotation | null,
-    annotationId: number,
+    annotationId: number | null,
     annotationModal: boolean,
     closeAnnotationModal: Function,
     createAnnotation: Function,
     createStatus: boolean,
     currentUser: User,
-    endIndex: number,
+    endIndex: number | null,
     fetchAnnotation: Function,
     fetchTrack: Function,
-    startIndex: number,
+    startIndex: number | null,
     track: Track,
-    yCoord: number
+    yCoord: number | null
 }
 interface Annotation {
     annotator: string,
@@ -57,7 +57,9 @@ function AnnotationShow(props: Props) {
                     className="annotation-show-create-main" 
                     style={{
                         position: "relative",
-                        top: yCoord-370
+                        top: yCoord !== null 
+                            ? yCoord-370
+                            : -370
                     }}>
                     <span
                         className="annotation-show-create-begin"
@@ -74,7 +76,9 @@ function AnnotationShow(props: Props) {
                     className="annotation-show-create-form-main"
                     style={{
                         position: "relative",
-                        top: yCoord-370
+                        top: yCoord !== null 
+                            ? yCoord-370
+                            : -370
                     }}
                 >
                     <form
@@ -132,7 +136,9 @@ function AnnotationShow(props: Props) {
                     className="annotation-show-main-signup"
                     style={{
                         position: "relative",
-                        top: yCoord-370
+                        top: yCoord !== null 
+                            ? yCoord-370
+                            : -370
                     }}
                 >
                     <Link to="/signup">Sign Up to Start Really Smarting</Link>
