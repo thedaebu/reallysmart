@@ -26,7 +26,6 @@ interface User {
 }
 
 function AnnotationShowItem(props: Props) {
-    debugger
     const { annotation, yCoord, currentUser, annoId } = props;
 
     return (
