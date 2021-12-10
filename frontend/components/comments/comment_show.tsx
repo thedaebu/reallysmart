@@ -1,8 +1,54 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, MouseEvent, ChangeEvent, FormEvent } from "react";
 import { Link } from "react-router-dom";
 import CommentShowItem from "./comment_show_item";
 
-function CommentShow(props) {
+type Props = {
+    commentableId: number,
+    commentableType: string,
+    commentMessage: string,
+    comments: Array<Comment>,
+    createComment: Function,
+    currentUser: User,
+    fetchAction: Function,
+    fetchComment: Function,
+    parent: Annotation | Track
+}
+interface Annotation {
+    annotator: string,
+    annotator_id: number,
+    body: string,
+    comment_ids: Array<number>,
+    end_index: number,
+    id: number,
+    start_index: number,
+    track_id: number,
+    votes: number
+}
+interface Comment {
+    body: string,
+    commentable_id: number,
+    commenter: string,
+    commenter_id: number,
+    id: number,
+    updated_at: string,
+    votes: number
+}
+interface Track {
+    annotation_ids: Array<number>,
+    artist: string,
+    artwork_path: string,
+    comment_ids: Array<number>,
+    id: number,
+    lyrics: string,
+    title: string
+}
+interface User {
+    id: number,
+    username: string,
+    vote_ids: Array<number>
+}
+
+function CommentShow(props: Props) {
     const [createTrackStatus, setCreateTrackStatus] = useState(false);
     const [createAnnoStatus, setCreateAnnoStatus] = useState(false);
     const [body, setBody] = useState("");
@@ -119,35 +165,35 @@ function CommentShow(props) {
         }
     }
 
-    function handleTrackStatus(e) {
+    function handleTrackStatus(e: MouseEvent<HTMLTextAreaElement>) {
         e.preventDefault();
 
         setCreateTrackStatus(true);
     }
 
-    function handleAnnoStatus(e) {
+    function handleAnnoStatus(e: MouseEvent<HTMLTextAreaElement>) {
         e.preventDefault();
 
         setCreateAnnoStatus(true);
     }
 
-    function handleTrackCancel(e) {
+    function handleTrackCancel(e: MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
 
         setCreateTrackStatus(false);
     }
 
-    function handleAnnoCancel(e) {
+    function handleAnnoCancel(e: MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
 
         setCreateAnnoStatus(false);
     }
 
     function handleBodyChange() {
-        return e => setBody(e.target.value);
+        return (e: ChangeEvent<HTMLTextAreaElement>) => setBody(e.target.value);
     }
 
-    function handleTrackSubmit(e) {
+    function handleTrackSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
 
         const comment = {
@@ -161,11 +207,11 @@ function CommentShow(props) {
         setCreateTrackStatus(false);
     }
 
-    function handleAnnoSubmit(e) {
+    function handleAnnoSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
 
         const comment = {
-            body: this.state.body,
+            body: body,
             commenter_id: currentUser.id,
             commentable_type: commentableType,
             commentable_id: parent.id
