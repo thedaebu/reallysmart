@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import CommentShowItem from "./comment_show_item";
 
 type Props = {
-    commentableId: number,
     commentableType: string,
     commentMessage: string,
     comments: Array<Comment>,

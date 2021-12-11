@@ -27,7 +27,7 @@ interface User {
 
 function AnnotationShowItem(props: Props) {
     const { annotation, yCoord, currentUser, annoId } = props;
-
+    debugger
     return (
         <div
             className="annotation-show-main" 
@@ -50,7 +50,6 @@ function AnnotationShowItem(props: Props) {
                 parent={annotation}
                 currentUser={currentUser}
                 commentableType="Annotation"
-                commentableId={annoId}
             />
         </div>
     );

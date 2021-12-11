@@ -183,7 +183,7 @@ function LyricsShow(props: Props) {
 
         setYCoord(e.pageY);
         setAnnoId(e.target.dataset.id);
-        debugger
+
         const highlighted: Highlighted = window.getSelection()
         if (highlighted !== null) {
             if (highlighted.anchorOffset !== highlighted.focusOffset) {
@@ -238,7 +238,6 @@ function LyricsShow(props: Props) {
                         parent={track}
                         currentUser={currentUser}
                         commentableType="Track"
-                        commentableId={track.id}
                     />
                 </div>
                 <div className="lyrics-show-right">
