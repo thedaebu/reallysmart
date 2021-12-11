@@ -1,7 +1,43 @@
 import React from "react";
 import VotesShowContainer from "../votes/votes_show_container";
 
-function CommentShowItem(props) {
+type Props = {
+    comment: Comment;
+    commentableType: string;
+    fetchAction: Function,
+    parent: Annotation | Track
+}
+interface Annotation {
+    annotator: string,
+    annotator_id: number,
+    body: string,
+    comment_ids: Array<number>,
+    end_index: number,
+    id: number,
+    start_index: number,
+    track_id: number,
+    votes: number
+}
+interface Comment {
+    body: string,
+    commentable_id: number,
+    commenter: string,
+    commenter_id: number,
+    id: number,
+    updated_at: string,
+    votes: number
+}
+interface Track {
+    annotation_ids: Array<number>,
+    artist: string,
+    artwork_path: string,
+    comment_ids: Array<number>,
+    id: number,
+    lyrics: string,
+    title: string
+}
+
+function CommentShowItem(props: Props) {
     const { comment, parent, fetchAction, commentableType } = props;
 
     function commentItem() {
@@ -26,7 +62,7 @@ function CommentShowItem(props) {
         )
     }
 
-    function handleTime(dateTime) {
+    function handleTime(dateTime: string) {
         const oldDate = new Date(Date.parse(dateTime));
         const currentDate = new Date();
         const yearDiff = currentDate.getFullYear() - oldDate.getFullYear();
