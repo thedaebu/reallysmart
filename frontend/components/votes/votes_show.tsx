@@ -1,7 +1,52 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, MouseEvent } from "react";
 import { RiThumbUpLine } from "react-icons/ri";
 
-function VotesShow(props) {
+type Props = {
+    createVote: Function,
+    currentUser: User,
+    currentVote: Vote | null,
+    currentVoteStatus: boolean,
+    deleteVote: Function,
+    fetchAction: Function,
+    fetchVote: Function,
+    numberOfVotes: number,
+    parent: Annotation | Comment,
+    voteableId: number,
+    voteableType: string
+}
+interface User {
+    id: number,
+    username: string,
+    vote_ids: Array<number>
+}
+interface Annotation {
+    annotator: string,
+    annotator_id: number,
+    body: string,
+    comment_ids: Array<number>,
+    end_index: number,
+    id: number,
+    start_index: number,
+    track_id: number,
+    votes: number
+}
+interface Comment {
+    body: string,
+    commentable_id: number,
+    commenter: string,
+    commenter_id: number,
+    id: number,
+    updated_at: string,
+    votes: number
+}
+interface Vote {
+    id: number,
+    voteable_id: number,
+    voteable_type: string,
+    voter_id: number
+}
+
+function VotesShow(props: Props) {
     const [currentVoteStatus, setCurrentVoteStatus] = useState(props.currentVoteStatus);
     const { currentUser, fetchVote, parent, currentVote, voteableType, voteableId, deleteVote, createVote, fetchAction, numberOfVotes } = props;
 
@@ -13,10 +58,10 @@ function VotesShow(props) {
         }
     }, []);
 
-    function handleVote(e) {
+    function handleVote(e: MouseEvent<HTMLOrSVGElement>) {
         e.preventDefault();
 
-        if (currentUser && currentVoteStatus === true) {
+        if (currentUser && currentVoteStatus === true && currentVote) {
             setCurrentVoteStatus(false);
             deleteVote(currentVote.id).then(() => fetchAction(parent.id))
         } else if (currentUser) {
