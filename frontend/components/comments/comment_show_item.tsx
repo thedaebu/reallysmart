@@ -3,8 +3,7 @@ import VotesShowContainer from "../votes/votes_show_container";
 
 type Props = {
     comment: Comment;
-    commentableType: string;
-    fetchAction: Function,
+    commentableType: string,
     parent: Annotation | Track
 }
 interface Annotation {
@@ -38,7 +37,7 @@ interface Track {
 }
 
 function CommentShowItem(props: Props) {
-    const { comment, parent, fetchAction, commentableType } = props;
+    const { comment, commentableType } = props;
 
     function commentItem() {
         return (
@@ -55,7 +54,6 @@ function CommentShowItem(props: Props) {
                     voteableType="Comment" 
                     voteableId={comment.id} 
                     parent={comment} 
-                    fetchAction={fetchAction} 
                     numberOfVotes={comment.votes} 
                 />
             </div>
