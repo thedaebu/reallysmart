@@ -6,7 +6,10 @@ import VotesShow from "./votes_show";
 
 type State = {
     entities: Entities,
-    session: any
+    session: SessionId
+}
+interface SessionId {
+    id: number
 }
 interface Entities {
     users: UserKey,
