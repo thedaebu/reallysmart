@@ -5,7 +5,7 @@ type Props = {
     comment: Comment;
     commentableType: string;
     fetchAction: Function,
-    parent: Annotation | Track
+    parent: Annotation | Comment
 }
 interface Annotation {
     annotator: string,
@@ -26,15 +26,6 @@ interface Comment {
     id: number,
     updated_at: string,
     votes: number
-}
-interface Track {
-    annotation_ids: Array<number>,
-    artist: string,
-    artwork_path: string,
-    comment_ids: Array<number>,
-    id: number,
-    lyrics: string,
-    title: string
 }
 
 function CommentShowItem(props: Props) {
