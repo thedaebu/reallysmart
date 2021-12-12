@@ -6,6 +6,7 @@ type Props = {
     annoId: string | null,
     annotation: Annotation,
     currentUser: User,
+    fetchAction: Function,
     yCoord: number | null
 }
 interface Annotation {
@@ -26,7 +27,7 @@ interface User {
 }
 
 function AnnotationShowItem(props: Props) {
-    const { annotation, yCoord, currentUser, annoId } = props;
+    const { annotation, yCoord, currentUser, annoId, fetchAction } = props;
     return (
         <div
             className="annotation-show-main" 
@@ -40,6 +41,7 @@ function AnnotationShowItem(props: Props) {
             <p className="annotation-show-name">Really Smart Annotation by {annotation.annotator}</p>
             <p className="annotation-show-body">{annotation.body}</p>
             <VotesShowContainer
+                fetchAction={fetchAction}
                 parent={annotation}
                 voteableType="Annotation"
                 voteableId={annotation.id}
