@@ -1,15 +1,31 @@
-import React from "react";
+import React, { MouseEvent } from "react";
 import { Link } from "react-router-dom";
 
-function SessionMenu(props) {
+type Props = {
+    currentUser: User,
+    logout: Function
+}
+interface User {
+    id: number,
+    username: string,
+    vote_ids: Array<number>
+}
+
+function SessionMenu(props: Props) {
     const { currentUser, logout } = props;
+
+    function sessionLogout(e: MouseEvent<HTMLAnchorElement>) {
+        e.preventDefault();
+
+        logout();
+    }
 
     if (currentUser !== undefined) {
         return (
             <div>
                 {/* <input type="file"/> */}
                 {/* <img src={currentUser.avatar_url}/> */}
-                <a className="logout" onClick={logout}>LOG OUT</a>
+                <a className="logout" onClick={sessionLogout}>LOG OUT</a>
             </div>
         );
     } else {
