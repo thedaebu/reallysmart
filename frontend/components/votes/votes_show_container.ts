@@ -52,7 +52,6 @@ interface Comment {
     updated_at: string,
     votes: number
 }
-
 interface Vote {
     id: number,
     voteable_id: number,
@@ -61,7 +60,6 @@ interface Vote {
 }
 
 const mSTP = (state: State, ownProps: OwnProps) => {
-    debugger
     const currentUser = state.entities.users[state.session.id];
     const currentUserVotes = currentUser && Object.keys(state.entities.votes).length !== 0 
         ? currentUser.vote_ids.map((id: number) => {
@@ -91,7 +89,7 @@ const mDTP = (dispatch: Function, ownProps: OwnProps) => {
 
     return ({
         fetchVote: (voteId: number) => dispatch(fetchVote(voteId)),
-        createVote: (vote: number) => dispatch(createVote(vote)),
+        createVote: (vote: Vote) => dispatch(createVote(vote)),
         deleteVote: (voteId: number) => dispatch(deleteVote(voteId)),
         fetchAction: fetchAction
     });
