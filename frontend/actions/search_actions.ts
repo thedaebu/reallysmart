@@ -32,7 +32,6 @@ export const clearSearches = () => {
 };
 
 export const fetchSearches = (search: string) => (dispatch: Dispatch<AnyAction>) => {
-    debugger
     return (
         SearchApiUtil.fetchSearches(search).then(searches => dispatch(receiveSearches(searches)))
     );
