@@ -12,6 +12,10 @@ interface User {
     username: string,
     vote_ids: Array<number>
 }
+interface SessionUser {
+    username: string,
+    password: string
+}
 
 const receiveCurrentUser = (user: User) => ({
     type: RECEIVE_CURRENT_USER,
@@ -31,14 +35,16 @@ export const clearErrors = () => ({
     type: CLEAR_ERRORS
 });
 
-export const login = (user: User) => (dispatch: Dispatch<AnyAction>) => {(
-    SessionApiUtil.login(user).then((user: User) => dispatch(receiveCurrentUser(user)), errors => dispatch(receiveErrors(errors.responseJSON)))
+export const login = (sessionUser: SessionUser) => (dispatch: Dispatch<AnyAction>) => {(
+    SessionApiUtil.login(sessionUser).then((user: User) => {
+        debugger
+        dispatch(receiveCurrentUser(user))}, errors => dispatch(receiveErrors(errors.responseJSON)))
 )};
 
 export const logout = () => (dispatch: Dispatch<AnyAction>) => {(
     SessionApiUtil.logout().then(() => dispatch(logoutCurrentUser()))
 )};
 
-export const signup = (user: User) => (dispatch: Dispatch<AnyAction>) => {(
-    SessionApiUtil.signup(user).then((user: User) => dispatch(receiveCurrentUser(user)), errors => dispatch(receiveErrors(errors.responseJSON)))
+export const signup = (sessionUser: SessionUser) => (dispatch: Dispatch<AnyAction>) => {(
+    SessionApiUtil.signup(sessionUser).then((user: User) => dispatch(receiveCurrentUser(user)), errors => dispatch(receiveErrors(errors.responseJSON)))
 )};
