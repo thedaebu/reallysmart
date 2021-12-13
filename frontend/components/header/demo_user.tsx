@@ -1,10 +1,19 @@
-import React from "react";
+import React, { MouseEvent } from "react";
 
+type Props = {
+    currentUser: User,
+    login: Function
+}
+interface User {
+    id: number,
+    username: string,
+    vote_ids: Array<number>
+}
 
-function DemoUser(props) {
+function DemoUser(props: Props) {
     const { login, currentUser } = props;
 
-    function loginWithDemo(e) {
+    function loginWithDemo(e: MouseEvent<HTMLAnchorElement>) {
         e.preventDefault();
         
         login({
