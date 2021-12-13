@@ -1,8 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function SearchbarItem(props) {
-    const { track } = props.searchbarItem;
+declare const window: any;
+
+type Props = {
+    track: Track
+}
+interface Track {
+    annotation_ids: Array<number>,
+    artist: string,
+    artwork_path: string,
+    comment_ids: Array<number>,
+    id: number,
+    lyrics: string,
+    title: string
+}
+
+function SearchbarItem(props: Props) {
+    const { track } = props;
 
     function randomNum() {
         return Math.floor(Math.random() * 1000);
