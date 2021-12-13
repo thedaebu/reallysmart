@@ -10,10 +10,9 @@ type State = {
 interface Errors {
     sessionErrors: Array<string>
 }
-interface User {
-    id: number,
-    username: string,
-    vote_ids: Array<number>
+interface SessionUser {
+    password: string,
+    username: string
 }
 
 const mSTP = (state: State) => {
@@ -31,7 +30,7 @@ const mSTP = (state: State) => {
 
 const mDTP = (dispatch: Function) => {
     return ({
-        action: (user: User) => dispatch(signup(user)),
+        action: (sessionUser: SessionUser) => dispatch(signup(sessionUser)),
         clearErrors: () => dispatch(clearErrors())
     })
 };
