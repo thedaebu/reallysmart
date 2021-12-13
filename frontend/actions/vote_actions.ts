@@ -47,9 +47,7 @@ const removeVote = (voteId: number) => {
 
 export const fetchVote = (voteId: number) => (dispatch: Dispatch<AnyAction>) => {
     return (
-        VoteApiUtil.fetchVote(voteId).then((vote: ReceivedVote) => {
-            debugger
-            dispatch(receiveVote(vote))})
+        VoteApiUtil.fetchVote(voteId).then((vote: ReceivedVote) => dispatch(receiveVote(vote)))
     );
 };
 

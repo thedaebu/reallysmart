@@ -1,0 +1,44 @@
+import { Dispatch } from "react";
+import { AnyAction } from "redux";
+import * as SessionApiUtil from "./../util/session_api_util";
+
+export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
+export const LOGOUT_CURRENT_USER = "LOGOUT_CURRENT_USER";
+export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
+export const CLEAR_ERRORS = "CLEAR_ERRORS";
+
+interface User {
+    id: number,
+    username: string,
+    vote_ids: Array<number>
+}
+
+const receiveCurrentUser = (user: User) => ({
+    type: RECEIVE_CURRENT_USER,
+    user
+});
+
+const logoutCurrentUser = () => ({
+    type: LOGOUT_CURRENT_USER
+});
+
+const receiveErrors = (errors: Array<string>) => ({
+    type: RECEIVE_SESSION_ERRORS,
+    errors
+});
+
+export const clearErrors = () => ({
+    type: CLEAR_ERRORS
+});
+
+export const login = (user: User) => (dispatch: Dispatch<AnyAction>) => {(
+    SessionApiUtil.login(user).then((user: User) => dispatch(receiveCurrentUser(user)), errors => dispatch(receiveErrors(errors.responseJSON)))
+)};
+
+export const logout = () => (dispatch: Dispatch<AnyAction>) => {(
+    SessionApiUtil.logout().then(() => dispatch(logoutCurrentUser()))
+)};
+
+export const signup = (user: User) => (dispatch: Dispatch<AnyAction>) => {(
+    SessionApiUtil.signup(user).then((user: User) => dispatch(receiveCurrentUser(user)), errors => dispatch(receiveErrors(errors.responseJSON)))
+)};
