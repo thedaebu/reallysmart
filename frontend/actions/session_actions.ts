@@ -36,9 +36,7 @@ export const clearErrors = () => ({
 });
 
 export const login = (sessionUser: SessionUser) => (dispatch: Dispatch<AnyAction>) => {(
-    SessionApiUtil.login(sessionUser).then((user: User) => {
-        debugger
-        dispatch(receiveCurrentUser(user))}, errors => dispatch(receiveErrors(errors.responseJSON)))
+    SessionApiUtil.login(sessionUser).then((user: User) => dispatch(receiveCurrentUser(user)), errors => dispatch(receiveErrors(errors.responseJSON)))
 )};
 
 export const logout = () => (dispatch: Dispatch<AnyAction>) => {(
