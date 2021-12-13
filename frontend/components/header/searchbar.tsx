@@ -13,7 +13,7 @@ interface EventValue {
 }
 
 function Searchbar(props: Props) {
-    const [searchField, setSearchField] = useState("");
+    const [searchField, setSearchField] = useState<string>("");
     const { fetchSearches } = props;
 
     function handleSearchChange() {

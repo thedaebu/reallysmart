@@ -20,14 +20,14 @@ interface Track {
     lyrics: string,
     title: string
 }
-type OwnProps = {
-    location: OwnPropsLocation
-}
-interface OwnPropsLocation {
-    pathname: string
-}
+// type OwnProps = {
+//     location: OwnPropsLocation
+// }
+// interface OwnPropsLocation {
+//     pathname: string
+// }
 
-const mSTP = (state: State, ownProps: OwnProps) => {
+const mSTP = (state: State, ownProps: any) => {
     return ({
         searches: Object.values(state.entities.searches),
         siteLocation: ownProps.location.pathname
