@@ -1,6 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, FormEvent } from "react";
 
-function SessionForm(props) {
+type Props = {
+    action: Function,
+    clearErrors: Function,
+    errors: Array<string>,
+    formLast: string,
+    formLink: any,
+    formPassword: string,
+    formSubmit: string,
+    formTos: any,
+    formType: any,
+    formTypeSub: any
+}
+
+function SessionForm(props: Props) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const { action, errors, clearErrors } = props;
@@ -11,18 +24,18 @@ function SessionForm(props) {
         clearErrors();
     }, []);
 
-    function handleFormSubmit(e) {
+    function handleFormSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
 
         const user = Object.assign({}, {username: username, password: password});
         action(user);
     }
 
-    function handleInputChange(type) {
+    function handleInputChange(type: string) {
         if (type === "username") {
-            return e => setUsername(e.target.value);
+            return (e: FormEvent<HTMLInputElement>) => setUsername(e.currentTarget.value);
         } else {
-            return e => setPassword(e.target.value);
+            return (e: FormEvent<HTMLInputElement>) => setPassword(e.currentTarget.value);
         }
     }
 
