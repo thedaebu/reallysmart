@@ -1,4 +1,4 @@
-export const fetchSearches = (search) => {
+export const fetchSearches = (search: string) => {
     return (
         $.ajax({
             method: "GET",
