@@ -1,4 +1,9 @@
-export const signup = (user) => {
+interface User {
+    username: string,
+    password: string
+}
+
+export const signup = (user: User) => {
     return (
         $.ajax({
             method: "POST",
@@ -8,7 +13,7 @@ export const signup = (user) => {
     );
 };
 
-export const login = (user) => {
+export const login = (user: User) => {
     return (
         $.ajax({
             method: "POST",
