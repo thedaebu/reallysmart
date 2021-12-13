@@ -102,6 +102,7 @@ $programme: 'Programme Regular', sans-serif;
         }
     }
     .tracks-index-load-more {
+        cursor: pointer;
         width: 90px;
         color: rgb(106, 153, 255);
         font-size: 14px;
@@ -110,7 +111,6 @@ $programme: 'Programme Regular', sans-serif;
         padding: 12px 21px 12px 21px;
         margin: 0px auto 0px auto;
         &:hover {
-            cursor: pointer;
             background: rgb(106, 153, 255);
             color: white;
         }

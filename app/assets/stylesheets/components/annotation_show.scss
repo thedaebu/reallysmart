@@ -99,6 +99,7 @@ $programmelight: 'Programme Light', sans-serif;
             display: flex;
             margin: 15px 0px 0px 5px;
             .annotation-show-create-form-bottom-save-main {
+                cursor: pointer;
                 display: flex;
                 background: white;
                 color:rgb(7, 7, 7);
@@ -106,7 +107,6 @@ $programmelight: 'Programme Light', sans-serif;
                 border: 2px solid rgb(51, 197, 51);
                 padding: 2px 8px 1px 10px;
                 &:hover {
-                    cursor: pointer;
                     background: rgb(200, 255, 200);
                 }
             }
@@ -123,6 +123,7 @@ $programmelight: 'Programme Light', sans-serif;
             }
         }
         .annotation-show-create-form-bottom-cancel {
+            cursor: pointer;
             position: relative;
             left: 4px;
             display: flex;
@@ -134,7 +135,6 @@ $programmelight: 'Programme Light', sans-serif;
             border: none;
             padding: 5px 6px 1px 6px;
             &:hover {
-                cursor: pointer;
                 background: rgb(236, 236, 236);
             }
         }

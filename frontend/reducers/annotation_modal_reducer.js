@@ -5,11 +5,11 @@ const annotationModalReducer = (state = {}, action) => {
 
     switch (action.type) {
         case OPEN_ANNOTATION_MODAL:
-            return Object.assign({}, action.data);
+            return true;
         case CLOSE_ANNOTATION_MODAL:
-            return null;
+            return false;
         default:
-            return state;
+            return false;
     }
 };
 

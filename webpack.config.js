@@ -2,6 +2,7 @@ const path = require('path');
 
 module.exports = {
   context: __dirname,
+  // entry: "./frontend/entry.tsx",
   entry: "./frontend/entry.jsx",
   output: {
     path: path.resolve(__dirname, 'app', 'assets', 'javascripts'),
@@ -18,11 +19,27 @@ module.exports = {
             presets: ['@babel/env', '@babel/react']
           }
         },
+      },
+      {
+        rules: [
+          {
+            test: /\.(ts|tsx)?$/,
+            exclude: /(node_modules)/,
+            use: {
+              loader: 'ts-loader',
+              options: {
+                     transpileOnly: true,
+                     happyPackMode: true,
+                     configFile: path.resolve(__dirname, 'tsconfig.json'),
+                  },
+            }
+          }
+        ]
       }
     ]
   },
   devtool: 'source-map',
   resolve: {
-    extensions: [".js", ".jsx", ".ts", "tsx"]
+    extensions: [".js", ".jsx", ".ts", ".tsx"]
   }
 };
