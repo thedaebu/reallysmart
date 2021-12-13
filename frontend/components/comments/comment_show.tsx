@@ -149,7 +149,6 @@ function CommentShow(props: Props) {
                     {comments.map(comment => {
                         return <CommentShowItem
                             parent={parent}
-                            fetchAction={fetchAction}
                             comment={comment}
                             commentableType={commentableType}
                             key={comment.id}
