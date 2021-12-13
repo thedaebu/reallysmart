@@ -187,7 +187,6 @@ function AnnotationShow(props: Props) {
                 annotation={annotation}
                 yCoord={yCoord}
                 currentUser={currentUser}
-                annoId={annoId}
             />
         );
     } else if (startIndex && annotationModal) {
