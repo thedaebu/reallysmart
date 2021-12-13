@@ -4,7 +4,19 @@ import { connect } from "react-redux";
 import { signup, clearErrors } from "../../actions/session_actions";
 import SessionForm from "./session_form";
 
-const mSTP = (state, ownProps) => {
+type State = {
+    errors: Errors
+}
+interface Errors {
+    sessionErrors: Array<string>
+}
+interface User {
+    id: number,
+    username: string,
+    vote_ids: Array<number>
+}
+
+const mSTP = (state: State) => {
     return ({
         errors: state.errors.sessionErrors,
         formType: <h1 className="session-form-signup-h1">SIGN UP</h1>,
@@ -17,9 +29,9 @@ const mSTP = (state, ownProps) => {
     })
 };
 
-const mDTP = (dispatch, ownProps) => {
+const mDTP = (dispatch: Function) => {
     return ({
-        action: user => dispatch(signup(user)),
+        action: (user: User) => dispatch(signup(user)),
         clearErrors: () => dispatch(clearErrors())
     })
 };
