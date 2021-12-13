@@ -54,9 +54,9 @@ function SearchbarItems(props: Props) {
     function searchbarItems() {
         if (searches.length > 0) {
             return (
-                searches.slice(0, 5).map((searchbarItem, key) => {
+                searches.slice(0, 5).map((track, key) => {
                     return ( 
-                        <SearchbarItem searchbarItem={searchbarItem} key={key}/>
+                        <SearchbarItem track={track} key={key}/>
                     );
                 })
             );
