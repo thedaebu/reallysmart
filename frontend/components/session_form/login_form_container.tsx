@@ -20,11 +20,12 @@ const mSTP = (state: State) => {
     return ({
         errors: state.errors.sessionErrors,
         formType: <h1 className="session-form-login-h1">Log In</h1>,
-        formTypeSub: "",
+        formTypeSub: <h2></h2>,
         formSubmit: "Login",
         formLink: <Link to="/signup">Sign up here.</Link>,
         formLast: "Don\'t have an account?",
-        formPassword: "(I forgot my password)"
+        formPassword: "(I forgot my password)",
+        formTos: <p></p>
     })
 };
 
