@@ -49,6 +49,7 @@ export const createVote = (vote: Vote) => (dispatch: Dispatch<AnyAction>) => {
 };
 export const deleteVote = (voteId: number) => (dispatch: Dispatch<AnyAction>) => {
     return (
-        VoteApiUtil.deleteVote(voteId).then((voteId: number) => dispatch(removeVote(voteId)))
+        VoteApiUtil.deleteVote(voteId)
+        .then((voteId: number) => dispatch(removeVote(voteId)))
     );
 };
