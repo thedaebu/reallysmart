@@ -60,12 +60,12 @@ const receiveTracks = (tracks: ReceivedTracks) => {
         tracks
     });
 };
-const receiveTrack = ({track, annotations, comments}: {track: Track, annotations: ReceivedAnnotations, comments: ReceivedComments}) => {
+const receiveTrack = ({ annotations, comments, track }: { annotations: ReceivedAnnotations, comments: ReceivedComments, track: Track }) => {
     return ({
         type: RECEIVE_TRACK,
-        track,
         annotations,
-        comments   
+        comments,
+        track
     });
 };
 

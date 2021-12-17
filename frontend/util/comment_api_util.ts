@@ -16,7 +16,6 @@ export const fetchComment = (commentId: number) => {
         })
     );
 };
-
 export const createComment = (comment: Comment) => {
     return (
         $.ajax({

@@ -6,7 +6,6 @@ export const fetchTracks = () => {
         })
     );
 };
-
 export const fetchTrack = (trackId: string) => {
     return (
         $.ajax({

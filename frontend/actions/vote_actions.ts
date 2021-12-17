@@ -21,11 +21,11 @@ interface Vote {
     voter_id: number
 }
 
-const receiveVote = ({vote, user}: {vote: Vote, user: User}) => {
+const receiveVote = ({ user, vote }: { user: User, vote: Vote }) => {
     return ({
         type: RECEIVE_VOTE,
-        vote,
-        user
+        user,
+        vote
     });
 };
 const removeVote = (voteId: number) => {
@@ -37,12 +37,14 @@ const removeVote = (voteId: number) => {
 
 export const fetchVote = (voteId: number) => (dispatch: Dispatch<AnyAction>) => {
     return (
-        VoteApiUtil.fetchVote(voteId).then((vote: ReceivedVote) => dispatch(receiveVote(vote)))
+        VoteApiUtil.fetchVote(voteId)
+        .then((vote: ReceivedVote) => dispatch(receiveVote(vote)))
     );
 };
 export const createVote = (vote: Vote) => (dispatch: Dispatch<AnyAction>) => {
     return (
-        VoteApiUtil.createVote(vote).then((vote: ReceivedVote) => dispatch(receiveVote(vote)))
+        VoteApiUtil.createVote(vote)
+        .then((vote: ReceivedVote) => dispatch(receiveVote(vote)))
     );
 };
 export const deleteVote = (voteId: number) => (dispatch: Dispatch<AnyAction>) => {

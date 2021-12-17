@@ -12,7 +12,6 @@ export const signup = (user: User) => {
         })
     );
 };
-
 export const login = (user: User) => {
     return (
         $.ajax({
@@ -22,7 +21,6 @@ export const login = (user: User) => {
         })
     );
 };
-
 export const logout = () => {
     return (
         $.ajax({

@@ -1,6 +1,5 @@
 import { RECEIVE_VOTE, REMOVE_VOTE } from "../actions/vote_actions";
 
-
 const votesReducer = (state = {}, action) => {
     Object.freeze(state);
     const newState = Object.assign({}, state);

@@ -30,9 +30,9 @@ export const clearSearches = () => {
         type: CLEAR_SEARCHES
     });
 };
-
 export const fetchSearches = (search: string) => (dispatch: Dispatch<AnyAction>) => {
     return (
-        SearchApiUtil.fetchSearches(search).then(searches => dispatch(receiveSearches(searches)))
+        SearchApiUtil.fetchSearches(search)
+        .then(searches => dispatch(receiveSearches(searches)))
     );
 };

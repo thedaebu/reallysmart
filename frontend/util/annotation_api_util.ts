@@ -1,9 +1,9 @@
-type NewAnnotation = {
-    body: string,
+type CreatedAnnotation = {
     annotator_id: number,
-    track_id: number,
+    body: string,
+    end_index: number,
     start_index: number,
-    end_index: number
+    track_id: number
 }
 
 export const fetchAnnotation = (annotationId: number) => {
@@ -14,13 +14,12 @@ export const fetchAnnotation = (annotationId: number) => {
         })
     );
 };
-
-export const createAnnotation = (annotation: NewAnnotation) => {
+export const createAnnotation = (createdAnnotation: CreatedAnnotation) => {
     return (
         $.ajax({
             method: "POST",
             url: `api/annotations`,
-            data: { annotation }
+            data: { createdAnnotation }
         })
     );
 };

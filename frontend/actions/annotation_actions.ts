@@ -5,7 +5,6 @@ import * as AnnotationApiUtil from "./../util/annotation_api_util";
 export const RECEIVE_ANNOTATION = "RECEIVE_ANNOTATION";
 export const RECEIVE_ANNOTATION_ERRORS = "RECEIVE_ANNOTATION_ERRORS";
 
-
 type ReceivedAnnotation = {
     annotation: Annotation,
     comments: ReceivedComments
@@ -37,14 +36,13 @@ interface Comment {
     votes: number
 }
 
-const receiveAnnotation = ({annotation, comments}: {annotation: Annotation, comments: ReceivedComments}) => {
+const receiveAnnotation = ({ annotation, comments }: { annotation: Annotation, comments: ReceivedComments }) => {
     return({
         type: RECEIVE_ANNOTATION,
         annotation,
         comments       
     });
 };
-
 const receiveAnnotationErrors = (errors: Array<string>) => {
     return ({
         type: RECEIVE_ANNOTATION_ERRORS,
@@ -58,7 +56,6 @@ export const fetchAnnotation = (annotationId: number) => (dispatch: Dispatch<Any
         .then((annotation: ReceivedAnnotation) => dispatch(receiveAnnotation(annotation)))
     );
 };
-
 export const createAnnotation = (annotation: Annotation) => (dispatch: Dispatch<AnyAction>) => {
     return (
         AnnotationApiUtil.createAnnotation(annotation)
