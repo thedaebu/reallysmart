@@ -11,14 +11,14 @@ interface User {
 }
 
 function DemoUser(props: Props) {
-    const { login, currentUser } = props;
+    const { currentUser, login } = props;
 
     function loginWithDemo(e: MouseEvent<HTMLAnchorElement>) {
         e.preventDefault();
         
         login({
-            username: "notsosmart",
-            password: "notsosmart"
+            password: "notsosmart",
+            username: "notsosmart"
         });
     }
 

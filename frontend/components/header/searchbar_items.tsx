@@ -18,7 +18,7 @@ interface Track {
 }
 
 function SearchbarItems(props: Props) {
-    const { searches, searchField, clearSearchField, siteLocation } = props;
+    const { clearSearchField, searches, searchField, siteLocation } = props;
 
     useEffect(() => {
         clearSearchField();
@@ -56,7 +56,10 @@ function SearchbarItems(props: Props) {
             return (
                 searches.slice(0, 5).map((track, key) => {
                     return ( 
-                        <SearchbarItem track={track} key={key}/>
+                        <SearchbarItem 
+                            key={key}
+                            track={track} 
+                        />
                     );
                 })
             );
