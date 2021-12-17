@@ -10,28 +10,27 @@ type State = {
 interface Errors {
     sessionErrors: Array<string>
 }
-interface User {
-    id: number,
-    username: string,
-    vote_ids: Array<number>
+interface SessionUser {
+    password: string,
+    username: string
 }
 
 const mSTP = (state: State) => {
     return ({
         errors: state.errors.sessionErrors,
-        formType: <h1 className="session-form-login-h1">Log In</h1>,
-        formTypeSub: <h2></h2>,
-        formSubmit: "Login",
         formLink: <Link to="/signup">Sign up here.</Link>,
-        formLast: "Don\'t have an account?",
         formPassword: "(I forgot my password)",
-        formTos: <p></p>
+        formLast: "Don\'t have an account?",
+        formSubmit: "Login",
+        formTos: <p></p>,
+        formType: <h1 className="session-form-login-h1">Log In</h1>,
+        formTypeSub: <h2></h2>
     })
 };
 
 const mDTP = (dispatch: Function) => {
     return ({
-        action: (user: User) => dispatch(login(user)),
+        action: (sessionUser: SessionUser) => dispatch(login(sessionUser)),
         clearErrors: () => dispatch(clearErrors())
     })
 };
