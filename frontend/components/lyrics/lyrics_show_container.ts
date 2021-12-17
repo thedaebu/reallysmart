@@ -49,15 +49,15 @@ const mSTP = (state: State, ownProps: OwnProps) => {
     });
     
     return ({
-        currentUser: state.entities.users[state.session.id],
-        annotations: annotations
+        annotations: annotations,
+        currentUser: state.entities.users[state.session.id]
     });
 };
 const mDTP = (dispatch: Function) => {
     return ({
+        closeAnnotationModal: () => dispatch(closeAnnotationModal()),
         fetchAnnotation: (annotationId: number) => dispatch(fetchAnnotation(annotationId)),
-        openAnnotationModal: () => dispatch(openAnnotationModal()),
-        closeAnnotationModal: () => dispatch(closeAnnotationModal())
+        openAnnotationModal: () => dispatch(openAnnotationModal())
     });
 };
 

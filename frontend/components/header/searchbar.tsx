@@ -14,6 +14,7 @@ interface EventValue {
 
 function Searchbar(props: Props) {
     const [searchField, setSearchField] = useState<string>("");
+
     const { fetchSearches } = props;
 
     function handleSearchChange() {
@@ -31,16 +32,16 @@ function Searchbar(props: Props) {
         <div>
             <div className="search-bar-main">
                 <input
-                    type="text" 
-                    placeholder="Search lyrics & more"
-                    value={searchField}
                     onChange={handleSearchChange()} 
+                    placeholder="Search lyrics & more"
+                    type="text" 
+                    value={searchField}
                 />
                 <AiOutlineSearch className="search-bar-glass" />
             </div>
             <SearchbarItemsContainer 
-                searchField={searchField}
                 clearSearchField={clearSearchField}
+                searchField={searchField}
             />
         </div>
     );

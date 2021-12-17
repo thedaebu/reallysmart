@@ -29,7 +29,7 @@ function TrackIndexItem(props: TrackIndexItemProps) {
             <div
                 className="track-index-item-image"
                 style={{
-                    background: `url(${track.artwork_path}`,
+                    backgroundImage: `url(${track.artwork_path}`,
                     backgroundPosition: "center",
                     backgroundSize: "cover"
                 }}

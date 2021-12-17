@@ -88,10 +88,10 @@ const mDTP = (dispatch: Function, ownProps: OwnProps) => {
         : (commentId: number) => dispatch(fetchComment(commentId))
 
     return ({
-        fetchVote: (voteId: number) => dispatch(fetchVote(voteId)),
         createVote: (vote: Vote) => dispatch(createVote(vote)),
         deleteVote: (voteId: number) => dispatch(deleteVote(voteId)),
-        fetchAction: fetchAction
+        fetchAction: fetchAction,
+        fetchVote: (voteId: number) => dispatch(fetchVote(voteId))
     });
 };
 

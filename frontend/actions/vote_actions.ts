@@ -38,17 +38,18 @@ const removeVote = (voteId: number) => {
 export const fetchVote = (voteId: number) => (dispatch: Dispatch<AnyAction>) => {
     return (
         VoteApiUtil.fetchVote(voteId)
-        .then((vote: ReceivedVote) => dispatch(receiveVote(vote)))
+            .then((vote: ReceivedVote) => dispatch(receiveVote(vote)))
     );
 };
 export const createVote = (vote: Vote) => (dispatch: Dispatch<AnyAction>) => {
     return (
         VoteApiUtil.createVote(vote)
-        .then((vote: ReceivedVote) => dispatch(receiveVote(vote)))
+            .then((vote: ReceivedVote) => dispatch(receiveVote(vote)))
     );
 };
 export const deleteVote = (voteId: number) => (dispatch: Dispatch<AnyAction>) => {
     return (
-        VoteApiUtil.deleteVote(voteId).then((voteId: number) => dispatch(removeVote(voteId)))
+        VoteApiUtil.deleteVote(voteId)
+            .then((voteId: number) => dispatch(removeVote(voteId)))
     );
 };

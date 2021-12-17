@@ -51,18 +51,18 @@ function CommentShowItem(props: Props) {
                 </div>
                 <p className="comment-list-item-body">{comment.body}</p>
                 <VotesShowContainer 
-                    voteableType="Comment" 
-                    voteableId={comment.id} 
-                    parent={comment} 
                     numberOfVotes={comment.votes} 
+                    parent={comment} 
+                    voteableId={comment.id} 
+                    voteableType="Comment" 
                 />
             </div>
         )
     }
 
     function handleTime(dateTime: string) {
-        const oldDate = new Date(Date.parse(dateTime));
         const currentDate = new Date();
+        const oldDate = new Date(Date.parse(dateTime));
         const yearDiff = currentDate.getFullYear() - oldDate.getFullYear();
         const monthDiff = currentDate.getMonth() - oldDate.getMonth();
         const dayDiff = currentDate.getDate() - oldDate.getDate();

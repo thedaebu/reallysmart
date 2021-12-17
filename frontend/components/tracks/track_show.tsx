@@ -19,7 +19,7 @@ interface Track {
 }
 
 function TrackShow(props: Props) {
-    const { track, trackId, fetchTrack } = props;
+    const { fetchTrack, track, trackId } = props;
 
     useEffect(() => {
         fetchTrack(trackId);

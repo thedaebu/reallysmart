@@ -25,7 +25,8 @@ interface User {
 }
 
 function AnnotationShowItem(props: Props) {
-    const { annotation, yCoord, currentUser } = props;
+    const { annotation, currentUser, yCoord } = props;
+    
     return (
         <div
             className="annotation-show-main" 
@@ -39,15 +40,15 @@ function AnnotationShowItem(props: Props) {
             <p className="annotation-show-name">Really Smart Annotation by {annotation.annotator}</p>
             <p className="annotation-show-body">{annotation.body}</p>
             <VotesShowContainer
-                parent={annotation}
-                voteableType="Annotation"
-                voteableId={annotation.id}
                 numberOfVotes={annotation.votes}
+                parent={annotation}
+                voteableId={annotation.id}
+                voteableType="Annotation"
             />
             <CommentShowContainer
-                parent={annotation}
-                currentUser={currentUser}
                 commentableType="Annotation"
+                currentUser={currentUser}
+                parent={annotation}
             />
         </div>
     );

@@ -53,12 +53,12 @@ const receiveAnnotationErrors = (errors: Array<string>) => {
 export const fetchAnnotation = (annotationId: number) => (dispatch: Dispatch<AnyAction>) => {
     return (
         AnnotationApiUtil.fetchAnnotation(annotationId)
-        .then((annotation: ReceivedAnnotation) => dispatch(receiveAnnotation(annotation)))
+            .then((annotation: ReceivedAnnotation) => dispatch(receiveAnnotation(annotation)))
     );
 };
 export const createAnnotation = (annotation: Annotation) => (dispatch: Dispatch<AnyAction>) => {
     return (
         AnnotationApiUtil.createAnnotation(annotation)
-        .then(annotation => dispatch(receiveAnnotation(annotation)), errors => dispatch(receiveAnnotationErrors(errors.responseJSON)))
+            .then(annotation => dispatch(receiveAnnotation(annotation)), errors => dispatch(receiveAnnotationErrors(errors.responseJSON)))
     );
 };

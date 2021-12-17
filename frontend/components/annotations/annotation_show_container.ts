@@ -44,9 +44,9 @@ const mSTP = (state: State, ownProps: ownProps) => {
 const mDTP = (dispatch: Function) => {
     return ({
         createAnnotation: (annotation: Annotation) => dispatch(createAnnotation(annotation)),
+        closeAnnotationModal: () => dispatch(closeAnnotationModal()),
         fetchAnnotation: (annotationId: number) => dispatch(fetchAnnotation(annotationId)),
-        fetchTrack: (trackId: string) => dispatch(fetchTrack(trackId)),
-        closeAnnotationModal: () => dispatch(closeAnnotationModal())
+        fetchTrack: (trackId: string) => dispatch(fetchTrack(trackId))
     });
 };
 
