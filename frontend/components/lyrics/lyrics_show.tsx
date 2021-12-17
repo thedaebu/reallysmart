@@ -94,7 +94,7 @@ function LyricsShow(props: Props) {
                     className="not-an-anno" 
                     data-add="0"
                     data-name={"not-anno-0"}
-                    onMouseUp={handleMouseUp} 
+                    onMouseUp={handleTextSelect} 
                 >
                     {track.lyrics}
                 </span>
@@ -177,7 +177,7 @@ function LyricsShow(props: Props) {
         setAnnotationId(id);
     }
 
-    function handleMouseUp(e: MouseEvent<HTMLElement>) {
+    function handleTextSelect(e: MouseEvent<HTMLElement>) {
         e.preventDefault();
 
         setYCoord(e.pageY);
@@ -218,7 +218,7 @@ function LyricsShow(props: Props) {
         return [beginning, end];
     }
 
-    function handleMouseDown() {
+    function handleTextDeselect() {
         setAnnotationId(null);
         setCreateStatus(false);
         closeAnnotationModal();
@@ -227,9 +227,9 @@ function LyricsShow(props: Props) {
     return (
         <div className="lyrics-show-main">
             <div className="lyrics-show-shade">
-                <div className="lyrics-show-left" onMouseDown={handleMouseDown} >
+                <div className="lyrics-show-left" onMouseDown={handleTextDeselect} >
                     <p className="lyrics-show-top">{track.title.toUpperCase()} LYRICS</p>
-                    <pre className="lyrics-show-body" onMouseUp={handleMouseUp}>
+                    <pre className="lyrics-show-body" onMouseUp={handleTextSelect}>
                         {annotatedLyrics()}
                     </pre> 
                     <CommentShowContainer
