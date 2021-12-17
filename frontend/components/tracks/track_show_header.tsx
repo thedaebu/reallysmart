@@ -17,6 +17,7 @@ interface Track {
 
 function TrackShowHeader(props: TrackShowHeaderProps) {
     const { track } = props;
+    
     const artworkPath = track.artwork_path;
     
     function randomNum() {

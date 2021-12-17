@@ -18,13 +18,13 @@ interface SessionUser {
 const mSTP = (state: State) => {
     return ({
         errors: state.errors.sessionErrors,
-        formType: <h1 className="session-form-signup-h1">SIGN UP</h1>,
-        formTypeSub: <h2 className="session-form-signup-h2">and show off your really smartness</h2>, 
-        formSubmit: "Create Account",
-        formLink: <Link to="/login" >Log in here.</Link>,
         formLast: "Already have an account?",
+        formLink: <Link to="/login" >Log in here.</Link>,
         formPassword: "",
-        formTos: <p className="session-form-tos">By clicking “Create Account”, you are indicating that you have read and agree to the <a href="">Terms of Service</a>.</p>
+        formSubmit: "Create Account",
+        formTos: <p className="session-form-tos">By clicking “Create Account”, you are indicating that you have read and agree to the <a href="">Terms of Service</a>.</p>,
+        formType: <h1 className="session-form-signup-h1">SIGN UP</h1>,
+        formTypeSub: <h2 className="session-form-signup-h2">and show off your really smartness</h2>
     })
 };
 

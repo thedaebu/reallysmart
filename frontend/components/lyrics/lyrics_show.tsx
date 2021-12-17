@@ -120,11 +120,11 @@ function LyricsShow(props: Props) {
                 lyricsParts.push(
                     <span
                         className="is-an-anno"
-                        onClick={() => openAnnotation(annotation.id)}
-                        key={`is-anno-${annotation.id}`}
-                        id={`is-anno-${annotation.id}`}
                         data-name={`is-anno-${annotation.id}`}
                         data-id={`${annotation.id}`}
+                        id={`is-anno-${annotation.id}`}
+                        key={`is-anno-${annotation.id}`}
+                        onClick={() => openAnnotation(annotation.id)}
                         >
                         {lyrics.slice(currentIndex, endIndex + 1)}
                     </span>
@@ -133,10 +133,10 @@ function LyricsShow(props: Props) {
                 lyricsParts.push(
                     <span
                         className="not-an-anno"
-                        key={`not-anno-${idx}`}
-                        id={`not-anno-${idx}`}
                         data-add={addIndex}
                         data-name={`not-anno-${idx}`}
+                        id={`not-anno-${idx}`}
+                        key={`not-anno-${idx}`}
                         >
                         {lyrics.slice(currentIndex, startIndex)}
                     </span>
@@ -144,11 +144,11 @@ function LyricsShow(props: Props) {
                 lyricsParts.push(
                     <span
                         className="is-an-anno" 
-                        onClick={() => openAnnotation(annotation.id)}
-                        key={`is-anno-${annotation.id}`} 
-                        id={`is-anno-${annotation.id}`}
                         data-name={`is-anno-${annotation.id}`} 
                         data-id={`${annotation.id}`}
+                        id={`is-anno-${annotation.id}`}
+                        key={`is-anno-${annotation.id}`} 
+                        onClick={() => openAnnotation(annotation.id)}
                         >
                         {lyrics.slice(startIndex, endIndex+1)}
                     </span>
@@ -158,10 +158,10 @@ function LyricsShow(props: Props) {
                 lyricsParts.push(
                     <span
                         className="not-an-anno"
-                        key={`not-anno-${idx + 1}`}
-                        id={`not-anno-${idx + 1}`}
                         data-add={endIndex}
                         data-name={`not-anno-${idx + 1}`}
+                        id={`not-anno-${idx + 1}`}
+                        key={`not-anno-${idx + 1}`}
                         >
                         {lyrics.slice(endIndex +1, lyrics.length + 1)}
                     </span>
@@ -191,9 +191,9 @@ function LyricsShow(props: Props) {
                     : Math.min(...newIndices);
                 const max: number = Math.max(...newIndices);
 
-                openAnnotationModal();
-                setEndIndex(max);
                 setStartIndex(min);
+                setEndIndex(max);
+                openAnnotationModal();
             }
         }
     }
@@ -219,9 +219,9 @@ function LyricsShow(props: Props) {
     }
 
     function handleMouseDown() {
-        closeAnnotationModal();
         setAnnotationId(null);
         setCreateStatus(false);
+        closeAnnotationModal();
     }
 
     return (
@@ -241,12 +241,12 @@ function LyricsShow(props: Props) {
                 <div className="lyrics-show-right">
                     <AnnotationShowContainer
                         annotationId={annotationId}
-                        track={track}
-                        currentUser={currentUser}
-                        yCoord={yCoord}
-                        startIndex={startIndex}
-                        endIndex={endIndex}
                         createStatus={createStatus}
+                        currentUser={currentUser}
+                        endIndex={endIndex}
+                        startIndex={startIndex}
+                        track={track}
+                        yCoord={yCoord}
                     />
                 </div>
             </div>
