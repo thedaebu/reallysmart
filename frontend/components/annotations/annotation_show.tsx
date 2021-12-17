@@ -45,10 +45,10 @@ interface Track {
 }
 
 function AnnotationShow(props: Props) {
+    const [annotationBody, setAnnotationBody] = useState("");
     const [createStatus, setCreateStatus] = useState(props.createStatus);
-    const [body, setBody] = useState("");
 
-    const { currentUser, yCoord, startIndex, endIndex, track, annotation, annoId, createAnnotation, fetchTrack, annotationModal, closeAnnotationModal } = props;
+    const { annotation, annotationModal, closeAnnotationModal, createAnnotation, currentUser, endIndex, fetchTrack, startIndex, track, yCoord } = props;
 
     function annotationForm() {
         if (currentUser && startIndex && startIndex !== endIndex && createStatus === false) {
@@ -87,9 +87,9 @@ function AnnotationShow(props: Props) {
                     >
                         <textarea
                             className="annotation-show-create-form-top" 
+                            onChange={handleAnnotationBodyChange()}
                             placeholder="Everything you teach us is for a reason, but none of it is important."
-                            value={body}
-                            onChange={handleBodyChange()}
+                            value={annotationBody}
                         >
                         </textarea>
 
@@ -153,23 +153,24 @@ function AnnotationShow(props: Props) {
         setCreateStatus(true);
     }
 
-    function handleBodyChange() { 
-        return (e: FormEvent<HTMLTextAreaElement>) => setBody(e.currentTarget.value);
+    function handleAnnotationBodyChange() { 
+        return (e: FormEvent<HTMLTextAreaElement>) => setAnnotationBody(e.currentTarget.value);
     }
 
     function handleSubmitAnnotation(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
 
         const annotation = {
-            body: body,
             annotator_id: currentUser.id,
-            track_id: track.id,
+            body: annotationBody,
+            end_index: endIndex,
             start_index: startIndex,
-            end_index: endIndex
+            track_id: track.id
         };
 
-        setBody("");
-        createAnnotation(annotation).then(() => fetchTrack(track.id));
+        setAnnotationBody("");
+        createAnnotation(annotation)
+            .then(() => fetchTrack(track.id));
         closeAnnotationModal();
     }
 
@@ -177,7 +178,7 @@ function AnnotationShow(props: Props) {
         e.preventDefault();
 
         setCreateStatus(false);
-        setBody("")
+        setAnnotationBody("")
         closeAnnotationModal();
     }
 
@@ -185,8 +186,8 @@ function AnnotationShow(props: Props) {
         return (
             <AnnotationShowItem
                 annotation={annotation}
-                yCoord={yCoord}
                 currentUser={currentUser}
+                yCoord={yCoord}
             />
         );
     } else if (startIndex && annotationModal) {
