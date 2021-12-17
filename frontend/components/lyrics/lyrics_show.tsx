@@ -68,13 +68,12 @@ interface Dataset {
 
 function LyricsShow(props: Props) {
     const [annotationId, setAnnotationId] = useState<number | null>(null);
-    const [annoId, setAnnoId] = useState<string | null>(null);
-    const [yCoord, setYCoord] = useState<number | null>(null);
-    const [startIndex, setStartIndex] = useState<number | null>(null);
-    const [endIndex, setEndIndex] = useState<number | null>(null);
     const [createStatus, setCreateStatus] = useState<boolean>(false);
+    const [endIndex, setEndIndex] = useState<number | null>(null);
+    const [startIndex, setStartIndex] = useState<number | null>(null);
+    const [yCoord, setYCoord] = useState<number | null>(null);
     
-    const { fetchAnnotation, annotations, track, openAnnotationModal, closeAnnotationModal, currentUser } = props;
+    const { annotations, closeAnnotationModal, currentUser, fetchAnnotation, openAnnotationModal, track } = props;
 
     useEffect(() => {
         track.annotation_ids.forEach((id: number) => {
@@ -182,7 +181,6 @@ function LyricsShow(props: Props) {
         e.preventDefault();
 
         setYCoord(e.pageY);
-        setAnnoId(e.target.dataset.id);
 
         const highlighted: Highlighted = window.getSelection()
         if (highlighted !== null) {
@@ -193,9 +191,9 @@ function LyricsShow(props: Props) {
                     : Math.min(...newIndices);
                 const max: number = Math.max(...newIndices);
 
-                setStartIndex(min);
-                setEndIndex(max);
                 openAnnotationModal();
+                setEndIndex(max);
+                setStartIndex(min);
             }
         }
     }
@@ -221,9 +219,9 @@ function LyricsShow(props: Props) {
     }
 
     function handleMouseDown() {
+        closeAnnotationModal();
         setAnnotationId(null);
         setCreateStatus(false);
-        closeAnnotationModal();
     }
 
     return (
@@ -235,21 +233,20 @@ function LyricsShow(props: Props) {
                         {annotatedLyrics()}
                     </pre> 
                     <CommentShowContainer
-                        parent={track}
-                        currentUser={currentUser}
                         commentableType="Track"
+                        currentUser={currentUser}
+                        parent={track}
                     />
                 </div>
                 <div className="lyrics-show-right">
                     <AnnotationShowContainer
+                        annotationId={annotationId}
                         track={track}
                         currentUser={currentUser}
                         yCoord={yCoord}
-                        annotationId={annotationId}
                         startIndex={startIndex}
                         endIndex={endIndex}
                         createStatus={createStatus}
-                        annoId={annoId}
                     />
                 </div>
             </div>

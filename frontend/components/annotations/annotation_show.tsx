@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import AnnotationShowItem from "./annotation_show_item";
 
 type Props = {
-    annoId: string | null,
     annotation: Annotation | null,
     annotationId: number | null,
     annotationModal: boolean,
