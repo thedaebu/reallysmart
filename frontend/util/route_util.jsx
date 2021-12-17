@@ -17,7 +17,7 @@ const Auth = ({ component: Component, path, loggedIn, exact }) => (
   />
 );
 
-const mSTP = (state, ownProps) => {
+const mSTP = (state) => {
   return (
     { loggedIn: !!state.session.id }
   );

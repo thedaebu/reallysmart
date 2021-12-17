@@ -23,12 +23,13 @@ const receiveComment = (comment: Comment) => {
 
 export const fetchComment = (commentId: number) => (dispatch: Dispatch<AnyAction>) => {
     return (
-        CommentApiUtil.fetchComment(commentId).then((comment: Comment) => dispatch(receiveComment(comment)))
+        CommentApiUtil.fetchComment(commentId)
+        .then((comment: Comment) => dispatch(receiveComment(comment)))
     );
 };
-
 export const createComment = (comment: Comment) => (dispatch: Dispatch<AnyAction>) => {
     return (
-        CommentApiUtil.createComment(comment).then((comment: Comment) => dispatch(receiveComment(comment)))
+        CommentApiUtil.createComment(comment)
+        .then((comment: Comment) => dispatch(receiveComment(comment)))
     );
 };

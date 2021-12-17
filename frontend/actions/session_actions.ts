@@ -21,12 +21,10 @@ const receiveCurrentUser = (user: User) => ({
     type: RECEIVE_CURRENT_USER,
     user
 });
-
 const logoutCurrentUser = () => ({
     type: LOGOUT_CURRENT_USER
 });
-
-const receiveErrors = (errors: Array<string>) => ({
+const receiveSessionErrors = (errors: Array<string>) => ({
     type: RECEIVE_SESSION_ERRORS,
     errors
 });
@@ -34,15 +32,15 @@ const receiveErrors = (errors: Array<string>) => ({
 export const clearErrors = () => ({
     type: CLEAR_ERRORS
 });
-
 export const login = (sessionUser: SessionUser) => (dispatch: Dispatch<AnyAction>) => {(
-    SessionApiUtil.login(sessionUser).then((user: User) => dispatch(receiveCurrentUser(user)), errors => dispatch(receiveErrors(errors.responseJSON)))
+    SessionApiUtil.login(sessionUser)
+    .then((user: User) => dispatch(receiveCurrentUser(user)), errors => dispatch(receiveSessionErrors(errors.responseJSON)))
 )};
-
 export const logout = () => (dispatch: Dispatch<AnyAction>) => {(
-    SessionApiUtil.logout().then(() => dispatch(logoutCurrentUser()))
+    SessionApiUtil.logout()
+    .then(() => dispatch(logoutCurrentUser()))
 )};
-
 export const signup = (sessionUser: SessionUser) => (dispatch: Dispatch<AnyAction>) => {(
-    SessionApiUtil.signup(sessionUser).then((user: User) => dispatch(receiveCurrentUser(user)), errors => dispatch(receiveErrors(errors.responseJSON)))
+    SessionApiUtil.signup(sessionUser)
+    .then((user: User) => dispatch(receiveCurrentUser(user)), errors => dispatch(receiveSessionErrors(errors.responseJSON)))
 )};

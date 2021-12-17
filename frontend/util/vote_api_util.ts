@@ -13,7 +13,6 @@ export const fetchVote = (voteId: number) => {
         })
     );
 };
-
 export const createVote = (vote: Vote) => {
     return (
         $.ajax({
@@ -23,7 +22,6 @@ export const createVote = (vote: Vote) => {
         })
     );
 };
-
 export const deleteVote = (voteId: number) => {
     return (
         $.ajax({

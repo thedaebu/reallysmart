@@ -54,12 +54,6 @@ function CommentShow(props: Props) {
 
     const { parent, fetchComment, currentUser, commentableType, commentMessage, comments, fetchAction, createComment } = props;
 
-    useEffect(() => {
-        parent.comment_ids.forEach(id => {
-            fetchComment(id);
-        });
-    }, []);
-
     function commentForm() {
         if (currentUser && createTrackStatus === true && commentableType === "Track") {
             return (

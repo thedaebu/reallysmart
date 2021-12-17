@@ -3,7 +3,6 @@ import { AnyAction } from "redux";
 import * as VoteApiUtil from "./../util/vote_api_util";
 
 export const RECEIVE_VOTE = "RECEIVE_VOTE";
-export const RECEIVE_CREATED_VOTE = "RECEIVE_CREATED_VOTE";
 export const REMOVE_VOTE = "REMOVE_VOTE";
 
 type ReceivedVote = {
@@ -22,22 +21,13 @@ interface Vote {
     voter_id: number
 }
 
-const receiveVote = ({vote, user}: {vote: Vote, user: User}) => {
+const receiveVote = ({ user, vote }: { user: User, vote: Vote }) => {
     return ({
         type: RECEIVE_VOTE,
-        vote,
-        user
+        user,
+        vote
     });
 };
-
-const receiveCreatedVote = ({vote, user}: {vote: Vote, user: User}) => {
-    return ({
-        type: RECEIVE_CREATED_VOTE,
-        vote,
-        user
-    });
-};
-
 const removeVote = (voteId: number) => {
     return({
         type: REMOVE_VOTE,
@@ -47,16 +37,16 @@ const removeVote = (voteId: number) => {
 
 export const fetchVote = (voteId: number) => (dispatch: Dispatch<AnyAction>) => {
     return (
-        VoteApiUtil.fetchVote(voteId).then((vote: ReceivedVote) => dispatch(receiveVote(vote)))
+        VoteApiUtil.fetchVote(voteId)
+        .then((vote: ReceivedVote) => dispatch(receiveVote(vote)))
     );
 };
-
 export const createVote = (vote: Vote) => (dispatch: Dispatch<AnyAction>) => {
     return (
-        VoteApiUtil.createVote(vote).then((vote: ReceivedVote) => dispatch(receiveCreatedVote(vote)))
+        VoteApiUtil.createVote(vote)
+        .then((vote: ReceivedVote) => dispatch(receiveVote(vote)))
     );
 };
-
 export const deleteVote = (voteId: number) => (dispatch: Dispatch<AnyAction>) => {
     return (
         VoteApiUtil.deleteVote(voteId).then((voteId: number) => dispatch(removeVote(voteId)))

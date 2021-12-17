@@ -1,28 +1,26 @@
-interface User {
+interface SessionUser {
     username: string,
     password: string
 }
 
-export const signup = (user: User) => {
-    return (
-        $.ajax({
-            method: "POST",
-            url: "/api/users",
-            data: { user }
-        })
-    );
-};
-
-export const login = (user: User) => {
+export const login = (sessionUser: SessionUser) => {
     return (
         $.ajax({
             method: "POST",
             url: "/api/session",
-            data: { user }
+            data: { sessionUser }
         })
     );
 };
-
+export const signup = (sessionUser: SessionUser) => {
+    return (
+        $.ajax({
+            method: "POST",
+            url: "/api/users",
+            data: { sessionUser }
+        })
+    );
+};
 export const logout = () => {
     return (
         $.ajax({
