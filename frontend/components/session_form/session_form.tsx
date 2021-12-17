@@ -14,20 +14,23 @@ type Props = {
 }
 
 function SessionForm(props: Props) {
-    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const { action, errors, clearErrors } = props;
-    const { formType, formTypeSub, formSubmit, formLink, formLast, formPassword, formTos } = props;
+    const [username, setUsername] = useState("");
+
+    const { action, clearErrors, errors, formLast, formLink, formPassword, formSubmit, formTos, formType, formTypeSub } = props;
 
     useEffect(() => {
         window.scrollTo(0, 0);
         clearErrors();
     }, []);
 
-    function handleFormSubmit(e: FormEvent<HTMLFormElement>) {
+    function handleSessionFormSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
 
-        const user = Object.assign({}, {username: username, password: password});
+        const user = {
+            password: password,
+            username: username
+        };
         action(user);
     }
 
@@ -63,14 +66,14 @@ function SessionForm(props: Props) {
         <div className="session-form-main">
             {formType}
             {formTypeSub}                   
-            <form className="session-form-form" onSubmit={handleFormSubmit}>
+            <form className="session-form-form" onSubmit={handleSessionFormSubmit}>
                 {showErrors()}
                 <label htmlFor="session-form-username" >Really Smart Nickname
                     <input 
                         id="session-form-username" 
+                        onChange={handleInputChange("username")}
                         type="text" 
                         value={username} 
-                        onChange={handleInputChange("username")}
                     />
                 </label>
                 <label htmlFor="session-form-password" >Really Smart Password 
@@ -80,9 +83,9 @@ function SessionForm(props: Props) {
                     </a>
                     <input 
                         id="session-form-password" 
+                        onChange={handleInputChange("password")}
                         type="password" 
                         value={password} 
-                        onChange={handleInputChange("password")}
                     />
                 </label>
                 {formTos}
