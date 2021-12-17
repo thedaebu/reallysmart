@@ -25,14 +25,14 @@ const receiveSearches = (searches: Searches) => {
     });
 };
 
-export const clearSearches = () => {
-    return ({
-        type: CLEAR_SEARCHES
-    });
-};
 export const fetchSearches = (search: string) => (dispatch: Dispatch<AnyAction>) => {
     return (
         SearchApiUtil.fetchSearches(search)
         .then(searches => dispatch(receiveSearches(searches)))
-    );
+        );
+    };
+export const clearSearches = () => {
+    return ({
+        type: CLEAR_SEARCHES
+    });
 };
