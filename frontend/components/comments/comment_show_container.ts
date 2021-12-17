@@ -31,14 +31,14 @@ interface Parent {
 }
 
 const mSTP = (state: State, ownProps: OwnProps) => {
-    const comments = ownProps.parent.comment_ids.map((id: number) => state.entities.comments[id]);
     const commentMessage = ownProps.commentableType === "Track"
         ? "Add a comment"
         : "You think you're really smarter?";
+    const comments = ownProps.parent.comment_ids.map((id: number) => state.entities.comments[id]);
 
     return ({
-        comments: comments,
-        commentMessage: commentMessage
+        commentMessage: commentMessage,
+        comments: comments
     });
 };
 
@@ -48,9 +48,9 @@ const mDTP = (dispatch: Function, ownProps: OwnProps) => {
         : (annotationId: number) => dispatch(fetchAnnotation(annotationId));
 
     return ({
-        fetchComment: (commentId: number) => dispatch(fetchComment(commentId)),
         createComment: (comment: Comment) => dispatch(createComment(comment)),
-        fetchAction: fetchAction
+        fetchAction: fetchAction,
+        fetchComment: (commentId: number) => dispatch(fetchComment(commentId))
     });
 };
 
