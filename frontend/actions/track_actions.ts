@@ -72,12 +72,12 @@ const receiveTrack = ({ annotations, comments, track }: { annotations: ReceivedA
 export const fetchTracks = () => (dispatch: Dispatch<AnyAction>) => {  
     return (
         TrackApiUtil.fetchTracks()
-        .then((tracks: ReceivedTracks) => dispatch(receiveTracks(tracks)))
+            .then((tracks: ReceivedTracks) => dispatch(receiveTracks(tracks)))
     );
 };
 export const fetchTrack = (trackId: string) => (dispatch: Dispatch<AnyAction>) => {
     return (
         TrackApiUtil.fetchTrack(trackId)
-        .then((track: ReceivedTrack) => dispatch(receiveTrack(track)))
+            .then((track: ReceivedTrack) => dispatch(receiveTrack(track)))
     );
 };
