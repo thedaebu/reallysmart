@@ -48,11 +48,11 @@ interface User {
 }
 
 function CommentShow(props: Props) {
+    const [commentBody, setCommentBody] = useState("");
+    const [createAnnotationStatus, setCreateAnnotationStatus] = useState(false);
     const [createTrackStatus, setCreateTrackStatus] = useState(false);
-    const [createAnnoStatus, setCreateAnnoStatus] = useState(false);
-    const [body, setBody] = useState("");
 
-    const { parent, fetchComment, currentUser, commentableType, commentMessage, comments, fetchAction, createComment } = props;
+    const { commentableType, commentMessage, comments, createComment, currentUser, fetchAction, parent } = props;
 
     function commentForm() {
         if (currentUser && createTrackStatus === true && commentableType === "Track") {
@@ -63,8 +63,8 @@ function CommentShow(props: Props) {
                 >
                     <textarea
                         className="comment-show-create-end-track-text"
-                        placeholder={commentMessage}
                         onChange={handleBodyChange()}
+                        placeholder={commentMessage}
                     />
                     <div className="comment-show-create-end-buttons">
                         <button className="comment-show-create-end-submit">
@@ -79,7 +79,7 @@ function CommentShow(props: Props) {
                     </div>
                 </form>
             );
-        } else if (currentUser && createAnnoStatus === true && commentableType === "Annotation") {
+        } else if (currentUser && createAnnotationStatus === true && commentableType === "Annotation") {
             return (
                 <form
                     className="comment-show-create-end-main"
@@ -87,8 +87,8 @@ function CommentShow(props: Props) {
                 >
                     <textarea
                         className="comment-show-create-end-anno-text"
-                        placeholder={commentMessage}
                         onChange={handleBodyChange()}
+                        placeholder={commentMessage}
                     />
                     <div className="comment-show-create-end-buttons">
                         <button className="comment-show-create-end-submit">
@@ -108,18 +108,18 @@ function CommentShow(props: Props) {
                 <div className="comment-show-create-begin-main">
                     <img src="https://assets.genius.com/images/default_avatar_100.png"/>
                     <textarea
-                        placeholder={commentMessage}
                         onClick={handleTrackStatus}
+                        placeholder={commentMessage}
                     />
                 </div>
             );
-        } else if (currentUser && createAnnoStatus === false && commentableType === "Annotation") {
+        } else if (currentUser && createAnnotationStatus === false && commentableType === "Annotation") {
             return (
                 <div className="comment-show-create-begin-main">
                     <img src="https://assets.genius.com/images/default_avatar_100.png"/>
                     <textarea
-                        placeholder={commentMessage}
                         onClick={handleAnnoStatus}
+                        placeholder={commentMessage}
                     />
                 </div>
             );
@@ -142,10 +142,10 @@ function CommentShow(props: Props) {
                 <ul className="comment-list-main">
                     {comments.map(comment => {
                         return <CommentShowItem
-                            parent={parent}
                             comment={comment}
                             commentableType={commentableType}
                             key={comment.id}
+                            parent={parent}
                         />
                     })}
                 </ul>
@@ -166,7 +166,7 @@ function CommentShow(props: Props) {
     function handleAnnoStatus(e: MouseEvent<HTMLTextAreaElement>) {
         e.preventDefault();
 
-        setCreateAnnoStatus(true);
+        setCreateAnnotationStatus(true);
     }
 
     function handleTrackCancel(e: MouseEvent<HTMLButtonElement>) {
@@ -178,18 +178,18 @@ function CommentShow(props: Props) {
     function handleAnnoCancel(e: MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
 
-        setCreateAnnoStatus(false);
+        setCreateAnnotationStatus(false);
     }
 
     function handleBodyChange() {
-        return (e: ChangeEvent<HTMLTextAreaElement>) => setBody(e.target.value);
+        return (e: ChangeEvent<HTMLTextAreaElement>) => setCommentBody(e.target.value);
     }
 
     function handleTrackSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
 
         const comment = {
-            body: body,
+            body: commentBody,
             commenter_id: currentUser.id,
             commentable_type: commentableType,
             commentable_id: parent.id
@@ -203,14 +203,14 @@ function CommentShow(props: Props) {
         e.preventDefault();
 
         const comment = {
-            body: body,
+            body: commentBody,
             commenter_id: currentUser.id,
             commentable_type: commentableType,
             commentable_id: parent.id
         };
 
         createComment(comment).then(() => fetchAction(parent.id));
-        setCreateAnnoStatus(false);
+        setCreateAnnotationStatus(false);
     }
 
     return (
