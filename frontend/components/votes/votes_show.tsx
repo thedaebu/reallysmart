@@ -48,7 +48,8 @@ interface Vote {
 
 function VotesShow(props: Props) {
     const [currentVoteStatus, setCurrentVoteStatus] = useState(props.currentVoteStatus);
-    const { currentUser, fetchVote, parent, currentVote, voteableType, voteableId, deleteVote, createVote, fetchAction, numberOfVotes } = props;
+    
+    const { createVote, currentUser, currentVote, deleteVote, fetchAction, fetchVote, numberOfVotes, parent, voteableId, voteableType } = props;
 
     useEffect(() => {
         if (currentUser && currentUser.vote_ids.length > 0) {
@@ -58,7 +59,7 @@ function VotesShow(props: Props) {
         }
     }, []);
 
-    function handleVote(e: MouseEvent<HTMLOrSVGElement>) {
+    function handleVoteUpdate(e: MouseEvent<HTMLOrSVGElement>) {
         e.preventDefault();
 
         if (currentUser && currentVoteStatus === true && currentVote) {
@@ -79,7 +80,7 @@ function VotesShow(props: Props) {
             <div className="vote-show-main">
                 <RiThumbUpLine
                     className="vote-show-voted"
-                    onClick={handleVote}
+                    onClick={handleVoteUpdate}
                 />
                 <div className="vote-show-count">+{numberOfVotes}</div>
             </div>
@@ -89,7 +90,7 @@ function VotesShow(props: Props) {
             <div className="vote-show-main">
                 <RiThumbUpLine
                     className="vote-show-not-voted"
-                    onClick={handleVote}
+                    onClick={handleVoteUpdate}
                 />
                 <div className="vote-show-count">+{numberOfVotes}</div>
             </div>
