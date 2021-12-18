@@ -7,7 +7,7 @@ const annotationErrorsReducer = (state = [], action) => {
         case RECEIVE_ANNOTATION_ERRORS:
             return action.errors;
         default:
-            return null;
+            return state;
     }
 };
 

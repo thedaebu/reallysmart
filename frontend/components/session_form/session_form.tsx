@@ -1,27 +1,44 @@
 import React, { useState, useEffect, FormEvent } from "react";
+import { Link } from "react-router-dom";
 
 type Props = {
     action: Function,
     clearErrors: Function,
     errors: Array<string>,
-    formLast: string,
-    formLink: any,
-    formPassword: string,
-    formSubmit: string,
-    formTos: any,
-    formType: any,
-    formTypeSub: any
+    formType: string
 }
 
 function SessionForm(props: Props) {
+    const [formLink, setFormLink] = useState(<Link to="/"></Link>);
+    const [formLinkQuestion, setFormLinkQuestion] = useState("");
+    const [formPasswordMessage, setFormPasswordMessage] = useState("");
+    const [formSubmitMessage, setFormSubmitMessage] = useState("");
+    const [formSubtitle, setFormSubtitle] = useState(<h2></h2>);
+    const [formTitle, setFormTitle] = useState(<h1></h1>);
+    const [formTos, setFormTos] = useState(<p></p>);
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
 
-    const { action, clearErrors, errors, formLast, formLink, formPassword, formSubmit, formTos, formType, formTypeSub } = props;
+    const { action, clearErrors, errors, formType } = props;
 
     useEffect(() => {
         window.scrollTo(0, 0);
         clearErrors();
+        if (formType === "login") {
+            setFormLink(<Link to="/signup">Sign up here.</Link>);
+            setFormLinkQuestion("Don\'t have an account?");
+            setFormPasswordMessage("(I forgot my password)");
+            setFormSubmitMessage("Login");
+            setFormTitle(<h1 className="session-form-login-h1">Log In</h1>);
+            setFormTos(<p className="session-form-tos">By clicking “Create Account”, you are indicating that you have read and agree to the <a href="">Terms of Service</a>.</p>);
+        } else {
+            setFormLink(<Link to="/login" >Log in here.</Link>);
+            setFormLinkQuestion("Already have an account?");
+            setFormSubmitMessage("Create Account");
+            setFormSubtitle(<h2 className="session-form-signup-h2">and show off your really smartness</h2>);
+            setFormTitle(<h1 className="session-form-signup-h1">SIGN UP</h1>);
+            setFormTos(<p className="session-form-tos">By clicking “Create Account”, you are indicating that you have read and agree to the <a href="">Terms of Service</a>.</p>);
+        }
     }, []);
 
     function handleSessionFormSubmit(e: FormEvent<HTMLFormElement>) {
@@ -64,8 +81,8 @@ function SessionForm(props: Props) {
 
     return (
         <div className="session-form-main">
-            {formType}
-            {formTypeSub}                   
+            {formTitle}
+            {formSubtitle}                   
             <form className="session-form-form" onSubmit={handleSessionFormSubmit}>
                 {showErrors()}
                 <label htmlFor="session-form-username" >Really Smart Nickname
@@ -79,7 +96,7 @@ function SessionForm(props: Props) {
                 <label htmlFor="session-form-password" >Really Smart Password 
                     <a 
                         className="session-form-forgot-password" 
-                        href="" >{formPassword}
+                        href="" >{formPasswordMessage}
                     </a>
                     <input 
                         id="session-form-password" 
@@ -92,10 +109,10 @@ function SessionForm(props: Props) {
                 <input 
                     id="session-form-submit" 
                     type="submit" 
-                    value={formSubmit}
+                    value={formSubmitMessage}
                 />                        
             </form>
-            <p className="session-form-bottom" >{formLast} {formLink}</p>
+            <p className="session-form-bottom" >{formLinkQuestion} {formLink}</p>
         </div>
     )
 }
