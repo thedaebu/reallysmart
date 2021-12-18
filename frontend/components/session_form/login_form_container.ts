@@ -1,5 +1,3 @@
-import React from "react";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { clearErrors, login } from "../../actions/session_actions";
 import SessionForm from "./session_form";
@@ -18,13 +16,7 @@ interface SessionUser {
 const mSTP = (state: State) => {
     return ({
         errors: state.errors.sessionErrors,
-        formLink: <Link to="/signup">Sign up here.</Link>,
-        formPassword: "(I forgot my password)",
-        formLast: "Don\'t have an account?",
-        formSubmit: "Login",
-        formTos: <p></p>,
-        formType: <h1 className="session-form-login-h1">Log In</h1>,
-        formTypeSub: <h2></h2>
+        formType: "login"
     })
 };
 
