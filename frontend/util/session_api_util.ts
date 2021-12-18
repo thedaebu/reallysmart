@@ -3,21 +3,21 @@ interface SessionUser {
     password: string
 }
 
-export const login = (sessionUser: SessionUser) => {
+export const login = (user: SessionUser) => {
     return (
         $.ajax({
             method: "POST",
             url: "/api/session",
-            data: { sessionUser }
+            data: { user }
         })
     );
 };
-export const signup = (sessionUser: SessionUser) => {
+export const signup = (user: SessionUser) => {
     return (
         $.ajax({
             method: "POST",
             url: "/api/users",
-            data: { sessionUser }
+            data: { user }
         })
     );
 };
