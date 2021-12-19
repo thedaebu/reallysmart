@@ -1,5 +1,5 @@
 import { AnyAction, Dispatch } from "redux";
-import { ReceivedTrack, ReceivedTracks } from "../types_and_interfaces";
+import { ReceivedTrack, ReceivedTracks } from "../my_types";
 import * as TrackApiUtil from "./../util/track_api_util";
 
 export const RECEIVE_TRACKS = "RECEIVE_TRACKS";

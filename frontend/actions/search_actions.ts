@@ -1,6 +1,6 @@
 import { Dispatch } from "react";
 import { AnyAction } from "redux";
-import { Searches } from "../types_and_interfaces";
+import { Searches } from "../my_types";
 import * as SearchApiUtil from "./../util/search_api_util";
 
 export const RECEIVE_SEARCHES = "RECEIVE_SEARCHES";

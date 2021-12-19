@@ -1,6 +1,6 @@
 import { Dispatch } from "react";
 import { AnyAction } from "redux";
-import { CreatedAnnotation, ReceivedAnnotation } from "../types_and_interfaces";
+import { CreatedAnnotation, ReceivedAnnotation } from "../my_types";
 import * as AnnotationApiUtil from "./../util/annotation_api_util";
 
 export const RECEIVE_ANNOTATION = "RECEIVE_ANNOTATION";

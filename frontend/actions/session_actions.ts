@@ -1,6 +1,6 @@
 import { Dispatch } from "react";
 import { AnyAction } from "redux";
-import { SessionUser, User } from "../types_and_interfaces";
+import { SessionUser, User } from "../my_types";
 import * as SessionApiUtil from "./../util/session_api_util";
 
 export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
