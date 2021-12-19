@@ -1,51 +1,25 @@
-import React, { FormEvent, MouseEvent, useState } from "react";
+import React, { ChangeEvent, MouseEvent, useState } from "react";
 import { Link } from "react-router-dom";
+import { Annotation, CreatedAnnotation, Track, User } from "../../my_types";
 import AnnotationShowItem from "./annotation_show_item";
 
 type Props = {
     annotation: Annotation | null,
-    annotationId: number | null,
     annotationModal: boolean,
     closeAnnotationModal: Function,
     createAnnotation: Function,
     createStatus: boolean,
     currentUser: User,
-    endIndex: number | null,
-    fetchAnnotation: Function,
+    endIndex: number,
     fetchTrack: Function,
-    startIndex: number | null,
+    startIndex: number,
     track: Track,
-    yCoord: number | null
-}
-interface Annotation {
-    annotator: string,
-    annotator_id: number,
-    body: string,
-    comment_ids: Array<number>,
-    end_index: number,
-    id: number,
-    start_index: number,
-    track_id: number,
-    votes: number
-}
-interface User {
-    id: number,
-    username: string,
-    vote_ids: Array<number>
-}
-interface Track {
-    annotation_ids: Array<number>,
-    artist: string,
-    artwork_path: string,
-    comment_ids: Array<number>,
-    id: number,
-    lyrics: string,
-    title: string
+    yCoord: number
 }
 
 function AnnotationShow(props: Props) {
-    const [annotationBody, setAnnotationBody] = useState("");
-    const [createStatus, setCreateStatus] = useState(props.createStatus);
+    const [annotationBody, setAnnotationBody] = useState<string>("");
+    const [createStatus, setCreateStatus] = useState<boolean>(props.createStatus);
 
     const { annotation, annotationModal, closeAnnotationModal, createAnnotation, currentUser, endIndex, fetchTrack, startIndex, track, yCoord } = props;
 
@@ -56,7 +30,7 @@ function AnnotationShow(props: Props) {
                     className="annotation-show-create-main" 
                     style={{
                         position: "relative",
-                        top: yCoord !== null 
+                        top: yCoord !== 0 
                             ? yCoord-370
                             : -370
                     }}>
@@ -75,7 +49,7 @@ function AnnotationShow(props: Props) {
                     className="annotation-show-create-form-main"
                     style={{
                         position: "relative",
-                        top: yCoord !== null 
+                        top: yCoord !== 0 
                             ? yCoord-370
                             : -370
                     }}
@@ -135,7 +109,7 @@ function AnnotationShow(props: Props) {
                     className="annotation-show-main-signup"
                     style={{
                         position: "relative",
-                        top: yCoord !== null 
+                        top: yCoord !== 0 
                             ? yCoord-370
                             : -370
                     }}
@@ -153,13 +127,13 @@ function AnnotationShow(props: Props) {
     }
 
     function handleAnnotationBodyChange() { 
-        return (e: FormEvent<HTMLTextAreaElement>) => setAnnotationBody(e.currentTarget.value);
+        return (e: ChangeEvent<HTMLTextAreaElement>) => setAnnotationBody(e.currentTarget.value);
     }
 
-    function handleSubmitAnnotation(e: FormEvent<HTMLFormElement>) {
+    function handleSubmitAnnotation(e: MouseEvent<HTMLFormElement>) {
         e.preventDefault();
 
-        const annotation = {
+        const annotation: CreatedAnnotation = {
             annotator_id: currentUser.id,
             body: annotationBody,
             end_index: endIndex,
@@ -173,7 +147,7 @@ function AnnotationShow(props: Props) {
         closeAnnotationModal();
     }
 
-    function handleCancelAnnotation(e: FormEvent<HTMLButtonElement>) {
+    function handleCancelAnnotation(e: MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
 
         setCreateStatus(false);
@@ -189,7 +163,7 @@ function AnnotationShow(props: Props) {
                 yCoord={yCoord}
             />
         );
-    } else if (startIndex && annotationModal) {
+    } else if (annotationModal && startIndex) {
         return (
             <div>
                 {annotationForm()}

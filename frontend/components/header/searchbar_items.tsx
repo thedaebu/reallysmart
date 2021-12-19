@@ -1,20 +1,12 @@
 import React, { MouseEvent, useEffect } from "react";
+import { SearchItem } from "../../my_types";
 import SearchbarItem from "../header/searchbar_item";
 
 type Props = {
     clearSearchField: Function,
-    searches: Array<Track>
+    searches: Array<SearchItem>
     searchField: string,
     siteLocation: string,
-}
-interface Track {
-    annotation_ids: Array<number>,
-    artist: string,
-    artwork_path: string,
-    comment_ids: Array<number>,
-    id: number,
-    lyrics: string,
-    title: string
 }
 
 function SearchbarItems(props: Props) {

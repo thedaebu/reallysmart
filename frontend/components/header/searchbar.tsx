@@ -1,15 +1,9 @@
-import React, { SetStateAction, useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import SearchbarItemsContainer from "./searchbar_items_container";
 
 type Props = {
     fetchSearches: Function
-}
-interface SearchFieldEvent {
-    target: EventValue
-}
-interface EventValue {
-    value: SetStateAction<string>
 }
 
 function Searchbar(props: Props) {
@@ -21,7 +15,7 @@ function Searchbar(props: Props) {
         if (searchField !== "") {
             fetchSearches(searchField.toLowerCase());
         }
-        return (e: SearchFieldEvent) => setSearchField(e.target.value);
+        return (e: ChangeEvent<HTMLInputElement>) => setSearchField(e.currentTarget.value);
     }
 
     function clearSearchField() {
@@ -40,8 +34,8 @@ function Searchbar(props: Props) {
                 <AiOutlineSearch className="search-bar-glass" />
             </div>
             <SearchbarItemsContainer 
-                clearSearchField={clearSearchField}
                 searchField={searchField}
+                clearSearchField={clearSearchField}
             />
         </div>
     );

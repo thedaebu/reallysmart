@@ -1,14 +1,10 @@
 import React, { MouseEvent } from "react";
 import { Link } from "react-router-dom";
+import { User } from "../../my_types";
 
 type Props = {
     currentUser: User,
     logout: Function
-}
-interface User {
-    id: number,
-    username: string,
-    vote_ids: Array<number>
 }
 
 function SessionMenu(props: Props) {

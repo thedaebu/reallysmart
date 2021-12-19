@@ -1,17 +1,7 @@
 import { connect } from "react-redux";
+import { SessionUser, State } from "../../my_types";
 import { clearErrors, login } from "../../actions/session_actions";
 import SessionForm from "./session_form";
-
-type State = {
-    errors: Errors
-}
-interface Errors {
-    sessionErrors: Array<string>
-}
-interface SessionUser {
-    password: string,
-    username: string
-}
 
 const mSTP = (state: State) => {
     return ({

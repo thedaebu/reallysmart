@@ -1,6 +1,7 @@
-import React, { useState, useEffect, MouseEvent } from "react";
-import CommentShowContainer from "../comments/comment_show_container";
+import React, { MouseEvent, useState, useEffect } from "react";
+import { Annotation, Track, User } from "../../my_types";
 import AnnotationShowContainer from "../annotations/annotation_show_container";
+import CommentShowContainer from "../comments/comment_show_container";
 
 declare const window: any;
 
@@ -12,66 +13,42 @@ type Props = {
     openAnnotationModal: Function,
     track: Track
 }
-interface Annotation {
-    annotator: string,
-    annotator_id: number,
-    body: string,
-    comment_ids: Array<number>,
-    end_index: number,
-    id: number,
-    start_index: number,
-    track_id: number,
-    votes: number
-}
-interface User {
-    id: number,
-    username: string,
-    vote_ids: Array<number>
-}
-interface Track {
-    annotation_ids: Array<number>,
-    artist: string,
-    artwork_path: string,
-    comment_ids: Array<number>,
-    id: number,
-    lyrics: string,
-    title: string
-}
 
-interface MouseUpEvent {
-    pageY: number,
-    preventDefault: Function,
-    target: MouseUpEventTarget
-}
-interface MouseUpEventTarget {
-    dataset: MouseUpEventDataset
-}
-interface MouseUpEventDataset {
-    id: string
-}
+// type MouseUpEvent = {
+//     pageY: number,
+//     preventDefault: Function,
+//     target: MouseUpEventTarget
+// }
+// type MouseUpEventTarget = {
+//     dataset: MouseUpEventDataset
+// }
+// type MouseUpEventDataset = {
+//     id: string
+// }
+
 type Highlighted = {
     anchorNode: HighlightedNode,
     anchorOffset: number,
     focusNode: HighlightedNode,
     focusOffset: number
 }
-interface HighlightedNode {
+type HighlightedNode = {
     parentNode: ParentNode
 }
-interface ParentNode {
+type ParentNode = {
     dataset: Dataset
 }
-interface Dataset {
+type Dataset = {
     add: string,
     name: string
 }
 
 function LyricsShow(props: Props) {
-    const [annotationId, setAnnotationId] = useState<number | null>(null);
+    const [annotationId, setAnnotationId] = useState<number>(-1);
     const [createStatus, setCreateStatus] = useState<boolean>(false);
-    const [endIndex, setEndIndex] = useState<number | null>(null);
-    const [startIndex, setStartIndex] = useState<number | null>(null);
-    const [yCoord, setYCoord] = useState<number | null>(null);
+    const [endIndex, setEndIndex] = useState<number>(0);
+    const [startIndex, setStartIndex] = useState<number>(0);
+    const [yCoord, setYCoord] = useState<number>(0);
     
     const { annotations, closeAnnotationModal, currentUser, fetchAnnotation, openAnnotationModal, track } = props;
 
@@ -103,18 +80,18 @@ function LyricsShow(props: Props) {
     }
 
     function annotateLyrics(lyrics: string) {
-        const sortedAnnotations = annotations.sort((a, b) => (a.start_index > b.start_index
+        const sortedAnnotations: Array<Annotation | undefined> = annotations.sort((a, b) => (a.start_index > b.start_index
             ? 1
             : -1));
-        const lyricsParts = Array();
-        let currentIndex = 0;
+        const lyricsParts: Array<JSX.Element> = Array();
+        let currentIndex: number = 0;
 
         sortedAnnotations.forEach((annotation: any, idx: number) => {
-            const addIndex = idx === 0 && annotation.startIndex !== 0
+            const addIndex: number = idx === 0 && annotation.startIndex !== 0
                 ? 0
                 : sortedAnnotations[idx-1].end_index;
-            const startIndex = annotation.start_index;
-            const endIndex = annotation.end_index;
+            const startIndex: number = annotation.start_index;
+            const endIndex: number = annotation.end_index;
 
             if (currentIndex === startIndex) {
                 lyricsParts.push(
@@ -185,8 +162,8 @@ function LyricsShow(props: Props) {
         const highlighted: Highlighted = window.getSelection()
         if (highlighted !== null) {
             if (highlighted.anchorOffset !== highlighted.focusOffset) {
-                const newIndices = makeNewIndices(highlighted);
-                const min = Math.min(...newIndices) < 0
+                const newIndices: Array<number> = makeNewIndices(highlighted);
+                const min: number = Math.min(...newIndices) < 0
                     ? 0
                     : Math.min(...newIndices);
                 const max: number = Math.max(...newIndices);
@@ -199,11 +176,11 @@ function LyricsShow(props: Props) {
     }
 
     function makeNewIndices(highlighted: Highlighted) {
-        const anchorName = highlighted.anchorNode.parentNode.dataset.name;
-        const focusName = highlighted.focusNode.parentNode.dataset.name;
-        const add = parseInt(highlighted.focusNode.parentNode.dataset.add);
-        let beginning = 0;
-        let end = 0;
+        const anchorName: string = highlighted.anchorNode.parentNode.dataset.name;
+        const focusName: string = highlighted.focusNode.parentNode.dataset.name;
+        const add: number = parseInt(highlighted.focusNode.parentNode.dataset.add);
+        let beginning: number = 0;
+        let end: number = 0;
 
         if (anchorName.includes("not-anno") && anchorName === focusName) {
             beginning = highlighted.anchorOffset + add;
@@ -219,7 +196,7 @@ function LyricsShow(props: Props) {
     }
 
     function handleTextDeselect() {
-        setAnnotationId(null);
+        setAnnotationId(-1);
         setCreateStatus(false);
         closeAnnotationModal();
     }
