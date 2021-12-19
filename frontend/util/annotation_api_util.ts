@@ -1,10 +1,4 @@
-type CreatedAnnotation = {
-    annotator_id: number,
-    body: string,
-    end_index: number,
-    start_index: number,
-    track_id: number
-}
+import { CreatedAnnotation } from "../my_types";
 
 export const fetchAnnotation = (annotationId: number) => {
     return (

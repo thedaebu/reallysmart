@@ -1,5 +1,6 @@
-import React, { useState, useEffect, MouseEvent, ChangeEvent, FormEvent } from "react";
+import React, { useState, MouseEvent, ChangeEvent, FormEvent } from "react";
 import { Link } from "react-router-dom";
+import { Annotation, Comment, CreatedComment, Track, User } from "../../my_types";
 import CommentShowItem from "./comment_show_item";
 
 type Props = {
@@ -12,45 +13,11 @@ type Props = {
     fetchComment: Function,
     parent: Annotation | Track
 }
-interface Annotation {
-    annotator: string,
-    annotator_id: number,
-    body: string,
-    comment_ids: Array<number>,
-    end_index: number,
-    id: number,
-    start_index: number,
-    track_id: number,
-    votes: number
-}
-interface Comment {
-    body: string,
-    commentable_id: number,
-    commenter: string,
-    commenter_id: number,
-    id: number,
-    updated_at: string,
-    votes: number
-}
-interface Track {
-    annotation_ids: Array<number>,
-    artist: string,
-    artwork_path: string,
-    comment_ids: Array<number>,
-    id: number,
-    lyrics: string,
-    title: string
-}
-interface User {
-    id: number,
-    username: string,
-    vote_ids: Array<number>
-}
 
 function CommentShow(props: Props) {
-    const [commentBody, setCommentBody] = useState("");
-    const [createAnnotationStatus, setCreateAnnotationStatus] = useState(false);
-    const [createTrackStatus, setCreateTrackStatus] = useState(false);
+    const [commentBody, setCommentBody] = useState<string>("");
+    const [createAnnotationStatus, setCreateAnnotationStatus] = useState<boolean>(false);
+    const [createTrackStatus, setCreateTrackStatus] = useState<boolean>(false);
 
     const { commentableType, commentMessage, comments, createComment, currentUser, fetchAction, parent } = props;
 
@@ -145,7 +112,6 @@ function CommentShow(props: Props) {
                             comment={comment}
                             commentableType={commentableType}
                             key={comment.id}
-                            parent={parent}
                         />
                     })}
                 </ul>
@@ -188,11 +154,11 @@ function CommentShow(props: Props) {
     function handleTrackSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
 
-        const comment = {
+        const comment: CreatedComment = {
             body: commentBody,
-            commenter_id: currentUser.id,
             commentable_type: commentableType,
-            commentable_id: parent.id
+            commentable_id: parent.id,
+            commenter_id: currentUser.id
         };
 
         createComment(comment).then(() => fetchAction(parent.id));
@@ -202,11 +168,11 @@ function CommentShow(props: Props) {
     function handleAnnoSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
 
-        const comment = {
+        const comment: CreatedComment = {
             body: commentBody,
-            commenter_id: currentUser.id,
             commentable_type: commentableType,
-            commentable_id: parent.id
+            commentable_id: parent.id,
+            commenter_id: currentUser.id
         };
 
         createComment(comment).then(() => fetchAction(parent.id));

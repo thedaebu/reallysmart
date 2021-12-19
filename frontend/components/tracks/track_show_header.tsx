@@ -1,21 +1,13 @@
 import React from "react";
+import { Track } from "../../my_types";
 
 declare const window: any;
 
-type TrackShowHeaderProps = {
+type Props = {
     track: Track
 }
-interface Track {
-    annotation_ids: Array<number>,
-    artist: string,
-    artwork_path: string,
-    comment_ids: Array<number>,
-    id: number,
-    lyrics: string,
-    title: string
-}
 
-function TrackShowHeader(props: TrackShowHeaderProps) {
+function TrackShowHeader(props: Props) {
     const { track } = props;
     
     const artworkPath = track.artwork_path;

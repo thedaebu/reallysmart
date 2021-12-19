@@ -1,41 +1,9 @@
 import { connect } from "react-redux";
+import { State } from "../../my_types";
 import { fetchAnnotation } from "../../actions/annotation_actions";
 import { closeAnnotationModal, openAnnotationModal } from "../../actions/annotation_modal_actions";
 import LyricsShow from "./lyrics_show";
 
-type State = {
-    entities: Entities,
-    session: SessionId
-}
-interface Entities {
-    annotations: AnnotationKey,
-    users: UserKey
-}
-interface AnnotationKey {
-    [key: number]: Annotation
-}
-interface Annotation {
-    annotator: string,
-    annotator_id: number,
-    body: string,
-    comment_ids: Array<number>,
-    end_index: number,
-    id: number,
-    start_index: number,
-    track_id: number,
-    votes: number
-}
-interface UserKey {
-    [key: number]: User
-}
-interface User {
-    id: number,
-    username: string,
-    vote_ids: Array<number>
-}
-interface SessionId {
-    id: number
-}
 type OwnProps = {
     track: Track
 }

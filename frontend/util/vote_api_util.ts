@@ -1,9 +1,4 @@
-interface Vote {
-    id: number,
-    voteable_id: number,
-    voteable_type: string,
-    voter_id: number
-}
+import { CreatedVote } from "../my_types";
 
 export const fetchVote = (voteId: number) => {
     return (
@@ -13,7 +8,7 @@ export const fetchVote = (voteId: number) => {
         })
     );
 };
-export const createVote = (vote: Vote) => {
+export const createVote = (vote: CreatedVote) => {
     return (
         $.ajax({
             method: "POST",

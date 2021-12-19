@@ -1,39 +1,10 @@
 import React from "react";
+import { Annotation, Comment, Track } from "../../my_types";
 import VotesShowContainer from "../votes/votes_show_container";
 
 type Props = {
     comment: Comment;
     commentableType: string,
-    parent: Annotation | Track
-}
-interface Annotation {
-    annotator: string,
-    annotator_id: number,
-    body: string,
-    comment_ids: Array<number>,
-    end_index: number,
-    id: number,
-    start_index: number,
-    track_id: number,
-    votes: number
-}
-interface Comment {
-    body: string,
-    commentable_id: number,
-    commenter: string,
-    commenter_id: number,
-    id: number,
-    updated_at: string,
-    votes: number
-}
-interface Track {
-    annotation_ids: Array<number>,
-    artist: string,
-    artwork_path: string,
-    comment_ids: Array<number>,
-    id: number,
-    lyrics: string,
-    title: string
 }
 
 function CommentShowItem(props: Props) {
@@ -61,11 +32,11 @@ function CommentShowItem(props: Props) {
     }
 
     function handleTime(dateTime: string) {
-        const currentDate = new Date();
-        const oldDate = new Date(Date.parse(dateTime));
-        const yearDiff = currentDate.getFullYear() - oldDate.getFullYear();
-        const monthDiff = currentDate.getMonth() - oldDate.getMonth();
-        const dayDiff = currentDate.getDate() - oldDate.getDate();
+        const currentDate: Date = new Date();
+        const oldDate: Date = new Date(Date.parse(dateTime));
+        const yearDiff: number = currentDate.getFullYear() - oldDate.getFullYear();
+        const monthDiff: number = currentDate.getMonth() - oldDate.getMonth();
+        const dayDiff: number = currentDate.getDate() - oldDate.getDate();
         
         if (yearDiff > 1) {
             return `${yearDiff} years ago`;

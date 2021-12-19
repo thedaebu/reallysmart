@@ -1,28 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { SearchItem } from "../../my_types";
 
 declare const window: any;
 
 type Props = {
-    track: Track
-}
-interface Track {
-    annotation_ids: Array<number>,
-    artist: string,
-    artwork_path: string,
-    comment_ids: Array<number>,
-    id: number,
-    lyrics: string,
-    title: string
+    track: SearchItem
 }
 
 function SearchbarItem(props: Props) {
-    const { track } = props;
+    const track = props.track.track;
 
     function randomNum() {
         return Math.floor(Math.random() * 1000);
     }
-
+    
     return (
         <Link className="searchbar-item-main" to={`/tracks/${track.id}`} replace>
             <div

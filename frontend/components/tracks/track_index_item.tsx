@@ -1,19 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Track } from "../../my_types";
 
 declare const window: any;
 
 type TrackIndexItemProps = {
     track: Track
-}
-interface Track {
-    annotation_ids: Array<number>,
-    artist: string,
-    artwork_path: string,
-    comment_ids: Array<number>,
-    id: number,
-    lyrics: string,
-    title: string
 }
 
 function TrackIndexItem(props: TrackIndexItemProps) {

@@ -1,5 +1,6 @@
-import React, { useState, useEffect, FormEvent } from "react";
+import React, { ChangeEvent, FormEvent, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { SessionUser } from "../../my_types";
 
 type Props = {
     action: Function,
@@ -9,15 +10,15 @@ type Props = {
 }
 
 function SessionForm(props: Props) {
-    const [formLink, setFormLink] = useState(<Link to="/"></Link>);
-    const [formLinkQuestion, setFormLinkQuestion] = useState("");
-    const [formPasswordMessage, setFormPasswordMessage] = useState("");
-    const [formSubmitMessage, setFormSubmitMessage] = useState("");
-    const [formSubtitle, setFormSubtitle] = useState(<h2></h2>);
-    const [formTitle, setFormTitle] = useState(<h1></h1>);
-    const [formTos, setFormTos] = useState(<p></p>);
-    const [password, setPassword] = useState("");
-    const [username, setUsername] = useState("");
+    const [formLink, setFormLink] = useState<JSX.Element>(<Link to="/"></Link>);
+    const [formLinkQuestion, setFormLinkQuestion] = useState<string>("");
+    const [formPasswordMessage, setFormPasswordMessage] = useState<string>("");
+    const [formSubmitMessage, setFormSubmitMessage] = useState<string>("");
+    const [formSubtitle, setFormSubtitle] = useState<JSX.Element>(<h2></h2>);
+    const [formTitle, setFormTitle] = useState<JSX.Element>(<h1></h1>);
+    const [formTos, setFormTos] = useState<JSX.Element>(<p></p>);
+    const [password, setPassword] = useState<string>("");
+    const [username, setUsername] = useState<string>("");
 
     const { action, clearErrors, errors, formType } = props;
 
@@ -44,7 +45,7 @@ function SessionForm(props: Props) {
     function handleSessionFormSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
 
-        const user = {
+        const user: SessionUser = {
             password: password,
             username: username
         };
@@ -53,9 +54,9 @@ function SessionForm(props: Props) {
 
     function handleInputChange(type: string) {
         if (type === "username") {
-            return (e: FormEvent<HTMLInputElement>) => setUsername(e.currentTarget.value);
+            return (e: ChangeEvent<HTMLInputElement>) => setUsername(e.currentTarget.value);
         } else {
-            return (e: FormEvent<HTMLInputElement>) => setPassword(e.currentTarget.value);
+            return (e: ChangeEvent<HTMLInputElement>) => setPassword(e.currentTarget.value);
         }
     }
 

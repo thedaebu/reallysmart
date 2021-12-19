@@ -18,23 +18,19 @@ module.exports = {
           options: {
             presets: ['@babel/env', '@babel/react']
           }
-        },
+        }
       },
       {
-        rules: [
-          {
-            test: /\.(ts|tsx)?$/,
-            exclude: /(node_modules)/,
-            use: {
-              loader: 'ts-loader',
-              options: {
-                     transpileOnly: true,
-                     happyPackMode: true,
-                     configFile: path.resolve(__dirname, 'tsconfig.json'),
-                  },
-            }
+        test: /\.(ts|tsx)?$/,
+        exclude: /(node_modules)/,
+        use: {
+          loader: 'ts-loader',
+          options: {
+            transpileOnly: true,
+            happyPackMode: true,
+            configFile: path.resolve(__dirname, 'tsconfig.json')
           }
-        ]
+        }
       }
     ]
   },

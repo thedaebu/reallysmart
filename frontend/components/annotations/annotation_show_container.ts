@@ -1,51 +1,28 @@
 import { connect } from "react-redux";
-import { createAnnotation, fetchAnnotation } from "../../actions/annotation_actions";
+import { Annotation, CreatedAnnotation, State } from "../../my_types";
+import { createAnnotation } from "../../actions/annotation_actions";
 import { closeAnnotationModal } from "../../actions/annotation_modal_actions";
 import { fetchTrack } from "../../actions/track_actions";
 import AnnotationShow from "./annotation_show";
 
-type State = {
-    entities: Entities,
-    modal: Modal
-}
-interface Entities {
-    annotations: AnnotationKey,
-}
-interface AnnotationKey {
-    [key: number]: Annotation
-}
-interface Annotation {
-    annotator: string,
-    annotator_id: number,
-    body: string,
-    comment_ids: Array<number>,
-    end_index: number,
-    id: number,
-    start_index: number,
-    track_id: number,
-    votes: number
-}
-interface Modal {
-    annotationModal: boolean
-}
 type ownProps = {
-    annotationId: number | null
+    annotationId: number
 }
 
 const mSTP = (state: State, ownProps: ownProps) => {
+    const annotation: Annotation | null = ownProps.annotationId === -1 
+        ? null
+        : state.entities.annotations[ownProps.annotationId]
     return ({
-        annotation: ownProps.annotationId === null 
-            ? null
-            : state.entities.annotations[ownProps.annotationId],
+        annotation: annotation,
         annotationModal: state.modal.annotationModal
     });
 };
 
 const mDTP = (dispatch: Function) => {
     return ({
-        createAnnotation: (annotation: Annotation) => dispatch(createAnnotation(annotation)),
+        createAnnotation: (annotation: CreatedAnnotation) => dispatch(createAnnotation(annotation)),
         closeAnnotationModal: () => dispatch(closeAnnotationModal()),
-        fetchAnnotation: (annotationId: number) => dispatch(fetchAnnotation(annotationId)),
         fetchTrack: (trackId: string) => dispatch(fetchTrack(trackId))
     });
 };

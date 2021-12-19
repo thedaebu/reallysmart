@@ -1,13 +1,9 @@
 import React, { MouseEvent } from "react";
+import { SessionUser, User } from "../../my_types";
 
 type Props = {
     currentUser: User,
     login: Function
-}
-interface User {
-    id: number,
-    username: string,
-    vote_ids: Array<number>
 }
 
 function DemoUser(props: Props) {
@@ -15,11 +11,13 @@ function DemoUser(props: Props) {
 
     function loginWithDemo(e: MouseEvent<HTMLAnchorElement>) {
         e.preventDefault();
-        
-        login({
+
+        const sessionUser: SessionUser = {
             password: "notsosmart",
             username: "notsosmart"
-        });
+        };
+
+        login(sessionUser);
     }
 
     if (currentUser) {

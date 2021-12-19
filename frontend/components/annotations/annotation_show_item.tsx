@@ -1,27 +1,12 @@
 import React from "react";
+import { Annotation, User } from "../../my_types";
 import CommentShowContainer from "../comments/comment_show_container";
 import VotesShowContainer from "../votes/votes_show_container";
 
 type Props = {
     annotation: Annotation,
     currentUser: User,
-    yCoord: number | null
-}
-interface Annotation {
-    annotator: string,
-    annotator_id: number,
-    body: string,
-    comment_ids: Array<number>,
-    end_index: number,
-    id: number,
-    start_index: number,
-    track_id: number,
-    votes: number
-}
-interface User {
-    id: number,
-    username: string,
-    vote_ids: Array<number>
+    yCoord: number
 }
 
 function AnnotationShowItem(props: Props) {
@@ -32,7 +17,7 @@ function AnnotationShowItem(props: Props) {
             className="annotation-show-main" 
             style={{
                 position: "relative", 
-                top: yCoord !== null
+                top: yCoord !== 0
                     ? yCoord-370
                     : -370
             }}

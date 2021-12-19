@@ -1,21 +1,12 @@
 import { Dispatch } from "react";
 import { AnyAction } from "redux";
+import { SessionUser, User } from "../my_types";
 import * as SessionApiUtil from "./../util/session_api_util";
 
 export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 export const LOGOUT_CURRENT_USER = "LOGOUT_CURRENT_USER";
 export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
 export const CLEAR_ERRORS = "CLEAR_ERRORS";
-
-interface User {
-    id: number,
-    username: string,
-    vote_ids: Array<number>
-}
-interface SessionUser {
-    username: string,
-    password: string
-}
 
 const receiveCurrentUser = (user: User) => ({
     type: RECEIVE_CURRENT_USER,

@@ -1,21 +1,13 @@
 import React, { useEffect } from "react";
-import TrackShowHeader from "./track_show_header";
+import { Track } from "../../my_types";
 import LyricsShowContainer from "../lyrics/lyrics_show_container";
 import NavBar from "../navbar/navbar";
+import TrackShowHeader from "./track_show_header";
 
 type Props = {
+    fetchTrack: Function,
     track: Track,
-    trackId: number,
-    fetchTrack: Function
-}
-interface Track {
-    annotation_ids: Array<number>,
-    artist: string,
-    artwork_path: string,
-    comment_ids: Array<number>,
-    id: number,
-    lyrics: string,
-    title: string
+    trackId: number
 }
 
 function TrackShow(props: Props) {

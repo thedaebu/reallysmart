@@ -1,31 +1,16 @@
 import { Dispatch } from "react";
 import { AnyAction } from "redux";
+import { CreatedVote, ReceivedVote } from "../my_types";
 import * as VoteApiUtil from "./../util/vote_api_util";
 
 export const RECEIVE_VOTE = "RECEIVE_VOTE";
 export const REMOVE_VOTE = "REMOVE_VOTE";
 
-type ReceivedVote = {
-    user: User,
-    vote: Vote
-}
-interface User {
-    id: number,
-    username: string,
-    vote_ids: Array<number>
-}
-interface Vote {
-    id: number,
-    voteable_id: number,
-    voteable_type: string,
-    voter_id: number
-}
-
-const receiveVote = ({ user, vote }: { user: User, vote: Vote }) => {
+const receiveVote = (receivedVote: ReceivedVote) => {
     return ({
         type: RECEIVE_VOTE,
-        user,
-        vote
+        user: receivedVote.user,
+        vote: receivedVote.vote
     });
 };
 const removeVote = (voteId: number) => {
@@ -41,7 +26,7 @@ export const fetchVote = (voteId: number) => (dispatch: Dispatch<AnyAction>) => 
             .then((vote: ReceivedVote) => dispatch(receiveVote(vote)))
     );
 };
-export const createVote = (vote: Vote) => (dispatch: Dispatch<AnyAction>) => {
+export const createVote = (vote: CreatedVote) => (dispatch: Dispatch<AnyAction>) => {
     return (
         VoteApiUtil.createVote(vote)
             .then((vote: ReceivedVote) => dispatch(receiveVote(vote)))

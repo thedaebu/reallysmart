@@ -1,31 +1,12 @@
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import { State } from "../../my_types";
 import SearchbarItems from "./searchbar_items";
 
-type State = {
-    entities: Entities
-}
-interface Entities {
-    searches: Searches
-}
-type Searches = {
-    [key: number]: Track
-}
-interface Track {
-    annotation_ids: Array<number>,
-    artist: string,
-    artwork_path: string,
-    comment_ids: Array<number>,
-    id: number,
-    lyrics: string,
-    title: string
-}
 // type OwnProps = {
-//     location: OwnPropsLocation
-// }
-// interface OwnPropsLocation {
-//     pathname: string
-// }
+//     clearSearchField: Function,
+//     searchField: string 
+// } & RouteComponentProps
 
 const mSTP = (state: State, ownProps: any) => {
     return ({

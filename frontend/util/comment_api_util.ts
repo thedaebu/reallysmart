@@ -1,12 +1,4 @@
-interface Comment {
-    body: string,
-    commentable_id: number,
-    commenter: string,
-    commenter_id: number,
-    id: number,
-    updated_at: string,
-    votes: number
-}
+import { CreatedComment } from "../my_types";
 
 export const fetchComment = (commentId: number) => {
     return (
@@ -16,7 +8,7 @@ export const fetchComment = (commentId: number) => {
         })
     );
 };
-export const createComment = (comment: Comment) => {
+export const createComment = (comment: CreatedComment) => {
     return (
         $.ajax({
             method: "POST",

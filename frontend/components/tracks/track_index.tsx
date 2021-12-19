@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, MouseEvent } from "react";
+import { Track } from "../../my_types";
 import Navbar from "../navbar/navbar";
 import TrackIndexItem from "./track_index_item";
 
@@ -6,18 +7,9 @@ type TrackIndexProps = {
     fetchTracks: Function,
     tracks: Array<Track>
 }
-interface Track {
-    annotation_ids: Array<number>,
-    artist: string,
-    artwork_path: string,
-    comment_ids: Array<number>,
-    id: number,
-    lyrics: string,
-    title: string
-}
 
 function TrackIndex(props: TrackIndexProps) {
-    const [indexList, setIndexList] = useState(5);
+    const [indexList, setIndexList] = useState<number>(5);
 
     const { tracks } = props;
 
@@ -64,7 +56,7 @@ function TrackIndex(props: TrackIndexProps) {
         }
     }
 
-    function setIndexListLimit(event: React.MouseEvent) {
+    function setIndexListLimit(event: MouseEvent<HTMLParagraphElement>) {
         event.preventDefault();
 
         if (indexList === 5) {
