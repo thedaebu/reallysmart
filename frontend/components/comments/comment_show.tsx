@@ -138,12 +138,14 @@ function CommentShow(props: Props) {
     function handleTrackCancel(e: MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
 
+        setCommentBody("");
         setCreateTrackStatus(false);
     }
 
     function handleAnnoCancel(e: MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
 
+        setCommentBody("");
         setCreateAnnotationStatus(false);
     }
 
