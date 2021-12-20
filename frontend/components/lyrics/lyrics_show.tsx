@@ -6,25 +6,13 @@ import CommentShowContainer from "../comments/comment_show_container";
 declare const window: any;
 
 type Props = {
-    annotations: Array<Annotation | undefined>,
+    annotations: {[key:number]: Annotation},
     closeAnnotationModal: Function,
     currentUser: User,
     fetchAnnotation: Function,
     openAnnotationModal: Function,
     track: Track
 }
-
-// type MouseUpEvent = {
-//     pageY: number,
-//     preventDefault: Function,
-//     target: MouseUpEventTarget
-// }
-// type MouseUpEventTarget = {
-//     dataset: MouseUpEventDataset
-// }
-// type MouseUpEventDataset = {
-//     id: string
-// }
 
 type Highlighted = {
     anchorNode: HighlightedNode,
@@ -60,11 +48,14 @@ function LyricsShow(props: Props) {
     }, [])
 
     function annotatedLyrics() {
-        // why do I need both of these conditions?
-        if (annotations[annotations.length - 1] !== undefined && !annotations.includes(undefined)) {
-            return (
-                annotateLyrics(track.lyrics)
-            );
+        const currentAnnotations: Array<Annotation> = track.annotation_ids.map((id: number) => {
+            return annotations[id];
+        });
+        if (currentAnnotations.length > 0) {
+            currentAnnotations.sort((a, b) => (a.start_index > b.start_index
+                ? 1
+                : -1));
+            return annotateLyrics(track.lyrics, currentAnnotations);
         } else {
             return (
                 <span 
@@ -79,17 +70,14 @@ function LyricsShow(props: Props) {
         }
     }
 
-    function annotateLyrics(lyrics: string) {
-        const sortedAnnotations: Array<Annotation | undefined> = annotations.sort((a, b) => (a.start_index > b.start_index
-            ? 1
-            : -1));
+    function annotateLyrics(lyrics: string, currentAnnotations: Array<Annotation>) {
         const lyricsParts: Array<JSX.Element> = Array();
         let currentIndex: number = 0;
 
-        sortedAnnotations.forEach((annotation: any, idx: number) => {
+        currentAnnotations.forEach((annotation: any, idx: number) => {
             const addIndex: number = idx === 0 && annotation.startIndex !== 0
                 ? 0
-                : sortedAnnotations[idx-1].end_index;
+                : currentAnnotations[idx-1].end_index;
             const startIndex: number = annotation.start_index;
             const endIndex: number = annotation.end_index;
 
@@ -131,7 +119,7 @@ function LyricsShow(props: Props) {
                     </span>
                 )
             }
-            if (idx === sortedAnnotations.length - 1) {
+            if (idx === currentAnnotations.length - 1) {
                 lyricsParts.push(
                     <span
                         className="not-an-anno"
@@ -168,9 +156,9 @@ function LyricsShow(props: Props) {
                     : Math.min(...newIndices);
                 const max: number = Math.max(...newIndices);
 
-                setStartIndex(min);
-                setEndIndex(max);
                 openAnnotationModal();
+                setEndIndex(max);
+                setStartIndex(min);
             }
         }
     }
@@ -196,9 +184,9 @@ function LyricsShow(props: Props) {
     }
 
     function handleTextDeselect() {
+        closeAnnotationModal();
         setAnnotationId(-1);
         setCreateStatus(false);
-        closeAnnotationModal();
     }
 
     return (
