@@ -4,7 +4,7 @@ import SearchbarItem from "../header/searchbar_item";
 
 type Props = {
     clearSearchField: Function,
-    searches: Array<SearchItem>
+    searches: Array<SearchItem>,
     searchField: string,
     siteLocation: string,
 }
