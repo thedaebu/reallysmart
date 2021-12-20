@@ -74,8 +74,9 @@ function LyricsShow(props: Props) {
         const lyricsParts: Array<JSX.Element> = Array();
         let currentIndex: number = 0;
 
-        currentAnnotations.forEach((annotation: any, idx: number) => {
-            const addIndex: number = idx === 0 && annotation.startIndex !== 0
+        currentAnnotations.forEach((annotation: Annotation, idx: number) => {
+            debugger
+            const addIndex: number = idx === 0 && annotation.start_index !== 0
                 ? 0
                 : currentAnnotations[idx-1].end_index;
             const startIndex: number = annotation.start_index;
