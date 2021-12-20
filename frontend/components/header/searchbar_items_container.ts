@@ -10,7 +10,6 @@ type GivenProps = {
 }
 
 const mSTP = (state: State, ownProps: OwnProps) => {
-    debugger
     return ({
         searches: Object.values(state.entities.searches),
         siteLocation: ownProps.location.pathname
