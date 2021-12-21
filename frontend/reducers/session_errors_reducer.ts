@@ -1,6 +1,7 @@
+import { Action } from "../my_types";
 import { CLEAR_ERRORS, RECEIVE_CURRENT_USER, RECEIVE_SESSION_ERRORS } from "./../actions/session_actions";
 
-const sessionErrorsReducer = (state = [], action) => {
+const sessionErrorsReducer = (state: Array<string> = [], action: Action) => {
     Object.freeze(state);
     
     switch (action.type) {
