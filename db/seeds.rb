@@ -918,7 +918,7 @@ selene_annotation1 = Annotation.create(
     end_index: 140
 )
 selene_annotation2 = Annotation.create(
-    body: "She is allowing Selene to take over she and Selene want the same thing.",
+    body: "She is allowing Selene to take over. She and Selene want the same thing.",
     annotator_id: reallysmart.id,
     track_id: selene.id,
     start_index: 459,
