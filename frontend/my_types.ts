@@ -63,6 +63,22 @@ type SessionId = {
     id: number
 }
 
+// used for reducer files
+export type Action = {
+    annotation: Annotation,
+    annotations: {[key: number]: Annotation},
+    comment: Comment,
+    comments: {[key: number]: Comment},
+    errors: Array<string>,
+    searches: {[key: number]: Track},
+    track: Track,
+    tracks: {[key: number]: Track},
+    type: string,
+    user: User,
+    vote: Vote,
+    voteId: number
+}
+
 // main feature types
 export type Annotation = {
     annotator: string,
