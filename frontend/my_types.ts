@@ -73,7 +73,8 @@ export type Annotation = {
     id: number,
     start_index: number,
     track_id: number,
-    votes: number
+    votes: number,
+    vote_ids: Array<number>
 }
 export type Comment = {
     body: string,
@@ -82,7 +83,8 @@ export type Comment = {
     commenter_id: number,
     id: number,
     updated_at: string,
-    votes: number
+    votes: number,
+    vote_ids: Array<number>
 }
 export type Searches = {
     [key: number]: SearchItem
