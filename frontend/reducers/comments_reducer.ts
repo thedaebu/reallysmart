@@ -1,8 +1,9 @@
 import { RECEIVE_TRACK, RECEIVE_TRACKS } from "../actions/track_actions"
 import { RECEIVE_ANNOTATION } from "../actions/annotation_actions";
 import { RECEIVE_COMMENT } from "../actions/comment_actions";
+import { Action, Comment } from "../my_types";
 
-const commentsReducer = (state = {}, action) => {
+const commentsReducer = (state: {[key: number]: Comment} = {}, action: Action) => {
     Object.freeze(state);
 
     switch (action.type) {

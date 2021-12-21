@@ -6,25 +6,13 @@ import CommentShowContainer from "../comments/comment_show_container";
 declare const window: any;
 
 type Props = {
-    annotations: Array<Annotation | undefined>,
+    annotations: Array<Annotation>,
     closeAnnotationModal: Function,
     currentUser: User,
     fetchAnnotation: Function,
     openAnnotationModal: Function,
     track: Track
 }
-
-// type MouseUpEvent = {
-//     pageY: number,
-//     preventDefault: Function,
-//     target: MouseUpEventTarget
-// }
-// type MouseUpEventTarget = {
-//     dataset: MouseUpEventDataset
-// }
-// type MouseUpEventDataset = {
-//     id: string
-// }
 
 type Highlighted = {
     anchorNode: HighlightedNode,
@@ -87,7 +75,7 @@ function LyricsShow(props: Props) {
         let currentIndex: number = 0;
 
         sortedAnnotations.forEach((annotation: any, idx: number) => {
-            const addIndex: number = idx === 0 && annotation.startIndex !== 0
+            const addIndex: number = idx === 0
                 ? 0
                 : sortedAnnotations[idx-1].end_index;
             const startIndex: number = annotation.start_index;

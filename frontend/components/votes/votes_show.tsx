@@ -17,13 +17,13 @@ type Props = {
 }
 
 function VotesShow(props: Props) {
-    const [currentVoteStatus, setCurrentVoteStatus] = useState(props.currentVoteStatus);
-    
+    const [currentVoteStatus, setCurrentVoteStatus] = useState<boolean>(props.currentVoteStatus);
+
     const { createVote, currentUser, currentVote, deleteVote, fetchAction, fetchVote, numberOfVotes, parent, voteableId, voteableType } = props;
 
     useEffect(() => {
-        if (currentUser && currentUser.vote_ids.length > 0) {
-            currentUser.vote_ids.forEach(id => {
+        if (currentUser) {
+            parent.vote_ids.forEach(id => {
                 fetchVote(id);
             })
         }

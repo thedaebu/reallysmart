@@ -4,9 +4,8 @@ import { State } from "../../my_types";
 import { fetchTrack } from "../../actions/track_actions";
 import TrackShow from "./track_show";
 
-type OwnProps = RouteComponentProps<RouterProps> & {
-}
-type RouterProps = {
+type OwnProps = RouteComponentProps<GivenProps>
+type GivenProps = {
     trackId: string
 }
 
