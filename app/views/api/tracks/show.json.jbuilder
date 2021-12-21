@@ -10,6 +10,7 @@ json.annotations do
       json.annotator annotation.annotator.username
       json.comment_ids annotation.comments.map {|comment| comment.id }
       json.votes annotation.votes.length
+      json.vote_ids annotation.votes.map {|vote| vote.id}
     end
   end  
 end
@@ -21,6 +22,7 @@ json.comments do
       json.extract! comment, :id, :body, :commenter_id, :commentable_id, :updated_at
       json.commenter comment.commenter.username
       json.votes comment.votes.length
+      json.vote_ids comment.votes.map {|vote| vote.id}
     end
   end
 end
