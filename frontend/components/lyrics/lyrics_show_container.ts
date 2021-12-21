@@ -4,13 +4,23 @@ import { fetchAnnotation } from "../../actions/annotation_actions";
 import { closeAnnotationModal, openAnnotationModal } from "../../actions/annotation_modal_actions";
 import LyricsShow from "./lyrics_show";
 
-const mSTP = (state: State) => {
+type OwnProps = {
+    track: Track
+}
+interface Track {
+    annotation_ids: Array<number>
+}
+
+const mSTP = (state: State, ownProps: OwnProps) => {
+    const annotations = ownProps.track.annotation_ids.map((id: number) => {
+        return state.entities.annotations[id];
+    });
+    
     return ({
-        annotations: state.entities.annotations,
+        annotations: annotations,
         currentUser: state.entities.users[state.session.id]
     });
 };
-
 const mDTP = (dispatch: Function) => {
     return ({
         closeAnnotationModal: () => dispatch(closeAnnotationModal()),

@@ -48,14 +48,11 @@ function LyricsShow(props: Props) {
     }, [])
 
     function annotatedLyrics() {
-        const currentAnnotations: Array<Annotation> = track.annotation_ids.map((id: number) => {
-            return annotations[id];
-        });
-        if (currentAnnotations.length > 0) {
-            currentAnnotations.sort((a, b) => (a.start_index > b.start_index
-                ? 1
-                : -1));
-            return annotateLyrics(track.lyrics, currentAnnotations);
+        // why do I need both of these conditions?
+        if (annotations[annotations.length - 1] !== undefined && !annotations.includes(undefined)) {
+            return (
+                annotateLyrics(track.lyrics)
+            );
         } else {
             return (
                 <span 
@@ -70,14 +67,17 @@ function LyricsShow(props: Props) {
         }
     }
 
-    function annotateLyrics(lyrics: string, currentAnnotations: Array<Annotation>) {
+    function annotateLyrics(lyrics: string) {
+        const sortedAnnotations: Array<Annotation | undefined> = annotations.sort((a, b) => (a.start_index > b.start_index
+            ? 1
+            : -1));
         const lyricsParts: Array<JSX.Element> = Array();
         let currentIndex: number = 0;
 
-        currentAnnotations.forEach((annotation: Annotation, idx: number) => {
-            const addIndex: number = idx === 0 && annotation.start_index !== 0
+        sortedAnnotations.forEach((annotation: any, idx: number) => {
+            const addIndex: number = idx === 0 && annotation.startIndex !== 0
                 ? 0
-                : currentAnnotations[idx-1].end_index;
+                : sortedAnnotations[idx-1].end_index;
             const startIndex: number = annotation.start_index;
             const endIndex: number = annotation.end_index;
 
@@ -119,7 +119,7 @@ function LyricsShow(props: Props) {
                     </span>
                 )
             }
-            if (idx === currentAnnotations.length - 1) {
+            if (idx === sortedAnnotations.length - 1) {
                 lyricsParts.push(
                     <span
                         className="not-an-anno"
@@ -156,9 +156,9 @@ function LyricsShow(props: Props) {
                     : Math.min(...newIndices);
                 const max: number = Math.max(...newIndices);
 
-                openAnnotationModal();
-                setEndIndex(max);
                 setStartIndex(min);
+                setEndIndex(max);
+                openAnnotationModal();
             }
         }
     }
@@ -184,9 +184,9 @@ function LyricsShow(props: Props) {
     }
 
     function handleTextDeselect() {
-        closeAnnotationModal();
         setAnnotationId(-1);
         setCreateStatus(false);
+        closeAnnotationModal();
     }
 
     return (
