@@ -14,16 +14,34 @@ type Props = {
     parent: Annotation | Comment,
     voteableId: number,
     voteableType: string
+    votes: {[key: number]: Vote}
 }
 
 function VotesShow(props: Props) {
-    const [currentVoteStatus, setCurrentVoteStatus] = useState(props.currentVoteStatus);
-    
-    const { createVote, currentUser, currentVote, deleteVote, fetchAction, fetchVote, numberOfVotes, parent, voteableId, voteableType } = props;
+    const [currentVoteStatus, setCurrentVoteStatus] = useState<boolean>(props.currentVoteStatus);
+
+    const { createVote, currentUser, currentVote, deleteVote, fetchAction, fetchVote, numberOfVotes, parent, voteableId, voteableType, votes } = props;
+    // const currentUserVotes: Array<Vote> = currentUser && Object.keys(votes).length !== 0 
+    //     ? currentUser.vote_ids.map((id: number) => {
+    //         if (votes[id]) {
+    //             return votes[id];
+    //         }
+    //     })
+    //     : Array()
+
+
+    // const currentVote: Vote = currentUserVotes.filter((vote: Vote) => vote.voteable_type === voteableType && vote.voteable_id === voteableId)[0] 
+
+
+    // const currentVoteStatus: boolean = !currentUserVotes.includes(undefined) && currentUserVotes.filter((vote: Vote) => vote.voteable_type === ownProps.voteableType && vote.voteable_id === ownProps.voteableId).length > 0 
+    //     ? true 
+    //     : false
+
+
 
     useEffect(() => {
-        if (currentUser && currentUser.vote_ids.length > 0) {
-            currentUser.vote_ids.forEach(id => {
+        if (currentUser) {
+            parent.vote_ids.forEach(id => {
                 fetchVote(id);
             })
         }
