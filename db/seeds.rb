@@ -1195,7 +1195,7 @@ river_vote8 = Vote.create(
 )
 
 reflection_annotation1 = Annotation.create(
-    body: "Niki is allowing Selene to take over she and Selene want the same thing.",
+    body: "She wants to know why she does not see her true self.",
     annotator_id: reallysmart.id,
     track_id: reflection.id,
     start_index: 344,
