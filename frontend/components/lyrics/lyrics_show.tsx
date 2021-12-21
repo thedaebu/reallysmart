@@ -75,7 +75,6 @@ function LyricsShow(props: Props) {
         let currentIndex: number = 0;
 
         currentAnnotations.forEach((annotation: Annotation, idx: number) => {
-            debugger
             const addIndex: number = idx === 0 && annotation.start_index !== 0
                 ? 0
                 : currentAnnotations[idx-1].end_index;
