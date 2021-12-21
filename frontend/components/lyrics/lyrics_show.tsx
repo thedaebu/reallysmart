@@ -6,7 +6,7 @@ import CommentShowContainer from "../comments/comment_show_container";
 declare const window: any;
 
 type Props = {
-    annotations: {[key:number]: Annotation},
+    annotations: Array<Annotation>,
     closeAnnotationModal: Function,
     currentUser: User,
     fetchAnnotation: Function,
@@ -75,7 +75,7 @@ function LyricsShow(props: Props) {
         let currentIndex: number = 0;
 
         sortedAnnotations.forEach((annotation: any, idx: number) => {
-            const addIndex: number = idx === 0 && annotation.startIndex !== 0
+            const addIndex: number = idx === 0
                 ? 0
                 : sortedAnnotations[idx-1].end_index;
             const startIndex: number = annotation.start_index;
