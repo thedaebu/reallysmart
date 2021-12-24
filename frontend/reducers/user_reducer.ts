@@ -1,7 +1,7 @@
 import { LOGOUT_CURRENT_USER, RECEIVE_CURRENT_USER } from "../actions/session_actions";
 import { Action } from "../my_types";
 
-const usersReducer = (state = {}, action: Action) => {
+const userReducer = (state = {}, action: Action) => {
     Object.freeze(state);
 
     switch (action.type) {
@@ -14,4 +14,4 @@ const usersReducer = (state = {}, action: Action) => {
     }
 };
 
-export default usersReducer;
+export default userReducer;

@@ -18,7 +18,7 @@ const mSTP = (state: State, ownProps: OwnProps) => {
     
     return ({
         annotations: annotations,
-        currentUser: state.entities.users[state.session.id]
+        currentUser: state.entities.user[state.session.id]
     });
 };
 const mDTP = (dispatch: Function) => {
