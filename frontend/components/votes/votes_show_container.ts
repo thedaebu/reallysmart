@@ -13,7 +13,7 @@ type OwnProps = {
 }
 
 const mSTP = (state: State, ownProps: OwnProps) => {
-    const currentUser: User = state.entities.users[state.session.id];
+    const currentUser: User = state.entities.user[state.session.id];
     const currentUserVotes: Array<any> = currentUser && Object.keys(state.entities.votes).length !== 0 
         ? currentUser.vote_ids.map((id: number) => {
             if (state.entities.votes[id]) {

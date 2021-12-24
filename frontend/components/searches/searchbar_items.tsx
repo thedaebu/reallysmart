@@ -1,6 +1,6 @@
 import React, { MouseEvent, useEffect } from "react";
 import { SearchItem } from "../../my_types";
-import SearchbarItem from "../header/searchbar_item";
+import SearchbarItem from "./searchbar_item";
 
 type Props = {
     clearSearchField: Function,

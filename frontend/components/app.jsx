@@ -7,10 +7,10 @@ import {
   HashRouter
 } from "react-router-dom";
 import { AuthRoute } from "../util/route_util";
-import DemoUserContainer from "./header/demo_user_container";
-import SessionMenuContainer from "./header/session_menu_container";
-import SearchbarContainer from "./header/searchbar_container";
+import DemoUserContainer from "./demo_user/demo_user_container";
 import LoginFormContainer from "./session_form/login_form_container";
+import SearchbarContainer from "./searches/searchbar_container";
+import SessionMenuContainer from "./session_menu/session_menu_container";
 import SignupFormContainer from "./session_form/signup_form_container";
 import TrackIndexContainer from "./tracks/track_index_container"
 import TrackShowContainer from "./tracks/track_show_container";

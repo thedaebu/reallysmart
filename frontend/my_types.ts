@@ -49,7 +49,7 @@ type Entities = {
     comments: {[key:number]: Comment},
     searches: {[key:number]: Track},
     tracks: {[key:number]: Track},
-    users: {[key:number]: User},
+    user: {[key:number]: User},
     votes: {[key:number]: Vote}
 }
 type Errors = {
