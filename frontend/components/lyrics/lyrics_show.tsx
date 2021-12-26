@@ -185,8 +185,16 @@ function LyricsShow(props: Props) {
 
     function handleTextDeselect() {
         setAnnotationId(-1);
-        setCreateStatus(false);
         closeAnnotationModal();
+        falseCreateStatus();
+    }
+
+    function trueCreateStatus() {
+        setCreateStatus(true);
+    }
+
+    function falseCreateStatus() {
+        setCreateStatus(false);
     }
 
     return (
@@ -209,8 +217,10 @@ function LyricsShow(props: Props) {
                         createStatus={createStatus}
                         currentUser={currentUser}
                         endIndex={endIndex}
+                        falseCreateStatus={falseCreateStatus}
                         startIndex={startIndex}
                         track={track}
+                        trueCreateStatus={trueCreateStatus}
                         yCoord={yCoord}
                     />
                 </div>
