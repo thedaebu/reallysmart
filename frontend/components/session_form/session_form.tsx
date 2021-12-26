@@ -31,7 +31,7 @@ function SessionForm(props: Props) {
             setFormPasswordMessage("(I forgot my password)");
             setFormSubmitMessage("Login");
             setFormTitle(<h1 className="session-form-login-h1">Log In</h1>);
-            setFormTos(<p className="session-form-tos">By clicking “Create Account”, you are indicating that you have read and agree to the <a href="">Terms of Service</a>.</p>);
+            setFormTos(<p></p>);
         } else {
             setFormLink(<Link to="/login" >Log in here.</Link>);
             setFormLinkQuestion("Already have an account?");
@@ -40,7 +40,7 @@ function SessionForm(props: Props) {
             setFormTitle(<h1 className="session-form-signup-h1">SIGN UP</h1>);
             setFormTos(<p className="session-form-tos">By clicking “Create Account”, you are indicating that you have read and agree to the <a href="">Terms of Service</a>.</p>);
         }
-    }, []);
+    }, [formType]);
 
     function handleSessionFormSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
