@@ -5,11 +5,11 @@ import { closeAnnotationModal } from "../../actions/annotation_modal_actions";
 import { fetchTrack } from "../../actions/track_actions";
 import AnnotationShow from "./annotation_show";
 
-type ownProps = {
+type OwnProps = {
     annotationId: number
 }
 
-const mSTP = (state: State, ownProps: ownProps) => {
+const mSTP = (state: State, ownProps: OwnProps) => {
     const annotation: Annotation | null = ownProps.annotationId === -1 
         ? null
         : state.entities.annotations[ownProps.annotationId]

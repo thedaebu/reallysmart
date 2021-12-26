@@ -8,6 +8,6 @@ export const openAnnotationModal = () => {
 };
 export const closeAnnotationModal = () => {
     return ({
-        type: CLOSE_ANNOTATION_MODAL    
+        type: CLOSE_ANNOTATION_MODAL
     });
 };

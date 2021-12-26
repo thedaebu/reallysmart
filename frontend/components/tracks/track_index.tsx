@@ -43,11 +43,11 @@ function TrackIndex(props: TrackIndexProps) {
     function extendIndexList() {
         if (indexList === 5) {
             return ( 
-                <p onClick={setIndexListLimit} className="tracks-index-load-more">LOAD MORE</p>
+                <button onClick={setIndexListLimit} className="tracks-index-load-more">LOAD MORE</button>
             )
         } else if (indexList === 10) { 
             return ( 
-                <p onClick={setIndexListLimit} className="tracks-index-load-more">We Miss You DMX!</p>
+                <button onClick={setIndexListLimit} className="tracks-index-load-more">We Miss You DMX!</button>
             )
         } else {
             return (
@@ -56,7 +56,7 @@ function TrackIndex(props: TrackIndexProps) {
         }
     }
 
-    function setIndexListLimit(event: MouseEvent<HTMLParagraphElement>) {
+    function setIndexListLimit(event: MouseEvent<HTMLButtonElement>) {
         event.preventDefault();
 
         if (indexList === 5) {

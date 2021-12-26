@@ -1,4 +1,4 @@
-import React, { ChangeEvent, MouseEvent, useState } from "react";
+import React, { ChangeEvent, MouseEvent, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Annotation, CreatedAnnotation, Track, User } from "../../my_types";
 import AnnotationShowItem from "./annotation_show_item";
@@ -11,47 +11,53 @@ type Props = {
     createStatus: boolean,
     currentUser: User,
     endIndex: number,
+    falseCreateStatus: Function,
     fetchTrack: Function,
     startIndex: number,
     track: Track,
+    trueCreateStatus: Function,
     yCoord: number
 }
 
 function AnnotationShow(props: Props) {
     const [annotationBody, setAnnotationBody] = useState<string>("");
-    const [createStatus, setCreateStatus] = useState<boolean>(props.createStatus);
+    const [annotationCreateStatus, setAnnotationCreateStatus] = useState<boolean>(props.createStatus);
 
-    const { annotation, annotationModal, closeAnnotationModal, createAnnotation, currentUser, endIndex, fetchTrack, startIndex, track, yCoord } = props;
+    const { annotation, annotationModal, closeAnnotationModal, createAnnotation, createStatus, currentUser, endIndex, falseCreateStatus, fetchTrack, startIndex, track, trueCreateStatus, yCoord } = props;
+
+    useEffect(() => {
+        setAnnotationCreateStatus(createStatus)
+    }, [createStatus])
 
     function annotationForm() {
-        if (currentUser && startIndex && startIndex !== endIndex && createStatus === false) {
+        if (currentUser && startIndex && startIndex !== endIndex && annotationCreateStatus === false) {
             return (
                 <div
                     className="annotation-show-create-main" 
                     style={{
                         position: "relative",
                         top: yCoord !== 0 
-                            ? yCoord-370
-                            : -370
+                            ? yCoord
+                            : -367
                     }}>
-                    <span
+                    <button
                         className="annotation-show-create-begin"
                         onClick={handleCreateAnnotation}
                     >
                         <h1>Start the Really Smart Annotation</h1>
                         <h2>(+5 RSQ)</h2>
-                    </span>
+                    </button>
                 </div>
             )
-        } else if (currentUser && startIndex && createStatus === true){
+        } else if (currentUser && startIndex && annotationCreateStatus === true){
             return (
                 <div
                     className="annotation-show-create-form-main"
                     style={{
                         position: "relative",
                         top: yCoord !== 0 
-                            ? yCoord-370
-                            : -370
+                            ? yCoord
+                            : -367
                     }}
                 >
                     <form
@@ -110,8 +116,8 @@ function AnnotationShow(props: Props) {
                     style={{
                         position: "relative",
                         top: yCoord !== 0 
-                            ? yCoord-370
-                            : -370
+                            ? yCoord
+                            : -367
                     }}
                 >
                     <Link to="/signup">Sign Up to Start Really Smarting</Link>
@@ -123,7 +129,7 @@ function AnnotationShow(props: Props) {
     function handleCreateAnnotation(e: MouseEvent<HTMLElement>) {
         e.preventDefault();
 
-        setCreateStatus(true);
+        trueCreateStatus();
     }
 
     function handleAnnotationBodyChange() { 
@@ -145,14 +151,16 @@ function AnnotationShow(props: Props) {
         createAnnotation(annotation)
             .then(() => fetchTrack(track.id));
         closeAnnotationModal();
+        falseCreateStatus();
     }
 
     function handleCancelAnnotation(e: MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
 
-        setCreateStatus(false);
+        setAnnotationCreateStatus(false);
         setAnnotationBody("")
         closeAnnotationModal();
+        falseCreateStatus();
     }
 
     if (annotation) {

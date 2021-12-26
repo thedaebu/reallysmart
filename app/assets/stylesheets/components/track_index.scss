@@ -103,7 +103,10 @@ $programme: 'Programme Regular', sans-serif;
     }
     .tracks-index-load-more {
         cursor: pointer;
-        width: 90px;
+        display: flex;
+        justify-content: center;
+        width: 136px;
+        background: white;
         color: rgb(106, 153, 255);
         font-size: 14px;
         border: 2px solid rgb(106, 153, 255);

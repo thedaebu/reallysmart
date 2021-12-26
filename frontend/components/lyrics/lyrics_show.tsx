@@ -145,7 +145,7 @@ function LyricsShow(props: Props) {
     function handleTextSelect(e: MouseEvent<HTMLElement>) {
         e.preventDefault();
 
-        setYCoord(e.pageY);
+        setYCoord(e.pageY-(e.pageY % 30)-367);
 
         const highlighted: Highlighted = window.getSelection()
         if (highlighted !== null) {
@@ -185,8 +185,16 @@ function LyricsShow(props: Props) {
 
     function handleTextDeselect() {
         setAnnotationId(-1);
-        setCreateStatus(false);
         closeAnnotationModal();
+        falseCreateStatus();
+    }
+
+    function trueCreateStatus() {
+        setCreateStatus(true);
+    }
+
+    function falseCreateStatus() {
+        setCreateStatus(false);
     }
 
     return (
@@ -209,8 +217,10 @@ function LyricsShow(props: Props) {
                         createStatus={createStatus}
                         currentUser={currentUser}
                         endIndex={endIndex}
+                        falseCreateStatus={falseCreateStatus}
                         startIndex={startIndex}
                         track={track}
+                        trueCreateStatus={trueCreateStatus}
                         yCoord={yCoord}
                     />
                 </div>
