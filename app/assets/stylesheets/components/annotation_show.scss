@@ -19,10 +19,11 @@ $programmelight: 'Programme Light', sans-serif;
 
 .annotation-show-create-main {
     border-left: 4px solid rgb(121, 164, 255);
-    padding: 5px 0px 0px 17px;
+    padding: 0px 0px 0px 17px;
     .annotation-show-create-begin {
         cursor: pointer;
         display: flex;
+        background: white;
         color:rgb(7, 7, 7);
         line-height: 28px;
         border: 2px solid black;

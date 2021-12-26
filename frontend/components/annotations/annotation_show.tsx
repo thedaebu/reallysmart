@@ -40,13 +40,13 @@ function AnnotationShow(props: Props) {
                             ? yCoord-370
                             : -370
                     }}>
-                    <div
+                    <button
                         className="annotation-show-create-begin"
                         onClick={handleCreateAnnotation}
                     >
                         <h1>Start the Really Smart Annotation</h1>
                         <h2>(+5 RSQ)</h2>
-                    </div>
+                    </button>
                 </div>
             )
         } else if (currentUser && startIndex && annotationCreateStatus === true){
