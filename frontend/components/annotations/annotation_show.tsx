@@ -37,8 +37,8 @@ function AnnotationShow(props: Props) {
                     style={{
                         position: "relative",
                         top: yCoord !== 0 
-                            ? yCoord-(yCoord%30)-370
-                            : -370
+                            ? yCoord
+                            : -367
                     }}>
                     <button
                         className="annotation-show-create-begin"
@@ -56,8 +56,8 @@ function AnnotationShow(props: Props) {
                     style={{
                         position: "relative",
                         top: yCoord !== 0 
-                            ? yCoord-(yCoord%30)-370
-                            : -370
+                            ? yCoord
+                            : -367
                     }}
                 >
                     <form
@@ -116,8 +116,8 @@ function AnnotationShow(props: Props) {
                     style={{
                         position: "relative",
                         top: yCoord !== 0 
-                            ? yCoord-(yCoord%30)-370
-                            : -370
+                            ? yCoord
+                            : -367
                     }}
                 >
                     <Link to="/signup">Sign Up to Start Really Smarting</Link>

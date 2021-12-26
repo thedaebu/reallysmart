@@ -145,7 +145,7 @@ function LyricsShow(props: Props) {
     function handleTextSelect(e: MouseEvent<HTMLElement>) {
         e.preventDefault();
 
-        setYCoord(e.pageY);
+        setYCoord(e.pageY-(e.pageY % 30)-367);
 
         const highlighted: Highlighted = window.getSelection()
         if (highlighted !== null) {
