@@ -19,7 +19,7 @@ const mSTP = (state: State, ownProps: OwnProps) => {
 };
 
 const mDTP = (dispatch: Function) => {
-    return ({   
+    return ({
         fetchTrack: (trackId: string) => dispatch(fetchTrack(trackId))  
     });
 };
