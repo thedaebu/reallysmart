@@ -37,7 +37,7 @@ function AnnotationShow(props: Props) {
                     style={{
                         position: "relative",
                         top: yCoord !== 0 
-                            ? yCoord-370
+                            ? yCoord-(yCoord%30)-370
                             : -370
                     }}>
                     <button
@@ -56,7 +56,7 @@ function AnnotationShow(props: Props) {
                     style={{
                         position: "relative",
                         top: yCoord !== 0 
-                            ? yCoord-370
+                            ? yCoord-(yCoord%30)-370
                             : -370
                     }}
                 >
@@ -116,7 +116,7 @@ function AnnotationShow(props: Props) {
                     style={{
                         position: "relative",
                         top: yCoord !== 0 
-                            ? yCoord-370
+                            ? yCoord-(yCoord%30)-370
                             : -370
                     }}
                 >
