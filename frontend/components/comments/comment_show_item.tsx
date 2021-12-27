@@ -1,5 +1,5 @@
 import React from "react";
-import { Annotation, Comment, Track } from "../../my_types";
+import { Comment } from "../../my_types";
 import VotesShowContainer from "../votes/votes_show_container";
 
 type Props = {
