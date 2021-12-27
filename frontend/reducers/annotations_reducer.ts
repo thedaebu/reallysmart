@@ -1,5 +1,5 @@
 import { RECEIVE_ANNOTATION } from "../actions/annotation_actions";
-import { RECEIVE_TRACK, RECEIVE_TRACKS } from "../actions/track_actions";
+import { RECEIVE_TRACKS } from "../actions/track_actions";
 import { Action, Annotation } from "../my_types";
 
 const annotationsReducer = (state: {[key: number]: Annotation} = {}, action: Action) => {
