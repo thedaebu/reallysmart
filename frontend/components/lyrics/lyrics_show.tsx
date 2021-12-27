@@ -13,7 +13,6 @@ type Props = {
     openAnnotationModal: Function,
     track: Track
 }
-
 type Highlighted = {
     anchorNode: HighlightedNode,
     anchorOffset: number,
@@ -47,9 +46,8 @@ function LyricsShow(props: Props) {
         window.scrollTo(0, 0);
     }, [])
 
-    function annotatedLyrics() {
-        // why do I need both of these conditions?
-        if (annotations[annotations.length - 1] !== undefined && !annotations.includes(undefined)) {
+    function annotatedLyrics() {        
+        if (validAnnotations(annotations) === true && annotations.length > 0) {
             return (
                 annotateLyrics(track.lyrics)
             );
@@ -67,8 +65,15 @@ function LyricsShow(props: Props) {
         }
     }
 
+    function validAnnotations(annotations: Array<Annotation>) {
+        for (let annotation of annotations) {
+            if (annotation === undefined) return false;
+        }
+        return true;
+    }
+
     function annotateLyrics(lyrics: string) {
-        const sortedAnnotations: Array<Annotation | undefined> = annotations.sort((a, b) => (a.start_index > b.start_index
+        const sortedAnnotations: Array<Annotation> = annotations.sort((a, b) => (a.start_index > b.start_index
             ? 1
             : -1));
         const lyricsParts: Array<JSX.Element> = Array();

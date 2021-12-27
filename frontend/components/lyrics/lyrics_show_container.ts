@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { State } from "../../my_types";
+import { Annotation, State } from "../../my_types";
 import { fetchAnnotation } from "../../actions/annotation_actions";
 import { closeAnnotationModal, openAnnotationModal } from "../../actions/annotation_modal_actions";
 import LyricsShow from "./lyrics_show";
@@ -12,7 +12,7 @@ interface Track {
 }
 
 const mSTP = (state: State, ownProps: OwnProps) => {
-    const annotations = ownProps.track.annotation_ids.map((id: number) => {
+    const annotations: Array<Annotation> = ownProps.track.annotation_ids.map((id: number) => {
         return state.entities.annotations[id];
     });
     
