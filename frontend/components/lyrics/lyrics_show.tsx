@@ -46,10 +46,8 @@ function LyricsShow(props: Props) {
         window.scrollTo(0, 0);
     }, [])
 
-    function annotatedLyrics() {
-        const areValidAnnotations: boolean = validAnnotations(annotations);
-        
-        if (areValidAnnotations === true && annotations.length > 0) {
+    function annotatedLyrics() {        
+        if (validAnnotations(annotations) === true && annotations.length > 0) {
             return (
                 annotateLyrics(track.lyrics)
             );
