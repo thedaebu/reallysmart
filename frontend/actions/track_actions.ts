@@ -14,7 +14,6 @@ const receiveTracks = (tracks: ReceivedTracks) => {
 const receiveTrack = (receivedTrack: ReceivedTrack) => {
     return ({
         type: RECEIVE_TRACK,
-        annotations: receivedTrack.annotations,
         comments: receivedTrack.comments,
         track: receivedTrack.track
     });

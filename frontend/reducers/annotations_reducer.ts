@@ -6,8 +6,6 @@ const annotationsReducer = (state: {[key: number]: Annotation} = {}, action: Act
     Object.freeze(state);
 
     switch (action.type) {
-        case RECEIVE_TRACK:
-            return Object.assign({}, action.annotations);
         case RECEIVE_TRACKS:
             return Object.assign({});
         case RECEIVE_ANNOTATION:
