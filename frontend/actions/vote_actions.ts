@@ -9,7 +9,6 @@ export const REMOVE_VOTE = "REMOVE_VOTE";
 const receiveVote = (receivedVote: ReceivedVote) => {
     return ({
         type: RECEIVE_VOTE,
-        user: receivedVote.user,
         vote: receivedVote.vote
     });
 };

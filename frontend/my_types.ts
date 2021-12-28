@@ -33,7 +33,6 @@ export type ReceivedTracks = {
     [key: number]: Track
 }
 export type ReceivedVote = {
-    user: User,
     vote: Vote
 }
 
