@@ -86,9 +86,9 @@ export type Annotation = {
     comment_ids: Array<number>,
     end_index: number,
     id: number,
+    number_of_votes: number,
     start_index: number,
     track_id: number,
-    votes: number,
     vote_ids: Array<number>
 }
 export type Comment = {
@@ -97,8 +97,8 @@ export type Comment = {
     commenter: string,
     commenter_id: number,
     id: number,
+    number_of_votes: number,
     updated_at: string,
-    votes: number,
     vote_ids: Array<number>
 }
 export type Searches = {
