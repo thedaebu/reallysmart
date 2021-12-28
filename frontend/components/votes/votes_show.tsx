@@ -5,21 +5,20 @@ import { Annotation, Comment, User, Vote } from "../../my_types";
 type Props = {
     createVote: Function,
     currentUser: User,
-    currentVote: Vote | null,
-    currentVoteStatus: boolean,
     deleteVote: Function,
     fetchAction: Function,
     fetchVote: Function,
     numberOfVotes: number,
     parent: Annotation | Comment,
     voteableId: number,
-    voteableType: string
+    voteableType: string,
+    votes: {[key: number]: Vote}
 }
 
 function VotesShow(props: Props) {
-    const [currentVoteStatus, setCurrentVoteStatus] = useState<boolean>(props.currentVoteStatus);
+    const [currentUserVote, setCurrentUserVote] = useState<Vote | null>(null);
 
-    const { createVote, currentUser, currentVote, deleteVote, fetchAction, fetchVote, numberOfVotes, parent, voteableId, voteableType } = props;
+    const { createVote, currentUser, deleteVote, fetchAction, fetchVote, numberOfVotes, parent, voteableId, voteableType, votes } = props;
 
     useEffect(() => {
         if (currentUser) {
@@ -32,10 +31,14 @@ function VotesShow(props: Props) {
     function handleVoteUpdate(e: MouseEvent<HTMLOrSVGElement>) {
         e.preventDefault();
 
-        if (currentUser && currentVoteStatus === true && currentVote) {
-            setCurrentVoteStatus(false);
-            deleteVote(currentVote.id)
+        const currentUserVotes: Array<Vote> = findCurrentUserVotes(currentUser, votes);
+        setCurrentUserVote(findCurrentUserVote(currentUserVotes, voteableId, voteableType));
+
+        if (currentUser && currentUserVote) {
+            deleteVote(currentUserVote.id)
                 .then(() => fetchAction(parent.id))
+
+            setCurrentUserVote(null);
         } else if (currentUser) {
             const vote = {
                 voteable_type: voteableType,
@@ -45,11 +48,37 @@ function VotesShow(props: Props) {
 
             createVote(vote)
                 .then(() => fetchAction(parent.id));
-            setCurrentVoteStatus(true);
+
+            setCurrentUserVote(findCurrentUserVote(currentUserVotes, voteableId, voteableType));
         }
     }
 
-    if (currentUser && currentVoteStatus === true) {
+    function findCurrentUserVotes(currentUser: User, votes: {[key: number]: Vote}) {
+        if (currentUser && Object.keys(votes).length > 0) {
+            return currentUser.vote_ids.map((id: number) => {
+                if (votes[id]) {
+                    return votes[id];
+                }
+            }).filter((vote: Vote | undefined) => {
+                if (vote !== undefined) {
+                    return vote;
+                }
+            })
+        } else {
+            return Array();
+        }
+    }
+
+    function findCurrentUserVote(currentUserVotes: Array<Vote>, voteableId: number, voteableType: string) {
+        for (let vote of currentUserVotes) {
+            if (vote.voteable_id === voteableId && vote.voteable_type === voteableType) {
+                return vote;
+            }
+        }
+        return null;
+    }
+
+    if (currentUser && currentUserVote !== null) {
         return (
             <div className="vote-show-main">
                 <RiThumbUpLine
@@ -59,7 +88,7 @@ function VotesShow(props: Props) {
                 <div className="vote-show-count">+{numberOfVotes}</div>
             </div>
         );
-    } else if (currentUser && currentVoteStatus === false) {
+    } else if (currentUser && currentUserVote === null) {
         return (
             <div className="vote-show-main">
                 <RiThumbUpLine
