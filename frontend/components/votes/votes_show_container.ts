@@ -14,17 +14,27 @@ type OwnProps = {
 
 const mSTP = (state: State, ownProps: OwnProps) => {
     const currentUser: User = state.entities.user[state.session.id];
-    const currentUserVotes: Array<any> = currentUser && Object.keys(state.entities.votes).length !== 0 
+    const currentUserVotes: Array<Vote> = currentUser && Object.keys(state.entities.votes).length > 0 
         ? currentUser.vote_ids.map((id: number) => {
             if (state.entities.votes[id]) {
                 return state.entities.votes[id];
             }
+        }).filter((vote: Vote | undefined) => {
+            if (vote !== undefined) {
+                return vote;
+            }
         })
         : Array()
-    const currentVote: Vote | null = !currentUserVotes.includes(undefined) 
-        ? currentUserVotes.filter((vote: Vote) => vote.voteable_type === ownProps.voteableType && vote.voteable_id === ownProps.voteableId)[0] 
-        : null;
-    const currentVoteStatus: boolean = !currentUserVotes.includes(undefined) && currentUserVotes.filter((vote: Vote) => vote.voteable_type === ownProps.voteableType && vote.voteable_id === ownProps.voteableId).length > 0 
+    function findCurrentVote(votes: Array<Vote>) {
+        for (let vote of votes) {
+            if (vote.voteable_type === ownProps.voteableType && vote.voteable_id === ownProps.voteableId) {
+                return vote;
+            }
+        }
+        return null;
+    }
+    const currentVote = findCurrentVote(currentUserVotes);
+    const currentVoteStatus: boolean = currentVote !== null 
         ? true 
         : false
 
