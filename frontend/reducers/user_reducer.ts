@@ -1,7 +1,7 @@
 import { LOGOUT_CURRENT_USER, RECEIVE_CURRENT_USER } from "../actions/session_actions";
-import { Action } from "../my_types";
+import { Action, User } from "../my_types";
 
-const userReducer = (state = {}, action: Action) => {
+const userReducer = (state: {[key: number]: User} = {}, action: Action) => {
     Object.freeze(state);
 
     switch (action.type) {
