@@ -25,7 +25,7 @@ function AnnotationShowItem(props: Props) {
             <p className="annotation-show-name">Really Smart Annotation by {annotation.annotator}</p>
             <p className="annotation-show-body">{annotation.body}</p>
             <VotesShowContainer
-                numberOfVotes={annotation.votes}
+                numberOfVotes={annotation.number_of_votes}
                 parent={annotation}
                 voteableId={annotation.id}
                 voteableType="Annotation"

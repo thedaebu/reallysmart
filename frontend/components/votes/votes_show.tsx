@@ -7,7 +7,6 @@ type Props = {
     currentUser: User,
     deleteVote: Function,
     fetchAction: Function,
-    fetchVote: Function,
     numberOfVotes: number,
     parent: Annotation | Comment,
     voteableId: number,
@@ -18,15 +17,7 @@ type Props = {
 function VotesShow(props: Props) {
     const [currentUserVote, setCurrentUserVote] = useState<Vote | null>(null);
 
-    const { createVote, currentUser, deleteVote, fetchAction, fetchVote, numberOfVotes, parent, voteableId, voteableType, votes } = props;
-
-    useEffect(() => {
-        if (currentUser) {
-            parent.vote_ids.forEach(id => {
-                fetchVote(id);
-            })
-        }
-    }, []);
+    const { createVote, currentUser, deleteVote, fetchAction, numberOfVotes, parent, voteableId, voteableType, votes } = props;
 
     function handleVoteUpdate(e: MouseEvent<HTMLOrSVGElement>) {
         e.preventDefault();

@@ -22,7 +22,7 @@ function CommentShowItem(props: Props) {
                 </div>
                 <p className="comment-list-item-body">{comment.body}</p>
                 <VotesShowContainer 
-                    numberOfVotes={comment.votes} 
+                    numberOfVotes={comment.number_of_votes} 
                     parent={comment} 
                     voteableId={comment.id} 
                     voteableType="Comment" 

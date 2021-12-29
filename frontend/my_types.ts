@@ -19,21 +19,22 @@ export type CreatedVote = {
 }
 export type ReceivedAnnotation = {
     annotation: Annotation,
-    comments: ReceivedComments
+    votes: {[key:number]: Vote}
 }
-export type ReceivedComments = {
-    comments: {[key:number]: Comment}
+export type ReceivedComment = {
+    comment: Comment,
+    votes: {[key:number]: Vote}
 }
 export type ReceivedTrack = {
-    track: Track,
-    annotations: {[key:number]: Annotation},
-    comments: {[key:number]: Comment}
+    track: Track
 }
 export type ReceivedTracks = {
-    [key: number]: Track
+    tracks: {[key: number]: Track}
+}
+export type ReceivedUser = {
+    user: User
 }
 export type ReceivedVote = {
-    user: User,
     vote: Vote
 }
 
@@ -76,6 +77,7 @@ export type Action = {
     type: string,
     user: User,
     vote: Vote,
+    votes:{[key: number]: Track},
     voteId: number
 }
 
@@ -87,9 +89,9 @@ export type Annotation = {
     comment_ids: Array<number>,
     end_index: number,
     id: number,
+    number_of_votes: number,
     start_index: number,
     track_id: number,
-    votes: number,
     vote_ids: Array<number>
 }
 export type Comment = {
@@ -98,8 +100,8 @@ export type Comment = {
     commenter: string,
     commenter_id: number,
     id: number,
+    number_of_votes: number,
     updated_at: string,
-    votes: number,
     vote_ids: Array<number>
 }
 export type Searches = {

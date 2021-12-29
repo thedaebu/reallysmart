@@ -104,7 +104,7 @@ function CommentShow(props: Props) {
     }
 
     function commentItems() {
-        if (comments[0] !== undefined) {
+        if (validComments(comments) === true) {
             return (
                 <ul className="comment-list-main">
                     {comments.map(comment => {
@@ -116,11 +116,17 @@ function CommentShow(props: Props) {
                     })}
                 </ul>
             );
-        } else {
-            return (
-                null
-            );
         }
+    }
+
+    function validComments(comments: Array<Comment>) {
+        let isValid = true;
+        comments.forEach((comment: Comment) => {
+            if (comment === undefined) {
+                isValid = false;
+            }
+        })
+        return isValid;
     }
 
     function handleTrackStatus(e: MouseEvent<HTMLTextAreaElement>) {

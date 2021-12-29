@@ -5,16 +5,15 @@ import * as TrackApiUtil from "./../util/track_api_util";
 export const RECEIVE_TRACKS = "RECEIVE_TRACKS";
 export const RECEIVE_TRACK = "RECEIVE_TRACK";
 
-const receiveTracks = (tracks: ReceivedTracks) => {
+const receiveTracks = (recievedTracks: ReceivedTracks) => {
     return ({
         type: RECEIVE_TRACKS,
-        tracks
+        tracks: recievedTracks.tracks
     });
 };
 const receiveTrack = (receivedTrack: ReceivedTrack) => {
     return ({
         type: RECEIVE_TRACK,
-        comments: receivedTrack.comments,
         track: receivedTrack.track
     });
 };
