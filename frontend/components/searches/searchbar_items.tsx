@@ -6,7 +6,7 @@ type Props = {
     clearSearchField: Function,
     searches: Array<SearchItem>,
     searchField: string,
-    siteLocation: string,
+    siteLocation: string
 }
 
 function SearchbarItems(props: Props) {
