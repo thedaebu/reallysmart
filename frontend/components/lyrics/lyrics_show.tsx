@@ -10,6 +10,7 @@ type Props = {
     closeAnnotationModal: Function,
     currentUser: User,
     fetchAnnotation: Function,
+    fetchComment: Function,
     openAnnotationModal: Function,
     track: Track
 }
@@ -35,13 +36,16 @@ function LyricsShow(props: Props) {
     const [createStatus, setCreateStatus] = useState<boolean>(false);
     const [endIndex, setEndIndex] = useState<number>(0);
     const [startIndex, setStartIndex] = useState<number>(0);
-    const [yCoord, setYCoord] = useState<number>(0);
+    const [yCoord, setYCoord] = useState<number>(-367);
     
-    const { annotations, closeAnnotationModal, currentUser, fetchAnnotation, openAnnotationModal, track } = props;
+    const { annotations, closeAnnotationModal, currentUser, fetchAnnotation, fetchComment, openAnnotationModal, track } = props;
 
     useEffect(() => {
-        track.annotation_ids.forEach((id: number) => {
-            fetchAnnotation(id)
+        track.annotation_ids.forEach((annotationId: number) => {
+            fetchAnnotation(annotationId);
+        });
+        track.comment_ids.forEach((commentId: number) => {
+            fetchComment(commentId);
         });
         window.scrollTo(0, 0);
     }, [])
