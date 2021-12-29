@@ -19,7 +19,6 @@ export type CreatedVote = {
 }
 export type ReceivedAnnotation = {
     annotation: Annotation,
-    comments: {[key:number]: Comment},
     votes: {[key:number]: Vote}
 }
 export type ReceivedComment = {
@@ -30,7 +29,10 @@ export type ReceivedTrack = {
     track: Track
 }
 export type ReceivedTracks = {
-    [key: number]: Track
+    tracks: {[key: number]: Track}
+}
+export type ReceivedUser = {
+    user: User
 }
 export type ReceivedVote = {
     vote: Vote
@@ -75,6 +77,7 @@ export type Action = {
     type: string,
     user: User,
     vote: Vote,
+    votes:{[key: number]: Track},
     voteId: number
 }
 
