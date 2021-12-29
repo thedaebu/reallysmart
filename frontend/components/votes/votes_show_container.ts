@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import { CreatedVote, State } from "../../my_types";
 import { fetchAnnotation } from "../../actions/annotation_actions";
 import { fetchComment } from "../../actions/comment_actions";
-import { createVote, deleteVote, fetchVote } from "../../actions/vote_actions";
+import { createVote, deleteVote } from "../../actions/vote_actions";
 import VotesShow from "./votes_show";
 
 type OwnProps = {
@@ -25,7 +25,6 @@ const mDTP = (dispatch: Function, ownProps: OwnProps) => {
         createVote: (vote: CreatedVote) => dispatch(createVote(vote)),
         deleteVote: (voteId: number) => dispatch(deleteVote(voteId)),
         fetchAction: fetchAction,
-        fetchVote: (voteId: number) => dispatch(fetchVote(voteId))
     });
 };
 
