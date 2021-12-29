@@ -24,7 +24,7 @@ const mDTP = (dispatch: Function, ownProps: OwnProps) => {
     return ({
         createVote: (vote: CreatedVote) => dispatch(createVote(vote)),
         deleteVote: (voteId: number) => dispatch(deleteVote(voteId)),
-        fetchAction: fetchAction,
+        fetchAction: fetchAction
     });
 };
 
