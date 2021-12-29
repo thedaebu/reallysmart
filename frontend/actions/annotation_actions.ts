@@ -10,7 +10,6 @@ const receiveAnnotation: Function = (receivedAnnotation: ReceivedAnnotation) => 
     return({
         type: RECEIVE_ANNOTATION,
         annotation: receivedAnnotation.annotation,
-        comments: receivedAnnotation.comments,
         votes: receivedAnnotation.votes
     });
 };

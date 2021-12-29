@@ -9,8 +9,6 @@ const commentsReducer = (state: {[key: number]: Comment} = {}, action: Action) =
     switch (action.type) {
         case RECEIVE_TRACKS:
             return Object.assign({});
-        case RECEIVE_TRACK:
-            return Object.assign({}, action.comments);
         case RECEIVE_ANNOTATION:
             return Object.assign({}, state, action.comments);
         case RECEIVE_COMMENT:
