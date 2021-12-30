@@ -33,9 +33,9 @@ function Searchbar(props: Props) {
                 />
                 <AiOutlineSearch className="search-bar-glass" />
             </div>
-            <SearchbarItemsContainer 
+            <SearchbarItemsContainer
                 clearSearchField={clearSearchField}
-                searchField={searchField}
+                searchField={searchField} searches={[]} siteLocation={""}
             />
         </div>
     );
