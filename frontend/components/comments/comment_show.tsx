@@ -15,14 +15,14 @@ type Props = {
 }
 
 function CommentShow(props: Props) {
+    const [annotationCreateStatus, setAnnotationCreateStatus] = useState<boolean>(false);
     const [commentBody, setCommentBody] = useState<string>("");
-    const [createAnnotationStatus, setCreateAnnotationStatus] = useState<boolean>(false);
-    const [createTrackStatus, setCreateTrackStatus] = useState<boolean>(false);
+    const [trackCreateStatus, setTrackCreateStatus] = useState<boolean>(false);
 
     const { commentableType, commentMessage, comments, createComment, currentUser, fetchAction, parent } = props;
 
     function commentForm() {
-        if (currentUser && createTrackStatus === true && commentableType === "Track") {
+        if (currentUser && trackCreateStatus === true && commentableType === "Track") {
             return (
                 <form
                     className="comment-show-create-end-main"
@@ -46,7 +46,7 @@ function CommentShow(props: Props) {
                     </div>
                 </form>
             );
-        } else if (currentUser && createAnnotationStatus === true && commentableType === "Annotation") {
+        } else if (currentUser && annotationCreateStatus === true && commentableType === "Annotation") {
             return (
                 <form
                     className="comment-show-create-end-main"
@@ -70,7 +70,7 @@ function CommentShow(props: Props) {
                     </div>
                 </form>
             );
-        } else if (currentUser && createTrackStatus === false && commentableType === "Track") {
+        } else if (currentUser && trackCreateStatus === false && commentableType === "Track") {
             return (
                 <div className="comment-show-create-begin-main">
                     <img src="https://assets.genius.com/images/default_avatar_100.png"/>
@@ -80,7 +80,7 @@ function CommentShow(props: Props) {
                     />
                 </div>
             );
-        } else if (currentUser && createAnnotationStatus === false && commentableType === "Annotation") {
+        } else if (currentUser && annotationCreateStatus === false && commentableType === "Annotation") {
             return (
                 <div className="comment-show-create-begin-main">
                     <img src="https://assets.genius.com/images/default_avatar_100.png"/>
@@ -132,27 +132,27 @@ function CommentShow(props: Props) {
     function handleTrackStatus(e: MouseEvent<HTMLTextAreaElement>) {
         e.preventDefault();
 
-        setCreateTrackStatus(true);
+        setTrackCreateStatus(true);
     }
 
     function handleAnnoStatus(e: MouseEvent<HTMLTextAreaElement>) {
         e.preventDefault();
 
-        setCreateAnnotationStatus(true);
+        setAnnotationCreateStatus(true);
     }
 
     function handleTrackCancel(e: MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
 
         setCommentBody("");
-        setCreateTrackStatus(false);
+        setTrackCreateStatus(false);
     }
 
     function handleAnnoCancel(e: MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
 
         setCommentBody("");
-        setCreateAnnotationStatus(false);
+        setAnnotationCreateStatus(false);
     }
 
     function handleBodyChange() {
@@ -170,7 +170,7 @@ function CommentShow(props: Props) {
         };
 
         createComment(comment).then(() => fetchAction(parent.id));
-        setCreateTrackStatus(false);
+        setTrackCreateStatus(false);
     }
 
     function handleAnnoSubmit(e: FormEvent<HTMLFormElement>) {
@@ -184,7 +184,7 @@ function CommentShow(props: Props) {
         };
 
         createComment(comment).then(() => fetchAction(parent.id));
-        setCreateAnnotationStatus(false);
+        setAnnotationCreateStatus(false);
     }
 
     return (
