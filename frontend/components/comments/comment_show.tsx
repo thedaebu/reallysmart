@@ -5,7 +5,6 @@ import CommentShowItem from "./comment_show_item";
 
 type Props = {
     commentableType: string,
-    commentMessage: string,
     comments: {[key: number]: Comment},
     createComment: Function,
     currentUser: User,
