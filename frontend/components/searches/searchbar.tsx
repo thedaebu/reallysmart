@@ -35,7 +35,7 @@ function Searchbar(props: Props) {
             </div>
             <SearchbarItemsContainer
                 clearSearchField={clearSearchField}
-                searchField={searchField} searches={[]} siteLocation={""}
+                searchField={searchField}
             />
         </div>
     );
