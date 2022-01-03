@@ -9,7 +9,7 @@ type TrackIndexProps = {
 }
 
 function TrackIndex(props: TrackIndexProps) {
-    const [indexList, setIndexList] = useState<number>(5);
+    const [trackIndexList, setTrackIndexList] = useState<number>(5);
 
     const { tracks } = props;
 
@@ -19,13 +19,13 @@ function TrackIndex(props: TrackIndexProps) {
     }, [])
 
     function trackIndexItems() {
-        if (indexList === 5) {
+        if (trackIndexList === 5) {
             return (
                 tracks.slice(0, 5).map(track => {
                     return <TrackIndexItem track={track} key={track.id}/>;
                 })
             )
-        } else if (indexList === 10) {
+        } else if (trackIndexList === 10) {
             return (
                 tracks.slice(0, 10).map(track => {
                     return <TrackIndexItem track={track} key={track.id}/>;
@@ -40,14 +40,14 @@ function TrackIndex(props: TrackIndexProps) {
         }
     }
 
-    function extendIndexList() {
-        if (indexList === 5) {
+    function extendTrackIndexList() {
+        if (trackIndexList === 5) {
             return ( 
-                <button onClick={setIndexListLimit} className="tracks-index-load-more">LOAD MORE</button>
+                <button onClick={setTrackIndexListLimit} className="tracks-index-load-more">LOAD MORE</button>
             )
-        } else if (indexList === 10) { 
+        } else if (trackIndexList === 10) { 
             return ( 
-                <button onClick={setIndexListLimit} className="tracks-index-load-more">We Miss You DMX!</button>
+                <button onClick={setTrackIndexListLimit} className="tracks-index-load-more">We Miss You DMX!</button>
             )
         } else {
             return (
@@ -56,13 +56,13 @@ function TrackIndex(props: TrackIndexProps) {
         }
     }
 
-    function setIndexListLimit(event: MouseEvent<HTMLButtonElement>) {
+    function setTrackIndexListLimit(event: MouseEvent<HTMLButtonElement>) {
         event.preventDefault();
 
-        if (indexList === 5) {
-            setIndexList(10);
-        } else if (indexList === 10) {
-            setIndexList(11);
+        if (trackIndexList === 5) {
+            setTrackIndexList(10);
+        } else if (trackIndexList === 10) {
+            setTrackIndexList(11);
         }
     }
 
@@ -76,7 +76,7 @@ function TrackIndex(props: TrackIndexProps) {
                     {trackIndexItems()}
                 </ul>
             </div>
-            {extendIndexList()}
+            {extendTrackIndexList()}
         </div>
     )
 };
