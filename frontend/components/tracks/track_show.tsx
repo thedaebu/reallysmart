@@ -7,7 +7,7 @@ import TrackShowHeader from "./track_show_header";
 type Props = {
     fetchTrack: Function,
     track: Track,
-    trackId: number
+    trackId: string
 }
 
 function TrackShow(props: Props) {

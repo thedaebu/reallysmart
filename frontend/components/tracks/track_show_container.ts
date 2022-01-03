@@ -14,7 +14,7 @@ const mSTP = (state: State, ownProps: OwnProps) => {
 
     return ({
         track: track,
-        trackId: parseInt(ownProps.match.params.trackId)
+        trackId: ownProps.match.params.trackId
     });
 };
 
