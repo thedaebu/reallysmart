@@ -75,7 +75,7 @@ $programmelight: 'Programme Light', sans-serif;
             border-bottom: 1px solid rgb(226, 226, 226);
             padding: 0px 0px 12px 0px;
             margin: 0px 0px 0px 5px;
-            .annotation-show-create-form-middle-tools {
+            > .annotation-show-create-form-middle-tools {
                 font-family: $programmelight; 
                 color: rgb(168, 168, 168);
                 font-size: 14px;
@@ -88,11 +88,29 @@ $programmelight: 'Programme Light', sans-serif;
                 padding: 0px 0px 0px 5px;    
                 .annotation-show-create-form-middle-item {
                     cursor: pointer;
+                    position: relative;
                     font-family: $programmelight; 
                     color: #99a7ee;
                     font-size: 14px;
                     line-height: 24px;
                     margin: 0px 4px 0px 8px;
+                    .tooltip {
+                        visibility: hidden;
+                        z-index: 2;
+                        width: 110px;
+                        position: absolute;
+                        bottom: 14px;
+                        left: 20px;
+                        background: #adb9f5;
+                        font-family: $programmelight;
+                        color: rgb(56, 56, 56);
+                        text-align: center;
+                        border: rgb(106, 153, 255) 2px solid;
+                        border-radius: 2px;
+                    }
+                    &:hover .tooltip {
+                        visibility: visible;
+                    }
                 }
             }
         }
