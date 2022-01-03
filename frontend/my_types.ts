@@ -104,12 +104,6 @@ export type Comment = {
     updated_at: string,
     vote_ids: Array<number>
 }
-export type Searches = {
-    [key: number]: SearchItem
-}
-export type SearchItem = {
-    track: Track
-}
 export type SessionUser = {
     password: string,
     username: string
