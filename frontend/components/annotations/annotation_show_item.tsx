@@ -17,9 +17,7 @@ function AnnotationShowItem(props: Props) {
             className="annotation-show-main" 
             style={{
                 position: "relative", 
-                top: yCoord !== 0
-                    ? yCoord
-                    : -367
+                top: yCoord
             }}
         >
             <p className="annotation-show-name">Really Smart Annotation by {annotation.annotator}</p>
