@@ -5,26 +5,25 @@ import AnnotationShowItem from "./annotation_show_item";
 
 type Props = {
     annotation: Annotation | null,
+    annotationCreateStatus: boolean,
     annotationModal: boolean,
     closeAnnotationModal: Function,
     createAnnotation: Function,
-    createStatus: boolean,
     currentUser: User,
     endIndex: number,
-    falseCreateStatus: Function,
     fetchComment: Function,
     fetchTrack: Function,
+    setAnnotationCreateStatusFalse: Function,
+    setAnnotationCreateStatusTrue: Function,
     startIndex: number,
     track: Track,
-    trueCreateStatus: Function,
     yCoord: number
 }
 
 function AnnotationShow(props: Props) {
     const [annotationBody, setAnnotationBody] = useState<string>("");
-    const [annotationCreateStatus, setAnnotationCreateStatus] = useState<boolean>(props.createStatus);
 
-    const { annotation, annotationModal, closeAnnotationModal, createAnnotation, createStatus, currentUser, endIndex, falseCreateStatus, fetchComment, fetchTrack, startIndex, track, trueCreateStatus, yCoord } = props;
+    const { annotation, annotationModal, closeAnnotationModal, createAnnotation, annotationCreateStatus, currentUser, endIndex, fetchComment, fetchTrack, setAnnotationCreateStatusFalse, setAnnotationCreateStatusTrue, startIndex, track, yCoord } = props;
 
     useEffect(() => {
         if (annotation !== null) {
@@ -34,10 +33,6 @@ function AnnotationShow(props: Props) {
         }
     }, [annotation])
 
-    useEffect(() => {
-        setAnnotationCreateStatus(createStatus)
-    }, [createStatus])
-
     function annotationForm() {
         if (currentUser && startIndex && startIndex !== endIndex && annotationCreateStatus === false) {
             return (
@@ -45,13 +40,11 @@ function AnnotationShow(props: Props) {
                     className="annotation-show-create-main" 
                     style={{
                         position: "relative",
-                        top: yCoord !== 0 
-                            ? yCoord
-                            : -367
+                        top: yCoord
                     }}>
                     <button
                         className="annotation-show-create-begin"
-                        onClick={handleCreateAnnotation}
+                        onClick={handleAnnotationCreateStart}
                     >
                         <h1>Start the Really Smart Annotation</h1>
                         <h2>(+5 RSQ)</h2>
@@ -64,14 +57,12 @@ function AnnotationShow(props: Props) {
                     className="annotation-show-create-form-main"
                     style={{
                         position: "relative",
-                        top: yCoord !== 0 
-                            ? yCoord
-                            : -367
+                        top: yCoord
                     }}
                 >
                     <form
                         id="annotation-show-create-form"
-                        onSubmit={handleSubmitAnnotation}
+                        onSubmit={handleAnnotationSubmit}
                     >
                         <textarea
                             className="annotation-show-create-form-top" 
@@ -107,7 +98,7 @@ function AnnotationShow(props: Props) {
                             </button>
                             <button
                                 className="annotation-show-create-form-bottom-cancel"
-                                onClick={handleCancelAnnotation}
+                                onClick={handleAnnotationCancel}
                             >
                                 Cancel
                             </button>
@@ -121,9 +112,7 @@ function AnnotationShow(props: Props) {
                     className="annotation-show-main-signup"
                     style={{
                         position: "relative",
-                        top: yCoord !== 0 
-                            ? yCoord
-                            : -367
+                        top: yCoord
                     }}
                 >
                     <Link to="/signup">Sign Up to Start Really Smarting</Link>
@@ -132,17 +121,17 @@ function AnnotationShow(props: Props) {
         }
     }
 
-    function handleCreateAnnotation(e: MouseEvent<HTMLElement>) {
+    function handleAnnotationCreateStart(e: MouseEvent<HTMLElement>) {
         e.preventDefault();
 
-        trueCreateStatus();
+        setAnnotationCreateStatusTrue();
     }
 
     function handleAnnotationBodyChange() { 
         return (e: ChangeEvent<HTMLTextAreaElement>) => setAnnotationBody(e.currentTarget.value);
     }
 
-    function handleSubmitAnnotation(e: MouseEvent<HTMLFormElement>) {
+    function handleAnnotationSubmit(e: MouseEvent<HTMLFormElement>) {
         e.preventDefault();
 
         const annotation: CreatedAnnotation = {
@@ -157,16 +146,15 @@ function AnnotationShow(props: Props) {
         createAnnotation(annotation)
             .then(() => fetchTrack(track.id));
         closeAnnotationModal();
-        falseCreateStatus();
+        setAnnotationCreateStatusFalse();
     }
 
-    function handleCancelAnnotation(e: MouseEvent<HTMLButtonElement>) {
+    function handleAnnotationCancel(e: MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
 
-        setAnnotationCreateStatus(false);
         setAnnotationBody("")
         closeAnnotationModal();
-        falseCreateStatus();
+        setAnnotationCreateStatusFalse();
     }
 
     if (annotation) {
