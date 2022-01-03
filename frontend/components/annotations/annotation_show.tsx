@@ -142,22 +142,22 @@ function AnnotationShow(props: Props) {
             track_id: track.id
         };
 
-        setAnnotationBody("");
         createAnnotation(annotation)
             .then(() => fetchTrack(track.id));
         closeAnnotationModal();
+        setAnnotationBody("");
         setAnnotationCreateStatusFalse();
     }
 
     function handleAnnotationCancel(e: MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
 
-        setAnnotationBody("")
         closeAnnotationModal();
+        setAnnotationBody("");
         setAnnotationCreateStatusFalse();
     }
 
-    if (annotation) {
+    if (annotation !== null) {
         return (
             <AnnotationShowItem
                 annotation={annotation}
