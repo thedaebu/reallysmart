@@ -6,11 +6,11 @@ import CommentShowItem from "./comment_show_item";
 type Props = {
     commentableType: string,
     commentMessage: string,
-    comments: Array<Comment>,
+    comments: {[key: number]: Comment},
     createComment: Function,
     currentUser: User,
-    fetchAction: Function,
-    fetchComment: Function,
+    fetchAnnotation: Function,
+    fetchTrack: Function,
     parent: Annotation | Track
 }
 
@@ -19,18 +19,18 @@ function CommentShow(props: Props) {
     const [commentBody, setCommentBody] = useState<string>("");
     const [trackCreateStatus, setTrackCreateStatus] = useState<boolean>(false);
 
-    const { commentableType, comments, createComment, currentUser, fetchAction, parent } = props;
+    const { commentableType, comments, createComment, currentUser, fetchAnnotation, fetchTrack, parent } = props;
 
     function commentForm() {
         if (currentUser && trackCreateStatus === true && commentableType === "Track") {
             return (
                 <form
                     className="comment-show-create-end-main"
-                    onSubmit={handleTrackSubmit}
+                    onSubmit={handleTrackCommentSubmit}
                 >
                     <textarea
                         className="comment-show-create-end-track-text"
-                        onChange={handleBodyChange()}
+                        onChange={handleCommentBodyChange()}
                         placeholder="Add a comment"
                     />
                     <div className="comment-show-create-end-buttons">
@@ -39,7 +39,7 @@ function CommentShow(props: Props) {
                         </button>
                         <button
                             className="comment-show-create-end-cancel"
-                            onClick={handleTrackCancel}
+                            onClick={handleTrackCommentCancel}
                         >
                             <p>Cancel</p>
                         </button>
@@ -50,11 +50,11 @@ function CommentShow(props: Props) {
             return (
                 <form
                     className="comment-show-create-end-main"
-                    onSubmit={handleAnnoSubmit}
+                    onSubmit={handleAnnotationCommentSubmit}
                 >
                     <textarea
                         className="comment-show-create-end-anno-text"
-                        onChange={handleBodyChange()}
+                        onChange={handleCommentBodyChange()}
                         placeholder="You think you're really smarter?"
                     />
                     <div className="comment-show-create-end-buttons">
@@ -63,7 +63,7 @@ function CommentShow(props: Props) {
                         </button>
                         <button
                             className="comment-show-create-end-cancel"
-                            onClick={handleAnnoCancel}
+                            onClick={handleAnnotationCommentCancel}
                         >
                             <p>Cancel</p>
                         </button>
@@ -75,7 +75,7 @@ function CommentShow(props: Props) {
                 <div className="comment-show-create-begin-main">
                     <img src="https://assets.genius.com/images/default_avatar_100.png"/>
                     <textarea
-                        onClick={handleTrackStatus}
+                        onClick={handleTrackCommentStatus}
                         placeholder="Add a comment"
                     />
                 </div>
@@ -85,7 +85,7 @@ function CommentShow(props: Props) {
                 <div className="comment-show-create-begin-main">
                     <img src="https://assets.genius.com/images/default_avatar_100.png"/>
                     <textarea
-                        onClick={handleAnnoStatus}
+                        onClick={handleAnnotationCommentStatus}
                         placeholder="You think you're really smarter?"
                     />
                 </div>
@@ -104,10 +104,12 @@ function CommentShow(props: Props) {
     }
 
     function commentItems() {
-        if (validComments(comments) === true) {
+        const currentComments: Array<Comment> = parent.comment_ids.map((id: number) => comments[id]);
+
+        if (validComments(currentComments) === true) {
             return (
                 <ul className="comment-list-main">
-                    {comments.map(comment => {
+                    {currentComments.map(comment => {
                         return <CommentShowItem
                             comment={comment}
                             commentableType={commentableType}
@@ -119,9 +121,9 @@ function CommentShow(props: Props) {
         }
     }
 
-    function validComments(comments: Array<Comment>) {
+    function validComments(currentComments: Array<Comment>) {
         let isValid = true;
-        comments.forEach((comment: Comment) => {
+        currentComments.forEach((comment: Comment) => {
             if (comment === undefined) {
                 isValid = false;
             }
@@ -129,37 +131,37 @@ function CommentShow(props: Props) {
         return isValid;
     }
 
-    function handleTrackStatus(e: MouseEvent<HTMLTextAreaElement>) {
+    function handleTrackCommentStatus(e: MouseEvent<HTMLTextAreaElement>) {
         e.preventDefault();
 
         setTrackCreateStatus(true);
     }
 
-    function handleAnnoStatus(e: MouseEvent<HTMLTextAreaElement>) {
+    function handleAnnotationCommentStatus(e: MouseEvent<HTMLTextAreaElement>) {
         e.preventDefault();
 
         setAnnotationCreateStatus(true);
     }
 
-    function handleTrackCancel(e: MouseEvent<HTMLButtonElement>) {
+    function handleTrackCommentCancel(e: MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
 
         setCommentBody("");
         setTrackCreateStatus(false);
     }
 
-    function handleAnnoCancel(e: MouseEvent<HTMLButtonElement>) {
+    function handleAnnotationCommentCancel(e: MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
 
         setCommentBody("");
         setAnnotationCreateStatus(false);
     }
 
-    function handleBodyChange() {
+    function handleCommentBodyChange() {
         return (e: ChangeEvent<HTMLTextAreaElement>) => setCommentBody(e.target.value);
     }
 
-    function handleTrackSubmit(e: FormEvent<HTMLFormElement>) {
+    function handleTrackCommentSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
 
         const comment: CreatedComment = {
@@ -169,11 +171,11 @@ function CommentShow(props: Props) {
             commenter_id: currentUser.id
         };
 
-        createComment(comment).then(() => fetchAction(parent.id));
+        createComment(comment).then(() => fetchTrack(parent.id));
         setTrackCreateStatus(false);
     }
 
-    function handleAnnoSubmit(e: FormEvent<HTMLFormElement>) {
+    function handleAnnotationCommentSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
 
         const comment: CreatedComment = {
@@ -183,7 +185,7 @@ function CommentShow(props: Props) {
             commenter_id: currentUser.id
         };
 
-        createComment(comment).then(() => fetchAction(parent.id));
+        createComment(comment).then(() => fetchAnnotation(parent.id));
         setAnnotationCreateStatus(false);
     }
 
