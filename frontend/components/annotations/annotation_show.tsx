@@ -80,28 +80,25 @@ function AnnotationShow(props: Props) {
                             value={annotationBody}
                         >
                         </textarea>
-
-                        {/* <div className="annotation-show-create-form-middle">
+                        <div className="annotation-show-create-form-middle">
                             <p className="annotation-show-create-form-middle-tools">Tools:</p>
-
                             <div className="annotation-show-create-form-middle-items">
-                                <a className="annotation-show-create-form-middle-item" >
+                                <a className="annotation-show-create-form-middle-item">
                                     Add Image
-                                    <span class="tooltip">Link is for styling</span>
+                                    <p className="tooltip" id="tooltip-1">Link is for styling</p>
                                 </a>
-                                <a className="annotation-show-create-form-middle-item" >
+                                <a className="annotation-show-create-form-middle-item">
                                     Formatting Help
-                                    <span class="tooltip">Link is for styling</span>
+                                    <p className="tooltip" id="tooltip-2">Link is for styling</p>
                                 </a>
                                 <div>
                                     <a className="annotation-show-create-form-middle-item">
                                         How To Annotate
-                                        <span class="tooltip">Link is for styling</span>
+                                        <p className="tooltip" id="tooltip-3">Link is for styling</p>
                                     </a>                       
                                 </div>
                             </div>
-                        </div> */}
-
+                        </div>
                         <div className="annotation-show-create-form-bottom">
                             <button className="annotation-show-create-form-bottom-save-main"
                             type="submit">
