@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 import { State } from "../../my_types";
-import SearchbarIndex from "./searchbar_index";
+import SearchIndex from "./search_index";
 
 const mSTP = (state: State, ownProps: RouteComponentProps) => {
     return ({
@@ -10,4 +10,4 @@ const mSTP = (state: State, ownProps: RouteComponentProps) => {
     });
 };
 
-export default withRouter(connect(mSTP, null)(SearchbarIndex));
+export default withRouter(connect(mSTP, null)(SearchIndex));

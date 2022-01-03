@@ -1,6 +1,6 @@
 import React, { MouseEvent, useEffect } from "react";
 import { Track } from "../../my_types";
-import SearchbarItem from "./searchbar_index_item";
+import SearchbarItem from "./search_index_item";
 
 type Props = {
     clearSearchField: Function,
@@ -9,7 +9,7 @@ type Props = {
     siteLocation: string
 }
 
-function SearchbarIndex(props: Props) {
+function SearchIndex(props: Props) {
     const { clearSearchField, searches, searchField, siteLocation } = props;
 
     useEffect(() => {
@@ -75,4 +75,4 @@ function SearchbarIndex(props: Props) {
     }
 }
 
-export default SearchbarIndex;
+export default SearchIndex;
