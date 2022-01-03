@@ -8,7 +8,7 @@ type Props = {
     track: Track
 }
 
-function SearchbarItem(props: Props) {
+function SearchbarIndexItem(props: Props) {
     const track = props.track;
 
     function randomNum() {
@@ -38,4 +38,4 @@ function SearchbarItem(props: Props) {
     );
 }
 
-export default SearchbarItem;
+export default SearchbarIndexItem;
