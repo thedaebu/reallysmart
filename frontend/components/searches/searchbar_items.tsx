@@ -1,10 +1,10 @@
 import React, { MouseEvent, useEffect } from "react";
-import { SearchItem } from "../../my_types";
+import { Track } from "../../my_types";
 import SearchbarItem from "./searchbar_item";
 
 type Props = {
     clearSearchField: Function,
-    searches: Array<SearchItem>,
+    searches: Array<Track>,
     searchField: string,
     siteLocation: string
 }

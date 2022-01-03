@@ -1,15 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { SearchItem } from "../../my_types";
+import { Track } from "../../my_types";
 
 declare const window: any;
 
 type Props = {
-    track: SearchItem
+    track: Track
 }
 
 function SearchbarItem(props: Props) {
-    const track = props.track.track;
+    const track = props.track;
 
     function randomNum() {
         return Math.floor(Math.random() * 1000);
