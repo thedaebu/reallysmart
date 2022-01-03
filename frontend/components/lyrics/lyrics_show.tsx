@@ -33,7 +33,7 @@ type Dataset = {
 
 function LyricsShow(props: Props) {
     const [annotationId, setAnnotationId] = useState<number>(-1);
-    const [createStatus, setCreateStatus] = useState<boolean>(false);
+    const [annotationCreateStatus, setAnnotationCreateStatus] = useState<boolean>(false);
     const [endIndex, setEndIndex] = useState<number>(0);
     const [startIndex, setStartIndex] = useState<number>(0);
     const [yCoord, setYCoord] = useState<number>(-367);
@@ -195,15 +195,15 @@ function LyricsShow(props: Props) {
     function handleTextDeselect() {
         setAnnotationId(-1);
         closeAnnotationModal();
-        falseCreateStatus();
+        setAnnotationCreateStatusFalse();
     }
 
-    function trueCreateStatus() {
-        setCreateStatus(true);
+    function setAnnotationCreateStatusTrue() {
+        setAnnotationCreateStatus(true);
     }
 
-    function falseCreateStatus() {
-        setCreateStatus(false);
+    function setAnnotationCreateStatusFalse() {
+        setAnnotationCreateStatus(false);
     }
 
     return (
@@ -223,13 +223,13 @@ function LyricsShow(props: Props) {
                 <div className="lyrics-show-right">
                     <AnnotationShowContainer
                         annotationId={annotationId}
-                        createStatus={createStatus}
+                        annotationCreateStatus={annotationCreateStatus}
                         currentUser={currentUser}
                         endIndex={endIndex}
-                        falseCreateStatus={falseCreateStatus}
+                        setAnnotationCreateStatusFalse={setAnnotationCreateStatusFalse}
                         startIndex={startIndex}
                         track={track}
-                        trueCreateStatus={trueCreateStatus}
+                        setAnnotationCreateStatusTrue={setAnnotationCreateStatusTrue}
                         yCoord={yCoord}
                     />
                 </div>
