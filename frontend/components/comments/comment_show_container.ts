@@ -14,13 +14,9 @@ type Parent = {
 }
 
 const mSTP = (state: State, ownProps: OwnProps) => {
-    const commentMessage: string = ownProps.commentableType === "Track"
-        ? "Add a comment"
-        : "You think you're really smarter?";
     const comments: Array<Comment> = ownProps.parent.comment_ids.map((id: number) => state.entities.comments[id]);
 
     return ({
-        commentMessage: commentMessage,
         comments: comments
     });
 };

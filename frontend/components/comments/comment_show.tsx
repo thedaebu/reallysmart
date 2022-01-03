@@ -19,7 +19,7 @@ function CommentShow(props: Props) {
     const [commentBody, setCommentBody] = useState<string>("");
     const [trackCreateStatus, setTrackCreateStatus] = useState<boolean>(false);
 
-    const { commentableType, commentMessage, comments, createComment, currentUser, fetchAction, parent } = props;
+    const { commentableType, comments, createComment, currentUser, fetchAction, parent } = props;
 
     function commentForm() {
         if (currentUser && trackCreateStatus === true && commentableType === "Track") {
@@ -31,7 +31,7 @@ function CommentShow(props: Props) {
                     <textarea
                         className="comment-show-create-end-track-text"
                         onChange={handleBodyChange()}
-                        placeholder={commentMessage}
+                        placeholder="Add a comment"
                     />
                     <div className="comment-show-create-end-buttons">
                         <button className="comment-show-create-end-submit">
@@ -55,7 +55,7 @@ function CommentShow(props: Props) {
                     <textarea
                         className="comment-show-create-end-anno-text"
                         onChange={handleBodyChange()}
-                        placeholder={commentMessage}
+                        placeholder="You think you're really smarter?"
                     />
                     <div className="comment-show-create-end-buttons">
                         <button className="comment-show-create-end-submit">
@@ -76,7 +76,7 @@ function CommentShow(props: Props) {
                     <img src="https://assets.genius.com/images/default_avatar_100.png"/>
                     <textarea
                         onClick={handleTrackStatus}
-                        placeholder={commentMessage}
+                        placeholder="Add a comment"
                     />
                 </div>
             );
@@ -86,7 +86,7 @@ function CommentShow(props: Props) {
                     <img src="https://assets.genius.com/images/default_avatar_100.png"/>
                     <textarea
                         onClick={handleAnnoStatus}
-                        placeholder={commentMessage}
+                        placeholder="You think you're really smarter?"
                     />
                 </div>
             );
