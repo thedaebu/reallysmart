@@ -17,14 +17,14 @@ const mSTP = (state: State) => {
 };
 
 const mDTP = (dispatch: Function, ownProps: OwnProps) => {
-    const fetchAction = ownProps.voteableType === "Annotation"
+    const fetchParent = ownProps.voteableType === "Annotation"
         ? (annotationId: number) => dispatch(fetchAnnotation(annotationId))
         : (commentId: number) => dispatch(fetchComment(commentId))
 
     return ({
         createVote: (vote: CreatedVote) => dispatch(createVote(vote)),
         deleteVote: (voteId: number) => dispatch(deleteVote(voteId)),
-        fetchAction: fetchAction
+        fetchParent: fetchParent
     });
 };
 

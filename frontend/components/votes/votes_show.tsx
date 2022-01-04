@@ -6,7 +6,7 @@ type Props = {
     createVote: Function,
     currentUser: User,
     deleteVote: Function,
-    fetchAction: Function,
+    fetchParent: Function,
     numberOfVotes: number,
     parent: Annotation | Comment,
     voteableId: number,
@@ -17,7 +17,7 @@ type Props = {
 function VotesShow(props: Props) {
     const [currentUserVote, setCurrentUserVote] = useState<Vote | null>(null);
 
-    const { createVote, currentUser, deleteVote, fetchAction, numberOfVotes, parent, voteableId, voteableType, votes } = props;
+    const { createVote, currentUser, deleteVote, fetchParent, numberOfVotes, parent, voteableId, voteableType, votes } = props;
 
     function handleVoteUpdate(e: MouseEvent<HTMLOrSVGElement>) {
         e.preventDefault();
@@ -27,7 +27,7 @@ function VotesShow(props: Props) {
 
         if (currentUser && currentUserVote) {
             deleteVote(currentUserVote.id)
-                .then(() => fetchAction(parent.id))
+                .then(() => fetchParent(parent.id))
 
             setCurrentUserVote(null);
         } else if (currentUser) {
@@ -38,7 +38,7 @@ function VotesShow(props: Props) {
             }
 
             createVote(vote)
-                .then(() => fetchAction(parent.id));
+                .then(() => fetchParent(parent.id));
 
             setCurrentUserVote(findCurrentUserVote(currentUserVotes, voteableId, voteableType));
         }
