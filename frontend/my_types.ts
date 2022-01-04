@@ -128,3 +128,15 @@ export type Vote = {
     voteable_type: string,
     voter_id: number
 }
+
+// used for Window
+export type Window = {
+    angellist: string,
+    eyeIcon: string,
+    fireIcon: string,
+    getSelection: Function,
+    github: string,
+    linkedin: string,
+    scrollTo: Function,
+    website: string
+}
