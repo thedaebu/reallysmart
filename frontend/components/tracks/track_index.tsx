@@ -1,7 +1,9 @@
 import React, { useState, useEffect, MouseEvent } from "react";
-import { Track } from "../../my_types";
+import { Track, Window } from "../../my_types";
 import Navbar from "../navbar/navbar";
 import TrackIndexItem from "./track_index_item";
+
+declare const window: Window;
 
 type TrackIndexProps = {
     fetchTracks: Function,

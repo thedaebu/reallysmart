@@ -1,6 +1,7 @@
 import React from "react";
+import { Window } from "../../my_types";
 
-declare const window: any;
+declare const window: Window;
 
 function Navbar() {
     return (

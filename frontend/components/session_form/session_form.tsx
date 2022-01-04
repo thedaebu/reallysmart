@@ -1,6 +1,8 @@
 import React, { ChangeEvent, FormEvent, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { SessionUser } from "../../my_types";
+import { SessionUser, Window } from "../../my_types";
+
+declare const window: Window;
 
 type Props = {
     action: Function,
@@ -23,7 +25,6 @@ function SessionForm(props: Props) {
     const { action, clearErrors, errors, formType } = props;
 
     useEffect(() => {
-        window.scrollTo(0, 0);
         clearErrors();
         if (formType === "login") {
             setFormLink(<Link to="/signup">Sign up here.</Link>);
@@ -40,6 +41,7 @@ function SessionForm(props: Props) {
             setFormTitle(<h1 className="session-form-signup-h1">SIGN UP</h1>);
             setFormTos(<p className="session-form-tos">By clicking “Create Account”, you are indicating that you have read and agree to the <a href="">Terms of Service</a>.</p>);
         }
+        window.scrollTo(0, 0);
     }, [formType]);
 
     function handleSessionFormSubmit(e: FormEvent<HTMLFormElement>) {

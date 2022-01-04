@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Track } from "../../my_types";
+import { Track, Window } from "../../my_types";
 
-declare const window: any;
+declare const window: Window;
 
 type Props = {
     track: Track

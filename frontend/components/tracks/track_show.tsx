@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
-import { Track } from "../../my_types";
+import { Track, Window } from "../../my_types";
 import LyricsShowContainer from "../lyrics/lyrics_show_container";
 import NavBar from "../navbar/navbar";
 import TrackShowHeader from "./track_show_header";
+
+declare const window: Window;
 
 type Props = {
     fetchTrack: Function,
