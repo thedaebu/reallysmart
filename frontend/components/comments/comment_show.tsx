@@ -21,7 +21,17 @@ function CommentShow(props: Props) {
     const { commentableType, comments, createComment, currentUser, fetchAnnotation, fetchTrack, parent } = props;
 
     function commentForm() {
-        if (currentUser && trackCreateStatus === true && commentableType === "Track") {
+        if (currentUser && trackCreateStatus === false && commentableType === "Track") {
+            return (
+                <div className="comment-show__begin">
+                    <img src="https://assets.genius.com/images/default_avatar_100.png"/>
+                    <textarea
+                        onClick={handleTrackCommentStatus}
+                        placeholder="Add a comment"
+                    />
+                </div>
+            );
+        } else if (currentUser && trackCreateStatus === true && commentableType === "Track") {
             return (
                 <form
                     className="comment-show-form"
@@ -44,6 +54,16 @@ function CommentShow(props: Props) {
                         </button>
                     </div>
                 </form>
+            );
+        } else if (currentUser && annotationCreateStatus === false && commentableType === "Annotation") {
+            return (
+                <div className="comment-show__begin">
+                    <img src="https://assets.genius.com/images/default_avatar_100.png"/>
+                    <textarea
+                        onClick={handleAnnotationCommentStatus}
+                        placeholder="You think you're really smarter?"
+                    />
+                </div>
             );
         } else if (currentUser && annotationCreateStatus === true && commentableType === "Annotation") {
             return (
@@ -68,26 +88,6 @@ function CommentShow(props: Props) {
                         </button>
                     </div>
                 </form>
-            );
-        } else if (currentUser && trackCreateStatus === false && commentableType === "Track") {
-            return (
-                <div className="comment-show__begin">
-                    <img src="https://assets.genius.com/images/default_avatar_100.png"/>
-                    <textarea
-                        onClick={handleTrackCommentStatus}
-                        placeholder="Add a comment"
-                    />
-                </div>
-            );
-        } else if (currentUser && annotationCreateStatus === false && commentableType === "Annotation") {
-            return (
-                <div className="comment-show__begin">
-                    <img src="https://assets.genius.com/images/default_avatar_100.png"/>
-                    <textarea
-                        onClick={handleAnnotationCommentStatus}
-                        placeholder="You think you're really smarter?"
-                    />
-                </div>
             );
         } else {
             return (
