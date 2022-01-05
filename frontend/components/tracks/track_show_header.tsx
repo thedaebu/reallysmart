@@ -1,7 +1,7 @@
 import React from "react";
-import { Track } from "../../my_types";
+import { Track, Window } from "../../my_types";
 
-declare const window: any;
+declare const window: Window;
 
 type Props = {
     track: Track
@@ -18,18 +18,18 @@ function TrackShowHeader(props: Props) {
 
     return (
         <div 
-            className="track-show-header-main" 
+            className="track-show__background" 
             style={{ 
                 backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(${artworkPath})`, 
                 backgroundPosition: "center", 
                 backgroundSize: "cover" 
             }}
         >
-            <div className="track-show-header-shade">
+            <div className="track-show__shade">
                 <div>
-                    <div className="track-show-header-left">
+                    <div className="track-show__left">
                         <div
-                            className="track-show-header-image"
+                            className="track-show__image"
                             style={{
                                 backgroundImage: `url(${artworkPath}`,
                                 backgroundPosition: "center",
@@ -37,19 +37,19 @@ function TrackShowHeader(props: Props) {
                             }}
                         >
                         </div>
-                        <div className="track-show-header-center">
-                            <p className="track-show-header-title">{track.title}</p>
-                            <p className="track-show-header-artist">{track.artist}</p>
+                        <div className="track-show__text">
+                            <p className="track-show__title">{track.title}</p>
+                            <p className="track-show__artist">{track.artist}</p>
                         </div>
                     </div>
-                    <div className="track-show-header-right">
+                    <div className="track-show__right">
                         <div>
                             <img src={window.fireIcon}/>
-                            <p className="track-index-item-fire-number">{randomNum()}</p>
+                            <p className="track-show__fire-number">{randomNum()}</p>
                         </div>
                         <div>
                             <img src={window.eyeIcon}/>
-                            <p className="track-index-item-eye-number">{randomNum() * 10}</p>
+                            <p className="track-show__eye-number">{randomNum() * 10}</p>
                         </div>
                     </div>
                 </div>

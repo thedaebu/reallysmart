@@ -104,12 +104,6 @@ export type Comment = {
     updated_at: string,
     vote_ids: Array<number>
 }
-export type Searches = {
-    [key: number]: SearchItem
-}
-export type SearchItem = {
-    track: Track
-}
 export type SessionUser = {
     password: string,
     username: string
@@ -133,4 +127,16 @@ export type Vote = {
     voteable_id: number,
     voteable_type: string,
     voter_id: number
+}
+
+// used for Window
+export type Window = {
+    angellist: string,
+    eyeIcon: string,
+    fireIcon: string,
+    getSelection: Function,
+    github: string,
+    linkedin: string,
+    scrollTo: Function,
+    website: string
 }

@@ -1,14 +1,21 @@
 $programmereg: 'Programme Regular', sans-serif;
 $programmelight: 'Programme Light', sans-serif;
 
-.annotation-show-main {
+.annotation-show__without-annotation {
+    width: min(100%, 371px);
+    margin: 0px auto 0px 0px;
+}
+
+.annotation-show-item {
     border-left: 4px solid rgb(121, 164, 255);
     padding: 5px 0px 0px 17px;
-    .annotation-show-name {
+    width: min(100%, 371px);
+    margin: 0px auto 0px 0px;
+    .annotation-show-item__name {
         font-size: 14px;
         padding: 0px 0px 17px 0px;
     }
-    .annotation-show-body {
+    .annotation-show-item__body {
         font-family: $programmelight;
         color: rgb(7, 7, 7);
         font-size: 16px;
@@ -17,10 +24,10 @@ $programmelight: 'Programme Light', sans-serif;
     }
 }
 
-.annotation-show-create-main {
+.annotation-show-begin {
     border-left: 4px solid rgb(121, 164, 255);
     padding: 0px 0px 0px 17px;
-    .annotation-show-create-begin {
+    .annotation-show-begin__button {
         cursor: pointer;
         display: flex;
         background: white;
@@ -44,14 +51,14 @@ $programmelight: 'Programme Light', sans-serif;
     }
 }
 
-.annotation-show-create-form-main {
+.annotation-show-form {
     width: min(100%, 371px);
     border-left: 4px solid rgb(121, 164, 255);
     padding: 5px 0px 0px 9px;
     margin: auto auto auto auto;
     > form {
         padding: 1px 0px 0px 0px;
-        .annotation-show-create-form-top {
+        .annotation-show-form__body {
             height: 180px;
             width: min(100%, 371px);
             resize: none;
@@ -68,38 +75,56 @@ $programmelight: 'Programme Light', sans-serif;
                 border: 1px, solid rgb(194, 213, 255);
             }
         }
-        .annotation-show-create-form-middle {
+        .annotation-show-form__middle {
             display: flex;
             font-family: $programmelight;
             font-size: 14px;
             border-bottom: 1px solid rgb(226, 226, 226);
             padding: 0px 0px 12px 0px;
             margin: 0px 0px 0px 5px;
-            .annotation-show-create-form-middle-tools {
+            > .annotation-show-form__middle__tools {
                 font-family: $programmelight; 
                 color: rgb(168, 168, 168);
                 font-size: 14px;
             }
-            .annotation-show-create-form-middle-items {
+            .annotation-show-form__middle__items {
                 max-width: 250px;
                 position: relative;
                 bottom: 4px;
                 font-family: $programmelight; 
                 padding: 0px 0px 0px 5px;    
-                .annotation-show-create-form-middle-item {
+                .annotation-show-form__middle__item {
                     cursor: pointer;
+                    position: relative;
                     font-family: $programmelight; 
                     color: #99a7ee;
                     font-size: 14px;
                     line-height: 24px;
                     margin: 0px 4px 0px 8px;
+                    .tooltip {
+                        visibility: hidden;
+                        z-index: 2;
+                        width: 110px;
+                        position: absolute;
+                        bottom: 14px;
+                        left: 20px;
+                        background: #adb9f5;
+                        font-family: $programmelight;
+                        color: rgb(56, 56, 56);
+                        text-align: center;
+                        border: rgb(106, 153, 255) 2px solid;
+                        border-radius: 2px;
+                    }
+                    &:hover .tooltip {
+                        visibility: visible;
+                    }
                 }
             }
         }
-        .annotation-show-create-form-bottom {
+        .annotation-show-form__bottom {
             display: flex;
             margin: 15px 0px 0px 5px;
-            .annotation-show-create-form-bottom-save-main {
+            .annotation-show-form__bottom-save {
                 cursor: pointer;
                 display: flex;
                 background: white;
@@ -110,39 +135,39 @@ $programmelight: 'Programme Light', sans-serif;
                 &:hover {
                     background: rgb(200, 255, 200);
                 }
+                .annotation-show-form__bottom-save-text {
+                    color: rgb(51, 197, 51);
+                    font-size: 15px;  
+                }
+                .annotation-show-form__bottom-save-score {
+                    position: relative;
+                    left: 6px;
+                    color: rgb(51, 197, 51);
+                    font-size: 12px;
+                    padding: 0px 3px 0px 0px;
+                }
             }
-            .annotation-show-create-form-bottom-save-word {
-                color: rgb(51, 197, 51);
-                font-size: 15px;  
-            }
-            .annotation-show-create-form-bottom-save-score {
+            .annotation-show-form__bottom-cancel {
+                cursor: pointer;
                 position: relative;
-                left: 6px;
-                color: rgb(51, 197, 51);
-                font-size: 12px;
-                padding: 0px 3px 0px 0px;
-            }
-        }
-        .annotation-show-create-form-bottom-cancel {
-            cursor: pointer;
-            position: relative;
-            left: 4px;
-            display: flex;
-            background: white;
-            font-family: $programmereg;
-            color:rgb(167, 167, 167);
-            font-size: 15px;
-            line-height: 27px;
-            border: none;
-            padding: 5px 6px 1px 6px;
-            &:hover {
-                background: rgb(236, 236, 236);
+                left: 4px;
+                display: flex;
+                background: white;
+                font-family: $programmereg;
+                color:rgb(167, 167, 167);
+                font-size: 15px;
+                line-height: 27px;
+                border: none;
+                padding: 5px 6px 1px 6px;
+                &:hover {
+                    background: rgb(236, 236, 236);
+                }
             }
         }
     }
 }
 
-.annotation-show-main-signup {
+.annotation-show__session {
     border-left: 4px solid rgb(121, 164, 255);
     padding: 5px 0px 0px 17px;
     > a {

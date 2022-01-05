@@ -1,39 +1,21 @@
 import { connect } from "react-redux";
-import { Comment, CreatedComment, State } from "../../my_types";
+import { CreatedComment, State } from "../../my_types";
 import { fetchAnnotation } from "../../actions/annotation_actions";
-import { fetchComment, createComment } from "../../actions/comment_actions";
+import { createComment } from "../../actions/comment_actions";
 import { fetchTrack } from "../../actions/track_actions";
 import CommentShow from "./comment_show";
 
-type OwnProps = {
-    commentableType: string,
-    parent: Parent
-}
-type Parent = {
-    comment_ids: Array<number>
-}
-
-const mSTP = (state: State, ownProps: OwnProps) => {
-    const commentMessage: string = ownProps.commentableType === "Track"
-        ? "Add a comment"
-        : "You think you're really smarter?";
-    const comments: Array<Comment> = ownProps.parent.comment_ids.map((id: number) => state.entities.comments[id]);
-
+const mSTP = (state: State) => {
     return ({
-        commentMessage: commentMessage,
-        comments: comments
+        comments: state.entities.comments
     });
 };
 
-const mDTP = (dispatch: Function, ownProps: OwnProps) => {
-    const fetchAction: Function = ownProps.commentableType === "Track"
-        ? (trackId: string) => dispatch(fetchTrack(trackId))
-        : (annotationId: number) => dispatch(fetchAnnotation(annotationId));
-
+const mDTP = (dispatch: Function) => {
     return ({
         createComment: (comment: CreatedComment) => dispatch(createComment(comment)),
-        fetchAction: fetchAction,
-        fetchComment: (commentId: number) => dispatch(fetchComment(commentId))
+        fetchAnnotation: (annotationId: number) => dispatch(fetchAnnotation(annotationId)),
+        fetchTrack: (trackId: string) => dispatch(fetchTrack(trackId)),
     });
 };
 

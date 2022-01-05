@@ -1,6 +1,8 @@
 import React, { ChangeEvent, FormEvent, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { SessionUser } from "../../my_types";
+import { SessionUser, Window } from "../../my_types";
+
+declare const window: Window;
 
 type Props = {
     action: Function,
@@ -23,23 +25,23 @@ function SessionForm(props: Props) {
     const { action, clearErrors, errors, formType } = props;
 
     useEffect(() => {
-        window.scrollTo(0, 0);
         clearErrors();
         if (formType === "login") {
             setFormLink(<Link to="/signup">Sign up here.</Link>);
             setFormLinkQuestion("Don\'t have an account?");
             setFormPasswordMessage("(I forgot my password)");
             setFormSubmitMessage("Login");
-            setFormTitle(<h1 className="session-form-login-h1">Log In</h1>);
+            setFormTitle(<h1 className="session-form__login-h1">Log In</h1>);
             setFormTos(<p></p>);
         } else {
             setFormLink(<Link to="/login" >Log in here.</Link>);
             setFormLinkQuestion("Already have an account?");
             setFormSubmitMessage("Create Account");
-            setFormSubtitle(<h2 className="session-form-signup-h2">and show off your really smartness</h2>);
-            setFormTitle(<h1 className="session-form-signup-h1">SIGN UP</h1>);
-            setFormTos(<p className="session-form-tos">By clicking “Create Account”, you are indicating that you have read and agree to the <a href="">Terms of Service</a>.</p>);
+            setFormSubtitle(<h2 className="session-form__signup--h2">and show off your really smartness</h2>);
+            setFormTitle(<h1 className="session-form__signup--h1">SIGN UP</h1>);
+            setFormTos(<p className="session-form__tos">By clicking “Create Account”, you are indicating that you have read and agree to the <a href="">Terms of Service</a>.</p>);
         }
+        window.scrollTo(0, 0);
     }, [formType]);
 
     function handleSessionFormSubmit(e: FormEvent<HTMLFormElement>) {
@@ -63,13 +65,13 @@ function SessionForm(props: Props) {
     function showErrors() {
         if (errors.length > 0) {
             return (
-                <div className="errors-main">
+                <div className="session-form__errors">
                     <h2>Ruh-roh!</h2>
                     <p>Something is wrong</p>
                     <ul>
                         {errors.map((error, idx) => {
-                            return <li className="error-message" key={idx}>{error}</li>
-                        })}    
+                            return <li key={idx}>{error}</li>
+                        })}
                     </ul>
                 </div>
             );
@@ -81,39 +83,39 @@ function SessionForm(props: Props) {
     }
 
     return (
-        <div className="session-form-main">
+        <div className="session-form">
             {formTitle}
-            {formSubtitle}                   
-            <form className="session-form-form" onSubmit={handleSessionFormSubmit}>
+            {formSubtitle}
+            <form className="session-form__form" onSubmit={handleSessionFormSubmit}>
                 {showErrors()}
-                <label htmlFor="session-form-username" >Really Smart Nickname
-                    <input 
-                        id="session-form-username" 
+                <label htmlFor="session-form__username" >Really Smart Nickname
+                    <input
+                        id="session-form__username"
                         onChange={handleInputChange("username")}
-                        type="text" 
-                        value={username} 
+                        type="text"
+                        value={username}
                     />
                 </label>
-                <label htmlFor="session-form-password" >Really Smart Password 
-                    <a 
-                        className="session-form-forgot-password" 
+                <label htmlFor="session-form__password" >Really Smart Password
+                    <a
+                        className="session-form-forgot-password"
                         href="" >{formPasswordMessage}
                     </a>
-                    <input 
-                        id="session-form-password" 
+                    <input
+                        id="session-form__password"
                         onChange={handleInputChange("password")}
-                        type="password" 
-                        value={password} 
+                        type="password"
+                        value={password}
                     />
                 </label>
                 {formTos}
                 <input 
-                    id="session-form-submit" 
-                    type="submit" 
+                    id="session-form__submit"
+                    type="submit"
                     value={formSubmitMessage}
-                />                        
+                />
             </form>
-            <p className="session-form-bottom" >{formLinkQuestion} {formLink}</p>
+            <p className="session-form__bottom" >{formLinkQuestion} {formLink}</p>
         </div>
     )
 }

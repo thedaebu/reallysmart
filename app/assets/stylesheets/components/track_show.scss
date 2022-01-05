@@ -1,17 +1,17 @@
-index-item-number {
+track-show-number {
     position: relative;
     top: 3.5px;
     right: 4px;
     font-size: 12px;
 }
 
-.track-show-header-main {
+.track-show__background {
     height: 280px;
     width: inherit;
     position: relative;
     display: flex;
     justify-content: space-around;
-    .track-show-header-shade {
+    .track-show__shade {
         z-index: 2;
         height: inherit;
         width: 970px;
@@ -19,28 +19,28 @@ index-item-number {
         > div {
             display: flex;
             justify-content: space-between;
-            .track-show-header-left {
+            .track-show__left {
                 display: flex;
                 position: relative;
                 top: 34px;
-                .track-show-header-image {
+                .track-show__image {
                     height: 220px;
                     width: 220px;
                     position: relative;
                     right: 22px;
                     border: 2px solid rgb(145, 145, 145);
                 }
-                .track-show-header-center {
+                .track-show__text {
                     position: relative;
                     top: 14px;
                     right: 10px;
                     display: flex;
                     flex-direction: column;
-                    .track-show-header-title {
+                    .track-show__title {
                         color: rgb(106, 153, 255);
                         font-size: 35px;
                     }
-                    .track-show-header-artist {
+                    .track-show__artist {
                         position: relative;
                         top: 6px;
                         color: white;
@@ -49,7 +49,7 @@ index-item-number {
                     }
                 }
             }
-            .track-show-header-right {
+            .track-show__right {
                 position: relative;
                 top: 20px;
                 display: flex;
@@ -62,12 +62,12 @@ index-item-number {
                         width: 20px;
                         margin: 0px 15px 0px 15px;  
                     }
-                    .track-index-item-fire-number {
-                        @extend index-item-number;
+                    .track-show__fire-number {
+                        @extend track-show-number;
                         color: red;
                     }
-                    .track-index-item-eye-number {
-                        @extend index-item-number;
+                    .track-show__eye-number {
+                        @extend track-show-number;
                         color: rgb(197, 197, 197);
                     }
                 }

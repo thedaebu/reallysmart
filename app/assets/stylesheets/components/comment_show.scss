@@ -1,13 +1,19 @@
 $programmereg: 'Programme Regular', sans-serif;
 $programmelight: 'Programme Light', sans-serif;
 
-.comment-main {
+comment-show-item {
+    border-top: 1px solid #99a7ee;
+    padding: 20px 0px 20px 0px;
+    margin: 0px 0px 0px 15px;
+}
+
+.comment-show {
     width: 96%;
     background: #eeeeee;
     margin: 20px 15px 0px 0px;
 }
 
-.comment-show-create-begin-main {
+.comment-show__begin {
     display: flex;
     padding: 16px 10px 19px 10px; 
     > img {
@@ -36,9 +42,9 @@ $programmelight: 'Programme Light', sans-serif;
     }
 }
 
-.comment-show-create-end-main {
+.comment-show-form {
     padding: 15px 6px 10px 6px;
-    .comment-show-create-end-track-text {
+    .comment-show-form__track-text {
         height: 51px;
         width: min(98%, 510px);
         resize: none;
@@ -59,7 +65,7 @@ $programmelight: 'Programme Light', sans-serif;
             box-shadow: inset 0px 0px 2px 2px rgb(194, 213, 255);
         }
     }
-    .comment-show-create-end-anno-text {
+    .comment-show-form__annotation-text {
         height: 46px;
         width: min(96%, 307px);
         resize: none;
@@ -79,12 +85,12 @@ $programmelight: 'Programme Light', sans-serif;
             box-shadow: inset 0px 0px 2px 2px rgb(194, 213, 255);
         }
     }
-    .comment-show-create-end-buttons {
+    .comment-show-form__buttons {
         position: relative;
         right: 5px;
         bottom: 1px;
         display: flex;
-        .comment-show-create-end-submit {
+        .comment-show-form__submit {
             cursor: pointer;
             background: white;
             font-family: $programmereg;
@@ -103,7 +109,7 @@ $programmelight: 'Programme Light', sans-serif;
                 font-size: 15px;      
             }
         }
-        .comment-show-create-end-cancel {
+        .comment-show-form__cancel {
             cursor: pointer;
             position: relative;
             left: 4px;
@@ -128,15 +134,57 @@ $programmelight: 'Programme Light', sans-serif;
     }
 }
 
-.comment-session-main {
+.comment-show__session {
     display: flex;
     background: #f5f5f5;
     padding: 10px 10px 10px 10px;
     > p {
         margin: 0px 5px 0px 0px;
-    }       
+    }
     > a {
         color: rgb(95, 124, 255);
         margin: 0px 5px 0px 0px;
+    }
+}
+
+.comment-show__items {
+    width: 101%;
+    position: relative;
+    right: 4px;
+    .comment-show-item--track {
+        @extend comment-show-item;
+        width: min(95%, 537px);
+    }
+    .comment-show-item--annotation {
+        @extend comment-show-item;
+        width: min(93%, 314px);
+    }
+    .comment-show-item__top {
+        display: flex;
+        justify-content: space-between;
+        > div {
+            display: flex;
+            .comment-show-item__baby {
+                height: 20px;
+                width: 20px;
+                position: relative;
+                top: 2px;
+            }
+            .comment-show-item__commenter {
+                position: relative;
+                top: 5px;
+                left: 5px;
+                font-size: 15px;
+            }
+        }
+        .comment-show-item__time {
+            font-size: 15px;
+        }
+    }
+    .comment-show-item__body {
+        font-family: $programmelight;
+        font-size: 17px;
+        line-height: 23px;
+        padding: 17px 0px 0px 0px;
     }
 }

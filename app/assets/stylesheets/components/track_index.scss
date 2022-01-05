@@ -1,121 +1,119 @@
 $programme: 'Programme Regular', sans-serif;
 
-.tracks-index-main {
-    margin: 0px 0px 50px 0px;
-    .tracks-index-top {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        font-family: $programme;
-        margin: 0px 0px 40px 0px;
-        > h1 {
-            font-size: 80px;
-            font-weight: bold;
-            letter-spacing: 1px;
-            margin: 71px 0px 0px 0px;
-        }
-        > h2 {
-            color: rgb(255, 20, 100);
-            font-size: 14px;
-            margin: 11px 0px 20.5px 0px;
-        }
-        > ul {
-            width: 1150px;
-            .track-index-item {
-                height: 71px;
-                width: auto;
-                display: grid;
-                grid-template-columns: 95px 2fr 9fr 8fr 3fr 3fr;
-                align-items: center;
-                color: black;
-                border-bottom: rgb(224, 224, 224) solid 2px;
-                padding: 2px 0px 2px 0px;
-                &:hover {
-                    background-color: rgb(228, 228, 228);
-                }
-                .track-index-item-id {
-                    font-size: 23px;
-                    padding: 0px 0px 0px 12px;
-                }
-                .track-index-item-image { 
-                    height: 60px;
-                    width: 60px;
-                }
-                .track-index-item-title-main {
-                    display: flex;
-                    .track-index-item-title {
-                        position: relative;
-                        bottom: 0.5px;
-                        font-family: 'Programme Regular', sans-serif;
-                        font-size: 24px;
-                        font-weight: normal;
-                    }
-                    .track-index-item-lyrics {
-                        position: relative;
-                        top: 1.5px;
-                        display: flex;
-                        align-items: center;
-                        color: rgb(156, 156, 156);
-                        font-size: 12px;
-                        font-weight: 600px;
-                        letter-spacing: 1px;
-                        margin: 0px 0px 0px 5px;
-                    }
-                }
-                .track-index-item-artist {
+track-index-number {
+    position: relative;
+    top: 3.5px;
+    right: 4px;
+    font-size: 12px;
+}
+
+.track-index {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: $programme;
+    margin: 0px 0px 40px 0px;
+    > h1 {
+        font-size: 80px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        margin: 71px 0px 0px 0px;
+    }
+    > h2 {
+        color: rgb(255, 20, 100);
+        font-size: 14px;
+        margin: 11px 0px 20.5px 0px;
+    }
+    > ul {
+        width: 1150px;
+        .track-index-item {
+            height: 71px;
+            width: auto;
+            display: grid;
+            grid-template-columns: 95px 2fr 9fr 8fr 3fr 3fr;
+            align-items: center;
+            color: black;
+            border-bottom: rgb(224, 224, 224) solid 2px;
+            padding: 2px 0px 2px 0px;
+            &:hover {
+                background-color: rgb(228, 228, 228);
+            }
+            .track-index-item__id {
+                font-size: 23px;
+                padding: 0px 0px 0px 12px;
+            }
+            .track-index-item__image { 
+                height: 60px;
+                width: 60px;
+            }
+            .track-index-item__title-main {
+                display: flex;
+                .track-index-item__title {
                     position: relative;
-                    bottom: 1px;
-                    font-family: 'Raleway', sans-serif;    
-                    font-size: 23px;
+                    bottom: 0.5px;
+                    font-family: 'Programme Regular', sans-serif;
+                    font-size: 24px;
+                    font-weight: normal;
                 }
-                .track-index-item-fire-main {
+                .track-index-item__lyrics {
+                    position: relative;
+                    top: 1.5px;
                     display: flex;
-                    .track-index-item-fire {
-                        height: 20px;
-                        width: 20px;
-                        margin: 0px 15px 0px 15px; 
-                    }
-                    .track-index-item-fire-number {
-                        position: relative;
-                        top: 3.5px;
-                        right: 4px;
-                        color: red;
-                        font-size: 12px;
-                    }
+                    align-items: center;
+                    color: rgb(156, 156, 156);
+                    font-size: 12px;
+                    font-weight: 600px;
+                    letter-spacing: 1px;
+                    margin: 0px 0px 0px 5px;
                 }
-                .track-index-item-eye-main {
-                    display: flex;
-                    .track-index-item-eye {
-                        height: 20px;
-                        width: 20px;
-                        margin: 0px 15px 0px 15px; 
-                    }
-                    .track-index-item-eye-number {
-                        position: relative;
-                        top: 3.5px;
-                        right: 4px;
-                        color: rgb(197, 197, 197);
-                        font-size: 12px;
-                    }
+            }
+            .track-index-item__artist {
+                position: relative;
+                bottom: 1px;
+                font-family: 'Raleway', sans-serif;    
+                font-size: 23px;
+            }
+            .track-index-item__fire-main {
+                display: flex;
+                .track-index-item__fire {
+                    height: 20px;
+                    width: 20px;
+                    margin: 0px 15px 0px 15px; 
+                }
+                .track-index-item__fire-number {
+                    @extend track-index-number;
+                    color: red;
+                }
+            }
+            .track-index-item__eye-main {
+                display: flex;
+                .track-index-item__eye {
+                    height: 20px;
+                    width: 20px;
+                    margin: 0px 15px 0px 15px; 
+                }
+                .track-index-item__eye-number {
+                    @extend track-index-number;
+                    color: rgb(197, 197, 197);
                 }
             }
         }
     }
-    .tracks-index-load-more {
-        cursor: pointer;
-        display: flex;
-        justify-content: center;
-        width: 136px;
-        background: white;
-        color: rgb(106, 153, 255);
-        font-size: 14px;
-        border: 2px solid rgb(106, 153, 255);
-        text-align: center;
-        padding: 12px 21px 12px 21px;
-        margin: 0px auto 0px auto;
-        &:hover {
-            background: rgb(106, 153, 255);
-            color: white;
-        }
+}
+.track-index__load-more {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    width: 136px;
+    background: white;
+    color: rgb(106, 153, 255);
+    font-size: 14px;
+    border: 2px solid rgb(106, 153, 255);
+    text-align: center;
+    padding: 12px 21px 12px 21px;
+    margin: 0px auto 50px auto;
+    &:hover {
+        background: rgb(106, 153, 255);
+        color: white;
     }
 }

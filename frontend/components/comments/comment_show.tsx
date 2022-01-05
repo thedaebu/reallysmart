@@ -5,94 +5,93 @@ import CommentShowItem from "./comment_show_item";
 
 type Props = {
     commentableType: string,
-    commentMessage: string,
-    comments: Array<Comment>,
+    comments: {[key: number]: Comment},
     createComment: Function,
     currentUser: User,
-    fetchAction: Function,
-    fetchComment: Function,
+    fetchAnnotation: Function,
+    fetchTrack: Function,
     parent: Annotation | Track
 }
 
 function CommentShow(props: Props) {
+    const [annotationCreateStatus, setAnnotationCreateStatus] = useState<boolean>(false);
     const [commentBody, setCommentBody] = useState<string>("");
-    const [createAnnotationStatus, setCreateAnnotationStatus] = useState<boolean>(false);
-    const [createTrackStatus, setCreateTrackStatus] = useState<boolean>(false);
+    const [trackCreateStatus, setTrackCreateStatus] = useState<boolean>(false);
 
-    const { commentableType, commentMessage, comments, createComment, currentUser, fetchAction, parent } = props;
+    const { commentableType, comments, createComment, currentUser, fetchAnnotation, fetchTrack, parent } = props;
 
     function commentForm() {
-        if (currentUser && createTrackStatus === true && commentableType === "Track") {
+        if (currentUser && trackCreateStatus === false && commentableType === "Track") {
+            return (
+                <div className="comment-show__begin">
+                    <img src="https://assets.genius.com/images/default_avatar_100.png"/>
+                    <textarea
+                        onClick={handleTrackCommentStatus}
+                        placeholder="Add a comment"
+                    />
+                </div>
+            );
+        } else if (currentUser && trackCreateStatus === true && commentableType === "Track") {
             return (
                 <form
-                    className="comment-show-create-end-main"
-                    onSubmit={handleTrackSubmit}
+                    className="comment-show-form"
+                    onSubmit={handleTrackCommentSubmit}
                 >
                     <textarea
-                        className="comment-show-create-end-track-text"
-                        onChange={handleBodyChange()}
-                        placeholder={commentMessage}
+                        className="comment-show-form__track-text"
+                        onChange={handleCommentBodyChange()}
+                        placeholder="Add a comment"
                     />
-                    <div className="comment-show-create-end-buttons">
-                        <button className="comment-show-create-end-submit">
+                    <div className="comment-show-form__buttons">
+                        <button className="comment-show-form__submit">
                             <p>Submit</p>
                         </button>
                         <button
-                            className="comment-show-create-end-cancel"
-                            onClick={handleTrackCancel}
+                            className="comment-show-form__cancel"
+                            onClick={handleTrackCommentCancel}
                         >
                             <p>Cancel</p>
                         </button>
                     </div>
                 </form>
             );
-        } else if (currentUser && createAnnotationStatus === true && commentableType === "Annotation") {
+        } else if (currentUser && annotationCreateStatus === false && commentableType === "Annotation") {
+            return (
+                <div className="comment-show__begin">
+                    <img src="https://assets.genius.com/images/default_avatar_100.png"/>
+                    <textarea
+                        onClick={handleAnnotationCommentStatus}
+                        placeholder="You think you're really smarter?"
+                    />
+                </div>
+            );
+        } else if (currentUser && annotationCreateStatus === true && commentableType === "Annotation") {
             return (
                 <form
-                    className="comment-show-create-end-main"
-                    onSubmit={handleAnnoSubmit}
+                    className="comment-show-form"
+                    onSubmit={handleAnnotationCommentSubmit}
                 >
                     <textarea
-                        className="comment-show-create-end-anno-text"
-                        onChange={handleBodyChange()}
-                        placeholder={commentMessage}
+                        className="comment-show-form__annotation-text"
+                        onChange={handleCommentBodyChange()}
+                        placeholder="You think you're really smarter?"
                     />
-                    <div className="comment-show-create-end-buttons">
-                        <button className="comment-show-create-end-submit">
+                    <div className="comment-show-form__buttons">
+                        <button className="comment-show-form__submit">
                             <p>Submit</p>
                         </button>
                         <button
-                            className="comment-show-create-end-cancel"
-                            onClick={handleAnnoCancel}
+                            className="comment-show-form__cancel"
+                            onClick={handleAnnotationCommentCancel}
                         >
                             <p>Cancel</p>
                         </button>
                     </div>
                 </form>
-            );
-        } else if (currentUser && createTrackStatus === false && commentableType === "Track") {
-            return (
-                <div className="comment-show-create-begin-main">
-                    <img src="https://assets.genius.com/images/default_avatar_100.png"/>
-                    <textarea
-                        onClick={handleTrackStatus}
-                        placeholder={commentMessage}
-                    />
-                </div>
-            );
-        } else if (currentUser && createAnnotationStatus === false && commentableType === "Annotation") {
-            return (
-                <div className="comment-show-create-begin-main">
-                    <img src="https://assets.genius.com/images/default_avatar_100.png"/>
-                    <textarea
-                        onClick={handleAnnoStatus}
-                        placeholder={commentMessage}
-                    />
-                </div>
             );
         } else {
             return (
-                <div className="comment-session-main">
+                <div className="comment-show__session">
                     <p>Please</p>
                     <Link to="/signup">Sign Up</Link>
                     <p>or</p>
@@ -104,10 +103,12 @@ function CommentShow(props: Props) {
     }
 
     function commentItems() {
-        if (validComments(comments) === true) {
+        const currentComments: Array<Comment> = parent.comment_ids.map((id: number) => comments[id]);
+
+        if (validComments(currentComments) === true) {
             return (
-                <ul className="comment-list-main">
-                    {comments.map(comment => {
+                <ul className="comment-show__items">
+                    {currentComments.map(comment => {
                         return <CommentShowItem
                             comment={comment}
                             commentableType={commentableType}
@@ -119,9 +120,9 @@ function CommentShow(props: Props) {
         }
     }
 
-    function validComments(comments: Array<Comment>) {
+    function validComments(currentComments: Array<Comment>) {
         let isValid = true;
-        comments.forEach((comment: Comment) => {
+        currentComments.forEach((comment: Comment) => {
             if (comment === undefined) {
                 isValid = false;
             }
@@ -129,37 +130,37 @@ function CommentShow(props: Props) {
         return isValid;
     }
 
-    function handleTrackStatus(e: MouseEvent<HTMLTextAreaElement>) {
+    function handleTrackCommentStatus(e: MouseEvent<HTMLTextAreaElement>) {
         e.preventDefault();
 
-        setCreateTrackStatus(true);
+        setTrackCreateStatus(true);
     }
 
-    function handleAnnoStatus(e: MouseEvent<HTMLTextAreaElement>) {
+    function handleAnnotationCommentStatus(e: MouseEvent<HTMLTextAreaElement>) {
         e.preventDefault();
 
-        setCreateAnnotationStatus(true);
+        setAnnotationCreateStatus(true);
     }
 
-    function handleTrackCancel(e: MouseEvent<HTMLButtonElement>) {
-        e.preventDefault();
-
-        setCommentBody("");
-        setCreateTrackStatus(false);
-    }
-
-    function handleAnnoCancel(e: MouseEvent<HTMLButtonElement>) {
+    function handleTrackCommentCancel(e: MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
 
         setCommentBody("");
-        setCreateAnnotationStatus(false);
+        setTrackCreateStatus(false);
     }
 
-    function handleBodyChange() {
+    function handleAnnotationCommentCancel(e: MouseEvent<HTMLButtonElement>) {
+        e.preventDefault();
+
+        setCommentBody("");
+        setAnnotationCreateStatus(false);
+    }
+
+    function handleCommentBodyChange() {
         return (e: ChangeEvent<HTMLTextAreaElement>) => setCommentBody(e.target.value);
     }
 
-    function handleTrackSubmit(e: FormEvent<HTMLFormElement>) {
+    function handleTrackCommentSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
 
         const comment: CreatedComment = {
@@ -169,11 +170,11 @@ function CommentShow(props: Props) {
             commenter_id: currentUser.id
         };
 
-        createComment(comment).then(() => fetchAction(parent.id));
-        setCreateTrackStatus(false);
+        createComment(comment).then(() => fetchTrack(parent.id));
+        setTrackCreateStatus(false);
     }
 
-    function handleAnnoSubmit(e: FormEvent<HTMLFormElement>) {
+    function handleAnnotationCommentSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
 
         const comment: CreatedComment = {
@@ -183,12 +184,12 @@ function CommentShow(props: Props) {
             commenter_id: currentUser.id
         };
 
-        createComment(comment).then(() => fetchAction(parent.id));
-        setCreateAnnotationStatus(false);
+        createComment(comment).then(() => fetchAnnotation(parent.id));
+        setAnnotationCreateStatus(false);
     }
 
     return (
-        <div className="comment-main">
+        <div className="comment-show">
             {commentForm()}
             {commentItems()}
         </div>

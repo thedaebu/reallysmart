@@ -1,15 +1,15 @@
 import React, { MouseEvent, useEffect } from "react";
-import { SearchItem } from "../../my_types";
-import SearchbarItem from "./searchbar_item";
+import { Track } from "../../my_types";
+import SearchbarItem from "./search_index_item";
 
 type Props = {
     clearSearchField: Function,
-    searches: Array<SearchItem>,
+    searches: Array<Track>,
     searchField: string,
     siteLocation: string
 }
 
-function SearchbarItems(props: Props) {
+function SearchIndex(props: Props) {
     const { clearSearchField, searches, searchField, siteLocation } = props;
 
     useEffect(() => {
@@ -25,19 +25,19 @@ function SearchbarItems(props: Props) {
     function searchbarResults() {
         if (searches.length > 0 && searchField !== "") {
             return (
-                <div className="searchbar-items-modal">
-                    <p className="searchbar-search-results">SEARCH RESULTS</p>
-                    <p className="searchbar-search-songs">SONGS</p>
-                    <ul onClick={clearSearch}>
+                <div className="search-index">
+                    <p className="search-index__results">SEARCH RESULTS</p>
+                    <p className="search-index__songs">SONGS</p>
+                    <ul className="search-index__items" onClick={clearSearch}>
                         {searchbarItems()}
                     </ul>
                 </div>
             );
         } else if (searches.length === 0 && searchField !== "") {
             return (
-                <div className="searchbar-items-modal">
-                    <p className="searchbar-search-results">SEARCH RESULTS</p>
-                    <p className="searchbar-search-no-results">No results</p>
+                <div className="search-index">
+                    <p className="search-index__results">SEARCH RESULTS</p>
+                    <p className="search-index__no-results">No results</p>
                 </div>
             );
         }
@@ -75,4 +75,4 @@ function SearchbarItems(props: Props) {
     }
 }
 
-export default SearchbarItems;
+export default SearchIndex;

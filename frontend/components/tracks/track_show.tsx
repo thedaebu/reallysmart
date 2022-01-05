@@ -1,13 +1,15 @@
 import React, { useEffect } from "react";
-import { Track } from "../../my_types";
-import LyricsShowContainer from "../lyrics/lyrics_show_container";
+import { Track, Window } from "../../my_types";
+import LyricsContainer from "../lyrics/lyrics_container";
 import NavBar from "../navbar/navbar";
 import TrackShowHeader from "./track_show_header";
+
+declare const window: Window;
 
 type Props = {
     fetchTrack: Function,
     track: Track,
-    trackId: number
+    trackId: string
 }
 
 function TrackShow(props: Props) {
@@ -25,11 +27,9 @@ function TrackShow(props: Props) {
                 <TrackShowHeader
                     track={track}
                 />
-                <div className="track-show-bottom-main">
-                    <LyricsShowContainer
-                        track={track}
-                    />
-                </div>
+                <LyricsContainer
+                    track={track}
+                />
             </div>
         );
     } else {

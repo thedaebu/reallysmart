@@ -1,12 +1,12 @@
 import React, { MouseEvent, useState, useEffect } from "react";
-import { Annotation, Track, User } from "../../my_types";
+import { Annotation, Track, User, Window } from "../../my_types";
 import AnnotationShowContainer from "../annotations/annotation_show_container";
 import CommentShowContainer from "../comments/comment_show_container";
 
-declare const window: any;
+declare const window: Window;
 
 type Props = {
-    annotations: Array<Annotation>,
+    annotations: {[key: number]: Annotation},
     closeAnnotationModal: Function,
     currentUser: User,
     fetchAnnotation: Function,
@@ -32,8 +32,8 @@ type Dataset = {
 }
 
 function LyricsShow(props: Props) {
-    const [annotationId, setAnnotationId] = useState<number>(-1);
-    const [createStatus, setCreateStatus] = useState<boolean>(false);
+    const [currentAnnotation, setCurrentAnnotation] = useState<Annotation | null>(null);
+    const [annotationCreateStatus, setAnnotationCreateStatus] = useState<boolean>(false);
     const [endIndex, setEndIndex] = useState<number>(0);
     const [startIndex, setStartIndex] = useState<number>(0);
     const [yCoord, setYCoord] = useState<number>(-367);
@@ -50,15 +50,18 @@ function LyricsShow(props: Props) {
         window.scrollTo(0, 0);
     }, [])
 
-    function annotatedLyrics() {        
-        if (validAnnotations(annotations) === true && annotations.length > 0) {
+    function annotatedLyrics() {   
+        const currentAnnotations: Array<Annotation> = track.annotation_ids.map((id: number) => {
+            return annotations[id];
+        });
+        if (validAnnotations(currentAnnotations) === true && currentAnnotations.length > 0) {
             return (
-                annotateLyrics(track.lyrics)
+                annotateLyrics(track.lyrics, currentAnnotations)
             );
         } else {
             return (
                 <span 
-                    className="not-an-anno" 
+                    className="lyrics__not-annotation" 
                     data-add="0"
                     data-name={"not-anno-0"}
                     onMouseUp={handleTextSelect} 
@@ -69,21 +72,24 @@ function LyricsShow(props: Props) {
         }
     }
 
-    function validAnnotations(annotations: Array<Annotation>) {
-        for (let annotation of annotations) {
-            if (annotation === undefined) return false;
+    function validAnnotations(currentAnnotations: Array<Annotation>) {
+        let isValid = true;
+        for (let annotation of currentAnnotations) {
+            if (annotation === undefined) {
+                isValid = false;
+            }
         }
-        return true;
+        return isValid;
     }
 
-    function annotateLyrics(lyrics: string) {
-        const sortedAnnotations: Array<Annotation> = annotations.sort((a, b) => (a.start_index > b.start_index
+    function annotateLyrics(lyrics: string, currentAnnotations: Array<Annotation>) {
+        const sortedAnnotations: Array<Annotation> = currentAnnotations.sort((a, b) => (a.start_index > b.start_index
             ? 1
             : -1));
         const lyricsParts: Array<JSX.Element> = Array();
         let currentIndex: number = 0;
 
-        sortedAnnotations.forEach((annotation: any, idx: number) => {
+        sortedAnnotations.forEach((annotation: Annotation, idx: number) => {
             const addIndex: number = idx === 0
                 ? 0
                 : sortedAnnotations[idx-1].end_index;
@@ -93,12 +99,12 @@ function LyricsShow(props: Props) {
             if (currentIndex === startIndex) {
                 lyricsParts.push(
                     <span
-                        className="is-an-anno"
+                        className="lyrics__is-annotation"
                         data-name={`is-anno-${annotation.id}`}
                         data-id={`${annotation.id}`}
                         id={`is-anno-${annotation.id}`}
                         key={`is-anno-${annotation.id}`}
-                        onClick={() => openAnnotation(annotation.id)}
+                        onClick={() => openAnnotation(annotation)}
                         >
                         {lyrics.slice(currentIndex, endIndex + 1)}
                     </span>
@@ -106,7 +112,7 @@ function LyricsShow(props: Props) {
             } else {
                 lyricsParts.push(
                     <span
-                        className="not-an-anno"
+                        className="lyrics__not-annotation"
                         data-add={addIndex}
                         data-name={`not-anno-${idx}`}
                         id={`not-anno-${idx}`}
@@ -117,12 +123,12 @@ function LyricsShow(props: Props) {
                 )
                 lyricsParts.push(
                     <span
-                        className="is-an-anno" 
+                        className="lyrics__is-annotation" 
                         data-name={`is-anno-${annotation.id}`} 
                         data-id={`${annotation.id}`}
                         id={`is-anno-${annotation.id}`}
                         key={`is-anno-${annotation.id}`} 
-                        onClick={() => openAnnotation(annotation.id)}
+                        onClick={() => openAnnotation(annotation)}
                         >
                         {lyrics.slice(startIndex, endIndex+1)}
                     </span>
@@ -131,7 +137,7 @@ function LyricsShow(props: Props) {
             if (idx === sortedAnnotations.length - 1) {
                 lyricsParts.push(
                     <span
-                        className="not-an-anno"
+                        className="lyrics__not-annotation"
                         data-add={endIndex}
                         data-name={`not-anno-${idx + 1}`}
                         id={`not-anno-${idx + 1}`}
@@ -147,8 +153,8 @@ function LyricsShow(props: Props) {
         return lyricsParts;
     }
 
-    function openAnnotation(id: number) {
-        setAnnotationId(id);
+    function openAnnotation(annotation: Annotation) {
+        setCurrentAnnotation(annotation);
     }
 
     function handleTextSelect(e: MouseEvent<HTMLElement>) {
@@ -193,25 +199,25 @@ function LyricsShow(props: Props) {
     }
 
     function handleTextDeselect() {
-        setAnnotationId(-1);
+        setCurrentAnnotation(null);
         closeAnnotationModal();
-        falseCreateStatus();
+        setAnnotationCreateStatusFalse();
     }
 
-    function trueCreateStatus() {
-        setCreateStatus(true);
+    function setAnnotationCreateStatusTrue() {
+        setAnnotationCreateStatus(true);
     }
 
-    function falseCreateStatus() {
-        setCreateStatus(false);
+    function setAnnotationCreateStatusFalse() {
+        setAnnotationCreateStatus(false);
     }
 
     return (
-        <div className="lyrics-show-main">
-            <div className="lyrics-show-shade">
-                <div className="lyrics-show-left" onMouseDown={handleTextDeselect} >
-                    <p className="lyrics-show-top">{track.title.toUpperCase()} LYRICS</p>
-                    <pre className="lyrics-show-body" onMouseUp={handleTextSelect}>
+        <div className="lyrics">
+            <div className="lyrics__shade">
+                <div className="lyrics__text" onMouseDown={handleTextDeselect} >
+                    <p className="lyrics__top">{track.title.toUpperCase()} LYRICS</p>
+                    <pre className="lyrics__body" onMouseUp={handleTextSelect}>
                         {annotatedLyrics()}
                     </pre> 
                     <CommentShowContainer
@@ -220,16 +226,16 @@ function LyricsShow(props: Props) {
                         parent={track}
                     />
                 </div>
-                <div className="lyrics-show-right">
+                <div className="lyrics__right">
                     <AnnotationShowContainer
-                        annotationId={annotationId}
-                        createStatus={createStatus}
+                        annotation={currentAnnotation}
+                        annotationCreateStatus={annotationCreateStatus}
                         currentUser={currentUser}
                         endIndex={endIndex}
-                        falseCreateStatus={falseCreateStatus}
+                        setAnnotationCreateStatusFalse={setAnnotationCreateStatusFalse}
                         startIndex={startIndex}
                         track={track}
-                        trueCreateStatus={trueCreateStatus}
+                        setAnnotationCreateStatusTrue={setAnnotationCreateStatusTrue}
                         yCoord={yCoord}
                     />
                 </div>

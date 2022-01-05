@@ -1,11 +1,12 @@
 import React from "react";
+import { Window } from "../../my_types";
 
-declare const window: any;
+declare const window: Window;
 
 function Navbar() {
     return (
         <div className="navbar-outside">
-            <div className="navbar-main">
+            <div className="navbar">
                 <a className="collective-sounds" href="https://soundcloud.com/thedaebu" target="_blank" rel="noopener noreferrer">COLLECTIVE SOUNDS</a>
                 <a className="genius-live" href="">GENIUS LIVE</a>
                 <a className="featured" href="">FEATURED</a>

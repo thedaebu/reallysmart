@@ -9,7 +9,7 @@ import {
 import { AuthRoute } from "../util/route_util";
 import DemoUserContainer from "./demo_user/demo_user_container";
 import LoginFormContainer from "./session_form/login_form_container";
-import SearchbarContainer from "./searches/searchbar_container";
+import SearchbarContainer from "./searchbar/searchbar_container";
 import SessionMenuContainer from "./session_menu/session_menu_container";
 import SignupFormContainer from "./session_form/signup_form_container";
 import TrackIndexContainer from "./tracks/track_index_container"
@@ -18,10 +18,10 @@ import TrackShowContainer from "./tracks/track_show_container";
 
 const App = () => (
     <div>
-        <header>
+        <header className="header">
             <SearchbarContainer/>
-            <Link to="/" className="logo">REALLYSMART</Link>
-            <div className="header-right">
+            <Link to="/" className="header__logo">REALLYSMART</Link>
+            <div className="session-buttons">
                 <SessionMenuContainer/>
                 <DemoUserContainer/>
             </div>

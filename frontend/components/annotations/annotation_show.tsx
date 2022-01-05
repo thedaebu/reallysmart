@@ -5,26 +5,25 @@ import AnnotationShowItem from "./annotation_show_item";
 
 type Props = {
     annotation: Annotation | null,
+    annotationCreateStatus: boolean,
     annotationModal: boolean,
     closeAnnotationModal: Function,
     createAnnotation: Function,
-    createStatus: boolean,
     currentUser: User,
     endIndex: number,
-    falseCreateStatus: Function,
     fetchComment: Function,
     fetchTrack: Function,
+    setAnnotationCreateStatusFalse: Function,
+    setAnnotationCreateStatusTrue: Function,
     startIndex: number,
     track: Track,
-    trueCreateStatus: Function,
     yCoord: number
 }
 
 function AnnotationShow(props: Props) {
     const [annotationBody, setAnnotationBody] = useState<string>("");
-    const [annotationCreateStatus, setAnnotationCreateStatus] = useState<boolean>(props.createStatus);
 
-    const { annotation, annotationModal, closeAnnotationModal, createAnnotation, createStatus, currentUser, endIndex, falseCreateStatus, fetchComment, fetchTrack, startIndex, track, trueCreateStatus, yCoord } = props;
+    const { annotation, annotationModal, closeAnnotationModal, createAnnotation, annotationCreateStatus, currentUser, endIndex, fetchComment, fetchTrack, setAnnotationCreateStatusFalse, setAnnotationCreateStatusTrue, startIndex, track, yCoord } = props;
 
     useEffect(() => {
         if (annotation !== null) {
@@ -34,24 +33,18 @@ function AnnotationShow(props: Props) {
         }
     }, [annotation])
 
-    useEffect(() => {
-        setAnnotationCreateStatus(createStatus)
-    }, [createStatus])
-
     function annotationForm() {
         if (currentUser && startIndex && startIndex !== endIndex && annotationCreateStatus === false) {
             return (
                 <div
-                    className="annotation-show-create-main" 
+                    className="annotation-show-begin" 
                     style={{
                         position: "relative",
-                        top: yCoord !== 0 
-                            ? yCoord
-                            : -367
+                        top: yCoord
                     }}>
                     <button
-                        className="annotation-show-create-begin"
-                        onClick={handleCreateAnnotation}
+                        className="annotation-show-begin__button"
+                        onClick={handleAnnotationCreateStart}
                     >
                         <h1>Start the Really Smart Annotation</h1>
                         <h2>(+5 RSQ)</h2>
@@ -61,56 +54,51 @@ function AnnotationShow(props: Props) {
         } else if (currentUser && startIndex && annotationCreateStatus === true){
             return (
                 <div
-                    className="annotation-show-create-form-main"
+                    className="annotation-show-form"
                     style={{
                         position: "relative",
-                        top: yCoord !== 0 
-                            ? yCoord
-                            : -367
+                        top: yCoord
                     }}
                 >
                     <form
-                        id="annotation-show-create-form"
-                        onSubmit={handleSubmitAnnotation}
+                        id="annotation-show-form"
+                        onSubmit={handleAnnotationSubmit}
                     >
                         <textarea
-                            className="annotation-show-create-form-top" 
+                            className="annotation-show-form__body" 
                             onChange={handleAnnotationBodyChange()}
                             placeholder="Everything you teach us is for a reason, but none of it is important."
                             value={annotationBody}
                         >
                         </textarea>
-
-                        {/* <div className="annotation-show-create-form-middle">
-                            <p className="annotation-show-create-form-middle-tools">Tools:</p>
-
-                            <div className="annotation-show-create-form-middle-items">
-                                <a className="annotation-show-create-form-middle-item" >
+                        <div className="annotation-show-form__middle">
+                            <p className="annotation-show-form__middle__tools">Tools:</p>
+                            <div className="annotation-show-form__middle__items">
+                                <a className="annotation-show-form__middle__item">
                                     Add Image
-                                    <span class="tooltip">Link is for styling</span>
+                                    <p className="tooltip">Link is for styling</p>
                                 </a>
-                                <a className="annotation-show-create-form-middle-item" >
+                                <a className="annotation-show-form__middle__item">
                                     Formatting Help
-                                    <span class="tooltip">Link is for styling</span>
+                                    <p className="tooltip">Link is for styling</p>
                                 </a>
                                 <div>
-                                    <a className="annotation-show-create-form-middle-item">
+                                    <a className="annotation-show-form__middle__item">
                                         How To Annotate
-                                        <span class="tooltip">Link is for styling</span>
+                                        <p className="tooltip">Link is for styling</p>
                                     </a>                       
                                 </div>
                             </div>
-                        </div> */}
-
-                        <div className="annotation-show-create-form-bottom">
-                            <button className="annotation-show-create-form-bottom-save-main"
+                        </div>
+                        <div className="annotation-show-form__bottom">
+                            <button className="annotation-show-form__bottom-save"
                             type="submit">
-                                <p className="annotation-show-create-form-bottom-save-word">Save</p>
-                                <p className="annotation-show-create-form-bottom-save-score">(+5 RSQ)</p>
+                                <p className="annotation-show-form__bottom-save-text">Save</p>
+                                <p className="annotation-show-form__bottom-save-score">(+5 RSQ)</p>
                             </button>
                             <button
-                                className="annotation-show-create-form-bottom-cancel"
-                                onClick={handleCancelAnnotation}
+                                className="annotation-show-form__bottom-cancel"
+                                onClick={handleAnnotationCancel}
                             >
                                 Cancel
                             </button>
@@ -121,12 +109,10 @@ function AnnotationShow(props: Props) {
         } else if (currentUser === undefined) {
             return (
                 <div
-                    className="annotation-show-main-signup"
+                    className="annotation-show__session"
                     style={{
                         position: "relative",
-                        top: yCoord !== 0 
-                            ? yCoord
-                            : -367
+                        top: yCoord
                     }}
                 >
                     <Link to="/signup">Sign Up to Start Really Smarting</Link>
@@ -135,17 +121,17 @@ function AnnotationShow(props: Props) {
         }
     }
 
-    function handleCreateAnnotation(e: MouseEvent<HTMLElement>) {
+    function handleAnnotationCreateStart(e: MouseEvent<HTMLElement>) {
         e.preventDefault();
 
-        trueCreateStatus();
+        setAnnotationCreateStatusTrue();
     }
 
     function handleAnnotationBodyChange() { 
         return (e: ChangeEvent<HTMLTextAreaElement>) => setAnnotationBody(e.currentTarget.value);
     }
 
-    function handleSubmitAnnotation(e: MouseEvent<HTMLFormElement>) {
+    function handleAnnotationSubmit(e: MouseEvent<HTMLFormElement>) {
         e.preventDefault();
 
         const annotation: CreatedAnnotation = {
@@ -156,23 +142,22 @@ function AnnotationShow(props: Props) {
             track_id: track.id
         };
 
-        setAnnotationBody("");
         createAnnotation(annotation)
             .then(() => fetchTrack(track.id));
         closeAnnotationModal();
-        falseCreateStatus();
+        setAnnotationBody("");
+        setAnnotationCreateStatusFalse();
     }
 
-    function handleCancelAnnotation(e: MouseEvent<HTMLButtonElement>) {
+    function handleAnnotationCancel(e: MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
 
-        setAnnotationCreateStatus(false);
-        setAnnotationBody("")
         closeAnnotationModal();
-        falseCreateStatus();
+        setAnnotationBody("");
+        setAnnotationCreateStatusFalse();
     }
 
-    if (annotation) {
+    if (annotation !== null) {
         return (
             <AnnotationShowItem
                 annotation={annotation}
@@ -182,13 +167,13 @@ function AnnotationShow(props: Props) {
         );
     } else if (annotationModal && startIndex) {
         return (
-            <div>
+            <div className="annotation-show__without-annotation">
                 {annotationForm()}
             </div>
         );
     } else {
         return(
-            <p>
+            <p className="annotation-show__without-annotation">
                 About "{track.title}"
             </p>
         );

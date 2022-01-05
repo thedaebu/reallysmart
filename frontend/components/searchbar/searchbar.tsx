@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
-import SearchbarItemsContainer from "./searchbar_items_container";
+import SearchIndexContainer from "../searches/search_index_container";
 
 type Props = {
     fetchSearches: Function
@@ -24,18 +24,18 @@ function Searchbar(props: Props) {
 
     return (
         <div>
-            <div className="search-bar-main">
+            <div className="searchbar">
                 <input
                     onChange={handleSearchChange()} 
                     placeholder="Search lyrics & more"
                     type="text" 
                     value={searchField}
                 />
-                <AiOutlineSearch className="search-bar-glass" />
+                <AiOutlineSearch className="searchbar__glass" />
             </div>
-            <SearchbarItemsContainer
+            <SearchIndexContainer
                 clearSearchField={clearSearchField}
-                searchField={searchField} searches={[]} siteLocation={""}
+                searchField={searchField}
             />
         </div>
     );
