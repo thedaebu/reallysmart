@@ -61,7 +61,7 @@ function LyricsShow(props: Props) {
         } else {
             return (
                 <span 
-                    className="not-an-anno" 
+                    className="lyrics__not-annotation" 
                     data-add="0"
                     data-name={"not-anno-0"}
                     onMouseUp={handleTextSelect} 
@@ -99,7 +99,7 @@ function LyricsShow(props: Props) {
             if (currentIndex === startIndex) {
                 lyricsParts.push(
                     <span
-                        className="is-an-anno"
+                        className="lyrics__is-annotation"
                         data-name={`is-anno-${annotation.id}`}
                         data-id={`${annotation.id}`}
                         id={`is-anno-${annotation.id}`}
@@ -112,7 +112,7 @@ function LyricsShow(props: Props) {
             } else {
                 lyricsParts.push(
                     <span
-                        className="not-an-anno"
+                        className="lyrics__not-annotation"
                         data-add={addIndex}
                         data-name={`not-anno-${idx}`}
                         id={`not-anno-${idx}`}
@@ -123,7 +123,7 @@ function LyricsShow(props: Props) {
                 )
                 lyricsParts.push(
                     <span
-                        className="is-an-anno" 
+                        className="lyrics__is-annotation" 
                         data-name={`is-anno-${annotation.id}`} 
                         data-id={`${annotation.id}`}
                         id={`is-anno-${annotation.id}`}
@@ -137,7 +137,7 @@ function LyricsShow(props: Props) {
             if (idx === sortedAnnotations.length - 1) {
                 lyricsParts.push(
                     <span
-                        className="not-an-anno"
+                        className="lyrics__not-annotation"
                         data-add={endIndex}
                         data-name={`not-anno-${idx + 1}`}
                         id={`not-anno-${idx + 1}`}
@@ -213,11 +213,11 @@ function LyricsShow(props: Props) {
     }
 
     return (
-        <div className="lyrics-show-main">
-            <div className="lyrics-show-shade">
-                <div className="lyrics-show-left" onMouseDown={handleTextDeselect} >
-                    <p className="lyrics-show-top">{track.title.toUpperCase()} LYRICS</p>
-                    <pre className="lyrics-show-body" onMouseUp={handleTextSelect}>
+        <div className="lyrics">
+            <div className="lyrics__shade">
+                <div className="lyrics__text" onMouseDown={handleTextDeselect} >
+                    <p className="lyrics__top">{track.title.toUpperCase()} LYRICS</p>
+                    <pre className="lyrics__body" onMouseUp={handleTextSelect}>
                         {annotatedLyrics()}
                     </pre> 
                     <CommentShowContainer
@@ -226,7 +226,7 @@ function LyricsShow(props: Props) {
                         parent={track}
                     />
                 </div>
-                <div className="lyrics-show-right">
+                <div className="lyrics__right">
                     <AnnotationShowContainer
                         annotation={currentAnnotation}
                         annotationCreateStatus={annotationCreateStatus}

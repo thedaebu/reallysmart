@@ -71,29 +71,29 @@ function VotesShow(props: Props) {
 
     if (currentUser && currentUserVote !== null) {
         return (
-            <div className="vote-show-main">
+            <div className="vote-show">
                 <RiThumbUpLine
-                    className="vote-show-voted"
+                    className="vote-show__voted"
                     onClick={handleVoteUpdate}
                 />
-                <div className="vote-show-count">+{numberOfVotes}</div>
+                <div className="vote-show__count">+{numberOfVotes}</div>
             </div>
         );
     } else if (currentUser && currentUserVote === null) {
         return (
-            <div className="vote-show-main">
+            <div className="vote-show">
                 <RiThumbUpLine
-                    className="vote-show-not-voted"
+                    className="vote-show__not-voted"
                     onClick={handleVoteUpdate}
                 />
-                <div className="vote-show-count">+{numberOfVotes}</div>
+                <div className="vote-show__count">+{numberOfVotes}</div>
             </div>
         );
     } else {
         return (
-            <div className="vote-show-main">
-                <RiThumbUpLine className="vote-show-not-voted"/>
-                <div className="vote-show-count">+{numberOfVotes}</div>
+            <div className="vote-show">
+                <RiThumbUpLine className="vote-show--not-voted"/>
+                <div className="vote-show__count">+{numberOfVotes}</div>
             </div>
         );
     }

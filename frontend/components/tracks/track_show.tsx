@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Track, Window } from "../../my_types";
-import LyricsShowContainer from "../lyrics/lyrics_show_container";
+import LyricsContainer from "../lyrics/lyrics_container";
 import NavBar from "../navbar/navbar";
 import TrackShowHeader from "./track_show_header";
 
@@ -27,11 +27,9 @@ function TrackShow(props: Props) {
                 <TrackShowHeader
                     track={track}
                 />
-                <div className="track-show-bottom-main">
-                    <LyricsShowContainer
-                        track={track}
-                    />
-                </div>
+                <LyricsContainer
+                    track={track}
+                />
             </div>
         );
     } else {

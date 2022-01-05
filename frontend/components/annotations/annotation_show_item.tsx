@@ -14,14 +14,14 @@ function AnnotationShowItem(props: Props) {
 
     return (
         <div
-            className="annotation-show-main" 
+            className="annotation-show-item" 
             style={{
                 position: "relative", 
                 top: yCoord
             }}
         >
-            <p className="annotation-show-name">Really Smart Annotation by {annotation.annotator}</p>
-            <p className="annotation-show-body">{annotation.body}</p>
+            <p className="annotation-show-item__name">Really Smart Annotation by {annotation.annotator}</p>
+            <p className="annotation-show-item__body">{annotation.body}</p>
             <VotesShowContainer
                 numberOfVotes={annotation.number_of_votes}
                 parent={annotation}

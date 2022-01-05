@@ -26,7 +26,7 @@ function DemoUser(props: Props) {
         );
     } else {
         return (
-            <a className="demo" onClick={loginWithDemo}>DEMO</a>
+            <a className="demo-user" onClick={loginWithDemo}>DEMO</a>
         );
     }
 }

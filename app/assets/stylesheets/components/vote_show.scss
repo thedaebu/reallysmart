@@ -1,13 +1,13 @@
-.vote-show-main {
+.vote-show {
     display: flex;
     padding: 25px 0px 3px 0px;
-    .vote-show-voted {
+    .vote-show__voted {
         cursor: pointer;
         height: 19px;
         width: 19px; 
         color: #0ec426;
     }
-    .vote-show-not-voted {
+    .vote-show__not-voted {
         cursor: pointer;    
         height: 19px;
         width: 19px; 
@@ -17,7 +17,7 @@
             color: #0ec426;
         }
     }
-    .vote-show-count {
+    .vote-show__count {
         color: #0ec426;
         font-size: 17px; 
         margin: 0px 0px 0px 7px; 

@@ -24,20 +24,20 @@ function CommentShow(props: Props) {
         if (currentUser && trackCreateStatus === true && commentableType === "Track") {
             return (
                 <form
-                    className="comment-show-create-end-main"
+                    className="comment-show-form"
                     onSubmit={handleTrackCommentSubmit}
                 >
                     <textarea
-                        className="comment-show-create-end-track-text"
+                        className="comment-show-form__track-text"
                         onChange={handleCommentBodyChange()}
                         placeholder="Add a comment"
                     />
-                    <div className="comment-show-create-end-buttons">
-                        <button className="comment-show-create-end-submit">
+                    <div className="comment-show-form__buttons">
+                        <button className="comment-show-form__submit">
                             <p>Submit</p>
                         </button>
                         <button
-                            className="comment-show-create-end-cancel"
+                            className="comment-show-form__cancel"
                             onClick={handleTrackCommentCancel}
                         >
                             <p>Cancel</p>
@@ -48,20 +48,20 @@ function CommentShow(props: Props) {
         } else if (currentUser && annotationCreateStatus === true && commentableType === "Annotation") {
             return (
                 <form
-                    className="comment-show-create-end-main"
+                    className="comment-show-form"
                     onSubmit={handleAnnotationCommentSubmit}
                 >
                     <textarea
-                        className="comment-show-create-end-anno-text"
+                        className="comment-show-form__annotation-text"
                         onChange={handleCommentBodyChange()}
                         placeholder="You think you're really smarter?"
                     />
-                    <div className="comment-show-create-end-buttons">
-                        <button className="comment-show-create-end-submit">
+                    <div className="comment-show-form__buttons">
+                        <button className="comment-show-form__submit">
                             <p>Submit</p>
                         </button>
                         <button
-                            className="comment-show-create-end-cancel"
+                            className="comment-show-form__cancel"
                             onClick={handleAnnotationCommentCancel}
                         >
                             <p>Cancel</p>
@@ -71,7 +71,7 @@ function CommentShow(props: Props) {
             );
         } else if (currentUser && trackCreateStatus === false && commentableType === "Track") {
             return (
-                <div className="comment-show-create-begin-main">
+                <div className="comment-show__begin">
                     <img src="https://assets.genius.com/images/default_avatar_100.png"/>
                     <textarea
                         onClick={handleTrackCommentStatus}
@@ -81,7 +81,7 @@ function CommentShow(props: Props) {
             );
         } else if (currentUser && annotationCreateStatus === false && commentableType === "Annotation") {
             return (
-                <div className="comment-show-create-begin-main">
+                <div className="comment-show__begin">
                     <img src="https://assets.genius.com/images/default_avatar_100.png"/>
                     <textarea
                         onClick={handleAnnotationCommentStatus}
@@ -91,7 +91,7 @@ function CommentShow(props: Props) {
             );
         } else {
             return (
-                <div className="comment-session-main">
+                <div className="comment-show__session">
                     <p>Please</p>
                     <Link to="/signup">Sign Up</Link>
                     <p>or</p>
@@ -107,7 +107,7 @@ function CommentShow(props: Props) {
 
         if (validComments(currentComments) === true) {
             return (
-                <ul className="comment-list-main">
+                <ul className="comment-show__items">
                     {currentComments.map(comment => {
                         return <CommentShowItem
                             comment={comment}
@@ -189,7 +189,7 @@ function CommentShow(props: Props) {
     }
 
     return (
-        <div className="comment-main">
+        <div className="comment-show">
             {commentForm()}
             {commentItems()}
         </div>

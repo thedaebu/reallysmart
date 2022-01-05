@@ -1,7 +1,7 @@
 $barlow: 'Barlow Condensed', sans-serif;
 $ubuntu: 'Ubuntu Condensed', sans-serif;
 
-.session-form-main {
+.session-form {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -9,22 +9,22 @@ $ubuntu: 'Ubuntu Condensed', sans-serif;
     width: 100vw;
     background-color: black;
     color: rgb(201, 201, 201);
-    .session-form-signup-h1 {
+    .session-form__signup--h1 {
         font-family: $barlow;
         color: rgb(106, 153, 255);
         font-size: 62px;
         font-weight: bold;
         padding: 40px 0px 6px 0px;
     }
-    .session-form-signup-h2 {
+    .session-form__signup--h2 {
         font-family: $barlow;
-        color: rgb(106, 153, 255);    
+        color: rgb(106, 153, 255);
         font-size: 30px;
         font-weight: lighter;
         letter-spacing: -0.5px;
         padding: 0px 0px 20px 0px;
     }
-    .session-form-login-h1 {
+    .session-form__login-h1 {
         font-family: $ubuntu;
         color: white;
         font-size: 40px;
@@ -32,14 +32,14 @@ $ubuntu: 'Ubuntu Condensed', sans-serif;
         letter-spacing: -0.5px;
         padding: 40px 0px 30px 0px;
     }
-    .session-form-form {
+    .session-form__form {
         width: 350px;
         background: rgb(15, 15, 15);
         border-top: 1px solid rgb(34, 34, 34);
         border-radius: 2px;
         padding: 12px 10px 8px 10px;
         margin: 0px 0px 30px 0px;
-        .errors-main {
+        .session-form__errors {
             background: #242424;
             margin: 0px 0px 26px 0px;
             > h2 {
@@ -61,7 +61,7 @@ $ubuntu: 'Ubuntu Condensed', sans-serif;
                 padding: 15px 32px 15px 32px;
                 margin: 0px 0px 10px 0px;
             }
-        }    
+        }
         > label {
             color: white;
             font-size: 13px;  
@@ -71,7 +71,7 @@ $ubuntu: 'Ubuntu Condensed', sans-serif;
                 &:hover {
                     color: #7ecce9;
                 }
-            } 
+            }
             > input {
                 display: flex;
                 flex-direction: row; 
@@ -88,7 +88,7 @@ $ubuntu: 'Ubuntu Condensed', sans-serif;
                 }
             }
         }
-        .session-form-tos {
+        .session-form__tos {
             font-size: 13px;
             line-height: 18px;
             padding: 0px 0px 16px 0px;
@@ -100,7 +100,7 @@ $ubuntu: 'Ubuntu Condensed', sans-serif;
                 }
             }
         }
-        #session-form-submit {
+        #session-form__submit {
             cursor: pointer;
             font-family: 'Programme Regular', sans-serif;
             background-color: #262626;
@@ -119,12 +119,12 @@ $ubuntu: 'Ubuntu Condensed', sans-serif;
             }
         }
     }
-    .session-form-bottom {
+    .session-form__bottom {
         font-size: 15px;
         > a {
             color: #5BA7C2;
             font-size: 15px;
-            &:hover {    
+            &:hover {
                 color: #7ecce9;
             }
         }

@@ -1,0 +1,23 @@
+header-right-buttons {
+    font-family: 'Programme Regular', sans-serif;
+    color: black;
+    text-decoration: none;
+    letter-spacing: 0.75px;
+}
+
+.session-menu {
+    width: 108px;
+    display: flex;
+    justify-content: flex-end;
+    .session-menu__signup {
+        @extend header-right-buttons;
+    }
+    .session-menu__login {
+        margin: 0px 0px 0px 15px;
+        @extend header-right-buttons;
+    }
+    .session-menu__logout {
+        @extend header-right-buttons;
+        cursor: pointer;
+    }
+}

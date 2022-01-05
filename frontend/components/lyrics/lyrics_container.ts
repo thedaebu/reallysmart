@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import { State } from "../../my_types";
 import { fetchAnnotation } from "../../actions/annotation_actions";
 import { closeAnnotationModal, openAnnotationModal } from "../../actions/annotation_modal_actions";
-import LyricsShow from "./lyrics_show";
+import LyricsShow from "./lyrics";
 import { fetchComment } from "../../actions/comment_actions";
 
 const mSTP = (state: State) => {

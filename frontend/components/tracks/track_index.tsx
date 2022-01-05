@@ -45,11 +45,11 @@ function TrackIndex(props: TrackIndexProps) {
     function extendTrackIndexList() {
         if (trackIndexList === 5) {
             return ( 
-                <button onClick={setTrackIndexListLimit} className="tracks-index-load-more">LOAD MORE</button>
+                <button onClick={setTrackIndexListLimit} className="track-index__load-more">LOAD MORE</button>
             )
         } else if (trackIndexList === 10) { 
             return ( 
-                <button onClick={setTrackIndexListLimit} className="tracks-index-load-more">We Miss You DMX!</button>
+                <button onClick={setTrackIndexListLimit} className="track-index__load-more">We Miss You DMX!</button>
             )
         } else {
             return (
@@ -69,9 +69,9 @@ function TrackIndex(props: TrackIndexProps) {
     }
 
     return (
-        <div className="tracks-index-main">
+        <div>
             <Navbar />
-            <div className="tracks-index-top">
+            <div className="track-index">
                 <h1>CHARTS</h1>
                 <h2>REALLY POPULAR ON REALLY SMART</h2>
                 <ul>
