@@ -28,8 +28,8 @@ function VotesShow(props: Props) {
         if (currentUser && currentUserVote) {
             deleteVote(currentUserVote.id)
                 .then(() => fetchParent(parent.id))
-
-            setCurrentUserVote(null);
+        
+        setCurrentUserVote(null);
         } else if (currentUser) {
             const vote = {
                 voteable_type: voteableType,
@@ -40,7 +40,8 @@ function VotesShow(props: Props) {
             createVote(vote)
                 .then(() => fetchParent(parent.id));
 
-            setCurrentUserVote(findCurrentUserVote(currentUserVotes, voteableId, voteableType));
+            const userVotes = findCurrentUserVotes(currentUser, votes);
+            setCurrentUserVote(findCurrentUserVote(userVotes, voteableId, voteableType));
         }
     }
 
