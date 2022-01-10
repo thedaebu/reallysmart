@@ -1,12 +1,13 @@
-import React, { MouseEvent, useState, useEffect } from "react";
+import React, { MouseEvent, useState } from "react";
 import { RiThumbUpLine } from "react-icons/ri";
-import { Annotation, Comment, User, Vote } from "../../my_types";
+import { Annotation, Comment, ReceivedVote, User, Vote } from "../../my_types";
 
 type Props = {
     createVote: Function,
     currentUser: User,
     deleteVote: Function,
     fetchParent: Function,
+    fetchVote: Function,
     numberOfVotes: number,
     parent: Annotation | Comment,
     voteableId: number,
@@ -17,11 +18,11 @@ type Props = {
 function VotesShow(props: Props) {
     const [currentUserVote, setCurrentUserVote] = useState<Vote | null>(null);
 
-    const { createVote, currentUser, deleteVote, fetchParent, numberOfVotes, parent, voteableId, voteableType, votes } = props;
+    const { createVote, currentUser, deleteVote, fetchParent, fetchVote, numberOfVotes, parent, voteableId, voteableType, votes } = props;
 
     function handleVoteUpdate(e: MouseEvent<HTMLOrSVGElement>) {
         e.preventDefault();
-
+        
         setCurrentUserVote(findCurrentUserVote(currentUser, votes, voteableId, voteableType))
 
         if (currentUserVote !== null) {
@@ -37,9 +38,11 @@ function VotesShow(props: Props) {
             }
 
             createVote(vote)
-                .then(() => fetchParent(parent.id));
-
-            setCurrentUserVote(findCurrentUserVote(currentUser, votes, voteableId, voteableType));
+                .then((receivedVote: ReceivedVote) => {
+                    fetchVote(receivedVote.vote.id);
+                    setCurrentUserVote(receivedVote.vote);
+                    fetchParent(parent.id);
+                });
         }
     }
 
