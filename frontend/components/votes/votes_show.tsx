@@ -22,15 +22,14 @@ function VotesShow(props: Props) {
     function handleVoteUpdate(e: MouseEvent<HTMLOrSVGElement>) {
         e.preventDefault();
 
-        const currentUserVotes: Array<Vote> = findCurrentUserVotes(currentUser, votes);
-        setCurrentUserVote(findCurrentUserVote(currentUserVotes, voteableId, voteableType));
+        setCurrentUserVote(findCurrentUserVote(currentUser, votes, voteableId, voteableType))
 
-        if (currentUser && currentUserVote) {
+        if (currentUserVote !== null) {
             deleteVote(currentUserVote.id)
                 .then(() => fetchParent(parent.id))
-        
-        setCurrentUserVote(null);
-        } else if (currentUser) {
+
+            setCurrentUserVote(null);
+        } else {
             const vote = {
                 voteable_type: voteableType,
                 voteable_id: voteableId,
@@ -40,34 +39,21 @@ function VotesShow(props: Props) {
             createVote(vote)
                 .then(() => fetchParent(parent.id));
 
-            const userVotes = findCurrentUserVotes(currentUser, votes);
-            setCurrentUserVote(findCurrentUserVote(userVotes, voteableId, voteableType));
+            setCurrentUserVote(findCurrentUserVote(currentUser, votes, voteableId, voteableType));
         }
     }
 
-    function findCurrentUserVotes(currentUser: User, votes: {[key: number]: Vote}) {
+    function findCurrentUserVote(currentUser: User, votes: {[key: number]: Vote}, voteableId: number, voteableType: string) {
         if (currentUser && Object.keys(votes).length > 0) {
-            return currentUser.vote_ids.map((id: number) => {
-                if (votes[id]) {
-                    return votes[id];
+            for (let voteId of currentUser.vote_ids) {
+                const currentVote = votes[voteId];
+                if (currentVote && currentVote.voteable_id === voteableId && currentVote.voteable_type === voteableType) {
+                    return currentVote;
                 }
-            }).filter((vote: Vote | undefined) => {
-                if (vote !== undefined) {
-                    return vote;
-                }
-            })
-        } else {
-            return Array();
-        }
-    }
-
-    function findCurrentUserVote(currentUserVotes: Array<Vote>, voteableId: number, voteableType: string) {
-        for (let vote of currentUserVotes) {
-            if (vote.voteable_id === voteableId && vote.voteable_type === voteableType) {
-                return vote;
             }
+        } else {
+            return null;
         }
-        return null;
     }
 
     if (currentUser && currentUserVote !== null) {
