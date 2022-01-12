@@ -1,6 +1,6 @@
 import React, { MouseEvent, useEffect, useState } from "react";
 import { RiThumbUpLine } from "react-icons/ri";
-import { Annotation, Comment, ReceivedVote, User, Vote } from "../../my_types";
+import { Annotation, Comment, CreatedVote, ReceivedVote, User, Vote } from "../../my_types";
 
 type Props = {
     createVote: Function,
@@ -39,7 +39,7 @@ function VotesShow(props: Props) {
 
             setCurrentUserVote(null);
         } else {
-            const vote = {
+            const vote: CreatedVote = {
                 voteable_type: voteableType,
                 voteable_id: voteableId,
                 voter_id: currentUser.id
@@ -57,7 +57,7 @@ function VotesShow(props: Props) {
     function findCurrentUserVote(currentUser: User, votes: {[key: number]: Vote}, voteableId: number, voteableType: string) {
         if (currentUser && Object.keys(votes).length > 0) {
             for (let voteId of currentUser.vote_ids) {
-                const currentVote = votes[voteId];
+                const currentVote: Vote = votes[voteId];
                 if (currentVote && currentVote.voteable_id === voteableId && currentVote.voteable_type === voteableType) {
                     return currentVote;
                 }

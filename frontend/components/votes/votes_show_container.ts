@@ -17,9 +17,9 @@ const mSTP = (state: State) => {
 };
 
 const mDTP = (dispatch: Function, ownProps: OwnProps) => {
-    const fetchParent = ownProps.voteableType === "Annotation"
+    const fetchParent: Function = ownProps.voteableType === "Annotation"
         ? (annotationId: number) => dispatch(fetchAnnotation(annotationId))
-        : (commentId: number) => dispatch(fetchComment(commentId))
+        : (commentId: number) => dispatch(fetchComment(commentId));
 
     return ({
         createVote: (vote: CreatedVote) => dispatch(createVote(vote)),
