@@ -4,16 +4,15 @@ import Navbar from "../navbar/navbar";
 import TrackIndexItem from "./track_index_item";
 
 declare const window: Window;
-
-type TrackIndexProps = {
+type Props = {
     fetchTracks: Function,
     tracks: Array<Track>
 }
 
-function TrackIndex(props: TrackIndexProps) {
-    const [trackIndexList, setTrackIndexList] = useState<number>(5);
-
+function TrackIndex(props: Props) {
     const { tracks } = props;
+    
+    const [trackIndexList, setTrackIndexList] = useState<number>(5);
 
     useEffect(() => {
         props.fetchTracks();
@@ -23,7 +22,7 @@ function TrackIndex(props: TrackIndexProps) {
     function trackIndexItems() {
         if (trackIndexList === 5) {
             return (
-                tracks.slice(0, 5).map(track => {
+                tracks.slice(0, 5).map((track: Track) => {
                     return <TrackIndexItem track={track} key={track.id}/>;
                 })
             )

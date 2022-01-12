@@ -1,12 +1,13 @@
-import React, { MouseEvent, useState, useEffect } from "react";
+import React, { MouseEvent, useEffect, useState } from "react";
 import { RiThumbUpLine } from "react-icons/ri";
-import { Annotation, Comment, User, Vote } from "../../my_types";
+import { Annotation, Comment, CreatedVote, ReceivedVote, User, Vote } from "../../my_types";
 
 type Props = {
     createVote: Function,
     currentUser: User,
     deleteVote: Function,
     fetchParent: Function,
+    fetchVote: Function,
     numberOfVotes: number,
     parent: Annotation | Comment,
     voteableId: number,
@@ -15,58 +16,59 @@ type Props = {
 }
 
 function VotesShow(props: Props) {
-    const [currentUserVote, setCurrentUserVote] = useState<Vote | null>(null);
+    const { createVote, currentUser, deleteVote, fetchParent, fetchVote, numberOfVotes, parent, voteableId, voteableType, votes } = props;
 
-    const { createVote, currentUser, deleteVote, fetchParent, numberOfVotes, parent, voteableId, voteableType, votes } = props;
+    const [currentUserVote, setCurrentUserVote] = useState<Vote | null>(null);
+    const [currentNumberOfVotes, setCurrentNumberOfVotes] = useState<number>(numberOfVotes);
+
+    useEffect(() => {
+        setCurrentUserVote(findCurrentUserVote(currentUser, votes, voteableId, voteableType));
+    }, [])
+
+    useEffect(() => {
+        setCurrentUserVote(findCurrentUserVote(currentUser, votes, voteableId, voteableType));
+    }, [currentUser])
 
     function handleVoteUpdate(e: MouseEvent<HTMLOrSVGElement>) {
         e.preventDefault();
 
-        const currentUserVotes: Array<Vote> = findCurrentUserVotes(currentUser, votes);
-        setCurrentUserVote(findCurrentUserVote(currentUserVotes, voteableId, voteableType));
+        setCurrentUserVote(findCurrentUserVote(currentUser, votes, voteableId, voteableType));
 
-        if (currentUser && currentUserVote) {
+        if (currentUserVote !== null) {
             deleteVote(currentUserVote.id)
-                .then(() => fetchParent(parent.id))
+                .then(() => fetchParent(parent.id));
 
             setCurrentUserVote(null);
-        } else if (currentUser) {
-            const vote = {
+            setCurrentNumberOfVotes(currentNumberOfVotes-1);
+        } else {
+            const vote: CreatedVote = {
                 voteable_type: voteableType,
                 voteable_id: voteableId,
                 voter_id: currentUser.id
-            }
+            };
 
             createVote(vote)
-                .then(() => fetchParent(parent.id));
-
-            setCurrentUserVote(findCurrentUserVote(currentUserVotes, voteableId, voteableType));
+                .then((receivedVote: ReceivedVote) => {
+                    fetchVote(receivedVote.vote.id);
+                    setCurrentUserVote(receivedVote.vote);
+                    fetchParent(parent.id);
+                });
+            
+            setCurrentNumberOfVotes(currentNumberOfVotes+1);
         }
     }
 
-    function findCurrentUserVotes(currentUser: User, votes: {[key: number]: Vote}) {
+    function findCurrentUserVote(currentUser: User, votes: {[key: number]: Vote}, voteableId: number, voteableType: string) {
         if (currentUser && Object.keys(votes).length > 0) {
-            return currentUser.vote_ids.map((id: number) => {
-                if (votes[id]) {
-                    return votes[id];
+            for (let voteId of currentUser.vote_ids) {
+                const currentVote: Vote = votes[voteId];
+                if (currentVote && currentVote.voteable_id === voteableId && currentVote.voteable_type === voteableType) {
+                    return currentVote;
                 }
-            }).filter((vote: Vote | undefined) => {
-                if (vote !== undefined) {
-                    return vote;
-                }
-            })
-        } else {
-            return Array();
-        }
-    }
-
-    function findCurrentUserVote(currentUserVotes: Array<Vote>, voteableId: number, voteableType: string) {
-        for (let vote of currentUserVotes) {
-            if (vote.voteable_id === voteableId && vote.voteable_type === voteableType) {
-                return vote;
             }
+        } else {
+            return null;
         }
-        return null;
     }
 
     if (currentUser && currentUserVote !== null) {
@@ -76,7 +78,7 @@ function VotesShow(props: Props) {
                     className="vote-show__voted"
                     onClick={handleVoteUpdate}
                 />
-                <div className="vote-show__count">+{numberOfVotes}</div>
+                <div className="vote-show__count">+{currentNumberOfVotes}</div>
             </div>
         );
     } else if (currentUser && currentUserVote === null) {
@@ -86,14 +88,14 @@ function VotesShow(props: Props) {
                     className="vote-show__not-voted"
                     onClick={handleVoteUpdate}
                 />
-                <div className="vote-show__count">+{numberOfVotes}</div>
+                <div className="vote-show__count">+{currentNumberOfVotes}</div>
             </div>
         );
     } else {
         return (
             <div className="vote-show">
-                <RiThumbUpLine className="vote-show--not-voted"/>
-                <div className="vote-show__count">+{numberOfVotes}</div>
+                <RiThumbUpLine className="vote-show__not-voted"/>
+                <div className="vote-show__count">+{currentNumberOfVotes}</div>
             </div>
         );
     }

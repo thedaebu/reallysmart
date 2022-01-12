@@ -4,7 +4,6 @@ import AnnotationShowContainer from "../annotations/annotation_show_container";
 import CommentShowContainer from "../comments/comment_show_container";
 
 declare const window: Window;
-
 type Props = {
     annotations: {[key: number]: Annotation},
     closeAnnotationModal: Function,
@@ -32,13 +31,13 @@ type Dataset = {
 }
 
 function LyricsShow(props: Props) {
+    const { annotations, closeAnnotationModal, currentUser, fetchAnnotation, fetchComment, openAnnotationModal, track } = props;
+    
     const [currentAnnotation, setCurrentAnnotation] = useState<Annotation | null>(null);
     const [annotationCreateStatus, setAnnotationCreateStatus] = useState<boolean>(false);
     const [endIndex, setEndIndex] = useState<number>(0);
     const [startIndex, setStartIndex] = useState<number>(0);
     const [yCoord, setYCoord] = useState<number>(-367);
-    
-    const { annotations, closeAnnotationModal, currentUser, fetchAnnotation, fetchComment, openAnnotationModal, track } = props;
 
     useEffect(() => {
         track.annotation_ids.forEach((annotationId: number) => {
@@ -83,7 +82,7 @@ function LyricsShow(props: Props) {
     }
 
     function annotateLyrics(lyrics: string, currentAnnotations: Array<Annotation>) {
-        const sortedAnnotations: Array<Annotation> = currentAnnotations.sort((a, b) => (a.start_index > b.start_index
+        const sortedAnnotations: Array<Annotation> = currentAnnotations.sort((a: Annotation, b: Annotation) => (a.start_index > b.start_index
             ? 1
             : -1));
         const lyricsParts: Array<JSX.Element> = Array();

@@ -5,7 +5,6 @@ import NavBar from "../navbar/navbar";
 import TrackShowHeader from "./track_show_header";
 
 declare const window: Window;
-
 type Props = {
     fetchTrack: Function,
     track: Track,

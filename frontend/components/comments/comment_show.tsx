@@ -14,11 +14,11 @@ type Props = {
 }
 
 function CommentShow(props: Props) {
+    const { commentableType, comments, createComment, currentUser, fetchAnnotation, fetchTrack, parent } = props;
+    
     const [annotationCreateStatus, setAnnotationCreateStatus] = useState<boolean>(false);
     const [commentBody, setCommentBody] = useState<string>("");
     const [trackCreateStatus, setTrackCreateStatus] = useState<boolean>(false);
-
-    const { commentableType, comments, createComment, currentUser, fetchAnnotation, fetchTrack, parent } = props;
 
     function commentForm() {
         if (currentUser && trackCreateStatus === false && commentableType === "Track") {
