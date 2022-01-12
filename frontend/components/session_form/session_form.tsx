@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { SessionUser, Window } from "../../my_types";
 
 declare const window: Window;
-
 type Props = {
     action: Function,
     clearErrors: Function,
@@ -12,6 +11,8 @@ type Props = {
 }
 
 function SessionForm(props: Props) {
+    const { action, clearErrors, errors, formType } = props;
+
     const [formLink, setFormLink] = useState<JSX.Element>(<Link to="/"></Link>);
     const [formLinkQuestion, setFormLinkQuestion] = useState<string>("");
     const [formPasswordMessage, setFormPasswordMessage] = useState<string>("");
@@ -21,8 +22,6 @@ function SessionForm(props: Props) {
     const [formTos, setFormTos] = useState<JSX.Element>(<p></p>);
     const [password, setPassword] = useState<string>("");
     const [username, setUsername] = useState<string>("");
-
-    const { action, clearErrors, errors, formType } = props;
 
     useEffect(() => {
         clearErrors();
@@ -69,7 +68,7 @@ function SessionForm(props: Props) {
                     <h2>Ruh-roh!</h2>
                     <p>Something is wrong</p>
                     <ul>
-                        {errors.map((error, idx) => {
+                        {errors.map((error: string, idx: number) => {
                             return <li key={idx}>{error}</li>
                         })}
                     </ul>

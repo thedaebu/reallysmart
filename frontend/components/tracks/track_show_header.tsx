@@ -2,16 +2,13 @@ import React from "react";
 import { Track, Window } from "../../my_types";
 
 declare const window: Window;
-
 type Props = {
     track: Track
 }
 
 function TrackShowHeader(props: Props) {
     const { track } = props;
-    
-    const artworkPath = track.artwork_path;
-    
+
     function randomNum() {
       return Math.floor(Math.random() * 1000);
     }
@@ -19,8 +16,8 @@ function TrackShowHeader(props: Props) {
     return (
         <div 
             className="track-show__background" 
-            style={{ 
-                backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(${artworkPath})`, 
+            style={{
+                backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(${track.artwork_path})`,
                 backgroundPosition: "center", 
                 backgroundSize: "cover" 
             }}
@@ -31,7 +28,7 @@ function TrackShowHeader(props: Props) {
                         <div
                             className="track-show__image"
                             style={{
-                                backgroundImage: `url(${artworkPath}`,
+                                backgroundImage: `url(${track.artwork_path}`,
                                 backgroundPosition: "center",
                                 backgroundSize: "cover"
                             }}

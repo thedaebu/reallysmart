@@ -46,7 +46,7 @@ function SearchIndex(props: Props) {
     function searchbarItems() {
         if (searches.length > 0) {
             return (
-                searches.slice(0, 5).map((track, key) => {
+                searches.slice(0, 5).map((track: Track, key: number) => {
                     return ( 
                         <SearchbarItem 
                             key={key}

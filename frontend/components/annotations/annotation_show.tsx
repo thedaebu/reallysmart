@@ -21,9 +21,9 @@ type Props = {
 }
 
 function AnnotationShow(props: Props) {
-    const [annotationBody, setAnnotationBody] = useState<string>("");
-
     const { annotation, annotationModal, closeAnnotationModal, createAnnotation, annotationCreateStatus, currentUser, endIndex, fetchComment, fetchTrack, setAnnotationCreateStatusFalse, setAnnotationCreateStatusTrue, startIndex, track, yCoord } = props;
+    
+    const [annotationBody, setAnnotationBody] = useState<string>("");
 
     useEffect(() => {
         if (annotation !== null) {

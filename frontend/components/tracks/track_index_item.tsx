@@ -3,12 +3,11 @@ import { Link } from "react-router-dom";
 import { Track, Window } from "../../my_types";
 
 declare const window: Window;
-
-type TrackIndexItemProps = {
+type Props = {
     track: Track
 }
 
-function TrackIndexItem(props: TrackIndexItemProps) {
+function TrackIndexItem(props: Props) {
     const { track } = props;
 
     function randomNum() {

@@ -7,9 +7,9 @@ type Props = {
 }
 
 function Searchbar(props: Props) {
-    const [searchField, setSearchField] = useState<string>("");
-
     const { fetchSearches } = props;
+    
+    const [searchField, setSearchField] = useState<string>("");
 
     function handleSearchChange() {
         if (searchField !== "") {

@@ -21,7 +21,6 @@ function VotesShow(props: Props) {
     const [currentUserVote, setCurrentUserVote] = useState<Vote | null>(null);
     const [currentNumberOfVotes, setCurrentNumberOfVotes] = useState<number>(numberOfVotes);
 
-
     useEffect(() => {
         setCurrentUserVote(findCurrentUserVote(currentUser, votes, voteableId, voteableType));
     }, [])
