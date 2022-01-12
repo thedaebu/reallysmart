@@ -1,4 +1,4 @@
-import React, { MouseEvent, useState } from "react";
+import React, { MouseEvent, useEffect, useState } from "react";
 import { RiThumbUpLine } from "react-icons/ri";
 import { Annotation, Comment, ReceivedVote, User, Vote } from "../../my_types";
 
@@ -20,14 +20,22 @@ function VotesShow(props: Props) {
 
     const { createVote, currentUser, deleteVote, fetchParent, fetchVote, numberOfVotes, parent, voteableId, voteableType, votes } = props;
 
+    useEffect(() => {
+        setCurrentUserVote(findCurrentUserVote(currentUser, votes, voteableId, voteableType));
+    }, [])
+
+    useEffect(() => {
+        setCurrentUserVote(findCurrentUserVote(currentUser, votes, voteableId, voteableType));
+    }, [currentUser])
+
     function handleVoteUpdate(e: MouseEvent<HTMLOrSVGElement>) {
         e.preventDefault();
-        
-        setCurrentUserVote(findCurrentUserVote(currentUser, votes, voteableId, voteableType))
+
+        setCurrentUserVote(findCurrentUserVote(currentUser, votes, voteableId, voteableType));
 
         if (currentUserVote !== null) {
             deleteVote(currentUserVote.id)
-                .then(() => fetchParent(parent.id))
+                .then(() => fetchParent(parent.id));
 
             setCurrentUserVote(null);
         } else {
@@ -35,7 +43,7 @@ function VotesShow(props: Props) {
                 voteable_type: voteableType,
                 voteable_id: voteableId,
                 voter_id: currentUser.id
-            }
+            };
 
             createVote(vote)
                 .then((receivedVote: ReceivedVote) => {
@@ -82,7 +90,7 @@ function VotesShow(props: Props) {
     } else {
         return (
             <div className="vote-show">
-                <RiThumbUpLine className="vote-show--not-voted"/>
+                <RiThumbUpLine className="vote-show__not-voted"/>
                 <div className="vote-show__count">+{numberOfVotes}</div>
             </div>
         );
