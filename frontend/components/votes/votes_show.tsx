@@ -16,9 +16,11 @@ type Props = {
 }
 
 function VotesShow(props: Props) {
-    const [currentUserVote, setCurrentUserVote] = useState<Vote | null>(null);
-
     const { createVote, currentUser, deleteVote, fetchParent, fetchVote, numberOfVotes, parent, voteableId, voteableType, votes } = props;
+
+    const [currentUserVote, setCurrentUserVote] = useState<Vote | null>(null);
+    const [currentNumberOfVotes, setCurrentNumberOfVotes] = useState<number>(numberOfVotes);
+
 
     useEffect(() => {
         setCurrentUserVote(findCurrentUserVote(currentUser, votes, voteableId, voteableType));
@@ -38,6 +40,7 @@ function VotesShow(props: Props) {
                 .then(() => fetchParent(parent.id));
 
             setCurrentUserVote(null);
+            setCurrentNumberOfVotes(currentNumberOfVotes-1);
         } else {
             const vote: CreatedVote = {
                 voteable_type: voteableType,
@@ -51,6 +54,8 @@ function VotesShow(props: Props) {
                     setCurrentUserVote(receivedVote.vote);
                     fetchParent(parent.id);
                 });
+            
+            setCurrentNumberOfVotes(currentNumberOfVotes+1);
         }
     }
 
@@ -74,7 +79,7 @@ function VotesShow(props: Props) {
                     className="vote-show__voted"
                     onClick={handleVoteUpdate}
                 />
-                <div className="vote-show__count">+{numberOfVotes}</div>
+                <div className="vote-show__count">+{currentNumberOfVotes}</div>
             </div>
         );
     } else if (currentUser && currentUserVote === null) {
@@ -84,14 +89,14 @@ function VotesShow(props: Props) {
                     className="vote-show__not-voted"
                     onClick={handleVoteUpdate}
                 />
-                <div className="vote-show__count">+{numberOfVotes}</div>
+                <div className="vote-show__count">+{currentNumberOfVotes}</div>
             </div>
         );
     } else {
         return (
             <div className="vote-show">
                 <RiThumbUpLine className="vote-show__not-voted"/>
-                <div className="vote-show__count">+{numberOfVotes}</div>
+                <div className="vote-show__count">+{currentNumberOfVotes}</div>
             </div>
         );
     }
