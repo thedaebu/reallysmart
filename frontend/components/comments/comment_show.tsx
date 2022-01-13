@@ -105,7 +105,7 @@ function CommentShow(props: Props) {
     function commentItems() {
         const currentComments: Array<Comment> = parent.comment_ids.map((id: number) => comments[id]);
 
-        if (validComments(currentComments) === true) {
+        if (validComments(currentComments) === true && currentComments.length > 0) {
             return (
                 <ul className="comment-show__items">
                     {currentComments.map(comment => {
@@ -116,6 +116,10 @@ function CommentShow(props: Props) {
                         />
                     })}
                 </ul>
+            );
+        } else {
+            return (
+                null
             );
         }
     }
