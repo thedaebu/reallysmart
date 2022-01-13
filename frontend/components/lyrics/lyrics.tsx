@@ -49,7 +49,7 @@ function LyricsShow(props: Props) {
         window.scrollTo(0, 0);
     }, [])
 
-    function annotatedLyrics() {   
+    function annotatedLyrics() {
         const currentAnnotations: Array<Annotation> = track.annotation_ids.map((id: number) => {
             return annotations[id];
         });
@@ -59,11 +59,11 @@ function LyricsShow(props: Props) {
             );
         } else {
             return (
-                <span 
-                    className="lyrics__not-annotation" 
+                <span
+                    className="lyrics__not-annotation"
                     data-add="0"
                     data-name={"not-anno-0"}
-                    onMouseUp={handleTextSelect} 
+                    onMouseUp={handleTextSelect}
                 >
                     {track.lyrics}
                 </span>
@@ -122,11 +122,11 @@ function LyricsShow(props: Props) {
                 )
                 lyricsParts.push(
                     <span
-                        className="lyrics__is-annotation" 
-                        data-name={`is-anno-${annotation.id}`} 
+                        className="lyrics__is-annotation"
+                        data-name={`is-anno-${annotation.id}`}
                         data-id={`${annotation.id}`}
                         id={`is-anno-${annotation.id}`}
-                        key={`is-anno-${annotation.id}`} 
+                        key={`is-anno-${annotation.id}`}
                         onClick={() => openAnnotation(annotation)}
                         >
                         {lyrics.slice(startIndex, endIndex+1)}
