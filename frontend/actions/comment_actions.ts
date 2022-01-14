@@ -13,10 +13,10 @@ const receiveComment = (receivedComment: ReceivedComment) => {
         votes: receivedComment.votes
     });
 };
-const removeComment = (voteId: number) => {
+const removeComment = (commentId: number) => {
     return ({
         type: REMOVE_COMMENT,
-        voteId
+        commentId
     });
 };
 
