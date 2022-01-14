@@ -33,9 +33,9 @@ type Dataset = {
 function LyricsShow(props: Props) {
     const { annotations, closeAnnotationModal, currentUser, fetchAnnotation, fetchComment, openAnnotationModal, track } = props;
     
-    const [currentAnnotation, setCurrentAnnotation] = useState<Annotation | null>(null);
     const [annotationCreateStatus, setAnnotationCreateStatus] = useState<boolean>(false);
     const [endIndex, setEndIndex] = useState<number>(0);
+    const [selectedAnnotation, setSelectedAnnotation] = useState<Annotation | null>(null);
     const [startIndex, setStartIndex] = useState<number>(0);
     const [yCoord, setYCoord] = useState<number>(-367);
 
@@ -153,7 +153,7 @@ function LyricsShow(props: Props) {
     }
 
     function openAnnotation(annotation: Annotation) {
-        setCurrentAnnotation(annotation);
+        setSelectedAnnotation(annotation);
     }
 
     function handleTextSelect(e: MouseEvent<HTMLElement>) {
@@ -198,7 +198,7 @@ function LyricsShow(props: Props) {
     }
 
     function handleTextDeselect() {
-        setCurrentAnnotation(null);
+        setSelectedAnnotation(null);
         closeAnnotationModal();
         setAnnotationCreateStatusFalse();
     }
@@ -227,7 +227,7 @@ function LyricsShow(props: Props) {
                 </div>
                 <div className="lyrics__right">
                     <AnnotationShowContainer
-                        annotation={currentAnnotation}
+                        annotation={selectedAnnotation}
                         annotationCreateStatus={annotationCreateStatus}
                         currentUser={currentUser}
                         endIndex={endIndex}
