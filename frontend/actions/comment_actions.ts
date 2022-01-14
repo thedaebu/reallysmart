@@ -1,9 +1,10 @@
 import { Dispatch } from "react";
 import { AnyAction } from "redux";
-import { CreatedComment, ReceivedComment } from "../my_types";
+import { CreatedComment, ReceivedComment, UpdatedComment } from "../my_types";
 import * as CommentApiUtil from "./../util/comment_api_util";
 
 export const RECEIVE_COMMENT = "RECEIVE_COMMENT";
+export const REMOVE_COMMENT = "REMOVE_COMMENT";
 
 const receiveComment = (receivedComment: ReceivedComment) => {
     return ({
@@ -12,16 +13,34 @@ const receiveComment = (receivedComment: ReceivedComment) => {
         votes: receivedComment.votes
     });
 };
+const removeComment = (voteId: number) => {
+    return ({
+        type: REMOVE_COMMENT,
+        voteId
+    });
+};
 
 export const fetchComment = (commentId: number) => (dispatch: Dispatch<AnyAction>) => {
     return (
         CommentApiUtil.fetchComment(commentId)
-            .then((comment: ReceivedComment) => dispatch(receiveComment(comment)))
+            .then((receivedComment: ReceivedComment) => dispatch(receiveComment(receivedComment)))
     );
 };
-export const createComment = (comment: CreatedComment) => (dispatch: Dispatch<AnyAction>) => {
+export const createComment = (createdComment: CreatedComment) => (dispatch: Dispatch<AnyAction>) => {
     return (
-        CommentApiUtil.createComment(comment)
-            .then((comment: ReceivedComment) => dispatch(receiveComment(comment)))
+        CommentApiUtil.createComment(createdComment)
+            .then((receivedComment: ReceivedComment) => dispatch(receiveComment(receivedComment)))
+    );
+};
+export const updateComment = (updatedComment: UpdatedComment) => (dispatch: Dispatch<AnyAction>) => {
+    return (
+        CommentApiUtil.updateComment(updatedComment)
+            .then((receivedComment: ReceivedComment) => dispatch(receiveComment(receivedComment)))
+    );
+};
+export const deleteComment = (commentId: number) => (dispatch: Dispatch<AnyAction>) => {
+    return (
+        CommentApiUtil.deleteComment(commentId)
+            .then(() => dispatch(removeComment(commentId)))
     );
 };

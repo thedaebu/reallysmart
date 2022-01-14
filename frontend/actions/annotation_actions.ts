@@ -1,34 +1,53 @@
 import { Dispatch } from "react";
 import { AnyAction } from "redux";
-import { CreatedAnnotation, ReceivedAnnotation } from "../my_types";
+import { CreatedAnnotation, ReceivedAnnotation, UpdatedAnnotation } from "../my_types";
 import * as AnnotationApiUtil from "./../util/annotation_api_util";
 
 export const RECEIVE_ANNOTATION = "RECEIVE_ANNOTATION";
 export const RECEIVE_ANNOTATION_ERRORS = "RECEIVE_ANNOTATION_ERRORS";
+export const REMOVE_ANNOTATION = "REMOVE_ANNOTATION";
 
-const receiveAnnotation: Function = (receivedAnnotation: ReceivedAnnotation) => {
+const receiveAnnotation = (receivedAnnotation: ReceivedAnnotation) => {
     return({
         type: RECEIVE_ANNOTATION,
         annotation: receivedAnnotation.annotation,
         votes: receivedAnnotation.votes
     });
 };
-const receiveAnnotationErrors: Function = (errors: Array<string>) => {
+const receiveAnnotationErrors = (errors: Array<string>) => {
     return ({
         type: RECEIVE_ANNOTATION_ERRORS,
         errors
     });
 };
+const removeAnnotation = (annotationId: number) => {
+    return ({
+        type: REMOVE_ANNOTATION,
+        annotationId
+    });
+};
 
-export const fetchAnnotation: Function = (annotationId: number) => (dispatch: Dispatch<AnyAction>) => {
+export const fetchAnnotation = (annotationId: number) => (dispatch: Dispatch<AnyAction>) => {
     return (
         AnnotationApiUtil.fetchAnnotation(annotationId)
-            .then((annotation: ReceivedAnnotation) => dispatch(receiveAnnotation(annotation)))
+            .then((receivedAnnotation: ReceivedAnnotation) => dispatch(receiveAnnotation(receivedAnnotation)))
     );
 };
-export const createAnnotation: Function = (annotation: CreatedAnnotation) => (dispatch: Dispatch<AnyAction>) => {
+export const createAnnotation = (createdAnnotation: CreatedAnnotation) => (dispatch: Dispatch<AnyAction>) => {
     return (
-        AnnotationApiUtil.createAnnotation(annotation)
-            .then((annotation: ReceivedAnnotation) => dispatch(receiveAnnotation(annotation)), errors => dispatch(receiveAnnotationErrors(errors.responseJSON)))
+        AnnotationApiUtil.createAnnotation(createdAnnotation)
+            .then((receivedAnnotation: ReceivedAnnotation) => dispatch(receiveAnnotation(receivedAnnotation)), errors => dispatch(receiveAnnotationErrors(errors.responseJSON)))
+    );
+};
+export const updateAnnotation = (updatedAnnotation: UpdatedAnnotation) => (dispatch: Dispatch<AnyAction>) => {
+    return (
+        AnnotationApiUtil.updateAnnotation(updatedAnnotation)
+            .then((receivedAnnotation: ReceivedAnnotation) => dispatch(receiveAnnotation(receivedAnnotation)))
+    );
+};
+export const deleteAnnotation = (annotationId: number) => (dispatch: Dispatch<AnyAction>) => {
+    return (
+        AnnotationApiUtil.deleteAnnotation(annotationId)
+            .then(() => dispatch(removeAnnotation(annotationId)))
     );
 };
