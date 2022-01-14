@@ -1,4 +1,4 @@
-import { CreatedComment } from "../my_types";
+import { CreatedComment, UpdatedComment } from "../my_types";
 
 export const fetchComment = (commentId: number) => {
     return (
@@ -17,3 +17,20 @@ export const createComment = (comment: CreatedComment) => {
         })
     );
 };
+export const updateComment = (updatedComment: UpdatedComment) => {
+    return (
+        $.ajax({
+            method: "PUT",
+            url: `api/comments/${updatedComment.id.toString()}`,
+            data: { updatedComment }
+        })
+    );
+}
+export const deleteComment = (commentId: number) => {
+    return (
+        $.ajax({
+            method: "DELETE",
+            url: `api/comments/${commentId.toString()}`
+        })
+    );
+}
