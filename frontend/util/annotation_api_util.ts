@@ -24,7 +24,7 @@ export const updateAnnotation = (updatedAnnotation: UpdatedAnnotation) => {
             url: `api/annotations/${updatedAnnotation.id.toString()}`,
             data: {updatedAnnotation}
         })
-    )
+    );
 }
 export const deleteAnnotation = (annotationId: number) => {
     return (
@@ -32,5 +32,5 @@ export const deleteAnnotation = (annotationId: number) => {
             method: "DELETE",
             url: `api/annotations/${annotationId.toString()}`
         })
-    )
+    );
 }
