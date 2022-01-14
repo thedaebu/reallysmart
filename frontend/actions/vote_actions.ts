@@ -25,9 +25,9 @@ export const fetchVote = (voteId: number) => (dispatch: Dispatch<AnyAction>) => 
             .then((receivedVote: ReceivedVote) => dispatch(receiveVote(receivedVote)))
     );
 };
-export const createVote = (CreatedVote: CreatedVote) => (dispatch: Dispatch<AnyAction>) => {
+export const createVote = (createdVote: CreatedVote) => (dispatch: Dispatch<AnyAction>) => {
     return (
-        VoteApiUtil.createVote(CreatedVote)
+        VoteApiUtil.createVote(createdVote)
             .then((receivedVote: ReceivedVote) => dispatch(receiveVote(receivedVote)))
     );
 };
