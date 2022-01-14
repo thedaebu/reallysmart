@@ -82,8 +82,10 @@ type SessionId = {
 // used for reducer files
 export type Action = {
     annotation: Annotation,
+    annotationId: number,
     annotations: {[key: number]: Annotation},
     comment: Comment,
+    commentId: number,
     comments: {[key: number]: Comment},
     errors: Array<string>,
     searches: {[key: number]: Track},
