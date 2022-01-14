@@ -25,13 +25,13 @@ const logoutCurrentUser = () => ({
 export const login = (sessionUser: SessionUser) => (dispatch: Dispatch<AnyAction>) => {
     return (
         SessionApiUtil.login(sessionUser)
-            .then((user: ReceivedUser) => dispatch(receiveCurrentUser(user)), errors => dispatch(receiveSessionErrors(errors.responseJSON)))
+            .then((receivedUser: ReceivedUser) => dispatch(receiveCurrentUser(receivedUser)), errors => dispatch(receiveSessionErrors(errors.responseJSON)))
     );
 };
 export const signup = (sessionUser: SessionUser) => (dispatch: Dispatch<AnyAction>) => {
     return (
         SessionApiUtil.signup(sessionUser)
-            .then((user: ReceivedUser) => dispatch(receiveCurrentUser(user)), errors => dispatch(receiveSessionErrors(errors.responseJSON)))
+            .then((receivedUser: ReceivedUser) => dispatch(receiveCurrentUser(receivedUser)), errors => dispatch(receiveSessionErrors(errors.responseJSON)))
     );
 };
 export const logout = () => (dispatch: Dispatch<AnyAction>) => {
