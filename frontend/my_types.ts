@@ -10,7 +10,7 @@ export type CreatedComment = {
     body: string,
     commentable_id: number
     commentable_type: string,
-    commenter_id: number,
+    commenter_id: number
 }
 export type CreatedVote = {
     voteable_type: string,
@@ -36,6 +36,21 @@ export type ReceivedUser = {
 }
 export type ReceivedVote = {
     vote: Vote
+}
+export type UpdatedAnnotation = {
+    annotator_id: number,
+    body: string,
+    end_index: number,
+    id: number,
+    start_index: number,
+    track_id: number
+}
+export type UpdatedComment = {
+    body: string,
+    commentable_id: number
+    commentable_type: string,
+    commenter_id: number,
+    id: number
 }
 
 // used for container files
