@@ -14,8 +14,10 @@ class Annotation < ApplicationRecord
         class_name: "Track"
 
     has_many :comments, 
-        as: :commentable
+        as: :commentable,
+        dependent: :destroy
 
     has_many :votes,
-        as: :voteable
+        as: :voteable,
+        dependent: :destroy
 end

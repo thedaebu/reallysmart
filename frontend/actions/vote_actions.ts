@@ -22,18 +22,18 @@ const removeVote = (voteId: number) => {
 export const fetchVote = (voteId: number) => (dispatch: Dispatch<AnyAction>) => {
     return (
         VoteApiUtil.fetchVote(voteId)
-            .then((vote: ReceivedVote) => dispatch(receiveVote(vote)))
+            .then((receivedVote: ReceivedVote) => dispatch(receiveVote(receivedVote)))
     );
 };
-export const createVote = (vote: CreatedVote) => (dispatch: Dispatch<AnyAction>) => {
+export const createVote = (createdVote: CreatedVote) => (dispatch: Dispatch<AnyAction>) => {
     return (
-        VoteApiUtil.createVote(vote)
-            .then((vote: ReceivedVote) => dispatch(receiveVote(vote)))
+        VoteApiUtil.createVote(createdVote)
+            .then((receivedVote: ReceivedVote) => dispatch(receiveVote(receivedVote)))
     );
 };
 export const deleteVote = (voteId: number) => (dispatch: Dispatch<AnyAction>) => {
     return (
         VoteApiUtil.deleteVote(voteId)
-            .then((voteId: number) => dispatch(removeVote(voteId)))
+            .then(() => dispatch(removeVote(voteId)))
     );
 };

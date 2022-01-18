@@ -21,12 +21,12 @@ const receiveTrack = (receivedTrack: ReceivedTrack) => {
 export const fetchTracks = () => (dispatch: Dispatch<AnyAction>) => {  
     return (
         TrackApiUtil.fetchTracks()
-            .then((tracks: ReceivedTracks) => dispatch(receiveTracks(tracks)))
+            .then((receievedTracks: ReceivedTracks) => dispatch(receiveTracks(receievedTracks)))
     );
 };
 export const fetchTrack = (trackId: string) => (dispatch: Dispatch<AnyAction>) => {
     return (
         TrackApiUtil.fetchTrack(trackId)
-            .then((track: ReceivedTrack) => dispatch(receiveTrack(track)))
+            .then((receivedTrack: ReceivedTrack) => dispatch(receiveTrack(receivedTrack)))
     );
 };

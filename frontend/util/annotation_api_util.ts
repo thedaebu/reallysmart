@@ -1,4 +1,4 @@
-import { CreatedAnnotation } from "../my_types";
+import { CreatedAnnotation, UpdatedAnnotation } from "../my_types";
 
 export const fetchAnnotation = (annotationId: number) => {
     return (
@@ -17,3 +17,20 @@ export const createAnnotation = (createdAnnotation: CreatedAnnotation) => {
         })
     );
 };
+export const updateAnnotation = (updatedAnnotation: UpdatedAnnotation) => {
+    return (
+        $.ajax({
+            method: "PUT",
+            url: `api/annotations/${updatedAnnotation.id.toString()}`,
+            data: { updatedAnnotation }
+        })
+    );
+}
+export const deleteAnnotation = (annotationId: number) => {
+    return (
+        $.ajax({
+            method: "DELETE",
+            url: `api/annotations/${annotationId.toString()}`
+        })
+    );
+}
