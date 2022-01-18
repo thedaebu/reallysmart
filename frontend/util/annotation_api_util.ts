@@ -22,7 +22,7 @@ export const updateAnnotation = (updatedAnnotation: UpdatedAnnotation) => {
         $.ajax({
             method: "PUT",
             url: `api/annotations/${updatedAnnotation.id.toString()}`,
-            data: {updatedAnnotation}
+            data: { updatedAnnotation }
         })
     );
 }
