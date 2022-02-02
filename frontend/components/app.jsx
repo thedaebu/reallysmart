@@ -25,8 +25,8 @@ const App = () => (
                 <SessionMenuContainer/>
                 <DemoUserContainer/>
             </div>
-        </header>        
-        <Switch>      
+        </header>
+        <Switch>
             <Route exact path="/" component={TrackIndexContainer}/>
             <AuthRoute exact path="/signup" component={SignupFormContainer}/>
             <AuthRoute exact path="/login"  component={LoginFormContainer}/>
