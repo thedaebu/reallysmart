@@ -1,10 +1,8 @@
 import React from "react";
 import {
   Route,
-  Redirect,
   Switch,
-  Link,
-  HashRouter
+  Link
 } from "react-router-dom";
 import { AuthRoute } from "../util/route_util";
 import DemoUserContainer from "./demo_user/demo_user_container";
