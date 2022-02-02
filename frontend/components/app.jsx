@@ -14,25 +14,26 @@ import SessionMenuContainer from "./session_menu/session_menu_container";
 import SignupFormContainer from "./session_form/signup_form_container";
 import TrackIndexContainer from "./tracks/track_index_container"
 import TrackShowContainer from "./tracks/track_show_container";
- 
 
-const App = () => (
-    <div>
-        <header className="header">
-            <SearchbarContainer/>
-            <Link to="/" className="header__logo">REALLYSMART</Link>
-            <div className="session-buttons">
-                <SessionMenuContainer/>
-                <DemoUserContainer/>
-            </div>
-        </header>
-        <Switch>
-            <Route exact path="/" component={TrackIndexContainer}/>
-            <AuthRoute exact path="/signup" component={SignupFormContainer}/>
-            <AuthRoute exact path="/login"  component={LoginFormContainer}/>
-            <Route path="/tracks/:trackId" component={TrackShowContainer}/>
-        </Switch>
-    </div>
-);
+function App() {
+    return (
+        <div>
+            <header className="header">
+                <SearchbarContainer/>
+                <Link to="/" className="header__logo">REALLYSMART</Link>
+                <div className="session-buttons">
+                    <SessionMenuContainer/>
+                    <DemoUserContainer/>
+                </div>
+            </header>
+            <Switch>
+                <Route exact path="/" component={TrackIndexContainer}/>
+                <AuthRoute exact path="/signup" component={SignupFormContainer}/>
+                <AuthRoute exact path="/login"  component={LoginFormContainer}/>
+                <Route path="/tracks/:trackId" component={TrackShowContainer}/>
+            </Switch>
+        </div>
+    );
+}
 
 export default App;
