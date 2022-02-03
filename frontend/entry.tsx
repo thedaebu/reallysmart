@@ -1,10 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import configureStore from "./store/store";
 import Root from "./components/root";
+import configureStore from "./store/store";
+import { Window } from "./my_types";
+import { Store } from "redux";
+
+declare const window: Window
 
 document.addEventListener("DOMContentLoaded", () => {
-    let store;
+    let store: any;
     if (window.currentUser) {
         const preloadedState = {
           entities: {
@@ -17,9 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
         store = configureStore();
     }
-    const root = document.getElementById("root");
-    
-    window.getState = store.getState;
 
-    ReactDOM.render(<Root store={store} />, root);
+    const root = document.getElementById("root");
+    ReactDOM.render(<Root store={ store } />, root);
 });
