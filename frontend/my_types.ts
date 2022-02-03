@@ -149,6 +149,7 @@ export type Vote = {
 // used for Window
 export type Window = {
     angellist: string,
+    currentUser: User,
     eyeIcon: string,
     fireIcon: string,
     getSelection: Function,
