@@ -1,11 +1,11 @@
 import React from "react";
 import { Provider } from "react-redux";
 import { HashRouter } from "react-router-dom";
-import { Store } from "redux";
+import { AnyAction, Store } from "redux";
 import App from "./app";
 
 type Props = {
-    store: Store
+    store: Store<any, AnyAction>
 }
 
 function Root(props: Props) {
