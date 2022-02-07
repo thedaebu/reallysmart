@@ -143,7 +143,7 @@ function AnnotationShow(props: Props) {
         };
 
         createAnnotation(annotation)
-            .then(() => fetchTrack(track.id));
+            .then(() => fetchTrack(track.id.toString()));
         closeAnnotationModal();
         setAnnotationBody("");
         setAnnotationCreateStatusFalse();
@@ -161,6 +161,7 @@ function AnnotationShow(props: Props) {
         return (
             <AnnotationShowItemContainer
                 annotation={annotation}
+                track={track}
                 yCoord={yCoord}
             />
         );
