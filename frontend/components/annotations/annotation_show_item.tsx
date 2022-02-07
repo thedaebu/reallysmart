@@ -6,11 +6,13 @@ import VotesShowContainer from "../votes/votes_show_container";
 type Props = {
     annotation: Annotation,
     currentUser: User,
+    deleteAnnotation: Function,
+    updateAnnotation: Function,
     yCoord: number
 }
 
 function AnnotationShowItem(props: Props) {
-    const { annotation, currentUser, yCoord } = props;
+    const { annotation, currentUser, deleteAnnotation, updateAnnotation, yCoord } = props;
 
     function updatebuttons() {
         if (currentUser && currentUser.username === annotation.annotator) {

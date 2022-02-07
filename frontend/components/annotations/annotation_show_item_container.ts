@@ -11,8 +11,8 @@ const mSTP = (state: State) => {
 
 const mDTP = (dispatch: Function) => {
     return ({
-        updateAnnotation: (annotation: Annotation) => dispatch(updateAnnotation(annotation)),
-        deleteAnnotation: (annotationId: number) => dispatch(deleteAnnotation(annotationId))
+        deleteAnnotation: (annotationId: number) => dispatch(deleteAnnotation(annotationId)),
+        updateAnnotation: (annotation: Annotation) => dispatch(updateAnnotation(annotation))
     })
 };
 
