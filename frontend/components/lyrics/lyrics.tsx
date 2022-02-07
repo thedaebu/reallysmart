@@ -229,7 +229,6 @@ function LyricsShow(props: Props) {
                     <AnnotationShowContainer
                         annotation={selectedAnnotation}
                         annotationCreateStatus={annotationCreateStatus}
-                        currentUser={currentUser}
                         endIndex={endIndex}
                         setAnnotationCreateStatusFalse={setAnnotationCreateStatusFalse}
                         startIndex={startIndex}

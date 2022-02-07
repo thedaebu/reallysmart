@@ -1,7 +1,7 @@
 import React, { ChangeEvent, MouseEvent, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Annotation, CreatedAnnotation, Track, User } from "../../my_types";
-import AnnotationShowItem from "./annotation_show_item";
+import { AnnotationShowItemContainer } from "./annotation_show_item_container";
 
 type Props = {
     annotation: Annotation | null,
@@ -159,9 +159,8 @@ function AnnotationShow(props: Props) {
 
     if (annotation !== null) {
         return (
-            <AnnotationShowItem
+            <AnnotationShowItemContainer
                 annotation={annotation}
-                currentUser={currentUser}
                 yCoord={yCoord}
             />
         );

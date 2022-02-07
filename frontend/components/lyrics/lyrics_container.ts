@@ -11,6 +11,7 @@ const mSTP = (state: State) => {
         currentUser: state.entities.user[state.session.id]
     });
 };
+
 const mDTP = (dispatch: Function) => {
     return ({
         closeAnnotationModal: () => dispatch(closeAnnotationModal()),

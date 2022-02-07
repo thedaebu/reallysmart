@@ -12,6 +12,25 @@ type Props = {
 function AnnotationShowItem(props: Props) {
     const { annotation, currentUser, yCoord } = props;
 
+    function updatebuttons() {
+        if (currentUser && currentUser.username === annotation.annotator) {
+            return (
+                <div className="annotation-show-item__buttons">
+                    <button className="annotation-show-item__edit">
+                        Edit
+                    </button>
+                    <button className="annotation-show-item__delete">
+                        Delete
+                    </button>
+                </div>
+            );
+        } else {
+            return null;
+        }
+    }
+
+    
+
     return (
         <div
             className="annotation-show-item" 
@@ -22,6 +41,7 @@ function AnnotationShowItem(props: Props) {
         >
             <p className="annotation-show-item__name">Really Smart Annotation by {annotation.annotator}</p>
             <p className="annotation-show-item__body">{annotation.body}</p>
+            { updatebuttons() }
             <VotesShowContainer
                 numberOfVotes={annotation.number_of_votes}
                 parent={annotation}
