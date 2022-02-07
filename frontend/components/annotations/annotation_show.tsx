@@ -62,7 +62,7 @@ function AnnotationShow(props: Props) {
                 >
                     <form
                         id="annotation-show-form"
-                        onSubmit={handleAnnotationSubmit}
+                        onSubmit={handleAnnotationCreateSubmit}
                     >
                         <textarea
                             className="annotation-show-form__body" 
@@ -131,7 +131,7 @@ function AnnotationShow(props: Props) {
         return (e: ChangeEvent<HTMLTextAreaElement>) => setAnnotationBody(e.currentTarget.value);
     }
 
-    function handleAnnotationSubmit(e: MouseEvent<HTMLFormElement>) {
+    function handleAnnotationCreateSubmit(e: MouseEvent<HTMLFormElement>) {
         e.preventDefault();
 
         const annotation: CreatedAnnotation = {
