@@ -174,7 +174,8 @@ function CommentShow(props: Props) {
             commenter_id: currentUser.id
         };
 
-        createComment(comment).then(() => fetchTrack(parent.id));
+        createComment(comment)
+            .then(() => fetchTrack(parent.id.toString()));
         setTrackCreateStatus(false);
     }
 
@@ -188,7 +189,8 @@ function CommentShow(props: Props) {
             commenter_id: currentUser.id
         };
 
-        createComment(comment).then(() => fetchAnnotation(parent.id));
+        createComment(comment)
+            .then(() => fetchAnnotation(parent.id));
         setAnnotationCreateStatus(false);
     }
 

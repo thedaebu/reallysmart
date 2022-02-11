@@ -1,4 +1,5 @@
 import React, { MouseEvent, useState } from "react";
+import { fetchAnnotation } from "../../actions/annotation_actions";
 import { Annotation, Track, User } from "../../my_types";
 import CommentShowContainer from "../comments/comment_show_container";
 import VotesShowContainer from "../votes/votes_show_container";
@@ -31,9 +32,12 @@ function AnnotationShowItem(props: Props) {
             );
         } else if (annotationDeleteStatus === true) {
             return (
-                <div>
-                    <button className="annotation-show-item__delete" onClick={handleAnnotationDeleteSubmit}>
+                <div className="annotation-show-item__buttons">
+                    <p className="annotation-show_item__question">
                         Are you sure?
+                    </p>
+                    <button className="annotation-show-item__delete" onClick={handleAnnotationDeleteSubmit}>
+                        Yes
                     </button>
                     <button className="annotation-show-item__delete" onClick={handleAnnotationDeleteStatus}>
                         Cancel
@@ -82,8 +86,9 @@ function AnnotationShowItem(props: Props) {
     function handleAnnotationDeleteSubmit(e: MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
 
-        deleteAnnotation(annotation.id)
-            .then(() => fetchTrack(track.id));
+        const deletedAnnotationId = annotation.id;
+        deleteAnnotation(deletedAnnotationId)
+            .then(() => fetchAnnotation(deletedAnnotationId));
         setAnnotationDeleteStatus(false);
     }
 

@@ -8,7 +8,8 @@ import AnnotationShow from "./annotation_show";
 
 const mSTP = (state: State) => {
     return ({
-        annotationModal: state.modal.annotationModal,currentUser: state.entities.user[state.session.id]
+        annotationModal: state.modal.annotationModal,
+        currentUser: state.entities.user[state.session.id]
     });
 };
 
