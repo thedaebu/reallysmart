@@ -1,9 +1,8 @@
 import { connect } from "react-redux";
+import { deleteAnnotation, fetchAnnotation, updateAnnotation } from "../../actions/annotation_actions";
+import { fetchTrack } from "../../actions/track_actions";
 import { Annotation, State } from "../../my_types";
-import { deleteAnnotation, updateAnnotation } from "../../actions/annotation_actions";
 import AnnotationShowItem from "./annotation_show_item";
-import { fetchTrack } from "../../util/track_api_util";
-import { fetchAnnotation } from "../../util/annotation_api_util";
 
 const mSTP = (state: State) => {
     return ({

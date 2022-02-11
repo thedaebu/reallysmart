@@ -40,14 +40,17 @@ function LyricsShow(props: Props) {
     const [yCoord, setYCoord] = useState<number>(-367);
 
     useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [])
+
+    useEffect(() => {
         track.annotation_ids.forEach((annotationId: number) => {
             fetchAnnotation(annotationId);
         });
         track.comment_ids.forEach((commentId: number) => {
             fetchComment(commentId);
         });
-        window.scrollTo(0, 0);
-    }, [])
+    }, [track.annotation_ids])
 
     function annotatedLyrics() {
         const currentAnnotations: Array<Annotation> = track.annotation_ids.map((id: number) => {

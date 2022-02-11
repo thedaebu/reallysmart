@@ -12,9 +12,7 @@ const annotationsReducer = (state: {[key: number]: Annotation} = {}, action: Act
         case RECEIVE_ANNOTATION:
             return Object.assign({}, state, {[action.annotation.id]: action.annotation});
         case REMOVE_ANNOTATION:
-            debugger
             delete newState[action.annotationId];
-            debugger
             return newState;
         default:
             return state;

@@ -1,5 +1,4 @@
 import React, { MouseEvent, useState } from "react";
-import { fetchAnnotation } from "../../actions/annotation_actions";
 import { Annotation, Track, User } from "../../my_types";
 import CommentShowContainer from "../comments/comment_show_container";
 import VotesShowContainer from "../votes/votes_show_container";
@@ -8,6 +7,7 @@ type Props = {
     annotation: Annotation,
     currentUser: User,
     deleteAnnotation: Function,
+    fetchAnnotation: Function,
     fetchTrack: Function,
     track: Track,
     updateAnnotation: Function,
@@ -15,13 +15,14 @@ type Props = {
 }
 
 function AnnotationShowItem(props: Props) {
-    const { annotation, currentUser, deleteAnnotation, fetchTrack, track, updateAnnotation, yCoord } = props;
+    const { annotation, currentUser, deleteAnnotation, fetchAnnotation, fetchTrack, track, updateAnnotation, yCoord } = props;
 
     const [annotationDeleteStatus, setAnnotationDeleteStatus] = useState<boolean>(false);
     const [annotationUpdateStatus, setAnnotationUpdateStatus] = useState<boolean>(false);
+    const [currentAnnotation, setCurrentAnnotation] = useState<Annotation>(props.annotation);
 
     function updatebuttons() {
-        if (currentUser && currentUser.username === annotation.annotator && annotationDeleteStatus === false && annotationUpdateStatus === false) {
+        if (currentUser && currentUser.username === currentAnnotation.annotator && annotationDeleteStatus === false && annotationUpdateStatus === false) {
             return (
                 <div className="annotation-show-item__buttons">
                     <button className="annotation-show-item__edit" onClick={handleAnnotationUpdateStatus}>
@@ -86,36 +87,42 @@ function AnnotationShowItem(props: Props) {
     function handleAnnotationDeleteSubmit(e: MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
 
-        const deletedAnnotationId = annotation.id;
-        deleteAnnotation(deletedAnnotationId)
-            .then(() => fetchAnnotation(deletedAnnotationId));
+        deleteAnnotation(currentAnnotation.id)
+            .then(() => fetchTrack(track.id));
+        setCurrentAnnotation(null);
         setAnnotationDeleteStatus(false);
     }
 
-    return (
-        <div
-            className="annotation-show-item" 
-            style={{
-                position: "relative", 
-                top: yCoord
-            }}
-        >
-            <p className="annotation-show-item__name">Really Smart Annotation by {annotation.annotator}</p>
-            <p className="annotation-show-item__body">{annotation.body}</p>
-            {updatebuttons()}
-            <VotesShowContainer
-                numberOfVotes={annotation.number_of_votes}
-                parent={annotation}
-                voteableId={annotation.id}
-                voteableType="Annotation"
-            />
-            <CommentShowContainer
-                commentableType="Annotation"
-                currentUser={currentUser}
-                parent={annotation}
-            />
-        </div>
-    );
+    if (currentAnnotation) {
+        return (
+            <div
+                className="annotation-show-item" 
+                style={{
+                    position: "relative", 
+                    top: yCoord
+                }}
+            >
+                <p className="annotation-show-item__name">Really Smart Annotation by {annotation.annotator}</p>
+                <p className="annotation-show-item__body">{annotation.body}</p>
+                {updatebuttons()}
+                <VotesShowContainer
+                    numberOfVotes={annotation.number_of_votes}
+                    parent={annotation}
+                    voteableId={annotation.id}
+                    voteableType="Annotation"
+                />
+                <CommentShowContainer
+                    commentableType="Annotation"
+                    currentUser={currentUser}
+                    parent={annotation}
+                />
+            </div>
+        );
+    } else {
+        return (
+            null
+        );
+    }
 }
 
 export default AnnotationShowItem;
