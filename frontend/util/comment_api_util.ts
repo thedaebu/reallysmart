@@ -17,12 +17,12 @@ export const createComment = (comment: CreatedComment) => {
         })
     );
 };
-export const updateComment = (updatedComment: UpdatedComment) => {
+export const updateComment = (comment: UpdatedComment) => {
     return (
         $.ajax({
             method: "PUT",
-            url: `api/comments/${updatedComment.id.toString()}`,
-            data: { updatedComment }
+            url: `api/comments/${comment.id.toString()}`,
+            data: { comment }
         })
     );
 }
