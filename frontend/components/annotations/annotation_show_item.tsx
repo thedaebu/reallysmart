@@ -23,13 +23,15 @@ function AnnotationShowItem(props: Props) {
     const [updatedAnnotationBody, setUpdatedAnnotationBody] = useState<string>(props.annotation.body);
 
     function updatebuttons() {
-        if (currentUser && currentUser.username === currentAnnotation.annotator && annotationDeleteStatus === false && annotationUpdateStatus === false) {
+        if (currentUser.username === currentAnnotation.annotator && annotationDeleteStatus === false) {
             return (
                 <div className="annotation-show-item__buttons">
                     <button className="annotation-show-item__edit" onClick={handleAnnotationUpdateStatus}>
                         Edit
                     </button>
-                    {deleteButton()} 
+                    <button className="annotation-show-item__delete" onClick={handleAnnotationDeleteStatus}>
+                        Delete
+                    </button>
                 </div>
             );
         } else if (annotationDeleteStatus === true) {
@@ -91,20 +93,6 @@ function AnnotationShowItem(props: Props) {
             .then(() => fetchTrack(track.id));
         setCurrentAnnotation(null);
         setAnnotationUpdateStatus(false);
-    }
-
-    function deleteButton() {
-        if (annotationDeleteStatus === false) {
-            return (
-                <button className="annotation-show-item__delete" onClick={handleAnnotationDeleteStatus}>
-                    Delete
-                </button>
-            );
-        } else {
-            return (
-                null
-            );
-        }
     }
 
     function handleAnnotationDeleteSubmit(e: MouseEvent<HTMLButtonElement>) {
@@ -183,8 +171,7 @@ function AnnotationShowItem(props: Props) {
                     <div className="annotation-show-form__bottom">
                         <button className="annotation-show-form__bottom-save"
                         type="submit">
-                            <p className="annotation-show-form__bottom-save-text">Save</p>
-                            <p className="annotation-show-form__bottom-save-score">(+5 RSQ)</p>
+                            <p className="annotation-show-form__bottom-save-text">Update</p>
                         </button>
                         <button
                             className="annotation-show-form__bottom-cancel"
