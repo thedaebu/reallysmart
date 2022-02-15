@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { deleteAnnotation, fetchAnnotation, updateAnnotation } from "../../actions/annotation_actions";
+import { deleteAnnotation, updateAnnotation } from "../../actions/annotation_actions";
 import { fetchTrack } from "../../actions/track_actions";
 import { Annotation, State } from "../../my_types";
 import AnnotationShowItem from "./annotation_show_item";
@@ -13,7 +13,6 @@ const mSTP = (state: State) => {
 const mDTP = (dispatch: Function) => {
     return ({
         deleteAnnotation: (annotationId: number) => dispatch(deleteAnnotation(annotationId)),
-        fetchAnnotation: (annotationId: number) => dispatch(fetchAnnotation(annotationId)),
         fetchTrack: (trackId: string) => dispatch(fetchTrack(trackId)),
         updateAnnotation: (annotation: Annotation) => dispatch(updateAnnotation(annotation))
     })
