@@ -1,7 +1,7 @@
 import React, { useState, MouseEvent, ChangeEvent, FormEvent } from "react";
 import { Link } from "react-router-dom";
 import { Annotation, Comment, CreatedComment, Track, User } from "../../my_types";
-import CommentShowItem from "./comment_show_item";
+import { CommentShowItemContainer } from "./comment_show_item_container";
 
 type Props = {
     commentableType: string,
@@ -109,7 +109,7 @@ function CommentShow(props: Props) {
             return (
                 <ul className="comment-show__items">
                     {currentComments.map(comment => {
-                        return <CommentShowItem
+                        return <CommentShowItemContainer
                             comment={comment}
                             commentableType={commentableType}
                             key={comment.id}
