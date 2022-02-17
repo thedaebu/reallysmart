@@ -44,6 +44,15 @@ function LyricsShow(props: Props) {
     }, [])
 
     useEffect(() => {
+        if (selectedAnnotation) {
+            const tempAnnotationId = selectedAnnotation.id;
+            if (annotations[tempAnnotationId]){
+                setSelectedAnnotation(annotations[tempAnnotationId]);
+            }
+        }
+    }, [annotations])
+
+    useEffect(() => {
         track.annotation_ids.forEach((annotationId: number) => {
             fetchAnnotation(annotationId);
         });

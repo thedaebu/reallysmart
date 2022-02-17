@@ -7,7 +7,6 @@ type Props = {
     annotation: Annotation,
     currentUser: User,
     deleteAnnotation: Function,
-    fetchAnnotation: Function,
     fetchTrack: Function,
     track: Track,
     updateAnnotation: Function,
@@ -23,7 +22,7 @@ function AnnotationShowItem(props: Props) {
     const [updatedAnnotationBody, setUpdatedAnnotationBody] = useState<string>(props.annotation.body);
 
     function updatebuttons() {
-        if (currentUser.username === currentAnnotation.annotator && annotationDeleteStatus === false) {
+        if (currentUser && currentUser.username === currentAnnotation.annotator && annotationDeleteStatus === false) {
             return (
                 <div className="annotation-show-item__buttons">
                     <button className="annotation-show-item__edit" onClick={handleAnnotationUpdateStatus}>
