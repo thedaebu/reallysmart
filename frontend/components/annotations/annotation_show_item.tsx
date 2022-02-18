@@ -22,7 +22,7 @@ function AnnotationShowItem(props: Props) {
     const [updatedAnnotationBody, setUpdatedAnnotationBody] = useState<string>(props.annotation.body);
 
     function updatebuttons() {
-        if (currentUser && currentUser.username === currentAnnotation.annotator && annotationDeleteStatus === false) {
+        if (currentUser && currentUser.id === currentAnnotation.annotator_id && annotationDeleteStatus === false) {
             return (
                 <div className="annotation-show-item__buttons">
                     <button className="annotation-show-item__edit" onClick={handleAnnotationUpdateStatus}>
@@ -123,7 +123,6 @@ function AnnotationShowItem(props: Props) {
                 />
                 <CommentShowContainer
                     commentableType="Annotation"
-                    currentUser={currentUser}
                     parent={annotation}
                 />
             </div>
