@@ -7,7 +7,8 @@ import CommentShow from "./comment_show";
 
 const mSTP = (state: State) => {
     return ({
-        comments: state.entities.comments
+        comments: state.entities.comments,
+        currentUser: state.entities.user[state.session.id]
     });
 };
 
