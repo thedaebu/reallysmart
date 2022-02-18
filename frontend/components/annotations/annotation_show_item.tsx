@@ -66,16 +66,6 @@ function AnnotationShowItem(props: Props) {
         return (e: ChangeEvent<HTMLTextAreaElement>) => setUpdatedAnnotationBody(e.currentTarget.value);
     }
 
-    function handleAnnotationDeleteStatus(e: MouseEvent<HTMLButtonElement>) {
-        e.preventDefault();
-
-        if (annotationDeleteStatus === false) {
-            setAnnotationDeleteStatus(true);
-        } else {
-            setAnnotationDeleteStatus(false);
-        }
-    }
-
     function handleUpdatedAnnotationSubmit(e: MouseEvent<HTMLFormElement>) {
         e.preventDefault();
 
@@ -92,6 +82,16 @@ function AnnotationShowItem(props: Props) {
             .then(() => fetchTrack(track.id));
         setCurrentAnnotation(null);
         setAnnotationUpdateStatus(false);
+    }
+    
+    function handleAnnotationDeleteStatus(e: MouseEvent<HTMLButtonElement>) {
+        e.preventDefault();
+
+        if (annotationDeleteStatus === false) {
+            setAnnotationDeleteStatus(true);
+        } else {
+            setAnnotationDeleteStatus(false);
+        }
     }
 
     function handleAnnotationDeleteSubmit(e: MouseEvent<HTMLButtonElement>) {
