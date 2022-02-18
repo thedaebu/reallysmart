@@ -112,6 +112,7 @@ function CommentShow(props: Props) {
                         return <CommentShowItemContainer
                             comment={comment}
                             commentableType={commentableType}
+                            parent={parent}
                             key={comment.id}
                         />
                     })}
