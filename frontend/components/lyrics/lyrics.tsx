@@ -7,7 +7,6 @@ declare const window: Window;
 type Props = {
     annotations: {[key: number]: Annotation},
     closeAnnotationModal: Function,
-    currentUser: User,
     fetchAnnotation: Function,
     fetchComment: Function,
     openAnnotationModal: Function,
@@ -31,7 +30,7 @@ type Dataset = {
 }
 
 function LyricsShow(props: Props) {
-    const { annotations, closeAnnotationModal, currentUser, fetchAnnotation, fetchComment, openAnnotationModal, track } = props;
+    const { annotations, closeAnnotationModal, fetchAnnotation, fetchComment, openAnnotationModal, track } = props;
     
     const [annotationCreateStatus, setAnnotationCreateStatus] = useState<boolean>(false);
     const [endIndex, setEndIndex] = useState<number>(0);
@@ -41,8 +40,16 @@ function LyricsShow(props: Props) {
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        track.annotation_ids.forEach((annotationId: number) => {
+            fetchAnnotation(annotationId);
+        });
+        track.comment_ids.forEach((commentId: number) => {
+            fetchComment(commentId);
+        });
     }, [])
 
+    // used for editing annotations
+    // without it, annotation will not update live and user would have to click out of annotation and click on annotation again
     useEffect(() => {
         if (selectedAnnotation) {
             const tempAnnotationId = selectedAnnotation.id;
@@ -51,15 +58,6 @@ function LyricsShow(props: Props) {
             }
         }
     }, [annotations])
-
-    useEffect(() => {
-        track.annotation_ids.forEach((annotationId: number) => {
-            fetchAnnotation(annotationId);
-        });
-        track.comment_ids.forEach((commentId: number) => {
-            fetchComment(commentId);
-        });
-    }, [track.annotation_ids])
 
     function annotatedLyrics() {
         const currentAnnotations: Array<Annotation> = track.annotation_ids.map((id: number) => {
@@ -233,7 +231,6 @@ function LyricsShow(props: Props) {
                     </pre> 
                     <CommentShowContainer
                         commentableType="Track"
-                        currentUser={currentUser}
                         parent={track}
                     />
                 </div>
