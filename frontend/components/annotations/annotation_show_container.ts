@@ -2,13 +2,14 @@ import { connect } from "react-redux";
 import { CreatedAnnotation, State } from "../../my_types";
 import { createAnnotation } from "../../actions/annotation_actions";
 import { closeAnnotationModal } from "../../actions/annotation_modal_actions";
+import { fetchComment } from "../../actions/comment_actions";
 import { fetchTrack } from "../../actions/track_actions";
 import AnnotationShow from "./annotation_show";
-import { fetchComment } from "../../actions/comment_actions";
 
 const mSTP = (state: State) => {
     return ({
-        annotationModal: state.modal.annotationModal
+        annotationModal: state.modal.annotationModal,
+        currentUser: state.entities.user[state.session.id]
     });
 };
 

@@ -34,7 +34,7 @@ function VotesShow(props: Props) {
 
         setCurrentUserVote(findCurrentUserVote(currentUser, votes, voteableId, voteableType));
 
-        if (currentUserVote !== null) {
+        if (currentUserVote) {
             deleteVote(currentUserVote.id)
                 .then(() => fetchParent(parent.id));
 
@@ -71,7 +71,7 @@ function VotesShow(props: Props) {
         }
     }
 
-    if (currentUser && currentUserVote !== null) {
+    if (currentUser && currentUserVote) {
         return (
             <div className="vote-show">
                 <RiThumbUpLine
@@ -81,7 +81,7 @@ function VotesShow(props: Props) {
                 <div className="vote-show__count">+{currentNumberOfVotes}</div>
             </div>
         );
-    } else if (currentUser && currentUserVote === null) {
+    } else if (currentUser && !currentUserVote) {
         return (
             <div className="vote-show">
                 <RiThumbUpLine

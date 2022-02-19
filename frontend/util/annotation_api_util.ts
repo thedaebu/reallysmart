@@ -8,21 +8,21 @@ export const fetchAnnotation = (annotationId: number) => {
         })
     );
 };
-export const createAnnotation = (createdAnnotation: CreatedAnnotation) => {
+export const createAnnotation = (annotation: CreatedAnnotation) => {
     return (
         $.ajax({
             method: "POST",
             url: `api/annotations`,
-            data: { createdAnnotation }
+            data: { annotation }
         })
     );
 };
-export const updateAnnotation = (updatedAnnotation: UpdatedAnnotation) => {
+export const updateAnnotation = (annotation: UpdatedAnnotation) => {
     return (
         $.ajax({
             method: "PUT",
-            url: `api/annotations/${updatedAnnotation.id.toString()}`,
-            data: { updatedAnnotation }
+            url: `api/annotations/${annotation.id.toString()}`,
+            data: { annotation }
         })
     );
 }

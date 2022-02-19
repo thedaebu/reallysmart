@@ -1,7 +1,7 @@
 import React, { ChangeEvent, MouseEvent, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Annotation, CreatedAnnotation, Track, User } from "../../my_types";
-import AnnotationShowItem from "./annotation_show_item";
+import { AnnotationShowItemContainer } from "./annotation_show_item_container";
 
 type Props = {
     annotation: Annotation | null,
@@ -62,7 +62,7 @@ function AnnotationShow(props: Props) {
                 >
                     <form
                         id="annotation-show-form"
-                        onSubmit={handleAnnotationSubmit}
+                        onSubmit={handleAnnotationCreateSubmit}
                     >
                         <textarea
                             className="annotation-show-form__body" 
@@ -131,7 +131,7 @@ function AnnotationShow(props: Props) {
         return (e: ChangeEvent<HTMLTextAreaElement>) => setAnnotationBody(e.currentTarget.value);
     }
 
-    function handleAnnotationSubmit(e: MouseEvent<HTMLFormElement>) {
+    function handleAnnotationCreateSubmit(e: MouseEvent<HTMLFormElement>) {
         e.preventDefault();
 
         const annotation: CreatedAnnotation = {
@@ -143,7 +143,7 @@ function AnnotationShow(props: Props) {
         };
 
         createAnnotation(annotation)
-            .then(() => fetchTrack(track.id));
+            .then(() => fetchTrack(track.id.toString()));
         closeAnnotationModal();
         setAnnotationBody("");
         setAnnotationCreateStatusFalse();
@@ -159,9 +159,9 @@ function AnnotationShow(props: Props) {
 
     if (annotation !== null) {
         return (
-            <AnnotationShowItem
+            <AnnotationShowItemContainer
                 annotation={annotation}
-                currentUser={currentUser}
+                track={track}
                 yCoord={yCoord}
             />
         );

@@ -1,7 +1,7 @@
 import React, { useState, MouseEvent, ChangeEvent, FormEvent } from "react";
 import { Link } from "react-router-dom";
 import { Annotation, Comment, CreatedComment, Track, User } from "../../my_types";
-import CommentShowItem from "./comment_show_item";
+import { CommentShowItemContainer } from "./comment_show_item_container";
 
 type Props = {
     commentableType: string,
@@ -109,9 +109,10 @@ function CommentShow(props: Props) {
             return (
                 <ul className="comment-show__items">
                     {currentComments.map(comment => {
-                        return <CommentShowItem
+                        return <CommentShowItemContainer
                             comment={comment}
                             commentableType={commentableType}
+                            parent={parent}
                             key={comment.id}
                         />
                     })}
@@ -174,7 +175,8 @@ function CommentShow(props: Props) {
             commenter_id: currentUser.id
         };
 
-        createComment(comment).then(() => fetchTrack(parent.id));
+        createComment(comment)
+            .then(() => fetchTrack(parent.id.toString()));
         setTrackCreateStatus(false);
     }
 
@@ -188,7 +190,8 @@ function CommentShow(props: Props) {
             commenter_id: currentUser.id
         };
 
-        createComment(comment).then(() => fetchAnnotation(parent.id));
+        createComment(comment)
+            .then(() => fetchAnnotation(parent.id));
         setAnnotationCreateStatus(false);
     }
 

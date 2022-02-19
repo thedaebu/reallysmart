@@ -7,10 +7,10 @@ import { fetchComment } from "../../actions/comment_actions";
 
 const mSTP = (state: State) => {
     return ({
-        annotations: state.entities.annotations,
-        currentUser: state.entities.user[state.session.id]
+        annotations: state.entities.annotations
     });
 };
+
 const mDTP = (dispatch: Function) => {
     return ({
         closeAnnotationModal: () => dispatch(closeAnnotationModal()),

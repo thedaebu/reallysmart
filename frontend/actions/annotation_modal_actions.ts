@@ -3,7 +3,7 @@ export const CLOSE_ANNOTATION_MODAL = "CLOSE_ANNOTATION_MODAL";
 
 export const openAnnotationModal = () => {
     return ({
-        type: OPEN_ANNOTATION_MODAL,
+        type: OPEN_ANNOTATION_MODAL
     });
 };
 export const closeAnnotationModal = () => {

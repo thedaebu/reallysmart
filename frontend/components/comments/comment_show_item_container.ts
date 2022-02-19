@@ -1,23 +1,23 @@
 import { connect } from "react-redux";
-import { CreatedComment, State } from "../../my_types";
 import { fetchAnnotation } from "../../actions/annotation_actions";
-import { createComment } from "../../actions/comment_actions";
+import { deleteComment, updateComment } from "../../actions/comment_actions";
 import { fetchTrack } from "../../actions/track_actions";
-import CommentShow from "./comment_show";
+import { State, UpdatedComment } from "../../my_types";
+import CommentShowItem from "./comment_show_item";
 
 const mSTP = (state: State) => {
-    return ({
-        comments: state.entities.comments,
+    return({
         currentUser: state.entities.user[state.session.id]
-    });
+    })
 };
 
 const mDTP = (dispatch: Function) => {
     return ({
-        createComment: (comment: CreatedComment) => dispatch(createComment(comment)),
+        deleteComment: (commentId: number) => dispatch(deleteComment(commentId)),
         fetchAnnotation: (annotationId: number) => dispatch(fetchAnnotation(annotationId)),
         fetchTrack: (trackId: string) => dispatch(fetchTrack(trackId)),
-    });
+        updateComment: (comment: UpdatedComment) => dispatch(updateComment(comment))
+    })
 };
 
-export default connect(mSTP, mDTP)(CommentShow);
+export const CommentShowItemContainer = connect(mSTP, mDTP)(CommentShowItem);
