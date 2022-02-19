@@ -113,13 +113,13 @@ function AnnotationShowItem(props: Props) {
             >
                 <p className="annotation-show-item__name">Really Smart Annotation by {annotation.annotator}</p>
                 <p className="annotation-show-item__body">{annotation.body}</p>
-                {updatebuttons()}
                 <VotesShowContainer
                     numberOfVotes={annotation.number_of_votes}
                     parent={annotation}
                     voteableId={annotation.id}
                     voteableType="Annotation"
                 />
+                {updatebuttons()}
                 <CommentShowContainer
                     commentableType="Annotation"
                     parent={annotation}
