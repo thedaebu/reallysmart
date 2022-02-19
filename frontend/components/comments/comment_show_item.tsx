@@ -81,7 +81,7 @@ function CommentShowItem(props: Props) {
         } else if (commentDeleteStatus === true) {
             return (
                 <div className="comment-show-item__buttons">
-                    <p className="comment-show_item__question">
+                    <p className="comment-show-item__question">
                         Are you sure?
                     </p>
                     <button className="comment-show-item__delete" onClick={handleCommentDeleteSubmit}>
@@ -177,7 +177,7 @@ function CommentShowItem(props: Props) {
                     />
                     <div className="comment-show-form__buttons">
                         <button className="comment-show-form__submit">
-                            <p>Submit</p>
+                            <p>Edit</p>
                         </button>
                         <button
                             className="comment-show-form__cancel"

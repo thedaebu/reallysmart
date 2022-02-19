@@ -36,7 +36,7 @@ function AnnotationShowItem(props: Props) {
         } else if (annotationDeleteStatus === true) {
             return (
                 <div className="annotation-show-item__buttons">
-                    <p className="annotation-show_item__question">
+                    <p className="annotation-show-item__question">
                         Are you sure?
                     </p>
                     <button className="annotation-show-item__delete" onClick={handleAnnotationDeleteSubmit}>
