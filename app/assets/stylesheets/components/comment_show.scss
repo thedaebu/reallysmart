@@ -6,6 +6,22 @@ comment-show-item {
     padding: 20px 0px 20px 0px;
     margin: 0px 0px 0px 15px;
 }
+comment-show-item-button {
+    cursor: pointer;
+    background: #eeeeee;
+    font-family: $programmereg;
+    color:rgb(112, 112, 112);
+    font-size: 15px;
+    line-height: 20px;
+    border: 1px solid #c0c0c0;
+    border-radius: 2px;
+    padding: 0px 4px 0px 4px;
+    margin: 0px 4px 0px 0px;
+}
+comment-show-item-button-hover {
+    color:rgb(70, 70, 70);
+    background: #c0c0c0;
+}
 
 .comment-show {
     width: 96%;
@@ -186,5 +202,24 @@ comment-show-item {
         font-size: 17px;
         line-height: 23px;
         padding: 17px 0px 0px 0px;
+    }
+}
+
+.comment-show-item__buttons {
+    font-size: 15px;
+    .comment-show-item__question {
+        padding: 0px 0px 4px 0px;
+    }
+    .comment-show-item__edit {
+        @extend comment-show-item-button;
+        &:hover {
+            @extend comment-show-item-button-hover
+        }
+    }
+    .comment-show-item__delete {
+        @extend comment-show-item-button;
+        &:hover {
+            @extend comment-show-item-button-hover
+        }
     }
 }
