@@ -1,5 +1,5 @@
 import React, { ChangeEvent, MouseEvent, useState } from "react";
-import { Annotation, Comment, Track, User } from "../../my_types";
+import { Annotation, Comment, Track, UpdatedComment, User } from "../../my_types";
 import VotesShowContainer from "../votes/votes_show_container";
 
 type Props = {
@@ -113,6 +113,24 @@ function CommentShowItem(props: Props) {
 
     function handleUpdatedCommentSubmit(e: MouseEvent<HTMLFormElement>) {
         e.preventDefault();
+
+        const updatedComment: UpdatedComment = {
+            body: updatedCommentBody,
+            commentable_type: commentableType,
+            commentable_id: parent.id,
+            commenter_id: currentUser.id,
+            id: currentComment.id
+        };
+
+        if (commentableType === "Track") {
+            updateComment(updatedComment)
+                .then(() => fetchTrack(parent.id.toString()))
+        } else {
+            updateComment(updatedComment)
+                .then(() => fetchAnnotation(parent.id));
+        }
+
+        setCommentUpdateStatus(false);
     }
 
     function handleCommentDeleteStatus(e: MouseEvent<HTMLButtonElement>) {
@@ -130,7 +148,7 @@ function CommentShowItem(props: Props) {
         deleteComment(currentComment.id)
             .then(() => {
                 if (commentableType === "Track") {
-                    fetchTrack(parent.id);
+                    fetchTrack(parent.id.toString());
                 } else {
                     fetchAnnotation(parent.id);
                 }
@@ -139,18 +157,70 @@ function CommentShowItem(props: Props) {
         setCommentDeleteStatus(false);
     }
 
-    if (currentComment && commentableType === "Track") {
+    if (currentComment && commentableType === "Track" && commentUpdateStatus === false) {
         return (
             <li className="comment-show-item--track">
                 {commentItem()}
             </li>
         );
-    } else if (currentComment && commentableType === "Annotation") {
+    } else if (currentComment && commentableType === "Track" && commentUpdateStatus === true){
+        return (
+            <li className="comment-show-item--track">
+                <form
+                    className="comment-show-form"
+                    onSubmit={handleUpdatedCommentSubmit}
+                >
+                    <textarea
+                        className="comment-show-form__annotation-text"
+                        onChange={handleUpdatedCommentBodyChange()}
+                        value={updatedCommentBody}
+                    />
+                    <div className="comment-show-form__buttons">
+                        <button className="comment-show-form__submit">
+                            <p>Submit</p>
+                        </button>
+                        <button
+                            className="comment-show-form__cancel"
+                            onClick={handleCommentUpdateStatus}
+                        >
+                            <p>Cancel</p>
+                        </button>
+                    </div>
+                </form>
+            </li>
+        );
+    } else if (currentComment && commentableType === "Annotation" && commentUpdateStatus === false) {
         return (
             <li className="comment-show-item--annotation">
                 {commentItem()}
             </li>
         );
+    } else if (currentComment && commentableType === "Annotation" && commentUpdateStatus === true) {
+        return (
+            <li className="comment-show-item--annotation">
+                <form
+                    className="comment-show-form"
+                    onSubmit={handleUpdatedCommentSubmit}
+                >
+                    <textarea
+                        className="comment-show-form__annotation-text"
+                        onChange={handleUpdatedCommentBodyChange()}
+                        value={updatedCommentBody}
+                    />
+                    <div className="comment-show-form__buttons">
+                        <button className="comment-show-form__submit">
+                            <p>Submit</p>
+                        </button>
+                        <button
+                            className="comment-show-form__cancel"
+                            onClick={handleCommentUpdateStatus}
+                        >
+                            <p>Cancel</p>
+                        </button>
+                    </div>
+                </form>
+            </li>
+        )
     } else {
         return (
             null
