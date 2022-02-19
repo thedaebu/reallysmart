@@ -14,70 +14,74 @@ There were two major hurdles when it came to implementing the annotations: addin
 In order to add the current annotations onto the text, each annotation had data pertaining to the location of the text where the annotation was referring to, which were the indices of the text where the annotation was located. The text would then be divided up into different annotated and non-annotated parts in order and then merged into one complete text.
 
 ```js
-annotateLyrics(lyrics) {
-    const annotations = this.props.annotations;        
-    const sortedAnnotations = annotations.sort((a,b) => (a.start_index > b.start_index ? 1 : -1));
-    const lyricsParts = Array();
-    let currentIndex = 0;
+function annotateLyrics(lyrics: string, currentAnnotations: Array<Annotation>) {
+    const sortedAnnotations: Array<Annotation> = currentAnnotations.sort((a: Annotation, b: Annotation) => (a.start_index > b.start_index
+        ? 1
+        : -1));
+    const lyricsParts: Array<JSX.Element> = Array();
+    let currentIndex: number = 0;
 
-    if (!annotations.includes(undefined)) {            
-        sortedAnnotations.forEach((annotation, idx) => {
-            let addIndex = idx === 0 && annotation.startIndex !== 0
+    sortedAnnotations.forEach((annotation: Annotation, idx: number) => {
+        const addIndex: number = idx === 0
             ? 0
-            : addIndex = sortedAnnotations[idx-1].end_index;
-            let startIndex = annotation.start_index;
-            let endIndex = annotation.end_index;
+            : sortedAnnotations[idx-1].end_index;
+        const startIndex: number = annotation.start_index;
+        const endIndex: number = annotation.end_index;
 
-            if (currentIndex === startIndex) {                
-                lyricsParts.push(
-                    <span 
-                        className="is-an-anno" 
-                        onClick={() => this.openAnnotation(annotation.id)}                             
-                        key={`is-anno-${annotation.id}`}       
-                        id={`is-anno-${annotation.id}`}
-                        data-name={`is-anno-${annotation.id}`}
-                        data-id={`${annotation.id}`}     
-                        >
-                        {lyrics.slice(currentIndex, endIndex + 1)}
-                    </span>)     
-            } else {
-                lyricsParts.push(
-                    <span 
-                        className="not-an-anno"                              
-                        key={`not-anno-${idx}`}                            
-                        id={`not-anno-${idx}`}
-                        data-add={addIndex}
-                        data-name={`not-anno-${idx}`}
-                        >
-                        {lyrics.slice(currentIndex, startIndex)}
-                    </span>)
-                lyricsParts.push(
-                    <span 
-                        className="is-an-anno" 
-                        onClick={() => this.openAnnotation(annotation.id)}                              
-                        key={`is-anno-${annotation.id}`} 
-                        id={`is-anno-${annotation.id}`}
-                        data-name={`is-anno-${annotation.id}`} 
-                        data-id={`${annotation.id}`}
-                        >
-                        {lyrics.slice(startIndex, endIndex+1)}
-                    </span>)
-            }
-            if (idx === sortedAnnotations.length - 1) {
-                lyricsParts.push(
-                    <span 
-                        className="not-an-anno"                             
-                        key={`not-anno-${idx + 1}`}                            
-                        id={`not-anno-${idx + 1}`}                            
-                        data-add={endIndex}
-                        data-name={`not-anno-${idx + 1}`}
-                        >
-                        {lyrics.slice(endIndex +1, lyrics.length + 1)}
-                    </span>)
-            }              
-            currentIndex = endIndex + 1;
-        })
-    }
+        if (currentIndex === startIndex) {
+            lyricsParts.push(
+                <span
+                    className="lyrics__is-annotation"
+                    data-name={`is-anno-${annotation.id}`}
+                    data-id={`${annotation.id}`}
+                    id={`is-anno-${annotation.id}`}
+                    key={`is-anno-${annotation.id}`}
+                    onClick={() => openAnnotation(annotation)}
+                    >
+                    {lyrics.slice(currentIndex, endIndex + 1)}
+                </span>
+            )
+        } else {
+            lyricsParts.push(
+                <span
+                    className="lyrics__not-annotation"
+                    data-add={addIndex}
+                    data-name={`not-anno-${idx}`}
+                    id={`not-anno-${idx}`}
+                    key={`not-anno-${idx}`}
+                    >
+                    {lyrics.slice(currentIndex, startIndex)}
+                </span>
+            )
+            lyricsParts.push(
+                <span
+                    className="lyrics__is-annotation"
+                    data-name={`is-anno-${annotation.id}`}
+                    data-id={`${annotation.id}`}
+                    id={`is-anno-${annotation.id}`}
+                    key={`is-anno-${annotation.id}`}
+                    onClick={() => openAnnotation(annotation)}
+                    >
+                    {lyrics.slice(startIndex, endIndex+1)}
+                </span>
+            )
+        }
+        if (idx === sortedAnnotations.length - 1) {
+            lyricsParts.push(
+                <span
+                    className="lyrics__not-annotation"
+                    data-add={endIndex}
+                    data-name={`not-anno-${idx + 1}`}
+                    id={`not-anno-${idx + 1}`}
+                    key={`not-anno-${idx + 1}`}
+                    >
+                    {lyrics.slice(endIndex +1, lyrics.length + 1)}
+                </span>
+            )
+        }
+        currentIndex = endIndex + 1;
+    })
+
     return lyricsParts;
 }
 ```
@@ -85,24 +89,24 @@ annotateLyrics(lyrics) {
 An annotation can then be created by having the user select a part of the lyrics text to specify which part the user wants to annotate. The getSelection function was used to retrieve the proper data needed to determine the location of the desired annotation. Constraints had to be placed so that any of the text that is selected cannot be already part of an annotation. 
 
 ```js
-handleMouseUp(e) {
+function handleTextSelect(e: MouseEvent<HTMLElement>) {
     e.preventDefault();
 
-    this.setState({yCoord: e.pageY}); 
-    this.setState({annoId: e.target.dataset.id});
-    
-    const highlighted = window.getSelection();
-    
-    if (highlighted.anchorOffset !== highlighted.focusOffset) {
-        const newIndices = this.makeNewIndices(highlighted);
-        const min = Math.min(...newIndices) < 0
-        ? 0
-        : Math.min(...newIndices);
-        const max = Math.max(...newIndices);
+    setYCoord(e.pageY-(e.pageY % 30)-367);
 
-        this.setState({startIndex: min});
-        this.setState({endIndex: max});  
-        this.props.openAnnotationModal({hello: "hello"});
+    const highlighted: Highlighted = window.getSelection()
+    if (highlighted !== null) {
+        if (highlighted.anchorOffset !== highlighted.focusOffset) {
+            const newIndices: Array<number> = makeNewIndices(highlighted);
+            const min: number = Math.min(...newIndices) < 0
+                ? 0
+                : Math.min(...newIndices);
+            const max: number = Math.max(...newIndices);
+
+            setStartIndex(min);
+            setEndIndex(max);
+            openAnnotationModal();
+        }
     }
 }
 ```
@@ -110,17 +114,18 @@ handleMouseUp(e) {
 Once the selected pieces of text passes the constraints, the indices retrieved from the data taken from the getSelection function would then be reorganized so that the location of the annotation on the text would be in its proper place on the text.
 
 ```js
-makeNewIndices(highlighted) {
-    const anchorName = highlighted.anchorNode.parentNode.dataset.name;
-    const focusName = highlighted.focusNode.parentNode.dataset.name;
-    const add = parseInt(highlighted.focusNode.parentNode.dataset.add);
-    let beginning;
-    let end;
-    if (anchorName.includes(`not-anno`) && focusName.includes(`not-anno`) && anchorName === focusName) {
+function makeNewIndices(highlighted: Highlighted) {
+    const anchorName: string = highlighted.anchorNode.parentNode.dataset.name;
+    const focusName: string = highlighted.focusNode.parentNode.dataset.name;
+    const add: number = parseInt(highlighted.focusNode.parentNode.dataset.add);
+    let beginning: number = 0;
+    let end: number = 0;
+
+    if (anchorName.includes("not-anno") && anchorName === focusName) {
         beginning = highlighted.anchorOffset + add;
         end = highlighted.focusOffset + add;
     } 
-    if (anchorName.includes(`not-anno-0`)) {
+    if (anchorName.includes("not-anno-0")) {
         end -= 1;
     } else {
         beginning += 1;
