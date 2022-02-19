@@ -209,7 +209,7 @@ function CommentShowItem(props: Props) {
                     />
                     <div className="comment-show-form__buttons">
                         <button className="comment-show-form__submit">
-                            <p>Submit</p>
+                            <p>Edit</p>
                         </button>
                         <button
                             className="comment-show-form__cancel"

@@ -167,7 +167,7 @@ function AnnotationShowItem(props: Props) {
                     <div className="annotation-show-form__bottom">
                         <button className="annotation-show-form__bottom-save"
                         type="submit">
-                            <p className="annotation-show-form__bottom-save-text">Update</p>
+                            <p className="annotation-show-form__bottom-save-text">Edit</p>
                         </button>
                         <button
                             className="annotation-show-form__bottom-cancel"
