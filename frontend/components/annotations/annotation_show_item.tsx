@@ -1,5 +1,5 @@
 import React, { ChangeEvent, MouseEvent, useState } from "react";
-import { Annotation, Track, User } from "../../my_types";
+import { Annotation, Track, UpdatedAnnotation, User } from "../../my_types";
 import CommentShowContainer from "../comments/comment_show_container";
 import VotesShowContainer from "../votes/votes_show_container";
 
@@ -69,21 +69,20 @@ function AnnotationShowItem(props: Props) {
     function handleUpdatedAnnotationSubmit(e: MouseEvent<HTMLFormElement>) {
         e.preventDefault();
 
-        const updatedAnnotation = {
+        const updatedAnnotation: UpdatedAnnotation = {
             annotator_id: currentUser.id,
             body: updatedAnnotationBody,
-            end_index: annotation.end_index,
-            id: annotation.id,
-            start_index: annotation.start_index,
+            end_index: currentAnnotation.end_index,
+            id: currentAnnotation.id,
+            start_index: currentAnnotation.start_index,
             track_id: track.id
         }
 
         updateAnnotation(updatedAnnotation)
             .then(() => fetchTrack(track.id));
-        setCurrentAnnotation(null);
         setAnnotationUpdateStatus(false);
     }
-    
+
     function handleAnnotationDeleteStatus(e: MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
 
@@ -143,7 +142,6 @@ function AnnotationShowItem(props: Props) {
                     <textarea
                         className="annotation-show-form__body" 
                         onChange={handleUpdatedAnnotationBodyChange()}
-                        placeholder="Everything you teach us is for a reason, but none of it is important."
                         value={updatedAnnotationBody}
                     >
                     </textarea>
