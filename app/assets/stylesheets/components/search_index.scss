@@ -23,14 +23,14 @@
         line-height: 167px;
     }
     .search-index__items {
-        :hover {
-            background-color: #dbdbdb;
-        }
         .search-index-item {
             cursor: pointer;
             display: flex;
             background-color: white;
             margin: 0px 0px 4px 0px;
+            &:hover {
+                background-color: #dbdbdb;
+            }
             .search-index-item__image {
                 height: 75px;
                 width: 75px;
