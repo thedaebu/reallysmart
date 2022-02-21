@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { Track, Window } from "../../my_types";
-import LyricsContainer from "../lyrics/lyrics_container";
 import NavBar from "../navbar/navbar";
 import TrackShowHeader from "./track_show_header";
+import LyricsContainer from "../lyrics/lyrics_container";
 
 declare const window: Window;
 type Props = {
