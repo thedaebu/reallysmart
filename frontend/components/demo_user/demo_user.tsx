@@ -9,26 +9,33 @@ type Props = {
 function DemoUser(props: Props) {
     const { currentUser, login } = props;
 
-    function loginWithDemo(e: MouseEvent<HTMLAnchorElement>) {
+    function demoButton() {
+        if (!currentUser) {
+            return (
+                <button className="demo-user" onClick={loginWithDemo}>DEMO</button>
+            );
+        } else {
+            return (
+                null
+            );
+        }
+    }
+
+    function loginWithDemo(e: MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
 
-        const sessionUser: SessionUser = {
+        const demoUser: SessionUser = {
             password: "notsosmart",
             username: "notsosmart"
         };
-
-        login(sessionUser);
+        login(demoUser);
     }
 
-    if (currentUser) {
-        return (
-            null
-        );
-    } else {
-        return (
-            <a className="demo-user" onClick={loginWithDemo}>DEMO</a>
-        );
-    }
+    return (
+        <>
+            {demoButton()}
+        </>
+    )
 }
 
 export default DemoUser;
