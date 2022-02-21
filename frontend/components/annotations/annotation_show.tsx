@@ -13,15 +13,14 @@ type Props = {
     endIndex: number,
     fetchComment: Function,
     fetchTrack: Function,
-    setAnnotationCreateStatusFalse: Function,
-    setAnnotationCreateStatusTrue: Function,
+    handleAnnotationCreateStatus: Function,
     startIndex: number,
     track: Track,
     yCoord: number
 }
 
 function AnnotationShow(props: Props) {
-    const { annotation, annotationModal, closeAnnotationModal, createAnnotation, annotationCreateStatus, currentUser, endIndex, fetchComment, fetchTrack, setAnnotationCreateStatusFalse, setAnnotationCreateStatusTrue, startIndex, track, yCoord } = props;
+    const { annotation, annotationModal, closeAnnotationModal, createAnnotation, annotationCreateStatus, currentUser, endIndex, fetchComment, fetchTrack, handleAnnotationCreateStatus, startIndex, track, yCoord } = props;
     
     const [annotationBody, setAnnotationBody] = useState<string>("");
 
@@ -44,7 +43,7 @@ function AnnotationShow(props: Props) {
                     }}>
                     <button
                         className="annotation-show-begin__button"
-                        onClick={handleAnnotationCreateStart}
+                        onClick={setAnnotationCreateStatus}
                     >
                         <h1>Start the Really Smart Annotation</h1>
                         <h2>(+5 RSQ)</h2>
@@ -121,10 +120,10 @@ function AnnotationShow(props: Props) {
         }
     }
 
-    function handleAnnotationCreateStart(e: MouseEvent<HTMLElement>) {
+    function setAnnotationCreateStatus(e: MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
 
-        setAnnotationCreateStatusTrue();
+        handleAnnotationCreateStatus();
     }
 
     function handleAnnotationBodyChange() { 
@@ -146,7 +145,7 @@ function AnnotationShow(props: Props) {
             .then(() => fetchTrack(track.id.toString()));
         closeAnnotationModal();
         setAnnotationBody("");
-        setAnnotationCreateStatusFalse();
+        handleAnnotationCreateStatus();
     }
 
     function handleAnnotationCancel(e: MouseEvent<HTMLButtonElement>) {
@@ -154,7 +153,7 @@ function AnnotationShow(props: Props) {
 
         closeAnnotationModal();
         setAnnotationBody("");
-        setAnnotationCreateStatusFalse();
+        handleAnnotationCreateStatus();
     }
 
     if (annotation !== null) {

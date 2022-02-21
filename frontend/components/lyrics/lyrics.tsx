@@ -210,20 +210,20 @@ function LyricsShow(props: Props) {
     function handleTextDeselect() {
         setSelectedAnnotation(null);
         closeAnnotationModal();
-        setAnnotationCreateStatusFalse();
-    }
-
-    function setAnnotationCreateStatusTrue() {
-        setAnnotationCreateStatus(true);
-    }
-
-    function setAnnotationCreateStatusFalse() {
         setAnnotationCreateStatus(false);
     }
 
+    function handleAnnotationCreateStatus() {
+        if (annotationCreateStatus === false) {
+            setAnnotationCreateStatus(true);
+        } else {
+            setAnnotationCreateStatus(false);
+        }
+    }
+
     return (
-        <div className="lyrics">
-            <div className="lyrics__shade">
+        <div className="lyrics__shade">
+            <div className="lyrics__main">
                 <div className="lyrics__text" onMouseDown={handleTextDeselect} >
                     <p className="lyrics__top">{track.title.toUpperCase()} LYRICS</p>
                     <pre className="lyrics__body" onMouseUp={handleTextSelect}>
@@ -239,10 +239,9 @@ function LyricsShow(props: Props) {
                         annotation={selectedAnnotation}
                         annotationCreateStatus={annotationCreateStatus}
                         endIndex={endIndex}
-                        setAnnotationCreateStatusFalse={setAnnotationCreateStatusFalse}
+                        handleAnnotationCreateStatus={handleAnnotationCreateStatus}
                         startIndex={startIndex}
                         track={track}
-                        setAnnotationCreateStatusTrue={setAnnotationCreateStatusTrue}
                         yCoord={yCoord}
                     />
                 </div>
