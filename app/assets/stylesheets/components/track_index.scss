@@ -1,4 +1,5 @@
 $programme: 'Programme Regular', sans-serif;
+$raleway: 'Raleway', sans-serif;
 
 track-index-number {
     position: relative;
@@ -27,12 +28,14 @@ track-index-number {
     .track-index__items {
         width: 1150px;
         .track-index-item {
-            height: 71px;
-            width: auto;
             display: grid;
             grid-template-columns: 95px 2fr 9fr 8fr 3fr 3fr;
             align-items: center;
+            height: 71px;
+            width: auto;
             color: black;
+            background-position: center;
+            background-size: cover;
             border-bottom: rgb(224, 224, 224) solid 2px;
             padding: 2px 0px 2px 0px;
             &:hover {
@@ -51,7 +54,7 @@ track-index-number {
                 .track-index-item__title {
                     position: relative;
                     bottom: 0.5px;
-                    font-family: 'Programme Regular', sans-serif;
+                    font-family: $programme;
                     font-size: 24px;
                     font-weight: normal;
                 }
@@ -70,7 +73,7 @@ track-index-number {
             .track-index-item__artist {
                 position: relative;
                 bottom: 1px;
-                font-family: 'Raleway', sans-serif;    
+                font-family: $raleway;    
                 font-size: 23px;
             }
             .track-index-item__fire-main {

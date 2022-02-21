@@ -34,6 +34,8 @@
             .search-index-item__image {
                 height: 75px;
                 width: 75px;
+                background-position: center;
+                background-size: cover;
             }
             .search-index-item__body {
                 display: flex;
