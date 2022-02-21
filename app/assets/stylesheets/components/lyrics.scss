@@ -1,10 +1,10 @@
 $programmereg: 'Programme Regular', sans-serif;
 $programmelight: 'Programme Light', sans-serif;
 
-.lyrics {
+.lyrics__shade {
     width: 100%;
     background: #f7f7f7;
-    .lyrics__shade {
+    .lyrics__main {
         max-width: 970px;
         display: flex;
         background: rgb(255, 255, 255);
