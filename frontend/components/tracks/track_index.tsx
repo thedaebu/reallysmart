@@ -10,12 +10,12 @@ type Props = {
 }
 
 function TrackIndex(props: Props) {
-    const { tracks } = props;
+    const { fetchTracks, tracks } = props;
     
     const [trackIndexList, setTrackIndexList] = useState<number>(5);
 
     useEffect(() => {
-        props.fetchTracks();
+        fetchTracks();
         window.scrollTo(0, 0);
     }, [])
 
