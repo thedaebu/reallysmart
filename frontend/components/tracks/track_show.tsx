@@ -19,23 +19,31 @@ function TrackShow(props: Props) {
         window.scrollTo(0, 0);
     }, [trackId]);
 
-    if (track) {
-        return (
-            <div>
-                <NavBar />
-                <TrackShowHeader
-                    track={track}
-                />
-                <LyricsContainer
-                    track={track}
-                />
-            </div>
-        );
-    } else {
-        return (
-            null
-        );
+    function trackShowPage() {
+        if (track) {
+            return (
+                <div>
+                    <NavBar/>
+                    <TrackShowHeader
+                        track={track}
+                    />
+                    <LyricsContainer
+                        track={track}
+                    />
+                </div>
+            );
+        } else {
+            return (
+                null
+            );
+        }
     }
+
+    return(
+        <>
+            {trackShowPage()}
+        </>
+    );
 }
 
 export default TrackShow;
