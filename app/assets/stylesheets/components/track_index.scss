@@ -13,18 +13,18 @@ track-index-number {
     align-items: center;
     font-family: $programme;
     margin: 0px 0px 40px 0px;
-    > h1 {
+    .track-index__h1 {
         font-size: 80px;
         font-weight: bold;
         letter-spacing: 1px;
         margin: 71px 0px 0px 0px;
     }
-    > h2 {
+    .track-index__h2 {
         color: rgb(255, 20, 100);
         font-size: 14px;
         margin: 11px 0px 20.5px 0px;
     }
-    > ul {
+    .track-index__items {
         width: 1150px;
         .track-index-item {
             height: 71px;
