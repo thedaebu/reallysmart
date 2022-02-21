@@ -1,5 +1,5 @@
 import React, { MouseEvent, useState, useEffect } from "react";
-import { Annotation, Track, User, Window } from "../../my_types";
+import { Annotation, Track, Window } from "../../my_types";
 import AnnotationShowContainer from "../annotations/annotation_show_container";
 import CommentShowContainer from "../comments/comment_show_container";
 
