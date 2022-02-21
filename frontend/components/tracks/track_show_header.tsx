@@ -17,9 +17,7 @@ function TrackShowHeader(props: Props) {
         <div 
             className="track-show__background" 
             style={{
-                backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(${track.artwork_path})`,
-                backgroundPosition: "center", 
-                backgroundSize: "cover" 
+                backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(${track.artwork_path})`
             }}
         >
             <div className="track-show__shade">
@@ -28,9 +26,7 @@ function TrackShowHeader(props: Props) {
                         <div
                             className="track-show__image"
                             style={{
-                                backgroundImage: `url(${track.artwork_path}`,
-                                backgroundPosition: "center",
-                                backgroundSize: "cover"
+                                backgroundImage: `url(${track.artwork_path}`
                             }}
                         >
                         </div>
