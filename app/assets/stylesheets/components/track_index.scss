@@ -48,6 +48,8 @@ track-index-number {
             .track-index-item__image { 
                 height: 60px;
                 width: 60px;
+                background-position: center;
+                background-size: cover;
             }
             .track-index-item__title-main {
                 display: flex;
