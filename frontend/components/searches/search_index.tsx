@@ -1,6 +1,6 @@
 import React, { MouseEvent, useEffect } from "react";
 import { Track } from "../../my_types";
-import SearchbarItem from "./search_index_item";
+import SearchIndexItem from "./search_index_item";
 
 type Props = {
     clearSearchField: Function,
@@ -22,38 +22,23 @@ function SearchIndex(props: Props) {
         clearSearchField();
     }
 
-    function searchbarResults() {
-        if (searches.length > 0 && searchField !== "") {
+    function searchResult() {
+        if (searchField !== "" && searches.length > 0) {
             return (
                 <div className="search-index">
                     <p className="search-index__results">SEARCH RESULTS</p>
                     <p className="search-index__songs">SONGS</p>
                     <ul className="search-index__items" onClick={clearSearch}>
-                        {searchbarItems()}
+                        {searchIndexItems()}
                     </ul>
                 </div>
             );
-        } else if (searches.length === 0 && searchField !== "") {
+        } else if (searchField !== "" && searches.length === 0) {
             return (
                 <div className="search-index">
                     <p className="search-index__results">SEARCH RESULTS</p>
                     <p className="search-index__no-results">No results</p>
                 </div>
-            );
-        }
-    }
-
-    function searchbarItems() {
-        if (searches.length > 0) {
-            return (
-                searches.slice(0, 5).map((track: Track, key: number) => {
-                    return ( 
-                        <SearchbarItem 
-                            key={key}
-                            track={track} 
-                        />
-                    );
-                })
             );
         } else {
             return (
@@ -62,17 +47,24 @@ function SearchIndex(props: Props) {
         }
     }
 
-    if (searchField !== "") {
+    function searchIndexItems() {
         return (
-            <div>
-                {searchbarResults()}
-            </div>
-        );
-    } else {
-        return (
-            null
+            searches.slice(0, 5).map((track: Track, key: number) => {
+                return ( 
+                    <SearchIndexItem 
+                        key={key}
+                        track={track} 
+                    />
+                );
+            })
         );
     }
+
+    return (
+        <>
+            {searchResult()}
+        </>
+    );
 }
 
 export default SearchIndex;

@@ -10,12 +10,12 @@ type Props = {
 }
 
 function TrackIndex(props: Props) {
-    const { tracks } = props;
+    const { fetchTracks, tracks } = props;
     
     const [trackIndexList, setTrackIndexList] = useState<number>(5);
 
     useEffect(() => {
-        props.fetchTracks();
+        fetchTracks();
         window.scrollTo(0, 0);
     }, [])
 
@@ -45,20 +45,20 @@ function TrackIndex(props: Props) {
         if (trackIndexList === 5) {
             return ( 
                 <button onClick={setTrackIndexListLimit} className="track-index__load-more">LOAD MORE</button>
-            )
+            );
         } else if (trackIndexList === 10) { 
             return ( 
                 <button onClick={setTrackIndexListLimit} className="track-index__load-more">We Miss You DMX!</button>
-            )
+            );
         } else {
             return (
                 null
-            )
+            );
         }
     }
 
-    function setTrackIndexListLimit(event: MouseEvent<HTMLButtonElement>) {
-        event.preventDefault();
+    function setTrackIndexListLimit(e: MouseEvent<HTMLButtonElement>) {
+        e.preventDefault();
 
         if (trackIndexList === 5) {
             setTrackIndexList(10);
@@ -68,18 +68,18 @@ function TrackIndex(props: Props) {
     }
 
     return (
-        <div>
-            <Navbar />
+        <>
+            <Navbar/>
             <div className="track-index">
-                <h1>CHARTS</h1>
-                <h2>REALLY POPULAR ON REALLY SMART</h2>
-                <ul>
+                <h1 className="track-index__h1">CHARTS</h1>
+                <h2 className="track-index__h2">REALLY POPULAR ON REALLY SMART</h2>
+                <ul className="track-index__items">
                     {trackIndexItems()}
                 </ul>
             </div>
             {extendTrackIndexList()}
-        </div>
-    )
+        </>
+    );
 };
 
 export default TrackIndex;

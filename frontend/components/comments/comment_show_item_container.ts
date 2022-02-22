@@ -20,4 +20,6 @@ const mDTP = (dispatch: Function) => {
     })
 };
 
-export const CommentShowItemContainer = connect(mSTP, mDTP)(CommentShowItem);
+
+const CommentShowItemContainer = connect(mSTP, mDTP)(CommentShowItem);
+export default CommentShowItemContainer

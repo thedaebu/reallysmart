@@ -15,4 +15,5 @@ const mDTP = (dispatch: Function) => {
     });
 };
 
-export default connect(mSTP, mDTP)(TrackIndex);
+const TrackIndexContainer = connect(mSTP, mDTP)(TrackIndex);
+export default TrackIndexContainer;

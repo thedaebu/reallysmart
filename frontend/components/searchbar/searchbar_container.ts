@@ -8,4 +8,5 @@ const mDTP = (dispatch: Function) => {
     });
 };
 
-export default connect(null, mDTP)(Searchbar);
+const SearchbarContainer = connect(null, mDTP)(Searchbar);
+export default SearchbarContainer;

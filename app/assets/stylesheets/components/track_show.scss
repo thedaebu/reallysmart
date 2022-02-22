@@ -6,11 +6,13 @@ track-show-number {
 }
 
 .track-show__background {
-    height: 280px;
-    width: inherit;
-    position: relative;
     display: flex;
     justify-content: space-around;
+    position: relative;
+    height: 280px;
+    width: inherit;
+    background-position: center;
+    background-size: cover;
     .track-show__shade {
         z-index: 2;
         height: inherit;
@@ -24,10 +26,12 @@ track-show-number {
                 position: relative;
                 top: 34px;
                 .track-show__image {
+                    position: relative;
                     height: 220px;
                     width: 220px;
-                    position: relative;
                     right: 22px;
+                    background-position: center;
+                    background-size: cover;
                     border: 2px solid rgb(145, 145, 145);
                 }
                 .track-show__text {

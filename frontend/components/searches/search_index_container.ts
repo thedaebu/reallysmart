@@ -10,4 +10,5 @@ const mSTP = (state: State, ownProps: RouteComponentProps) => {
     });
 };
 
-export default withRouter(connect(mSTP, null)(SearchIndex));
+const SearchIndexContainer = withRouter(connect(mSTP, null)(SearchIndex));
+export default SearchIndexContainer;

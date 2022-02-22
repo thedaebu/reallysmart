@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { Track, Window } from "../../my_types";
-import LyricsContainer from "../lyrics/lyrics_container";
 import NavBar from "../navbar/navbar";
 import TrackShowHeader from "./track_show_header";
+import LyricsContainer from "../lyrics/lyrics_container";
 
 declare const window: Window;
 type Props = {
@@ -19,23 +19,31 @@ function TrackShow(props: Props) {
         window.scrollTo(0, 0);
     }, [trackId]);
 
-    if (track) {
-        return (
-            <div>
-                <NavBar />
-                <TrackShowHeader
-                    track={track}
-                />
-                <LyricsContainer
-                    track={track}
-                />
-            </div>
-        );
-    } else {
-        return (
-            null
-        );
+    function trackShowPage() {
+        if (track) {
+            return (
+                <div>
+                    <NavBar/>
+                    <TrackShowHeader
+                        track={track}
+                    />
+                    <LyricsContainer
+                        track={track}
+                    />
+                </div>
+            );
+        } else {
+            return (
+                null
+            );
+        }
     }
+
+    return(
+        <>
+            {trackShowPage()}
+        </>
+    );
 }
 
 export default TrackShow;

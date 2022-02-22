@@ -20,9 +20,7 @@ function TrackIndexItem(props: Props) {
             <div
                 className="track-index-item__image"
                 style={{
-                    backgroundImage: `url(${track.artwork_path}`,
-                    backgroundPosition: "center",
-                    backgroundSize: "cover"
+                    backgroundImage: `url(${track.artwork_path}`
                 }}
             > 
             </div>
@@ -40,7 +38,7 @@ function TrackIndexItem(props: Props) {
                 <p className="track-index-item__eye-number">{randomNum() * 10}</p>
             </div>
         </Link>
-    )
+    );
 }
 
 export default TrackIndexItem;

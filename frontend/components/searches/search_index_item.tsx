@@ -8,7 +8,7 @@ type Props = {
 }
 
 function SearchIndexItem(props: Props) {
-    const track: Track = props.track;
+    const { track } = props;
 
     function randomNum() {
         return Math.floor(Math.random() * 1000);
@@ -18,9 +18,7 @@ function SearchIndexItem(props: Props) {
         <Link className="search-index-item" to={`/tracks/${track.id}`} replace>
             <div
                 className="search-index-item__image" style={{ 
-                    backgroundImage: `url(${track.artwork_path}`,
-                    backgroundPosition: "center",
-                    backgroundSize: "cover"
+                    backgroundImage: `url(${track.artwork_path}`
                 }}> 
             </div>
             <div className="search-index-item__body">

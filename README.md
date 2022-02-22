@@ -18,7 +18,7 @@ function annotateLyrics(lyrics: string, currentAnnotations: Array<Annotation>) {
     const sortedAnnotations: Array<Annotation> = currentAnnotations.sort((a: Annotation, b: Annotation) => (a.start_index > b.start_index
         ? 1
         : -1));
-    const lyricsParts: Array<JSX.Element> = Array();
+    const lyricsParts: Array<JSX.Element> = [];
     let currentIndex: number = 0;
 
     sortedAnnotations.forEach((annotation: Annotation, idx: number) => {
@@ -33,9 +33,7 @@ function annotateLyrics(lyrics: string, currentAnnotations: Array<Annotation>) {
                 <span
                     className="lyrics__is-annotation"
                     data-name={`is-anno-${annotation.id}`}
-                    data-id={`${annotation.id}`}
-                    id={`is-anno-${annotation.id}`}
-                    key={`is-anno-${annotation.id}`}
+                    key={`anno-${annotation.id}`}
                     onClick={() => openAnnotation(annotation)}
                     >
                     {lyrics.slice(currentIndex, endIndex + 1)}
@@ -47,7 +45,6 @@ function annotateLyrics(lyrics: string, currentAnnotations: Array<Annotation>) {
                     className="lyrics__not-annotation"
                     data-add={addIndex}
                     data-name={`not-anno-${idx}`}
-                    id={`not-anno-${idx}`}
                     key={`not-anno-${idx}`}
                     >
                     {lyrics.slice(currentIndex, startIndex)}
@@ -57,9 +54,7 @@ function annotateLyrics(lyrics: string, currentAnnotations: Array<Annotation>) {
                 <span
                     className="lyrics__is-annotation"
                     data-name={`is-anno-${annotation.id}`}
-                    data-id={`${annotation.id}`}
-                    id={`is-anno-${annotation.id}`}
-                    key={`is-anno-${annotation.id}`}
+                    key={`anno-${annotation.id}`}
                     onClick={() => openAnnotation(annotation)}
                     >
                     {lyrics.slice(startIndex, endIndex+1)}
@@ -72,7 +67,6 @@ function annotateLyrics(lyrics: string, currentAnnotations: Array<Annotation>) {
                     className="lyrics__not-annotation"
                     data-add={endIndex}
                     data-name={`not-anno-${idx + 1}`}
-                    id={`not-anno-${idx + 1}`}
                     key={`not-anno-${idx + 1}`}
                     >
                     {lyrics.slice(endIndex +1, lyrics.length + 1)}
@@ -93,15 +87,13 @@ function handleTextSelect(e: MouseEvent<HTMLElement>) {
     e.preventDefault();
 
     setYCoord(e.pageY-(e.pageY % 30)-367);
-
-    const highlighted: Highlighted = window.getSelection()
+    const highlighted: Highlighted = window.getSelection();
+    
     if (highlighted !== null) {
         if (highlighted.anchorOffset !== highlighted.focusOffset) {
             const newIndices: Array<number> = makeNewIndices(highlighted);
-            const min: number = Math.min(...newIndices) < 0
-                ? 0
-                : Math.min(...newIndices);
-            const max: number = Math.max(...newIndices);
+            const beginning: number = Math.min(...newIndices);
+            const end: number = Math.max(...newIndices);
 
             setStartIndex(min);
             setEndIndex(max);

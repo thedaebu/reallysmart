@@ -20,4 +20,5 @@ const mDTP = (dispatch: Function) => {
     });
 };
 
-export default connect(mSTP, mDTP)(CommentShow);
+const CommentShowContainer = connect(mSTP, mDTP)(CommentShow);
+export default CommentShowContainer;

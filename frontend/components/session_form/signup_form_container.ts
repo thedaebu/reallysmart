@@ -1,20 +1,20 @@
 import { connect } from "react-redux";
 import { SessionUser, State } from "../../my_types";
 import { signup, clearErrors } from "../../actions/session_actions";
-import SessionForm from "./session_form";
+import SignupForm from "./signup_form";
 
 const mSTP = (state: State) => {
     return ({
-        errors: state.errors.sessionErrors,
-        formType: "signup"
+        errors: state.errors.sessionErrors
     })
 };
 
 const mDTP = (dispatch: Function) => {
     return ({
-        action: (sessionUser: SessionUser) => dispatch(signup(sessionUser)),
-        clearErrors: () => dispatch(clearErrors())
+        clearErrors: () => dispatch(clearErrors()),
+        signup: (sessionUser: SessionUser) => dispatch(signup(sessionUser))
     })
 };
 
-export default connect(mSTP, mDTP)(SessionForm);
+const SignupFormContainer = connect(mSTP, mDTP)(SignupForm);
+export default SignupFormContainer;

@@ -2,8 +2,8 @@ import { connect } from "react-redux";
 import { State } from "../../my_types";
 import { fetchAnnotation } from "../../actions/annotation_actions";
 import { closeAnnotationModal, openAnnotationModal } from "../../actions/annotation_modal_actions";
-import LyricsShow from "./lyrics";
 import { fetchComment } from "../../actions/comment_actions";
+import LyricsShow from "./lyrics";
 
 const mSTP = (state: State) => {
     return ({
@@ -20,4 +20,5 @@ const mDTP = (dispatch: Function) => {
     });
 };
 
-export default connect(mSTP, mDTP)(LyricsShow);
+const LyricsContainer = connect(mSTP, mDTP)(LyricsShow);
+export default LyricsContainer;

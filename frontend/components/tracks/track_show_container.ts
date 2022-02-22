@@ -10,7 +10,7 @@ type GivenProps = {
 }
 
 const mSTP = (state: State, ownProps: OwnProps) => {
-    const track: Track = state.entities.tracks[parseInt(ownProps.match.params.trackId)] 
+    const track: Track = state.entities.tracks[parseInt(ownProps.match.params.trackId)];
 
     return ({
         track: track,
@@ -24,4 +24,5 @@ const mDTP = (dispatch: Function) => {
     });
 };
 
-export default connect(mSTP, mDTP)(TrackShow);
+const TrackShowContainer = connect(mSTP, mDTP)(TrackShow);
+export default TrackShowContainer;
