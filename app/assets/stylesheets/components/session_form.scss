@@ -5,8 +5,8 @@ $ubuntu: 'Ubuntu Condensed', sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100vh;
-    width: 100vw;
+    min-height: calc(100vh - 41px);
+    width: 100%;
     background-color: black;
     color: rgb(201, 201, 201);
     .session-form__signup--h1 {
