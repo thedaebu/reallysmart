@@ -21,6 +21,87 @@ function AnnotationShowItem(props: Props) {
     const [currentAnnotation, setCurrentAnnotation] = useState<Annotation>(props.annotation);
     const [updatedAnnotationBody, setUpdatedAnnotationBody] = useState<string>(props.annotation.body);
 
+    function annotationShowItem() {
+        if (currentAnnotation && annotationUpdateStatus === false) {
+            return (
+                <div
+                    className="annotation-show-item" 
+                    style={{
+                        position: "relative", 
+                        top: yCoord
+                    }}
+                >
+                    <p className="annotation-show-item__name">Really Smart Annotation by {annotation.annotator}</p>
+                    <p className="annotation-show-item__body">{annotation.body}</p>
+                    <VotesShowContainer
+                        numberOfVotes={annotation.number_of_votes}
+                        parent={annotation}
+                        voteableId={annotation.id}
+                        voteableType="Annotation"
+                    />
+                    {updatebuttons()}
+                    <CommentShowContainer
+                        commentableType="Annotation"
+                        parent={annotation}
+                    />
+                </div>
+            );
+        } else if (currentAnnotation && annotationUpdateStatus === true) {
+            return (
+                <form
+                    id="annotation-show-form"
+                    onSubmit={handleUpdatedAnnotationSubmit}
+                    style={{
+                        position: "relative", 
+                        top: yCoord
+                    }}
+                >
+                    <textarea
+                        className="annotation-show-form__body" 
+                        onChange={handleUpdatedAnnotationBodyChange()}
+                        value={updatedAnnotationBody}
+                    >
+                    </textarea>
+                    <div className="annotation-show-form__middle">
+                        <p className="annotation-show-form__middle__tools">Tools:</p>
+                        <div className="annotation-show-form__middle__items">
+                            <a className="annotation-show-form__middle__item">
+                                Add Image
+                                <p className="tooltip">Link is for styling</p>
+                            </a>
+                            <a className="annotation-show-form__middle__item">
+                                Formatting Help
+                                <p className="tooltip">Link is for styling</p>
+                            </a>
+                            <div>
+                                <a className="annotation-show-form__middle__item">
+                                    How To Annotate
+                                    <p className="tooltip">Link is for styling</p>
+                                </a>                       
+                            </div>
+                        </div>
+                    </div>
+                    <div className="annotation-show-form__bottom">
+                        <button className="annotation-show-form__bottom-save"
+                        type="submit">
+                            <p className="annotation-show-form__bottom-save-text">Edit</p>
+                        </button>
+                        <button
+                            className="annotation-show-form__bottom-cancel"
+                            onClick={handleAnnotationUpdateStatus}
+                        >
+                            Cancel
+                        </button>
+                    </div>
+                </form>
+            )
+        } else {
+            return (
+                null
+            );
+        }
+    }
+
     function updatebuttons() {
         if (currentUser && currentUser.id === currentAnnotation.annotator_id && annotationDeleteStatus === false) {
             return (
@@ -102,88 +183,11 @@ function AnnotationShowItem(props: Props) {
         setAnnotationDeleteStatus(false);
     }
 
-    if (currentAnnotation && annotationUpdateStatus === false) {
-        return (
-            <div
-                className="annotation-show-item" 
-                style={{
-                    position: "relative", 
-                    top: yCoord
-                }}
-            >
-                <p className="annotation-show-item__name">Really Smart Annotation by {annotation.annotator}</p>
-                <p className="annotation-show-item__body">{annotation.body}</p>
-                <VotesShowContainer
-                    numberOfVotes={annotation.number_of_votes}
-                    parent={annotation}
-                    voteableId={annotation.id}
-                    voteableType="Annotation"
-                />
-                {updatebuttons()}
-                <CommentShowContainer
-                    commentableType="Annotation"
-                    parent={annotation}
-                />
-            </div>
-        );
-    } else if (currentAnnotation && annotationUpdateStatus === true) {
-        return (
-            <div
-                className="annotation-show-form"
-                style={{
-                    position: "relative",
-                    top: yCoord
-                }}
-            >
-                <form
-                    id="annotation-show-form"
-                    onSubmit={handleUpdatedAnnotationSubmit}
-                >
-                    <textarea
-                        className="annotation-show-form__body" 
-                        onChange={handleUpdatedAnnotationBodyChange()}
-                        value={updatedAnnotationBody}
-                    >
-                    </textarea>
-                    <div className="annotation-show-form__middle">
-                        <p className="annotation-show-form__middle__tools">Tools:</p>
-                        <div className="annotation-show-form__middle__items">
-                            <a className="annotation-show-form__middle__item">
-                                Add Image
-                                <p className="tooltip">Link is for styling</p>
-                            </a>
-                            <a className="annotation-show-form__middle__item">
-                                Formatting Help
-                                <p className="tooltip">Link is for styling</p>
-                            </a>
-                            <div>
-                                <a className="annotation-show-form__middle__item">
-                                    How To Annotate
-                                    <p className="tooltip">Link is for styling</p>
-                                </a>                       
-                            </div>
-                        </div>
-                    </div>
-                    <div className="annotation-show-form__bottom">
-                        <button className="annotation-show-form__bottom-save"
-                        type="submit">
-                            <p className="annotation-show-form__bottom-save-text">Edit</p>
-                        </button>
-                        <button
-                            className="annotation-show-form__bottom-cancel"
-                            onClick={handleAnnotationUpdateStatus}
-                        >
-                            Cancel
-                        </button>
-                    </div>
-                </form>
-            </div>
-        )
-    } else {
-        return (
-            null
-        );
-    }
+    return (
+        <>
+            {annotationShowItem()}
+        </>
+    );
 }
 
 export default AnnotationShowItem;
