@@ -29,6 +29,30 @@ function VotesShow(props: Props) {
         setCurrentUserVote(findCurrentUserVote(currentUser, votes, voteableId, voteableType));
     }, [currentUser])
 
+    function voteThumb() {
+        if (currentUser) {
+            if (currentUserVote) {
+                return (
+                    <RiThumbUpLine
+                        className="vote-show__voted"
+                        onClick={handleVoteUpdate}
+                    />
+                );
+            } else {
+                return (
+                    <RiThumbUpLine
+                        className="vote-show__not-voted"
+                        onClick={handleVoteUpdate}
+                    />
+                );
+            }
+        } else {
+            return (
+                <RiThumbUpLine className="vote-show__not-voted"/>
+            );
+        }
+    }
+
     function handleVoteUpdate(e: MouseEvent<HTMLOrSVGElement>) {
         e.preventDefault();
 
@@ -71,34 +95,14 @@ function VotesShow(props: Props) {
         }
     }
 
-    if (currentUser && currentUserVote) {
-        return (
-            <div className="vote-show">
-                <RiThumbUpLine
-                    className="vote-show__voted"
-                    onClick={handleVoteUpdate}
-                />
-                <div className="vote-show__count">+{currentNumberOfVotes}</div>
+    return (
+        <div className="vote-show">
+            {voteThumb()}
+            <div className="vote-show__count">
+                +{currentNumberOfVotes}
             </div>
-        );
-    } else if (currentUser && !currentUserVote) {
-        return (
-            <div className="vote-show">
-                <RiThumbUpLine
-                    className="vote-show__not-voted"
-                    onClick={handleVoteUpdate}
-                />
-                <div className="vote-show__count">+{currentNumberOfVotes}</div>
-            </div>
-        );
-    } else {
-        return (
-            <div className="vote-show">
-                <RiThumbUpLine className="vote-show__not-voted"/>
-                <div className="vote-show__count">+{currentNumberOfVotes}</div>
-            </div>
-        );
-    }
+        </div>
+    );
 };
 
 export default VotesShow;
