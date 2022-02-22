@@ -18,8 +18,8 @@ type Props = {
 function VotesShow(props: Props) {
     const { createVote, currentUser, deleteVote, fetchParent, fetchVote, numberOfVotes, parent, voteableId, voteableType, votes } = props;
 
-    const [currentUserVote, setCurrentUserVote] = useState<Vote | null>(null);
     const [currentNumberOfVotes, setCurrentNumberOfVotes] = useState<number>(numberOfVotes);
+    const [currentUserVote, setCurrentUserVote] = useState<Vote | null>(null);
 
     useEffect(() => {
         setCurrentUserVote(findCurrentUserVote(currentUser, votes, voteableId, voteableType));
