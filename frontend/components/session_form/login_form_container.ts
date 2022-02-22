@@ -17,4 +17,5 @@ const mDTP = (dispatch: Function) => {
     })
 };
 
-export default connect(mSTP, mDTP)(SessionForm);
+const LoginFormContainer = connect(mSTP, mDTP)(SessionForm);
+export default LoginFormContainer;

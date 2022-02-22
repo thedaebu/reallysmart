@@ -29,4 +29,5 @@ const mDTP = (dispatch: Function, ownProps: OwnProps) => {
     });
 };
 
-export default connect(mSTP, mDTP)(VotesShow);
+const VotesShowContainer = connect(mSTP, mDTP)(VotesShow);
+export default VotesShowContainer;

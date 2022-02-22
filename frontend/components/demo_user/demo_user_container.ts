@@ -14,4 +14,5 @@ const mDTP = (dispatch: Function) => {
     });
 };
 
-export default connect(mSTP, mDTP)(DemoUser);
+const DemoUserContainer = connect(mSTP, mDTP)(DemoUser);
+export default DemoUserContainer;

@@ -22,4 +22,5 @@ const mDTP = (dispatch: Function) => {
     });
 };
 
-export default connect(mSTP, mDTP)(AnnotationShow);
+const AnnotationShowContainer = connect(mSTP, mDTP)(AnnotationShow);
+export default AnnotationShowContainer;

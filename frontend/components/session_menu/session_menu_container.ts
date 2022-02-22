@@ -13,4 +13,5 @@ const mDTP = (dispatch: Function) => ({
     logout: () => dispatch(logout())
 });
 
-export default connect(mSTP, mDTP)(SessionMenu);
+const SessionMenuContainer = connect(mSTP, mDTP)(SessionMenu);
+export default SessionMenuContainer;

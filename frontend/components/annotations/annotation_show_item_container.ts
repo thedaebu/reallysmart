@@ -18,4 +18,5 @@ const mDTP = (dispatch: Function) => {
     })
 };
 
-export const AnnotationShowItemContainer = connect(mSTP, mDTP)(AnnotationShowItem);
+const AnnotationShowItemContainer = connect(mSTP, mDTP)(AnnotationShowItem);
+export default AnnotationShowItemContainer;

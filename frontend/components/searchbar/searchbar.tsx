@@ -23,7 +23,7 @@ function Searchbar(props: Props) {
     }
 
     return (
-        <div>
+        <>
             <div className="searchbar">
                 <input
                     onChange={handleSearchChange()} 
@@ -37,7 +37,7 @@ function Searchbar(props: Props) {
                 clearSearchField={clearSearchField}
                 searchField={searchField}
             />
-        </div>
+        </>
     );
 }
 
