@@ -1,5 +1,5 @@
 class Api::TracksController < ApplicationController
-    def index 
+    def index
         @tracks = Track.all
         render :index
     end
