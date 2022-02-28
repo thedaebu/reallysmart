@@ -108,10 +108,8 @@ export type Annotation = {
     body: string,
     end_index: number,
     id: number,
-    number_of_votes: number,
     start_index: number,
-    track_id: number,
-    vote_ids: Array<number>
+    track_id: number
 }
 export type Comment = {
     body: string,
@@ -120,9 +118,7 @@ export type Comment = {
     commenter: string,
     commenter_id: number,
     id: number,
-    number_of_votes: number,
-    updated_at: string,
-    vote_ids: Array<number>
+    updated_at: string
 }
 export type SessionUser = {
     password: string,
