@@ -104,9 +104,8 @@ function CommentShow(props: Props) {
     }
 
     function commentItems() {
-        const currentComments: Array<Comment> = parent.comment_ids.map((id: number) => comments[id]);
-
-        if (validComments(currentComments) === true && currentComments.length > 0) {
+        const currentComments = setCurrentComments(comments)
+        if (currentComments.length > 0) {
             return (
                 <ul className="comment-show__items">
                     {currentComments.map(comment => {
@@ -126,14 +125,9 @@ function CommentShow(props: Props) {
         }
     }
 
-    function validComments(currentComments: Array<Comment>) {
-        let isValid = true;
-        currentComments.forEach((comment: Comment) => {
-            if (comment === undefined) {
-                isValid = false;
-            }
-        })
-        return isValid;
+    function setCurrentComments(comments: {[key: number]: Comment}) {
+        const currentComments = Object.values(comments).filter((comment: Comment) => comment.commentable_type === commentableType && comment.commentable_id === parent.id);
+        return currentComments;
     }
 
     function handleCommentCreateStatus(e: MouseEvent<HTMLTextAreaElement | HTMLButtonElement>) {
