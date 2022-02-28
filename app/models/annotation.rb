@@ -1,9 +1,9 @@
 class Annotation < ApplicationRecord
-    validates :body, presence: true
     validates :annotator_id, presence: true
-    validates :track_id, presence: true
-    validates :start_index, presence: true
+    validates :body, presence: true
     validates :end_index, presence: true
+    validates :start_index, presence: true
+    validates :track_id, presence: true
 
     belongs_to :annotator,
         foreign_key: :annotator_id,

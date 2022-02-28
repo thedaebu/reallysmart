@@ -30,7 +30,7 @@ class Api::CommentsController < ApplicationController
             render json: ['The comment does not exist']
         end
     end
-    
+
     private
     def comment_params
         params.require(:comment).permit(:body, :commenter_id, :commentable_type, :commentable_id)
