@@ -106,7 +106,6 @@ export type Annotation = {
     annotator: string,
     annotator_id: number,
     body: string,
-    comment_ids: Array<number>,
     end_index: number,
     id: number,
     number_of_votes: number,
@@ -117,6 +116,7 @@ export type Annotation = {
 export type Comment = {
     body: string,
     commentable_id: number,
+    commentable_type: string,
     commenter: string,
     commenter_id: number,
     id: number,
@@ -131,7 +131,6 @@ export type SessionUser = {
 export type Track = {
     artist: string,
     artwork_path: string,
-    comment_ids: Array<number>,
     id: number,
     lyrics: string,
     title: string
