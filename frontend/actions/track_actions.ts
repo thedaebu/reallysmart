@@ -14,7 +14,10 @@ const receiveTracks = (recievedTracks: ReceivedTracks) => {
 const receiveTrack = (receivedTrack: ReceivedTrack) => {
     return ({
         type: RECEIVE_TRACK,
-        track: receivedTrack.track
+        annotations: receivedTrack.annotations,
+        comments: receivedTrack.comments,
+        track: receivedTrack.track,
+        votes: receivedTrack.votes
     });
 };
 
