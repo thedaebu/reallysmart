@@ -105,9 +105,7 @@ function CommentShowItem(props: Props) {
                 </div>
                 <p className="comment-show-item__body">{comment.body}</p>
                 <VotesShowContainer 
-                    numberOfVotes={comment.number_of_votes} 
                     parent={comment} 
-                    voteableId={comment.id} 
                     voteableType="Comment" 
                 />
                 {updatebuttons()}
