@@ -52,11 +52,8 @@ function LyricsShow(props: Props) {
     }, [annotations])
 
     function annotatedLyrics() {
-        const currentAnnotations: Array<Annotation> = track.annotation_ids.map((id: number) => {
-            return annotations[id];
-        });
-
-        if (validAnnotations(currentAnnotations) && currentAnnotations.length > 0) {
+        const currentAnnotations = Object.values(annotations);
+        if (currentAnnotations.length > 0) {
             return (
                 annotateLyrics(track.lyrics, currentAnnotations)
             );
@@ -72,16 +69,6 @@ function LyricsShow(props: Props) {
                 </span>
             );
         }
-    }
-
-    function validAnnotations(currentAnnotations: Array<Annotation>) {
-        for (let annotation of currentAnnotations) {
-            if (!annotation) {
-                return false;
-            }
-        }
-
-        return true;
     }
 
     function annotateLyrics(lyrics: string, currentAnnotations: Array<Annotation>) {

@@ -129,7 +129,6 @@ export type SessionUser = {
     username: string
 }
 export type Track = {
-    annotation_ids: Array<number>,
     artist: string,
     artwork_path: string,
     comment_ids: Array<number>,
