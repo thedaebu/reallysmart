@@ -26,7 +26,10 @@ export type ReceivedComment = {
     votes: {[key:number]: Vote}
 }
 export type ReceivedTrack = {
-    track: Track
+    annotations: {[key:number]: Annotation},
+    comments: {[key:number]: Comment}
+    track: Track,
+    votes: {[key:number]: Vote}
 }
 export type ReceivedTracks = {
     tracks: {[key: number]: Track}
