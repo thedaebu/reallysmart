@@ -104,7 +104,7 @@ function CommentShow(props: Props) {
     }
 
     function commentItems() {
-        const currentComments = setCurrentComments(comments)
+        const currentComments = getCurrentComments(comments)
         if (currentComments.length > 0) {
             return (
                 <ul className="comment-show__items">
@@ -125,7 +125,7 @@ function CommentShow(props: Props) {
         }
     }
 
-    function setCurrentComments(comments: {[key: number]: Comment}) {
+    function getCurrentComments(comments: {[key: number]: Comment}) {
         const currentComments = Object.values(comments).filter((comment: Comment) => comment.commentable_type === commentableType && comment.commentable_id === parent.id);
         return currentComments;
     }
