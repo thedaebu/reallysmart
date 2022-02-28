@@ -22,76 +22,74 @@ function CommentShowItem(props: Props) {
     const [updatedCommentBody, setUpdatedCommentBody] = useState<string>(props.comment.body);
 
     function commentShowItem() {
-        if (currentUser) {
-            if (commentUpdateStatus === false && commentableType === "Track") {
-                return (
-                    <li className="comment-show-item--track">
-                        {commentItem()}
-                    </li>
-                );
-            } else if (commentUpdateStatus === true && commentableType === "Track"){
-                return (
-                    <li className="comment-show-item--track">
-                        <form
-                            className="comment-show-form"
-                            onSubmit={handleUpdatedCommentSubmit}
-                        >
-                            <textarea
-                                className="comment-show-form__annotation-text"
-                                onChange={handleUpdatedCommentBodyChange()}
-                                value={updatedCommentBody}
-                            />
-                            <div className="comment-show-form__buttons">
-                                <button className="comment-show-form__submit">
-                                    <p>Edit</p>
-                                </button>
-                                <button
-                                    className="comment-show-form__cancel"
-                                    onClick={handleCommentUpdateStatus}
-                                >
-                                    <p>Cancel</p>
-                                </button>
-                            </div>
-                        </form>
-                    </li>
-                );
-            } else if (commentUpdateStatus === false && commentableType === "Annotation") {
-                return (
-                    <li className="comment-show-item--annotation">
-                        {commentItem()}
-                    </li>
-                );
-            } else if (commentUpdateStatus === true && commentableType === "Annotation") {
-                return (
-                    <li className="comment-show-item--annotation">
-                        <form
-                            className="comment-show-form"
-                            onSubmit={handleUpdatedCommentSubmit}
-                        >
-                            <textarea
-                                className="comment-show-form__annotation-text"
-                                onChange={handleUpdatedCommentBodyChange()}
-                                value={updatedCommentBody}
-                            />
-                            <div className="comment-show-form__buttons">
-                                <button className="comment-show-form__submit">
-                                    <p>Edit</p>
-                                </button>
-                                <button
-                                    className="comment-show-form__cancel"
-                                    onClick={handleCommentUpdateStatus}
-                                >
-                                    <p>Cancel</p>
-                                </button>
-                            </div>
-                        </form>
-                    </li>
-                )
-            }
+        if (commentUpdateStatus === false && commentableType === "Track") {
+            return (
+                <li className="comment-show-item--track">
+                    {commentItem()}
+                </li>
+            );
+        } else if (commentUpdateStatus === true && commentableType === "Track"){
+            return (
+                <li className="comment-show-item--track">
+                    <form
+                        className="comment-show-form"
+                        onSubmit={handleUpdatedCommentSubmit}
+                    >
+                        <textarea
+                            className="comment-show-form__annotation-text"
+                            onChange={handleUpdatedCommentBodyChange()}
+                            value={updatedCommentBody}
+                        />
+                        <div className="comment-show-form__buttons">
+                            <button className="comment-show-form__submit">
+                                <p>Edit</p>
+                            </button>
+                            <button
+                                className="comment-show-form__cancel"
+                                onClick={handleCommentUpdateStatus}
+                            >
+                                <p>Cancel</p>
+                            </button>
+                        </div>
+                    </form>
+                </li>
+            );
+        } else if (commentUpdateStatus === false && commentableType === "Annotation") {
+            return (
+                <li className="comment-show-item--annotation">
+                    {commentItem()}
+                </li>
+            );
+        } else if (commentUpdateStatus === true && commentableType === "Annotation") {
+            return (
+                <li className="comment-show-item--annotation">
+                    <form
+                        className="comment-show-form"
+                        onSubmit={handleUpdatedCommentSubmit}
+                    >
+                        <textarea
+                            className="comment-show-form__annotation-text"
+                            onChange={handleUpdatedCommentBodyChange()}
+                            value={updatedCommentBody}
+                        />
+                        <div className="comment-show-form__buttons">
+                            <button className="comment-show-form__submit">
+                                <p>Edit</p>
+                            </button>
+                            <button
+                                className="comment-show-form__cancel"
+                                onClick={handleCommentUpdateStatus}
+                            >
+                                <p>Cancel</p>
+                            </button>
+                        </div>
+                    </form>
+                </li>
+            )
         } else {
             return (
                 null
-            );
+            )
         }
     }
 
