@@ -8,25 +8,23 @@ type Props = {
     deleteVote: Function,
     fetchParent: Function,
     fetchVote: Function,
-    numberOfVotes: number,
     parent: Annotation | Comment,
-    voteableId: number,
     voteableType: string,
     votes: {[key: number]: Vote}
 }
 
 function VotesShow(props: Props) {
-    const { createVote, currentUser, deleteVote, fetchParent, fetchVote, numberOfVotes, parent, voteableId, voteableType, votes } = props;
+    const { createVote, currentUser, deleteVote, fetchParent, fetchVote, parent, voteableType, votes } = props;
 
-    const [currentNumberOfVotes, setCurrentNumberOfVotes] = useState<number>(numberOfVotes);
+    const [currentNumberOfVotes, setCurrentNumberOfVotes] = useState<number>(0);
     const [currentUserVote, setCurrentUserVote] = useState<Vote | null>(null);
 
     useEffect(() => {
-        setCurrentUserVote(findCurrentUserVote(currentUser, votes, voteableId, voteableType));
+        setCurrentUserVote(findCurrentUserVote(currentUser, votes));
     }, [])
 
     useEffect(() => {
-        setCurrentUserVote(findCurrentUserVote(currentUser, votes, voteableId, voteableType));
+        setCurrentUserVote(findCurrentUserVote(currentUser, votes));
     }, [currentUser])
 
     function voteThumb() {
@@ -56,7 +54,7 @@ function VotesShow(props: Props) {
     function handleVoteUpdate(e: MouseEvent<HTMLOrSVGElement>) {
         e.preventDefault();
 
-        setCurrentUserVote(findCurrentUserVote(currentUser, votes, voteableId, voteableType));
+        setCurrentUserVote(findCurrentUserVote(currentUser, votes));
 
         if (currentUserVote) {
             deleteVote(currentUserVote.id)
@@ -67,7 +65,7 @@ function VotesShow(props: Props) {
         } else {
             const vote: CreatedVote = {
                 voteable_type: voteableType,
-                voteable_id: voteableId,
+                voteable_id: parent.id,
                 voter_id: currentUser.id
             };
 
@@ -77,22 +75,30 @@ function VotesShow(props: Props) {
                     setCurrentUserVote(receivedVote.vote);
                     fetchParent(parent.id);
                 });
-            
+
             setCurrentNumberOfVotes(currentNumberOfVotes+1);
         }
     }
 
-    function findCurrentUserVote(currentUser: User, votes: {[key: number]: Vote}, voteableId: number, voteableType: string) {
-        if (currentUser && Object.keys(votes).length > 0) {
+    function findCurrentUserVote(currentUser: User, votes: {[key: number]: Vote}) {
+        const currentVotes: Array<Vote> = getCurrentVotes(votes)
+
+        if (currentUser && currentVotes.length > 0) {
             for (let voteId of currentUser.vote_ids) {
                 const currentVote: Vote = votes[voteId];
-                if (currentVote && currentVote.voteable_id === voteableId && currentVote.voteable_type === voteableType) {
+                if (currentVote) {
                     return currentVote;
                 }
             }
         } else {
             return null;
         }
+    }
+
+    function getCurrentVotes(votes: {[key: number]: Vote}) {
+        const currentVotes: Array<Vote> = Object.values(votes).filter((vote: Vote) => vote.voteable_type === voteableType && vote.voteable_id === parent.id)
+        setCurrentNumberOfVotes(currentVotes.length)
+        return currentVotes;
     }
 
     return (
