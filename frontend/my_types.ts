@@ -26,7 +26,10 @@ export type ReceivedComment = {
     votes: {[key:number]: Vote}
 }
 export type ReceivedTrack = {
-    track: Track
+    annotations: {[key:number]: Annotation},
+    comments: {[key:number]: Comment}
+    track: Track,
+    votes: {[key:number]: Vote}
 }
 export type ReceivedTracks = {
     tracks: {[key: number]: Track}
@@ -103,33 +106,27 @@ export type Annotation = {
     annotator: string,
     annotator_id: number,
     body: string,
-    comment_ids: Array<number>,
     end_index: number,
     id: number,
-    number_of_votes: number,
     start_index: number,
-    track_id: number,
-    vote_ids: Array<number>
+    track_id: number
 }
 export type Comment = {
     body: string,
     commentable_id: number,
+    commentable_type: string,
     commenter: string,
     commenter_id: number,
     id: number,
-    number_of_votes: number,
-    updated_at: string,
-    vote_ids: Array<number>
+    updated_at: string
 }
 export type SessionUser = {
     password: string,
     username: string
 }
 export type Track = {
-    annotation_ids: Array<number>,
     artist: string,
     artwork_path: string,
-    comment_ids: Array<number>,
     id: number,
     lyrics: string,
     title: string

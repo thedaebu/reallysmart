@@ -11,7 +11,6 @@ type Props = {
     createAnnotation: Function,
     currentUser: User,
     endIndex: number,
-    fetchComment: Function,
     fetchTrack: Function,
     handleAnnotationCreateStatus: Function,
     startIndex: number,
@@ -20,17 +19,9 @@ type Props = {
 }
 
 function AnnotationShow(props: Props) {
-    const { annotation, annotationModal, closeAnnotationModal, createAnnotation, annotationCreateStatus, currentUser, endIndex, fetchComment, fetchTrack, handleAnnotationCreateStatus, startIndex, track, yCoord } = props;
+    const { annotation, annotationModal, closeAnnotationModal, createAnnotation, annotationCreateStatus, currentUser, endIndex, fetchTrack, handleAnnotationCreateStatus, startIndex, track, yCoord } = props;
     
     const [annotationBody, setAnnotationBody] = useState<string>("");
-
-    useEffect(() => {
-        if (annotation !== null) {
-            annotation.comment_ids.forEach((commentId: number) => {
-                fetchComment(commentId);
-            });
-        }
-    }, [annotation])
 
     function annotationShow() {
         if (annotation) {

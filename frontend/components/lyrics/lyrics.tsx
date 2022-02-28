@@ -7,8 +7,6 @@ declare const window: Window;
 type Props = {
     annotations: {[key: number]: Annotation},
     closeAnnotationModal: Function,
-    fetchAnnotation: Function,
-    fetchComment: Function,
     openAnnotationModal: Function,
     track: Track
 }
@@ -30,7 +28,7 @@ type Dataset = {
 }
 
 function LyricsShow(props: Props) {
-    const { annotations, closeAnnotationModal, fetchAnnotation, fetchComment, openAnnotationModal, track } = props;
+    const { annotations, closeAnnotationModal, openAnnotationModal, track } = props;
     
     const [annotationCreateStatus, setAnnotationCreateStatus] = useState<boolean>(false);
     const [endIndex, setEndIndex] = useState<number>(0);
@@ -40,12 +38,6 @@ function LyricsShow(props: Props) {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-        track.annotation_ids.forEach((annotationId: number) => {
-            fetchAnnotation(annotationId);
-        });
-        track.comment_ids.forEach((commentId: number) => {
-            fetchComment(commentId);
-        });
     }, [])
 
     // used for editing annotations
@@ -60,11 +52,8 @@ function LyricsShow(props: Props) {
     }, [annotations])
 
     function annotatedLyrics() {
-        const currentAnnotations: Array<Annotation> = track.annotation_ids.map((id: number) => {
-            return annotations[id];
-        });
-
-        if (validAnnotations(currentAnnotations) && currentAnnotations.length > 0) {
+        const currentAnnotations = Object.values(annotations);
+        if (currentAnnotations.length > 0) {
             return (
                 annotateLyrics(track.lyrics, currentAnnotations)
             );
@@ -80,16 +69,6 @@ function LyricsShow(props: Props) {
                 </span>
             );
         }
-    }
-
-    function validAnnotations(currentAnnotations: Array<Annotation>) {
-        for (let annotation of currentAnnotations) {
-            if (!annotation) {
-                return false;
-            }
-        }
-
-        return true;
     }
 
     function annotateLyrics(lyrics: string, currentAnnotations: Array<Annotation>) {
