@@ -1,5 +1,6 @@
 class Annotation < ApplicationRecord
     validates :annotator_id, presence: true
+    validates :annotator_name, presence: true
     validates :body, presence: true
     validates :end_index, presence: true
     validates :start_index, presence: true
