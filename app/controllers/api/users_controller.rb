@@ -13,6 +13,6 @@ class Api::UsersController < ApplicationController
     private 
     # add avatar params when doing AWS
     def user_params
-        params.require(:user).permit(:username, :password)
+        params.require(:user).permit(:password, :username)
     end
 end

@@ -14,7 +14,6 @@ class Api::TracksController < ApplicationController
         comment_votes = @track.comment_votes
         @comments = comments + annotation_comments
         @votes = annotation_votes + annotation_comment_votes + comment_votes
-
         render :show
     end
 end
