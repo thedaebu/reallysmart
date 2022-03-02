@@ -913,7 +913,7 @@ Get me back on my feet so I can tear shit up"
 selene_annotation1 = Annotation.create(
     body: "She is singing about Selene, her alter-ego, who comes out when she becomes under the influence. She is claiming Selene is making her do things not of her own will but she is not trying to will herself against Selene.",
     annotator_id: reallysmart.id,
-    annatator_name: reallysmart.username,
+    annotator_name: reallysmart.username,
     track_id: selene.id,
     start_index: 9,
     end_index: 140
@@ -921,7 +921,7 @@ selene_annotation1 = Annotation.create(
 selene_annotation2 = Annotation.create(
     body: "She is allowing Selene to take over. She and Selene want the same thing.",
     annotator_id: reallysmart.id,
-    annatator_name: reallysmart.username,
+    annotator_name: reallysmart.username,
     track_id: selene.id,
     start_index: 459,
     end_index: 516
@@ -929,7 +929,7 @@ selene_annotation2 = Annotation.create(
 selene_annotation3 = Annotation.create(
     body: "Selene is the Greek goddess of the moon and her symbols include the torch and the chariot. It is said that she drives her chariot  across the heavens carrying her torch. She is saying that when Selene takes over her, everyone will notice it as if the Greek goddess arrived.",
     annotator_id: reallysmart.id,
-    annatator_name: reallysmart.username,
+    annotator_name: reallysmart.username,
     track_id: selene.id,
     start_index: 778,
     end_index: 1049
@@ -1026,7 +1026,7 @@ selene_vote13 = Vote.create(
 lady_annotation1= Annotation.create(
     body: "The person is conveying to the woman whom he is with is the person he is finally meant to be with. He also knows by how the woman is reacting to him.",
     annotator_id: reallysmart.id,
-    annatator_name: reallysmart.username,
+    annotator_name: reallysmart.username,
     track_id: lady.id,
     start_index: 0,
     end_index: 279
@@ -1074,7 +1074,7 @@ lady_vote6 = Vote.create(
 fake_love_annotation1 = Annotation.create(
     body: "He had been at a low place in his life for so long that any affection he had received when he became successful felt real but realizes they were not genuine.",
     annotator_id: reallysmart.id,
-    annatator_name: reallysmart.username,
+    annotator_name: reallysmart.username,
     track_id: fake_love.id,
     start_index: 8,
     end_index: 162 
@@ -1082,7 +1082,7 @@ fake_love_annotation1 = Annotation.create(
 fake_love_annotation2 = Annotation.create(
     body: "He senses that whenever he talks to his friend that the friend is always hiding something.",
     annotator_id: reallysmart.id,
-    annatator_name: reallysmart.username,
+    annotator_name: reallysmart.username,
     track_id: fake_love.id,
     start_index: 327,
     end_index: 465 
@@ -1090,7 +1090,7 @@ fake_love_annotation2 = Annotation.create(
 fake_love_annotation3 = Annotation.create(
     body: "Now that he experienced all the fake affection and the ways people tried to use him, he is immediately able to see the deception of those around him.",
     annotator_id: reallysmart.id,
-    annatator_name: reallysmart.username,
+    annotator_name: reallysmart.username,
     track_id: fake_love.id,
     start_index: 1277,
     end_index: 1473
@@ -1140,7 +1140,7 @@ fake_love_vote5 = Vote.create(
 river_annotation1 = Annotation.create(
     body: "This is a sexual innuendo.",
     annotator_id: reallysmart.id,
-    annatator_name: reallysmart.username,
+    annotator_name: reallysmart.username,
     track_id: river.id,
     start_index: 98,
     end_index: 138
@@ -1148,7 +1148,7 @@ river_annotation1 = Annotation.create(
 river_annotation2 = Annotation.create(
     body: "She says love for someone else can be the deepest feeling anyone feels but at the same time, that love can be the most fragile.",
     annotator_id: reallysmart.id,
-    annatator_name: reallysmart.username,
+    annotator_name: reallysmart.username,
     track_id: river.id,
     start_index: 149,
     end_index: 261
@@ -1156,7 +1156,7 @@ river_annotation2 = Annotation.create(
 river_annotation3 = Annotation.create(
     body: "She is saying that if he says anything, then the relationship will break. So, she just tells him to perform on her.",
     annotator_id: reallysmart.id,
-    annatator_name: reallysmart.username,
+    annotator_name: reallysmart.username,
     track_id: river.id,
     start_index: 275,
     end_index: 410
@@ -1214,7 +1214,7 @@ river_vote8 = Vote.create(
 reflection_annotation1 = Annotation.create(
     body: "She wants to know why she does not see her true self.",
     annotator_id: reallysmart.id,
-    annatator_name: reallysmart.username,
+    annotator_name: reallysmart.username,
     track_id: reflection.id,
     start_index: 344,
     end_index: 436
@@ -1282,7 +1282,7 @@ reflection_vote10 = Vote.create(
 stay_annotation1 = Annotation.create(
     body: "He feels like his body is breaking down just at the though of separating from the woman he is in love with.",
     annotator_id: reallysmart.id,
-    annatator_name: reallysmart.username,
+    annotator_name: reallysmart.username,
     track_id: stay.id,
     start_index: 120,
     end_index: 377
@@ -1290,7 +1290,7 @@ stay_annotation1 = Annotation.create(
 stay_annotation2 = Annotation.create(
     body: "He is willing to change and do anything just so the woman he loves would stay with him.",
     annotator_id: reallysmart.id,
-    annatator_name: reallysmart.username,
+    annotator_name: reallysmart.username,
     track_id: stay.id,
     start_index: 1035,
     end_index: 1143
@@ -1328,7 +1328,7 @@ stay_vote4 = Vote.create(
 just_a_friend_2002_annotation1 = Annotation.create(
     body: "He wants to know everything about the girl that he is into, even if the girl has a boyfriend. He ultimately wants to be together with her but she continues to keep him in the friend zone.",
     annotator_id: reallysmart.id,
-    annatator_name: reallysmart.username,
+    annotator_name: reallysmart.username,
     track_id: just_a_friend_2002.id,
     start_index: 36,
     end_index: 324
@@ -1336,7 +1336,7 @@ just_a_friend_2002_annotation1 = Annotation.create(
 just_a_friend_2002_annotation2 = Annotation.create(
     body: "He wants to know everything about the girl he is talking with because he is obsessed with being with her. However, the girl is rebuffing his advancements by telling him that he is 'just a friend.'",
     annotator_id: reallysmart.id,
-    annatator_name: reallysmart.username,
+    annotator_name: reallysmart.username,
     track_id: just_a_friend_2002.id,
     start_index: 623,
     end_index: 905
@@ -1391,7 +1391,7 @@ just_a_friend_2002_vote6 = Vote.create(
 revenge_annotation1 = Annotation.create(
     body: "She says she will never allow the person to be in her life again but also felt disappointed because she genuinely cared for him.",
     annotator_id: reallysmart.id,
-    annatator_name: reallysmart.username,
+    annotator_name: reallysmart.username,
     track_id: revenge.id,
     start_index: 135,
     end_index: 246
@@ -1399,7 +1399,7 @@ revenge_annotation1 = Annotation.create(
 revenge_annotation2 = Annotation.create(
     body: "She vows to the person she gave her love to will regret everything he did once she becomes as successful as much as she believes she would be.",
     annotator_id: reallysmart.id,
-    annatator_name: reallysmart.username,
+    annotator_name: reallysmart.username,
     track_id: revenge.id,
     start_index: 434,
     end_index: 752
@@ -1407,7 +1407,7 @@ revenge_annotation2 = Annotation.create(
 revenge_annotation3 = Annotation.create(
     body: "She reiterates that she used to be in love with him. But, she no longer cares that he starts to want to be with her again after she became more successful.",
     annotator_id: reallysmart.id,
-    annatator_name: reallysmart.username,
+    annotator_name: reallysmart.username,
     track_id: revenge.id,
     start_index: 763,
     end_index: 998
@@ -1475,7 +1475,7 @@ revenge_vote10 = Vote.create(
 blue_annotation1 = Annotation.create(
     body: "He says the sky is blue, you are next to him, the sea is blue, and it's hot.",
     annotator_id: reallysmart.id,
-    annatator_name: reallysmart.username,
+    annotator_name: reallysmart.username,
     track_id: blue.id,
     start_index: 23,
     end_index: 303
@@ -1483,7 +1483,7 @@ blue_annotation1 = Annotation.create(
 blue_annotation2 = Annotation.create(
     body: "He says that the summer is ours and that if there is an angel then it is you so let's get lost in the sky.",
     annotator_id: reallysmart.id,
-    annatator_name: reallysmart.username,
+    annotator_name: reallysmart.username,
     track_id: blue.id,
     start_index: 597,
     end_index: 685
@@ -1551,7 +1551,7 @@ blue_vote10 = Vote.create(
 shiki_no_uta_annotation1 = Annotation.create(
     body: "When dawn breaks again, we'll say our farewells. Our dreams become distant phantoms. The times we were embraced. In the light that chased you, relying on the warm winds.",
     annotator_id: reallysmart.id,
-    annatator_name: reallysmart.username,
+    annotator_name: reallysmart.username,
     track_id: shiki_no_uta.id,
     start_index: 0,
     end_index: 133
