@@ -99,7 +99,7 @@ function CommentShowItem(props: Props) {
                 <div className="comment-show-item__top">
                     <div>
                         <img className="comment-show-item__baby" src="https://assets.genius.com/images/default_avatar_100.png" />
-                        <p className="comment-show-item__commenter">{comment.commenter}</p>
+                        <p className="comment-show-item__commenter">{comment.commenter_name}</p>
                     </div>
                     <p className="comment-show-item__time">{handleTime(comment.updated_at)}</p>
                 </div>
@@ -189,6 +189,7 @@ function CommentShowItem(props: Props) {
             commentable_type: commentableType,
             commentable_id: parent.id,
             commenter_id: currentUser.id,
+            commenter_name: currentUser.username,
             id: currentComment.id
         };
 
