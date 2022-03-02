@@ -38,10 +38,11 @@ ActiveRecord::Schema.define(version: 2021_08_04_004559) do
 
   create_table "annotations", force: :cascade do |t|
     t.text "body", null: false
+    t.string "annotator", null: false
     t.integer "annotator_id", null: false
-    t.integer "track_id", null: false
-    t.integer "start_index", null: false
     t.integer "end_index", null: false
+    t.integer "start_index", null: false
+    t.integer "track_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["annotator_id"], name: "index_annotations_on_annotator_id"
@@ -50,9 +51,10 @@ ActiveRecord::Schema.define(version: 2021_08_04_004559) do
 
   create_table "comments", force: :cascade do |t|
     t.text "body", null: false
-    t.integer "commenter_id", null: false
     t.string "commentable_type", null: false
     t.bigint "commentable_id", null: false
+    t.string "commenter", null: false
+    t.integer "commenter_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
@@ -68,18 +70,18 @@ ActiveRecord::Schema.define(version: 2021_08_04_004559) do
   end
 
   create_table "tracks", force: :cascade do |t|
-    t.string "title", null: false
     t.string "artist", null: false
     t.string "artwork_path", null: false
     t.text "lyrics", null: false
+    t.string "title", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "username", null: false
     t.string "password_digest", null: false
     t.string "session_token", null: false
+    t.string "username", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["session_token"], name: "index_users_on_session_token", unique: true
@@ -87,9 +89,9 @@ ActiveRecord::Schema.define(version: 2021_08_04_004559) do
   end
 
   create_table "votes", force: :cascade do |t|
-    t.integer "voter_id", null: false
     t.string "voteable_type", null: false
     t.bigint "voteable_id", null: false
+    t.integer "voter_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["voteable_type", "voteable_id"], name: "index_votes_on_voteable_type_and_voteable_id"
