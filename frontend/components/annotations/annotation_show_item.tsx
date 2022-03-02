@@ -31,7 +31,7 @@ function AnnotationShowItem(props: Props) {
                         top: yCoord
                     }}
                 >
-                    <p className="annotation-show-item__name">Really Smart Annotation by {annotation.annotator}</p>
+                    <p className="annotation-show-item__name">Really Smart Annotation by {annotation.annotator_name}</p>
                     <p className="annotation-show-item__body">{annotation.body}</p>
                     <VotesShowContainer
                         parent={annotation}
@@ -150,6 +150,7 @@ function AnnotationShowItem(props: Props) {
 
         const updatedAnnotation: UpdatedAnnotation = {
             annotator_id: currentUser.id,
+            annotator_name: currentUser.username,
             body: updatedAnnotationBody,
             end_index: currentAnnotation.end_index,
             id: currentAnnotation.id,

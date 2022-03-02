@@ -1,6 +1,7 @@
 // used for action files
 export type CreatedAnnotation = {
     annotator_id: number,
+    annotator_name: string,
     body: string,
     end_index: number,
     start_index: number,
@@ -10,7 +11,8 @@ export type CreatedComment = {
     body: string,
     commentable_id: number
     commentable_type: string,
-    commenter_id: number
+    commenter_id: number,
+    commenter_name: string
 }
 export type CreatedVote = {
     voteable_type: string,
@@ -42,6 +44,7 @@ export type ReceivedVote = {
 }
 export type UpdatedAnnotation = {
     annotator_id: number,
+    annotator_name: string,
     body: string,
     end_index: number,
     id: number,
@@ -53,6 +56,7 @@ export type UpdatedComment = {
     commentable_id: number
     commentable_type: string,
     commenter_id: number,
+    commenter_name: string,
     id: number
 }
 
@@ -103,8 +107,8 @@ export type Action = {
 
 // main feature types
 export type Annotation = {
-    annotator: string,
     annotator_id: number,
+    annotator_name: string,
     body: string,
     end_index: number,
     id: number,
@@ -115,8 +119,8 @@ export type Comment = {
     body: string,
     commentable_id: number,
     commentable_type: string,
-    commenter: string,
     commenter_id: number,
+    commenter_name: string,
     id: number,
     updated_at: string
 }
