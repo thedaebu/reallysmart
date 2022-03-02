@@ -1,7 +1,7 @@
 {
     "roots": ["<rootDir>/frontend"],
     "transform": {
-        "^.+\\.ts?$": "ts-jst",
+        "^.+\\.ts?$": "ts-jest",
         "^.+\\.tsx?$": "ts-jest"
     },
     "testEnvironment": "jsdom",
