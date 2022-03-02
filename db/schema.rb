@@ -38,8 +38,8 @@ ActiveRecord::Schema.define(version: 2021_08_04_004559) do
 
   create_table "annotations", force: :cascade do |t|
     t.text "body", null: false
-    t.string "annotator", null: false
     t.integer "annotator_id", null: false
+    t.string "annotator_name", null: false
     t.integer "end_index", null: false
     t.integer "start_index", null: false
     t.integer "track_id", null: false
@@ -53,8 +53,8 @@ ActiveRecord::Schema.define(version: 2021_08_04_004559) do
     t.text "body", null: false
     t.string "commentable_type", null: false
     t.bigint "commentable_id", null: false
-    t.string "commenter", null: false
     t.integer "commenter_id", null: false
+    t.string "commenter_name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
