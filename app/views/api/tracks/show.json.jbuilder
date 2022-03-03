@@ -11,7 +11,6 @@ json.annotations do
     end
 end
 
-
 json.comments Hash.new()
 json.comments do
     @comments.each do |comment|
