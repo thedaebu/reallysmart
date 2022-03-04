@@ -41,7 +41,7 @@ function TrackIndex(props: Props) {
         }
     }
 
-    function extendTrackIndexList() {
+    function extendTrackIndexListButton() {
         if (trackIndexList === 5) {
             return ( 
                 <button onClick={setTrackIndexListLimit} className="track-index__load-more">LOAD MORE</button>
@@ -77,7 +77,7 @@ function TrackIndex(props: Props) {
                     {trackIndexItems()}
                 </ul>
             </div>
-            {extendTrackIndexList()}
+            {extendTrackIndexListButton()}
         </>
     );
 };
