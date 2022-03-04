@@ -23,4 +23,5 @@ config/master.key
 
 setup.txt
 
-test.tsx
+sidebar.tsx
+sidebar.test.tsx
