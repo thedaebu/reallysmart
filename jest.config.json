@@ -11,5 +11,6 @@
         "ts-jest": {
             "isolatedModules": true
         }
-    }
+    },
+    "setupFilesAfterEnv": ["<rootDir>/test/components/jest-setup.ts"]
 }
