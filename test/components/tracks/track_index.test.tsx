@@ -1,6 +1,5 @@
 import React from "react";
-import { fireEvent, render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
+import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import TrackIndex from "../../../frontend/components/tracks/track_index";
 import { fetchTracks } from "../../../frontend/actions/track_actions";
 
