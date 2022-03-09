@@ -1,7 +1,7 @@
 class Api::CommentsController < ApplicationController
     def show
-        @comment = Comment.select("body, commentable_id, commentable_type, commenter_id, commenter_name, updated_at").find(params[:id])
-        
+        @comment = Comment.select("body, commentable_id, commentable_type, commenter_id, commenter_name, id, updated_at").find(params[:id])
+
         result = {:comment => @comment}
         render json: result
     end
