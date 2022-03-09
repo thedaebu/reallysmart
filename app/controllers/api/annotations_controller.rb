@@ -1,31 +1,39 @@
 class Api::AnnotationsController < ApplicationController
     def show
-        @annotation = Annotation.find(params[:id])
-        render :show
+        @annotation = Annotation.select("annotator_id, annotator_name, body, end_index, id, start_index, track_id").find(params[:id])
+
+        result = {:annotation => @annotation}
+        render json: result
     end
 
     def create
-        @annotation = Annotation.new(annotation_params)
-        if @annotation.save
-            render :show
+        created_annotation = Annotation.new(annotation_params)
+        if created_annotation.save
+            @annotation = created_annotation.slice(:annotator_id, :annotator_name, :body, :end_index, :id, :start_index, :track_id)
+            
+            result = {:annotation => @annotation}
+            render json :result
         else
-            render json: @annotation.errors.full_messages, status: 422
+            render json: created_annotation.errors.full_messages, status: 422
         end
     end
 
     def update
-        @annotation = Annotation.find(params[:id])
-        if @annotation.update(annotation_params)
-            render :show
+        updated_annotation = Annotation.find(params[:id])
+        if updated_annotation.update(annotation_params)
+            @annotation = updated_annotation.slice(:annotator_id, :annotator_name, :body, :end_index, :id, :start_index, :track_id)
+            
+            result = {:annotation => @annotation}
+            render json :result
         else
-            render json: @annotation.errors.full_messages, status: 422
+            render json: updated_annotation.errors.full_messages, status: 422
         end
     end
 
     def destroy
-        @annotation = Annotation.find(params[:id])
-        if @annotation
-            @annotation.destroy
+        annotation = Annotation.find(params[:id])
+        if annotation
+            annotation.destroy
         else
             render json: ['The annotation does not exist.']
         end
