@@ -12,7 +12,7 @@ class Api::AnnotationsController < ApplicationController
             @annotation = created_annotation.slice(:annotator_id, :annotator_name, :body, :end_index, :id, :start_index, :track_id)
             
             result = {:annotation => @annotation}
-            render json :result
+            render json: result
         else
             render json: created_annotation.errors.full_messages, status: 422
         end
