@@ -25,6 +25,9 @@ export type ReceivedAnnotation = {
 export type ReceivedComment = {
     comment: Comment
 }
+export type ReceivedSearches = {
+    searches: {[key: number]: Track}
+}
 export type ReceivedTrack = {
     annotations: {[key:number]: Annotation},
     comments: {[key:number]: Comment}
