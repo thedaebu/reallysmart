@@ -12,7 +12,7 @@ class Api::VotesController < ApplicationController
             @vote = created_vote.slice(:id, :voter_id, :voteable_id, :voteable_type)
 
             result = {:vote => @vote}
-            render json :result
+            render json: result
         else
             render json: created_vote.errors.full_messages, status: 422
         end
