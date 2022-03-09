@@ -10,7 +10,6 @@ const receiveComment = (receivedComment: ReceivedComment) => {
     return ({
         type: RECEIVE_COMMENT,
         comment: receivedComment.comment,
-        votes: receivedComment.votes
     });
 };
 const removeComment = (commentId: number) => {

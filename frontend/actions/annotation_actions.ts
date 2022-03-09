@@ -11,7 +11,6 @@ const receiveAnnotation = (receivedAnnotation: ReceivedAnnotation) => {
     return({
         type: RECEIVE_ANNOTATION,
         annotation: receivedAnnotation.annotation,
-        votes: receivedAnnotation.votes
     });
 };
 const receiveAnnotationErrors = (errors: Array<string>) => {
