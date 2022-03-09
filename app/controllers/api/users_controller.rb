@@ -1,11 +1,16 @@
 class Api::UsersController < ApplicationController
     def create 
-        @user = User.new(user_params)
-        if @user.save
-            login!(@user)
-            render :show
+        created_user = User.new(user_params)
+        if created_user.save
+            login!(created_user)
+            @user = created_user.slice(:id, :username)
+            @user[:vote_ids] = []
+            # avatar_url = url_for(user.avatar)
+
+            result = {:user => @user}
+            render json: result
         else
-            render json: @user.errors.full_messages, status: 422
+            render json: created_user.errors.full_messages, status: 422
         end
     end
 

@@ -1,22 +1,27 @@
 class Api::VotesController < ApplicationController
     def show
-        @vote = Vote.find(params[:id])
-        render :show
+        @vote = Vote.select("id, voter_id, voteable_id, voteable_type").find(params[:id])
+
+        result = {:vote => @vote}
+        render json: result
     end
 
     def create 
-        @vote = Vote.new(vote_params)
-        if @vote.save
-            render :show
+        created_vote = Vote.new(vote_params)
+        if created_vote.save
+            @vote = created_vote.slice(:id, :voter_id, :voteable_id, :voteable_type)
+
+            result = {:vote => @vote}
+            render json: result
         else
-            render json: @vote.errors.full_messages, status: 422
+            render json: created_vote.errors.full_messages, status: 422
         end
     end
 
     def destroy
-        @vote = Vote.find(params[:id])
-        if @vote
-            @vote.destroy
+        vote = Vote.find(params[:id])
+        if vote
+            vote.destroy
         else
             render json: ['The vote does not exist.']
         end
