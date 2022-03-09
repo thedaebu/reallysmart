@@ -86,7 +86,7 @@ function VotesShow(props: Props) {
         if (currentUser && currentVotes.length > 0) {
             for (let voteId of currentUser.vote_ids) {
                 const currentVote: Vote = votes[voteId];
-                if (currentVote) {
+                if (currentVote && currentVote.voteable_id === parent.id && currentVote.voteable_type === voteableType) {
                     return currentVote;
                 }
             }
