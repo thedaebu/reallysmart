@@ -4,11 +4,12 @@ import { Track, Window } from "../../my_types";
 
 declare const window: Window;
 type Props = {
+    listNumber: number,
     track: Track
 }
 
 function TrackIndexItem(props: Props) {
-    const { track } = props;
+    const { listNumber, track } = props;
 
     function randomNum() {
         return Math.floor(Math.random() * 1000);
@@ -16,7 +17,7 @@ function TrackIndexItem(props: Props) {
 
     return ( 
         <Link className="track-index-item" to={`/tracks/${track.id}`}>
-            <p className="track-index-item__id">{track.id}</p>
+            <p className="track-index-item__id">{listNumber}</p>
             <div
                 className="track-index-item__image"
                 style={{
