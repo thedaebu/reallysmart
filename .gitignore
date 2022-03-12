@@ -1,6 +1,7 @@
 node_modules/
 bundle.js
 bundle.js.map
+/.bundle
 
 config/initializers/secret_token.rb
 config/master.key
@@ -9,18 +10,12 @@ config/master.key
 /tmp/*
 !/log/.keep
 !/tmp/.keep
-
-/app/assets/javascripts/bundle.js
-
-/.bundle
-
 /storage/*
 !/storage/.keep
 
-/yarn-error.log
 
+/yarn-error.log
 .byebug_history
 
 setup.txt
-
 test/practice

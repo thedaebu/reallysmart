@@ -44,11 +44,23 @@ function TrackIndex(props: Props) {
     function extendTrackIndexListButton() {
         if (trackIndexList === 5) {
             return ( 
-                <button onClick={setTrackIndexListLimit} className="track-index__load-more">LOAD MORE</button>
+                <button 
+                    className="track-index__load-more"
+                    onClick={setTrackIndexListLimit} 
+                    data-testid="track-index__load-more"
+                >
+                    LOAD MORE
+                </button>
             );
         } else if (trackIndexList === 10) { 
             return ( 
-                <button onClick={setTrackIndexListLimit} className="track-index__load-more">We Miss You DMX!</button>
+                <button 
+                    className="track-index__load-more"
+                    onClick={setTrackIndexListLimit} 
+                    data-testid="track-index__load-more"
+                >
+                    We Miss You DMX!
+                </button>
             );
         } else {
             return (
