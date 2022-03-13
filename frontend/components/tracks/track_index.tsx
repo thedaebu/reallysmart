@@ -23,19 +23,19 @@ function TrackIndex(props: Props) {
         if (trackIndexList === 5) {
             return (
                 tracks.slice(0, 5).map((track: Track, idx: number) => {
-                    return <TrackIndexItem listNumber={idx} track={track} key={idx}/>;
+                    return <TrackIndexItem listNumber={idx+1} track={track} key={idx+1}/>;
                 })
             )
         } else if (trackIndexList === 10) {
             return (
                 tracks.slice(0, 10).map((track: Track, idx: number) => {
-                    return <TrackIndexItem listNumber={idx} track={track} key={idx}/>;
+                    return <TrackIndexItem listNumber={idx+1} track={track} key={idx+1}/>;
                 })
             )
         } else {
             return (
                 tracks.map((track: Track, idx: number) => {
-                    return <TrackIndexItem listNumber={idx} track={track} key={idx}/>;
+                    return <TrackIndexItem listNumber={idx+1} track={track} key={idx+1}/>;
                 })
             )
         }
