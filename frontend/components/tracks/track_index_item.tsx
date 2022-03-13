@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Track, Window } from "../../my_types";
+import { IndexTrack, Window } from "../../my_types";
 
 declare const window: Window;
 type Props = {
     listNumber: number,
-    track: Track
+    track: IndexTrack
 }
 
 function TrackIndexItem(props: Props) {

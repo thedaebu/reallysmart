@@ -1,12 +1,12 @@
 import React, { useState, useEffect, MouseEvent } from "react";
-import { Track, Window } from "../../my_types";
+import { IndexTrack, Window } from "../../my_types";
 import Navbar from "../navbar/navbar";
 import TrackIndexItem from "./track_index_item";
 
 declare const window: Window;
 type Props = {
     fetchTracks: Function,
-    tracks: Array<Track>
+    tracks: Array<IndexTrack>
 }
 
 function TrackIndex(props: Props) {
@@ -22,19 +22,19 @@ function TrackIndex(props: Props) {
     function trackIndexItems() {
         if (trackIndexList === 5) {
             return (
-                tracks.slice(0, 5).map((track: Track, idx: number) => {
+                tracks.slice(0, 5).map((track: IndexTrack, idx: number) => {
                     return <TrackIndexItem listNumber={idx+1} track={track} key={idx+1}/>;
                 })
             )
         } else if (trackIndexList === 10) {
             return (
-                tracks.slice(0, 10).map((track: Track, idx: number) => {
+                tracks.slice(0, 10).map((track: IndexTrack, idx: number) => {
                     return <TrackIndexItem listNumber={idx+1} track={track} key={idx+1}/>;
                 })
             )
         } else {
             return (
-                tracks.map((track: Track, idx: number) => {
+                tracks.map((track: IndexTrack, idx: number) => {
                     return <TrackIndexItem listNumber={idx+1} track={track} key={idx+1}/>;
                 })
             )

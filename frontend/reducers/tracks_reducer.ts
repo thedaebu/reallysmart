@@ -1,7 +1,7 @@
 import { RECEIVE_TRACK, RECEIVE_TRACKS } from "../actions/track_actions";
-import { Action, Track } from "../my_types";
+import { Action, IndexTrack, Track } from "../my_types";
 
-const tracksReducer = (state: {[key: number]: Track} = {}, action: Action) => {
+const tracksReducer = (state: {[key: number]: IndexTrack | Track} = {}, action: Action) => {
     Object.freeze(state);
 
     switch (action.type) {
