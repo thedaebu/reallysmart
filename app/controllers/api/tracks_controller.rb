@@ -1,8 +1,10 @@
 class Api::TracksController < ApplicationController
     def index
-        tracks = Track.select("artist, artwork_path, id, title").all
+        queried_tracks = Track.select("artist, artwork_path, id, title").all
+        @tracks = {}
+        queried_tracks.each {|track| @tracks[track.id] = track}
 
-        result = {:tracks => tracks}
+        result = {:tracks => @tracks}
         render json: result
     end
 
@@ -12,7 +14,7 @@ class Api::TracksController < ApplicationController
         queried_annotations = @track.annotations.select("annotator_id, annotator_name, body, end_index, id, start_index, track_id")
         @annotations = {}
         queried_annotations.each {|annotation| @annotations[annotation.id] = annotation}
-        
+
         queried_comments = @track.comments + @track.annotation_comments
         @comments = {}
         queried_comments.each {|comment| @comments[comment.id] = comment.slice(:body, :commentable_id, :commentable_type, :commenter_id, :commenter_name, :id, :updated_at)}
