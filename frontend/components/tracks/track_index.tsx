@@ -81,7 +81,7 @@ function TrackIndex(props: Props) {
 
     return (
         <>
-            <Navbar/>
+            <Navbar />
             <div className="track-index">
                 <h1 className="track-index__h1">CHARTS</h1>
                 <h2 className="track-index__h2">REALLY POPULAR ON REALLY SMART</h2>

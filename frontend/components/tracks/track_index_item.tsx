@@ -16,7 +16,11 @@ function TrackIndexItem(props: Props) {
     }
 
     return ( 
-        <Link className="track-index-item" to={`/tracks/${track.id}`}>
+        <Link 
+            className="track-index-item"
+            to={`/tracks/${track.id}`}
+            data-testid="track-index-item"
+        >
             <p className="track-index-item__id">{listNumber}</p>
             <div
                 className="track-index-item__image"
