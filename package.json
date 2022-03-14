@@ -32,8 +32,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "jest --maxWorkers=1",
-    "test:watch": "jest --watch --maxWorkers=1",
+    "test": "jest --verbose --maxWorkers=1",
+    "test:watch": "jest --verbose --watch --maxWorkers=1",
     "webpack": "webpack --mode=development --watch",
     "postinstall": "webpack"
   },
