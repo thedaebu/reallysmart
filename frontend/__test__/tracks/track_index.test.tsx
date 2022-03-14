@@ -1,12 +1,13 @@
 import React from "react";
-import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { cleanup, render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event"
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import server from "../msw_server"
 import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
 import TrackIndex from "../../components/tracks/track_index";
 import { fetchTracks } from "../../actions/track_actions";
-import { Provider } from "react-redux";
 
 const tracks = [
     {
@@ -72,7 +73,13 @@ describe("track index", () => {
     afterAll(() => server.close())
 
     describe("track index item", () => {
-        test("displays the artist and title of each track", () => {
+        test("contains track index items", () => {
+            const trackIndexItems = screen.getAllByTestId("track-index-item");
+            expect(trackIndexItems).toBeDefined();
+            const trackIndexItem = trackIndexItems[0];
+            expect(trackIndexItem).toBeInTheDocument();
+        })
+        test("displays the artist and title for each track index item", () => {
             const trackIndexItems = screen.getAllByTestId("track-index-item");
             trackIndexItems.forEach((trackIndexItem, idx) => {
                 expect(trackIndexItem).toHaveTextContent(tracks[idx].artist)
@@ -80,13 +87,27 @@ describe("track index", () => {
             })
         })
     })
-
     test("starts with five tracks and then shows the rest when the 'LOAD MORE' button is clicked", () => {
         const extendListButton = screen.getByTestId("track-index__load-more");
-        let trackIndexItems = screen.queryAllByTestId("track-index-item");
+        let trackIndexItems = screen.getAllByTestId("track-index-item");
         expect(trackIndexItems.length).toBeLessThan(6);
-        fireEvent.click(extendListButton);
-        trackIndexItems = screen.queryAllByTestId("track-index-item");
+
+        userEvent.click(extendListButton);
+        trackIndexItems = screen.getAllByTestId("track-index-item");
         expect(trackIndexItems.length).toBeGreaterThan(5);
     });
+    test("proceeds to correct url depending on which track is clicked on", () => {
+        const pathName = global.window.location.pathname;
+        expect(pathName).toEqual('/')
+
+        const firstTrackIndexItem = screen.getAllByTestId("track-index-item")[0];
+        userEvent.click(firstTrackIndexItem);
+        let newPathName = global.window.location.pathname
+        expect(newPathName).toEqual('/tracks/1')
+
+        const secondTrackIndexItem = screen.getAllByTestId("track-index-item")[1];
+        userEvent.click(secondTrackIndexItem);
+        newPathName = global.window.location.pathname
+        expect(newPathName).toEqual('/tracks/2')
+    })
 });
