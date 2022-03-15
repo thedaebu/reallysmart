@@ -35,7 +35,7 @@ export type ReceivedTrack = {
     votes: {[key:number]: Vote}
 }
 export type ReceivedTracks = {
-    tracks: {[key: number]: Track}
+    tracks: {[key: number]: IndexTrack}
 }
 export type ReceivedUser = {
     user: User
@@ -124,6 +124,12 @@ export type Comment = {
     commenter_name: string,
     id: number,
     updated_at: string
+}
+export type IndexTrack = {
+    artist: string,
+    artwork_path: string,
+    id: number,
+    title: string
 }
 export type SessionUser = {
     password: string,

@@ -1,12 +1,12 @@
 import React, { useState, useEffect, MouseEvent } from "react";
-import { Track, Window } from "../../my_types";
+import { IndexTrack, Window } from "../../my_types";
 import Navbar from "../navbar/navbar";
 import TrackIndexItem from "./track_index_item";
 
 declare const window: Window;
 type Props = {
     fetchTracks: Function,
-    tracks: Array<Track>
+    tracks: Array<IndexTrack>
 }
 
 function TrackIndex(props: Props) {
@@ -22,20 +22,20 @@ function TrackIndex(props: Props) {
     function trackIndexItems() {
         if (trackIndexList === 5) {
             return (
-                tracks.slice(0, 5).map((track: Track) => {
-                    return <TrackIndexItem track={track} key={track.id}/>;
+                tracks.slice(0, 5).map((track: IndexTrack, idx: number) => {
+                    return <TrackIndexItem listNumber={idx+1} track={track} key={idx+1}/>;
                 })
             )
         } else if (trackIndexList === 10) {
             return (
-                tracks.slice(0, 10).map(track => {
-                    return <TrackIndexItem track={track} key={track.id}/>;
+                tracks.slice(0, 10).map((track: IndexTrack, idx: number) => {
+                    return <TrackIndexItem listNumber={idx+1} track={track} key={idx+1}/>;
                 })
             )
         } else {
             return (
-                tracks.map(track => {
-                    return <TrackIndexItem track={track} key={track.id}/>;
+                tracks.map((track: IndexTrack, idx: number) => {
+                    return <TrackIndexItem listNumber={idx+1} track={track} key={idx+1}/>;
                 })
             )
         }
@@ -44,11 +44,23 @@ function TrackIndex(props: Props) {
     function extendTrackIndexListButton() {
         if (trackIndexList === 5) {
             return ( 
-                <button onClick={setTrackIndexListLimit} className="track-index__load-more">LOAD MORE</button>
+                <button 
+                    className="track-index__load-more"
+                    onClick={setTrackIndexListLimit} 
+                    data-testid="track-index__load-more"
+                >
+                    LOAD MORE
+                </button>
             );
         } else if (trackIndexList === 10) { 
             return ( 
-                <button onClick={setTrackIndexListLimit} className="track-index__load-more">We Miss You DMX!</button>
+                <button 
+                    className="track-index__load-more"
+                    onClick={setTrackIndexListLimit} 
+                    data-testid="track-index__load-more"
+                >
+                    We Miss You DMX!
+                </button>
             );
         } else {
             return (
@@ -69,7 +81,7 @@ function TrackIndex(props: Props) {
 
     return (
         <>
-            <Navbar/>
+            <Navbar />
             <div className="track-index">
                 <h1 className="track-index__h1">CHARTS</h1>
                 <h2 className="track-index__h2">REALLY POPULAR ON REALLY SMART</h2>

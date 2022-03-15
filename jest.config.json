@@ -1,5 +1,5 @@
 {
-    "roots": ["<rootDir>/test"],
+    "roots": ["<rootDir>/frontend/__test__"],
     "transform": {
         "^.+\\.ts?$": "ts-jest",
         "^.+\\.tsx?$": "ts-jest"
@@ -12,5 +12,5 @@
             "isolatedModules": true
         }
     },
-    "setupFilesAfterEnv": ["<rootDir>/test/components/jest-setup.ts"]
+    "setupFilesAfterEnv": ["<rootDir>/frontend/__test__/jest-setup.ts"]
 }

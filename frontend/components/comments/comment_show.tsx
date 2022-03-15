@@ -108,12 +108,12 @@ function CommentShow(props: Props) {
         if (currentComments.length > 0) {
             return (
                 <ul className="comment-show__items">
-                    {currentComments.map(comment => {
+                    {currentComments.map((comment, idx) => {
                         return <CommentShowItemContainer
                             comment={comment}
                             commentableType={commentableType}
                             parent={parent}
-                            key={comment.id}
+                            key={idx}
                         />
                     })}
                 </ul>

@@ -1,22 +1,27 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Track, Window } from "../../my_types";
+import { IndexTrack, Window } from "../../my_types";
 
 declare const window: Window;
 type Props = {
-    track: Track
+    listNumber: number,
+    track: IndexTrack
 }
 
 function TrackIndexItem(props: Props) {
-    const { track } = props;
+    const { listNumber, track } = props;
 
     function randomNum() {
         return Math.floor(Math.random() * 1000);
     }
 
     return ( 
-        <Link className="track-index-item" to={`/tracks/${track.id}`}>
-            <p className="track-index-item__id">{track.id}</p>
+        <Link 
+            className="track-index-item"
+            to={`/tracks/${track.id}`}
+            data-testid="track-index-item"
+        >
+            <p className="track-index-item__id">{listNumber}</p>
             <div
                 className="track-index-item__image"
                 style={{

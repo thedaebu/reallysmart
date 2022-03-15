@@ -49,10 +49,10 @@ function SearchIndex(props: Props) {
 
     function searchIndexItems() {
         return (
-            searches.slice(0, 5).map((track: Track, key: number) => {
+            searches.slice(0, 5).map((track: Track, idx: number) => {
                 return ( 
                     <SearchIndexItem 
-                        key={key}
+                        key={idx}
                         track={track} 
                     />
                 );
