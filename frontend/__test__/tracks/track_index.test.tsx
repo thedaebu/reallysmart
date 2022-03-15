@@ -82,8 +82,8 @@ describe("track index", () => {
         test("displays the artist and title for each track index item", () => {
             const trackIndexItems = screen.getAllByTestId("track-index-item");
             trackIndexItems.forEach((trackIndexItem, idx) => {
-                expect(trackIndexItem).toHaveTextContent(tracks[idx].artist)
-                expect(trackIndexItem).toHaveTextContent(tracks[idx].title)
+                expect(trackIndexItem).toHaveTextContent(tracks[idx].artist);
+                expect(trackIndexItem).toHaveTextContent(tracks[idx].title);
             })
         })
     })
@@ -98,12 +98,12 @@ describe("track index", () => {
     });
     test("proceeds to correct url depending on which track is clicked on", () => {
         const pathName = global.window.location.pathname;
-        expect(pathName).toEqual('/')
+        expect(pathName).toEqual('/');
 
         const firstTrackIndexItem = screen.getAllByTestId("track-index-item")[0];
         userEvent.click(firstTrackIndexItem);
-        let newPathName = global.window.location.pathname
-        expect(newPathName).toEqual('/tracks/1')
+        let newPathName = global.window.location.pathname;
+        expect(newPathName).toEqual('/tracks/1');
 
         const secondTrackIndexItem = screen.getAllByTestId("track-index-item")[1];
         userEvent.click(secondTrackIndexItem);
