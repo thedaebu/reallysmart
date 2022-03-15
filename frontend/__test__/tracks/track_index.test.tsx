@@ -48,7 +48,7 @@ const tracks = [
     }
 ]
 const props = {
-    fetchTracks: fetchTracks,
+    fetchTracks: jest.fn(),
     tracks: tracks
 }
 const middlewares = [thunk];
@@ -107,7 +107,7 @@ describe("track index", () => {
 
         const secondTrackIndexItem = screen.getAllByTestId("track-index-item")[1];
         userEvent.click(secondTrackIndexItem);
-        newPathName = global.window.location.pathname
-        expect(newPathName).toEqual('/tracks/2')
-    })
+        newPathName = global.window.location.pathname;
+        expect(newPathName).toEqual('/tracks/2');
+    });
 });
