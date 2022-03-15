@@ -19,3 +19,4 @@ config/master.key
 
 setup.txt
 practice
+frontend/__test__/entry
