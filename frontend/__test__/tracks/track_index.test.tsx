@@ -6,8 +6,9 @@ import thunk from 'redux-thunk';
 import server from "../msw_server"
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
+import * as reactRedux from "react-redux";
 import TrackIndex from "../../components/tracks/track_index";
-import { fetchTracks } from "../../actions/track_actions";
+import * as trackActions from "../../actions/track_actions";
 
 const tracks = [
     {
@@ -47,46 +48,39 @@ const tracks = [
         title: "Stay"
     }
 ]
-const props = {
-    fetchTracks: jest.fn(),
-    tracks: tracks
-}
-const middlewares = [thunk];
-const mockStore = configureMockStore(middlewares);
-const testStore = mockStore({ tracks: tracks });
 
 describe("track index", () => {
-    beforeAll(() => server.listen())
+    const middlewares = [thunk];
+    const mockStore = configureMockStore(middlewares);
+    const testStore = mockStore({ entities: {tracks: tracks }});
+
+    const useFetchTracks = jest.spyOn(trackActions, 'fetchTracks');
+    const useMockDispatch= jest.spyOn(reactRedux, 'useDispatch');
+
+    beforeAll(() => server.listen());
     beforeEach(() => {
         render(
             <BrowserRouter>
                 <Provider store={testStore}>
-                    <TrackIndex {...props} />
+                    <TrackIndex />
                 </Provider>
             </BrowserRouter>
         )
-    })
+    });
     afterEach(() => {
         cleanup()
         server.resetHandlers()
     });
-    afterAll(() => server.close())
+    afterAll(() => server.close());
 
-    describe("track index item", () => {
-        test("contains track index items", () => {
-            const trackIndexItems = screen.getAllByTestId("track-index-item");
-            expect(trackIndexItems).toBeDefined();
-            const trackIndexItem = trackIndexItems[0];
-            expect(trackIndexItem).toBeInTheDocument();
+    describe("useEffect", () => {
+        test("dispatch should be called", () => {
+            expect(useMockDispatch).toBeCalled();
         })
-        test("displays the artist and title for each track index item", () => {
-            const trackIndexItems = screen.getAllByTestId("track-index-item");
-            trackIndexItems.forEach((trackIndexItem, idx) => {
-                expect(trackIndexItem).toHaveTextContent(tracks[idx].artist);
-                expect(trackIndexItem).toHaveTextContent(tracks[idx].title);
-            })
+        test("fetchTracks should be called", () => {
+            expect(useFetchTracks).toBeCalled();
         })
-    })
+    });
     test("starts with five tracks and then shows the rest when the 'LOAD MORE' button is clicked", () => {
         const extendListButton = screen.getByTestId("track-index__load-more");
         let trackIndexItems = screen.getAllByTestId("track-index-item");
@@ -110,4 +104,19 @@ describe("track index", () => {
         newPathName = global.window.location.pathname;
         expect(newPathName).toEqual('/tracks/2');
     });
+    describe("track index item", () => {
+        test("contains track index items", () => {
+            const trackIndexItems = screen.getAllByTestId("track-index-item");
+            expect(trackIndexItems).toBeDefined();
+            const trackIndexItem = trackIndexItems[0];
+            expect(trackIndexItem).toBeInTheDocument();
+        })
+        test("displays the artist and title for each track index item", () => {
+            const trackIndexItems = screen.getAllByTestId("track-index-item");
+            trackIndexItems.forEach((trackIndexItem, idx) => {
+                expect(trackIndexItem).toHaveTextContent(tracks[idx].artist);
+                expect(trackIndexItem).toHaveTextContent(tracks[idx].title);
+            })
+        })
+    })
 });
