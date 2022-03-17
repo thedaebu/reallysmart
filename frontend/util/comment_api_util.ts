@@ -1,3 +1,4 @@
+const $ = require("jquery");
 import { CreatedComment, UpdatedComment } from "../my_types";
 
 export const fetchComment = (commentId: number) => {

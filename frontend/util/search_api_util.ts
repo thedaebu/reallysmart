@@ -1,3 +1,5 @@
+const $ = require("jquery");
+
 export const fetchSearches = (search: string) => {
     return (
         $.ajax({
