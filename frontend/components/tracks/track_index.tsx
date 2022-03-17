@@ -1,21 +1,21 @@
 import React, { useState, useEffect, MouseEvent } from "react";
-import { IndexTrack, Window } from "../../my_types";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchTracks } from "../../actions/track_actions";
+import { IndexTrack, State, Window } from "../../my_types";
 import Navbar from "../navbar/navbar";
 import TrackIndexItem from "./track_index_item";
 
 declare const window: Window;
-type Props = {
-    fetchTracks: Function,
-    tracks: Array<IndexTrack>
-}
 
-function TrackIndex(props: Props) {
-    const { fetchTracks, tracks } = props;
-    
+function TrackIndex() {
+    const tracks: Array<IndexTrack> = useSelector((state: State) => Object.values(state.entities.tracks));
+
+    const dispatch = useDispatch();
+
     const [trackIndexList, setTrackIndexList] = useState<number>(5);
 
     useEffect(() => {
-        fetchTracks();
+        dispatch(fetchTracks());
         window.scrollTo(0, 0);
     }, [])
 

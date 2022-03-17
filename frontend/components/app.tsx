@@ -10,8 +10,8 @@ import LoginFormContainer from "./session_form/login_form_container";
 import SearchbarContainer from "./searchbar/searchbar_container";
 import SessionMenuContainer from "./session_menu/session_menu_container";
 import SignupFormContainer from "./session_form/signup_form_container";
-import TrackIndexContainer from "./tracks/track_index_container"
 import TrackShowContainer from "./tracks/track_show_container";
+import TrackIndex from "./tracks/track_index";
 
 function App() {
     return (
@@ -25,7 +25,7 @@ function App() {
                 </div>
             </header>
             <Switch>
-                <Route exact path="/" component={TrackIndexContainer}/>
+                <Route exact path="/" component={TrackIndex}/>
                 <AuthRoute exact path="/signup" component={SignupFormContainer}/>
                 <AuthRoute exact path="/login"  component={LoginFormContainer}/>
                 <Route path="/tracks/:trackId" component={TrackShowContainer}/>
