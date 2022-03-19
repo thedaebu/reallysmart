@@ -1,12 +1,12 @@
 import React from "react";
 import { cleanup, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event"
-import configureMockStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
-import server from "../msw_server"
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import * as reactRedux from "react-redux";
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
+import server from "../msw_server"
 import TrackIndex from "../../components/tracks/track_index";
 import * as trackActions from "../../actions/track_actions";
 
@@ -55,7 +55,8 @@ describe("track index", () => {
     const testStore = mockStore({ entities: {tracks: tracks }});
 
     const useFetchTracks = jest.spyOn(trackActions, 'fetchTracks');
-    const useMockDispatch= jest.spyOn(reactRedux, 'useDispatch');
+    const useMockEffect = jest.spyOn(React, 'useEffect');
+    const useMockDispatch = jest.spyOn(reactRedux, 'useDispatch');
 
     beforeAll(() => server.listen());
     beforeEach(() => {
@@ -74,6 +75,9 @@ describe("track index", () => {
     afterAll(() => server.close());
 
     describe("useEffect", () => {
+        test("useEffect should be called", () => {
+            expect(useMockEffect).toBeCalled();
+        }) 
         test("dispatch should be called", () => {
             expect(useMockDispatch).toBeCalled();
         })
