@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { State, Track, Window } from "../../my_types";
 import NavBar from "../navbar/navbar";
 import TrackShowHeader from "./track_show_header";
-import LyricsContainer from "../lyrics/lyrics_container";
 import { fetchTrack } from "../../actions/track_actions";
 import { RouteComponentProps } from "react-router";
+import LyricsShow from "../lyrics/lyrics";
 
 declare const window: Window;
 type TrackId = {
@@ -30,7 +30,7 @@ function TrackShow(props: RouteComponentProps<TrackId>) {
                 <>
                     <NavBar/>
                     <TrackShowHeader track={track} />
-                    <LyricsContainer track={track} />
+                    <LyricsShow track={track} />
                 </>
             );
         } else {
