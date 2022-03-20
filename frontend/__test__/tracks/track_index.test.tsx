@@ -21,7 +21,7 @@ const useMockEffect = jest.spyOn(React, 'useEffect');
 const useMockDispatch = jest.spyOn(reactRedux, 'useDispatch');
 
 describe("track index", () => {
-    beforeAll(() => server.listen());
+    // beforeAll(() => server.listen());
     beforeEach(() => {
         render(
             <BrowserRouter>
@@ -33,9 +33,9 @@ describe("track index", () => {
     });
     afterEach(() => {
         cleanup()
-        server.resetHandlers()
+        // server.resetHandlers()
     });
-    afterAll(() => server.close());
+    // afterAll(() => server.close());
 
     describe("useEffect", () => {
         test("useEffect should be called", () => {
