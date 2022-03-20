@@ -23,19 +23,31 @@ function TrackIndex() {
         if (trackIndexList === 5) {
             return (
                 tracks.slice(0, 5).map((track: IndexTrack, idx: number) => {
-                    return <TrackIndexItem listNumber={idx+1} track={track} key={idx+1}/>;
+                    return <TrackIndexItem 
+                        listNumber={idx+1}
+                        track={track}
+                        key={idx+1}
+                    />;
                 })
             )
         } else if (trackIndexList === 10) {
             return (
                 tracks.slice(0, 10).map((track: IndexTrack, idx: number) => {
-                    return <TrackIndexItem listNumber={idx+1} track={track} key={idx+1}/>;
+                    return <TrackIndexItem
+                        listNumber={idx+1}
+                        track={track}
+                        key={idx+1}
+                    />;
                 })
             )
         } else {
             return (
                 tracks.map((track: IndexTrack, idx: number) => {
-                    return <TrackIndexItem listNumber={idx+1} track={track} key={idx+1}/>;
+                    return <TrackIndexItem
+                        listNumber={idx+1}
+                        track={track}
+                        key={idx+1}
+                    />;
                 })
             )
         }
