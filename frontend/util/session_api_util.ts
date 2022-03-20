@@ -1,4 +1,4 @@
-const $ = require("jquery");
+// const $ = require("jquery");
 import { SessionUser } from "../my_types";
 
 export const login = (user: SessionUser) => {

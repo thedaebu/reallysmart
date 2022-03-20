@@ -1,4 +1,4 @@
-const $ = require("jquery");
+// const $ = require("jquery");
 import { CreatedVote } from "../my_types";
 
 export const fetchVote = (voteId: number) => {
