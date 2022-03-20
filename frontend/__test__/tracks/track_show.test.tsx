@@ -1,6 +1,5 @@
 import React from "react";
 import { cleanup, render, screen, waitFor } from "@testing-library/react";
-import userEvent from "@testing-library/user-event"
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import * as reactRedux from "react-redux";
