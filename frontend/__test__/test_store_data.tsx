@@ -102,11 +102,13 @@ export const testTrackStore = {
             },
         },
         tracks: {
-            artist: "NIKI",
-            artwork_path: "https://i.ytimg.com/vi/GBqqoPSJ9GY/maxresdefault.jpg",
-            id: 1,
-            lyrics: "[Verse 1]\nShe's taken over\nShe's making me want your body closer\nHaving a little trouble staying sober\nAnd she's got us all under her trance",
-            title: "Selene"
+            1: {
+                artist: "NIKI",
+                artwork_path: "https://i.ytimg.com/vi/GBqqoPSJ9GY/maxresdefault.jpg",
+                id: 1,
+                lyrics: "[Verse 1]\nShe's taken over\nShe's making me want your body closer\nHaving a little trouble staying sober\nAnd she's got us all under her trance",
+                title: "Selene"
+            }
         },
         user: {
         },
