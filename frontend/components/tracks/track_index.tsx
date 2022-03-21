@@ -1,4 +1,4 @@
-import React, { useState, useEffect, MouseEvent } from "react";
+import React, { Dispatch, MouseEvent, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchTracks } from "../../actions/track_actions";
 import { IndexTrack, State, Window } from "../../my_types";
@@ -10,7 +10,7 @@ declare const window: Window;
 function TrackIndex() {
     const tracks: Array<IndexTrack> = useSelector((state: State) => Object.values(state.entities.tracks));
 
-    const dispatch = useDispatch();
+    const dispatch: Dispatch<any> = useDispatch();
 
     const [trackIndexList, setTrackIndexList] = useState<number>(5);
 
