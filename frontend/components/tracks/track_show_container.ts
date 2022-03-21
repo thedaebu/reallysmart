@@ -1,7 +1,6 @@
 import { connect } from "react-redux";
 import { RouteComponentProps } from "react-router";
-import { State, Track } from "../../my_types";
-import { fetchTrack } from "../../actions/track_actions";
+import { State } from "../../my_types";
 import TrackShow from "./track_show";
 
 type OwnProps = RouteComponentProps<GivenProps>
@@ -10,19 +9,10 @@ type GivenProps = {
 }
 
 const mSTP = (state: State, ownProps: OwnProps) => {
-    const track: Track = state.entities.tracks[parseInt(ownProps.match.params.trackId)];
-
     return ({
-        track: track,
         trackId: ownProps.match.params.trackId
     });
 };
 
-const mDTP = (dispatch: Function) => {
-    return ({
-        fetchTrack: (trackId: string) => dispatch(fetchTrack(trackId))  
-    });
-};
-
-const TrackShowContainer = connect(mSTP, mDTP)(TrackShow);
+const TrackShowContainer = connect(mSTP, null)(TrackShow);
 export default TrackShowContainer;

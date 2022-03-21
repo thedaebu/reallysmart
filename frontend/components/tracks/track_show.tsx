@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { Dispatch, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { State, Track, Window } from "../../my_types";
 import NavBar from "../navbar/navbar";
@@ -17,7 +17,7 @@ function TrackShow(props: RouteComponentProps<TrackId>) {
 
     const track: Track = useSelector((state: State) => state.entities.tracks[parseInt(trackId)]);
 
-    const dispatch = useDispatch();
+    const dispatch: Dispatch<any> = useDispatch();
 
     useEffect(() => {
         dispatch(fetchTrack(trackId));
