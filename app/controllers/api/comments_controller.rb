@@ -24,7 +24,7 @@ class Api::CommentsController < ApplicationController
             @comment = updated_comment.slice(:body, :commentable_id, :commentable_type, :commenter_id, :commenter_name, :id, :updated_at)
 
             result = {:comment => @comment}
-            render json :result
+            render json: result
         else
             render json: updated_comment.errors.full_messages, status: 422
         end
