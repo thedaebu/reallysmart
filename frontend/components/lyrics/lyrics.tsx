@@ -1,13 +1,12 @@
-import React, { MouseEvent, useState, useEffect } from "react";
-import { Annotation, Track, Window } from "../../my_types";
-import AnnotationShowContainer from "../annotations/annotation_show_container";
+import React, { MouseEvent, useState, useEffect, Dispatch } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { closeAnnotationModal, openAnnotationModal } from "../../actions/annotation_modal_actions";
+import { Annotation, State, Track, Window } from "../../my_types";
+import AnnotationShow from "../annotations/annotation_show";
 import CommentShowContainer from "../comments/comment_show_container";
 
 declare const window: Window;
 type Props = {
-    annotations: {[key: number]: Annotation},
-    closeAnnotationModal: Function,
-    openAnnotationModal: Function,
     track: Track
 }
 type Highlighted = {
@@ -28,8 +27,12 @@ type Dataset = {
 }
 
 function LyricsShow(props: Props) {
-    const { annotations, closeAnnotationModal, openAnnotationModal, track } = props;
-    
+    const { track } = props;
+
+    const annotations: {[key:number]: Annotation} = useSelector((state: State) => state.entities.annotations)
+
+    const dispatch: Dispatch<any> = useDispatch();
+
     const [annotationCreateStatus, setAnnotationCreateStatus] = useState<boolean>(false);
     const [endIndex, setEndIndex] = useState<number>(0);
     const [selectedAnnotation, setSelectedAnnotation] = useState<Annotation | null>(null);
@@ -61,9 +64,10 @@ function LyricsShow(props: Props) {
             return (
                 <span
                     className="lyrics__not-annotation"
+                    onMouseUp={handleTextSelect}
                     data-add="0"
                     data-name={"not-anno-0"}
-                    onMouseUp={handleTextSelect}
+                    data-testid="lyrics__not-annotation"
                 >
                     {track.lyrics}
                 </span>
@@ -89,9 +93,10 @@ function LyricsShow(props: Props) {
                 lyricsParts.push(
                     <span
                         className="lyrics__is-annotation"
-                        data-name={`is-anno-${annotation.id}`}
                         key={`anno-${annotation.id}`}
                         onClick={() => openAnnotation(annotation)}
+                        data-name={`is-anno-${annotation.id}`}
+                        data-testid="lyrics__is-annotation"
                         >
                         {lyrics.slice(currentIndex, endIndex + 1)}
                     </span>
@@ -100,9 +105,10 @@ function LyricsShow(props: Props) {
                 lyricsParts.push(
                     <span
                         className="lyrics__not-annotation"
+                        key={`not-anno-${idx}`}
                         data-add={addIndex}
                         data-name={`not-anno-${idx}`}
-                        key={`not-anno-${idx}`}
+                        data-testid="lyrics__not-annotation"
                         >
                         {lyrics.slice(currentIndex, startIndex)}
                     </span>
@@ -110,9 +116,10 @@ function LyricsShow(props: Props) {
                 lyricsParts.push(
                     <span
                         className="lyrics__is-annotation"
-                        data-name={`is-anno-${annotation.id}`}
                         key={`anno-${annotation.id}`}
                         onClick={() => openAnnotation(annotation)}
+                        data-name={`is-anno-${annotation.id}`}
+                        data-testid="lyrics__is-annotation"
                         >
                         {lyrics.slice(startIndex, endIndex + 1)}
                     </span>
@@ -122,9 +129,10 @@ function LyricsShow(props: Props) {
                 lyricsParts.push(
                     <span
                         className="lyrics__not-annotation"
+                        key={`not-anno-${idx + 1}`}
                         data-add={endIndex}
                         data-name={`not-anno-${idx + 1}`}
-                        key={`not-anno-${idx + 1}`}
+                        data-testid="lyrics__not-annotation"
                         >
                         {lyrics.slice(endIndex + 1, lyrics.length + 1)}
                     </span>
@@ -153,7 +161,7 @@ function LyricsShow(props: Props) {
 
             setStartIndex(beginning);
             setEndIndex(end);
-            openAnnotationModal();
+            dispatch(openAnnotationModal());
         }
     }
 
@@ -179,7 +187,7 @@ function LyricsShow(props: Props) {
 
     function handleTextDeselect() {
         setSelectedAnnotation(null);
-        closeAnnotationModal();
+        dispatch(closeAnnotationModal());
         setAnnotationCreateStatus(false);
     }
 
@@ -193,10 +201,10 @@ function LyricsShow(props: Props) {
 
     return (
         <div className="lyrics__shade">
-            <div className="lyrics__main">
-                <div className="lyrics__text" onMouseDown={handleTextDeselect} >
+            <div className="lyrics__main" data-testid="lyrics__main">
+                <div className="lyrics__text" onMouseDown={handleTextDeselect} onMouseUp={handleTextSelect}>
                     <p className="lyrics__top">{track.title.toUpperCase()} LYRICS</p>
-                    <pre className="lyrics__body" onMouseUp={handleTextSelect}>
+                    <pre className="lyrics__body" data-testid="lyrics__body">
                         {annotatedLyrics()}
                     </pre> 
                     <CommentShowContainer
@@ -205,7 +213,7 @@ function LyricsShow(props: Props) {
                     />
                 </div>
                 <div className="lyrics__right">
-                    <AnnotationShowContainer
+                    <AnnotationShow
                         annotation={selectedAnnotation}
                         annotationCreateStatus={annotationCreateStatus}
                         endIndex={endIndex}
