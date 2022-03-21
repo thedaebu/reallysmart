@@ -61,7 +61,7 @@ describe("lyrics", () => {
         expect(lyricsBody).toHaveTextContent(testTrackStore.entities.tracks[1].lyrics);
     });
     
-    describe("annotation component", () => {
+    describe("annotation show component", () => {
         test("is not show at start", () => {
             const annotationShow = screen.queryByTestId("annotation-show");
             expect(annotationShow).toBeFalsy();
