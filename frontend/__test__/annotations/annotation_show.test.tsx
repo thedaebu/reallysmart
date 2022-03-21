@@ -1,5 +1,5 @@
 import React from "react";
-import { cleanup, render, screen, waitFor } from "@testing-library/react";
+import { cleanup, render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
@@ -37,22 +37,18 @@ describe("annotation show", () => {
         expect(annotationShow).toHaveTextContent("reallysmart");
         expect(annotationShow).toHaveTextContent("She is singing about Selene, her alter-ego, who comes out when she becomes under the influence. She is claiming Selene is making her do things not of her own will but she is not trying to will herself against Selene.")
     });
-    describe("comment show component", () => {
-        test("contains comment show component", () => {
-            const annotatedSection = screen.queryAllByTestId("lyrics__is-annotation")[0];
-            userEvent.click(annotatedSection);
-            const commentShowItem = screen.queryAllByTestId("comment-show__items")[1];
-            expect(commentShowItem).toBeInTheDocument();
-        })
-        test("contains correct comments for specific annotation", () => {        
-            const annotatedSection = screen.queryAllByTestId("lyrics__is-annotation")[0];
-            userEvent.click(annotatedSection);
-            const commentShowItem = screen.queryAllByTestId("comment-show__items")[1];
-            expect(commentShowItem).toHaveTextContent("OOOOOHHHHHHH! Now I get it.");
-            expect(commentShowItem).not.toHaveTextContent("This is one of my new favorite songs now.");
-        });
+    test("contains comment show component", () => {
+        const annotatedSection = screen.queryAllByTestId("lyrics__is-annotation")[0];
+        userEvent.click(annotatedSection);
+        const annotationShow = screen.queryByTestId("annotation-show");
+        const commentShowItem = within(annotationShow).queryAllByTestId("comment-show-item")[0];
+        expect(commentShowItem).toBeInTheDocument();
     });
-    test("contains vote show component", () => {
-        
-    })
+    test("contains votes show component", () => {
+        const annotatedSection = screen.queryAllByTestId("lyrics__is-annotation")[0];
+        userEvent.click(annotatedSection);
+        const annotationShow = screen.queryByTestId("annotation-show");
+        const voteShow = within(annotationShow).queryAllByTestId("vote-show")[0];
+        expect(voteShow).toBeInTheDocument();
+    });
 });

@@ -68,4 +68,10 @@ describe("comment show", () => {
             expect(commentShowItem).toHaveTextContent("OOOOOHHHHHHH! Now I get it.");
         });
     });
+    test("contains votes show component", () => {
+        const lyrics = screen.queryByTestId("lyrics__main");
+        const commentShowItem = within(lyrics).queryAllByTestId("comment-show-item")[0];
+        const voteShow = within(commentShowItem).queryByTestId("vote-show");
+        expect(voteShow).toBeInTheDocument();
+    });
 });

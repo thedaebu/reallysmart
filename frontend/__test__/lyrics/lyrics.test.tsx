@@ -1,5 +1,5 @@
 import React from "react";
-import { cleanup, render, screen, waitFor } from "@testing-library/react";
+import { cleanup, render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
@@ -48,21 +48,22 @@ describe("lyrics", () => {
     test("useDispatch is called", () => {
         expect(useMockDispatch).toHaveBeenCalled();
     });
-    test("contains the correct number of annotated sections", () => {
-        const annotatedSections = screen.getAllByTestId("lyrics__is-annotation");
-        expect(annotatedSections.length).toBe(2);
-    });
-    test("contains the correct number of non-annotatid sections", () => {
-        const annotatedSections = screen.getAllByTestId("lyrics__not-annotation");
-        expect(annotatedSections.length).toBe(3);
-    });
     test("contains the lyrics of the song", () => {
         const lyricsBody = screen.getByTestId("lyrics__body");
         expect(lyricsBody).toHaveTextContent(testTrackStore.entities.tracks[1].lyrics);
     });
-    
+    test("contains the correct number of annotated sections", () => {
+        const lyricsBody = screen.getByTestId("lyrics__body");
+        const annotatedSections = within(lyricsBody).getAllByTestId("lyrics__is-annotation");
+        expect(annotatedSections.length).toBe(2);
+    });
+    test("contains the correct number of non-annotated sections", () => {
+        const lyricsBody = screen.getByTestId("lyrics__body");
+        const annotatedSections = within(lyricsBody).getAllByTestId("lyrics__not-annotation");
+        expect(annotatedSections.length).toBe(3);
+    });
     describe("annotation show component", () => {
-        test("is not show at start", () => {
+        test("is not shown at start", () => {
             const annotationShow = screen.queryByTestId("annotation-show");
             expect(annotationShow).toBeFalsy();
         });
@@ -79,6 +80,13 @@ describe("lyrics", () => {
             userEvent.click(nonAnnotatedSection);
             const annotationShow = screen.queryByTestId("annotation-show");
             expect(annotationShow).toBeFalsy();
+        });
+    });
+    describe("comment show component", () => {
+        test("contains comment show component", () => {
+            const lyrics = screen.queryByTestId("lyrics__main");
+            const commentShowItem = within(lyrics).queryAllByTestId("comment-show-item")[0];
+            expect(commentShowItem).toBeInTheDocument();
         });
     });
 });
