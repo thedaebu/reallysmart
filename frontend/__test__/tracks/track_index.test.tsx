@@ -16,9 +16,11 @@ const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 const testStore = mockStore(testIndexStore);
 
-const useFetchTracks = jest.spyOn(trackActions, 'fetchTracks');
 const useMockEffect = jest.spyOn(React, 'useEffect');
+const useMockState = jest.spyOn(React, 'useState');
+const useMockSelector = jest.spyOn(reactRedux, 'useSelector');
 const useMockDispatch = jest.spyOn(reactRedux, 'useDispatch');
+const useFetchTracks = jest.spyOn(trackActions, 'fetchTracks');
 
 describe("track index", () => {
     // beforeAll(() => server.listen());
@@ -37,50 +39,54 @@ describe("track index", () => {
     });
     // afterAll(() => server.close());
 
-    describe("useEffect", () => {
-        test("useEffect should be called", () => {
-            expect(useMockEffect).toHaveBeenCalled();
-        }) 
-        test("dispatch should be called", () => {
-            expect(useMockDispatch).toHaveBeenCalled();
-        })
-        test("fetchTracks should be called", () => {
-            expect(useFetchTracks).toHaveBeenCalled();
-        })
+    test("useEffect is called", () => {
+        expect(useMockEffect).toHaveBeenCalled();
+    });
+    test("useState is called", () => {
+        expect(useMockState).toHaveBeenCalled();
+    });
+    test("useSelector is called", () => {
+        expect(useMockSelector).toHaveBeenCalled();
+    });
+    test("useDispatch is called", () => {
+        expect(useMockDispatch).toHaveBeenCalled();
+    });
+    test("fetchTracks should be called", () => {
+        expect(useFetchTracks).toHaveBeenCalled();
     });
     test("starts with five tracks and then shows the rest when the 'LOAD MORE' button is clicked", () => {
-        const extendListButton = screen.getByTestId("track-index__load-more");
-        let trackIndexItems = screen.getAllByTestId("track-index-item");
+        const extendListButton = screen.queryByTestId("track-index__load-more");
+        let trackIndexItems = screen.queryAllByTestId("track-index-item");
         expect(trackIndexItems.length).toBeLessThan(6);
 
         userEvent.click(extendListButton);
-        trackIndexItems = screen.getAllByTestId("track-index-item");
+        trackIndexItems = screen.queryAllByTestId("track-index-item");
         expect(trackIndexItems.length).toBeGreaterThan(5);
     });
     test("proceeds to correct url depending on which track is clicked on", () => {
         const pathName = global.window.location.pathname;
         expect(pathName).toEqual('/');
 
-        const firstTrackIndexItem = screen.getAllByTestId("track-index-item")[0];
+        const firstTrackIndexItem = screen.queryAllByTestId("track-index-item")[0];
         userEvent.click(firstTrackIndexItem);
         let newPathName = global.window.location.pathname;
         expect(newPathName).toEqual('/tracks/1');
 
-        const secondTrackIndexItem = screen.getAllByTestId("track-index-item")[1];
+        const secondTrackIndexItem = screen.queryAllByTestId("track-index-item")[1];
         userEvent.click(secondTrackIndexItem);
         newPathName = global.window.location.pathname;
         expect(newPathName).toEqual('/tracks/2');
     });
     describe("track index item", () => {
         test("contains track index items", () => {
-            const trackIndexItems = screen.getAllByTestId("track-index-item");
+            const trackIndexItems = screen.queryAllByTestId("track-index-item");
             expect(trackIndexItems).toBeDefined();
             const trackIndexItem = trackIndexItems[0];
             expect(trackIndexItem).toBeInTheDocument();
         })
         test("displays the artist and title for each track index item", () => {
             const trackIndexData: {[key:number]: IndexTrack} = testIndexStore.entities.tracks;
-            const trackIndexItems = screen.getAllByTestId("track-index-item");
+            const trackIndexItems = screen.queryAllByTestId("track-index-item");
             trackIndexItems.forEach((trackIndexItem, idx) => {
                 expect(trackIndexItem).toHaveTextContent(trackIndexData[idx+1].artist);
                 expect(trackIndexItem).toHaveTextContent(trackIndexData[idx+1].title);

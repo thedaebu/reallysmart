@@ -14,9 +14,11 @@ const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 const testStore = mockStore(testTrackStore);
 
-const useFetchTrack = jest.spyOn(trackActions, 'fetchTrack');
-const useMockDispatch = jest.spyOn(reactRedux, 'useDispatch');
 const useMockEffect = jest.spyOn(React, 'useEffect');
+const useMockSelector = jest.spyOn(reactRedux, 'useSelector');
+const useMockDispatch = jest.spyOn(reactRedux, 'useDispatch');
+const useFetchTrack = jest.spyOn(trackActions, 'fetchTrack');
+
 
 describe("track show", () => {
     // beforeAll(() => server.listen());
@@ -33,20 +35,22 @@ describe("track show", () => {
             </Provider>
         </BrowserRouter>
     )
-    describe("useEffect", () => {
-        test("useEffect should be called", () => {
-            expect(useMockEffect).toHaveBeenCalled();
-        });
-        test("dispatch should be called", () => {
-            expect(useMockDispatch).toHaveBeenCalled();
-        });
-        test("fetchTrack should be called", () => {
-            expect(useFetchTrack).toHaveBeenCalled();
-        });
+
+    test("useEffect is called", () => {
+        expect(useMockEffect).toHaveBeenCalled();
+    });
+    test("useSelector is called", () => {
+        expect(useMockSelector).toHaveBeenCalled();
+    })
+    test("useDispatch is called", () => {
+        expect(useMockDispatch).toHaveBeenCalled();
+    });
+    test("fetchTrack is called", () => {
+        expect(useFetchTrack).toHaveBeenCalled();
     });
     describe("track show header", () => {
         const track = testTrackStore.entities.tracks[1]
-        const header = screen.getByTestId("track-show-header");
+        const header = screen.queryByTestId("track-show-header");
         test("contains the artist and title of the track", () => {
             expect(header).toHaveTextContent(track.artist);
             expect(header).toHaveTextContent(track.title);
