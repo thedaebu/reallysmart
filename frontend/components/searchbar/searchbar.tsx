@@ -29,6 +29,7 @@ function Searchbar() {
                     placeholder="Search lyrics & more"
                     type="text" 
                     value={searchField}
+                    data-testid="searchbar-field"
                 />
                 <AiOutlineSearch className="searchbar__glass" />
             </div>

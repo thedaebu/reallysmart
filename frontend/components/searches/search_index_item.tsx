@@ -15,7 +15,12 @@ function SearchIndexItem(props: Props) {
     }
 
     return (
-        <Link className="search-index-item" to={`/tracks/${track.id}`} replace>
+        <Link
+            className="search-index-item"
+            to={`/tracks/${track.id}`}
+            data-testid="search-index-item"
+            replace
+        >
             <div
                 className="search-index-item__image" style={{ 
                     backgroundImage: `url(${track.artwork_path}`
