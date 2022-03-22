@@ -1,8 +1,8 @@
 import React, { ChangeEvent, Dispatch, MouseEvent, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAnnotation } from "../../actions/annotation_actions";
-import { deleteComment, updateComment } from "../../actions/comment_actions";
-import { fetchTrack } from "../../actions/track_actions";
+import * as AnnotationActions from "../../actions/annotation_actions";
+import * as CommentActions from "../../actions/comment_actions";
+import * as TrackActions from "../../actions/track_actions";
 import { Annotation, Comment, State, Track, UpdatedComment, User } from "../../my_types";
 import VoteShow from "../votes/vote_show";
 
@@ -18,6 +18,10 @@ function CommentShowItem(props: Props) {
     const currentUser: User = useSelector((state: State) => state.entities.user[state.session.id])
 
     const dispatch: Dispatch<any> = useDispatch();
+    const deleteComment: Function = (commentId: number) => dispatch(CommentActions.deleteComment(commentId));
+    const fetchAnnotation: Function = (annotationId: number) => dispatch(AnnotationActions.fetchAnnotation(annotationId));
+    const fetchTrack: Function = (trackId: string) => dispatch(TrackActions.fetchTrack(trackId));
+    const updateComment: Function = (comment: UpdatedComment) => dispatch(CommentActions.updateComment(comment));
 
     const [commentDeleteStatus, setCommentDeleteStatus] = useState<boolean>(false);
     const [commentUpdateStatus, setCommentUpdateStatus] = useState<boolean>(false);
@@ -198,11 +202,11 @@ function CommentShowItem(props: Props) {
             id: currentComment.id
         };
 
-        dispatch(updateComment(updatedComment));
+        updateComment(updatedComment);
         if (commentableType === "Track") {
-            dispatch(fetchTrack(parent.id.toString()));
+            fetchTrack(parent.id.toString());
         } else {
-            dispatch(fetchAnnotation(parent.id));
+            fetchAnnotation(parent.id);
         }
 
         setCommentUpdateStatus(false);
@@ -220,11 +224,11 @@ function CommentShowItem(props: Props) {
     function handleCommentDeleteSubmit(e: MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
 
-        dispatch(deleteComment(currentComment.id));
+        deleteComment(currentComment.id);
         if (commentableType === "Track") {
-            dispatch(fetchTrack(parent.id.toString()));
+            fetchTrack(parent.id.toString());
         } else {
-            dispatch(fetchAnnotation(parent.id));
+            fetchAnnotation(parent.id);
         }
         setCurrentComment(null);
         setCommentDeleteStatus(false);
