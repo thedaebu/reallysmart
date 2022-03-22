@@ -24,7 +24,7 @@ function AnnotationShow(props: Props) {
     const currentUser: User = useSelector((state: State) => state.entities.user[state.session.id]);
 
     const dispatch: Dispatch<any> = useDispatch();
-    const fetchTrack: Function = (trackId: string) => dispatch(TrackActions.fetchTrack);
+    const fetchTrack: Function = (trackId: string) => dispatch(TrackActions.fetchTrack(trackId));
     const closeAnnotationModal: Function = () => dispatch(AnnotationModalActions.closeAnnotationModal());
     const createAnnotation: Function = (annotation: CreatedAnnotation) => dispatch(AnnotationActions.createAnnotation(annotation));
 
@@ -178,9 +178,9 @@ function AnnotationShow(props: Props) {
     }
 
     return (
-        <>
+        <div>
             {annotationShow()}
-        </>
+        </div>
     );
 }
 
