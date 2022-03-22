@@ -33,15 +33,27 @@ function AnnotationShow(props: Props) {
     function annotationShow() {
         if (annotation) {
             return (
-                <AnnotationShowItem
-                    annotation={annotation}
-                    track={track}
-                    yCoord={yCoord}
-                />
+                <div
+                    style={{
+                        position: "relative",
+                        top: yCoord
+                    }}
+                >
+                    <AnnotationShowItem
+                        annotation={annotation}
+                        track={track}
+                    />
+                </div>
             );
         } else if (annotationModal && startIndex) {
             return (
-                <div className="annotation-show__without-annotation">
+                <div 
+                    className="annotation-show__without-annotation"
+                    style={{
+                        position: "relative",
+                        top: yCoord
+                    }}
+                >
                     {annotationForm()}
                 </div>
             );
@@ -59,10 +71,7 @@ function AnnotationShow(props: Props) {
             return (
                 <div
                     className="annotation-show-begin" 
-                    style={{
-                        position: "relative",
-                        top: yCoord
-                    }}>
+                >
                     <button
                         className="annotation-show-begin__button"
                         onClick={setAnnotationCreateStatus}
@@ -77,10 +86,6 @@ function AnnotationShow(props: Props) {
                 <form
                     id="annotation-show-form"
                     onSubmit={handleAnnotationCreateSubmit}
-                    style={{
-                    position: "relative",
-                    top: yCoord
-                }}
                 >
                     <textarea
                         className="annotation-show-form__body" 
@@ -127,10 +132,6 @@ function AnnotationShow(props: Props) {
             return (
                 <div
                     className="annotation-show__session"
-                    style={{
-                        position: "relative",
-                        top: yCoord
-                    }}
                 >
                     <Link to="/signup">Sign Up to Start Really Smarting</Link>
                 </div>
@@ -178,9 +179,9 @@ function AnnotationShow(props: Props) {
     }
 
     return (
-        <div>
+        <>
             {annotationShow()}
-        </div>
+        </>
     );
 }
 
