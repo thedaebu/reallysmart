@@ -93,4 +93,16 @@ describe("search index", () => {
             });
         });
     });
+    test("proceeds to correct url depending on which track is clicked on", () => {
+        const pathName = global.window.location.pathname;
+        expect(pathName).toEqual('/');
+
+        const searchbarField = screen.queryByTestId("searchbar-field");
+        userEvent.type(searchbarField, "Niki");
+        const searchIndex = screen.queryByTestId("search-index");
+        const searchIndexItem = within(searchIndex).queryAllByTestId("search-index-item")[0];
+        userEvent.click(searchIndexItem);
+        let newPathName = global.window.location.pathname;
+        expect(newPathName).toEqual('/tracks/1');
+    });
 });
