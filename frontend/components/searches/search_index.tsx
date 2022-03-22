@@ -14,11 +14,11 @@ function SearchIndex(props: Props) {
 
     const searches: Array<Track> = useSelector((state: State) => Object.values(state.entities.searches));
 
-    const siteLocation: string = useLocation().pathname;
+    const location: string = useLocation().pathname;
 
     useEffect(() => {
         clearSearchField();
-    }, [siteLocation])
+    }, [location])
 
     function clearSearch(e: MouseEvent<HTMLUListElement>) {
         e.preventDefault();

@@ -1,19 +1,17 @@
 import React, { Dispatch, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as TrackActions from "../../actions/track_actions";
-import { RouteComponentProps } from "react-router";
+import { useLocation } from "react-router";
 import { State, Track, Window } from "../../my_types";
 import LyricsShow from "../lyrics/lyrics";
 import NavBar from "../navbar/navbar";
 import TrackShowHeader from "./track_show_header";
 
 declare const window: Window;
-type TrackId = {
-    trackId: string
-}
 
-function TrackShow(props: RouteComponentProps<TrackId>) {
-    const trackId = props.match.params.trackId;
+function TrackShow() {
+    const location: string = useLocation().pathname;
+    const trackId: string  = location.slice(8);
 
     const track: Track = useSelector((state: State) => state.entities.tracks[parseInt(trackId)]);
 
