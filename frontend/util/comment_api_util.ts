@@ -1,4 +1,4 @@
-// const $ = require("jquery");
+import $ from "jquery";
 import { CreatedComment, UpdatedComment } from "../my_types";
 
 export const fetchComment = (commentId: number) => {
@@ -12,24 +12,31 @@ export const fetchComment = (commentId: number) => {
 export const createComment = (comment: CreatedComment) => {
     return (
         $.ajax({
+            data: {
+                authenticity_token: $('[name="csrf-token"]').attr("content"),
+                comment
+            },
             method: "POST",
             url: `api/comments`,
-            data: { comment }
         })
     );
 };
 export const updateComment = (comment: UpdatedComment) => {
     return (
         $.ajax({
+            data: {
+                authenticity_token: $('[name="csrf-token"]').attr("content"),
+                comment
+            },
             method: "PUT",
             url: `api/comments/${comment.id.toString()}`,
-            data: { comment }
         })
     );
 }
 export const deleteComment = (commentId: number) => {
     return (
         $.ajax({
+            data: { authenticity_token: $('[name="csrf-token"]').attr("content") },
             method: "DELETE",
             url: `api/comments/${commentId.toString()}`
         })
