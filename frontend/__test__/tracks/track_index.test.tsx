@@ -16,10 +16,10 @@ const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 const testStore = mockStore(testIndexStore);
 
+const useMockDispatch = jest.spyOn(reactRedux, 'useDispatch');
 const useMockEffect = jest.spyOn(React, 'useEffect');
 const useMockState = jest.spyOn(React, 'useState');
 const useMockSelector = jest.spyOn(reactRedux, 'useSelector');
-const useMockDispatch = jest.spyOn(reactRedux, 'useDispatch');
 const useFetchTracks = jest.spyOn(trackActions, 'fetchTracks');
 
 describe("track index", () => {
@@ -39,17 +39,17 @@ describe("track index", () => {
     });
     // afterAll(() => server.close());
 
+    test("useDispatch is called", () => {
+        expect(useMockDispatch).toHaveBeenCalled();
+    });
     test("useEffect is called", () => {
         expect(useMockEffect).toHaveBeenCalled();
-    });
-    test("useState is called", () => {
-        expect(useMockState).toHaveBeenCalled();
     });
     test("useSelector is called", () => {
         expect(useMockSelector).toHaveBeenCalled();
     });
-    test("useDispatch is called", () => {
-        expect(useMockDispatch).toHaveBeenCalled();
+    test("useState is called", () => {
+        expect(useMockState).toHaveBeenCalled();
     });
     test("fetchTracks should be called", () => {
         expect(useFetchTracks).toHaveBeenCalled();
@@ -81,8 +81,8 @@ describe("track index", () => {
         test("contains track index items", () => {
             const trackIndexItems = screen.queryAllByTestId("track-index-item");
             expect(trackIndexItems).toBeDefined();
-            const trackIndexItem = trackIndexItems[0];
-            expect(trackIndexItem).toBeInTheDocument();
+            const trackIndexItem = trackIndexItems;
+            expect(trackIndexItem.length).toBeGreaterThan(0);
         })
         test("displays the artist and title for each track index item", () => {
             const trackIndexData: {[key:number]: IndexTrack} = testIndexStore.entities.tracks;
