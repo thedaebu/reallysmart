@@ -1,13 +1,13 @@
-import React, { MouseEvent } from "react";
-import { SessionUser, User } from "../../my_types";
+import React, { Dispatch, MouseEvent } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import * as SessionActions from "../../actions/session_actions";
+import { SessionUser, State, User } from "../../my_types";
 
-type Props = {
-    currentUser: User,
-    login: Function
-}
+function DemoUser() {
+    const currentUser: User = useSelector((state: State) => state.entities.user[state.session.id]);
 
-function DemoUser(props: Props) {
-    const { currentUser, login } = props;
+    const dispatch: Dispatch<any> = useDispatch();
+    const login: Function = (sessionUser: SessionUser) => dispatch(SessionActions.login(sessionUser));
 
     function demoButton() {
         if (!currentUser) {

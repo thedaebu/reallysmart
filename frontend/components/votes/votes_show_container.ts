@@ -3,7 +3,7 @@ import { CreatedVote, State } from "../../my_types";
 import { fetchAnnotation } from "../../actions/annotation_actions";
 import { fetchComment } from "../../actions/comment_actions";
 import { createVote, deleteVote, fetchVote } from "../../actions/vote_actions";
-import VotesShow from "./votes_show";
+import VoteShow from "./vote_show";
 
 type OwnProps = {
     voteableType: string
@@ -29,5 +29,5 @@ const mDTP = (dispatch: Function, ownProps: OwnProps) => {
     });
 };
 
-const VotesShowContainer = connect(mSTP, mDTP)(VotesShow);
-export default VotesShowContainer;
+const VoteShowContainer = connect(mSTP, mDTP)(VoteShow);
+export default VoteShowContainer;

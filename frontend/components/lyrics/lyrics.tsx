@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { closeAnnotationModal, openAnnotationModal } from "../../actions/annotation_modal_actions";
 import { Annotation, State, Track, Window } from "../../my_types";
 import AnnotationShow from "../annotations/annotation_show";
-import CommentShowContainer from "../comments/comment_show_container";
+import CommentShow from "../comments/comment_show";
 
 declare const window: Window;
 type Props = {
@@ -207,7 +207,7 @@ function LyricsShow(props: Props) {
                     <pre className="lyrics__body" data-testid="lyrics__body">
                         {annotatedLyrics()}
                     </pre> 
-                    <CommentShowContainer
+                    <CommentShow
                         commentableType="Track"
                         parent={track}
                     />

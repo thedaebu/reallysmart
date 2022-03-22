@@ -1,20 +1,26 @@
-import React, { ChangeEvent, MouseEvent, useState } from "react";
-import { Annotation, Track, UpdatedAnnotation, User } from "../../my_types";
-import CommentShowContainer from "../comments/comment_show_container";
-import VotesShowContainer from "../votes/votes_show_container";
+import React, { ChangeEvent, Dispatch, MouseEvent, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import * as AnnotationActions from "../../actions/annotation_actions";
+import * as TrackActions from "../../actions/track_actions";
+import { Annotation, State, Track, UpdatedAnnotation, User } from "../../my_types";
+import CommentShow from "../comments/comment_show";
+import VoteShow from "../votes/vote_show";
 
 type Props = {
     annotation: Annotation,
-    currentUser: User,
-    deleteAnnotation: Function,
-    fetchTrack: Function,
     track: Track,
-    updateAnnotation: Function,
     yCoord: number
 }
 
 function AnnotationShowItem(props: Props) {
-    const { annotation, currentUser, deleteAnnotation, fetchTrack, track, updateAnnotation, yCoord } = props;
+    const { annotation, track, yCoord } = props;
+
+    const currentUser: User = useSelector((state: State) => state.entities.user[state.session.id]);
+
+    const dispatch: Dispatch<any> = useDispatch();
+    const deleteAnnotation: Function = (annotationId: number) => dispatch(AnnotationActions.deleteAnnotation(annotationId));
+    const fetchTrack: Function = (trackId: string) => dispatch(TrackActions.fetchTrack(trackId));
+    const updateAnnotation: Function = (annotation: UpdatedAnnotation) => dispatch(AnnotationActions.updateAnnotation(annotation));
 
     const [annotationDeleteStatus, setAnnotationDeleteStatus] = useState<boolean>(false);
     const [annotationUpdateStatus, setAnnotationUpdateStatus] = useState<boolean>(false);
@@ -30,15 +36,16 @@ function AnnotationShowItem(props: Props) {
                         position: "relative", 
                         top: yCoord
                     }}
+                    data-testid="annotation-show"
                 >
                     <p className="annotation-show-item__name">Really Smart Annotation by {annotation.annotator_name}</p>
                     <p className="annotation-show-item__body">{annotation.body}</p>
-                    <VotesShowContainer
+                    <VoteShow
                         parent={annotation}
                         voteableType="Annotation"
                     />
                     {updatebuttons()}
-                    <CommentShowContainer
+                    <CommentShow
                         commentableType="Annotation"
                         parent={annotation}
                     />
@@ -159,7 +166,7 @@ function AnnotationShowItem(props: Props) {
         }
 
         updateAnnotation(updatedAnnotation)
-            .then(() => fetchTrack(track.id));
+            .then(() => fetchTrack(track.id.toString()));
         setAnnotationUpdateStatus(false);
     }
 
@@ -177,7 +184,7 @@ function AnnotationShowItem(props: Props) {
         e.preventDefault();
 
         deleteAnnotation(currentAnnotation.id)
-            .then(() => fetchTrack(track.id));
+            .then(() => fetchTrack(track.id.toString()));
         setCurrentAnnotation(null);
         setAnnotationDeleteStatus(false);
     }
