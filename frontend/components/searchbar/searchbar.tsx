@@ -1,14 +1,13 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, Dispatch, useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
-import SearchIndexContainer from "../searches/search_index_container";
+import { useDispatch } from "react-redux";
+import * as SearchActions from "../../actions/search_actions";
+import SearchIndex from "../searches/search_index";
 
-type Props = {
-    fetchSearches: Function
-}
+function Searchbar() {
+    const dispatch: Dispatch<any> = useDispatch();
+    const fetchSearches: Function = (search: string) => dispatch(SearchActions.fetchSearches(search));
 
-function Searchbar(props: Props) {
-    const { fetchSearches } = props;
-    
     const [searchField, setSearchField] = useState<string>("");
 
     function handleSearchChange() {
@@ -33,7 +32,7 @@ function Searchbar(props: Props) {
                 />
                 <AiOutlineSearch className="searchbar__glass" />
             </div>
-            <SearchIndexContainer
+            <SearchIndex
                 clearSearchField={clearSearchField}
                 searchField={searchField}
             />

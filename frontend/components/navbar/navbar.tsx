@@ -15,16 +15,16 @@ function Navbar() {
                 <a className="shop" href="">SHOP</a>
                 <div className="navbar-image-main">
                     <a href="https://github.com/thedaebu/reallysmart" target="_blank" rel="noopener noreferrer">
-                        <img src={window.github}/>
+                        <img src={window.github} />
                     </a>
                     <a href="https://www.linkedin.com/in/edkim163/" target="_blank" rel="noopener noreferrer">
-                        <img src={window.linkedin}/>
+                        <img src={window.linkedin} />
                     </a>
                     <a href="https://angel.co/u/edwardkim163" target="_blank" rel="noopener noreferrer">
-                        <img src={window.angellist}/>
+                        <img src={window.angellist} />
                     </a>
                     <a href="https://eddie-kim.com/" target="_blank" rel="noopener noreferrer">
-                        <img src={window.website}/>
+                        <img src={window.website} />
                     </a>
                 </div>
             </div>

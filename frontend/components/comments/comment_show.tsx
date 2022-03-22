@@ -1,21 +1,28 @@
-import React, { useState, MouseEvent, ChangeEvent, FormEvent } from "react";
+import React, { useState, MouseEvent, ChangeEvent, FormEvent, Dispatch } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { Annotation, Comment, CreatedComment, Track, User } from "../../my_types";
-import CommentShowItemContainer from "./comment_show_item_container";
+import * as AnnotationActions from "../../actions/annotation_actions";
+import * as CommentActions from "../../actions/comment_actions";
+import * as TrackActions from "../../actions/track_actions";
+import { Annotation, Comment, CreatedComment, State, Track, User } from "../../my_types";
+import CommentShowItem from "./comment_show_item";
 
 type Props = {
     commentableType: string,
-    comments: {[key: number]: Comment},
-    createComment: Function,
-    currentUser: User,
-    fetchAnnotation: Function,
-    fetchTrack: Function,
     parent: Annotation | Track
 }
 
 function CommentShow(props: Props) {
-    const { commentableType, comments, createComment, currentUser, fetchAnnotation, fetchTrack, parent } = props;
-    
+    const { commentableType, parent } = props;
+
+    const comments: {[key:number]: Comment} = useSelector((state: State) => state.entities.comments);
+    const currentUser: User = useSelector((state: State) => state.entities.user[state.session.id]);
+
+    const dispatch: Dispatch<any> = useDispatch();
+    const createComment: Function = (comment: CreatedComment) => dispatch(CommentActions.createComment(comment));
+    const fetchAnnotation: Function = (annotationId: number) => dispatch(AnnotationActions.fetchAnnotation(annotationId));
+    const fetchTrack: Function = (trackId: string) => dispatch(TrackActions.fetchTrack(trackId));
+
     const [commentBody, setCommentBody] = useState<string>("");
     const [commentCreateStatus, setCommentCreateStatus] = useState<boolean>(false);
 
@@ -24,7 +31,7 @@ function CommentShow(props: Props) {
             if (commentCreateStatus === false && commentableType === "Track") {
                 return (
                     <div className="comment-show__begin">
-                        <img src="https://assets.genius.com/images/default_avatar_100.png"/>
+                        <img src="https://assets.genius.com/images/default_avatar_100.png" />
                         <textarea
                             onClick={handleCommentCreateStatus}
                             placeholder="Add a comment"
@@ -58,7 +65,7 @@ function CommentShow(props: Props) {
             } else if (commentCreateStatus === false && commentableType === "Annotation") {
                 return (
                     <div className="comment-show__begin">
-                        <img src="https://assets.genius.com/images/default_avatar_100.png"/>
+                        <img src="https://assets.genius.com/images/default_avatar_100.png" />
                         <textarea
                             onClick={handleCommentCreateStatus}
                             placeholder="You think you're really smarter?"
@@ -109,12 +116,14 @@ function CommentShow(props: Props) {
             return (
                 <ul className="comment-show__items">
                     {currentComments.map((comment, idx) => {
-                        return <CommentShowItemContainer
-                            comment={comment}
-                            commentableType={commentableType}
-                            parent={parent}
-                            key={idx}
-                        />
+                        return (
+                            <CommentShowItem
+                                comment={comment}
+                                commentableType={commentableType}
+                                parent={parent}
+                                key={idx}
+                            />
+                        );
                     })}
                 </ul>
             );
@@ -161,7 +170,7 @@ function CommentShow(props: Props) {
                 .then(() => fetchTrack(parent.id.toString()));
         } else if (commentableType === "Annotation") {
             createComment(comment)
-                .then(() => fetchAnnotation(parent.id));
+                .then(() => fetchAnnotation(parent.id))
         }
         setCommentBody("");
         setCommentCreateStatus(false);

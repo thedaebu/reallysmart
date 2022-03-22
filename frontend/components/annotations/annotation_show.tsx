@@ -1,17 +1,16 @@
-import React, { ChangeEvent, MouseEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, Dispatch, MouseEvent, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { Annotation, CreatedAnnotation, Track, User } from "../../my_types";
-import AnnotationShowItemContainer from "./annotation_show_item_container";
+import * as AnnotationActions from "../../actions/annotation_actions";
+import * as AnnotationModalActions from "../../actions/annotation_modal_actions";
+import * as TrackActions from "../../actions/track_actions";
+import { Annotation, CreatedAnnotation, State, Track, User } from "../../my_types";
+import AnnotationShowItem from "./annotation_show_item";
 
 type Props = {
     annotation: Annotation | null,
     annotationCreateStatus: boolean,
-    annotationModal: boolean,
-    closeAnnotationModal: Function,
-    createAnnotation: Function,
-    currentUser: User,
     endIndex: number,
-    fetchTrack: Function,
     handleAnnotationCreateStatus: Function,
     startIndex: number,
     track: Track,
@@ -19,14 +18,22 @@ type Props = {
 }
 
 function AnnotationShow(props: Props) {
-    const { annotation, annotationModal, closeAnnotationModal, createAnnotation, annotationCreateStatus, currentUser, endIndex, fetchTrack, handleAnnotationCreateStatus, startIndex, track, yCoord } = props;
-    
+    const { annotation, annotationCreateStatus, endIndex, handleAnnotationCreateStatus, startIndex, track, yCoord } = props;
+
+    const annotationModal: boolean = useSelector((state: State) => state.modal.annotationModal);
+    const currentUser: User = useSelector((state: State) => state.entities.user[state.session.id]);
+
+    const dispatch: Dispatch<any> = useDispatch();
+    const fetchTrack: Function = (trackId: string) => dispatch(TrackActions.fetchTrack);
+    const closeAnnotationModal: Function = () => dispatch(AnnotationModalActions.closeAnnotationModal());
+    const createAnnotation: Function = (annotation: CreatedAnnotation) => dispatch(AnnotationActions.createAnnotation(annotation));
+
     const [annotationBody, setAnnotationBody] = useState<string>("");
 
     function annotationShow() {
         if (annotation) {
             return (
-                <AnnotationShowItemContainer
+                <AnnotationShowItem
                     annotation={annotation}
                     track={track}
                     yCoord={yCoord}
@@ -154,8 +161,10 @@ function AnnotationShow(props: Props) {
         };
 
         createAnnotation(annotation)
-            .then(() => fetchTrack(track.id.toString()));
-        closeAnnotationModal();
+            .then(() => {
+                fetchTrack(track.id.toString());
+                closeAnnotationModal();
+            })
         setAnnotationBody("");
         handleAnnotationCreateStatus();
     }

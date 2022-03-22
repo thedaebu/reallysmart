@@ -1,16 +1,17 @@
-import React, { ChangeEvent, FormEvent, useState, useEffect } from "react";
+import React, { ChangeEvent, Dispatch, FormEvent, useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { SessionUser, Window } from "../../my_types";
+import * as SessionActions from "../../actions/session_actions";
+import { SessionUser, State, Window } from "../../my_types";
 
 declare const window: Window;
-type Props = {
-    clearErrors: Function,
-    errors: Array<string>,
-    signup: Function
-}
 
-function SignupForm(props: Props) {
-    const { clearErrors, errors, signup } = props;
+function SignupForm() {
+    const errors: Array<string> = useSelector((state: State) => state.errors.sessionErrors);
+
+    const dispatch: Dispatch<any> = useDispatch();
+    const clearErrors: Function = () => dispatch(SessionActions.clearErrors());
+    const signup: Function = (sessionUser: SessionUser) => dispatch(SessionActions.signup(sessionUser));
 
     const [password, setPassword] = useState<string>("");
     const [username, setUsername] = useState<string>("");
@@ -46,7 +47,9 @@ function SignupForm(props: Props) {
                     <p>Something is wrong</p>
                     <ul>
                         {errors.map((error: string, idx: number) => {
-                            return <li key={idx}>{error}</li>
+                            return (
+                                <li key={idx}>{error}</li>
+                            );
                         })}
                     </ul>
                 </div>
@@ -93,7 +96,7 @@ function SignupForm(props: Props) {
                 Already have an account? <Link to="/login" >Log in here.</Link>
             </p>
         </div>
-    )
+    );
 }
 
 export default SignupForm;

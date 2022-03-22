@@ -1,20 +1,23 @@
-import React, { ChangeEvent, MouseEvent, useState } from "react";
-import { Annotation, Comment, Track, UpdatedComment, User } from "../../my_types";
-import VotesShowContainer from "../votes/votes_show_container";
+import React, { ChangeEvent, Dispatch, MouseEvent, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAnnotation } from "../../actions/annotation_actions";
+import { deleteComment, updateComment } from "../../actions/comment_actions";
+import { fetchTrack } from "../../actions/track_actions";
+import { Annotation, Comment, State, Track, UpdatedComment, User } from "../../my_types";
+import VoteShow from "../votes/vote_show";
 
 type Props = {
-    currentUser: User,
     comment: Comment;
     commentableType: string,
-    deleteComment: Function,
-    fetchAnnotation: Function,
-    fetchTrack: Function,
-    parent: Annotation | Track,
-    updateComment: Function
+    parent: Annotation | Track
 }
 
 function CommentShowItem(props: Props) {
-    const { currentUser, comment, commentableType, deleteComment, fetchAnnotation, fetchTrack, parent, updateComment } = props;
+    const { comment, commentableType, parent } = props;
+
+    const currentUser: User = useSelector((state: State) => state.entities.user[state.session.id])
+
+    const dispatch: Dispatch<any> = useDispatch();
 
     const [commentDeleteStatus, setCommentDeleteStatus] = useState<boolean>(false);
     const [commentUpdateStatus, setCommentUpdateStatus] = useState<boolean>(false);
@@ -97,7 +100,7 @@ function CommentShowItem(props: Props) {
 
     function commentItem() {
         return (
-            <div>
+            <div data-testid="comment-show-item">
                 <div className="comment-show-item__top">
                     <div>
                         <img className="comment-show-item__baby" src="https://assets.genius.com/images/default_avatar_100.png" />
@@ -106,7 +109,7 @@ function CommentShowItem(props: Props) {
                     <p className="comment-show-item__time">{handleTime(comment.updated_at)}</p>
                 </div>
                 <p className="comment-show-item__body">{comment.body}</p>
-                <VotesShowContainer 
+                <VoteShow 
                     parent={comment} 
                     voteableType="Comment" 
                 />
@@ -195,12 +198,11 @@ function CommentShowItem(props: Props) {
             id: currentComment.id
         };
 
+        dispatch(updateComment(updatedComment));
         if (commentableType === "Track") {
-            updateComment(updatedComment)
-                .then(() => fetchTrack(parent.id.toString()))
+            dispatch(fetchTrack(parent.id.toString()));
         } else {
-            updateComment(updatedComment)
-                .then(() => fetchAnnotation(parent.id));
+            dispatch(fetchAnnotation(parent.id));
         }
 
         setCommentUpdateStatus(false);
@@ -218,14 +220,12 @@ function CommentShowItem(props: Props) {
     function handleCommentDeleteSubmit(e: MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
 
-        deleteComment(currentComment.id)
-            .then(() => {
-                if (commentableType === "Track") {
-                    fetchTrack(parent.id.toString());
-                } else {
-                    fetchAnnotation(parent.id);
-                }
-            })
+        dispatch(deleteComment(currentComment.id));
+        if (commentableType === "Track") {
+            dispatch(fetchTrack(parent.id.toString()));
+        } else {
+            dispatch(fetchAnnotation(parent.id));
+        }
         setCurrentComment(null);
         setCommentDeleteStatus(false);
     }

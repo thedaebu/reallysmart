@@ -5,30 +5,30 @@ import {
   Link
 } from "react-router-dom";
 import { AuthRoute } from "../util/route_util";
-import DemoUserContainer from "./demo_user/demo_user_container";
-import LoginFormContainer from "./session_form/login_form_container";
-import SearchbarContainer from "./searchbar/searchbar_container";
-import SessionMenuContainer from "./session_menu/session_menu_container";
-import SignupFormContainer from "./session_form/signup_form_container";
-import TrackIndexContainer from "./tracks/track_index_container"
-import TrackShowContainer from "./tracks/track_show_container";
+import DemoUser from "./demo_user/demo_user";
+import LoginForm from "./session_form/login_form";
+import SessionMenu from "./session_menu/session_menu";
+import SignupForm from "./session_form/signup_form";
+import TrackIndex from "./tracks/track_index";
+import TrackShow from "./tracks/track_show";
+import Searchbar from "./searchbar/searchbar";
 
 function App() {
     return (
         <div>
             <header className="header">
-                <SearchbarContainer/>
+                <Searchbar />
                 <Link to="/" className="header__logo">REALLYSMART</Link>
                 <div className="session-buttons">
-                    <SessionMenuContainer/>
-                    <DemoUserContainer/>
+                    <SessionMenu />
+                    <DemoUser />
                 </div>
             </header>
             <Switch>
-                <Route exact path="/" component={TrackIndexContainer}/>
-                <AuthRoute exact path="/signup" component={SignupFormContainer}/>
-                <AuthRoute exact path="/login"  component={LoginFormContainer}/>
-                <Route path="/tracks/:trackId" component={TrackShowContainer}/>
+                <Route exact path="/" component={TrackIndex} />
+                <AuthRoute exact path="/signup" component={SignupForm} />
+                <AuthRoute exact path="/login"  component={LoginForm} />
+                <Route path="/tracks/:trackId" component={TrackShow} />
             </Switch>
         </div>
     );

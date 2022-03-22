@@ -7,7 +7,7 @@ class Api::SessionsController < ApplicationController
             @user[:vote_ids] = user.votes.map {|vote| vote.id}
             # avatar_url = url_for(user.avatar)
 
-            result = {:user => @user, :vote_ids => @vote_ids}
+            result = {:user => @user}
             render json: result
         else
             render json: ["Invalid credentials"], status: 401

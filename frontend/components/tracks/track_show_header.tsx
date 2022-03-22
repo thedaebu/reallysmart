@@ -19,6 +19,7 @@ function TrackShowHeader(props: Props) {
             style={{
                 backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(${track.artwork_path})`
             }}
+            data-testid="track-show-header"
         >
             <div className="track-show__shade">
                 <div>
@@ -37,11 +38,11 @@ function TrackShowHeader(props: Props) {
                     </div>
                     <div className="track-show__right">
                         <div>
-                            <img src={window.fireIcon}/>
+                            <img src={window.fireIcon} />
                             <p className="track-show__fire-number">{randomNum()}</p>
                         </div>
                         <div>
-                            <img src={window.eyeIcon}/>
+                            <img src={window.eyeIcon} />
                             <p className="track-show__eye-number">{randomNum() * 10}</p>
                         </div>
                     </div>

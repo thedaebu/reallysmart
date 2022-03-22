@@ -1,18 +1,24 @@
-import React, { useEffect } from "react";
-import { Track, Window } from "../../my_types";
+import React, { Dispatch, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import * as TrackActions from "../../actions/track_actions";
+import { RouteComponentProps } from "react-router";
+import { State, Track, Window } from "../../my_types";
+import LyricsShow from "../lyrics/lyrics";
 import NavBar from "../navbar/navbar";
 import TrackShowHeader from "./track_show_header";
-import LyricsContainer from "../lyrics/lyrics_container";
 
 declare const window: Window;
-type Props = {
-    fetchTrack: Function,
-    track: Track,
+type TrackId = {
     trackId: string
 }
 
-function TrackShow(props: Props) {
-    const { fetchTrack, track, trackId } = props;
+function TrackShow(props: RouteComponentProps<TrackId>) {
+    const trackId = props.match.params.trackId;
+
+    const track: Track = useSelector((state: State) => state.entities.tracks[parseInt(trackId)]);
+
+    const dispatch: Dispatch<any> = useDispatch();
+    const fetchTrack: Function = (trackId: string) => dispatch(TrackActions.fetchTrack(trackId));
 
     useEffect(() => {
         fetchTrack(trackId);
@@ -22,15 +28,11 @@ function TrackShow(props: Props) {
     function trackShowPage() {
         if (track) {
             return (
-                <div>
-                    <NavBar/>
-                    <TrackShowHeader
-                        track={track}
-                    />
-                    <LyricsContainer
-                        track={track}
-                    />
-                </div>
+                <>
+                    <NavBar />
+                    <TrackShowHeader track={track} />
+                    <LyricsShow track={track} />
+                </>
             );
         } else {
             return (

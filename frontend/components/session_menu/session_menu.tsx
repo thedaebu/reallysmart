@@ -1,14 +1,14 @@
-import React, { MouseEvent } from "react";
+import React, { Dispatch, MouseEvent } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { User } from "../../my_types";
+import * as SessionActions from "../../actions/session_actions";
+import { State, User } from "../../my_types";
 
-type Props = {
-    currentUser: User,
-    logout: Function
-}
+function SessionMenu() {
+    const currentUser: User = useSelector((state: State) => state.entities.user[state.session.id]);
 
-function SessionMenu(props: Props) {
-    const { currentUser, logout } = props;
+    const dispatch: Dispatch<any> = useDispatch();
+    const logout: Function = () => dispatch(SessionActions.logout());
 
     function sessionMenuButtons() {
         if (!currentUser) {
@@ -22,7 +22,7 @@ function SessionMenu(props: Props) {
             return (
                 <div className="session-menu">
                     {/* <input type="file"/> */}
-                    {/* <img src={currentUser.avatar_url}/> */}
+                    {/* <img src={currentUser.avatar_url} /> */}
                     <a className="session-menu__logout" onClick={sessionLogout}>LOG OUT</a>
                 </div>
             );

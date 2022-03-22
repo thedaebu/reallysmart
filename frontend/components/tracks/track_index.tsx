@@ -1,17 +1,18 @@
-import React, { useState, useEffect, MouseEvent } from "react";
-import { IndexTrack, Window } from "../../my_types";
+import React, { Dispatch, MouseEvent, useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import * as TrackActions from "../../actions/track_actions";
+import { IndexTrack, State, Window } from "../../my_types";
 import Navbar from "../navbar/navbar";
 import TrackIndexItem from "./track_index_item";
 
 declare const window: Window;
-type Props = {
-    fetchTracks: Function,
-    tracks: Array<IndexTrack>
-}
 
-function TrackIndex(props: Props) {
-    const { fetchTracks, tracks } = props;
-    
+function TrackIndex() {
+    const tracks: Array<IndexTrack> = useSelector((state: State) => Object.values(state.entities.tracks));
+
+    const dispatch: Dispatch<any> = useDispatch();
+    const fetchTracks: Function = () => dispatch(TrackActions.fetchTracks());
+
     const [trackIndexList, setTrackIndexList] = useState<number>(5);
 
     useEffect(() => {
@@ -23,21 +24,39 @@ function TrackIndex(props: Props) {
         if (trackIndexList === 5) {
             return (
                 tracks.slice(0, 5).map((track: IndexTrack, idx: number) => {
-                    return <TrackIndexItem listNumber={idx+1} track={track} key={idx+1}/>;
+                    return (
+                        <TrackIndexItem
+                            listNumber={idx+1}
+                            track={track}
+                            key={idx+1}
+                        />
+                    );
                 })
-            )
+            );
         } else if (trackIndexList === 10) {
             return (
                 tracks.slice(0, 10).map((track: IndexTrack, idx: number) => {
-                    return <TrackIndexItem listNumber={idx+1} track={track} key={idx+1}/>;
+                    return (
+                        <TrackIndexItem
+                            listNumber={idx+1}
+                            track={track}
+                            key={idx+1}
+                        />
+                    );
                 })
-            )
+            );
         } else {
             return (
                 tracks.map((track: IndexTrack, idx: number) => {
-                    return <TrackIndexItem listNumber={idx+1} track={track} key={idx+1}/>;
+                    return (
+                        <TrackIndexItem
+                            listNumber={idx+1}
+                            track={track}
+                            key={idx+1}
+                        />
+                    );
                 })
-            )
+            );
         }
     }
 

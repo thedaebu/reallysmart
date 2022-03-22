@@ -1,20 +1,29 @@
-import React, { MouseEvent, useEffect, useState } from "react";
+import React, { Dispatch, MouseEvent, useEffect, useState } from "react";
 import { RiThumbUpLine } from "react-icons/ri";
-import { Annotation, Comment, CreatedVote, ReceivedVote, User, Vote } from "../../my_types";
+import { useDispatch, useSelector } from "react-redux";
+import * as AnnotationActions from "../../actions/annotation_actions";
+import * as CommentActions from "../../actions/comment_actions";
+import * as VoteActions from "../../actions/vote_actions";
+import { Annotation, Comment, CreatedVote, ReceivedVote, State, User, Vote } from "../../my_types";
 
 type Props = {
-    createVote: Function,
-    currentUser: User,
-    deleteVote: Function,
-    fetchParent: Function,
-    fetchVote: Function,
     parent: Annotation | Comment,
-    voteableType: string,
-    votes: {[key: number]: Vote}
+    voteableType: string
 }
 
-function VotesShow(props: Props) {
-    const { createVote, currentUser, deleteVote, fetchParent, fetchVote, parent, voteableType, votes } = props;
+function VoteShow(props: Props) {
+    const { parent, voteableType } = props;
+
+    const currentUser: User = useSelector((state: State) => state.entities.user[state.session.id]);
+    const votes: {[key: number]: Vote} = useSelector((state: State) => state.entities.votes);
+
+    const dispatch: Dispatch<any> = useDispatch();
+    const createVote: Function = (vote: CreatedVote) => dispatch(VoteActions.createVote(vote));
+    const deleteVote: Function = (voteId: number) => dispatch(VoteActions.deleteVote(voteId));
+    const fetchParent: Function = voteableType === "Annotation"
+        ? (annotationId: number) => dispatch(AnnotationActions.fetchAnnotation(annotationId))
+        : (commentId: number) => dispatch(CommentActions.fetchComment(commentId));
+    const fetchVote: Function = (voteId: number) => dispatch(VoteActions.fetchVote(voteId));
 
     const [currentNumberOfVotes, setCurrentNumberOfVotes] = useState<number>(0);
     const [currentUserVote, setCurrentUserVote] = useState<Vote | null>(null);
@@ -46,7 +55,7 @@ function VotesShow(props: Props) {
             }
         } else {
             return (
-                <RiThumbUpLine className="vote-show__not-voted"/>
+                <RiThumbUpLine className="vote-show__not-voted" />
             );
         }
     }
@@ -102,7 +111,7 @@ function VotesShow(props: Props) {
     }
 
     return (
-        <div className="vote-show">
+        <div className="vote-show" data-testid="vote-show">
             {voteThumb()}
             <div className="vote-show__count">
                 +{currentNumberOfVotes}
@@ -111,4 +120,4 @@ function VotesShow(props: Props) {
     );
 };
 
-export default VotesShow;
+export default VoteShow;

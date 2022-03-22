@@ -1,16 +1,20 @@
 import React, { MouseEvent, useEffect } from "react";
-import { Track } from "../../my_types";
+import { useSelector } from "react-redux";
+import { useLocation } from "react-router";
+import { State, Track } from "../../my_types";
 import SearchIndexItem from "./search_index_item";
 
 type Props = {
     clearSearchField: Function,
-    searches: Array<Track>,
-    searchField: string,
-    siteLocation: string
+    searchField: string
 }
 
 function SearchIndex(props: Props) {
-    const { clearSearchField, searches, searchField, siteLocation } = props;
+    const { clearSearchField, searchField } = props;
+
+    const searches: Array<Track> = useSelector((state: State) => Object.values(state.entities.searches));
+
+    const siteLocation: string = useLocation().pathname;
 
     useEffect(() => {
         clearSearchField();

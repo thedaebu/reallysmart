@@ -35,11 +35,11 @@ function TrackIndexItem(props: Props) {
             </div>
             <p className="track-index-item__artist">{track.artist}</p>
             <div className="track-index-item__fire-main">
-                <img className="track-index-item__fire" src={window.fireIcon}/>
+                <img className="track-index-item__fire" src={window.fireIcon} />
                 <p className="track-index-item__fire-number">{randomNum()}</p>
             </div>
             <div className="track-index-item__eye-main">
-                <img className="track-index-item__eye" src={window.eyeIcon}/>
+                <img className="track-index-item__eye" src={window.eyeIcon} />
                 <p className="track-index-item__eye-number">{randomNum() * 10}</p>
             </div>
         </Link>
