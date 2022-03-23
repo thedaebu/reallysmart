@@ -1,4 +1,4 @@
-// const $ = require("jquery");
+import $ from "jquery";
 
 export const fetchSearches = (search: string) => {
     return (

@@ -1,6 +1,6 @@
 import React, { MouseEvent, useState, useEffect, Dispatch } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { closeAnnotationModal, openAnnotationModal } from "../../actions/annotation_modal_actions";
+import * as AnnotationModalActions from "../../actions/annotation_modal_actions";
 import { Annotation, State, Track, Window } from "../../my_types";
 import AnnotationShow from "../annotations/annotation_show";
 import CommentShow from "../comments/comment_show";
@@ -32,6 +32,8 @@ function LyricsShow(props: Props) {
     const annotations: {[key:number]: Annotation} = useSelector((state: State) => state.entities.annotations)
 
     const dispatch: Dispatch<any> = useDispatch();
+    const closeAnnotationModal: Function = () => dispatch(AnnotationModalActions.closeAnnotationModal());
+    const openAnnotationModal: Function = () => dispatch(AnnotationModalActions.openAnnotationModal());
 
     const [annotationCreateStatus, setAnnotationCreateStatus] = useState<boolean>(false);
     const [endIndex, setEndIndex] = useState<number>(0);

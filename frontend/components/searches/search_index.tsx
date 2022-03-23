@@ -14,11 +14,11 @@ function SearchIndex(props: Props) {
 
     const searches: Array<Track> = useSelector((state: State) => Object.values(state.entities.searches));
 
-    const siteLocation: string = useLocation().pathname;
+    const location: string = useLocation().pathname;
 
     useEffect(() => {
         clearSearchField();
-    }, [siteLocation])
+    }, [location])
 
     function clearSearch(e: MouseEvent<HTMLUListElement>) {
         e.preventDefault();
@@ -29,7 +29,7 @@ function SearchIndex(props: Props) {
     function searchResult() {
         if (searchField !== "" && searches.length > 0) {
             return (
-                <div className="search-index">
+                <div className="search-index" data-testid="search-index">
                     <p className="search-index__results">SEARCH RESULTS</p>
                     <p className="search-index__songs">SONGS</p>
                     <ul className="search-index__items" onClick={clearSearch}>

@@ -8,12 +8,11 @@ import VoteShow from "../votes/vote_show";
 
 type Props = {
     annotation: Annotation,
-    track: Track,
-    yCoord: number
+    track: Track
 }
 
 function AnnotationShowItem(props: Props) {
-    const { annotation, track, yCoord } = props;
+    const { annotation, track } = props;
 
     const currentUser: User = useSelector((state: State) => state.entities.user[state.session.id]);
 
@@ -32,10 +31,6 @@ function AnnotationShowItem(props: Props) {
             return (
                 <div
                     className="annotation-show-item" 
-                    style={{
-                        position: "relative", 
-                        top: yCoord
-                    }}
                     data-testid="annotation-show"
                 >
                     <p className="annotation-show-item__name">Really Smart Annotation by {annotation.annotator_name}</p>
@@ -56,10 +51,6 @@ function AnnotationShowItem(props: Props) {
                 <form
                     id="annotation-show-form"
                     onSubmit={handleUpdatedAnnotationSubmit}
-                    style={{
-                        position: "relative", 
-                        top: yCoord
-                    }}
                 >
                     <textarea
                         className="annotation-show-form__body" 
