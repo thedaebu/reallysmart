@@ -74,12 +74,12 @@ describe("search index", () => {
         });
     });
     describe("search index items", () => {
-        test("shows 5 search index items at maximum", () => {
+        test("displays 5 search index items at maximum", () => {
             const searchbarField = screen.queryByTestId("searchbar-field");
             userEvent.type(searchbarField, "Niki");
             const searchIndex = screen.queryByTestId("search-index");
             const searchIndexItems = within(searchIndex).queryAllByTestId("search-index-item");
-            expect(searchIndexItems.length).toEqual(5);
+            expect(searchIndexItems.length).toBeLessThan(6);
         });
         test("contains the artist and the title of the track", () => {
             const searchIndexData: {[key: number]: IndexTrack} = testTrackStore.entities.searches
