@@ -16,7 +16,3 @@ config/master.key
 
 /yarn-error.log
 .byebug_history
-
-setup.txt
-practice
-frontend/__test__/entry
