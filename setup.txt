@@ -1,0 +1,28 @@
+AWS
+
+# heroku
+heroku pg:reset DATABASE_URL
+heroku run bundle exec rails db:migrate
+heroku run bundle exec rails db:seed
+
+# reset database
+bundle exec rails db:drop
+bundle exec rails db:create
+bundle exec rails db:schema:load
+bundle exec rails db:seed
+
+# fonts
+font-family: 'Programme', sans-serif;
+font-family: 'Programme Regular', sans-serif;
+font-family: 'Programme Light', sans-serif;
+font-family: 'Barlow Condensed', sans-serif;
+font-family: 'Ubuntu Condensed', sans-serif;
+font-family: 'Raleway', sans-serif;
+
+issues:
+use msw for fetches?
+test action calls in components
+test actions/reducers/store/entry/etc.
+
+graphql
+redis
