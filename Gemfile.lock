@@ -103,8 +103,6 @@ GEM
     debug_inspector (1.0.0)
     erubi (1.10.0)
     execjs (2.7.0)
-    faker (2.19.0)
-      i18n (>= 1.6, < 2)
     ffi (1.15.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
@@ -243,7 +241,6 @@ DEPENDENCIES
   capybara (>= 2.15)
   chromedriver-helper
   coffee-rails (~> 4.2)
-  faker
   graphiql-rails
   jbuilder (~> 2.5)
   jquery-rails
