@@ -145,7 +145,7 @@ export type Track = {
 export type User = {
     id: number,
     username: string,
-    vote_ids: Array<number>
+    votes_ids: Array<number>
 }
 export type Vote = {
     id: number,
