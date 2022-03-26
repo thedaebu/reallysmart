@@ -52,7 +52,15 @@ module Types
       Vote.find(id)
     end
 
-    # TagType
-    
+    # Searches
+    field :searches, [Types::TrackType], null: false do
+      argument :search, String, required: true
+    end
+    def searches(search:)
+      tags = Tag.where("lower(name) LIKE ?", "%#{search.downcase}%")
+      searches = {}
+      tags.each{|tag| searches[tag.track.id] = tag.track}
+      searches.values
+    end
   end
 end
