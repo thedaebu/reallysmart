@@ -51,5 +51,8 @@ module Types
     def vote(id:)
       Vote.find(id)
     end
+
+    # TagType
+    
   end
 end
