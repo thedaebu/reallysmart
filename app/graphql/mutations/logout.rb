@@ -5,7 +5,7 @@ class Mutations::Logout < Mutations::BaseMutation
         if !!current_user
             logout!
             {
-                user: nil.
+                user: nil,
                 errors: []
             }
         else
@@ -13,8 +13,6 @@ class Mutations::Logout < Mutations::BaseMutation
                 user: nil,
                 errors: ['You are not logged in.']
             }
-
         end
     end
-
 end
