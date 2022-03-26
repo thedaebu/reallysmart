@@ -14,8 +14,7 @@ module Types
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
 
     def votes_ids
-      list = object.votes.map {|vote| vote.id}
-      return list
+      object.votes.map {|vote| vote.id}
     end
   end
 end
