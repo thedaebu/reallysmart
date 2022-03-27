@@ -5,10 +5,7 @@ import { AnyAction, Store } from "redux";
 import {
   ApolloClient,
   InMemoryCache,
-  ApolloProvider,
-  useQuery,
-  gql,
-  HttpLink
+  ApolloProvider
 } from "@apollo/client";
 import App from "./app";
 
