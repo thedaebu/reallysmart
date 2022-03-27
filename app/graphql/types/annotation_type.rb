@@ -9,7 +9,6 @@ module Types
     field :id, ID, null: false
     field :start_index, Integer, null: false
     field :track_id, Integer, null: false
-    field :annotator, Types::UserType, null: false
     field :comments, [Types::CommentType], null: false
     field :track, Types::TrackType, null: false
     field :votes, [Types::VoteType], null: false
