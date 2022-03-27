@@ -27,12 +27,12 @@ function Root(props: Props) {
     }
     const csrfToken = document.querySelector('meta[name=csrf-token]').getAttribute('content');
     const client = new ApolloClient({
-        uri: uri,
+        cache: new InMemoryCache(),
         credentials: 'same-origin',
         headers: {
             'X-CSRF-Token': csrfToken
         },
-        cache: new InMemoryCache()
+        uri: uri
     });
 
     return (
