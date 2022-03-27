@@ -1,5 +1,5 @@
 import $ from "jquery";
-import { SessionUser } from "../my_types";
+import { SessionUser } from "../../my_types";
 
 export const login = (user: SessionUser) => {
     return (

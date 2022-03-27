@@ -1,5 +1,5 @@
 import $ from "jquery";
-import { CreatedVote } from "../my_types";
+import { CreatedVote } from "../../my_types";
 
 export const fetchVote = (voteId: number) => {
     return (
