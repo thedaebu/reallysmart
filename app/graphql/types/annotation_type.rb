@@ -10,7 +10,6 @@ module Types
     field :start_index, Integer, null: false
     field :track_id, Integer, null: false
     field :comments, [Types::CommentType], null: false
-    field :track, Types::TrackType, null: false
     field :votes, [Types::VoteType], null: false
     field :created_at, GraphQL::Types::ISO8601DateTime, null: false
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
