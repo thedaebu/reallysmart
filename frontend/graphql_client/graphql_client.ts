@@ -1,6 +1,7 @@
 import {
   ApolloClient,
-  InMemoryCache
+  InMemoryCache,
+  NormalizedCacheObject
 } from "@apollo/client";
 
 let uri: string
@@ -8,10 +9,10 @@ let uri: string
 if (process.env.NODE_ENV == "production") {
     uri = "https://really-smart.herokuapp.com";
 } else {
-    uri = "http://localhost:3000/graphql/";
+    uri = "http://localhost:3000/graphql";
 }
 const csrfToken = document.querySelector('meta[name=csrf-token]').getAttribute('content');
-export const graphqlClient = new ApolloClient({
+export const graphqlClient: ApolloClient<NormalizedCacheObject> = new ApolloClient({
     cache: new InMemoryCache(),
     credentials: 'same-origin',
     headers: {
