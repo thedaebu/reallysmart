@@ -11,14 +11,14 @@ export const FETCH_TRACKS = gql`
     }
 `;
 export const FETCH_TRACK = gql`
-    query FETCH_TRACK($id: Integer!){
+    query FETCH_TRACK($id: ID!){
         track(id: $id) {
             artist
             artworkPath
             id
             lyrics
             title
-            annotations {
+            totalAnnotations {
                 annotatorId
                 annotatorName
                 body
@@ -29,13 +29,11 @@ export const FETCH_TRACK = gql`
             }
             totalComments {
                 body
-                commentableType
                 commentableId
+                commentableType
                 commenterId
                 commenterName
                 id
-                commenter
-                votes
             }
             totalVotes {
                 id
