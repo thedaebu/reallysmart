@@ -1,6 +1,6 @@
-import { gql } from "@apollo/client";
+import { DocumentNode, gql } from "@apollo/client";
 
-export const FETCH_TRACKS = gql`
+export const FETCH_TRACKS_GQL: DocumentNode = gql`
     query FETCH_TRACKS {
         tracks {
             artist
@@ -10,7 +10,7 @@ export const FETCH_TRACKS = gql`
         }
     }
 `;
-export const FETCH_TRACK = gql`
+export const FETCH_TRACK_GQL: DocumentNode = gql`
     query FETCH_TRACK($id: ID!){
         track(id: $id) {
             artist
