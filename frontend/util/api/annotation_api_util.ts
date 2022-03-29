@@ -1,5 +1,5 @@
 import $ from "jquery";
-import { CreatedAnnotation, UpdatedAnnotation } from "../my_types";
+import { CreatedAnnotation, UpdatedAnnotation } from "../../my_types";
 
 export const fetchAnnotation = (annotationId: number) => {
     return (

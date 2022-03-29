@@ -7,26 +7,26 @@ class Api::AnnotationsController < ApplicationController
     end
 
     def create
-        created_annotation = Annotation.new(annotation_params)
-        if created_annotation.save
-            @annotation = created_annotation.slice(:annotator_id, :annotator_name, :body, :end_index, :id, :start_index, :track_id)
-            
+        annotation = Annotation.new(annotation_params)
+        if annotation.save
+            @annotation = annotation.slice(:annotator_id, :annotator_name, :body, :end_index, :id, :start_index, :track_id)
+
             result = {:annotation => @annotation}
             render json: result
         else
-            render json: created_annotation.errors.full_messages, status: 422
+            render json: annotation.errors.full_messages, status: 422
         end
     end
 
     def update
-        updated_annotation = Annotation.find(params[:id])
-        if updated_annotation.update(annotation_params)
-            @annotation = updated_annotation.slice(:annotator_id, :annotator_name, :body, :end_index, :id, :start_index, :track_id)
-            
+        annotation = Annotation.find(params[:id])
+        if annotation.update(annotation_params)
+            @annotation = annotation.slice(:annotator_id, :annotator_name, :body, :end_index, :id, :start_index, :track_id)
+
             result = {:annotation => @annotation}
             render json: result
         else
-            render json: updated_annotation.errors.full_messages, status: 422
+            render json: annotation.errors.full_messages, status: 422
         end
     end
 

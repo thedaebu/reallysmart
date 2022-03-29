@@ -1,7 +1,7 @@
 import { Dispatch } from "react";
 import { AnyAction } from "redux";
 import { CreatedVote, ReceivedVote } from "../my_types";
-import * as VoteApiUtil from "./../util/vote_api_util";
+import * as VoteApiUtil from "../util/api/vote_api_util";
 
 export const RECEIVE_VOTE = "RECEIVE_VOTE";
 export const REMOVE_VOTE = "REMOVE_VOTE";

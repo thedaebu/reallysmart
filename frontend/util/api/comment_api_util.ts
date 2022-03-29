@@ -1,5 +1,5 @@
 import $ from "jquery";
-import { CreatedComment, UpdatedComment } from "../my_types";
+import { CreatedComment, UpdatedComment } from "../../my_types";
 
 export const fetchComment = (commentId: number) => {
     return (
