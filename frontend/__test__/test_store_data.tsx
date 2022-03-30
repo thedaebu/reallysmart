@@ -1,4 +1,4 @@
-const tracks = {
+export const tracks = {
     1:  {
         artist: "NIKI",
         artwork_path: "https://i.ytimg.com/vi/GBqqoPSJ9GY/maxresdefault.jpg",

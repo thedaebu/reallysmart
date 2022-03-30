@@ -1,12 +1,11 @@
 import { rest } from 'msw';
+import { tracks } from './test_store_data';
 
 export const handlers = [
-  rest.get('/tracks', (req, res, ctx) => {
+  rest.get('api/tracks', (req, res, ctx) => {
     return res(
       ctx.json({
-        id: 'f79e82e8-c34a-4dc7-a49e-9fadc0979fda',
-        firstName: 'John',
-        lastName: 'Maverick',
+        tracks: tracks
       })
     )
   }),
