@@ -79,7 +79,7 @@ type Entities = {
     votes: {[key:number]: Vote}
 };
 type Errors = {
-    annotationErros: Array<string>,
+    annotationErrors: Array<string>,
     sessionErrors: Array<string>
 };
 type AnnotationModal = {
