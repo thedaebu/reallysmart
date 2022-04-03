@@ -1,4 +1,4 @@
-import React, { MouseEvent, useState, useEffect, Dispatch } from "react";
+import React, { Dispatch, MouseEvent, useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as AnnotationModalActions from "../../actions/annotation_modal_actions";
 import { Annotation, State, Track, Window } from "../../my_types";
@@ -193,13 +193,9 @@ function LyricsShow(props: Props) {
         setAnnotationCreateStatus(false);
     }
 
-    function handleAnnotationCreateStatus() {
-        if (annotationCreateStatus === false) {
-            setAnnotationCreateStatus(true);
-        } else {
-            setAnnotationCreateStatus(false);
-        }
-    }
+    const handleAnnotationCreateStatus = useCallback(() => {
+        setAnnotationCreateStatus(!annotationCreateStatus);
+    }, [])
 
     return (
         <div className="lyrics__shade">

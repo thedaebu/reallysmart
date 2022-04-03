@@ -1,4 +1,4 @@
-import React, { useState, MouseEvent, ChangeEvent, FormEvent, Dispatch } from "react";
+import React, { ChangeEvent, Dispatch, FormEvent, MouseEvent, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import * as AnnotationActions from "../../actions/annotation_actions";
@@ -142,12 +142,10 @@ function CommentShow(props: Props) {
     function handleCommentCreateStatus(e: MouseEvent<HTMLTextAreaElement | HTMLButtonElement>) {
         e.preventDefault();
 
-        if (commentCreateStatus === false) {
-            setCommentCreateStatus(true);
-        } else {
+        if (commentCreateStatus === true) {
             setCommentBody("");
-            setCommentCreateStatus(false);
         }
+        setCommentCreateStatus(!commentCreateStatus);
     }
 
     function handleCommentBodyChange() {
