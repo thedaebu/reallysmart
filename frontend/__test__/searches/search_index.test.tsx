@@ -18,7 +18,7 @@ const testStore = mockStore(testTrackStore);
 
 const useMockDispatch = jest.spyOn(reactRedux, 'useDispatch');
 const useMockState = jest.spyOn(React, 'useState');
-const mockFetchSearches = jest.spyOn(SearchActions, 'fetchSearches');
+const useMockFetchSearches = jest.spyOn(SearchActions, 'fetchSearches');
 
 describe("search index", () => {
     // beforeAll(() => server.listen());
@@ -38,17 +38,16 @@ describe("search index", () => {
     // afterAll(() => server.close());
 
     test("useDispatch is called", () => {
-        const searchbarField = screen.queryByTestId("searchbar-field");
-        userEvent.type(searchbarField, "Niki");
         expect(useMockDispatch).toHaveBeenCalled();
     });
     test("useState is called", () => {
         expect(useMockState).toHaveBeenCalled();
     });
-    test("fetchSearches is called", () => {
+    test("fetchSearches is called when something is typed in the search bar", () => {
+        expect(useMockFetchSearches).not.toHaveBeenCalled();
         const searchbarField = screen.queryByTestId("searchbar-field");
         userEvent.type(searchbarField, "Niki");
-        expect(mockFetchSearches).toHaveBeenCalled();
+        expect(useMockFetchSearches).toHaveBeenCalled();
     });
     describe("searchbar field", () => {
         test("contains no value at start", () => {
@@ -93,16 +92,13 @@ describe("search index", () => {
             });
         });
     });
-    test("proceeds to correct url depending on which track is clicked on", () => {
-        const pathName = global.window.location.pathname;
-        expect(pathName).toEqual('/');
-
+    test("url proceeds to correct url depending on which track is clicked on", () => {
         const searchbarField = screen.queryByTestId("searchbar-field");
         userEvent.type(searchbarField, "Niki");
         const searchIndex = screen.queryByTestId("search-index");
         const searchIndexItem = within(searchIndex).queryAllByTestId("search-index-item")[0];
         userEvent.click(searchIndexItem);
-        let newPathName = global.window.location.pathname;
-        expect(newPathName).toEqual('/tracks/1');
+        const pathName = global.window.location.pathname;
+        expect(pathName).toEqual('/tracks/1');
     });
 });
