@@ -21,11 +21,8 @@ font-family: 'Raleway', sans-serif;
 
 issues:
 --- graphql ---
-resolvers for helper functions for session queries?
 application_controller helper_method for login!/logout! ?
 make definition for login/logout in user and session controllers?
-figure out how have graphql queryies dispatch to redux store - done
-change types and figure out renaming process and do rest of actions
 
 --- testing ---
 use msw for fetches?
