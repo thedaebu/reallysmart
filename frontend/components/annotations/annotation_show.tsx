@@ -35,7 +35,7 @@ function AnnotationShow(props: Props) {
         if (props.yCoord) {
             setyCoord(props.yCoord);
         }
-    })
+    }, [])
 
     function annotationShow() {
         if (annotation) {
