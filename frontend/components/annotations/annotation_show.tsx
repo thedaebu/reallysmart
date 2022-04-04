@@ -1,4 +1,4 @@
-import React, { ChangeEvent, Dispatch, MouseEvent, useState } from "react";
+import React, { ChangeEvent, Dispatch, MouseEvent, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import * as AnnotationActions from "../../actions/annotation_actions";
@@ -18,7 +18,7 @@ type Props = {
 }
 
 function AnnotationShow(props: Props) {
-    const { annotation, annotationCreateStatus, endIndex, handleAnnotationCreateStatus, startIndex, track, yCoord } = props;
+    const { annotation, annotationCreateStatus, endIndex, handleAnnotationCreateStatus, startIndex, track } = props;
 
     const annotationModal: boolean = useSelector((state: State) => state.modal.annotationModal);
     const currentUser: User = useSelector((state: State) => state.entities.user[state.session.id]);
@@ -29,6 +29,13 @@ function AnnotationShow(props: Props) {
     const createAnnotation: Function = (annotation: CreatedAnnotation) => dispatch(AnnotationActions.createAnnotation(annotation));
 
     const [annotationBody, setAnnotationBody] = useState<string>("");
+    const [yCoord, setyCoord] = useState<number>(-367);
+
+    useEffect(() => {
+        if (props.yCoord) {
+            setyCoord(props.yCoord);
+        }
+    }, [props.yCoord])
 
     function annotationShow() {
         if (annotation) {
