@@ -73,8 +73,8 @@ export type State = {
 type Entities = {
     annotations: {[key:number]: Annotation},
     comments: {[key:number]: Comment},
-    searches: {[key:number]: Track},
-    tracks: {[key:number]: Track},
+    searches: {[key:number]: IndexTrack},
+    tracks: {[key:number]: Track | IndexTrack},
     user: {[key:number]: User},
     votes: {[key:number]: Vote}
 };
