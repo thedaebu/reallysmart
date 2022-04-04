@@ -1,8 +1,8 @@
 class Mutations::CreateComment < Mutations::BaseMutation
     argument :body, String, required: false
-    argument :commentable_id, String, required: false
+    argument :commentable_id, Integer, required: false
     argument :commentable_type, String, required: false
-    argument :commenter_id, String, required: false
+    argument :commenter_id, Integer, required: false
     argument :commenter_name, String, required: false
 
     field :comment, Types::CommentType, null: false
