@@ -1,4 +1,6 @@
-export const tracks = {
+import { IndexTrack, State } from "../my_types";
+
+export const tracks: {[key: number] : IndexTrack} = {
     1:  {
         artist: "NIKI",
         artwork_path: "https://i.ytimg.com/vi/GBqqoPSJ9GY/maxresdefault.jpg",
@@ -49,7 +51,7 @@ export const testIndexStore = {
         tracks: tracks
     }
 };
-export const testTrackStore = {
+export const testTrackStore: State = {
     entities: {
         annotations: {
             1: {
@@ -127,10 +129,14 @@ export const testTrackStore = {
             }
         }
     },
+    errors: {
+        annotationErrors: [],
+        sessionErrors: []
+    },
     modal: {
         annotationModal: false
     },
     session: {
-        id: {}
+        id: null
     }
 };
