@@ -1,7 +1,7 @@
 import { Dispatch } from "react";
 import { AnyAction } from "redux";
 import { ReceivedSearches } from "../my_types";
-import * as SearchApiUtil from "./../util/api/search_api_util";
+import * as SearchAPIUtil from "./../util/api/search_api_util";
 
 export const RECEIVE_SEARCHES = "RECEIVE_SEARCHES";
 export const CLEAR_SEARCHES = "CLEAR_SEARCHES";
@@ -15,7 +15,7 @@ const receiveSearches = (receivedSearches: ReceivedSearches) => {
 
 export const fetchSearches = (search: string) => (dispatch: Dispatch<AnyAction>) => {
     return (
-        SearchApiUtil.fetchSearches(search)
+        SearchAPIUtil.fetchSearches(search)
             .then((receivedSearches: ReceivedSearches) => dispatch(receiveSearches(receivedSearches)))
     );
 };
