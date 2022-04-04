@@ -20,10 +20,10 @@ font-family: 'Ubuntu Condensed', sans-serif;
 font-family: 'Raleway', sans-serif;
 
 issues:
+--- graphql ---
 resolvers for helper functions for session queries?
 application_controller helper_method for login!/logout! ?
 make definition for login/logout in user and session controllers?
-
 figure out how have graphql queryies dispatch to redux store - done
 change types and figure out renaming process and do rest of actions
 
@@ -31,6 +31,7 @@ change types and figure out renaming process and do rest of actions
 use msw for fetches?
 test action calls in components
 test actions/reducers/store/entry/etc.
+test currentUser/no currentUser
 
 redis
 firebase
