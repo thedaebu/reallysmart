@@ -5,5 +5,10 @@
     background: inherit;
     text-decoration: none;
     letter-spacing: 0.75px;
-    margin: 0px 0px 15px 15px;
+    padding: 0px 0px 15px 0px;
+    margin: 0px 0px 0px 15px;
+    transition: border-bottom 0.1s linear;
+    &:hover {
+        border-bottom: 3px red solid;
+    }
 }

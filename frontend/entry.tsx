@@ -2,13 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Root from "./components/root";
 import configureStore from "./store/store";
-import { Window } from "./my_types";
-import { Store } from "redux";
+import { Store, Window } from "./my_types";
 
 declare const window: Window
 
 document.addEventListener("DOMContentLoaded", () => {
-    let store: any;
+    let store: Store;
     if (window.currentUser) {
         const preloadedState = {
           entities: {

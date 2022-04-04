@@ -14,4 +14,5 @@ function configureStore(preloadedState: State | {} = {}) {
     return createStore(rootReducer, preloadedState, applyMiddleware(...middlewares));
 };
 
+export type ConfiguredStore = ReturnType<typeof configureStore>;
 export default configureStore;
