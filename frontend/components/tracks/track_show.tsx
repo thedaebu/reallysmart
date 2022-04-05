@@ -44,6 +44,9 @@ function TrackShow(props: RouteComponentProps<TrackId>) {
     return(
         <>
             {trackShowPage()}
+            <footer className="track-show__footer">
+                <iframe className="spotify-player" src="https://open.spotify.com/embed/track/5q3LwAHTqo9d3rET2EA9Nq?utm_source=generator"></iframe>
+            </footer>
         </>
     );
 }
