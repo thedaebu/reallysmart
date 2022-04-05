@@ -7,6 +7,7 @@ module Types
     field :id, ID, null: false
     field :lyrics, String, null: false
     field :title, String, null: false
+    field :spotify_path, String, null: false
     field :total_annotations, [Types::AnnotationType], null: false
     field :total_comments, [Types::CommentType], null: false
     field :total_votes, [Types::VoteType], null: false
@@ -16,11 +17,9 @@ module Types
     def total_annotations
       object.annotations
     end
-
     def total_comments
       object.comments + object.annotation_comments
     end
-
     def total_votes
       object.annotation_votes + object.annotation_comment_votes + object.comment_votes
     end

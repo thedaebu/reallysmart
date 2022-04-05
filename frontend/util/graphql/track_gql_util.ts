@@ -18,6 +18,7 @@ export const FETCH_TRACK_GQL: DocumentNode = gql`
             id
             lyrics
             title
+            spotifyPath
             totalAnnotations {
                 annotatorId
                 annotatorName
