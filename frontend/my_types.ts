@@ -74,7 +74,7 @@ type Entities = {
     annotations: {[key:number]: Annotation},
     comments: {[key:number]: Comment},
     searches: {[key:number]: IndexTrack},
-    tracks: {[key:number]: Track | IndexTrack},
+    tracks: {[key:number]: Track},
     user: {[key:number]: User},
     votes: {[key:number]: Vote}
 };
@@ -168,6 +168,7 @@ export type Window = {
     getSelection: Function,
     github: string,
     linkedin: string,
+    onSpotifyIframeApiReady: Function,
     scrollTo: Function,
     website: string
 };
