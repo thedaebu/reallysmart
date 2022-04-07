@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 2021_08_04_004559) do
     t.string "artist", null: false
     t.string "artwork_path", null: false
     t.text "lyrics", null: false
+    t.string "spotify_path", null: false
     t.string "title", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
