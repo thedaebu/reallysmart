@@ -78,7 +78,7 @@ selene = Track.create(
         Take me down to lift me high
         Take me down to lift me high
         Higher, higher, ooh",
-    spotify_path: "https://open.spotify.com/track/0h11wE1hTwKMxYd1NACgNb?si=acc1559482e74faa"
+    spotify_path: "https://open.spotify.com/embed/track/0h11wE1hTwKMxYd1NACgNb?si=acc1559482e74faa"
 )
 
 lady = Track.create(
@@ -95,7 +95,7 @@ lady = Track.create(
         I won't get you, out of my mind
         I feel love, for the first time
         And I know that it's true, I can tell by the look in your eyes",
-    spotify_path: "https://open.spotify.com/track/49X0LAl6faAusYq02PRAY6?si=f26ecb25d41d4182"
+    spotify_path: "https://open.spotify.com/embed/track/49X0LAl6faAusYq02PRAY6?si=f26ecb25d41d4182"
 )
 
 fake_love = Track.create(
@@ -179,7 +179,7 @@ fake_love = Track.create(
         Skrrt
         And more chune for your headtop
         So watch how you speak on my name, you know?",
-    spotify_path: "https://open.spotify.com/track/343YBumqHu19cGoGARUTsd?si=49bcabba50714226"
+    spotify_path: "https://open.spotify.com/embed/track/343YBumqHu19cGoGARUTsd?si=49bcabba50714226"
 )
 
 river = Track.create(
@@ -257,7 +257,7 @@ river = Track.create(
         One last breath 'til the tears start to wither (Like a river, like a river)
         Like a river, like a river
         Shut your mouth and run me like a river",
-    spotify_path: "https://open.spotify.com/track/3mRLHiSHYtC8Hk7bzZdUs1?si=f6fdb9460fb44bab"
+    spotify_path: "https://open.spotify.com/embed/track/3mRLHiSHYtC8Hk7bzZdUs1?si=f6fdb9460fb44bab"
 )
 
 reflection = Track.create(
@@ -279,7 +279,7 @@ reflection = Track.create(
         Who I am, though I've tried
         When will my reflection show who I am inside?
         When will my reflection show who I am inside?",
-    spotify_path: "https://open.spotify.com/track/2AILbz83cBnrAMAG06rZts?si=08fa531e6f004bd7"
+    spotify_path: "https://open.spotify.com/embed/track/2AILbz83cBnrAMAG06rZts?si=08fa531e6f004bd7"
 )
 
 stay = Track.create(
@@ -422,7 +422,7 @@ stay = Track.create(
         Stay with me
         Why don't you just
         Stay with me",
-    spotify_path: "https://open.spotify.com/track/6tVUf0iGHpxmAWwp11I9eP?si=7db59af51b7241ca"
+    spotify_path: "https://open.spotify.com/embed/track/6tVUf0iGHpxmAWwp11I9eP?si=7db59af51b7241ca"
 )
 
 just_a_friend_2002 = Track.create(
@@ -526,7 +526,7 @@ just_a_friend_2002 = Track.create(
         Cause I can be your fantasy (I can be your, I can be your fantasy)
         But you say I'm just a friend (yes me, me)
         But you say I'm just a friend",
-    spotify_path: "https://open.spotify.com/track/2cxbxpHrND6i4uvUGVvC9J?si=6e2e46c2dd8a4b60"
+    spotify_path: "https://open.spotify.com/embed/track/2cxbxpHrND6i4uvUGVvC9J?si=6e2e46c2dd8a4b60"
 )
 
 revenge = Track.create(
@@ -579,7 +579,7 @@ revenge = Track.create(
         Im not foolish, I've been through this and I don't want to pretend that you were allowed with it all from the start
         I know you've been fakin', it don't work too hard anymore
         A heartbreaker, you can't take it, and I will get my revenge, yeah yeah",
-    spotify_path: "https://open.spotify.com/track/5UgoWRTaUxHWm8xH2HBxxn?si=41f6d94ffd03447a"
+    spotify_path: "https://open.spotify.com/embed/track/5UgoWRTaUxHWm8xH2HBxxn?si=41f6d94ffd03447a"
 )
 
 blue = Track.create(
@@ -701,7 +701,7 @@ blue = Track.create(
         Okay, okay, 난 너만 원하면 oh yeah
         오늘은 내가 네 노예
         넌 쉬고 놀기만 해 go play",
-    spotify_path: "https://open.spotify.com/track/5XugX1MId7dSszZG8aaewX?si=fdbc74fad77c4220"
+    spotify_path: "https://open.spotify.com/embed/track/5XugX1MId7dSszZG8aaewX?si=fdbc74fad77c4220"
 )
 
 shiki_no_uta = Track.create(
@@ -794,7 +794,7 @@ shiki_no_uta = Track.create(
         anata wo oikaketeita hikari no naka de 
         dakareru tabi 
         atatakai kaze wo tayori",
-    spotify_path: "https://open.spotify.com/track/1iTvJFjCflwCz9RYJXzcsz?si=bbae276fd04a4de9"
+    spotify_path: "https://open.spotify.com/embed/track/1iTvJFjCflwCz9RYJXzcsz?si=bbae276fd04a4de9"
 )
 
 slippin = Track.create(
@@ -910,7 +910,7 @@ slippin = Track.create(
         Ayo I'm slippin', I'm fallin', I can't get up
         Ayo I'm slippin', I'm fallin', I gots to get up
         Get me back on my feet so I can tear shit up",
-    spotify_path: "https://open.spotify.com/track/740gNyGWKk98gy8nJLhHrv?si=fe8ddd13ae584d45"
+    spotify_path: "https://open.spotify.com/embed/track/740gNyGWKk98gy8nJLhHrv?si=fe8ddd13ae584d45"
 )
 
 selene_annotation1 = Annotation.create(
