@@ -13,6 +13,6 @@ config/master.key
 /storage/*
 !/storage/.keep
 
-
+yarn.lock
 /yarn-error.log
 .byebug_history
