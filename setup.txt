@@ -20,9 +20,13 @@ font-family: 'Ubuntu Condensed', sans-serif;
 font-family: 'Raleway', sans-serif;
 
 issues:
+graphql
+
+spotify player
+
 use msw for fetches?
 test action calls in components
 test actions/reducers/store/entry/etc.
 
-graphql
+firebase
 redis
