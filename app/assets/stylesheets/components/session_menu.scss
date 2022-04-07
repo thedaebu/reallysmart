@@ -3,6 +3,11 @@ header-right-buttons {
     color: black;
     text-decoration: none;
     letter-spacing: 0.75px;
+    padding: 0px 0px 22px 0px;
+    transition: 0.2s;
+    &:hover {
+        border-bottom: 4px red solid;
+    }
 }
 
 .session-menu {
