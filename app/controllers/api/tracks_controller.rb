@@ -1,6 +1,6 @@
 class Api::TracksController < ApplicationController
     def index
-        tracks = Track.select("artist, artwork_path, id, title, spotify_path").all
+        tracks = Track.select("artist, artwork_path, id, spotify_path, title").all
         @tracks = {}
         tracks.each {|track| @tracks[track.id] = track}
 
@@ -9,7 +9,7 @@ class Api::TracksController < ApplicationController
     end
 
     def show
-        @track = Track.select("artist, artwork_path, id, lyrics, title, spotify_path").find(params[:id])
+        @track = Track.select("artist, artwork_path, id, lyrics, spotify_path, title").find(params[:id])
 
         annotations = @track.annotations.select("annotator_id, annotator_name, body, end_index, id, start_index, track_id")
         @annotations = {}
@@ -18,7 +18,7 @@ class Api::TracksController < ApplicationController
         comments = @track.comments + @track.annotation_comments
         @comments = {}
         comments.each {|comment| @comments[comment.id] = comment.slice(:body, :commentable_id, :commentable_type, :commenter_id, :commenter_name, :id, :updated_at)}
-        
+
         votes = @track.annotation_votes + @track.annotation_comment_votes + @track.comment_votes
         @votes = {}
         votes.each {|vote| @votes[vote.id] = vote.slice(:id, :voteable_id, :voteable_type, :voter_id)} 
