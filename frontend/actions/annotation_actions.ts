@@ -1,7 +1,7 @@
 import { Dispatch } from "react";
 import { AnyAction } from "redux";
 import { CreatedAnnotation, ReceivedAnnotation, UpdatedAnnotation } from "../my_types";
-import * as AnnotationApiUtil from "./../util/annotation_api_util";
+import * as AnnotationAPIUtil from "../util/api/annotation_api_util";
 
 export const RECEIVE_ANNOTATION = "RECEIVE_ANNOTATION";
 export const RECEIVE_ANNOTATION_ERRORS = "RECEIVE_ANNOTATION_ERRORS";
@@ -28,25 +28,25 @@ const removeAnnotation = (annotationId: number) => {
 
 export const fetchAnnotation = (annotationId: number) => (dispatch: Dispatch<AnyAction>) => {
     return (
-        AnnotationApiUtil.fetchAnnotation(annotationId)
+        AnnotationAPIUtil.fetchAnnotation(annotationId)
             .then((receivedAnnotation: ReceivedAnnotation) => dispatch(receiveAnnotation(receivedAnnotation)))
     );
 };
 export const createAnnotation = (createdAnnotation: CreatedAnnotation) => (dispatch: Dispatch<AnyAction>) => {
     return (
-        AnnotationApiUtil.createAnnotation(createdAnnotation)
+        AnnotationAPIUtil.createAnnotation(createdAnnotation)
             .then((receivedAnnotation: ReceivedAnnotation) => dispatch(receiveAnnotation(receivedAnnotation)), errors => dispatch(receiveAnnotationErrors(errors.responseJSON)))
     );
 };
 export const updateAnnotation = (updatedAnnotation: UpdatedAnnotation) => (dispatch: Dispatch<AnyAction>) => {
     return (
-        AnnotationApiUtil.updateAnnotation(updatedAnnotation)
+        AnnotationAPIUtil.updateAnnotation(updatedAnnotation)
             .then((receivedAnnotation: ReceivedAnnotation) => dispatch(receiveAnnotation(receivedAnnotation)))
     );
 };
 export const deleteAnnotation = (annotationId: number) => (dispatch: Dispatch<AnyAction>) => {
     return (
-        AnnotationApiUtil.deleteAnnotation(annotationId)
+        AnnotationAPIUtil.deleteAnnotation(annotationId)
             .then(() => dispatch(removeAnnotation(annotationId)))
     );
 };
