@@ -1,5 +1,5 @@
 class Api::UsersController < ApplicationController
-    def create 
+    def create
         created_user = User.new(user_params)
         if created_user.save
             login!(created_user)
@@ -14,7 +14,7 @@ class Api::UsersController < ApplicationController
         end
     end
 
-    private 
+    private
     # add avatar params when doing AWS
     def user_params
         params.require(:user).permit(:password, :username)
