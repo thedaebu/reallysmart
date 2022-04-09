@@ -1,11 +1,18 @@
 import {
     ApolloClient,
+    createHttpLink,
     InMemoryCache
 } from "@apollo/client";
 
-const gqlClient = new ApolloClient({
-    uri: 'http://localhost:3000/graphql',
-    cache: new InMemoryCache()
+const csrfToken = document.querySelector('meta[name=csrf-token]').getAttribute('content');
+const link = createHttpLink({
+    credentials: 'same-origin',
+    headers: {'X-CSRF-Token': csrfToken},
+    uri: '/graphql'
+})
+const graphQLClient = new ApolloClient({
+    cache: new InMemoryCache(),
+    link: link
 });
 
-export default gqlClient;
+export default graphQLClient;
