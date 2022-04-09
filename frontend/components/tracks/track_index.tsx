@@ -1,9 +1,11 @@
+import { useQuery } from "@apollo/client";
 import React, { Dispatch, MouseEvent, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as TrackActions from "../../actions/track_actions";
 import { IndexTrack, State, Window } from "../../my_types";
 import Navbar from "../navbar/navbar";
 import TrackIndexItem from "./track_index_item";
+import * as TrackGQLUtil from "./../../util/graphql/track_gql_util";
 
 declare const window: Window;
 
@@ -14,6 +16,10 @@ function TrackIndex() {
     const fetchTracks: Function = () => dispatch(TrackActions.fetchTracks());
 
     const [trackIndexList, setTrackIndexList] = useState<number>(5);
+
+    const { data, loading } = useQuery(TrackGQLUtil.FETCH_TRACKS);
+    if (loading) console.log("loading")
+    if (!loading) console.log(data)
 
     useEffect(() => {
         fetchTracks();

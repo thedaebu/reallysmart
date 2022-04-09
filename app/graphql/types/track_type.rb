@@ -2,9 +2,9 @@
 
 module Types
   class TrackType < Types::BaseObject
-    field :id, ID, null: false
     field :artist, String, null: false
     field :artwork_path, String, null: false
+    field :id, ID, null: false
     field :lyrics, String, null: false
     field :spotify_path, String, null: false
     field :title, String, null: false
