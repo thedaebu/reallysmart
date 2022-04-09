@@ -20,9 +20,6 @@ module Types
     field :user, Types::UserType, null: false do 
       argument :id, ID, required: true
     end
-    field :vote, Types::VoteType, null: false do
-      argument :id, ID, required: true
-    end
 
     def annotation(id:)
       Annotation.find(id)
@@ -44,9 +41,6 @@ module Types
     end
     def user(id:)
       User.find(id)
-    end
-    def vote(id:)
-      Vote.find(id)
     end
   end
 end
