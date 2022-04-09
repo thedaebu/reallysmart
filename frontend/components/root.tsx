@@ -2,6 +2,8 @@ import React from "react";
 import { Provider } from "react-redux";
 import { HashRouter } from "react-router-dom";
 import { AnyAction, Store } from "redux";
+import { ApolloProvider } from "@apollo/client";
+import graphQLClient from "../graphql_client/graphql_client";
 import App from "./app";
 
 type Props = {
@@ -13,9 +15,11 @@ function Root(props: Props) {
 
     return (
         <Provider store={ store }>
-            <HashRouter>
-                <App />
-            </HashRouter>
+            <ApolloProvider client={graphQLClient}>
+                <HashRouter>
+                    <App />
+                </HashRouter>
+            </ApolloProvider>
         </Provider>
     );
 }
