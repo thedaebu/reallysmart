@@ -9,7 +9,7 @@ class Api::VotesController < ApplicationController
     def create
         created_vote = Vote.new(vote_params)
         if created_vote.save
-            @vote = created_vote.slice(:id, :voter_id, :voteable_id, :voteable_type)
+            @vote = created_vote.slice(:id, :voteable_id, :voteable_type, :voter_id)
 
             result = {:vote => @vote}
             render json: result
