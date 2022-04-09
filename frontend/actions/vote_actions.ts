@@ -19,12 +19,6 @@ const removeVote = (voteId: number) => {
     });
 };
 
-export const fetchVote = (voteId: number) => (dispatch: Dispatch<AnyAction>) => {
-    return (
-        VoteAPIUtil.fetchVote(voteId)
-            .then((receivedVote: ReceivedVote) => dispatch(receiveVote(receivedVote)))
-    );
-};
 export const createVote = (createdVote: CreatedVote) => (dispatch: Dispatch<AnyAction>) => {
     return (
         VoteAPIUtil.createVote(createdVote)

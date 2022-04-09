@@ -23,7 +23,6 @@ function VoteShow(props: Props) {
     const fetchParent: Function = voteableType === "Annotation"
         ? (annotationId: number) => dispatch(AnnotationActions.fetchAnnotation(annotationId))
         : (commentId: number) => dispatch(CommentActions.fetchComment(commentId));
-    const fetchVote: Function = (voteId: number) => dispatch(VoteActions.fetchVote(voteId));
 
     const [currentNumberOfVotes, setCurrentNumberOfVotes] = useState<number>(0);
     const [currentUserVote, setCurrentUserVote] = useState<Vote | null>(null);
@@ -67,7 +66,6 @@ function VoteShow(props: Props) {
 
         if (currentUserVote) {
             deleteVote(currentUserVote.id)
-                .then(() => fetchParent(parent.id));
 
             setCurrentUserVote(null);
             setCurrentNumberOfVotes(currentNumberOfVotes-1);
@@ -80,7 +78,6 @@ function VoteShow(props: Props) {
 
             createVote(vote)
                 .then((receivedVote: ReceivedVote) => {
-                    fetchVote(receivedVote.vote.id);
                     setCurrentUserVote(receivedVote.vote);
                     fetchParent(parent.id);
                 });
