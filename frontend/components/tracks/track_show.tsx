@@ -32,6 +32,9 @@ function TrackShow(props: RouteComponentProps<TrackId>) {
                     <NavBar />
                     <TrackShowHeader track={track} />
                     <LyricsShow track={track} />
+                    <footer className="track-show__footer">
+                        <iframe className="spotify-player" src={track.spotify_path}></iframe>
+                    </footer>
                 </>
             );
         } else {
