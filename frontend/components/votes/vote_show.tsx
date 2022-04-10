@@ -3,6 +3,7 @@ import { RiThumbUpLine } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import * as AnnotationActions from "../../actions/annotation_actions";
 import * as CommentActions from "../../actions/comment_actions";
+import * as SessionActions from "../../actions/session_actions"
 import * as VoteActions from "../../actions/vote_actions";
 import { Annotation, Comment, CreatedVote, ReceivedVote, State, User, Vote } from "../../my_types";
 
@@ -23,6 +24,7 @@ function VoteShow(props: Props) {
     const fetchParent: Function = voteableType === "Annotation"
         ? (annotationId: number) => dispatch(AnnotationActions.fetchAnnotation(annotationId))
         : (commentId: number) => dispatch(CommentActions.fetchComment(commentId));
+    const fetchUser: Function = (userId: number) => dispatch(SessionActions.fetchUser(userId));
 
     const [currentNumberOfVotes, setCurrentNumberOfVotes] = useState<number>(0);
     const [currentUserVote, setCurrentUserVote] = useState<Vote | null>(null);
@@ -62,8 +64,6 @@ function VoteShow(props: Props) {
     function handleVoteUpdate(e: MouseEvent<HTMLOrSVGElement>) {
         e.preventDefault();
 
-        setCurrentUserVote(findCurrentUserVote(currentUser, votes));
-
         if (currentUserVote) {
             deleteVote(currentUserVote.id)
 
@@ -79,16 +79,15 @@ function VoteShow(props: Props) {
             createVote(vote)
                 .then((receivedVote: ReceivedVote) => {
                     setCurrentUserVote(receivedVote.vote);
+                    setCurrentNumberOfVotes(currentNumberOfVotes+1);
                     fetchParent(parent.id);
+                    fetchUser(currentUser.id);
                 });
-
-            setCurrentNumberOfVotes(currentNumberOfVotes+1);
         }
     }
 
     function findCurrentUserVote(currentUser: User, votes: {[key: number]: Vote}) {
         const currentVotes: Array<Vote> = getCurrentVotes(votes)
-
         if (currentUser && currentVotes.length > 0) {
             for (let voteId of currentUser.vote_ids) {
                 const currentVote: Vote = votes[voteId];
