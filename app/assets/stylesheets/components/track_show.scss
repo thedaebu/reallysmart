@@ -79,3 +79,13 @@ track-show-number {
         }
     }
 }
+.track-show__footer {
+    position: fixed;
+    bottom: 0;
+    height: 80px;
+    width: 100%;
+    .spotify-player {
+        position: absolute;
+        width: 100%;
+    }
+}
