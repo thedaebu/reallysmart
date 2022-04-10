@@ -140,6 +140,7 @@ export type Track = {
     artwork_path: string,
     id: number,
     lyrics: string,
+    spotify_path: string,
     title: string
 }
 export type User = {

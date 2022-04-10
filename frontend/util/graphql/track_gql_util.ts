@@ -17,6 +17,7 @@ export const FETCH_TRACK: DocumentNode = gql`
             artist
             artworkPath
             lyrics
+            spotifyPath
             title
             totalAnnotations {
                 id

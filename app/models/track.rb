@@ -2,6 +2,7 @@ class Track < ApplicationRecord
     validates :artist, presence: true
     validates :artwork_path, presence: true
     validates :lyrics, presence: true
+    validates :spotify_path, presence: true
     validates :title, presence: true
 
     has_many :annotations,

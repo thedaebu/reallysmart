@@ -1,6 +1,6 @@
 class Api::TracksController < ApplicationController
     def index
-        queried_tracks = Track.select("artist, artwork_path, id, title").all
+        queried_tracks = Track.select("artist, artwork_path, id, spotify_path, title").all
         @tracks = {}
         queried_tracks.each {|track| @tracks[track.id] = track}
 
@@ -9,7 +9,7 @@ class Api::TracksController < ApplicationController
     end
 
     def show
-        @track = Track.select("artist, artwork_path, id, lyrics, title").find(params[:id])
+        @track = Track.select("artist, artwork_path, id, lyrics, spotify_path, title").find(params[:id])
 
         queried_annotations = @track.annotations.select("annotator_id, annotator_name, body, end_index, id, start_index, track_id")
         @annotations = {}

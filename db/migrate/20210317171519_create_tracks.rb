@@ -4,6 +4,7 @@ class CreateTracks < ActiveRecord::Migration[5.2]
       t.string :artist, null: false
       t.string :artwork_path, null: false
       t.text :lyrics, null: false
+      t.string :spotify_path, null: false
       t.string :title, null: false
       t.timestamps
     end
