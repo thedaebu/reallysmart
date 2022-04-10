@@ -1,5 +1,19 @@
 class Api::UsersController < ApplicationController
-    def create 
+    def show
+        user = User.find(params[:id])
+        if user
+            @user = user.slice(:id, :username)
+            @user[:vote_ids] = user.votes.map {|vote| vote.id}
+            # avatar_url = url_for(user.avatar)
+
+            result = {:user => @user}
+            render json: result
+        else
+            render json: user.errors.full_messages, status: 422
+        end
+    end
+
+    def create
         created_user = User.new(user_params)
         if created_user.save
             login!(created_user)
@@ -14,7 +28,7 @@ class Api::UsersController < ApplicationController
         end
     end
 
-    private 
+    private
     # add avatar params when doing AWS
     def user_params
         params.require(:user).permit(:password, :username)

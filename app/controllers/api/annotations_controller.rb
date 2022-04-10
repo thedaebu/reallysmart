@@ -10,7 +10,7 @@ class Api::AnnotationsController < ApplicationController
         created_annotation = Annotation.new(annotation_params)
         if created_annotation.save
             @annotation = created_annotation.slice(:annotator_id, :annotator_name, :body, :end_index, :id, :start_index, :track_id)
-            
+
             result = {:annotation => @annotation}
             render json: result
         else
@@ -22,7 +22,7 @@ class Api::AnnotationsController < ApplicationController
         updated_annotation = Annotation.find(params[:id])
         if updated_annotation.update(annotation_params)
             @annotation = updated_annotation.slice(:annotator_id, :annotator_name, :body, :end_index, :id, :start_index, :track_id)
-            
+
             result = {:annotation => @annotation}
             render json: result
         else

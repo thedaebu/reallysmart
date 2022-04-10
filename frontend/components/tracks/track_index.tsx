@@ -91,11 +91,7 @@ function TrackIndex() {
     function setTrackIndexListLimit(e: MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
 
-        if (trackIndexList === 5) {
-            setTrackIndexList(10);
-        } else if (trackIndexList === 10) {
-            setTrackIndexList(11);
-        }
+        setTrackIndexList(trackIndexList+5);
     }
 
     return (

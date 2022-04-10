@@ -1,7 +1,7 @@
 import { Dispatch } from "react";
 import { AnyAction } from "redux";
 import { CreatedVote, ReceivedVote } from "../my_types";
-import * as VoteApiUtil from "./../util/vote_api_util";
+import * as VoteAPIUtil from "./../util/api/vote_api_util";
 
 export const RECEIVE_VOTE = "RECEIVE_VOTE";
 export const REMOVE_VOTE = "REMOVE_VOTE";
@@ -19,21 +19,15 @@ const removeVote = (voteId: number) => {
     });
 };
 
-export const fetchVote = (voteId: number) => (dispatch: Dispatch<AnyAction>) => {
-    return (
-        VoteApiUtil.fetchVote(voteId)
-            .then((receivedVote: ReceivedVote) => dispatch(receiveVote(receivedVote)))
-    );
-};
 export const createVote = (createdVote: CreatedVote) => (dispatch: Dispatch<AnyAction>) => {
     return (
-        VoteApiUtil.createVote(createdVote)
+        VoteAPIUtil.createVote(createdVote)
             .then((receivedVote: ReceivedVote) => dispatch(receiveVote(receivedVote)))
     );
 };
 export const deleteVote = (voteId: number) => (dispatch: Dispatch<AnyAction>) => {
     return (
-        VoteApiUtil.deleteVote(voteId)
+        VoteAPIUtil.deleteVote(voteId)
             .then(() => dispatch(removeVote(voteId)))
     );
 };
