@@ -917,113 +917,113 @@ selene_annotation1 = Annotation.create(
     annotator_id: reallysmart.id,
     annotator_name: reallysmart.username,
     body: "She is singing about Selene, her alter-ego, who comes out when she becomes under the influence. She is claiming Selene is making her do things not of her own will but she is not trying to will herself against Selene.",
-    end_index: 140
+    end_index: 140,
     start_index: 9,
-    track_id: selene.id,
+    track_id: selene.id
 )
 selene_annotation2 = Annotation.create(
     annotator_id: reallysmart.id,
     annotator_name: reallysmart.username,
     body: "She is allowing Selene to take over. She and Selene want the same thing.",
-    end_index: 516
+    end_index: 516,
     start_index: 459,
-    track_id: selene.id,
+    track_id: selene.id
 )
 selene_annotation3 = Annotation.create(
     annotator_id: reallysmart.id,
     annotator_name: reallysmart.username,
     body: "Selene is the Greek goddess of the moon and her symbols include the torch and the chariot. It is said that she drives her chariot  across the heavens carrying her torch. She is saying that when Selene takes over her, everyone will notice it as if the Greek goddess arrived.",
-    end_index: 1049
+    end_index: 1049,
     start_index: 778,
-    track_id: selene.id,
+    track_id: selene.id
 )
 
 selene_comment1 = Comment.create(
     body: "This is one of my new favorite songs now.",
-    commentable_id: selene.id
+    commentable_id: selene.id,
     commentable_type: "Track",
     commenter_id: reallysmart.id,
-    commenter_name: reallysmart.username,
+    commenter_name: reallysmart.username
 )
 selene_comment2 = Comment.create(
     body: "OOOOOHHHHHHH! Now I get it.",
-    commentable_id: selene_annotation1.id
+    commentable_id: selene_annotation1.id,
     commentable_type: "Annotation",
     commenter_id: notsosmart.id,
-    commenter_name: notsosmart.username,
+    commenter_name: notsosmart.username
 )
 selene_comment3 = Comment.create(
     body: "I wonder what these lyrics mean.",
-    commentable_id: selene.id
+    commentable_id: selene.id,
     commentable_type: "Track",
     commenter_id: notsosmart.id,
-    commenter_name: notsosmart.username,
+    commenter_name: notsosmart.username
 )
 
 selene_vote1 = Vote.create(
-    voteable_id: selene_annotation1.id
+    voteable_id: selene_annotation1.id,
     voteable_type: "Annotation",
-    voter_id: 2,
+    voter_id: 2
 )
 selene_vote2 = Vote.create(
-    voteable_id: selene_annotation1.id
+    voteable_id: selene_annotation1.id,
     voteable_type: "Annotation",
-    voter_id: 2,
+    voter_id: 2
 )
 selene_vote3 = Vote.create(
-    voteable_id: selene_annotation1.id
+    voteable_id: selene_annotation1.id,
     voteable_type: "Annotation",
-    voter_id: 2,
+    voter_id: 2
 )
 selene_vote4 = Vote.create(
-    voteable_id: selene_annotation1.id
+    voteable_id: selene_annotation1.id,
     voteable_type: "Annotation",
-    voter_id: 2,
+    voter_id: 2
 )
 selene_vote5 = Vote.create(
-    voteable_id: selene_annotation1.id
+    voteable_id: selene_annotation1.id,
     voteable_type: "Annotation",
-    voter_id: 2,
+    voter_id: 2
 )
 selene_vote6 = Vote.create(
-    voteable_id: selene_comment1.id
+    voteable_id: selene_comment1.id,
     voteable_type: "Comment",
-    voter_id: 2,
+    voter_id: 2
 )
 selene_vote7 = Vote.create(
-    voteable_id: selene_comment1.id
+    voteable_id: selene_comment1.id,
     voteable_type: "Comment",
-    voter_id: 2,
+    voter_id: 2
 )
 selene_vote8 = Vote.create(
-    voteable_id: selene_comment1.id
+    voteable_id: selene_comment1.id,
     voteable_type: "Comment",
-    voter_id: 2,
+    voter_id: 2
 )
 selene_vote9 = Vote.create(
-    voteable_id: selene_annotation2.id
+    voteable_id: selene_annotation2.id,
     voteable_type: "Annotation",
-    voter_id: 2,
+    voter_id: 2
 )
 selene_vote10 = Vote.create(
-    voteable_id: selene_annotation2.id
+    voteable_id: selene_annotation2.id,
     voteable_type: "Annotation",
-    voter_id: 2,
+    voter_id: 2
 )
 selene_vote11 = Vote.create(
-    voteable_id: selene_annotation2.id
+    voteable_id: selene_annotation2.id,
     voteable_type: "Annotation",
-    voter_id: 2,
+    voter_id: 2
 )
 selene_vote12 = Vote.create(
-    voteable_id: selene_annotation2.id
+    voteable_id: selene_annotation2.id,
     voteable_type: "Annotation",
-    voter_id: 2,
+    voter_id: 2
 )
 selene_vote13 = Vote.create(
-    voteable_id: selene_annotation2.id
+    voteable_id: selene_annotation2.id,
     voteable_type: "Annotation",
-    voter_id: 2,
+    voter_id: 2
 )
 
 selene_tag1 = Tag.create(
@@ -1043,48 +1043,48 @@ lady_annotation1= Annotation.create(
     annotator_id: reallysmart.id,
     annotator_name: reallysmart.username,
     body: "The person is conveying to the woman whom he is with is the person he is finally meant to be with. He also knows by how the woman is reacting to him.",
-    end_index: 279
+    end_index: 279,
     start_index: 0,
-    track_id: lady.id,
+    track_id: lady.id
 )
 
 lady_comment1 = Comment.create(
     body: "This is one of my new favorite songs now.",
-    commentable_id: lady.id
+    commentable_id: lady.id,
     commentable_type: "Track",
     commenter_id: reallysmart.id,
-    commenter_name: reallysmart.username,
+    commenter_name: reallysmart.username
 )
 
 lady_vote1 = Vote.create(
-    voteable_id: lady_annotation1.id
+    voteable_id: lady_annotation1.id,
     voteable_type: "Annotation",
-    voter_id: 2,
+    voter_id: 2
 )
 lady_vote2 = Vote.create(
-    voteable_id: lady_annotation1.id
+    voteable_id: lady_annotation1.id,
     voteable_type: "Annotation",
-    voter_id: 2,
+    voter_id: 2
 )
 lady_vote3 = Vote.create(
-    voteable_id: lady_annotation1.id
+    voteable_id: lady_annotation1.id,
     voteable_type: "Annotation",
-    voter_id: 2,
+    voter_id: 2
 )
 lady_vote4 = Vote.create(
-    voteable_id: lady_comment1.id
+    voteable_id: lady_comment1.id,
     voteable_type: "Comment",
-    voter_id: 2,
+    voter_id: 2
 )
 lady_vote5 = Vote.create(
-    voteable_id: lady_comment1.id
+    voteable_id: lady_comment1.id,
     voteable_type: "Comment",
-    voter_id: 2,
+    voter_id: 2
 )
 lady_vote6 = Vote.create(
-    voteable_id: lady_comment1.id
+    voteable_id: lady_comment1.id,
     voteable_type: "Comment",
-    voter_id: 2,
+    voter_id: 2
 )
 
 lady_tag1 = Tag.create(
@@ -1104,66 +1104,66 @@ fake_love_annotation1 = Annotation.create(
     annotator_id: reallysmart.id,
     annotator_name: reallysmart.username,
     body: "He had been at a low place in his life for so long that any affection he had received when he became successful felt real but realizes they were not genuine.",
-    end_index: 162 
+    end_index: 162,
     start_index: 8,
-    track_id: fake_love.id,
+    track_id: fake_love.id
 )
 fake_love_annotation2 = Annotation.create(
     annotator_id: reallysmart.id,
     annotator_name: reallysmart.username,
     body: "He senses that whenever he talks to his friend that the friend is always hiding something.",
-    end_index: 465 
+    end_index: 465,
     start_index: 327,
-    track_id: fake_love.id,
+    track_id: fake_love.id
 )
 fake_love_annotation3 = Annotation.create(
     annotator_id: reallysmart.id,
     annotator_name: reallysmart.username,
     body: "Now that he experienced all the fake affection and the ways people tried to use him, he is immediately able to see the deception of those around him.",
-    end_index: 1473
+    end_index: 1473,
     start_index: 1277,
-    track_id: fake_love.id,
+    track_id: fake_love.id
 )
 
 fake_love_comment1 = Comment.create(
     body: "This song really grew on me and I would say it's my favorite song ever.",
-    commentable_id: fake_love.id
+    commentable_id: fake_love.id,
     commentable_type: "Track",
     commenter_id: reallysmart.id,
-    commenter_name: reallysmart.username,
+    commenter_name: reallysmart.username
 )
 fake_love_comment2 = Comment.create(
     body: "I see.",
-    commentable_id: fake_love_annotation1.id
+    commentable_id: fake_love_annotation1.id,
     commentable_type: "Annotation",
     commenter_id: notsosmart.id,
-    commenter_name: notsosmart.username,
+    commenter_name: notsosmart.username
 )
 
 fake_love_vote1 = Vote.create(
-    voteable_id: fake_love_annotation1.id
+    voteable_id: fake_love_annotation1.id,
     voteable_type: "Annotation",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 fake_love_vote2 = Vote.create(
-    voteable_id: fake_love_annotation1.id
+    voteable_id: fake_love_annotation1.id,
     voteable_type: "Annotation",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 fake_love_vote3 = Vote.create(
-    voteable_id: fake_love_annotation1.id
+    voteable_id: fake_love_annotation1.id,
     voteable_type: "Annotation",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 fake_love_vote4 = Vote.create(
-    voteable_id: fake_love_comment1.id
+    voteable_id: fake_love_comment1.id,
     voteable_type: "Comment",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 fake_love_vote5 = Vote.create(
-    voteable_id: fake_love_comment1.id
+    voteable_id: fake_love_comment1.id,
     voteable_type: "Comment",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 
 fake_love_tag1 = Tag.create(
@@ -1183,74 +1183,74 @@ river_annotation1 = Annotation.create(
     annotator_id: reallysmart.id,
     annotator_name: reallysmart.username,
     body: "This is a sexual innuendo.",
-    end_index: 138
+    end_index: 138,
     start_index: 98,
-    track_id: river.id,
+    track_id: river.id
 )
 river_annotation2 = Annotation.create(
     annotator_id: reallysmart.id,
     annotator_name: reallysmart.username,
     body: "She says love for someone else can be the deepest feeling anyone feels but at the same time, that love can be the most fragile.",
-    end_index: 261
+    end_index: 261,
     start_index: 149,
-    track_id: river.id,
+    track_id: river.id
 )
 river_annotation3 = Annotation.create(
     annotator_id: reallysmart.id,
     annotator_name: reallysmart.username,
     body: "She is saying that if he says anything, then the relationship will break. So, she just tells him to perform on her.",
-    end_index: 410
+    end_index: 410,
     start_index: 275,
-    track_id: river.id,
+    track_id: river.id
 )
 
 river_comment1 = Comment.create(
     body: "The beat just fires me up.",
-    commentable_id: river.id
+    commentable_id: river.id,
     commentable_type: "Track",
     commenter_id: reallysmart.id,
-    commenter_name: reallysmart.username,
+    commenter_name: reallysmart.username
 )
 
 river_vote1 = Vote.create(
-    voteable_id: river_annotation1.id
+    voteable_id: river_annotation1.id,
     voteable_type: "Annotation",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 river_vote2 = Vote.create(
-    voteable_id: river_annotation1.id
+    voteable_id: river_annotation1.id,
     voteable_type: "Annotation",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 river_vote3 = Vote.create(
-    voteable_id: river_annotation1.id
+    voteable_id: river_annotation1.id,
     voteable_type: "Annotation",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 river_vote4 = Vote.create(
-    voteable_id: river_annotation2.id
+    voteable_id: river_annotation2.id,
     voteable_type: "Annotation",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 river_vote5 = Vote.create(
-    voteable_id: river_annotation2.id
+    voteable_id: river_annotation2.id,
     voteable_type: "Annotation",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 river_vote6 = Vote.create(
-    voteable_id: river_comment1.id
+    voteable_id: river_comment1.id,
     voteable_type: "Comment",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 river_vote7 = Vote.create(
-    voteable_id: river_comment1.id
+    voteable_id: river_comment1.id,
     voteable_type: "Comment",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 river_vote8 = Vote.create(
-    voteable_id: river_comment1.id
+    voteable_id: river_comment1.id,
     voteable_type: "Comment",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 
 river_tag1 = Tag.create(
@@ -1270,68 +1270,68 @@ reflection_annotation1 = Annotation.create(
     annotator_id: reallysmart.id,
     annotator_name: reallysmart.username,
     body: "She wants to know why she does not see her true self.",
-    end_index: 436
+    end_index: 436,
     start_index: 344,
-    track_id: reflection.id,
+    track_id: reflection.id
 )
 
 reflection_comment1 = Comment.create(
     body: "This gets me in the feels all the time.",
-    commentable_id: reflection.id
+    commentable_id: reflection.id,
     commentable_type: "Track",
     commenter_id: reallysmart.id,
-    commenter_name: reallysmart.username,
+    commenter_name: reallysmart.username
 )
 
 reflection_vote1 = Vote.create(
-    voteable_id: reflection_annotation1.id
+    voteable_id: reflection_annotation1.id,
     voteable_type: "Annotation",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 reflection_vote2 = Vote.create(
-    voteable_id: reflection_annotation1.id
+    voteable_id: reflection_annotation1.id,
     voteable_type: "Annotation",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 reflection_vote3 = Vote.create(
-    voteable_id: reflection_annotation1.id
+    voteable_id: reflection_annotation1.id,
     voteable_type: "Annotation",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 reflection_vote4 = Vote.create(
-    voteable_id: reflection_annotation1.id
+    voteable_id: reflection_annotation1.id,
     voteable_type: "Annotation",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 reflection_vote5 = Vote.create(
-    voteable_id: reflection_annotation1.id
+    voteable_id: reflection_annotation1.id,
     voteable_type: "Annotation",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 reflection_vote6 = Vote.create(
-    voteable_id: reflection_annotation1.id
+    voteable_id: reflection_annotation1.id,
     voteable_type: "Annotation",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 reflection_vote7 = Vote.create(
-    voteable_id: reflection_annotation1.id
+    voteable_id: reflection_annotation1.id,
     voteable_type: "Annotation",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 reflection_vote8 = Vote.create(
-    voteable_id: reflection_annotation1.id
+    voteable_id: reflection_annotation1.id,
     voteable_type: "Annotation",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 reflection_vote9 = Vote.create(
-    voteable_id: reflection_annotation1.id
+    voteable_id: reflection_annotation1.id,
     voteable_type: "Annotation",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 reflection_vote10 = Vote.create(
-    voteable_id: reflection_annotation1.id
+    voteable_id: reflection_annotation1.id,
     voteable_type: "Annotation",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 
 reflection_tag1 = Tag.create(
@@ -1351,46 +1351,46 @@ stay_annotation1 = Annotation.create(
     annotator_id: reallysmart.id,
     annotator_name: reallysmart.username,
     body: "He feels like his body is breaking down just at the though of separating from the woman he is in love with.",
-    end_index: 377
+    end_index: 377,
     start_index: 120,
-    track_id: stay.id,
+    track_id: stay.id
 )
 stay_annotation2 = Annotation.create(
     annotator_id: reallysmart.id,
     annotator_name: reallysmart.username,
     body: "He is willing to change and do anything just so the woman he loves would stay with him.",
-    end_index: 1143
+    end_index: 1143,
     start_index: 1035,
-    track_id: stay.id,
+    track_id: stay.id
 )
 
 stay_comment1 = Comment.create(
     body: "I never listened to this a lot when I was younger but this was such a banger.",
-    commentable_id: stay.id
+    commentable_id: stay.id,
     commentable_type: "Track",
     commenter_id: reallysmart.id,
-    commenter_name: reallysmart.username,
+    commenter_name: reallysmart.username
 )
 
 stay_vote1 = Vote.create(
-    voteable_id: stay_comment1.id
+    voteable_id: stay_comment1.id,
     voteable_type: "Comment",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 stay_vote2 = Vote.create(
-    voteable_id: stay_comment1.id
+    voteable_id: stay_comment1.id,
     voteable_type: "Comment",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 stay_vote3 = Vote.create(
-    voteable_id: stay_comment1.id
+    voteable_id: stay_comment1.id,
     voteable_type: "Comment",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 stay_vote4 = Vote.create(
-    voteable_id: stay_comment1.id
+    voteable_id: stay_comment1.id,
     voteable_type: "Comment",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 
 stay_tag1 = Tag.create(
@@ -1410,63 +1410,63 @@ just_a_friend_2002_annotation1 = Annotation.create(
     annotator_id: reallysmart.id,
     annotator_name: reallysmart.username,
     body: "He wants to know everything about the girl that he is into, even if the girl has a boyfriend. He ultimately wants to be together with her but she continues to keep him in the friend zone.",
-    end_index: 324
+    end_index: 324,
     start_index: 36,
-    track_id: just_a_friend_2002.id,
+    track_id: just_a_friend_2002.id
 )
 just_a_friend_2002_annotation2 = Annotation.create(
     annotator_id: reallysmart.id,
     annotator_name: reallysmart.username,
     body: "He wants to know everything about the girl he is talking with because he is obsessed with being with her. However, the girl is rebuffing his advancements by telling him that he is 'just a friend.'",
-    end_index: 905
+    end_index: 905,
     start_index: 623,
-    track_id: just_a_friend_2002.id,
+    track_id: just_a_friend_2002.id
 )
 
 just_a_friend_2002_comment1 = Comment.create(
     body: "This is one catchy song!",
-    commentable_id: just_a_friend_2002.id
+    commentable_id: just_a_friend_2002.id,
     commentable_type: "Track",
     commenter_id: reallysmart.id,
-    commenter_name: reallysmart.username,
+    commenter_name: reallysmart.username
 )
 just_a_friend_2002_comment2 = Comment.create(
     body: "I can relate!",
-    commentable_id: just_a_friend_2002_annotation1.id
+    commentable_id: just_a_friend_2002_annotation1.id,
     commentable_type: "Annotation",
     commenter_id: reallysmart.id,
-    commenter_name: reallysmart.username,
+    commenter_name: reallysmart.username
 )
 
 just_a_friend_2002_vote1 = Vote.create(
-    voteable_id: just_a_friend_2002_annotation1.id
+    voteable_id: just_a_friend_2002_annotation1.id,
     voteable_type: "Annotation",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 just_a_friend_2002_vote2 = Vote.create(
-    voteable_id: just_a_friend_2002_annotation1.id
+    voteable_id: just_a_friend_2002_annotation1.id,
     voteable_type: "Annotation",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 just_a_friend_2002_vote3 = Vote.create(
-    voteable_id: just_a_friend_2002_annotation1.id
+    voteable_id: just_a_friend_2002_annotation1.id,
     voteable_type: "Annotation",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 just_a_friend_2002_vote4 = Vote.create(
-    voteable_id: just_a_friend_2002_comment1.id
+    voteable_id: just_a_friend_2002_comment1.id,
     voteable_type: "Comment",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 just_a_friend_2002_vote5 = Vote.create(
-    voteable_id: just_a_friend_2002_comment1.id
+    voteable_id: just_a_friend_2002_comment1.id,
     voteable_type: "Comment",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 just_a_friend_2002_vote6 = Vote.create(
-    voteable_id: just_a_friend_2002_comment1.id
+    voteable_id: just_a_friend_2002_comment1.id,
     voteable_type: "Comment",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 
 just_a_friend_2002_tag1 = Tag.create(
@@ -1486,84 +1486,84 @@ revenge_annotation1 = Annotation.create(
     annotator_id: reallysmart.id,
     annotator_name: reallysmart.username,
     body: "She says she will never allow the person to be in her life again but also felt disappointed because she genuinely cared for him.",
-    end_index: 246
+    end_index: 246,
     start_index: 135,
-    track_id: revenge.id,
+    track_id: revenge.id
 )
 revenge_annotation2 = Annotation.create(
     annotator_id: reallysmart.id,
     annotator_name: reallysmart.username,
     body: "She vows to the person she gave her love to will regret everything he did once she becomes as successful as much as she believes she would be.",
-    end_index: 752
+    end_index: 752,
     start_index: 434,
-    track_id: revenge.id,
+    track_id: revenge.id
 )
 revenge_annotation3 = Annotation.create(
     annotator_id: reallysmart.id,
     annotator_name: reallysmart.username,
     body: "She reiterates that she used to be in love with him. But, she no longer cares that he starts to want to be with her again after she became more successful.",
-    end_index: 998
+    end_index: 998,
     start_index: 763,
-    track_id: revenge.id,
+    track_id: revenge.id
 )
 
 revenge_comment1 = Comment.create(
     body: "I am on her side!",
-    commentable_id: revenge.id
+    commentable_id: revenge.id,
     commentable_type: "Track",
     commenter_id: reallysmart.id,
-    commenter_name: reallysmart.username,
+    commenter_name: reallysmart.username
 )
 
 revenge_vote1 = Vote.create(
-    voteable_id: revenge_annotation1.id
+    voteable_id: revenge_annotation1.id,
     voteable_type: "Annotation",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 revenge_vote2 = Vote.create(
-    voteable_id: revenge_annotation1.id
+    voteable_id: revenge_annotation1.id,
     voteable_type: "Annotation",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 revenge_vote3 = Vote.create(
-    voteable_id: revenge_annotation1.id
+    voteable_id: revenge_annotation1.id,
     voteable_type: "Annotation",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 revenge_vote4 = Vote.create(
-    voteable_id: revenge_annotation2.id
+    voteable_id: revenge_annotation2.id,
     voteable_type: "Annotation",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 revenge_vote5 = Vote.create(
-    voteable_id: revenge_annotation2.id
+    voteable_id: revenge_annotation2.id,
     voteable_type: "Annotation",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 revenge_vote6 = Vote.create(
-    voteable_id: revenge_annotation2.id
+    voteable_id: revenge_annotation2.id,
     voteable_type: "Annotation",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 revenge_vote7 = Vote.create(
-    voteable_id: revenge_comment1.id
+    voteable_id: revenge_comment1.id,
     voteable_type: "Comment",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 revenge_vote8 = Vote.create(
-    voteable_id: revenge_comment1.id
+    voteable_id: revenge_comment1.id,
     voteable_type: "Comment",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 revenge_vote9 = Vote.create(
-    voteable_id: revenge_comment1.id
+    voteable_id: revenge_comment1.id,
     voteable_type: "Comment",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 revenge_vote10 = Vote.create(
-    voteable_id: revenge_comment1.id
+    voteable_id: revenge_comment1.id,
     voteable_type: "Comment",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 
 revenge_tag1 = Tag.create(
@@ -1583,76 +1583,76 @@ blue_annotation1 = Annotation.create(
     annotator_id: reallysmart.id,
     annotator_name: reallysmart.username,
     body: "He says the sky is blue, you are next to him, the sea is blue, and it's hot.",
-    end_index: 303
+    end_index: 303,
     start_index: 23,
-    track_id: blue.id,
+    track_id: blue.id
 )
 blue_annotation2 = Annotation.create(
     annotator_id: reallysmart.id,
     annotator_name: reallysmart.username,
     body: "He says that the summer is ours and that if there is an angel then it is you so let's get lost in the sky.",
-    end_index: 685
+    end_index: 685,
     start_index: 597,
-    track_id: blue.id,
+    track_id: blue.id
 )
 
 blue_comment1 = Comment.create(
     body: "This is a summer banger!",
-    commentable_id: blue.id
+    commentable_id: blue.id,
     commentable_type: "Track",
     commenter_id: reallysmart.id,
-    commenter_name: reallysmart.username,
+    commenter_name: reallysmart.username
 )
 
 blue_vote1 = Vote.create(
-    voteable_id: blue_annotation1.id
+    voteable_id: blue_annotation1.id,
     voteable_type: "Annotation",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 blue_vote2 = Vote.create(
-    voteable_id: blue_annotation1.id
+    voteable_id: blue_annotation1.id,
     voteable_type: "Annotation",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 blue_vote3 = Vote.create(
-    voteable_id: blue_annotation1.id
+    voteable_id: blue_annotation1.id,
     voteable_type: "Annotation",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 blue_vote4 = Vote.create(
-    voteable_id: blue_annotation2.id
+    voteable_id: blue_annotation2.id,
     voteable_type: "Annotation",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 blue_vote5 = Vote.create(
-    voteable_id: blue_annotation2.id
+    voteable_id: blue_annotation2.id,
     voteable_type: "Annotation",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 blue_vote6 = Vote.create(
-    voteable_id: blue_annotation2.id
+    voteable_id: blue_annotation2.id,
     voteable_type: "Annotation",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 blue_vote7 = Vote.create(
-    voteable_id: blue_comment1.id
+    voteable_id: blue_comment1.id,
     voteable_type: "Comment",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 blue_vote8 = Vote.create(
-    voteable_id: blue_comment1.id
+    voteable_id: blue_comment1.id,
     voteable_type: "Comment",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 blue_vote9 = Vote.create(
-    voteable_id: blue_comment1.id
+    voteable_id: blue_comment1.id,
     voteable_type: "Comment",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 blue_vote10 = Vote.create(
-    voteable_id: blue_comment1.id
+    voteable_id: blue_comment1.id,
     voteable_type: "Comment",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 
 blue_tag1 = Tag.create(
@@ -1676,68 +1676,68 @@ shiki_no_uta_annotation1 = Annotation.create(
     annotator_id: reallysmart.id,
     annotator_name: reallysmart.username,
     body: "When dawn breaks again, we'll say our farewells. Our dreams become distant phantoms. The times we were embraced. In the light that chased you, relying on the warm winds.",
-    end_index: 133
+    end_index: 133,
     start_index: 0,
-    track_id: shiki_no_uta.id,
+    track_id: shiki_no_uta.id
 )
 
 shiki_no_uta_comment1 = Comment.create(
     body: "Best anime ending.",
-    commentable_id: shiki_no_uta.id
+    commentable_id: shiki_no_uta.id,
     commentable_type: "Track",
     commenter_id: reallysmart.id,
-    commenter_name: reallysmart.username,
+    commenter_name: reallysmart.username
 )
 
 shiki_no_uta_vote1 = Vote.create(
-    voteable_id: shiki_no_uta_annotation1.id
+    voteable_id: shiki_no_uta_annotation1.id,
     voteable_type: "Annotation",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 shiki_no_uta_vote2 = Vote.create(
-    voteable_id: shiki_no_uta_annotation1.id
+    voteable_id: shiki_no_uta_annotation1.id,
     voteable_type: "Annotation",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 shiki_no_uta_vote3= Vote.create(
-    voteable_id: shiki_no_uta_annotation1.id
+    voteable_id: shiki_no_uta_annotation1.id,
     voteable_type: "Annotation",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 shiki_no_uta_vote4 = Vote.create(
-    voteable_id: shiki_no_uta_annotation1.id
+    voteable_id: shiki_no_uta_annotation1.id,
     voteable_type: "Annotation",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 shiki_no_uta_vote5 = Vote.create(
-    voteable_id: shiki_no_uta_annotation1.id
+    voteable_id: shiki_no_uta_annotation1.id,
     voteable_type: "Annotation",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 shiki_no_uta_vote6 = Vote.create(
-    voteable_id: shiki_no_uta_comment1.id
+    voteable_id: shiki_no_uta_comment1.id,
     voteable_type: "Comment",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 shiki_no_uta_vote7 = Vote.create(
-    voteable_id: shiki_no_uta_comment1.id
+    voteable_id: shiki_no_uta_comment1.id,
     voteable_type: "Comment",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 shiki_no_uta_vote8 = Vote.create(
-    voteable_id: shiki_no_uta_comment1.id
+    voteable_id: shiki_no_uta_comment1.id,
     voteable_type: "Comment",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 shiki_no_uta_vote9 = Vote.create(
-    voteable_id: shiki_no_uta_comment1.id
+    voteable_id: shiki_no_uta_comment1.id,
     voteable_type: "Comment",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 shiki_no_uta_vote10 = Vote.create(
-    voteable_id: shiki_no_uta_comment1.id
+    voteable_id: shiki_no_uta_comment1.id,
     voteable_type: "Comment",
-    voter_id: notsosmart.id,
+    voter_id: notsosmart.id
 )
 
 shiki_no_uta_tag1 = Tag.create(
