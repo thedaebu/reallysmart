@@ -1,7 +1,7 @@
 AWS
 
 # assets precompile
-rake assets:precompile 
+bundle exec rails assets:precompile
 
 # heroku
 heroku pg:reset DATABASE_URL
