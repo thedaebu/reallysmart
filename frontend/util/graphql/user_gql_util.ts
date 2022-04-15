@@ -10,7 +10,7 @@ export const FETCH_USER: DocumentNode = gql`
     }
 `;
 export const CREATE_USER: DocumentNode = gql`
-    mutation CREATE_USER($password: String!, username: String!) {
+    mutation CREATE_USER($password: String!, $username: String!) {
         createUser(input: {password: $password, username: $username}) {
             user {
                 id
