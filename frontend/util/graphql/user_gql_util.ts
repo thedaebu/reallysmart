@@ -1,6 +1,6 @@
-import { DocumentNode, gql } from "@apollo/client";
+import { DocumentNode, gql, useMutation, useQuery } from "@apollo/client";
 
-export const FETCH_USER: DocumentNode = gql`
+const FETCH_USER: DocumentNode = gql`
     query FETCH_USER($id: ID!) {
         user(id: $id) {
             id
@@ -9,7 +9,7 @@ export const FETCH_USER: DocumentNode = gql`
         }
     }
 `;
-export const CREATE_USER: DocumentNode = gql`
+const CREATE_USER: DocumentNode = gql`
     mutation CREATE_USER($password: String!, $username: String!) {
         createUser(input: {password: $password, username: $username}) {
             user {
@@ -19,3 +19,17 @@ export const CREATE_USER: DocumentNode = gql`
         }
     }
 `;
+
+export const fetchUser: Function = (id: number) => {
+    return (
+        useQuery(FETCH_USER, { variables: {id} })
+    );
+};
+export const createUser: Function = (password: String, username: String) => {
+    return (
+        useMutation(CREATE_USER, { variables: {
+            password,
+            username
+        }})
+    );
+};

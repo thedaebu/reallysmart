@@ -47,13 +47,13 @@ const FETCH_TRACK: DocumentNode = gql`
     }
 `;
 
-export const fetchTracksGQL: Function = () => {
+export const fetchTracks: Function = () => {
     return (
         useQuery(FETCH_TRACKS)
     );
 };
-export const fetchTrackGQL: Function = (trackId: String) => {
+export const fetchTrack: Function = (id: number) => {
     return (
-        useQuery(FETCH_TRACK, {variables: {id: trackId}})
+        useQuery(FETCH_TRACK, { variables: {id: id}} )
     );
 };
