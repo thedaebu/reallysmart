@@ -1,6 +1,6 @@
-import { DocumentNode, gql } from "@apollo/client";
+import { DocumentNode, gql, useQuery } from "@apollo/client";
 
-export const FETCH_TRACKS: DocumentNode = gql`
+const FETCH_TRACKS: DocumentNode = gql`
     query FETCH_TRACKS {
         tracks {
             id
@@ -10,7 +10,7 @@ export const FETCH_TRACKS: DocumentNode = gql`
         }
     }
 `;
-export const FETCH_TRACK: DocumentNode = gql`
+const FETCH_TRACK: DocumentNode = gql`
     query FETCH_TRACKS($id: ID!) {
         track(id: $id) {
             id
@@ -46,3 +46,14 @@ export const FETCH_TRACK: DocumentNode = gql`
         }
     }
 `;
+
+export const fetchTracksGQL: Function = () => {
+    return (
+        useQuery(FETCH_TRACKS)
+    );
+};
+export const fetchTrackGQL: Function = (trackId: String) => {
+    return (
+        useQuery(FETCH_TRACK, {variables: {id: trackId}})
+    );
+};
