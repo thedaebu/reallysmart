@@ -79,13 +79,10 @@ describe("track index", () => {
         trackIndexItems = screen.queryAllByTestId("track-index-item");
         expect(trackIndexItems.length).toBeGreaterThan(5);
     });
-    test("proceeds to correct url depending on which track is clicked on", () => {
-        const pathName = global.window.location.pathname;
-        expect(pathName).toEqual('/');
-
+    test("proceeds to correct url depending on which track is clicked", () => {
         const firstTrackIndexItem = screen.queryAllByTestId("track-index-item")[0];
         userEvent.click(firstTrackIndexItem);
-        let newPathName = global.window.location.pathname;
-        expect(newPathName).toEqual('/tracks/1');
+        const pathName = global.window.location.pathname;
+        expect(pathName).toEqual("/tracks/1");
     });
 });
