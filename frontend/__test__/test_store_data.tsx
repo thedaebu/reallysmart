@@ -1,4 +1,4 @@
-const tracks = {
+export const testTracks = {
     1:  {
         artist: "NIKI",
         artwork_path: "https://i.ytimg.com/vi/GBqqoPSJ9GY/maxresdefault.jpg",
@@ -44,12 +44,12 @@ export const testMatch = {
     path: "/tracks/:trackId",
     url: "/tracks/1"
 };
-export const testIndexStore = {
+export const testTrackIndexStore = {
     entities: {
-        tracks: tracks
+        tracks: testTracks
     }
 };
-export const testTrackStore = {
+export const testTrackShowStore = {
     entities: {
         annotations: {
             1: {
@@ -100,7 +100,7 @@ export const testTrackStore = {
                 updated_at: "2022-03-20T17:56:15.629Z"
             },
         },
-        searches: tracks,
+        searches: testTracks,
         tracks: {
             1: {
                 artist: "NIKI",

@@ -8,11 +8,11 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import server from "../msw_server"
 import TrackShow from "../../components/tracks/track_show";
-import { testMatch, testTrackStore } from "../test_store_data";
+import { testMatch, testTrackShowStore } from "../test_store_data";
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
-const testStore = mockStore(testTrackStore);
+const testStore = mockStore(testTrackShowStore);
 
 const useMockEffect = jest.spyOn(React, 'useEffect');
 const useMockState = jest.spyOn(React, 'useState');
@@ -50,7 +50,7 @@ describe("lyrics", () => {
     });
     test("contains the lyrics of the song", () => {
         const lyricsBody = screen.getByTestId("lyrics__body");
-        expect(lyricsBody).toHaveTextContent(testTrackStore.entities.tracks[1].lyrics);
+        expect(lyricsBody).toHaveTextContent(testTrackShowStore.entities.tracks[1].lyrics);
     });
     test("contains the correct number of annotated sections", () => {
         const lyricsBody = screen.getByTestId("lyrics__body");

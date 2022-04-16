@@ -7,14 +7,14 @@ import * as reactRedux from "react-redux";
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import server from "../msw_server"
-import { testIndexStore } from "../test_store_data";
+import { testTrackIndexStore } from "../test_store_data";
 import * as trackActions from "../../actions/track_actions";
 import { IndexTrack } from "../../my_types";
 import TrackIndex from "../../components/tracks/track_index";
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
-const testStore = mockStore(testIndexStore);
+const testStore = mockStore(testTrackIndexStore);
 
 const useMockDispatch = jest.spyOn(reactRedux, 'useDispatch');
 const useMockEffect = jest.spyOn(React, 'useEffect');
@@ -62,7 +62,7 @@ describe("track index", () => {
             expect(trackIndexItem.length).toBeGreaterThan(0);
         });
         test("displays the artist and title for each track index item", () => {
-            const trackIndexData: {[key:number]: IndexTrack} = testIndexStore.entities.tracks;
+            const trackIndexData: {[key:number]: IndexTrack} = testTrackIndexStore.entities.tracks;
             const trackIndexItems = screen.queryAllByTestId("track-index-item");
             trackIndexItems.forEach((trackIndexItem, idx) => {
                 expect(trackIndexItem).toHaveTextContent(trackIndexData[idx+1].artist);

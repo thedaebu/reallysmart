@@ -7,13 +7,13 @@ import * as reactRedux from "react-redux";
 import configureMockStore from "redux-mock-store";
 import thunk from 'redux-thunk';
 import server from "../msw_server"
-import { testTrackStore } from "../test_store_data";
+import { testTrackShowStore } from "../test_store_data";
 import * as SessionActions from "../../actions/session_actions";
 import LoginForm from "../../components/session_form/login_form";
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
-const testStore = mockStore(testTrackStore);
+const testStore = mockStore(testTrackShowStore);
 
 const useMockDispatch = jest.spyOn(reactRedux, "useDispatch");
 const useMockEffect = jest.spyOn(React, "useEffect");
