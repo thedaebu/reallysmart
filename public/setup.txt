@@ -1,0 +1,7 @@
+Genius API
+Client ID:
+jVUPWSu2sxMabDdAxEzQRIU7DxInTRdEbH9_kglBpixDBQdDCteEBRc_o6tbPMC5
+Client Secret:
+ujBnK30-Lwj6IvobLud31HNsYZeBPSGO6_HxbCQ8Y1C7UiIDrjJQlamVEL8hwlbXzuw5ZkGnKudkmQoiclQU_g
+Client Access Token:
+tM5QuSkPbXIp0_2EUoDuKWqco1r1T-zB33hB7wSGVBuab5-UXNu1yCEz1f0iUtST
