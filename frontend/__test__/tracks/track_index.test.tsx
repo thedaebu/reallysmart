@@ -51,7 +51,7 @@ describe("track index", () => {
     test("useState is called", () => {
         expect(useMockState).toHaveBeenCalled();
     });
-    test("fetchTracks should be called", () => {
+    test("fetchTracks is called", () => {
         expect(useFetchTracks).toHaveBeenCalled();
     });
     describe("track index item", () => {
