@@ -1,4 +1,4 @@
-import React, { ChangeEvent, Dispatch, MouseEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, Dispatch, MouseEvent, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import * as AnnotationActions from "../../actions/annotation_actions";
