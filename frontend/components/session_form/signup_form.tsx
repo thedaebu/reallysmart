@@ -73,6 +73,7 @@ function SignupForm() {
                         onChange={handleInputChange("username")}
                         type="text"
                         value={username}
+                        data-testid="session-form__username"
                     />
                 </label>
                 <label htmlFor="session-form__password">Really Smart Password
@@ -81,6 +82,7 @@ function SignupForm() {
                         onChange={handleInputChange("password")}
                         type="password"
                         value={password}
+                        data-testid="session-form__password"
                     />
                 </label>
                 <p className="session-form__tos">
@@ -93,7 +95,7 @@ function SignupForm() {
                 />
             </form>
             <p className="session-form__bottom">
-                Already have an account? <Link to="/login" >Log in here.</Link>
+                Already have an account? <Link to="/login" data-testid="login-form-button">Log in here.</Link>
             </p>
         </div>
     );

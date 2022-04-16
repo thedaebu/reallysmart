@@ -7,14 +7,14 @@ import * as reactRedux from "react-redux";
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import server from "../msw_server"
-import { testIndexStore } from "../test_store_data";
+import { testTrackIndexStore } from "../test_store_data";
 import * as trackActions from "../../actions/track_actions";
 import { IndexTrack } from "../../my_types";
 import TrackIndex from "../../components/tracks/track_index";
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
-const testStore = mockStore(testIndexStore);
+const testStore = mockStore(testTrackIndexStore);
 
 const useMockDispatch = jest.spyOn(reactRedux, 'useDispatch');
 const useMockEffect = jest.spyOn(React, 'useEffect');
@@ -51,7 +51,7 @@ describe("track index", () => {
     test("useState is called", () => {
         expect(useMockState).toHaveBeenCalled();
     });
-    test("fetchTracks should be called", () => {
+    test("fetchTracks is called", () => {
         expect(useFetchTracks).toHaveBeenCalled();
     });
     describe("track index item", () => {
@@ -62,7 +62,7 @@ describe("track index", () => {
             expect(trackIndexItem.length).toBeGreaterThan(0);
         });
         test("displays the artist and title for each track index item", () => {
-            const trackIndexData: {[key:number]: IndexTrack} = testIndexStore.entities.tracks;
+            const trackIndexData: {[key:number]: IndexTrack} = testTrackIndexStore.entities.tracks;
             const trackIndexItems = screen.queryAllByTestId("track-index-item");
             trackIndexItems.forEach((trackIndexItem, idx) => {
                 expect(trackIndexItem).toHaveTextContent(trackIndexData[idx+1].artist);
@@ -79,13 +79,10 @@ describe("track index", () => {
         trackIndexItems = screen.queryAllByTestId("track-index-item");
         expect(trackIndexItems.length).toBeGreaterThan(5);
     });
-    test("proceeds to correct url depending on which track is clicked on", () => {
-        const pathName = global.window.location.pathname;
-        expect(pathName).toEqual('/');
-
+    test("proceeds to correct url depending on which track is clicked", () => {
         const firstTrackIndexItem = screen.queryAllByTestId("track-index-item")[0];
         userEvent.click(firstTrackIndexItem);
-        let newPathName = global.window.location.pathname;
-        expect(newPathName).toEqual('/tracks/1');
+        const pathName = global.window.location.pathname;
+        expect(pathName).toEqual("/tracks/1");
     });
 });

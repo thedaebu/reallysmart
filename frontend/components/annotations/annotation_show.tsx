@@ -36,7 +36,7 @@ function AnnotationShow(props: Props) {
                 <div
                     style={{
                         position: "relative",
-                        top: yCoord
+                        top: yCoord ? yCoord : -367
                     }}
                 >
                     <AnnotationShowItem
@@ -51,7 +51,7 @@ function AnnotationShow(props: Props) {
                     className="annotation-show__without-annotation"
                     style={{
                         position: "relative",
-                        top: yCoord
+                        top: yCoord ? yCoord : -367
                     }}
                 >
                     {annotationForm()}

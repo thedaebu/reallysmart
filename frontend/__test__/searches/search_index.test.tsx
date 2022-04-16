@@ -7,14 +7,14 @@ import * as reactRedux from "react-redux";
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import server from "../msw_server"
-import { testTrackStore } from "../test_store_data";
+import { testTrackShowStore } from "../test_store_data";
 import * as SearchActions from "../../actions/search_actions";
 import { IndexTrack } from "../../my_types";
 import Searchbar from "../../components/searchbar/searchbar";
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
-const testStore = mockStore(testTrackStore);
+const testStore = mockStore(testTrackShowStore);
 
 const useMockDispatch = jest.spyOn(reactRedux, 'useDispatch');
 const useMockState = jest.spyOn(React, 'useState');
@@ -82,7 +82,7 @@ describe("search index", () => {
             expect(searchIndexItems.length).toBeLessThan(6);
         });
         test("contains the artist and the title of the track", () => {
-            const searchIndexData: {[key: number]: IndexTrack} = testTrackStore.entities.searches
+            const searchIndexData: {[key: number]: IndexTrack} = testTrackShowStore.entities.searches
             const searchbarField = screen.queryByTestId("searchbar-field");
             userEvent.type(searchbarField, "Niki");
             const searchIndex = screen.queryByTestId("search-index");
@@ -94,15 +94,12 @@ describe("search index", () => {
         });
     });
     test("proceeds to correct url depending on which track is clicked on", () => {
-        const pathName = global.window.location.pathname;
-        expect(pathName).toEqual('/');
-
         const searchbarField = screen.queryByTestId("searchbar-field");
         userEvent.type(searchbarField, "Niki");
         const searchIndex = screen.queryByTestId("search-index");
         const searchIndexItem = within(searchIndex).queryAllByTestId("search-index-item")[0];
         userEvent.click(searchIndexItem);
-        let newPathName = global.window.location.pathname;
-        expect(newPathName).toEqual('/tracks/1');
+        let pathName = global.window.location.pathname;
+        expect(pathName).toEqual('/tracks/1');
     });
 });

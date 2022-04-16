@@ -16,7 +16,10 @@ export const login = (user: SessionUser) => {
 export const signup = (user: SessionUser) => {
     return (
         $.ajax({
-            data: { user },
+            data: { 
+                user,
+                authenticity_token: $('[name="csrf-token"]').attr("content")
+            },
             method: "POST",
             url: "/api/users"
         })

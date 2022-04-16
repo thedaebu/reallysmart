@@ -7,11 +7,11 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import server from "../msw_server"
 import TrackShow from "../../components/tracks/track_show";
-import { testMatch, testTrackStore } from "../test_store_data";
+import { testMatch, testTrackShowStore } from "../test_store_data";
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
-const testStore = mockStore(testTrackStore);
+const testStore = mockStore(testTrackShowStore);
 
 describe("annotation show", () => {
     // beforeAll(() => server.listen());
