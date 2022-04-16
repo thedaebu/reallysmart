@@ -24,11 +24,13 @@ font-family: 'Ubuntu Condensed', sans-serif;
 font-family: 'Raleway', sans-serif;
 
 issues:
-spotify player
+--testing--
+actions
+    const exports
+    test actions using utils
+currentUser/no currentUser
 
-use msw for fetches?
-test action calls in components
-test actions/reducers/store/entry/etc.
+rename variables for actions,reducers,utils
 
 firebase
 redis
