@@ -1,4 +1,4 @@
-import React, { ChangeEvent, Dispatch, MouseEvent, useState } from "react";
+import React, { ChangeEvent, Dispatch, MouseEvent, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import * as AnnotationActions from "../../actions/annotation_actions";
@@ -36,7 +36,7 @@ function AnnotationShow(props: Props) {
                 <div
                     style={{
                         position: "relative",
-                        top: yCoord
+                        top: yCoord ? yCoord : -367
                     }}
                 >
                     <AnnotationShowItem
@@ -51,7 +51,7 @@ function AnnotationShow(props: Props) {
                     className="annotation-show__without-annotation"
                     style={{
                         position: "relative",
-                        top: yCoord
+                        top: yCoord ? yCoord : -367
                     }}
                 >
                     {annotationForm()}
