@@ -127,6 +127,10 @@ export const testTrackStore = {
             }
         }
     },
+    errors: {
+        annotationErrors: [""],
+        sessionErrors: [""]
+    },
     modal: {
         annotationModal: false
     },
