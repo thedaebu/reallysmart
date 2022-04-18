@@ -7,7 +7,7 @@ const middlewares = [ thunk ];
 const mockStore = configureMockStore(middlewares);
 
 describe("track actions", () => {
-    describe("constants", () => {
+    describe("action constants", () => {
         test("exports a RECEIVE_TRACKS constant", () => {
             expect(TrackActions.RECEIVE_TRACKS).toEqual("RECEIVE_TRACKS");
         });
@@ -22,7 +22,7 @@ describe("track actions", () => {
         });
         afterEach(() => {
             store.clearActions();
-        })
+        });
         describe("fetchTracks", () => {
             test("is exported", () => {
                 expect(typeof TrackAPIUtil.fetchTracks).toEqual("function");
