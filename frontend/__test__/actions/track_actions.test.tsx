@@ -2,7 +2,6 @@ import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
 import * as TrackActions from "../../actions/track_actions";
 import * as TrackAPIUtil from "../../util/api/track_api_util";
-import { testTracks, testTrackShowStore } from "../test_store_data";
 
 const middlewares = [ thunk ];
 const mockStore = configureMockStore(middlewares);
