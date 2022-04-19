@@ -1,7 +1,9 @@
 import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
 import * as TrackActions from "../../actions/track_actions";
+import { ReceivedTrack } from "../../my_types";
 import * as TrackAPIUtil from "../../util/api/track_api_util";
+import { testTracks, testTrackShowStore } from "../test_store_data";
 
 const middlewares = [ thunk ];
 const mockStore = configureMockStore(middlewares);
@@ -28,10 +30,11 @@ describe("track actions", () => {
                 expect(typeof TrackAPIUtil.fetchTracks).toEqual("function");
             });
             test("dispatches RECEIVE_TRACKS when fetchTracks is called", () => {
+                const tracks = { tracks: testTracks };
                 TrackAPIUtil.fetchTracks = jest.fn(() => (
-                    Promise.resolve({})
+                    Promise.resolve(tracks)
                 ));
-                const actions: any = [{type: "RECEIVE_TRACKS"}];
+                const actions = [{ type: "RECEIVE_TRACKS", tracks: tracks.tracks }];
                 return store.dispatch(TrackActions.fetchTracks()).then(() => {
                     expect(store.getActions()).toEqual(actions);
                 });
@@ -42,10 +45,16 @@ describe("track actions", () => {
                 expect(typeof TrackAPIUtil.fetchTrack).toEqual("function");
             });
             test("dispatches RECEIVE_TRACK when fetchTrack is called", () => {
+                const track: ReceivedTrack = { 
+                    annotations: testTrackShowStore.entities.annotations,
+                    comments: testTrackShowStore.entities.comments,
+                    track: testTrackShowStore.entities.tracks[1],
+                    votes: testTrackShowStore.entities.votes
+                };
                 TrackAPIUtil.fetchTrack = jest.fn(() => (
-                    Promise.resolve({})
+                    Promise.resolve(track)
                 ));
-                const actions: Array<{[type: string]: string}> = [{type: "RECEIVE_TRACK"}];
+                const actions = [{type: "RECEIVE_TRACK", annotations: track.annotations, comments: track.comments, track: track.track, votes: track.votes}];
                 return store.dispatch(TrackActions.fetchTrack("1")).then(() => {
                     expect(store.getActions()).toEqual(actions);
                 });
