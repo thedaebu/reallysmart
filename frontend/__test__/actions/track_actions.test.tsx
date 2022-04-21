@@ -30,11 +30,11 @@ describe("track actions", () => {
                 expect(typeof TrackAPIUtil.fetchTracks).toEqual("function");
             });
             test("dispatches RECEIVE_TRACKS when fetchTracks is called", () => {
-                const tracks = { tracks: testTracks };
+                const data = { tracks: testTracks };
                 TrackAPIUtil.fetchTracks = jest.fn(() => (
-                    Promise.resolve(tracks)
+                    Promise.resolve(data)
                 ));
-                const actions = [{ type: "RECEIVE_TRACKS", tracks: tracks.tracks }];
+                const actions = [{ type: "RECEIVE_TRACKS", tracks: data.tracks }];
                 return store.dispatch(TrackActions.fetchTracks()).then(() => {
                     expect(store.getActions()).toEqual(actions);
                 });
@@ -45,16 +45,16 @@ describe("track actions", () => {
                 expect(typeof TrackAPIUtil.fetchTrack).toEqual("function");
             });
             test("dispatches RECEIVE_TRACK when fetchTrack is called", () => {
-                const track: ReceivedTrack = { 
+                const data: ReceivedTrack = { 
                     annotations: testTrackShowStore.entities.annotations,
                     comments: testTrackShowStore.entities.comments,
                     track: testTrackShowStore.entities.tracks[1],
                     votes: testTrackShowStore.entities.votes
                 };
                 TrackAPIUtil.fetchTrack = jest.fn(() => (
-                    Promise.resolve(track)
+                    Promise.resolve(data)
                 ));
-                const actions = [{type: "RECEIVE_TRACK", annotations: track.annotations, comments: track.comments, track: track.track, votes: track.votes}];
+                const actions = [{type: "RECEIVE_TRACK", annotations: data.annotations, comments: data.comments, track: data.track, votes: data.votes}];
                 return store.dispatch(TrackActions.fetchTrack("1")).then(() => {
                     expect(store.getActions()).toEqual(actions);
                 });
