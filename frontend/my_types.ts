@@ -61,7 +61,7 @@ export type UpdatedComment = {
     id: number
 }
 
-// used for container files
+// used for redux store
 export type State = {
     entities: Entities,
     errors: Errors,
