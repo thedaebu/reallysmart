@@ -1,5 +1,5 @@
 // test data
-export const testAnnotationData = {
+export const testAnnotationsData = {
     1: {
         annotator_id: 1,
         annotator_name: "reallysmart",
@@ -19,7 +19,7 @@ export const testAnnotationData = {
         track_id: 1
     }
 };
-export const testCommentData = {
+export const testCommentsData = {
     1: {
         body: "This is one of my new favorite songs now.",
         commentable_id: 1,
@@ -96,7 +96,7 @@ export const testTracksData = {
         title: "Stay"
     }
 };
-export const testVoteData = {
+export const testVotesData = {
     1: {
         id: 1,
         voteable_id: 1,
@@ -119,13 +119,13 @@ export const testTrackIndexStore = {
 };
 export const testTrackShowStore = {
     entities: {
-        annotations: testAnnotationData,
-        comments: testCommentData,
+        annotations: testAnnotationsData,
+        comments: testCommentsData,
         searches: testTracksData,
         tracks: testTrackData,
         user: {
         },
-        votes: testVoteData
+        votes: testVotesData
     },
     errors: {
         annotationErrors: [""],

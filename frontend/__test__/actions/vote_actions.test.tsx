@@ -1,11 +1,12 @@
 import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
 import * as VoteActions from "../../actions/vote_actions";
-import { CreatedVote } from "../../my_types";
 import * as VoteAPIUtil from "../../util/api/vote_api_util";
-import { testTrackShowStore } from "../test_store_data";
+import { testTrackShowStore, testVotesData } from "../test_store_data";
+import { Middleware } from "redux";
+import { CreatedVote, Vote } from "../../my_types";
 
-const middlewares = [ thunk ];
+const middlewares: Array<Middleware> = [ thunk ];
 const mockStore = configureMockStore(middlewares);
 
 describe("vote actions", () => {
@@ -18,6 +19,7 @@ describe("vote actions", () => {
         });
     });
     describe("functions", () => {
+        const vote: Vote = testVotesData[1];
         let store: any;
         beforeEach(() => {
             store = mockStore({ votes: {} });
@@ -35,8 +37,8 @@ describe("vote actions", () => {
                     voteable_type: "Annotation",
                     voter_id: 2,
                 };
-                const data = { vote: testTrackShowStore.entities.votes[1] };
-                VoteAPIUtil.createVote = jest.fn(() => (
+                const data = { vote: vote };
+                VoteAPIUtil.createVote = jest.fn((createdVote: CreatedVote) => (
                     Promise.resolve(data)
                 ));
                 const actions = [{ type: "RECEIVE_VOTE", vote: data.vote }];
@@ -54,8 +56,8 @@ describe("vote actions", () => {
                 VoteAPIUtil.deleteVote = jest.fn((voteId: number) => (
                     Promise.resolve(data)
                 ));
-                const actions = [{ type: "REMOVE_VOTE", voteId: data.vote.id }];
-                return store.dispatch(VoteActions.deleteVote(data.vote.id)).then(() => {
+                const actions = [{ type: "REMOVE_VOTE", voteId: vote.id }];
+                return store.dispatch(VoteActions.deleteVote(vote.id)).then(() => {
                     expect(store.getActions()).toEqual(actions);
                 });
             });

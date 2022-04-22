@@ -3,12 +3,13 @@ import thunk from "redux-thunk";
 import * as SessionActions from "../../actions/session_actions";
 import * as SessionAPIUtil from "../../util/api/session_api_util";
 import * as UserAPIUtil from "../../util/api/user_api_util"
+import { Middleware } from "redux";
 
-const middlewares = [ thunk ];
+const middlewares: Array<Middleware> = [ thunk ];
 const mockStore = configureMockStore(middlewares);
 
 describe("session actions", () => {
-    describe("action constants", () => {
+    describe("constants", () => {
         test("exports a RECEIVE_CURRENT_USER constnat", () => {
             expect(SessionActions.RECEIVE_CURRENT_USER).toEqual("RECEIVE_CURRENT_USER");
         });
@@ -25,7 +26,7 @@ describe("session actions", () => {
     describe("functions", () => {
         let store: any;
         beforeEach(() => {
-            store = mockStore({tracks: {}});
+            store = mockStore({ session: {} });
         });
         afterEach(() => {
             store.clearActions();
@@ -35,10 +36,11 @@ describe("session actions", () => {
                 expect(typeof SessionActions.signup).toEqual("function");
             });
             test("dispatches RECEIVE_CURRENT_USER when signup is called", () => {
+                const data = { user: { username: "reallysmart" } };
                 SessionAPIUtil.signup = jest.fn(() => (
-                    Promise.resolve({user: { username: "reallysmart"}})
+                    Promise.resolve(data)
                 ));
-                const actions: any = [{type: "RECEIVE_CURRENT_USER", user: {username: "reallysmart"}}];
+                const actions: any = [{type: "RECEIVE_CURRENT_USER", user: data.user}];
                 return store.dispatch(SessionActions.signup({password: "reallysmart", username: "reallysmart"})).then(() => {
                     expect(store.getActions()).toEqual(actions);
                 });
@@ -49,10 +51,11 @@ describe("session actions", () => {
                 expect(typeof SessionActions.login).toEqual("function");
             });
             test("dispatches RECEIVE_CURRENT_USER when login is called", () => {
+                const data = { user: { username: "reallysmart" } };
                 SessionAPIUtil.login = jest.fn(() => (
-                    Promise.resolve({user: { username: "reallysmart"}})
+                    Promise.resolve(data)
                 ));
-                const actions: any = [{type: "RECEIVE_CURRENT_USER", user: {username: "reallysmart"}}];
+                const actions: any = [{type: "RECEIVE_CURRENT_USER", user: data.user}];
                 return store.dispatch(SessionActions.login({password: "reallysmart", username: "reallysmart"})).then(() => {
                     expect(store.getActions()).toEqual(actions);
                 });

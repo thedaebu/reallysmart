@@ -2,9 +2,11 @@ import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
 import * as SearchActions from "../../actions/search_actions";
 import * as SearchAPIUtil from "../../util/api/search_api_util";
-import { testTrackShowStore } from "../test_store_data";
+import { testTracksData } from "../test_store_data";
+import { Middleware } from "redux";
+import { IndexTrack } from "../../my_types";
 
-const middlewares = [ thunk ];
+const middlewares: Array<Middleware> = [ thunk ];
 const mockStore = configureMockStore(middlewares);
 
 describe("search actions", () => {
@@ -17,6 +19,7 @@ describe("search actions", () => {
         });
     });
     describe("functions", () => {
+        const searches: {[key: number]: IndexTrack} = testTracksData;
         let store: any;
         beforeEach(() => {
             store = mockStore({ searches: {} });
@@ -29,11 +32,11 @@ describe("search actions", () => {
                 expect(typeof SearchActions.fetchSearches).toEqual("function");
             });
             test("dispatches RECEIVE_SEARCHES when fetchSearches is called", () => {
-                const data = { searches: testTrackShowStore.entities.searches };
+                const data = { searches: searches };
                 SearchAPIUtil.fetchSearches = jest.fn((search: string) => (
                     Promise.resolve(data)
                 ));
-                const actions = [{ type: "RECEIVE_SEARCHES", searches: data.searches }];
+                const actions = [{ type: "RECEIVE_SEARCHES", searches: searches }];
                 return store.dispatch(SearchActions.fetchSearches("N")).then(() => {
                     expect(store.getActions()).toEqual(actions);
                 });
@@ -44,7 +47,7 @@ describe("search actions", () => {
                 expect(typeof SearchActions.clearSearches).toEqual("function");
             });
             test("dispatches CLEAR_SEARCHES when clearSearches is called", () => {
-                const actions = [{ type: "CLEAR_SEARCHES"}];
+                const actions = [{ type: "CLEAR_SEARCHES" }];
                 store.dispatch(SearchActions.clearSearches());
                 expect(store.getActions()).toEqual(actions);
             });

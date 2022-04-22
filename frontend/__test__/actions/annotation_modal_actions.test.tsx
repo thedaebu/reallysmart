@@ -1,8 +1,9 @@
 import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
 import * as AnnotationModalActions from "../../actions/annotation_modal_actions";
+import { Middleware } from "redux";
 
-const middlewares = [ thunk ];
+const middlewares: Array<Middleware> = [ thunk ];
 const mockStore = configureMockStore(middlewares);
 
 describe("annotation modal actions", () => {

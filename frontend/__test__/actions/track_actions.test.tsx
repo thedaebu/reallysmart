@@ -1,15 +1,16 @@
 import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
 import * as TrackActions from "../../actions/track_actions";
-import { ReceivedTrack } from "../../my_types";
 import * as TrackAPIUtil from "../../util/api/track_api_util";
-import { testTracks, testTrackShowStore } from "../test_store_data";
+import { testAnnotationsData, testCommentsData, testTrackData, testTracksData, testVotesData } from "../test_store_data";
+import { Middleware } from "redux";
+import { ReceivedTrack } from "../../my_types";
 
-const middlewares = [ thunk ];
+const middlewares: Array<Middleware> = [ thunk ];
 const mockStore = configureMockStore(middlewares);
 
 describe("track actions", () => {
-    describe("action constants", () => {
+    describe("constants", () => {
         test("exports a RECEIVE_TRACKS constant", () => {
             expect(TrackActions.RECEIVE_TRACKS).toEqual("RECEIVE_TRACKS");
         });
@@ -18,9 +19,10 @@ describe("track actions", () => {
         });
     });
     describe("functions", () => {
+        const tracks = testTracksData;
         let store: any;
         beforeEach(() => {
-            store = mockStore({tracks: {}});
+            store = mockStore({ tracks: {} });
         });
         afterEach(() => {
             store.clearActions();
@@ -30,11 +32,11 @@ describe("track actions", () => {
                 expect(typeof TrackAPIUtil.fetchTracks).toEqual("function");
             });
             test("dispatches RECEIVE_TRACKS when fetchTracks is called", () => {
-                const data = { tracks: testTracks };
+                const data = { tracks: testTracksData };
                 TrackAPIUtil.fetchTracks = jest.fn(() => (
                     Promise.resolve(data)
                 ));
-                const actions = [{ type: "RECEIVE_TRACKS", tracks: data.tracks }];
+                const actions = [{ type: "RECEIVE_TRACKS", tracks: tracks }];
                 return store.dispatch(TrackActions.fetchTracks()).then(() => {
                     expect(store.getActions()).toEqual(actions);
                 });
@@ -46,16 +48,16 @@ describe("track actions", () => {
             });
             test("dispatches RECEIVE_TRACK when fetchTrack is called", () => {
                 const data: ReceivedTrack = { 
-                    annotations: testTrackShowStore.entities.annotations,
-                    comments: testTrackShowStore.entities.comments,
-                    track: testTrackShowStore.entities.tracks[1],
-                    votes: testTrackShowStore.entities.votes
+                    annotations: testAnnotationsData,
+                    comments: testCommentsData,
+                    track: testTrackData,
+                    votes: testVotesData
                 };
                 TrackAPIUtil.fetchTrack = jest.fn(() => (
                     Promise.resolve(data)
                 ));
                 const actions = [{type: "RECEIVE_TRACK", annotations: data.annotations, comments: data.comments, track: data.track, votes: data.votes}];
-                return store.dispatch(TrackActions.fetchTrack("1")).then(() => {
+                return store.dispatch(TrackActions.fetchTrack(data.track[1].id.toString())).then(() => {
                     expect(store.getActions()).toEqual(actions);
                 });
             });
