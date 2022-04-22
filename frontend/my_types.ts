@@ -96,13 +96,13 @@ export type Action = {
     commentId: number,
     comments: {[key: number]: Comment},
     errors: Array<string>,
-    searches: {[key: number]: Track},
+    searches: {[key: number]: IndexTrack},
     track: Track,
-    tracks: {[key: number]: Track},
+    tracks: {[key: number]: IndexTrack},
     type: string,
     user: User,
     vote: Vote,
-    votes:{[key: number]: Track},
+    votes:{[key: number]: Vote},
     voteId: number
 }
 
