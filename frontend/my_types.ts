@@ -31,7 +31,7 @@ export type ReceivedSearches = {
 export type ReceivedTrack = {
     annotations: {[key:number]: Annotation},
     comments: {[key:number]: Comment}
-    track: Track,
+    track: {[key:number]: Track},
     votes: {[key:number]: Vote}
 }
 export type ReceivedTracks = {
@@ -61,7 +61,7 @@ export type UpdatedComment = {
     id: number
 }
 
-// used for container files
+// used for redux store
 export type State = {
     entities: Entities,
     errors: Errors,
@@ -71,13 +71,13 @@ export type State = {
 type Entities = {
     annotations: {[key:number]: Annotation},
     comments: {[key:number]: Comment},
-    searches: {[key:number]: Track},
+    searches: {[key:number]: Track} | {[key:number]: IndexTrack},
     tracks: {[key:number]: Track},
     user: {[key:number]: User},
     votes: {[key:number]: Vote}
 }
 type Errors = {
-    annotationErros: Array<string>,
+    annotationErrors: Array<string>,
     sessionErrors: Array<string>
 }
 type AnnotationModal = {
@@ -96,13 +96,13 @@ export type Action = {
     commentId: number,
     comments: {[key: number]: Comment},
     errors: Array<string>,
-    searches: {[key: number]: Track},
+    searches: {[key: number]: IndexTrack},
     track: Track,
-    tracks: {[key: number]: Track},
+    tracks: {[key: number]: IndexTrack},
     type: string,
     user: User,
     vote: Vote,
-    votes:{[key: number]: Track},
+    votes:{[key: number]: Vote},
     voteId: number
 }
 
