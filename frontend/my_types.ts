@@ -1,5 +1,3 @@
-import { ConfiguredAppStore } from "./store/store"
-
 // used for action files
 export type CreatedAnnotation = {
     annotator_id: number,
@@ -90,7 +88,7 @@ type AnnotationModal = {
     annotationModal: boolean
 };
 type SessionId = {
-    id: number
+    id: number | null
 };
 
 // used for reducer files
@@ -160,9 +158,6 @@ export type Vote = {
     voteable_type: string,
     voter_id: number
 };
-
-// used for Store
-export type Store = ConfiguredAppStore;
 
 // used for Window
 export type Window = {

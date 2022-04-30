@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import configureAppStore from "./store/store";
-import { PreloadedState, Store, Window } from "./my_types";
+import configureAppStore, { Store } from "./store/store";
+import { PreloadedState, Window } from "./my_types";
 import Root from "./components/root";
 
 declare const window: Window

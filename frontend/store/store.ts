@@ -17,5 +17,5 @@ function configureAppStore(preloadedState: State | {} = {}) {
     return store;
 };
 
-export type ConfiguredAppStore = ReturnType<typeof configureAppStore>;
+export type Store = ReturnType<typeof configureAppStore>;
 export default configureAppStore;
