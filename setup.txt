@@ -15,6 +15,10 @@ bundle exec rails db:migrate
 bundle exec rails db:schema:load
 bundle exec rails db:seed
 
+# pid
+lsof -wni tcp:3000
+kill -9 <PID>
+
 # fonts
 font-family: 'Programme', sans-serif;
 font-family: 'Programme Regular', sans-serif;
@@ -31,6 +35,8 @@ actions
 currentUser/no currentUser
 
 rename variables for actions,reducers,utils
+
+responsiveness
 
 firebase
 redis
