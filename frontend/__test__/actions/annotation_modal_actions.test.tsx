@@ -30,7 +30,6 @@ describe("annotation modal actions", () => {
             test("dispatches OPEN_ANNOTATION_MODAL when openAnnotationModal is called", () => {
                 const actions = [{ type: "OPEN_ANNOTATION_MODAL" }];
                 store.dispatch(AnnotationModalActions.openAnnotationModal());
-                console.log(store.getActions())
                 expect(store.getActions()).toEqual(actions);
             });
         });

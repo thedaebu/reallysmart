@@ -1,25 +1,24 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import configureAppStore, { Store } from "./store/store";
+import { PreloadedState, Window } from "./my_types";
 import Root from "./components/root";
-import configureStore from "./store/store";
-import { Window } from "./my_types";
-import { Store } from "redux";
 
 declare const window: Window
 
 document.addEventListener("DOMContentLoaded", () => {
-    let store: any;
+    let store: Store;
     if (window.currentUser) {
-        const preloadedState = {
+        const preloadedState: PreloadedState = {
           entities: {
             user: { [window.currentUser.id]: window.currentUser }
           },
           session: { id: window.currentUser.id }
         };
-        store = configureStore(preloadedState);
+        store = configureAppStore(preloadedState);
         delete window.currentUser;
     } else {
-        store = configureStore();
+        store = configureAppStore();
     }
 
     const root = document.getElementById("root");

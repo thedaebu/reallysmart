@@ -6,43 +6,43 @@ export type CreatedAnnotation = {
     end_index: number,
     start_index: number,
     track_id: number
-}
+};
 export type CreatedComment = {
     body: string,
     commentable_id: number
     commentable_type: string,
     commenter_id: number,
     commenter_name: string
-}
+};
 export type CreatedVote = {
     voteable_type: string,
     voteable_id: number,
     voter_id: number
-}
+};
 export type ReceivedAnnotation = {
     annotation: Annotation
-}
+};
 export type ReceivedComment = {
     comment: Comment
-}
+};
 export type ReceivedSearches = {
-    searches: {[key: number]: Track}
-}
+    searches: { [key: number]: Track}
+};
 export type ReceivedTrack = {
-    annotations: {[key:number]: Annotation},
-    comments: {[key:number]: Comment}
-    track: {[key:number]: Track},
-    votes: {[key:number]: Vote}
-}
+    annotations: { [key:number]: Annotation },
+    comments: { [key:number]: Comment }
+    track: { [key:number]: Track },
+    votes: { [key:number]: Vote }
+};
 export type ReceivedTracks = {
-    tracks: {[key: number]: IndexTrack}
-}
+    tracks: { [key: number]: IndexTrack }
+};
 export type ReceivedUser = {
     user: User
-}
+};
 export type ReceivedVote = {
     vote: Vote
-}
+};
 export type UpdatedAnnotation = {
     annotator_id: number,
     annotator_name: string,
@@ -51,7 +51,7 @@ export type UpdatedAnnotation = {
     id: number,
     start_index: number,
     track_id: number
-}
+};
 export type UpdatedComment = {
     body: string,
     commentable_id: number
@@ -59,52 +59,56 @@ export type UpdatedComment = {
     commenter_id: number,
     commenter_name: string,
     id: number
-}
+};
 
 // used for redux store
+export type PreloadedState = {
+    entities: { user: { [key: number]: User } },
+    session: {id: number}
+};
 export type State = {
     entities: Entities,
     errors: Errors,
     modal: AnnotationModal,
     session: SessionId
-}
+};
 type Entities = {
-    annotations: {[key:number]: Annotation},
-    comments: {[key:number]: Comment},
-    searches: {[key:number]: Track} | {[key:number]: IndexTrack},
-    tracks: {[key:number]: Track},
-    user: {[key:number]: User},
-    votes: {[key:number]: Vote}
-}
+    annotations: { [key:number]: Annotation },
+    comments: { [key:number]: Comment },
+    searches: { [key:number]: Track } | { [key:number]: IndexTrack },
+    tracks: { [key:number]: Track },
+    user: { [key:number]: User },
+    votes: { [key:number]: Vote }
+};
 type Errors = {
     annotationErrors: Array<string>,
     sessionErrors: Array<string>
-}
+};
 type AnnotationModal = {
     annotationModal: boolean
-}
+};
 type SessionId = {
-    id: number
-}
+    id: number | null
+};
 
 // used for reducer files
 export type Action = {
     annotation: Annotation,
     annotationId: number,
-    annotations: {[key: number]: Annotation},
+    annotations: { [key: number]: Annotation },
     comment: Comment,
     commentId: number,
-    comments: {[key: number]: Comment},
+    comments: { [key: number]: Comment },
     errors: Array<string>,
-    searches: {[key: number]: IndexTrack},
+    searches: { [key: number]: IndexTrack },
     track: Track,
-    tracks: {[key: number]: IndexTrack},
+    tracks: { [key: number]: IndexTrack },
     type: string,
     user: User,
     vote: Vote,
-    votes:{[key: number]: Vote},
+    votes:{ [key: number]: Vote },
     voteId: number
-}
+};
 
 // main feature types
 export type Annotation = {
@@ -115,7 +119,7 @@ export type Annotation = {
     id: number,
     start_index: number,
     track_id: number
-}
+};
 export type Comment = {
     body: string,
     commentable_id: number,
@@ -124,17 +128,17 @@ export type Comment = {
     commenter_name: string,
     id: number,
     updated_at: string
-}
+};
 export type IndexTrack = {
     artist: string,
     artwork_path: string,
     id: number,
     title: string
-}
+};
 export type SessionUser = {
     password: string,
     username: string
-}
+};
 export type Track = {
     artist: string,
     artwork_path: string,
@@ -142,18 +146,18 @@ export type Track = {
     lyrics: string,
     spotify_path: string,
     title: string
-}
+};
 export type User = {
     id: number,
     username: string,
     vote_ids: Array<number>
-}
+};
 export type Vote = {
     id: number,
     voteable_id: number,
     voteable_type: string,
     voter_id: number
-}
+};
 
 // used for Window
 export type Window = {
@@ -166,4 +170,4 @@ export type Window = {
     linkedin: string,
     scrollTo: Function,
     website: string
-}
+};

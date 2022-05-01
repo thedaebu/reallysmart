@@ -1,5 +1,7 @@
+import { Annotation, Comment, IndexTrack, State, Track } from "../my_types";
+
 // test data
-export const testAnnotationsData = {
+export const testAnnotationsData: { [key: number]: Annotation } = {
     1: {
         annotator_id: 1,
         annotator_name: "reallysmart",
@@ -19,7 +21,7 @@ export const testAnnotationsData = {
         track_id: 1
     }
 };
-export const testCommentsData = {
+export const testCommentsData: { [key: number]: Comment } = {
     1: {
         body: "This is one of my new favorite songs now.",
         commentable_id: 1,
@@ -48,7 +50,7 @@ export const testCommentsData = {
         updated_at: "2022-03-20T17:56:15.629Z"
     }
 };
-export const testTrackData = {
+export const testTrackData: { [key: number]: Track } = {
     1: {
         artist: "NIKI",
         artwork_path: "https://i.ytimg.com/vi/GBqqoPSJ9GY/maxresdefault.jpg",
@@ -58,7 +60,7 @@ export const testTrackData = {
         spotify_path: "https://open.spotify.com/embed/track/0h11wE1hTwKMxYd1NACgNb?si=acc1559482e74faa"
     }
 };
-export const testTracksData = {
+export const testTracksData: { [key: number]: IndexTrack } = {
     1:  {
         artist: "NIKI",
         artwork_path: "https://i.ytimg.com/vi/GBqqoPSJ9GY/maxresdefault.jpg",
@@ -115,9 +117,19 @@ export const testVotesData = {
 export const testTrackIndexStore = {
     entities: {
         tracks: testTracksData
+    },
+    errors: {
+        annotationErrors: [""],
+        sessionErrors: [""]
+    },
+    modal: {
+        annotationModal: false
+    },
+    session: {
+        id: {}
     }
 };
-export const testTrackShowStore = {
+export const testTrackShowStore: State = {
     entities: {
         annotations: testAnnotationsData,
         comments: testCommentsData,
@@ -135,7 +147,7 @@ export const testTrackShowStore = {
         annotationModal: false
     },
     session: {
-        id: {}
+        id: null
     }
 };
 
