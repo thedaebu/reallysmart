@@ -28,15 +28,5 @@ font-family: 'Ubuntu Condensed', sans-serif;
 font-family: 'Raleway', sans-serif;
 
 issues:
---testing--
-actions
-    const exports
-    test actions using utils
-currentUser/no currentUser
-
-rename variables for actions,reducers,utils
-
-responsiveness
-
 firebase
 redis
