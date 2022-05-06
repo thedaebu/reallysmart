@@ -1,4 +1,4 @@
-import { Annotation, Comment, IndexTrack, State, Track } from "../my_types";
+import { Annotation, Comment, IndexTrack, State, Track, User, Vote } from "../my_types";
 
 // test data
 export const testAnnotationsData: { [key: number]: Annotation } = {
@@ -98,12 +98,19 @@ export const testTracksData: { [key: number]: IndexTrack } = {
         title: "Stay"
     }
 };
-export const testVotesData = {
+export const testUserData: { [key: number]: User } = {
+    1: {
+        id: 1,
+        username: "reallysmart",
+        vote_ids: [1]
+    }
+}
+export const testVotesData: { [key: number]: Vote } = {
     1: {
         id: 1,
         voteable_id: 1,
         voteable_type: "Annotation",
-        voter_id: 2,
+        voter_id: 1,
     },
     6: {
         id: 6,
@@ -114,9 +121,14 @@ export const testVotesData = {
 };
 
 // test stores
-export const testTrackIndexStore = {
+export const testIndexStore: State = {
     entities: {
-        tracks: testTracksData
+        annotations: {},
+        comments: {},
+        searches: {},
+        tracks: testTracksData,
+        user: {},
+        votes: {}
     },
     errors: {
         annotationErrors: [""],
@@ -126,17 +138,16 @@ export const testTrackIndexStore = {
         annotationModal: false
     },
     session: {
-        id: {}
+        id: null
     }
 };
-export const testTrackShowStore: State = {
+export const testShowStore: State = {
     entities: {
         annotations: testAnnotationsData,
         comments: testCommentsData,
         searches: testTracksData,
         tracks: testTrackData,
-        user: {
-        },
+        user: {},
         votes: testVotesData
     },
     errors: {
@@ -150,6 +161,26 @@ export const testTrackShowStore: State = {
         id: null
     }
 };
+export const testShowStoreWithUser: State = {
+    entities: {
+        annotations: testAnnotationsData,
+        comments: testCommentsData,
+        searches: testTracksData,
+        tracks: testTrackData,
+        user: testUserData,
+        votes: testVotesData
+    },
+    errors: {
+        annotationErrors: [""],
+        sessionErrors: [""]
+    },
+    modal: {
+        annotationModal: false
+    },
+    session: {
+        id: 1
+    }
+}
 
 // test match
 export const testMatch = {
