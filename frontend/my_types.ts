@@ -26,7 +26,7 @@ export type ReceivedComment = {
     comment: Comment
 };
 export type ReceivedSearches = {
-    searches: { [key: number]: Track}
+    searches: { [key: number]: Track }
 };
 export type ReceivedTrack = {
     annotations: { [key:number]: Annotation },
@@ -64,7 +64,7 @@ export type UpdatedComment = {
 // used for redux store
 export type PreloadedState = {
     entities: { user: { [key: number]: User } },
-    session: {id: number}
+    session: { id: number }
 };
 export type State = {
     entities: Entities,
@@ -75,7 +75,7 @@ export type State = {
 type Entities = {
     annotations: { [key:number]: Annotation },
     comments: { [key:number]: Comment },
-    searches: { [key:number]: Track } | { [key:number]: IndexTrack },
+    searches: { [key:number]: IndexTrack },
     tracks: { [key:number]: Track },
     user: { [key:number]: User },
     votes: { [key:number]: Vote }
