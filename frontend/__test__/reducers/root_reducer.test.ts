@@ -4,9 +4,10 @@ import errorsReducer from "../../reducers/errors_reducer";
 import modalReducer from "../../reducers/modal_reducer";
 import rootReducer from "../../reducers/root_reducer";
 import sessionReducer from "../../reducers/session_reducer";
+import { Store } from "../../store/store";
 
 describe("root reducer", () => {
-    let testStore: any;
+    let testStore: Store;
     beforeAll(() => {
         testStore = createStore(rootReducer);
     })
