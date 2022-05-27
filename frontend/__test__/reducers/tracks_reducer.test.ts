@@ -1,8 +1,8 @@
 import { createStore } from "redux";
 import { IndexTrack, Track } from "../../my_types";
+import { Store } from "../../store/store";
 import rootReducer from "../../reducers/root_reducer";
 import tracksReducer from "../../reducers/tracks_reducer";
-import { Store } from "../../store/store";
 import { testTrackData1, testTrackData2, testTracksData } from "../test_store_data";
 
 describe("tracks reducer", () => {
