@@ -6,7 +6,6 @@ import { Vote } from "../../my_types";
 
 describe("votes reducer", () => {
     const testVotes: { [key: number]: Vote } = testVotesData;
-    Object.freeze(testVotes);
     const testVote: { [key: number]: Vote } = {
         3: {
             id: 3,
@@ -15,7 +14,7 @@ describe("votes reducer", () => {
             voter_id: 1
         }
     };
-    const combinedVotes: { [key: number]: Vote } = Object.assign({}, testVotes, testVote);
+    const combinedVotes: { [key: number]: Vote } = {...testVotes, ...testVote};
 
     test("exports a function", () => {
         expect(typeof votesReducer).toEqual("function");
@@ -48,26 +47,6 @@ describe("votes reducer", () => {
                 expect(testVotes).toEqual(testVotes);
             });
         });
-        describe("RECEIVE_ANNOTATION action", () => {
-            test("returns vote data", () => {
-                const state: { [key: number]: Vote } = votesReducer({}, { type: "RECEIVE_ANNOTATION", votes: testVotes });
-                expect(state).toEqual(testVotes);
-            });
-            test("does not modify the previous state", () => {
-                const state: { [key: number]: Vote } = votesReducer(testVotes, { type: "RECEIVE_ANNOTATION", votes: combinedVotes });
-                expect(testVotes).toEqual(testVotes);
-            });
-        });
-        describe("RECEIVE_COMMENT action", () => {
-            test("returns vote data", () => {
-                const state: { [key: number]: Vote } = votesReducer({}, { type: "RECEIVE_COMMENT", votes: testVotes });
-                expect(state).toEqual(testVotes);
-            });
-            test("does not modify the previous state", () => {
-                const state: { [key: number]: Vote } = votesReducer(testVotes, { type: "RECEIVE_COMMENT", votes: combinedVotes });
-                expect(testVotes).toEqual(testVotes);
-            });
-        });
         describe("RECEIVE_VOTE action", () => {
             test("returns data with updated vote", () => {
                 const state: { [key: number]: Vote } = votesReducer(testVotes, { type: "RECEIVE_VOTE", vote: testVote[3] });
@@ -95,17 +74,17 @@ describe("votes reducer", () => {
             testStore = createStore(rootReducer);
         });
         test("contains the correct vote data for RECEIVE_TRACK action", () => {
-            testStore.dispatch({ type: "RECEIVE_TRACK", votes: testVotes, track: { id: 1 } });
+            testStore.dispatch({ type: "RECEIVE_TRACK", votes: testVotes, annotations: {}, comments: {}, track: {} });
             expect(testStore.getState().entities.votes).toEqual(testVotes);
         });
         test("contains the correct data for RECEIVE_VOTE action", () => {
-            testStore.dispatch({ type: "RECEIVE_TRACK", votes: testVotes, track: { id: 1 } });
+            testStore.dispatch({ type: "RECEIVE_TRACK", votes: testVotes, annotations: {}, comments: {}, track: {} });
             expect(testStore.getState().entities.votes).toEqual(testVotes);
             testStore.dispatch({ type: "RECEIVE_VOTE", vote: testVote[3] });
             expect(testStore.getState().entities.votes).toEqual(combinedVotes);
         });
         test("contains the correct data for REMOVE_VOTE action", () => {
-            testStore.dispatch({ type: "RECEIVE_TRACK", votes: combinedVotes, track: { id: 1 } });
+            testStore.dispatch({ type: "RECEIVE_TRACK", votes: combinedVotes, annotations: {}, comments: {}, track: {} });
             expect(testStore.getState().entities.votes).toEqual(combinedVotes);
             testStore.dispatch({ type: "REMOVE_VOTE", voteId: 3 });
             expect(testStore.getState().entities.votes).toEqual(testVotes);

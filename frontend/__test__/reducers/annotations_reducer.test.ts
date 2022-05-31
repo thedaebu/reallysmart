@@ -78,17 +78,17 @@ describe("annotations reducer", () => {
             testStore = createStore(rootReducer);
         });
         test("contains the correct annotation data for RECEIVE_TRACK action", () => {
-            testStore.dispatch({ type: "RECEIVE_TRACK", annotations: testAnnotations, track: { id: 1 } });
+            testStore.dispatch({ type: "RECEIVE_TRACK", annotations: testAnnotations, comments: {}, track: {}, votes: {} });
             expect(testStore.getState().entities.annotations).toEqual(testAnnotations);
         });
         test("contains the correct data for RECEIVE_ANNOTATION action", () => {
-            testStore.dispatch({ type: "RECEIVE_TRACK", annotations: testAnnotations, track: { id: 1 } });
+            testStore.dispatch({ type: "RECEIVE_TRACK", annotations: testAnnotations, comments: {}, track: {}, votes: {} });
             expect(testStore.getState().entities.annotations).toEqual(testAnnotations);
             testStore.dispatch({ type: "RECEIVE_ANNOTATION", annotation: testAnnotation[3] });
             expect(testStore.getState().entities.annotations).toEqual(combinedAnnotations);
         });
         test("contains the correct data for REMOVE_ANNOTATION action", () => {
-            testStore.dispatch({ type: "RECEIVE_TRACK", annotations: combinedAnnotations, track: { id: 1 } });
+            testStore.dispatch({ type: "RECEIVE_TRACK", annotations: combinedAnnotations, comments: {}, track: {}, votes: {} });
             expect(testStore.getState().entities.annotations).toEqual(combinedAnnotations);
             testStore.dispatch({ type: "REMOVE_ANNOTATION", annotationId: 3 });
             expect(testStore.getState().entities.annotations).toEqual(testAnnotations);

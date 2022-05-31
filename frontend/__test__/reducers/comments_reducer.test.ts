@@ -78,17 +78,17 @@ describe("comments reducer", () => {
             testStore = createStore(rootReducer);
         });
         test("contains the correct comment data for RECEIVE_TRACK action", () => {
-            testStore.dispatch({ type: "RECEIVE_TRACK", comments: testComments, track: { id: 1 } });
+            testStore.dispatch({ type: "RECEIVE_TRACK", comments: testComments, annotations: {}, track: {}, votes: {} });
             expect(testStore.getState().entities.comments).toEqual(testComments);
         });
         test("contains the correct data for RECEIVE_COMMENT action", () => {
-            testStore.dispatch({ type: "RECEIVE_TRACK", comments: testComments, track: { id: 1 } });
+            testStore.dispatch({ type: "RECEIVE_TRACK", comments: testComments, annotations: {}, track: {}, votes: {} });
             expect(testStore.getState().entities.comments).toEqual(testComments);
             testStore.dispatch({ type: "RECEIVE_COMMENT", comment: testComment[4] });
             expect(testStore.getState().entities.comments).toEqual(combinedComments);
         });
         test("contains the correct data for REMOVE_COMMENT action", () => {
-            testStore.dispatch({ type: "RECEIVE_TRACK", comments: combinedComments, track: { id: 1 } });
+            testStore.dispatch({ type: "RECEIVE_TRACK", comments: combinedComments, annotations: {}, track: {}, votes: {} });
             expect(testStore.getState().entities.comments).toEqual(combinedComments);
             testStore.dispatch({ type: "REMOVE_COMMENT", commentId: 4 });
             expect(testStore.getState().entities.comments).toEqual(testComments);
