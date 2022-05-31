@@ -47,7 +47,7 @@ describe("comments reducer", () => {
                 expect(state).toEqual(testComments);
             });
             test("does not modify the previous state", () => {
-                const state: { [key:number]: Comment } = commentsReducer(testComments, { type: "RECEIVE_TRACK", comments: testComments });
+                const state: { [key:number]: Comment } = commentsReducer(testComments, { type: "RECEIVE_TRACK", comments: combinedComments });
                 expect(testComments).toEqual(testComments);
             });
         });
