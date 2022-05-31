@@ -28,12 +28,12 @@ describe("annotations reducer", () => {
             expect(annotationsReducer(undefined, {})).toEqual({});
         });
         test("returns the previous state if an action is not matched", () => {
-            const state = annotationsReducer(testAnnotations, { type: "NONANNOTATION_ACTION"});
+            const state: { [key:number]: Annotation } = annotationsReducer(testAnnotations, { type: "NONANNOTATION_ACTION"});
             expect(state).toEqual(testAnnotations);
         });
         describe("RECEIVE_TRACKS action", () => {
             test("removes all annotation data", () => {
-                const state = annotationsReducer(testAnnotations, { type: "RECEIVE_TRACKS" });
+                const state: { [key:number]: Annotation } = annotationsReducer(testAnnotations, { type: "RECEIVE_TRACKS" });
                 expect(state).toEqual({});
             });
             test("does not modify the previous state", () => {
@@ -43,7 +43,7 @@ describe("annotations reducer", () => {
         });
         describe("RECEIVE_TRACK action", () => {
             test("returns annotation data", () => {
-                const state = annotationsReducer({}, { type: "RECEIVE_TRACK", annotations: testAnnotations });
+                const state: { [key:number]: Annotation } = annotationsReducer({}, { type: "RECEIVE_TRACK", annotations: testAnnotations });
                 expect(state).toEqual(testAnnotations);
             });
             test("does not modify the previous state", () => {
@@ -53,7 +53,7 @@ describe("annotations reducer", () => {
         });
         describe("RECEIVE_ANNOTATION action", () => {
             test("returns data with updated annotation", () => {
-                const state = annotationsReducer(testAnnotations, { type: "RECEIVE_ANNOTATION", annotation: testAnnotation[3] });
+                const state: { [key:number]: Annotation } = annotationsReducer(testAnnotations, { type: "RECEIVE_ANNOTATION", annotation: testAnnotation[3] });
                 expect(state).toEqual(combinedAnnotations);
             });
             test("does not modify the previous state", () => {
@@ -63,7 +63,7 @@ describe("annotations reducer", () => {
         });
         describe("REMOVE_ANNOTATION action", () => {
             test("returns data without removed annotation", () => {
-                const state = annotationsReducer(combinedAnnotations, { type: "REMOVE_ANNOTATION", annotationId: 3 });
+                const state: { [key:number]: Annotation } = annotationsReducer(combinedAnnotations, { type: "REMOVE_ANNOTATION", annotationId: 3 });
                 expect(state).toEqual(testAnnotations);
             });
             test("does not modify the previous state", () => {
@@ -73,11 +73,11 @@ describe("annotations reducer", () => {
         });
     });
     describe("dispatch to store", () => {
-        let testStore: Store;
-        beforeAll(() => {
+        let testStore: any;
+        beforeEach(() => {
             testStore = createStore(rootReducer);
         });
-        test("contains the correct annotations data for RECEIVE_TRACK action", () => {
+        test("contains the correct annotation data for RECEIVE_TRACK action", () => {
             testStore.dispatch({ type: "RECEIVE_TRACK", annotations: testAnnotations, track: { id: 1 } });
             expect(testStore.getState().entities.annotations).toEqual(testAnnotations);
         });
