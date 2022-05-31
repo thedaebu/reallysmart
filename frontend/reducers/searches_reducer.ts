@@ -6,9 +6,9 @@ const searchesReducer = (state: {[key: number]: Track} = {}, action: Action) => 
 
     switch (action.type) {
         case RECEIVE_SEARCHES:
-            return Object.assign({}, action.searches);
+            return action.searches;
         case CLEAR_SEARCHES:
-            return Object.assign({})
+            return {};
         default:
             return state;
     }
