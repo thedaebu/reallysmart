@@ -10,12 +10,12 @@ export type CreatedAnnotation = {
 export type CreatedComment = {
     body: string,
     commentable_id: number
-    commentable_type: string,
+    commentable_type: "Track" | "Annotation",
     commenter_id: number,
     commenter_name: string
 };
 export type CreatedVote = {
-    voteable_type: string,
+    voteable_type: "Annotation" | "Comment",
     voteable_id: number,
     voter_id: number
 };
@@ -26,7 +26,7 @@ export type ReceivedComment = {
     comment: Comment
 };
 export type ReceivedSearches = {
-    searches: { [key: number]: Track }
+    searches: { [key: number]: IndexTrack }
 };
 export type ReceivedTrack = {
     annotations: { [key:number]: Annotation },
@@ -55,7 +55,7 @@ export type UpdatedAnnotation = {
 export type UpdatedComment = {
     body: string,
     commentable_id: number
-    commentable_type: string,
+    commentable_type: "Track" | "Annotation",
     commenter_id: number,
     commenter_name: string,
     id: number
@@ -76,7 +76,7 @@ type Entities = {
     annotations: { [key:number]: Annotation },
     comments: { [key:number]: Comment },
     searches: { [key:number]: IndexTrack },
-    tracks: { [key:number]: Track },
+    tracks: { [key:number]: Track | IndexTrack},
     user: { [key:number]: User },
     votes: { [key:number]: Vote }
 };
@@ -123,7 +123,7 @@ export type Annotation = {
 export type Comment = {
     body: string,
     commentable_id: number,
-    commentable_type: string,
+    commentable_type: "Track" | "Annotation",
     commenter_id: number,
     commenter_name: string,
     id: number,
@@ -155,7 +155,7 @@ export type User = {
 export type Vote = {
     id: number,
     voteable_id: number,
-    voteable_type: string,
+    voteable_type: "Annotation" | "Comment",
     voter_id: number
 };
 
