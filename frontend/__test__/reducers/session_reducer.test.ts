@@ -41,4 +41,20 @@ describe("sessions reducer", () => {
             });
         });
     });
+    describe("dispatch to store", () => {
+        let testStore: any;
+        beforeEach(() => {
+            testStore = createStore(rootReducer);
+        });
+        test("contains the correct data for RECEIVE_CURRENT_USER action", () => {
+            testStore.dispatch({type: "RECEIVE_CURRENT_USER", user: testUser[1]});
+            expect(testStore.getState().session).toEqual(testSession);
+        });
+        test("contains the correct data for LOGOUT_CURRENT_USER", () => {
+            testStore.dispatch({type: "RECEIVE_CURRENT_USER", user: testUser[1]});
+            expect(testStore.getState().session).toEqual(testSession);
+            testStore.dispatch({type: "LOGOUT_CURRENT_USER"});
+            expect(testStore.getState().session).toEqual({id: null});
+        });
+    });
 });
