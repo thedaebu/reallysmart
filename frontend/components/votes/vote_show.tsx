@@ -9,8 +9,8 @@ import { Annotation, Comment, CreatedVote, ReceivedVote, State, User, Vote } fro
 
 type Props = {
     parent: Annotation | Comment,
-    voteableType: string
-}
+    voteableType: "Annotation" | "Comment"
+};
 
 function VoteShow(props: Props) {
     const { parent, voteableType } = props;
