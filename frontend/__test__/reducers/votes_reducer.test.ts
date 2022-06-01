@@ -73,7 +73,7 @@ describe("votes reducer", () => {
         beforeEach(() => {
             testStore = createStore(rootReducer);
         });
-        test("contains the correct vote data for RECEIVE_TRACK action", () => {
+        test("contains the correct data for RECEIVE_TRACK action", () => {
             testStore.dispatch({ type: "RECEIVE_TRACK", votes: testVotes, annotations: {}, comments: {}, track: {} });
             expect(testStore.getState().entities.votes).toEqual(testVotes);
         });

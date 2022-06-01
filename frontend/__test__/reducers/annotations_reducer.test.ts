@@ -77,7 +77,7 @@ describe("annotations reducer", () => {
         beforeEach(() => {
             testStore = createStore(rootReducer);
         });
-        test("contains the correct annotation data for RECEIVE_TRACK action", () => {
+        test("contains the correct data for RECEIVE_TRACK action", () => {
             testStore.dispatch({ type: "RECEIVE_TRACK", annotations: testAnnotations, comments: {}, track: {}, votes: {} });
             expect(testStore.getState().entities.annotations).toEqual(testAnnotations);
         });

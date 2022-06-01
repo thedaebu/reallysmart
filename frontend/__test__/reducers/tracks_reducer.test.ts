@@ -54,11 +54,11 @@ describe("tracks reducer", () => {
         beforeAll(() => {
             testStore = createStore(rootReducer);
         });
-        test("contains the correct tracks data for RECEIVE_TRACKS action", () => {
+        test("contains the correct data for RECEIVE_TRACKS action", () => {
             testStore.dispatch({ type: "RECEIVE_TRACKS", tracks: testTracks });
             expect(testStore.getState().entities.tracks).toEqual(testTracks);
         });
-        test("contains the correct track data for RECEIVE_TRACK action", () => {
+        test("contains the correct data for RECEIVE_TRACK action", () => {
             testStore.dispatch({ type: "RECEIVE_TRACK", track: testTrack1[1], annotations: {}, comments: {}, votes: {} });
             expect(testStore.getState().entities.tracks).toEqual(testTrack1);
             testStore.dispatch({ type: "RECEIVE_TRACK", track: testTrack2[2], annotations: {}, comments: {}, votes: {} });

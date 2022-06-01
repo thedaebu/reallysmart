@@ -77,7 +77,7 @@ describe("comments reducer", () => {
         beforeEach(() => {
             testStore = createStore(rootReducer);
         });
-        test("contains the correct comment data for RECEIVE_TRACK action", () => {
+        test("contains the correct data for RECEIVE_TRACK action", () => {
             testStore.dispatch({ type: "RECEIVE_TRACK", comments: testComments, annotations: {}, track: {}, votes: {} });
             expect(testStore.getState().entities.comments).toEqual(testComments);
         });
