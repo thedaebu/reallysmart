@@ -7,12 +7,12 @@ import userReducer from "./user_reducer";
 import votesReducer from "./votes_reducer";
 
 const entitiesReducer = combineReducers({
-    user: userReducer,
-    tracks: tracksReducer,
     annotations: annotationsReducer,
     comments: commentsReducer,
-    votes: votesReducer,
-    searches: searchesReducer
+    searches: searchesReducer,
+    tracks: tracksReducer,
+    user: userReducer,
+    votes: votesReducer
 });
 
 export default entitiesReducer;
