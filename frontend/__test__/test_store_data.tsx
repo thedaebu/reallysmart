@@ -113,7 +113,7 @@ export const testUserData: { [key: number]: User } = {
         username: "reallysmart",
         vote_ids: [1]
     }
-}
+};
 export const testVotesData: { [key: number]: Vote } = {
     1: {
         id: 1,
@@ -209,7 +209,7 @@ export const testShowStoreWithUser: State = {
     session: {
         id: 1
     }
-}
+};
 
 // test match
 export const testMatch = {
