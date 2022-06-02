@@ -121,8 +121,8 @@ export const testVotesData: { [key: number]: Vote } = {
         voteable_type: "Annotation",
         voter_id: 1,
     },
-    6: {
-        id: 6,
+    2: {
+        id: 2,
         voteable_id: 1,
         voteable_type: "Comment",
         voter_id: 2
