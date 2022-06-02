@@ -1,7 +1,7 @@
 import React, { MouseEvent, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router";
-import { State, Track } from "../../my_types";
+import { IndexTrack, State } from "../../my_types";
 import SearchIndexItem from "./search_index_item";
 
 type Props = {
@@ -12,7 +12,7 @@ type Props = {
 function SearchIndex(props: Props) {
     const { clearSearchField, searchField } = props;
 
-    const searches: Array<Track> = useSelector((state: State) => Object.values(state.entities.searches));
+    const searches: Array<IndexTrack> = useSelector((state: State) => Object.values(state.entities.searches));
 
     const location: string = useLocation().pathname;
 
@@ -53,7 +53,7 @@ function SearchIndex(props: Props) {
 
     function searchIndexItems() {
         return (
-            searches.slice(0, 5).map((track: Track, idx: number) => {
+            searches.slice(0, 5).map((track: IndexTrack, idx: number) => {
                 return ( 
                     <SearchIndexItem 
                         key={idx}

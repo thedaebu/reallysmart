@@ -2,7 +2,7 @@ import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
 import * as VoteActions from "../../actions/vote_actions";
 import * as VoteAPIUtil from "../../util/api/vote_api_util";
-import { testTrackShowStore, testVotesData } from "../test_store_data";
+import { testVotesData } from "../test_store_data";
 import { Middleware } from "redux";
 import { CreatedVote, Vote } from "../../my_types";
 
@@ -52,7 +52,7 @@ describe("vote actions", () => {
                 expect(typeof VoteActions.deleteVote).toEqual("function");
             });
             test("dispatches REMOVE_VOTE when deleteVote is called", () => {
-                const data = { vote: testTrackShowStore.entities.votes[1] };
+                const data = { vote: testVotesData[1] };
                 VoteAPIUtil.deleteVote = jest.fn((voteId: number) => (
                     Promise.resolve(data)
                 ));

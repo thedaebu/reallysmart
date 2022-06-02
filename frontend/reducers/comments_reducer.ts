@@ -8,11 +8,11 @@ const commentsReducer = (state: {[key: number]: Comment} = {}, action: Action) =
 
     switch (action.type) {
         case RECEIVE_TRACKS:
-            return Object.assign({});
+            return {};
         case RECEIVE_TRACK:
-            return Object.assign({}, action.comments);
+            return action.comments;
         case RECEIVE_COMMENT:
-            return Object.assign({}, state, {[action.comment.id]: action.comment});
+            return {...state, [action.comment.id]: action.comment};
         case REMOVE_COMMENT:
             delete newState[action.commentId];
             return newState;

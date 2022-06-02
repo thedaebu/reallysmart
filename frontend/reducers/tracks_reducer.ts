@@ -6,9 +6,9 @@ const tracksReducer = (state: {[key: number]: IndexTrack | Track} = {}, action: 
 
     switch (action.type) {
         case RECEIVE_TRACKS:
-            return Object.assign({}, action.tracks)
+            return action.tracks;
         case RECEIVE_TRACK:
-            return Object.assign({}, {[action.track.id]: action.track})
+            return {[action.track.id]: action.track};
         default:
             return state;
     }

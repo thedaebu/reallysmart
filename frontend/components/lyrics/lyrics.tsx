@@ -99,7 +99,7 @@ function LyricsShow(props: Props) {
                         onClick={() => openAnnotation(annotation)}
                         data-name={`is-anno-${annotation.id}`}
                         data-testid="lyrics__is-annotation"
-                        >
+                    >
                         {lyrics.slice(currentIndex, endIndex + 1)}
                     </span>
                 )
@@ -111,7 +111,7 @@ function LyricsShow(props: Props) {
                         data-add={addIndex}
                         data-name={`not-anno-${idx}`}
                         data-testid="lyrics__not-annotation"
-                        >
+                    >
                         {lyrics.slice(currentIndex, startIndex)}
                     </span>
                 )
@@ -122,7 +122,7 @@ function LyricsShow(props: Props) {
                         onClick={() => openAnnotation(annotation)}
                         data-name={`is-anno-${annotation.id}`}
                         data-testid="lyrics__is-annotation"
-                        >
+                    >
                         {lyrics.slice(startIndex, endIndex + 1)}
                     </span>
                 )
@@ -135,7 +135,7 @@ function LyricsShow(props: Props) {
                         data-add={endIndex}
                         data-name={`not-anno-${idx + 1}`}
                         data-testid="lyrics__not-annotation"
-                        >
+                    >
                         {lyrics.slice(endIndex + 1, lyrics.length + 1)}
                     </span>
                 )

@@ -8,9 +8,9 @@ import { Annotation, Comment, CreatedComment, State, Track, User } from "../../m
 import CommentShowItem from "./comment_show_item";
 
 type Props = {
-    commentableType: string,
+    commentableType: "Track" | "Annotation",
     parent: Annotation | Track
-}
+};
 
 function CommentShow(props: Props) {
     const { commentableType, parent } = props;

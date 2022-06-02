@@ -8,11 +8,11 @@ const annotationsReducer = (state: {[key: number]: Annotation} = {}, action: Act
 
     switch (action.type) {
         case RECEIVE_TRACKS:
-            return Object.assign({});
+            return {};
         case RECEIVE_TRACK:
-            return Object.assign({}, action.annotations);
+            return action.annotations;
         case RECEIVE_ANNOTATION:
-            return Object.assign({}, state, {[action.annotation.id]: action.annotation});
+            return {...state, [action.annotation.id]: action.annotation};
         case REMOVE_ANNOTATION:
             delete newState[action.annotationId];
             return newState;

@@ -3,8 +3,8 @@ import annotationErrorsReducer from "./annotation_errors_reducer";
 import sessionErrorsReducer from "./session_errors_reducer";
 
 const errorsReducer = combineReducers({
-    sessionErrors: sessionErrorsReducer,
-    annotationErrors: annotationErrorsReducer
+    annotationErrors: annotationErrorsReducer,
+    sessionErrors: sessionErrorsReducer
 });
 
 export default errorsReducer;
