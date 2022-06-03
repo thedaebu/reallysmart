@@ -6,15 +6,9 @@ import { ApolloProvider } from "@apollo/client";
 import graphQLClient from "../graphql_client/graphql_client";
 import App from "./app";
 
-type Props = {
-    store: Store<any, AnyAction>
-}
-
-function Root(props: Props) {
-    const { store } = props;
-
+function Root({ store }: { store: Store<any, AnyAction> }) {
     return (
-        <Provider store={ store }>
+        <Provider store={store}>
             <ApolloProvider client={graphQLClient}>
                 <HashRouter>
                     <App />
