@@ -30,11 +30,11 @@ function VoteShow(props: Props) {
     const [currentUserVote, setCurrentUserVote] = useState<Vote | null>(null);
 
     useEffect(() => {
-        setCurrentUserVote(findCurrentUserVote(currentUser, votes));
+        getCurrentVotes(votes);
     }, [])
 
     useEffect(() => {
-        setCurrentUserVote(findCurrentUserVote(currentUser, votes));
+        getCurrentVotes(votes);
     }, [currentUser])
 
     function voteThumb() {
@@ -65,7 +65,7 @@ function VoteShow(props: Props) {
         e.preventDefault();
 
         if (currentUserVote) {
-            deleteVote(currentUserVote.id)
+            deleteVote(currentUserVote.id);
 
             setCurrentUserVote(null);
             setCurrentNumberOfVotes(currentNumberOfVotes-1);
@@ -86,24 +86,17 @@ function VoteShow(props: Props) {
         }
     }
 
-    function findCurrentUserVote(currentUser: User, votes: {[key: number]: Vote}) {
-        const currentVotes: Array<Vote> = getCurrentVotes(votes)
-        if (currentUser && currentVotes.length > 0) {
-            for (let voteId of currentUser.vote_ids) {
-                const currentVote: Vote = votes[voteId];
-                if (currentVote && currentVote.voteable_id === parent.id && currentVote.voteable_type === voteableType) {
-                    return currentVote;
+    function getCurrentVotes(votes: {[key: number]: Vote}) {
+        let voteCount: number = 0;
+        Object.values(votes).forEach((vote) => {
+            if (vote.voteable_type === voteableType && vote.voteable_id === parent.id) {
+                voteCount++;
+                if (currentUser && currentUser.id === vote.voter_id) {
+                    setCurrentUserVote(vote);
                 }
             }
-        } else {
-            return null;
-        }
-    }
-
-    function getCurrentVotes(votes: {[key: number]: Vote}) {
-        const currentVotes: Array<Vote> = Object.values(votes).filter((vote: Vote) => vote.voteable_type === voteableType && vote.voteable_id === parent.id)
-        setCurrentNumberOfVotes(currentVotes.length)
-        return currentVotes;
+        });
+        setCurrentNumberOfVotes(voteCount);
     }
 
     return (
