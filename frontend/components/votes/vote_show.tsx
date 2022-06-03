@@ -59,7 +59,7 @@ function VoteShow(props: Props) {
                 <RiThumbUpLine className="vote-show__not-voted" />
             );
         }
-    }
+    };
 
     function handleVoteUpdate(e: MouseEvent<HTMLOrSVGElement>) {
         e.preventDefault();
@@ -84,11 +84,11 @@ function VoteShow(props: Props) {
                     fetchUser(currentUser.id);
                 });
         }
-    }
+    };
 
     function getCurrentVotes(votes: {[key: number]: Vote}) {
         let voteCount: number = 0;
-        Object.values(votes).forEach((vote) => {
+        Object.values(votes).forEach((vote: Vote) => {
             if (vote.voteable_type === voteableType && vote.voteable_id === parent.id) {
                 voteCount++;
                 if (currentUser && currentUser.id === vote.voter_id) {
@@ -97,7 +97,7 @@ function VoteShow(props: Props) {
             }
         });
         setCurrentNumberOfVotes(voteCount);
-    }
+    };
 
     return (
         <div className="vote-show" data-testid="vote-show">
