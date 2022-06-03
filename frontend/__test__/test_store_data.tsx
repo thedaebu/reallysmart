@@ -110,8 +110,7 @@ export const testTracksData: { [key: number]: IndexTrack } = {
 export const testUserData: { [key: number]: User } = {
     1: {
         id: 1,
-        username: "reallysmart",
-        vote_ids: [1]
+        username: "reallysmart"
     }
 };
 export const testVotesData: { [key: number]: Vote } = {

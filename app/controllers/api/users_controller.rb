@@ -3,7 +3,6 @@ class Api::UsersController < ApplicationController
         user = User.find(params[:id])
         if user
             @user = user.slice(:id, :username)
-            @user[:vote_ids] = user.votes.map {|vote| vote.id}
             # avatar_url = url_for(user.avatar)
 
             result = {:user => @user}
