@@ -10,25 +10,6 @@ function SessionMenu() {
     const dispatch: Dispatch<any> = useDispatch();
     const logout: Function = () => dispatch(SessionActions.logout());
 
-    function sessionMenuButtons() {
-        if (!currentUser) {
-            return (
-                <div className="session-menu">
-                    <Link to="/signup" className="session-menu__signup">SIGN UP</Link>
-                    <Link to="/login" className="session-menu__login" >LOG IN</Link>
-                </div>
-            );
-        } else {
-            return (
-                <div className="session-menu">
-                    {/* <input type="file"/> */}
-                    {/* <img src={currentUser.avatar_url} /> */}
-                    <a className="session-menu__logout" onClick={sessionLogout}>LOG OUT</a>
-                </div>
-            );
-        }
-    }
-
     function sessionLogout(e: MouseEvent<HTMLAnchorElement>) {
         e.preventDefault();
 
@@ -37,7 +18,18 @@ function SessionMenu() {
 
     return (
         <>
-            {sessionMenuButtons()}
+            {!currentUser ? (
+                <div className="session-menu">
+                    <Link to="/signup" className="session-menu__signup">SIGN UP</Link>
+                    <Link to="/login" className="session-menu__login" >LOG IN</Link>
+                </div>
+            ) : (
+                <div className="session-menu">
+                    {/* <input type="file"/> */}
+                    {/* <img src={currentUser.avatar_url} /> */}
+                    <a className="session-menu__logout" onClick={sessionLogout}>LOG OUT</a>
+                </div>
+            )}
         </>
     );
 }
