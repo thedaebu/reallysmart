@@ -3,13 +3,8 @@ import { Link } from "react-router-dom";
 import { IndexTrack, Window } from "../../my_types";
 
 declare const window: Window;
-type Props = {
-    track: IndexTrack
-}
 
-function SearchIndexItem(props: Props) {
-    const { track } = props;
-
+function SearchIndexItem({ track }: { track: IndexTrack }) {
     function randomNum() {
         return Math.floor(Math.random() * 1000);
     }
