@@ -85,9 +85,7 @@ function AnnotationShowItem({ annotation, track }: { annotation: Annotation, tra
                 </form>
             )
         } else {
-            return (
-                null
-            );
+            return null;
         }
     }
 

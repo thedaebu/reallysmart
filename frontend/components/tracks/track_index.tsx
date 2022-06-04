@@ -82,9 +82,7 @@ function TrackIndex() {
                 </button>
             );
         } else {
-            return (
-                null
-            );
+            return null;
         }
     }
 

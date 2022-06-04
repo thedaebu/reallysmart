@@ -45,9 +45,7 @@ function SearchIndex({ clearSearchField, searchField }: { clearSearchField: Func
                 </div>
             );
         } else {
-            return (
-                null
-            );
+            return null;
         }
     }
 

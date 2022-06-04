@@ -10,7 +10,7 @@ function SearchIndexItem({ track }: { track: IndexTrack }) {
     function randomNum() {
         return Math.floor(Math.random() * 1000);
     }
-    
+
     return (
         <Link
             className="search-index-item"
