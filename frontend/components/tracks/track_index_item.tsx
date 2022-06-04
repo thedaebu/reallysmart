@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { Link } from "react-router-dom";
 import { IndexTrack, Window } from "../../my_types";
 
@@ -42,4 +42,6 @@ function TrackIndexItem({ listNumber, track }: { listNumber: number, track: Inde
     );
 }
 
-export default TrackIndexItem;
+const MemoizedTrackIndexItem = memo(TrackIndexItem);
+
+export default MemoizedTrackIndexItem;
