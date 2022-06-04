@@ -29,7 +29,7 @@ function SearchIndexItem({ track }: { track: IndexTrack }) {
                     <p className="search-index-item__artist">{artist}</p>
                 </div>
                 <div className="search-index-item__body-bottom">
-                    <img className="search-index-item__eye" src={window.eyeIcon} />
+                    <img className="search-index-item__eye" src={window.eyeIcon} alt="Eye" />
                     <p className="search-index-item__views">{randomNum()}</p>
                 </div>
             </div>

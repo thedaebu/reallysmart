@@ -24,7 +24,7 @@ function CommentShow({ commentableType, parent }: { commentableType: "Track" | "
             if (commentCreateStatus === false && commentableType === "Track") {
                 return (
                     <div className="comment-show__begin">
-                        <img src="https://assets.genius.com/images/default_avatar_100.png" />
+                        <img src="https://assets.genius.com/images/default_avatar_100.png" alt="Baby" />
                         <textarea
                             onClick={handleCommentCreateStatus}
                             placeholder="Add a comment"
@@ -58,7 +58,7 @@ function CommentShow({ commentableType, parent }: { commentableType: "Track" | "
             } else if (commentCreateStatus === false && commentableType === "Annotation") {
                 return (
                     <div className="comment-show__begin">
-                        <img src="https://assets.genius.com/images/default_avatar_100.png" />
+                        <img src="https://assets.genius.com/images/default_avatar_100.png" alt="Baby" />
                         <textarea
                             onClick={handleCommentCreateStatus}
                             placeholder="You think you're really smarter?"

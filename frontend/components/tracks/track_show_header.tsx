@@ -35,11 +35,11 @@ function TrackShowHeader({ track }: { track: Track }) {
                     </div>
                     <div className="track-show__right">
                         <div>
-                            <img src={window.fireIcon} />
+                            <img src={window.fireIcon} alt="Fire" />
                             <p className="track-show__fire-number">{randomNum()}</p>
                         </div>
                         <div>
-                            <img src={window.eyeIcon} />
+                            <img src={window.eyeIcon} alt="Eye" />
                             <p className="track-show__eye-number">{randomNum() * 10}</p>
                         </div>
                     </div>

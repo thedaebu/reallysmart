@@ -105,7 +105,7 @@ function CommentShowItem(props: Props) {
             <div data-testid="comment-show-item">
                 <div className="comment-show-item__top">
                     <div>
-                        <img className="comment-show-item__baby" src="https://assets.genius.com/images/default_avatar_100.png" />
+                        <img className="comment-show-item__baby" src="https://assets.genius.com/images/default_avatar_100.png" alt="Baby" />
                         <p className="comment-show-item__commenter">{comment.commenter_name}</p>
                     </div>
                     <p className="comment-show-item__time">{handleTime(comment.updated_at)}</p>
