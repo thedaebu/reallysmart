@@ -2,7 +2,7 @@ import React, { MouseEvent, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router";
 import { IndexTrack, State } from "../../my_types";
-import SearchIndexItem from "./search_index_item";
+import MemoizedSearchIndexItem from "./search_index_item";
 
 type Props = {
     clearSearchField: Function,
@@ -35,7 +35,7 @@ function SearchIndex(props: Props) {
                     <ul className="search-index__items" onClick={clearSearch}>
                         {searches.slice(0, 5).map((track: IndexTrack, idx: number) => {
                             return (
-                                <SearchIndexItem
+                                <MemoizedSearchIndexItem
                                     key={idx}
                                     track={track}
                                 />
