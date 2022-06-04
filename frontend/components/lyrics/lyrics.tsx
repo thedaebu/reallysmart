@@ -1,4 +1,4 @@
-import React, { MouseEvent, useState, useEffect, Dispatch } from "react";
+import React, { MouseEvent, useState, useEffect, Dispatch, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as AnnotationModalActions from "../../actions/annotation_modal_actions";
 import { Annotation, State, Track, Window } from "../../my_types";
@@ -41,6 +41,10 @@ function LyricsShow({ track }: { track: Track }) {
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [])
+
+    const handleAnnotationCreateStatus = useCallback(() => {
+        setAnnotationCreateStatus(!annotationCreateStatus);
+    }, []);
 
     // used for editing annotations
     // without it, annotation will not update live and user would have to click out of annotation and click on annotation again
@@ -186,10 +190,6 @@ function LyricsShow({ track }: { track: Track }) {
         setSelectedAnnotation(null);
         dispatch(closeAnnotationModal());
         setAnnotationCreateStatus(false);
-    }
-
-    function handleAnnotationCreateStatus() {
-        setAnnotationCreateStatus(!annotationCreateStatus);
     }
 
     return (

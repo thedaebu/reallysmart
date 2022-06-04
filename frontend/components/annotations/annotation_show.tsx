@@ -164,8 +164,9 @@ function AnnotationShow(props: Props) {
         createAnnotation(annotation)
             .then(() => {
                 fetchTrack(track.id.toString());
-                closeAnnotationModal();
             })
+
+        closeAnnotationModal();
         setAnnotationBody("");
         handleAnnotationCreateStatus();
     }
