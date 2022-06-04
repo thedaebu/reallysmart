@@ -2,17 +2,14 @@ import React, { Dispatch, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as TrackActions from "../../actions/track_actions";
 import { RouteComponentProps } from "react-router";
-import { IndexTrack, State, Track, Window } from "../../my_types";
+import { State, Track, Window } from "../../my_types";
 import LyricsShow from "../lyrics/lyrics";
 import NavBar from "../navbar/navbar";
 import TrackShowHeader from "./track_show_header";
 
 declare const window: Window;
-type TrackId = {
-    trackId: string
-}
 
-function TrackShow(props: RouteComponentProps<TrackId>) {
+function TrackShow(props: RouteComponentProps<{ trackId: string }>) {
     const trackId = props.match.params.trackId;
 
     const track: Track = useSelector((state: State) => state.entities.tracks[parseInt(trackId)]);
@@ -25,9 +22,9 @@ function TrackShow(props: RouteComponentProps<TrackId>) {
         window.scrollTo(0, 0);
     }, [trackId]);
 
-    function trackShowPage() {
-        if (track) {
-            return (
+    return(
+        <>
+            {track && (
                 <>
                     <NavBar />
                     <TrackShowHeader track={track} />
@@ -36,17 +33,7 @@ function TrackShow(props: RouteComponentProps<TrackId>) {
                         <iframe className="spotify-player" src={track.spotify_path}></iframe>
                     </footer>
                 </>
-            );
-        } else {
-            return (
-                null
-            );
-        }
-    }
-
-    return(
-        <>
-            {trackShowPage()}
+            )}
         </>
     );
 }
