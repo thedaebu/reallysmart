@@ -4,14 +4,7 @@ import { useLocation } from "react-router";
 import { IndexTrack, State } from "../../my_types";
 import MemoizedSearchIndexItem from "./search_index_item";
 
-type Props = {
-    clearSearchField: Function,
-    searchField: string
-};
-
-function SearchIndex(props: Props) {
-    const { clearSearchField, searchField } = props;
-
+function SearchIndex({ clearSearchField, searchField }: { clearSearchField: Function, searchField: string }) {
     const searches: Array<IndexTrack> = useSelector((state: State) => Object.values(state.entities.searches));
 
     const location: string = useLocation().pathname;
