@@ -62,8 +62,8 @@ function TrackIndex() {
 
     function extendTrackIndexListButton() {
         if (trackIndexList === 5) {
-            return ( 
-                <button 
+            return (
+                <button
                     className="track-index__load-more"
                     onClick={setTrackIndexListLimit} 
                     data-testid="track-index__load-more"
@@ -72,10 +72,10 @@ function TrackIndex() {
                 </button>
             );
         } else if (trackIndexList === 10) { 
-            return ( 
-                <button 
+            return (
+                <button
                     className="track-index__load-more"
-                    onClick={setTrackIndexListLimit} 
+                    onClick={setTrackIndexListLimit}
                     data-testid="track-index__load-more"
                 >
                     We Miss You DMX!
