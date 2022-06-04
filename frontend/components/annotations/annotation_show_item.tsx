@@ -6,14 +6,7 @@ import { Annotation, State, Track, UpdatedAnnotation, User } from "../../my_type
 import CommentShow from "../comments/comment_show";
 import VoteShow from "../votes/vote_show";
 
-type Props = {
-    annotation: Annotation,
-    track: Track
-}
-
-function AnnotationShowItem(props: Props) {
-    const { annotation, track } = props;
-
+function AnnotationShowItem({ annotation, track }: { annotation: Annotation, track: Track }) {
     const currentUser: User = useSelector((state: State) => state.entities.user[state.session.id]);
 
     const dispatch: Dispatch<any> = useDispatch();
@@ -23,8 +16,8 @@ function AnnotationShowItem(props: Props) {
 
     const [annotationDeleteStatus, setAnnotationDeleteStatus] = useState<boolean>(false);
     const [annotationUpdateStatus, setAnnotationUpdateStatus] = useState<boolean>(false);
-    const [currentAnnotation, setCurrentAnnotation] = useState<Annotation>(props.annotation);
-    const [updatedAnnotationBody, setUpdatedAnnotationBody] = useState<string>(props.annotation.body);
+    const [currentAnnotation, setCurrentAnnotation] = useState<Annotation>(annotation);
+    const [updatedAnnotationBody, setUpdatedAnnotationBody] = useState<string>(annotation.body);
 
     function annotationShowItem() {
         if (currentAnnotation && annotationUpdateStatus === false) {
