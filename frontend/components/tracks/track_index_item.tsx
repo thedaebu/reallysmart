@@ -3,37 +3,33 @@ import { Link } from "react-router-dom";
 import { IndexTrack, Window } from "../../my_types";
 
 declare const window: Window;
-type Props = {
-    listNumber: number,
-    track: IndexTrack
-}
 
-function TrackIndexItem(props: Props) {
-    const { listNumber, track } = props;
+function TrackIndexItem({ listNumber, track }: { listNumber: number, track: IndexTrack }) {
+    const { artist, artwork_path, id, title } = track;
 
     function randomNum() {
         return Math.floor(Math.random() * 1000);
     }
 
-    return ( 
-        <Link 
+    return (
+        <Link
             className="track-index-item"
-            to={`/tracks/${track.id}`}
+            to={`/tracks/${id}`}
             data-testid="track-index-item"
         >
             <p className="track-index-item__id">{listNumber}</p>
             <div
                 className="track-index-item__image"
                 style={{
-                    backgroundImage: `url(${track.artwork_path}`
+                    backgroundImage: `url(${artwork_path}`
                 }}
             > 
             </div>
             <div className="track-index-item__title-main">
-                <p className="track-index-item__title">{track.title}</p>
+                <p className="track-index-item__title">{title}</p>
                 <p className="track-index-item__lyrics">LYRICS</p>
             </div>
-            <p className="track-index-item__artist">{track.artist}</p>
+            <p className="track-index-item__artist">{artist}</p>
             <div className="track-index-item__fire-main">
                 <img className="track-index-item__fire" src={window.fireIcon} />
                 <p className="track-index-item__fire-number">{randomNum()}</p>
