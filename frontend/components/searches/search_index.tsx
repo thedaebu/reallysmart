@@ -7,7 +7,7 @@ import SearchIndexItem from "./search_index_item";
 type Props = {
     clearSearchField: Function,
     searchField: string
-}
+};
 
 function SearchIndex(props: Props) {
     const { clearSearchField, searchField } = props;
@@ -33,7 +33,14 @@ function SearchIndex(props: Props) {
                     <p className="search-index__results">SEARCH RESULTS</p>
                     <p className="search-index__songs">SONGS</p>
                     <ul className="search-index__items" onClick={clearSearch}>
-                        {searchIndexItems()}
+                        {searches.slice(0, 5).map((track: IndexTrack, idx: number) => {
+                            return (
+                                <SearchIndexItem
+                                    key={idx}
+                                    track={track}
+                                />
+                            );
+                        })}
                     </ul>
                 </div>
             );
@@ -49,19 +56,6 @@ function SearchIndex(props: Props) {
                 null
             );
         }
-    }
-
-    function searchIndexItems() {
-        return (
-            searches.slice(0, 5).map((track: IndexTrack, idx: number) => {
-                return ( 
-                    <SearchIndexItem 
-                        key={idx}
-                        track={track} 
-                    />
-                );
-            })
-        );
     }
 
     return (
