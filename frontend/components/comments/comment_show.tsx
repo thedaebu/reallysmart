@@ -7,14 +7,7 @@ import * as TrackActions from "../../actions/track_actions";
 import { Annotation, Comment, CreatedComment, State, Track, User } from "../../my_types";
 import CommentShowItem from "./comment_show_item";
 
-type Props = {
-    commentableType: "Track" | "Annotation",
-    parent: Annotation | Track
-};
-
-function CommentShow(props: Props) {
-    const { commentableType, parent } = props;
-
+function CommentShow({ commentableType, parent }: { commentableType: "Track" | "Annotation", parent: Annotation | Track }) {
     const comments: {[key:number]: Comment} = useSelector((state: State) => state.entities.comments);
     const currentUser: User = useSelector((state: State) => state.entities.user[state.session.id]);
 
@@ -128,9 +121,7 @@ function CommentShow(props: Props) {
                 </ul>
             );
         } else {
-            return (
-                null
-            );
+            return null;
         }
     }
 
@@ -168,7 +159,7 @@ function CommentShow(props: Props) {
         if (commentableType === "Track") {
             createComment(comment)
                 .then(() => fetchTrack(parent.id.toString()));
-        } else if (commentableType === "Annotation") {
+        } else {
             createComment(comment)
                 .then(() => fetchAnnotation(parent.id))
         }
