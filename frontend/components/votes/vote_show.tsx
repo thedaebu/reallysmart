@@ -7,14 +7,7 @@ import * as SessionActions from "../../actions/session_actions"
 import * as VoteActions from "../../actions/vote_actions";
 import { Annotation, Comment, CreatedVote, ReceivedVote, State, User, Vote } from "../../my_types";
 
-type Props = {
-    parent: Annotation | Comment,
-    voteableType: "Annotation" | "Comment"
-};
-
-function VoteShow(props: Props) {
-    const { parent, voteableType } = props;
-
+function VoteShow({ parent, voteableType }: { parent: Annotation | Comment, voteableType: "Annotation" | "Comment" }) {
     const currentUser: User = useSelector((state: State) => state.entities.user[state.session.id]);
     const votes: {[key: number]: Vote} = useSelector((state: State) => state.entities.votes);
 
