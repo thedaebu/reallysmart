@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import * as TrackActions from "../../actions/track_actions";
 import { IndexTrack, State, Window } from "../../my_types";
 import Navbar from "../navbar/navbar";
-import TrackIndexItem from "./track_index_item";
+import MemoizedTrackIndexItem from "./track_index_item";
 
 declare const window: Window;
 
@@ -25,7 +25,7 @@ function TrackIndex() {
             return (
                 tracks.slice(0, 5).map((track: IndexTrack, idx: number) => {
                     return (
-                        <TrackIndexItem
+                        <MemoizedTrackIndexItem
                             listNumber={idx+1}
                             track={track}
                             key={idx+1}
@@ -37,7 +37,7 @@ function TrackIndex() {
             return (
                 tracks.slice(0, 10).map((track: IndexTrack, idx: number) => {
                     return (
-                        <TrackIndexItem
+                        <MemoizedTrackIndexItem
                             listNumber={idx+1}
                             track={track}
                             key={idx+1}
@@ -49,7 +49,7 @@ function TrackIndex() {
             return (
                 tracks.map((track: IndexTrack, idx: number) => {
                     return (
-                        <TrackIndexItem
+                        <MemoizedTrackIndexItem
                             listNumber={idx+1}
                             track={track}
                             key={idx+1}
@@ -62,8 +62,8 @@ function TrackIndex() {
 
     function extendTrackIndexListButton() {
         if (trackIndexList === 5) {
-            return ( 
-                <button 
+            return (
+                <button
                     className="track-index__load-more"
                     onClick={setTrackIndexListLimit} 
                     data-testid="track-index__load-more"
@@ -72,19 +72,17 @@ function TrackIndex() {
                 </button>
             );
         } else if (trackIndexList === 10) { 
-            return ( 
-                <button 
+            return (
+                <button
                     className="track-index__load-more"
-                    onClick={setTrackIndexListLimit} 
+                    onClick={setTrackIndexListLimit}
                     data-testid="track-index__load-more"
                 >
                     We Miss You DMX!
                 </button>
             );
         } else {
-            return (
-                null
-            );
+            return null;
         }
     }
 

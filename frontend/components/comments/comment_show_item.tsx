@@ -8,14 +8,14 @@ import VoteShow from "../votes/vote_show";
 
 type Props = {
     comment: Comment;
-    commentableType: string,
+    commentableType: "Track" | "Annotation",
     parent: Annotation | Track
-}
+};
 
 function CommentShowItem(props: Props) {
     const { comment, commentableType, parent } = props;
 
-    const currentUser: User = useSelector((state: State) => state.entities.user[state.session.id])
+    const currentUser: User = useSelector((state: State) => state.entities.user[state.session.id]);
 
     const dispatch: Dispatch<any> = useDispatch();
     const deleteComment: Function = (commentId: number) => dispatch(CommentActions.deleteComment(commentId));
@@ -25,8 +25,8 @@ function CommentShowItem(props: Props) {
 
     const [commentDeleteStatus, setCommentDeleteStatus] = useState<boolean>(false);
     const [commentUpdateStatus, setCommentUpdateStatus] = useState<boolean>(false);
-    const [currentComment, setCurrentComment] = useState<Comment>(props.comment);
-    const [updatedCommentBody, setUpdatedCommentBody] = useState<string>(props.comment.body);
+    const [currentComment, setCurrentComment] = useState<Comment>(comment);
+    const [updatedCommentBody, setUpdatedCommentBody] = useState<string>(comment.body);
 
     function commentShowItem() {
         if (currentComment) {
@@ -93,12 +93,10 @@ function CommentShowItem(props: Props) {
                             </div>
                         </form>
                     </li>
-                )
+                );
             } 
         } else {
-            return (
-                null
-            )
+            return null;
         }
     }
 
@@ -107,19 +105,19 @@ function CommentShowItem(props: Props) {
             <div data-testid="comment-show-item">
                 <div className="comment-show-item__top">
                     <div>
-                        <img className="comment-show-item__baby" src="https://assets.genius.com/images/default_avatar_100.png" />
+                        <img className="comment-show-item__baby" src="https://assets.genius.com/images/default_avatar_100.png" alt="Baby" />
                         <p className="comment-show-item__commenter">{comment.commenter_name}</p>
                     </div>
                     <p className="comment-show-item__time">{handleTime(comment.updated_at)}</p>
                 </div>
                 <p className="comment-show-item__body">{comment.body}</p>
-                <VoteShow 
-                    parent={comment} 
-                    voteableType="Comment" 
+                <VoteShow
+                    parent={comment}
+                    voteableType="Comment"
                 />
                 {updatebuttons()}
             </div>
-        )
+        );
     }
 
     function handleTime(dateTime: string) {
@@ -137,11 +135,11 @@ function CommentShowItem(props: Props) {
         } else if (dayDiff > 30) {
             return `1 month ago`;
         } else if (dayDiff > 2) {
-            return `${dayDiff} days ago`
+            return `${dayDiff} days ago`;
         } else if (dayDiff > 1) {
-            return `1 day ago`
+            return `1 day ago`;
         } else {
-            return `<1 day ago`
+            return `<1 day ago`;
         }
     }
 
@@ -179,11 +177,7 @@ function CommentShowItem(props: Props) {
     function handleCommentUpdateStatus(e: MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
 
-        if (commentUpdateStatus === false) {
-            setCommentUpdateStatus(true);
-        } else {
-            setCommentUpdateStatus(false);
-        }
+        setCommentUpdateStatus(!commentUpdateStatus);
     }
 
     function handleUpdatedCommentBodyChange() {

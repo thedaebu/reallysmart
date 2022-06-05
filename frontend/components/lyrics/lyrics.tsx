@@ -1,4 +1,4 @@
-import React, { MouseEvent, useState, useEffect, Dispatch } from "react";
+import React, { MouseEvent, useState, useEffect, Dispatch, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as AnnotationModalActions from "../../actions/annotation_modal_actions";
 import { Annotation, State, Track, Window } from "../../my_types";
@@ -6,30 +6,27 @@ import AnnotationShow from "../annotations/annotation_show";
 import CommentShow from "../comments/comment_show";
 
 declare const window: Window;
-type Props = {
-    track: Track
-}
 type Highlighted = {
     anchorNode: HighlightedNode,
     anchorOffset: number,
     focusNode: HighlightedNode,
     focusOffset: number
-}
+};
 type HighlightedNode = {
     parentNode: ParentNode
-}
+};
 type ParentNode = {
     dataset: Dataset
-}
+};
 type Dataset = {
     add: string,
     name: string
-}
+};
 
-function LyricsShow(props: Props) {
-    const { track } = props;
+function LyricsShow({ track }: { track: Track }) {
+    const { lyrics, title } = track;
 
-    const annotations: {[key:number]: Annotation} = useSelector((state: State) => state.entities.annotations)
+    const annotations: {[key:number]: Annotation} = useSelector((state: State) => state.entities.annotations);
 
     const dispatch: Dispatch<any> = useDispatch();
     const closeAnnotationModal: Function = () => dispatch(AnnotationModalActions.closeAnnotationModal());
@@ -44,6 +41,10 @@ function LyricsShow(props: Props) {
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [])
+
+    const handleAnnotationCreateStatus = useCallback(() => {
+        setAnnotationCreateStatus(!annotationCreateStatus);
+    }, []);
 
     // used for editing annotations
     // without it, annotation will not update live and user would have to click out of annotation and click on annotation again
@@ -60,7 +61,7 @@ function LyricsShow(props: Props) {
         const currentAnnotations = Object.values(annotations);
         if (currentAnnotations.length > 0) {
             return (
-                annotateLyrics(track.lyrics, currentAnnotations)
+                annotateLyrics(lyrics, currentAnnotations)
             );
         } else {
             return (
@@ -71,16 +72,14 @@ function LyricsShow(props: Props) {
                     data-name={"not-anno-0"}
                     data-testid="lyrics__not-annotation"
                 >
-                    {track.lyrics}
+                    {lyrics}
                 </span>
             );
         }
     }
 
     function annotateLyrics(lyrics: string, currentAnnotations: Array<Annotation>) {
-        const sortedAnnotations: Array<Annotation> = currentAnnotations.sort((a: Annotation, b: Annotation) => (a.start_index > b.start_index
-            ? 1
-            : -1));
+        const sortedAnnotations: Array<Annotation> = currentAnnotations.sort((a: Annotation, b: Annotation) => (a.start_index - b.start_index));
         const lyricsParts: Array<JSX.Element> = [];
         let currentIndex: number = 0;
 
@@ -102,7 +101,7 @@ function LyricsShow(props: Props) {
                     >
                         {lyrics.slice(currentIndex, endIndex + 1)}
                     </span>
-                )
+                );
             } else {
                 lyricsParts.push(
                     <span
@@ -114,7 +113,7 @@ function LyricsShow(props: Props) {
                     >
                         {lyrics.slice(currentIndex, startIndex)}
                     </span>
-                )
+                );
                 lyricsParts.push(
                     <span
                         className="lyrics__is-annotation"
@@ -125,7 +124,7 @@ function LyricsShow(props: Props) {
                     >
                         {lyrics.slice(startIndex, endIndex + 1)}
                     </span>
-                )
+                );
             }
             if (idx === sortedAnnotations.length - 1) {
                 lyricsParts.push(
@@ -138,7 +137,7 @@ function LyricsShow(props: Props) {
                     >
                         {lyrics.slice(endIndex + 1, lyrics.length + 1)}
                     </span>
-                )
+                );
             }
             currentIndex = endIndex + 1;
         })
@@ -158,8 +157,8 @@ function LyricsShow(props: Props) {
 
         if (highlighted && highlighted.anchorOffset !== highlighted.focusOffset) {
             const newIndices: Array<number> = makeNewIndices(highlighted);
-            const beginning: number = Math.min(...newIndices);
-            const end: number = Math.max(...newIndices);
+            const beginning: number = Math.min(...newIndices) + 1;
+            const end: number = Math.max(...newIndices) - 1;
 
             setStartIndex(beginning);
             setEndIndex(end);
@@ -177,7 +176,7 @@ function LyricsShow(props: Props) {
         if (anchorName.includes("not-anno") && anchorName === focusName) {
             beginning = highlighted.anchorOffset + add;
             end = highlighted.focusOffset + add;
-        } 
+        }
         if (anchorName.includes("not-anno-0")) {
             end -= 1;
         } else {
@@ -193,22 +192,14 @@ function LyricsShow(props: Props) {
         setAnnotationCreateStatus(false);
     }
 
-    function handleAnnotationCreateStatus() {
-        if (annotationCreateStatus === false) {
-            setAnnotationCreateStatus(true);
-        } else {
-            setAnnotationCreateStatus(false);
-        }
-    }
-
     return (
         <div className="lyrics__shade">
             <div className="lyrics__main" data-testid="lyrics__main">
                 <div className="lyrics__text" onMouseDown={handleTextDeselect} onMouseUp={handleTextSelect}>
-                    <p className="lyrics__top">{track.title.toUpperCase()} LYRICS</p>
+                    <p className="lyrics__top">{title.toUpperCase()} LYRICS</p>
                     <pre className="lyrics__body" data-testid="lyrics__body">
                         {annotatedLyrics()}
-                    </pre> 
+                    </pre>
                     <CommentShow
                         commentableType="Track"
                         parent={track}

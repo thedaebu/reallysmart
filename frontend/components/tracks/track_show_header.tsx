@@ -2,22 +2,19 @@ import React from "react";
 import { Track, Window } from "../../my_types";
 
 declare const window: Window;
-type Props = {
-    track: Track
-}
 
-function TrackShowHeader(props: Props) {
-    const { track } = props;
+function TrackShowHeader({ track }: { track: Track }) {
+    const { artist, artwork_path, title } = track;
 
     function randomNum() {
-      return Math.floor(Math.random() * 1000);
+        return Math.floor(Math.random() * 1000);
     }
 
     return (
-        <div 
+        <div
             className="track-show__background" 
             style={{
-                backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(${track.artwork_path})`
+                backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(${artwork_path})`
             }}
             data-testid="track-show-header"
         >
@@ -27,22 +24,22 @@ function TrackShowHeader(props: Props) {
                         <div
                             className="track-show__image"
                             style={{
-                                backgroundImage: `url(${track.artwork_path}`
+                                backgroundImage: `url(${artwork_path}`
                             }}
                         >
                         </div>
                         <div className="track-show__text">
-                            <p className="track-show__title">{track.title}</p>
-                            <p className="track-show__artist">{track.artist}</p>
+                            <p className="track-show__title">{title}</p>
+                            <p className="track-show__artist">{artist}</p>
                         </div>
                     </div>
                     <div className="track-show__right">
                         <div>
-                            <img src={window.fireIcon} />
+                            <img src={window.fireIcon} alt="Fire" />
                             <p className="track-show__fire-number">{randomNum()}</p>
                         </div>
                         <div>
-                            <img src={window.eyeIcon} />
+                            <img src={window.eyeIcon} alt="Eye" />
                             <p className="track-show__eye-number">{randomNum() * 10}</p>
                         </div>
                     </div>

@@ -4,7 +4,7 @@ import configureAppStore, { Store } from "./store/store";
 import { PreloadedState, Window } from "./my_types";
 import Root from "./components/root";
 
-declare const window: Window
+declare const window: Window;
 
 document.addEventListener("DOMContentLoaded", () => {
     let store: Store;
@@ -22,5 +22,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const root = document.getElementById("root");
-    ReactDOM.render(<Root store={ store } />, root);
+    ReactDOM.render(<Root store={store} />, root);
 });

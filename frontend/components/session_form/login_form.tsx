@@ -39,33 +39,23 @@ function LoginForm() {
         }
     }
 
-    function showErrors() {
-        if (errors.length > 0) {
-            return (
-                <div className="session-form__errors">
-                    <h2>Ruh-roh!</h2>
-                    <p>Something is wrong</p>
-                    <ul>
-                        {errors.map((error: string, idx: number) => {
-                            return (
-                                <li key={idx}>{error}</li>
-                            );
-                        })}
-                    </ul>
-                </div>
-            );
-        } else {
-            return (
-                null
-            );
-        }
-    }
-
     return (
         <div className="session-form">
             <h1 className="session-form__login-h1">Log In</h1>
             <form className="session-form__form" onSubmit={handleSignupFormSubmit}>
-                {showErrors()}
+                {errors.length && (
+                    <div className="session-form__errors">
+                        <h2>Ruh-roh!</h2>
+                        <p>Something is wrong</p>
+                        <ul>
+                            {errors.map((error: string, idx: number) => {
+                                return (
+                                    <li key={idx}>{error}</li>
+                                );
+                            })}
+                        </ul>
+                    </div>
+                )}
                 <label htmlFor="session-form__username">Really Smart Nickname
                     <input
                         id="session-form__username"

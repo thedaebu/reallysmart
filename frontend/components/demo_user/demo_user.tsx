@@ -9,18 +9,6 @@ function DemoUser() {
     const dispatch: Dispatch<any> = useDispatch();
     const login: Function = (sessionUser: SessionUser) => dispatch(SessionActions.login(sessionUser));
 
-    function demoButton() {
-        if (!currentUser) {
-            return (
-                <button className="demo-user" onClick={loginWithDemo}>DEMO</button>
-            );
-        } else {
-            return (
-                null
-            );
-        }
-    }
-
     function loginWithDemo(e: MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
 
@@ -33,9 +21,9 @@ function DemoUser() {
 
     return (
         <>
-            {demoButton()}
+            {!currentUser && <button className="demo-user" onClick={loginWithDemo}>DEMO</button>}
         </>
-    )
+    );
 }
 
 export default DemoUser;

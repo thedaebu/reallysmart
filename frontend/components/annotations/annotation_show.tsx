@@ -15,7 +15,7 @@ type Props = {
     startIndex: number,
     track: Track,
     yCoord: number
-}
+};
 
 function AnnotationShow(props: Props) {
     const { annotation, annotationCreateStatus, endIndex, handleAnnotationCreateStatus, startIndex, track, yCoord } = props;
@@ -109,7 +109,7 @@ function AnnotationShow(props: Props) {
                                 <a className="annotation-show-form__middle__item">
                                     How To Annotate
                                     <p className="tooltip">Link is for styling</p>
-                                </a>                       
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -164,8 +164,9 @@ function AnnotationShow(props: Props) {
         createAnnotation(annotation)
             .then(() => {
                 fetchTrack(track.id.toString());
-                closeAnnotationModal();
             })
+
+        closeAnnotationModal();
         setAnnotationBody("");
         handleAnnotationCreateStatus();
     }

@@ -1,4 +1,4 @@
-import React, { useState, MouseEvent, ChangeEvent, FormEvent, Dispatch } from "react";
+import React, { ChangeEvent, Dispatch, FormEvent, MouseEvent, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import * as AnnotationActions from "../../actions/annotation_actions";
@@ -7,14 +7,7 @@ import * as TrackActions from "../../actions/track_actions";
 import { Annotation, Comment, CreatedComment, State, Track, User } from "../../my_types";
 import CommentShowItem from "./comment_show_item";
 
-type Props = {
-    commentableType: "Track" | "Annotation",
-    parent: Annotation | Track
-};
-
-function CommentShow(props: Props) {
-    const { commentableType, parent } = props;
-
+function CommentShow({ commentableType, parent }: { commentableType: "Track" | "Annotation", parent: Annotation | Track }) {
     const comments: {[key:number]: Comment} = useSelector((state: State) => state.entities.comments);
     const currentUser: User = useSelector((state: State) => state.entities.user[state.session.id]);
 
@@ -31,7 +24,7 @@ function CommentShow(props: Props) {
             if (commentCreateStatus === false && commentableType === "Track") {
                 return (
                     <div className="comment-show__begin">
-                        <img src="https://assets.genius.com/images/default_avatar_100.png" />
+                        <img src="https://assets.genius.com/images/default_avatar_100.png" alt="Baby" />
                         <textarea
                             onClick={handleCommentCreateStatus}
                             placeholder="Add a comment"
@@ -65,7 +58,7 @@ function CommentShow(props: Props) {
             } else if (commentCreateStatus === false && commentableType === "Annotation") {
                 return (
                     <div className="comment-show__begin">
-                        <img src="https://assets.genius.com/images/default_avatar_100.png" />
+                        <img src="https://assets.genius.com/images/default_avatar_100.png" alt="Baby" />
                         <textarea
                             onClick={handleCommentCreateStatus}
                             placeholder="You think you're really smarter?"
@@ -128,9 +121,7 @@ function CommentShow(props: Props) {
                 </ul>
             );
         } else {
-            return (
-                null
-            );
+            return null;
         }
     }
 
@@ -168,7 +159,7 @@ function CommentShow(props: Props) {
         if (commentableType === "Track") {
             createComment(comment)
                 .then(() => fetchTrack(parent.id.toString()));
-        } else if (commentableType === "Annotation") {
+        } else {
             createComment(comment)
                 .then(() => fetchAnnotation(parent.id))
         }

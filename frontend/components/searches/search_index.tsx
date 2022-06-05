@@ -2,16 +2,9 @@ import React, { MouseEvent, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router";
 import { IndexTrack, State } from "../../my_types";
-import SearchIndexItem from "./search_index_item";
+import MemoizedSearchIndexItem from "./search_index_item";
 
-type Props = {
-    clearSearchField: Function,
-    searchField: string
-}
-
-function SearchIndex(props: Props) {
-    const { clearSearchField, searchField } = props;
-
+function SearchIndex({ clearSearchField, searchField }: { clearSearchField: Function, searchField: string }) {
     const searches: Array<IndexTrack> = useSelector((state: State) => Object.values(state.entities.searches));
 
     const location: string = useLocation().pathname;
@@ -33,7 +26,14 @@ function SearchIndex(props: Props) {
                     <p className="search-index__results">SEARCH RESULTS</p>
                     <p className="search-index__songs">SONGS</p>
                     <ul className="search-index__items" onClick={clearSearch}>
-                        {searchIndexItems()}
+                        {searches.slice(0, 5).map((track: IndexTrack, idx: number) => {
+                            return (
+                                <MemoizedSearchIndexItem
+                                    key={idx}
+                                    track={track}
+                                />
+                            );
+                        })}
                     </ul>
                 </div>
             );
@@ -45,23 +45,8 @@ function SearchIndex(props: Props) {
                 </div>
             );
         } else {
-            return (
-                null
-            );
+            return null;
         }
-    }
-
-    function searchIndexItems() {
-        return (
-            searches.slice(0, 5).map((track: IndexTrack, idx: number) => {
-                return ( 
-                    <SearchIndexItem 
-                        key={idx}
-                        track={track} 
-                    />
-                );
-            })
-        );
     }
 
     return (
