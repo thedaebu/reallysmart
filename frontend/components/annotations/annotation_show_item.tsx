@@ -7,6 +7,8 @@ import CommentShow from "../comments/comment_show";
 import VoteShow from "../votes/vote_show";
 
 function AnnotationShowItem({ annotation, track }: { annotation: Annotation, track: Track }) {
+    const trackId: number = track.id;
+
     const currentUser: User = useSelector((state: State) => state.entities.user[state.session.id]);
 
     const dispatch: Dispatch<any> = useDispatch();
@@ -144,11 +146,11 @@ function AnnotationShowItem({ annotation, track }: { annotation: Annotation, tra
             end_index: currentAnnotation.end_index,
             id: currentAnnotation.id,
             start_index: currentAnnotation.start_index,
-            track_id: track.id
+            track_id: trackId
         }
 
         updateAnnotation(updatedAnnotation)
-            .then(() => fetchTrack(track.id.toString()));
+            .then(() => fetchTrack(trackId.toString()));
         setAnnotationUpdateStatus(false);
     }
 
@@ -166,7 +168,7 @@ function AnnotationShowItem({ annotation, track }: { annotation: Annotation, tra
         e.preventDefault();
 
         deleteAnnotation(currentAnnotation.id)
-            .then(() => fetchTrack(track.id.toString()));
+            .then(() => fetchTrack(trackId.toString()));
         setCurrentAnnotation(null);
         setAnnotationDeleteStatus(false);
     }
