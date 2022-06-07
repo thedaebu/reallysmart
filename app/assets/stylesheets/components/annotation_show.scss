@@ -10,8 +10,8 @@ annotation-show-item-button {
     line-height: 20px;
     border: 1px solid rgb(182, 182, 182);
     border-radius: 2px;
-    padding: 0px 4px 0px 4px;
-    margin: 0px 4px 0px 0px;
+    padding: 0px 4px;
+    margin: 0px 4px;
 }
 annotation-show-item-button-hover {
     color:rgb(70, 70, 70);
@@ -20,17 +20,17 @@ annotation-show-item-button-hover {
 
 .annotation-show__without-annotation {
     width: min(100%, 371px);
-    margin: 0px auto 0px 0px;
+    margin-right: auto;
 }
 
 .annotation-show-item {
     border-left: 4px solid rgb(121, 164, 255);
     padding: 5px 0px 0px 17px;
     width: min(100%, 371px);
-    margin: 0px auto 0px 0px;
+    margin-right: auto;
     .annotation-show-item__name {
         font-size: 14px;
-        padding: 0px 0px 17px 0px;
+        padding-bottom: 17px;
     }
     .annotation-show-item__body {
         font-family: $programmelight;
@@ -43,7 +43,7 @@ annotation-show-item-button-hover {
 
 .annotation-show-begin {
     border-left: 4px solid rgb(121, 164, 255);
-    padding: 0px 0px 0px 17px;
+    padding-left: 17px;
     .annotation-show-begin__button {
         cursor: pointer;
         display: flex;
@@ -63,7 +63,7 @@ annotation-show-item-button-hover {
             left: 6px;
             color: rgb(51, 197, 51);
             font-size: 12px;
-            padding: 0px 3px 0px 0px;
+            padding-right: 3px;
         }
     }
 }
@@ -73,7 +73,6 @@ annotation-show-item-button-hover {
     border-left: 4px solid rgb(121, 164, 255);
     padding: 6px 0px 0px 9px;
     margin: auto auto auto auto;
-    // padding: 1px 0px 0px 0px;
     .annotation-show-form__body {
         height: 180px;
         width: min(100%, 371px);
@@ -84,7 +83,7 @@ annotation-show-item-button-hover {
         font-size: 16px;
         font-weight: lighter;
         border: none;
-        padding: 10px 10px 10px 10px;
+        padding: 10px;
         margin: 20px 0px 19px 0px;
         &:focus {
             box-shadow: inset 0px 0px 2px 2px rgb(194, 213, 255);
@@ -96,8 +95,8 @@ annotation-show-item-button-hover {
         font-family: $programmelight;
         font-size: 14px;
         border-bottom: 1px solid rgb(226, 226, 226);
-        padding: 0px 0px 12px 0px;
-        margin: 0px 0px 0px 5px;
+        padding-bottom: 12px;
+        margin-left: 5px;
         > .annotation-show-form__middle__tools {
             font-family: $programmelight; 
             color: rgb(168, 168, 168);
@@ -108,7 +107,7 @@ annotation-show-item-button-hover {
             position: relative;
             bottom: 4px;
             font-family: $programmelight; 
-            padding: 0px 0px 0px 5px;    
+            padding-left: 5px;    
             .annotation-show-form__middle__item {
                 cursor: pointer;
                 position: relative;
@@ -160,7 +159,7 @@ annotation-show-item-button-hover {
                 left: 6px;
                 color: rgb(51, 197, 51);
                 font-size: 12px;
-                padding: 0px 3px 0px 0px;
+                padding-right: 3px;
             }
         }
         .annotation-show-form__bottom-cancel {
@@ -185,7 +184,7 @@ annotation-show-item-button-hover {
 .annotation-show-item__buttons {
     font-size: 15px;
     .annotation-show-item__question {
-        padding: 0px 0px 4px 0px;
+        padding-bottom: 4px;
     }
     .annotation-show-item__edit {
         @extend annotation-show-item-button;
@@ -210,6 +209,6 @@ annotation-show-item-button-hover {
         color:rgb(7, 7, 7);
         line-height: 31px;
         border: 2px solid black;
-        padding: 8px 10px 8px 10px;
+        padding: 8px 10px;
     }
 }

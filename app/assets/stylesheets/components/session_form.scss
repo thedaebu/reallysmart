@@ -22,7 +22,7 @@ $ubuntu: 'Ubuntu Condensed', sans-serif;
         font-size: 30px;
         font-weight: lighter;
         letter-spacing: -0.5px;
-        padding: 0px 0px 20px 0px;
+        padding-bottom: 20px;
     }
     .session-form__login-h1 {
         font-family: $ubuntu;
@@ -38,28 +38,28 @@ $ubuntu: 'Ubuntu Condensed', sans-serif;
         border-top: 1px solid rgb(34, 34, 34);
         border-radius: 2px;
         padding: 12px 10px 8px 10px;
-        margin: 0px 0px 30px 0px;
+        margin-bottom: 30px;
         .session-form__errors {
             background: #242424;
-            margin: 0px 0px 26px 0px;
+            margin-bottom: 26px;
             > h2 {
                 background-color: #94001e;
                 font-family: $barlow;
                 color: white;
                 font-size: 15px;
-                padding: 9px 32px 9px 32px;
+                padding: 9px 32px;
             }
             > p {
                 font-size: 13px;
-                padding: 20px 32px 20px 32px;
+                padding: 20px 32px;
             }
             > ul {
                 position: relative;
                 left: 5px;
                 list-style: disc;
                 font-size: 14px;
-                padding: 15px 32px 15px 32px;
-                margin: 0px 0px 10px 0px;
+                padding: 15px 32px;
+                margin-bottom: 10px;
             }
         }
         > label {
@@ -81,7 +81,7 @@ $ubuntu: 'Ubuntu Condensed', sans-serif;
                 font-size: 14;
                 border: 1px solid rgb(88, 88, 88);
                 border-radius: 2px;
-                padding: 6px 6px 6px 6px;   
+                padding: 6px;   
                 margin: 4px 0px 15px 0px;
                 &:focus {
                     border: 1px solid rgb(143, 143, 143);
@@ -91,7 +91,7 @@ $ubuntu: 'Ubuntu Condensed', sans-serif;
         .session-form__tos {
             font-size: 13px;
             line-height: 18px;
-            padding: 0px 0px 16px 0px;
+            padding-bottom: 16px;
             > a {
                 color:#5BA7C2;
                 font-size: 13px;
@@ -109,7 +109,7 @@ $ubuntu: 'Ubuntu Condensed', sans-serif;
             border: 1px solid rgb(88, 88, 88);
             border-radius: 2px;
             padding: 5px 10px 5px 10px;
-            margin: 1px 0px 0px 0px;
+            margin-top: 1px;
             &:hover {
                 background-color: #2c2c2c;
                 color: white;
