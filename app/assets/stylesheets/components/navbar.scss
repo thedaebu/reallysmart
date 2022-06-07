@@ -12,29 +12,12 @@
         background:black;
         font-size: 14px;
         text-decoration: none;
+        margin: 0 auto;
         > a {
             color: white;
             border-right: 1px solid white;
             padding: 0px 36px 0px 36px;
             margin: 14px auto 12px auto;
-        }
-        .collective-sounds {
-            width: 154px;
-        }
-        .genius-live {
-            width: 90px;
-        }
-        .featured {
-            width: 76px;
-        }
-        .charts {
-            width: 57px;
-        }
-        .videos {
-            width: 54px;
-        }
-        .shop {
-            width: 40px;
         }
         .navbar-image-main {
             display: flex;
