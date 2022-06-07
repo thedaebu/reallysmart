@@ -5,12 +5,12 @@ $programmelight: 'Programme Light', sans-serif;
     width: 100%;
     background: #f7f7f7;
     .lyrics__main {
-        max-width: 970px;
+        width: min(970px, 100vw);
         display: flex;
         background: rgb(255, 255, 255);
-        margin: 0px auto 0px auto;
+        margin: 0px auto;
         .lyrics__text {
-            max-width: 562px;
+            min-width: 530px;
             padding: 16px 0px 96px 16px; 
             .lyrics__top {
                 font-family: $programmereg;
@@ -46,7 +46,7 @@ $programmelight: 'Programme Light', sans-serif;
             }
         }
         .lyrics__right {
-            width: min(100%, 371px);
+            min-width: 371px;
             margin: 0px auto 0px 0px;
         }
     }

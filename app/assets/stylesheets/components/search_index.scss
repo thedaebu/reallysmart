@@ -27,7 +27,7 @@
             cursor: pointer;
             display: flex;
             background-color: white;
-            margin: 0px 0px 4px 0px;
+            margin-bottom: 4px;
             &:hover {
                 background-color: #dbdbdb;
             }
@@ -61,7 +61,7 @@
                 }
                 .search-index-item__views {
                     font-size: 12px;
-                    margin: 0px 0px 0px 3px;
+                    margin-left: 3px;
                 }
             }
         }
