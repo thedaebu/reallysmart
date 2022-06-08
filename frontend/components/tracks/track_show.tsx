@@ -12,7 +12,7 @@ declare const window: Window;
 function TrackShow(props: RouteComponentProps<{ trackId: string }>) {
     const trackId = props.match.params.trackId;
 
-    const track: Track = useSelector((state: State) => state.entities.tracks[parseInt(trackId)]);
+    const track: Track = useSelector((state: State) => state.entities.track[parseInt(trackId)]);
 
     const dispatch: Dispatch<any> = useDispatch();
     const fetchTrack: Function = (trackId: string) => dispatch(TrackActions.fetchTrack(trackId));
