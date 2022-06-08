@@ -26,16 +26,16 @@ export type ReceivedComment = {
     comment: Comment
 };
 export type ReceivedSearches = {
-    searches: { [key: number]: IndexTrack }
+    searches: {[key: number]: IndexTrack}
 };
 export type ReceivedTrack = {
-    annotations: { [key:number]: Annotation },
-    comments: { [key:number]: Comment }
-    track: { [key:number]: Track },
-    votes: { [key:number]: Vote }
+    annotations: {[key:number]: Annotation},
+    comments: {[key:number]: Comment},
+    track: {[key:number]: Track},
+    votes: {[key:number]: Vote}
 };
 export type ReceivedTracks = {
-    tracks: { [key: number]: IndexTrack }
+    tracks: {[key: number]: IndexTrack}
 };
 export type ReceivedUser = {
     user: User
@@ -63,7 +63,7 @@ export type UpdatedComment = {
 
 // used for redux store
 export type PreloadedState = {
-    entities: { user: { [key: number]: User } },
+    entities: { user: {[key: number]: User} },
     session: { id: number }
 };
 export type State = {
@@ -73,12 +73,13 @@ export type State = {
     session: SessionId
 };
 type Entities = {
-    annotations: { [key:number]: Annotation },
-    comments: { [key:number]: Comment },
-    searches: { [key:number]: IndexTrack },
-    tracks: { [key:number]: Track | IndexTrack},
-    user: { [key:number]: User },
-    votes: { [key:number]: Vote }
+    annotations: {[key:number]: Annotation},
+    comments: {[key:number]: Comment},
+    indexTracks: {[key: number]: IndexTrack},
+    searches: {[key:number]: IndexTrack},
+    track: {[key:number]: Track},
+    user: {[key:number]: User},
+    votes: {[key:number]: Vote}
 };
 type Errors = {
     annotationErrors: Array<string>,
@@ -95,18 +96,18 @@ type SessionId = {
 export type Action = {
     annotation: Annotation,
     annotationId: number,
-    annotations: { [key: number]: Annotation },
+    annotations: {[key: number]: Annotation},
     comment: Comment,
     commentId: number,
-    comments: { [key: number]: Comment },
+    comments: {[key: number]: Comment},
     errors: Array<string>,
-    searches: { [key: number]: IndexTrack },
+    searches: {[key: number]: IndexTrack},
     track: Track,
-    tracks: { [key: number]: IndexTrack },
+    tracks: {[key: number]: IndexTrack},
     type: string,
     user: User,
     vote: Vote,
-    votes:{ [key: number]: Vote },
+    votes:{[key: number]: Vote},
     voteId: number
 };
 
