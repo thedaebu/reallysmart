@@ -1,12 +1,11 @@
 import React from "react";
-import { cleanup, render, screen, waitFor } from "@testing-library/react";
+import { cleanup, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event"
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import * as reactRedux from "react-redux";
 import configureMockStore from "redux-mock-store";
 import thunk from 'redux-thunk';
-import server from "../../msw_server"
 import { testShowStore } from "../../test_store_data";
 import * as SessionActions from "../../../actions/session_actions";
 import LoginForm from "../../../components/session_form/login_form";
@@ -22,7 +21,6 @@ const useMockSelector = jest.spyOn(reactRedux, "useSelector");
 const useMockClearErrors = jest.spyOn(SessionActions, "clearErrors");
 
 describe("login form", () => {
-    // beforeAll(() => server.listen());
     beforeEach(() => {
         render(
             <BrowserRouter>
@@ -33,10 +31,9 @@ describe("login form", () => {
         )
     });
     afterEach(() => {
-        cleanup()
-        // server.resetHandlers()
+        cleanup();
     });
-    // afterAll(() => server.close());
+
     test("useDispatch is called", () => {
         expect(useMockDispatch).toHaveBeenCalled();
     });

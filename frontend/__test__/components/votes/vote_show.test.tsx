@@ -1,11 +1,10 @@
 import React from "react";
-import { cleanup, render, screen, waitFor, within } from "@testing-library/react";
+import { cleanup, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import server from "../../msw_server"
 import TrackShow from "../../../components/tracks/track_show";
 import { testMatch, testShowStore } from "../../test_store_data";
 
@@ -14,7 +13,6 @@ const mockStore = configureMockStore(middlewares);
 const testStore = mockStore(testShowStore);
 
 describe("vote show", () => {
-    // beforeAll(() => server.listen());
     beforeEach(() => {
         render(
             <BrowserRouter>
@@ -25,11 +23,9 @@ describe("vote show", () => {
         );
     })
     afterEach(() => {
-        cleanup()
-        // server.resetHandlers()
+        cleanup();
     });
-    // afterAll(() => server.close());
-
+    
     test("contains the correct amount of votes for the track comment", () => {
         const lyrics = screen.queryByTestId("lyrics__main");
         const commentShowItem1 = within(lyrics).queryAllByTestId("comment-show-item")[0];

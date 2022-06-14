@@ -1,12 +1,11 @@
 import React from "react";
-import { cleanup, render, screen, waitFor } from "@testing-library/react";
+import { cleanup, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event"
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import * as reactRedux from "react-redux";
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import server from "../../msw_server"
 import { testIndexStore } from "../../test_store_data";
 import * as trackActions from "../../../actions/track_actions";
 import { IndexTrack } from "../../../my_types";
@@ -23,7 +22,6 @@ const useMockSelector = jest.spyOn(reactRedux, 'useSelector');
 const useFetchTracks = jest.spyOn(trackActions, 'fetchTracks');
 
 describe("track index", () => {
-    // beforeAll(() => server.listen());
     beforeEach(() => {
         render(
             <BrowserRouter>
@@ -34,10 +32,8 @@ describe("track index", () => {
         )
     });
     afterEach(() => {
-        cleanup()
-        // server.resetHandlers()
+        cleanup();
     });
-    // afterAll(() => server.close());
 
     test("useDispatch is called", () => {
         expect(useMockDispatch).toHaveBeenCalled();
