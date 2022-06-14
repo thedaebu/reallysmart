@@ -1,14 +1,13 @@
 import React from "react";
-import { cleanup, render, screen, waitFor, within } from "@testing-library/react";
+import { cleanup, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import * as reactRedux from "react-redux";
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import server from "../msw_server"
-import TrackShow from "../../components/tracks/track_show";
-import { testMatch, testShowStore } from "../test_store_data";
+import TrackShow from "../../../components/tracks/track_show";
+import { testMatch, testShowStore } from "../../test_store_data";
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -20,7 +19,6 @@ const useMockSelector = jest.spyOn(reactRedux, 'useSelector');
 const useMockDispatch = jest.spyOn(reactRedux, 'useDispatch');
 
 describe("lyrics", () => {
-    // beforeAll(() => server.listen());
     beforeEach(() => {
         render(
             <BrowserRouter>
@@ -31,10 +29,8 @@ describe("lyrics", () => {
         );
     })
     afterEach(() => {
-        cleanup()
-        // server.resetHandlers()
+        cleanup();
     });
-    // afterAll(() => server.close());
 
     test("useEffect is called", () => {
         expect(useMockEffect).toHaveBeenCalled();
@@ -50,7 +46,7 @@ describe("lyrics", () => {
     });
     test("contains the lyrics of the song", () => {
         const lyricsBody = screen.getByTestId("lyrics__body");
-        expect(lyricsBody).toHaveTextContent(testShowStore.entities.tracks[1].lyrics);
+        expect(lyricsBody).toHaveTextContent(testShowStore.entities.track[1].lyrics);
     });
     test("contains the correct number of annotated sections", () => {
         const lyricsBody = screen.getByTestId("lyrics__body");

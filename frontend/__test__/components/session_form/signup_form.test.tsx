@@ -1,15 +1,14 @@
 import React from "react";
-import { cleanup, render, screen, waitFor } from "@testing-library/react";
+import { cleanup, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event"
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import * as reactRedux from "react-redux";
 import configureMockStore from "redux-mock-store";
 import thunk from 'redux-thunk';
-import server from "../msw_server"
-import { testShowStore } from "../test_store_data";
-import * as SessionActions from "../../actions/session_actions";
-import LoginForm from "../../components/session_form/login_form";
+import { testShowStore } from "../../test_store_data";
+import * as SessionActions from "../../../actions/session_actions";
+import SignupForm from "../../../components/session_form/signup_form";
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -21,22 +20,20 @@ const useMockState = jest.spyOn(React, "useState");
 const useMockSelector = jest.spyOn(reactRedux, "useSelector");
 const useMockClearErrors = jest.spyOn(SessionActions, "clearErrors");
 
-describe("login form", () => {
-    // beforeAll(() => server.listen());
+describe("signup form", () => {
     beforeEach(() => {
         render(
             <BrowserRouter>
                 <Provider store={testStore}>
-                    <LoginForm />
+                    <SignupForm />
                 </Provider>
             </BrowserRouter>
         )
     });
     afterEach(() => {
-        cleanup()
-        // server.resetHandlers()
+        cleanup();
     });
-    // afterAll(() => server.close());
+
     test("useDispatch is called", () => {
         expect(useMockDispatch).toHaveBeenCalled();
     });
@@ -64,10 +61,10 @@ describe("login form", () => {
             expect(passwordInput).toHaveValue("reallysmart");
         });
     });
-    test("proceeds to signup form page when signup form button is clicked", () => {
-        const signupFormButton = screen.queryByTestId("signup-form-button");
-        userEvent.click(signupFormButton);
+    test("proceeds to login form page when login form button is clicked", () => {
+        const loginFormButton = screen.queryByTestId("login-form-button");
+        userEvent.click(loginFormButton);
         const pathName = global.window.location.pathname;
-        expect(pathName).toEqual("/signup");
+        expect(pathName).toEqual("/login");
     });
 });

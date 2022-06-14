@@ -2,7 +2,7 @@ import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
 import * as SearchActions from "../../actions/search_actions";
 import * as SearchAPIUtil from "../../util/api/search_api_util";
-import { testTracksData } from "../test_store_data";
+import { testIndexTracksData } from "../test_store_data";
 import { Middleware } from "redux";
 import { IndexTrack } from "../../my_types";
 
@@ -19,7 +19,7 @@ describe("search actions", () => {
         });
     });
     describe("functions", () => {
-        const searches: {[key: number]: IndexTrack} = testTracksData;
+        const searches: {[key: number]: IndexTrack} = testIndexTracksData;
         let store: any;
         beforeEach(() => {
             store = mockStore({ searches: {} });

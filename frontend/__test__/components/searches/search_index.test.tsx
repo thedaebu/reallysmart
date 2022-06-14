@@ -1,16 +1,15 @@
 import React from "react";
-import { cleanup, render, screen, waitFor, within } from "@testing-library/react";
+import { cleanup, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import * as reactRedux from "react-redux";
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import server from "../msw_server"
-import { testShowStore } from "../test_store_data";
-import * as SearchActions from "../../actions/search_actions";
-import { IndexTrack } from "../../my_types";
-import Searchbar from "../../components/searchbar/searchbar";
+import { testShowStore } from "../../test_store_data";
+import * as SearchActions from "../../../actions/search_actions";
+import { IndexTrack } from "../../../my_types";
+import Searchbar from "../../../components/searchbar/searchbar";
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -21,7 +20,6 @@ const useMockState = jest.spyOn(React, 'useState');
 const mockFetchSearches = jest.spyOn(SearchActions, 'fetchSearches');
 
 describe("search index", () => {
-    // beforeAll(() => server.listen());
     beforeEach(() => {
         render(
             <BrowserRouter>
@@ -32,10 +30,8 @@ describe("search index", () => {
         );
     })
     afterEach(() => {
-        cleanup()
-        // server.resetHandlers()
+        cleanup();
     });
-    // afterAll(() => server.close());
 
     test("useDispatch is called", () => {
         const searchbarField = screen.queryByTestId("searchbar-field");

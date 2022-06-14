@@ -8,7 +8,7 @@ import MemoizedTrackIndexItem from "./track_index_item";
 declare const window: Window;
 
 function TrackIndex() {
-    const tracks: Array<IndexTrack> = useSelector((state: State) => Object.values(state.entities.tracks));
+    const tracks: Array<IndexTrack> = useSelector((state: State) => Object.values(state.entities.indexTracks));
 
     const dispatch: Dispatch<any> = useDispatch();
     const fetchTracks: Function = () => dispatch(TrackActions.fetchTracks());

@@ -1,20 +1,18 @@
 import React from "react";
-import { cleanup, render, screen, waitFor, within } from "@testing-library/react";
+import { cleanup, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import server from "../msw_server"
-import TrackShow from "../../components/tracks/track_show";
-import { testMatch, testShowStore } from "../test_store_data";
+import TrackShow from "../../../components/tracks/track_show";
+import { testMatch, testShowStore } from "../../test_store_data";
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 const testStore = mockStore(testShowStore);
 
 describe("comment show", () => {
-    // beforeAll(() => server.listen());
     beforeEach(() => {
         render(
             <BrowserRouter>
@@ -25,10 +23,8 @@ describe("comment show", () => {
         );
     })
     afterEach(() => {
-        cleanup()
-        // server.resetHandlers()
+        cleanup();
     });
-    // afterAll(() => server.close());
 
     test("contains the commenter username and the body of the comment", () => {
         const lyrics = screen.queryByTestId("lyrics__main");

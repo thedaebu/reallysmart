@@ -2,10 +2,10 @@ import { createStore } from "redux";
 import rootReducer from "../../reducers/root_reducer";
 import searchesReducer from "../../reducers/searches_reducer";
 import { IndexTrack } from "../../my_types";
-import { testTracksData } from "../test_store_data";
+import { testIndexTracksData } from "../test_store_data";
 
 describe("searches reducer", () => {
-    const testTracks: { [key: number]: IndexTrack} = testTracksData;
+    const testTracks: { [key: number]: IndexTrack} = testIndexTracksData;
 
     test("exports a function", () => {
         expect(typeof searchesReducer).toEqual("function");
