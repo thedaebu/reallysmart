@@ -1,7 +1,7 @@
 import { Annotation, Comment, IndexTrack, State, Track, User, Vote } from "../my_types";
 
 // test data
-export const testAnnotationsData: { [key: number]: Annotation } = {
+export const testAnnotationsData: {[key: number]: Annotation} = {
     1: {
         annotator_id: 1,
         annotator_name: "reallysmart",
@@ -21,7 +21,7 @@ export const testAnnotationsData: { [key: number]: Annotation } = {
         track_id: 1
     }
 };
-export const testCommentsData: { [key: number]: Comment } = {
+export const testCommentsData: {[key: number]: Comment} = {
     1: {
         body: "This is one of my new favorite songs now.",
         commentable_id: 1,
@@ -50,7 +50,7 @@ export const testCommentsData: { [key: number]: Comment } = {
         updated_at: "2022-03-20T17:56:15.629Z"
     }
 };
-export const testTrackData1: { [key: number]: Track } = {
+export const testTrackData1: {[key: number]: Track} = {
     1: {
         artist: "NIKI",
         artwork_path: "https://i.ytimg.com/vi/GBqqoPSJ9GY/maxresdefault.jpg",
@@ -60,7 +60,7 @@ export const testTrackData1: { [key: number]: Track } = {
         title: "Selene"
     }
 };
-export const testTrackData2: { [key: number]: Track } = {
+export const testTrackData2: {[key: number]: Track} = {
     2: {
         artist: "Modjo",
         artwork_path: "https://i.ytimg.com/vi/Z0V4CtdXlhk/maxresdefault.jpg",
@@ -69,7 +69,7 @@ export const testTrackData2: { [key: number]: Track } = {
         title: "Lady"
     }
 };
-export const testTracksData: { [key: number]: IndexTrack } = {
+export const testIndexTracksData: {[key: number]: IndexTrack} = {
     1:  {
         artist: "NIKI",
         artwork_path: "https://i.ytimg.com/vi/GBqqoPSJ9GY/maxresdefault.jpg",
@@ -107,13 +107,13 @@ export const testTracksData: { [key: number]: IndexTrack } = {
         title: "Stay"
     }
 };
-export const testUserData: { [key: number]: User } = {
+export const testUserData: {[key: number]: User} = {
     1: {
         id: 1,
         username: "reallysmart"
     }
 };
-export const testVotesData: { [key: number]: Vote } = {
+export const testVotesData: {[key: number]: Vote} = {
     1: {
         id: 1,
         voteable_id: 1,
@@ -133,8 +133,9 @@ export const testDefaultStore: State = {
     entities: {
         annotations: {},
         comments: {},
+        indexTracks: {},
         searches: {},
-        tracks: {},
+        track: {},
         user: {},
         votes: {}
     },
@@ -153,8 +154,9 @@ export const testIndexStore: State = {
     entities: {
         annotations: {},
         comments: {},
+        indexTracks: testIndexTracksData,
         searches: {},
-        tracks: testTracksData,
+        track: {},
         user: {},
         votes: {}
     },
@@ -173,8 +175,9 @@ export const testShowStore: State = {
     entities: {
         annotations: testAnnotationsData,
         comments: testCommentsData,
-        searches: testTracksData,
-        tracks: testTrackData1,
+        indexTracks: {},
+        searches: testIndexTracksData,
+        track: testTrackData1,
         user: {},
         votes: testVotesData
     },
@@ -193,8 +196,9 @@ export const testShowStoreWithUser: State = {
     entities: {
         annotations: testAnnotationsData,
         comments: testCommentsData,
-        searches: testTracksData,
-        tracks: testTrackData1,
+        indexTracks: {},
+        searches: testIndexTracksData,
+        track: testTrackData1,
         user: testUserData,
         votes: testVotesData
     },
