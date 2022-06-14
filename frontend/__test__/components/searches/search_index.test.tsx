@@ -6,11 +6,11 @@ import { Provider } from "react-redux";
 import * as reactRedux from "react-redux";
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import server from "../msw_server"
-import { testShowStore } from "../test_store_data";
-import * as SearchActions from "../../actions/search_actions";
-import { IndexTrack } from "../../my_types";
-import Searchbar from "../../components/searchbar/searchbar";
+import server from "../../msw_server"
+import { testShowStore } from "../../test_store_data";
+import * as SearchActions from "../../../actions/search_actions";
+import { IndexTrack } from "../../../my_types";
+import Searchbar from "../../../components/searchbar/searchbar";
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);

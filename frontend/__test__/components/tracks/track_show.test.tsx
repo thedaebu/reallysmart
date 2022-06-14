@@ -5,10 +5,10 @@ import { Provider } from "react-redux";
 import * as reactRedux from "react-redux";
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import server from "../msw_server"
-import TrackShow from "../../components/tracks/track_show";
-import * as trackActions from "../../actions/track_actions";
-import { testMatch, testShowStore } from "../test_store_data";
+import server from "../../msw_server"
+import TrackShow from "../../../components/tracks/track_show";
+import * as trackActions from "../../../actions/track_actions";
+import { testMatch, testShowStore } from "../../test_store_data";
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);

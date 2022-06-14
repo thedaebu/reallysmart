@@ -6,10 +6,10 @@ import { Provider } from "react-redux";
 import * as reactRedux from "react-redux";
 import configureMockStore from "redux-mock-store";
 import thunk from 'redux-thunk';
-import server from "../msw_server"
-import { testShowStore } from "../test_store_data";
-import * as SessionActions from "../../actions/session_actions";
-import SignupForm from "../../components/session_form/signup_form";
+import server from "../../msw_server"
+import { testShowStore } from "../../test_store_data";
+import * as SessionActions from "../../../actions/session_actions";
+import SignupForm from "../../../components/session_form/signup_form";
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);

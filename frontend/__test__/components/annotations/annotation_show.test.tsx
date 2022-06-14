@@ -5,15 +5,15 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import server from "../msw_server"
-import TrackShow from "../../components/tracks/track_show";
-import { testMatch, testShowStore } from "../test_store_data";
+import server from "../../msw_server"
+import TrackShow from "../../../components/tracks/track_show";
+import { testMatch, testShowStore } from "../../test_store_data";
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 const testStore = mockStore(testShowStore);
 
-describe("vote show", () => {
+describe("annotation show", () => {
     // beforeAll(() => server.listen());
     beforeEach(() => {
         render(
@@ -30,27 +30,25 @@ describe("vote show", () => {
     });
     // afterAll(() => server.close());
 
-    test("contains the correct amount of votes for the track comment", () => {
-        const lyrics = screen.queryByTestId("lyrics__main");
-        const commentShowItem1 = within(lyrics).queryAllByTestId("comment-show-item")[0];
-        const voteShow1 = within(commentShowItem1).queryByTestId("vote-show");
-        expect(voteShow1).toHaveTextContent("+1");
-        const commentShowItem2 = within(lyrics).queryAllByTestId("comment-show-item")[1];
-        const voteShow2 = within(commentShowItem2).queryByTestId("vote-show");
-        expect(voteShow2).toHaveTextContent("+0");
-    });
-    test("contains the correct amount of votes for the annotation", () => {
+    test("contains the annotation body and annotator username when annotated section is clicked on", () => {
         const annotatedSection = screen.queryAllByTestId("lyrics__is-annotation")[0];
         userEvent.click(annotatedSection);
         const annotationShow = screen.queryByTestId("annotation-show");
-        expect(annotationShow).toHaveTextContent("+1");
+        expect(annotationShow).toHaveTextContent("reallysmart");
+        expect(annotationShow).toHaveTextContent("She is singing about Selene, her alter-ego, who comes out when she becomes under the influence. She is claiming Selene is making her do things not of her own will but she is not trying to will herself against Selene.")
     });
-    test("contains the correct amount of comments for the annotation", () => {
+    test("contains comment show component", () => {
         const annotatedSection = screen.queryAllByTestId("lyrics__is-annotation")[0];
         userEvent.click(annotatedSection);
         const annotationShow = screen.queryByTestId("annotation-show");
-        const commentShowItem = within(annotationShow).queryByTestId("comment-show-item");
-        const voteShow = within(commentShowItem).queryByTestId("vote-show");
-        expect(voteShow).toHaveTextContent("+0");
+        const commentShowItem = within(annotationShow).queryAllByTestId("comment-show-item")[0];
+        expect(commentShowItem).toBeInTheDocument();
     });
-})
+    test("contains votes show component", () => {
+        const annotatedSection = screen.queryAllByTestId("lyrics__is-annotation")[0];
+        userEvent.click(annotatedSection);
+        const annotationShow = screen.queryByTestId("annotation-show");
+        const voteShow = within(annotationShow).queryAllByTestId("vote-show")[0];
+        expect(voteShow).toBeInTheDocument();
+    });
+});

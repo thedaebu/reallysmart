@@ -6,11 +6,11 @@ import { Provider } from "react-redux";
 import * as reactRedux from "react-redux";
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import server from "../msw_server"
-import { testIndexStore } from "../test_store_data";
-import * as trackActions from "../../actions/track_actions";
-import { IndexTrack } from "../../my_types";
-import TrackIndex from "../../components/tracks/track_index";
+import server from "../../msw_server"
+import { testIndexStore } from "../../test_store_data";
+import * as trackActions from "../../../actions/track_actions";
+import { IndexTrack } from "../../../my_types";
+import TrackIndex from "../../../components/tracks/track_index";
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
