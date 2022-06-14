@@ -62,7 +62,7 @@ describe("track index", () => {
             expect(trackIndexItem.length).toBeGreaterThan(0);
         });
         test("displays the artist and title for each track index item", () => {
-            const trackIndexData: { [key:number]: IndexTrack } = testIndexStore.entities.tracks;
+            const trackIndexData: { [key:number]: IndexTrack } = testIndexStore.entities.indexTracks;
             const trackIndexItems = screen.queryAllByTestId("track-index-item");
             trackIndexItems.forEach((trackIndexItem, idx) => {
                 expect(trackIndexItem).toHaveTextContent(trackIndexData[idx+1].artist);

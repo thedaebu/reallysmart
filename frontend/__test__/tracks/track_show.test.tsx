@@ -49,7 +49,7 @@ describe("track show", () => {
         expect(useFetchTrack).toHaveBeenCalled();
     });
     describe("track show header", () => {
-        const track = testShowStore.entities.tracks[1]
+        const track = testShowStore.entities.track[1]
         const header = screen.queryByTestId("track-show-header");
         test("contains the artist and title of the track", () => {
             expect(header).toHaveTextContent(track.artist);
