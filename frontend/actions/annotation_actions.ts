@@ -1,16 +1,16 @@
 import { Dispatch } from "react";
 import { AnyAction } from "redux";
-import { CreatedAnnotation, ReceivedAnnotation, UpdatedAnnotation } from "../my_types";
+import { Annotation, CreatedAnnotation, ReceivedAnnotation, UpdatedAnnotation } from "../my_types";
 import * as AnnotationAPIUtil from "../util/api/annotation_api_util";
 
 export const RECEIVE_ANNOTATION = "RECEIVE_ANNOTATION";
 export const RECEIVE_ANNOTATION_ERRORS = "RECEIVE_ANNOTATION_ERRORS";
 export const REMOVE_ANNOTATION = "REMOVE_ANNOTATION";
 
-const receiveAnnotation = (receivedAnnotation: ReceivedAnnotation) => {
+const receiveAnnotation = ({ annotation }: {annotation: Annotation}) => {
     return({
         type: RECEIVE_ANNOTATION,
-        annotation: receivedAnnotation.annotation,
+        annotation
     });
 };
 const receiveAnnotationErrors = (errors: Array<string>) => {

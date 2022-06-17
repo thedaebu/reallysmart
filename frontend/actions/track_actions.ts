@@ -1,14 +1,14 @@
 import { AnyAction, Dispatch } from "redux";
-import { ReceivedTrack, ReceivedTracks } from "../my_types";
+import { IndexTrack, ReceivedTrack, ReceivedTracks } from "../my_types";
 import * as TrackAPIUtil from "./../util/api/track_api_util";
 
 export const RECEIVE_TRACKS = "RECEIVE_TRACKS";
 export const RECEIVE_TRACK = "RECEIVE_TRACK";
 
-const receiveTracks = (receivedTracks: ReceivedTracks) => {
+const receiveTracks = ({ tracks }: {tracks: {[key: number]: IndexTrack}}) => {
     return ({
         type: RECEIVE_TRACKS,
-        tracks: receivedTracks.tracks
+        tracks
     });
 };
 const receiveTrack = (receivedTrack: ReceivedTrack) => {

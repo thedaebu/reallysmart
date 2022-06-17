@@ -1,6 +1,6 @@
 import { Dispatch } from "react";
 import { AnyAction } from "redux";
-import { ReceivedUser, SessionUser } from "../my_types";
+import { ReceivedUser, SessionUser, User } from "../my_types";
 import * as SessionAPIUtil from "./../util/api/session_api_util";
 import * as UserAPIUtil from "./../util/api/user_api_util";
 
@@ -9,10 +9,10 @@ export const LOGOUT_CURRENT_USER = "LOGOUT_CURRENT_USER";
 export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
 export const CLEAR_ERRORS = "CLEAR_ERRORS";
 
-const receiveCurrentUser = (receivedUser: ReceivedUser) => {
+const receiveCurrentUser = ({ user }: {user: User}) => {
     return ({
         type: RECEIVE_CURRENT_USER,
-        user: receivedUser.user
+        user
     });
 };
 const receiveSessionErrors = (errors: Array<string>) => ({
