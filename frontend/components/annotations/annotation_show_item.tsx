@@ -22,7 +22,7 @@ function AnnotationShowItem({ annotation, track }: { annotation: Annotation, tra
     const [updatedAnnotationBody, setUpdatedAnnotationBody] = useState<string>(annotation.body);
 
     function annotationShowItem() {
-        if (currentAnnotation && annotationUpdateStatus === false) {
+        if (annotationUpdateStatus === false) {
             return (
                 <div
                     className="annotation-show-item" 
@@ -41,7 +41,7 @@ function AnnotationShowItem({ annotation, track }: { annotation: Annotation, tra
                     />
                 </div>
             );
-        } else if (currentAnnotation && annotationUpdateStatus === true) {
+        } else if (annotationUpdateStatus === true) {
             return (
                 <form
                     id="annotation-show-form"
@@ -147,7 +147,7 @@ function AnnotationShowItem({ annotation, track }: { annotation: Annotation, tra
             id: currentAnnotation.id,
             start_index: currentAnnotation.start_index,
             track_id: trackId
-        }
+        };
 
         updateAnnotation(updatedAnnotation)
             .then(() => fetchTrack(trackId.toString()));
@@ -175,7 +175,7 @@ function AnnotationShowItem({ annotation, track }: { annotation: Annotation, tra
 
     return (
         <>
-            {annotationShowItem()}
+            {currentAnnotation && annotationShowItem()}
         </>
     );
 }
