@@ -86,6 +86,6 @@ function TrackIndex() {
             {indexCount <= 10 && extendIndexCountButton()}
         </>
     );
-};
+}
 
 export default TrackIndex;

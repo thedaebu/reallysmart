@@ -38,5 +38,4 @@ function SearchIndexItem({ track }: { track: IndexTrack }) {
 }
 
 const MemoizedSearchIndexItem = memo(SearchIndexItem);
-
 export default MemoizedSearchIndexItem;
