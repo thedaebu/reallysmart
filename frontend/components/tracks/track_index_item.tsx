@@ -43,5 +43,5 @@ function TrackIndexItem({ listNumber, track }: { listNumber: number, track: Inde
 }
 
 const MemoizedTrackIndexItem = memo(TrackIndexItem);
-
+export type TrackIndexItem = ReturnType<typeof MemoizedTrackIndexItem>;
 export default MemoizedTrackIndexItem;
