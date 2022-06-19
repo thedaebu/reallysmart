@@ -81,8 +81,6 @@ function TrackIndex() {
                     We Miss You DMX!
                 </button>
             );
-        } else {
-            return null;
         }
     }
 
@@ -102,7 +100,7 @@ function TrackIndex() {
                     {trackIndexItems()}
                 </ul>
             </div>
-            {extendTrackIndexListButton()}
+            {trackIndexList <= 10 && extendTrackIndexListButton()}
         </>
     );
 };
