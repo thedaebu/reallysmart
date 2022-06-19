@@ -45,7 +45,7 @@ function AnnotationShow(props: Props) {
                     />
                 </div>
             );
-        } else if (annotationModal && startIndex) {
+        } else if (annotationModal && startIndex < endIndex) {
             return (
                 <div 
                     className="annotation-show__without-annotation"
@@ -54,7 +54,14 @@ function AnnotationShow(props: Props) {
                         top: yCoord ? yCoord : -367
                     }}
                 >
-                    {annotationForm()}
+                    {currentUser 
+                        ? annotationForm()
+                        : (
+                            <div className="annotation-show__session" >
+                                <Link to="/signup">Sign Up to Start Really Smarting</Link>
+                            </div>
+                        )
+                    }
                 </div>
             );
         } else {
@@ -67,7 +74,7 @@ function AnnotationShow(props: Props) {
     }
 
     function annotationForm() {
-        if (currentUser && startIndex && startIndex !== endIndex && annotationCreateStatus === false) {
+        if (annotationCreateStatus === false) {
             return (
                 <div
                     className="annotation-show-begin" 
@@ -80,8 +87,8 @@ function AnnotationShow(props: Props) {
                         <h2>(+5 RSQ)</h2>
                     </button>
                 </div>
-            )
-        } else if (currentUser && annotationCreateStatus === true) {
+            );
+        } else if (annotationCreateStatus === true) {
             return (
                 <form
                     id="annotation-show-form"
@@ -127,14 +134,6 @@ function AnnotationShow(props: Props) {
                         </button>
                     </div>
                 </form>
-            );
-        } else {
-            return (
-                <div
-                    className="annotation-show__session"
-                >
-                    <Link to="/signup">Sign Up to Start Really Smarting</Link>
-                </div>
             );
         }
     }

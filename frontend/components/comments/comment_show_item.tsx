@@ -29,14 +29,14 @@ function CommentShowItem(props: Props) {
     const [updatedCommentBody, setUpdatedCommentBody] = useState<string>(comment.body);
 
     function commentShowItem() {
-        if (currentComment) {
-            if (commentUpdateStatus === false && commentableType === "Track") {
+        if (commentableType === "Track") {
+            if (commentUpdateStatus === false) {
                 return (
                     <li className="comment-show-item--track">
                         {commentItem()}
                     </li>
                 );
-            } else if (commentUpdateStatus === true && commentableType === "Track"){
+            } else if (commentUpdateStatus === true) {
                 return (
                     <li className="comment-show-item--track">
                         <form
@@ -62,13 +62,15 @@ function CommentShowItem(props: Props) {
                         </form>
                     </li>
                 );
-            } else if (commentUpdateStatus === false && commentableType === "Annotation") {
+            }
+        } else if (commentableType === "Annotation") {
+            if (commentUpdateStatus === false) {
                 return (
                     <li className="comment-show-item--annotation">
                         {commentItem()}
                     </li>
                 );
-            } else if (commentUpdateStatus === true && commentableType === "Annotation") {
+            } else if (commentUpdateStatus === true) {
                 return (
                     <li className="comment-show-item--annotation">
                         <form
@@ -95,8 +97,6 @@ function CommentShowItem(props: Props) {
                     </li>
                 );
             } 
-        } else {
-            return null;
         }
     }
 
@@ -115,7 +115,7 @@ function CommentShowItem(props: Props) {
                     parent={comment}
                     voteableType="Comment"
                 />
-                {updatebuttons()}
+                {currentUser && updatebuttons()}
             </div>
         );
     }
@@ -144,7 +144,7 @@ function CommentShowItem(props: Props) {
     }
 
     function updatebuttons() {
-        if (currentUser && currentUser.id === currentComment.commenter_id && commentDeleteStatus === false) {
+        if (currentUser.id === currentComment.commenter_id && commentDeleteStatus === false) {
             return (
                 <div className="comment-show-item__buttons">
                     <button className="comment-show-item__edit" onClick={handleCommentUpdateStatus}>
@@ -169,8 +169,6 @@ function CommentShowItem(props: Props) {
                     </button>
                 </div>
             )
-        } else {
-            return null;
         }
     }
 
@@ -208,11 +206,8 @@ function CommentShowItem(props: Props) {
 
     function handleCommentDeleteStatus(e: MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
-        if (commentDeleteStatus === false) {
-            setCommentDeleteStatus(true);
-        } else {
-            setCommentDeleteStatus(false);
-        }
+
+        setCommentDeleteStatus(!commentDeleteStatus);
     }
 
     function handleCommentDeleteSubmit(e: MouseEvent<HTMLButtonElement>) {
@@ -230,7 +225,7 @@ function CommentShowItem(props: Props) {
 
     return (
         <>
-            {commentShowItem()}
+            {currentComment && commentShowItem()}
         </>
     );
 }

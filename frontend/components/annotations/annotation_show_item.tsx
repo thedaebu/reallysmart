@@ -34,7 +34,7 @@ function AnnotationShowItem({ annotation, track }: { annotation: Annotation, tra
                         parent={annotation}
                         voteableType="Annotation"
                     />
-                    {updatebuttons()}
+                    {currentUser && updatebuttons()}
                     <CommentShow
                         commentableType="Annotation"
                         parent={annotation}
@@ -85,14 +85,12 @@ function AnnotationShowItem({ annotation, track }: { annotation: Annotation, tra
                         </button>
                     </div>
                 </form>
-            )
-        } else {
-            return null;
+            );
         }
     }
 
     function updatebuttons() {
-        if (currentUser && currentUser.id === currentAnnotation.annotator_id && annotationDeleteStatus === false) {
+        if (currentUser.id === currentAnnotation.annotator_id && annotationDeleteStatus === false) {
             return (
                 <div className="annotation-show-item__buttons">
                     <button className="annotation-show-item__edit" onClick={handleAnnotationUpdateStatus}>
@@ -116,20 +114,14 @@ function AnnotationShowItem({ annotation, track }: { annotation: Annotation, tra
                         Cancel
                     </button>
                 </div>
-            )
-        } else {
-            return null;
+            );
         }
     }
 
     function handleAnnotationUpdateStatus(e: MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
 
-        if (annotationUpdateStatus === false) {
-            setAnnotationUpdateStatus(true);
-        } else {
-            setAnnotationUpdateStatus(false);
-        }
+        setAnnotationUpdateStatus(!annotationUpdateStatus);
     }
 
     function handleUpdatedAnnotationBodyChange() {
@@ -157,11 +149,7 @@ function AnnotationShowItem({ annotation, track }: { annotation: Annotation, tra
     function handleAnnotationDeleteStatus(e: MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
 
-        if (annotationDeleteStatus === false) {
-            setAnnotationDeleteStatus(true);
-        } else {
-            setAnnotationDeleteStatus(false);
-        }
+        setAnnotationDeleteStatus(!annotationDeleteStatus);
     }
 
     function handleAnnotationDeleteSubmit(e: MouseEvent<HTMLButtonElement>) {
