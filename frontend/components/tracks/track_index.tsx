@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import * as TrackActions from "../../actions/track_actions";
 import { IndexTrack, State, Window } from "../../my_types";
 import Navbar from "../navbar/navbar";
-import MemoizedTrackIndexItem from "./track_index_item";
+import MemoizedTrackIndexItem, { TrackIndexItem } from "./track_index_item";
 
 declare const window: Window;
 
@@ -13,69 +13,52 @@ function TrackIndex() {
     const dispatch: Dispatch<any> = useDispatch();
     const fetchTracks: Function = () => dispatch(TrackActions.fetchTracks());
 
-    const [trackIndexList, setTrackIndexList] = useState<number>(5);
+    const [indexCount, setIndexCount] = useState<number>(5);
+    const [indexTracks, setIndexTracks] = useState<Array<TrackIndexItem>>([]);
 
     useEffect(() => {
         fetchTracks();
         window.scrollTo(0, 0);
-    }, [])
+    }, []);
+
+    useEffect(() => {
+        setIndexTracks(tracks.map((track: IndexTrack, idx: number) => {
+            return (
+                <MemoizedTrackIndexItem
+                    listNumber={idx+1}
+                    track={track}
+                    key={idx+1}
+                />
+            );
+        }));
+    }, [tracks.length]);
 
     function trackIndexItems() {
-        if (trackIndexList === 5) {
-            return (
-                tracks.slice(0, 5).map((track: IndexTrack, idx: number) => {
-                    return (
-                        <MemoizedTrackIndexItem
-                            listNumber={idx+1}
-                            track={track}
-                            key={idx+1}
-                        />
-                    );
-                })
-            );
-        } else if (trackIndexList === 10) {
-            return (
-                tracks.slice(0, 10).map((track: IndexTrack, idx: number) => {
-                    return (
-                        <MemoizedTrackIndexItem
-                            listNumber={idx+1}
-                            track={track}
-                            key={idx+1}
-                        />
-                    );
-                })
-            );
+        if (indexCount === 5) {
+            return indexTracks.slice(0,5);
+        } else if (indexCount === 10) {
+            return indexTracks.slice(0,10);
         } else {
-            return (
-                tracks.map((track: IndexTrack, idx: number) => {
-                    return (
-                        <MemoizedTrackIndexItem
-                            listNumber={idx+1}
-                            track={track}
-                            key={idx+1}
-                        />
-                    );
-                })
-            );
+            return indexTracks;
         }
     }
 
-    function extendTrackIndexListButton() {
-        if (trackIndexList === 5) {
+    function extendIndexCountButton() {
+        if (indexCount === 5) {
             return (
                 <button
                     className="track-index__load-more"
-                    onClick={setTrackIndexListLimit} 
+                    onClick={setIndexCountLimit} 
                     data-testid="track-index__load-more"
                 >
                     LOAD MORE
                 </button>
             );
-        } else if (trackIndexList === 10) { 
+        } else if (indexCount === 10) { 
             return (
                 <button
                     className="track-index__load-more"
-                    onClick={setTrackIndexListLimit}
+                    onClick={setIndexCountLimit}
                     data-testid="track-index__load-more"
                 >
                     We Miss You DMX!
@@ -84,10 +67,10 @@ function TrackIndex() {
         }
     }
 
-    function setTrackIndexListLimit(e: MouseEvent<HTMLButtonElement>) {
+    function setIndexCountLimit(e: MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
 
-        setTrackIndexList(trackIndexList+5);
+        setIndexCount(indexCount+5);
     }
 
     return (
@@ -97,10 +80,10 @@ function TrackIndex() {
                 <h1 className="track-index__h1">CHARTS</h1>
                 <h2 className="track-index__h2">REALLY POPULAR ON REALLY SMART</h2>
                 <ul className="track-index__items">
-                    {trackIndexItems()}
+                    {indexTracks.length && trackIndexItems()}
                 </ul>
             </div>
-            {trackIndexList <= 10 && extendTrackIndexListButton()}
+            {indexCount <= 10 && extendIndexCountButton()}
         </>
     );
 };
