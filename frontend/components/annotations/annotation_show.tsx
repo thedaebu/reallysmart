@@ -45,7 +45,7 @@ function AnnotationShow(props: Props) {
                     />
                 </div>
             );
-        } else if (annotationModal && startIndex < endIndex) {
+        } else if (annotationModal) {
             return (
                 <div 
                     className="annotation-show__without-annotation"
