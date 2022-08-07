@@ -162,7 +162,9 @@ function LyricsShow({ track }: { track: Track }) {
 
             setStartIndex(beginning);
             setEndIndex(end);
-            dispatch(openAnnotationModal());
+            if (startIndex < endIndex) {
+                dispatch(openAnnotationModal());
+            }
         }
     }
 
