@@ -49,7 +49,7 @@ function LyricsShow({ track }: { track: Track }) {
         if (lyricsPartHighlightStatus === false) {
             annotateLyrics();
         }
-    }, [lyricsPartHighlightStatus])
+    }, [lyricsPartHighlightStatus]);
 
     // used for editing annotations
     // without it, annotation will not update live and user would have to click out of annotation and click on annotation again
@@ -72,7 +72,7 @@ function LyricsShow({ track }: { track: Track }) {
     }, []);
 
     function annotateLyrics() {
-        const currentAnnotations = Object.values(annotations);
+        const currentAnnotations: Array<Annotation> = Object.values(annotations);
         if (currentAnnotations.length > 0) {
             const sortedAnnotations: Array<Annotation> = currentAnnotations.sort((a: Annotation, b: Annotation) => (a.start_index - b.start_index));
             const currentLyricsParts: Array<JSX.Element> = [];
@@ -165,9 +165,8 @@ function LyricsShow({ track }: { track: Track }) {
 
         if (highlighted && highlighted.anchorOffset !== highlighted.focusOffset) {
             const newIndices: Array<number> = makeNewIndices(highlighted);
-            const start: number = Math.min(...newIndices) + 1;
-            const end: number = Math.max(...newIndices) - 1;
-
+            const start: number = newIndices[0] + 1;
+            const end: number = newIndices[1] - 1;
             setStartIndex(start);
             setEndIndex(end);
             if (startIndex < endIndex) {
@@ -185,25 +184,22 @@ function LyricsShow({ track }: { track: Track }) {
         let end: number = 0;
 
         if (anchorName.includes("not-anno") && anchorName === focusName) {
-            start = highlighted.anchorOffset + add;
-            end = highlighted.focusOffset + add;
-        }
-        if (anchorName.includes("not-anno-0")) {
-            end -= 1;
-        } else {
-            start += 1;
+            const currentStart: number = highlighted.anchorOffset + add;
+            const currentEnd: number = highlighted.focusOffset + add;
+            start = Math.min(currentStart, currentEnd);
+            end = Math.max(currentStart, currentEnd) + 1;
         }
 
         return [start, end];
     }
 
     function handleLyricsPartHighlight(start: number, end: number, highlighted: Highlighted) {
-        const { add, name } = highlighted.anchorNode.parentNode.dataset
+        const { add, name }: {add: string, name: string} = highlighted.anchorNode.parentNode.dataset;
 
-        let currentLyricsPart: any;
+        let currentLyricsPart: JSX.Element;
         let currentIndex: number;
         for (let i = 0; i < lyricsParts.length; i++) {
-            const lyricsPart = lyricsParts[i];
+            const lyricsPart: JSX.Element = lyricsParts[i];
             if (lyricsPart.key === name) {
                 currentLyricsPart = lyricsPart;
                 currentIndex = i;
@@ -211,8 +207,8 @@ function LyricsShow({ track }: { track: Track }) {
             }
         }
 
-        const highlightedCurrentLyricsPart = [];
-        const currentLyricsPartLyrics = currentLyricsPart.props.children;
+        const highlightedCurrentLyricsPart: Array<JSX.Element> = [];
+        const currentLyricsPartLyrics: string = currentLyricsPart.props.children;
         highlightedCurrentLyricsPart.push(
             <span
                 className="lyrics__not-annotation"
@@ -238,9 +234,7 @@ function LyricsShow({ track }: { track: Track }) {
             </span>
         )
 
-        // console.log(start, end)
-        // console.log(highlightedCurrentLyricsPart[0].props.children, highlightedCurrentLyricsPart[1].props.children, highlightedCurrentLyricsPart[2].props.children)
-        let newLyricsParts: any = [...lyricsParts.slice(0,currentIndex), ...highlightedCurrentLyricsPart, ...lyricsParts.slice(currentIndex+1)];
+        let newLyricsParts: Array<JSX.Element> = [...lyricsParts.slice(0,currentIndex), ...highlightedCurrentLyricsPart, ...lyricsParts.slice(currentIndex+1)];
         setLyricsParts(newLyricsParts);
     }
 
