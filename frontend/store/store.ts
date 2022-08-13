@@ -4,10 +4,10 @@ import rootReducer from "../reducers/root_reducer";
 
 function configureAppStore(preloadedState: State | {} = {}) {
     const middleware: Array<Middleware> = [...getDefaultMiddleware()];
-    if (process.env.NODE_ENV === "development") {
-        const { logger } = require("redux-logger");
-        middleware.push(logger);
-    }
+    // if (process.env.NODE_ENV === "development") {
+    //     const { logger } = require("redux-logger");
+    //     middleware.push(logger);
+    // }
     const store: EnhancedStore = configureStore({
       reducer: rootReducer,
       middleware: middleware,
