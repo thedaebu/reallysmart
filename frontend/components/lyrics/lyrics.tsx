@@ -67,7 +67,7 @@ function LyricsShow({ track }: { track: Track }) {
         setAnnotationCreateStatus(!annotationCreateStatus);
     }, []);
 
-    const handleLyricsPartHighlightStatus = useCallback(() => {
+    const removeLyricsPartHighlight = useCallback(() => {
         setLyricsPartHighlightStatus(false);
     }, []);
 
@@ -75,9 +75,9 @@ function LyricsShow({ track }: { track: Track }) {
         const currentAnnotations: Array<Annotation> = Object.values(annotations);
         if (currentAnnotations.length > 0) {
             const sortedAnnotations: Array<Annotation> = currentAnnotations.sort((a: Annotation, b: Annotation) => (a.start_index - b.start_index));
+
             const currentLyricsParts: Array<JSX.Element> = [];
             let currentIndex: number = 0;
-
             sortedAnnotations.forEach((annotation: Annotation, idx: number) => {
                 const addIndex: number = idx === 0
                     ? 0
@@ -264,7 +264,7 @@ function LyricsShow({ track }: { track: Track }) {
                         annotationCreateStatus={annotationCreateStatus}
                         endIndex={endIndex}
                         handleAnnotationCreateStatus={handleAnnotationCreateStatus}
-                        handleLyricsPartHighlightStatus={handleLyricsPartHighlightStatus}
+                        removeLyricsPartHighlight={removeLyricsPartHighlight}
                         startIndex={startIndex}
                         track={track}
                         yCoord={yCoord}

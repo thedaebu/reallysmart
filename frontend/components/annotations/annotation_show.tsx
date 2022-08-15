@@ -12,14 +12,14 @@ type Props = {
     annotationCreateStatus: boolean,
     endIndex: number,
     handleAnnotationCreateStatus: Function,
-    handleLyricsPartHighlightStatus: Function,
+    removeLyricsPartHighlight: Function,
     startIndex: number,
     track: Track,
     yCoord: number
 };
 
 function AnnotationShow(props: Props) {
-    const { annotation, annotationCreateStatus, endIndex, handleAnnotationCreateStatus, handleLyricsPartHighlightStatus, startIndex, track, yCoord } = props;
+    const { annotation, annotationCreateStatus, endIndex, handleAnnotationCreateStatus, removeLyricsPartHighlight, startIndex, track, yCoord } = props;
 
     const annotationModal: boolean = useSelector((state: State) => state.modal.annotationModal);
     const currentUser: User = useSelector((state: State) => state.entities.user[state.session.id]);
@@ -176,7 +176,7 @@ function AnnotationShow(props: Props) {
 
         closeAnnotationModal();
         setAnnotationBody("");
-        handleLyricsPartHighlightStatus();
+        removeLyricsPartHighlight();
         handleAnnotationCreateStatus();
     }
 
