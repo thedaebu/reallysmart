@@ -11,7 +11,7 @@ $programmelight: 'Programme Light', sans-serif;
         margin: 0px auto;
         .lyrics__text {
             min-width: 530px;
-            padding: 16px 0px 96px 16px; 
+            padding: 16px 0px 96px 16px;
             .lyrics__top {
                 font-family: $programmereg;
                 color: #9a9a9a;
@@ -21,30 +21,26 @@ $programmelight: 'Programme Light', sans-serif;
             }
             .lyrics__body {
                 width: 530px;
-                font-family: $programmelight;    
                 font-size: 18px;
-                font-weight: lighter;
                 line-height: 30px;
                 .lyrics__not-annotation {
-                    font-family: $programmelight;    
+                    font-family: $programmelight;
                     font-size: 18px;
-                    font-weight: lighter;
-                    line-height: 30px;
                 }
                 .lyrics__is-annotation {
                     cursor: pointer;
                     background: rgb(224, 224, 224);
-                    font-family: $programmelight;    
+                    font-family: $programmelight;
                     font-size: 18px;
-                    font-weight: lighter;
-                    line-height: 30px;
                     padding: 3px 0px 4px 0px;
                     &:hover {
                         background: rgb(121, 164, 255);
                     }
                 }
                 .lyrics__highlighted {
-                    background: red;
+                    background: rgb(121, 164, 255);
+                    font-family: $programmelight;
+                    padding: 5px 0px 6px 0px;
                 }
             }
         }
