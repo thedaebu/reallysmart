@@ -12,13 +12,14 @@ type Props = {
     annotationCreateStatus: boolean,
     endIndex: number,
     handleAnnotationCreateStatus: Function,
+    removeLyricsPartHighlight: Function,
     startIndex: number,
     track: Track,
     yCoord: number
 };
 
 function AnnotationShow(props: Props) {
-    const { annotation, annotationCreateStatus, endIndex, handleAnnotationCreateStatus, startIndex, track, yCoord } = props;
+    const { annotation, annotationCreateStatus, endIndex, handleAnnotationCreateStatus, removeLyricsPartHighlight, startIndex, track, yCoord } = props;
 
     const annotationModal: boolean = useSelector((state: State) => state.modal.annotationModal);
     const currentUser: User = useSelector((state: State) => state.entities.user[state.session.id]);
@@ -45,7 +46,7 @@ function AnnotationShow(props: Props) {
                     />
                 </div>
             );
-        } else if (annotationModal && startIndex) {
+        } else if (annotationModal) {
             return (
                 <div 
                     className="annotation-show__without-annotation"
@@ -54,7 +55,14 @@ function AnnotationShow(props: Props) {
                         top: yCoord ? yCoord : -367
                     }}
                 >
-                    {annotationForm()}
+                    {currentUser 
+                        ? annotationForm()
+                        : (
+                            <div className="annotation-show__session" >
+                                <Link to="/signup">Sign Up to Start Really Smarting</Link>
+                            </div>
+                        )
+                    }
                 </div>
             );
         } else {
@@ -67,7 +75,7 @@ function AnnotationShow(props: Props) {
     }
 
     function annotationForm() {
-        if (currentUser && startIndex && startIndex !== endIndex && annotationCreateStatus === false) {
+        if (annotationCreateStatus === false) {
             return (
                 <div
                     className="annotation-show-begin" 
@@ -80,8 +88,8 @@ function AnnotationShow(props: Props) {
                         <h2>(+5 RSQ)</h2>
                     </button>
                 </div>
-            )
-        } else if (currentUser && annotationCreateStatus === true) {
+            );
+        } else if (annotationCreateStatus === true) {
             return (
                 <form
                     id="annotation-show-form"
@@ -128,14 +136,6 @@ function AnnotationShow(props: Props) {
                     </div>
                 </form>
             );
-        } else {
-            return (
-                <div
-                    className="annotation-show__session"
-                >
-                    <Link to="/signup">Sign Up to Start Really Smarting</Link>
-                </div>
-            );
         }
     }
 
@@ -176,6 +176,7 @@ function AnnotationShow(props: Props) {
 
         closeAnnotationModal();
         setAnnotationBody("");
+        removeLyricsPartHighlight();
         handleAnnotationCreateStatus();
     }
 

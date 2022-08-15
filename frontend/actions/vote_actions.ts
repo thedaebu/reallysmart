@@ -1,15 +1,15 @@
 import { Dispatch } from "react";
 import { AnyAction } from "redux";
-import { CreatedVote, ReceivedVote } from "../my_types";
+import { CreatedVote, ReceivedVote, Vote } from "../my_types";
 import * as VoteAPIUtil from "./../util/api/vote_api_util";
 
 export const RECEIVE_VOTE = "RECEIVE_VOTE";
 export const REMOVE_VOTE = "REMOVE_VOTE";
 
-const receiveVote = (receivedVote: ReceivedVote) => {
+const receiveVote = ({ vote }: {vote: Vote}) => {
     return ({
         type: RECEIVE_VOTE,
-        vote: receivedVote.vote
+        vote
     });
 };
 const removeVote = (voteId: number) => {

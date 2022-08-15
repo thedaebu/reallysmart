@@ -1,4 +1,4 @@
-import React, { ChangeEvent, Dispatch, FormEvent, MouseEvent, useState } from "react";
+import React, { ChangeEvent, Dispatch, FormEvent, MouseEvent, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import * as AnnotationActions from "../../actions/annotation_actions";
@@ -16,12 +16,17 @@ function CommentShow({ commentableType, parent }: { commentableType: "Track" | "
     const fetchAnnotation: Function = (annotationId: number) => dispatch(AnnotationActions.fetchAnnotation(annotationId));
     const fetchTrack: Function = (trackId: string) => dispatch(TrackActions.fetchTrack(trackId));
 
+    const [currentComments, setCurrentComments] = useState<Array<Comment>>([]);
     const [commentBody, setCommentBody] = useState<string>("");
     const [commentCreateStatus, setCommentCreateStatus] = useState<boolean>(false);
 
+    useEffect(() => {
+        setCurrentComments(Object.values(comments).filter((comment: Comment) => comment.commentable_type === commentableType && comment.commentable_id === parent.id));
+    }, [comments]);
+
     function commentForm() {
-        if (currentUser) {
-            if (commentCreateStatus === false && commentableType === "Track") {
+        if (commentableType === "Track") {
+            if (commentCreateStatus === false) {
                 return (
                     <div className="comment-show__begin">
                         <img src="https://assets.genius.com/images/default_avatar_100.png" alt="Baby" />
@@ -31,7 +36,7 @@ function CommentShow({ commentableType, parent }: { commentableType: "Track" | "
                         />
                     </div>
                 );
-            } else if (commentCreateStatus === true && commentableType === "Track") {
+            } else {
                 return (
                     <form
                         className="comment-show-form"
@@ -55,7 +60,9 @@ function CommentShow({ commentableType, parent }: { commentableType: "Track" | "
                         </div>
                     </form>
                 );
-            } else if (commentCreateStatus === false && commentableType === "Annotation") {
+            }
+        } else if (commentableType === "Annotation") {
+            if (commentCreateStatus === false) {
                 return (
                     <div className="comment-show__begin">
                         <img src="https://assets.genius.com/images/default_avatar_100.png" alt="Baby" />
@@ -65,7 +72,7 @@ function CommentShow({ commentableType, parent }: { commentableType: "Track" | "
                         />
                     </div>
                 );
-            } else if (commentCreateStatus === true && commentableType === "Annotation") {
+            } else {
                 return (
                     <form
                         className="comment-show-form"
@@ -89,45 +96,8 @@ function CommentShow({ commentableType, parent }: { commentableType: "Track" | "
                         </div>
                     </form>
                 );
-            } 
-        } else {
-            return (
-                <div className="comment-show__session">
-                    <p>Please</p>
-                    <Link to="/signup">Sign Up</Link>
-                    <p>or</p>
-                    <Link to="/login">Log In</Link>
-                    <p> to comment.</p>
-                </div>
-            );
+            }
         }
-    }
-
-    function commentItems() {
-        const currentComments = getCurrentComments(comments)
-        if (currentComments.length > 0) {
-            return (
-                <ul className="comment-show__items">
-                    {currentComments.map((comment, idx) => {
-                        return (
-                            <CommentShowItem
-                                comment={comment}
-                                commentableType={commentableType}
-                                parent={parent}
-                                key={idx}
-                            />
-                        );
-                    })}
-                </ul>
-            );
-        } else {
-            return null;
-        }
-    }
-
-    function getCurrentComments(comments: {[key: number]: Comment}) {
-        const currentComments = Object.values(comments).filter((comment: Comment) => comment.commentable_type === commentableType && comment.commentable_id === parent.id);
-        return currentComments;
     }
 
     function handleCommentCreateStatus(e: MouseEvent<HTMLTextAreaElement | HTMLButtonElement>) {
@@ -169,8 +139,32 @@ function CommentShow({ commentableType, parent }: { commentableType: "Track" | "
 
     return (
         <div className="comment-show">
-            {commentForm()}
-            {commentItems()}
+            {currentUser
+                ? commentForm()
+                : (
+                    <div className="comment-show__session">
+                        <p>Please</p>
+                        <Link to="/signup">Sign Up</Link>
+                        <p>or</p>
+                        <Link to="/login">Log In</Link>
+                        <p> to comment.</p>
+                    </div>
+                )
+            }
+            {currentComments.length > 0 && (
+                <ul className="comment-show__items">
+                    {currentComments.map((comment, idx) => {
+                        return (
+                            <CommentShowItem
+                                comment={comment}
+                                commentableType={commentableType}
+                                parent={parent}
+                                key={idx}
+                            />
+                        );
+                    })}
+                </ul>
+            )}
         </div>
     );
 }

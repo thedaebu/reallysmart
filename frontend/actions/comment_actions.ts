@@ -1,15 +1,15 @@
 import { Dispatch } from "react";
 import { AnyAction } from "redux";
-import { CreatedComment, ReceivedComment, UpdatedComment } from "../my_types";
+import { Comment, CreatedComment, ReceivedComment, UpdatedComment } from "../my_types";
 import * as CommentAPIUtil from "./../util/api/comment_api_util";
 
 export const RECEIVE_COMMENT = "RECEIVE_COMMENT";
 export const REMOVE_COMMENT = "REMOVE_COMMENT";
 
-const receiveComment = (receivedComment: ReceivedComment) => {
+const receiveComment = ({ comment }: {comment: Comment}) => {
     return ({
         type: RECEIVE_COMMENT,
-        comment: receivedComment.comment,
+        comment
     });
 };
 const removeComment = (commentId: number) => {

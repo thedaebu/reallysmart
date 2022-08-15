@@ -20,7 +20,7 @@ function SearchIndex({ clearSearchField, searchField }: { clearSearchField: Func
     }
 
     function searchResult() {
-        if (searchField !== "" && searches.length > 0) {
+        if (searches.length > 0) {
             return (
                 <div className="search-index" data-testid="search-index">
                     <p className="search-index__results">SEARCH RESULTS</p>
@@ -37,21 +37,19 @@ function SearchIndex({ clearSearchField, searchField }: { clearSearchField: Func
                     </ul>
                 </div>
             );
-        } else if (searchField !== "" && searches.length === 0) {
+        } else {
             return (
                 <div className="search-index">
                     <p className="search-index__results">SEARCH RESULTS</p>
                     <p className="search-index__no-results">No results</p>
                 </div>
             );
-        } else {
-            return null;
         }
     }
 
     return (
         <>
-            {searchResult()}
+            {searchField && searchResult()}
         </>
     );
 }
