@@ -2,6 +2,7 @@ import React, { ChangeEvent, Dispatch, useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import * as SearchActions from "../../actions/search_actions";
+import useDebounce from "../../hooks/debounce_hook";
 import SearchIndex from "../searches/search_index";
 
 function Searchbar() {
@@ -11,8 +12,9 @@ function Searchbar() {
     const [searchField, setSearchField] = useState<string>("");
 
     function handleSearchChange() {
+        const debouncedSearchField = useDebounce(searchField);
         if (searchField !== "") {
-            fetchSearches(searchField.toLowerCase());
+            fetchSearches(debouncedSearchField.toLowerCase());
         }
         return (e: ChangeEvent<HTMLInputElement>) => setSearchField(e.currentTarget.value);
     }
