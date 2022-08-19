@@ -16,5 +16,7 @@ Rails.application.routes.draw do
     resources :searches, only: [:index]
     resources :tags, only: [:index]
   end
+
+  resources :status, only: [:index]
   
 end
