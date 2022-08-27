@@ -194,7 +194,8 @@ function LyricsShow({ track }: { track: Track }) {
     }
 
     function handleLyricsPartHighlight(start: number, end: number, highlighted: Highlighted) {
-        const { add, name }: {add: string, name: string} = highlighted.anchorNode.parentNode.dataset;
+        const { name }: {name: string} = highlighted.anchorNode.parentNode.dataset;
+        const add: number = parseInt(highlighted.anchorNode.parentNode.dataset.add);
 
         let currentLyricsPart: JSX.Element;
         let currentIndex: number;
@@ -213,28 +214,31 @@ function LyricsShow({ track }: { track: Track }) {
             <span
                 className="lyrics__not-annotation"
                 key="highlighted_0"
+                data-testid="lyrics__unhighlighted"
             >
-                {currentLyricsPartLyrics.slice(0, start - parseInt(add) - 1)}
+                {currentLyricsPartLyrics.slice(0, start - add - 1)}
             </span>
-        )
+        );
         highlightedCurrentLyricsPart.push(
             <span
                 className="lyrics__highlighted"
                 key="highlighted_1"
+                data-testid="lyrics__highlighted"
             >
-                {currentLyricsPartLyrics.slice(start - parseInt(add) - 1, end - parseInt(add))}
+                {currentLyricsPartLyrics.slice(start - add - 1, end - add)}
             </span>
-        )
+        );
         highlightedCurrentLyricsPart.push(
             <span
                 className="lyrics__not-annotation"
                 key="highlighted_2"
+                data-testid="lyrics__unhighlighted"
             >
-                {currentLyricsPartLyrics.slice(end - parseInt(add))}
+                {currentLyricsPartLyrics.slice(end - add)}
             </span>
-        )
+        );
 
-        let newLyricsParts: Array<JSX.Element> = [...lyricsParts.slice(0,currentIndex), ...highlightedCurrentLyricsPart, ...lyricsParts.slice(currentIndex+1)];
+        let newLyricsParts: Array<JSX.Element> = [...lyricsParts.slice(0, currentIndex), ...highlightedCurrentLyricsPart, ...lyricsParts.slice(currentIndex + 1)];
         setLyricsParts(newLyricsParts);
     }
 
