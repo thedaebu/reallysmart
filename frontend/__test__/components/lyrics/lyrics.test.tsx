@@ -1,5 +1,5 @@
 import React from "react";
-import { cleanup, render, screen, within } from "@testing-library/react";
+import { cleanup, fireEvent, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
@@ -14,8 +14,8 @@ const mockStore = configureMockStore(middlewares);
 const testStore = mockStore(testShowStore);
 
 const useMockEffect = jest.spyOn(React, 'useEffect');
-const useMockState = jest.spyOn(React, 'useState');
 const useMockSelector = jest.spyOn(reactRedux, 'useSelector');
+const useMockState = jest.spyOn(React, 'useState');
 const useMockDispatch = jest.spyOn(reactRedux, 'useDispatch');
 
 describe("lyrics", () => {
@@ -57,6 +57,18 @@ describe("lyrics", () => {
         const lyricsBody = screen.getByTestId("lyrics__body");
         const annotatedSections = within(lyricsBody).getAllByTestId("lyrics__not-annotation");
         expect(annotatedSections.length).toBe(3);
+    });
+    describe("highlighted lyrics part", () => {
+        test("does not exist at start", () => {
+            const highlightedCurrentLyricsPart = screen.queryByTestId("lyrics__highlighted");
+            expect(highlightedCurrentLyricsPart).not.toBeInTheDocument();
+        });
+        test("does not exist if annotation creation conditions are not met", () => {
+
+        });
+        test("exists if annotation creation conditions are met", () => {
+
+        });
     });
     describe("annotation show component", () => {
         test("is not shown at start", () => {
