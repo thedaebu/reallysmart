@@ -60,7 +60,7 @@ function LyricsShow({ track }: { track: Track }) {
                 setSelectedAnnotation(annotations[tempAnnotationId]);
             }
         }
-        annotateLyrics()
+        annotateLyrics();
     }, [annotations]);
 
     const handleAnnotationCreateStatus = useCallback(() => {
