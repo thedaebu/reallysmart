@@ -5,19 +5,19 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import * as reactRedux from "react-redux";
 import configureMockStore from "redux-mock-store";
-import thunk from 'redux-thunk';
-import { testShowStore } from "../../test_store_data";
+import thunk from "redux-thunk";
+import { testShowStoreWithoutUser } from "../../test_store_data";
 import * as SessionActions from "../../../actions/session_actions";
 import SignupForm from "../../../components/session_form/signup_form";
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
-const testStore = mockStore(testShowStore);
+const testStore = mockStore(testShowStoreWithoutUser);
 
 const useMockDispatch = jest.spyOn(reactRedux, "useDispatch");
 const useMockEffect = jest.spyOn(React, "useEffect");
-const useMockState = jest.spyOn(React, "useState");
 const useMockSelector = jest.spyOn(reactRedux, "useSelector");
+const useMockState = jest.spyOn(React, "useState");
 const useMockClearErrors = jest.spyOn(SessionActions, "clearErrors");
 
 describe("signup form", () => {
@@ -28,7 +28,7 @@ describe("signup form", () => {
                     <SignupForm />
                 </Provider>
             </BrowserRouter>
-        )
+        );
     });
     afterEach(() => {
         cleanup();
