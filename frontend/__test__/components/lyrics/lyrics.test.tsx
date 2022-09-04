@@ -1,5 +1,5 @@
 import React from "react";
-import { cleanup, fireEvent, render, screen, within } from "@testing-library/react";
+import { cleanup, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
@@ -62,12 +62,6 @@ describe("lyrics", () => {
         test("does not exist at start", () => {
             const highlightedCurrentLyricsPart = screen.queryByTestId("lyrics__highlighted");
             expect(highlightedCurrentLyricsPart).not.toBeInTheDocument();
-        });
-        test("does not exist if annotation creation conditions are not met", () => {
-
-        });
-        test("exists if annotation creation conditions are met", () => {
-
         });
     });
     describe("annotation show component", () => {
