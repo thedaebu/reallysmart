@@ -21,7 +21,13 @@ function DemoLogin() {
 
     return (
         <>
-            {!currentUser && <button className="demo-user" onClick={loginWithDemo}>DEMO</button>}
+            {!currentUser && <button 
+                className="demo-login" 
+                onClick={loginWithDemo}
+                data-testid="demo-login"
+            >
+                DEMO
+            </button>}
         </>
     );
 }
