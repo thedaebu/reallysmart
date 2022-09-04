@@ -129,27 +129,6 @@ export const testVotesData: {[key: number]: Vote} = {
 };
 
 // test stores
-export const testDefaultStore: State = {
-    entities: {
-        annotations: {},
-        comments: {},
-        indexTracks: {},
-        searches: {},
-        track: {},
-        user: {},
-        votes: {}
-    },
-    errors: {
-        annotationErrors: [],
-        sessionErrors: []
-    },
-    modal: {
-        annotationModal: false
-    },
-    session: {
-        id: null
-    }
-};
 export const testIndexStore: State = {
     entities: {
         annotations: {},
@@ -171,7 +150,7 @@ export const testIndexStore: State = {
         id: null
     }
 };
-export const testShowStore: State = {
+export const testShowStoreWithoutUser: State = {
     entities: {
         annotations: testAnnotationsData,
         comments: testCommentsData,
