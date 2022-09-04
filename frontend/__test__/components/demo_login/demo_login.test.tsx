@@ -53,6 +53,10 @@ describe("demo login", () => {
             const demoLoginButton = screen.queryByTestId("demo-login");
             expect(demoLoginButton).toBeInTheDocument();
         });
+        test("contains the text 'DEMO'", () => {
+            const demoLoginButton = screen.queryByTestId("demo-login");
+            expect(demoLoginButton).toHaveTextContent("DEMO");
+        });
     });
     describe("current user tests", () => {
         beforeEach(() => {

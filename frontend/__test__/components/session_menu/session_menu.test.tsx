@@ -60,6 +60,10 @@ describe("session menu", () => {
             const pathName = global.window.location.pathname;
             expect(pathName).toEqual("/signup");
         });
+        test("contains the text 'SIGN UP'", () => {
+            const signupLink = screen.queryByTestId("session-menu__signup");
+            expect(signupLink).toHaveTextContent("SIGN UP");
+        });
         test("contains link to login form page", () => {
             const loginLink = screen.queryByTestId("session-menu__login");
             expect(loginLink).toBeInTheDocument();
@@ -69,6 +73,10 @@ describe("session menu", () => {
             userEvent.click(loginLink);
             const pathName = global.window.location.pathname;
             expect(pathName).toEqual("/login");
+        });
+        test("contains the text 'LOG IN'", () => {
+            const loginLink = screen.queryByTestId("session-menu__login");
+            expect(loginLink).toHaveTextContent("LOG IN");
         });
         test("does not contain option to log out", () => {
             const logOutLink = screen.queryByTestId("session-menu__logout");
