@@ -4,49 +4,54 @@ import userEvent from "@testing-library/user-event";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import * as reactRedux from "react-redux";
-import configureMockStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
+import configureMockStore from "redux-mock-store";
+import thunk from "redux-thunk";
 import TrackShow from "../../../components/tracks/track_show";
-import { testMatch, testShowStore } from "../../test_store_data";
+import { testMatch, testShowStoreWithoutUser } from "../../test_store_data";
+import { Store } from "../../../store/store";
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
-const testStore = mockStore(testShowStore);
+const testStore: any = mockStore(testShowStoreWithoutUser);
 
-const useMockEffect = jest.spyOn(React, 'useEffect');
-const useMockSelector = jest.spyOn(reactRedux, 'useSelector');
-const useMockState = jest.spyOn(React, 'useState');
-const useMockDispatch = jest.spyOn(reactRedux, 'useDispatch');
+const useMockDispatch = jest.spyOn(reactRedux, "useDispatch");
+const useMockEffect = jest.spyOn(React, "useEffect");
+const useMockSelector = jest.spyOn(reactRedux, "useSelector");
+const useMockState = jest.spyOn(React, "useState");
+
+function renderComponent(store: Store) {
+    render(
+        <BrowserRouter>
+            <Provider store={store}>
+                <TrackShow history={undefined} location={undefined} match={testMatch} />
+            </Provider>
+        </BrowserRouter>
+    );
+}
 
 describe("lyrics", () => {
     beforeEach(() => {
-        render(
-            <BrowserRouter>
-                <Provider store={testStore}>
-                    <TrackShow history={undefined} location={undefined} match={testMatch} />
-                </Provider>
-            </BrowserRouter>
-        );
-    })
+        renderComponent(testStore);
+    });
     afterEach(() => {
         cleanup();
     });
 
+    test("useDispatch is called", () => {
+        expect(useMockDispatch).toHaveBeenCalled();
+    });
     test("useEffect is called", () => {
         expect(useMockEffect).toHaveBeenCalled();
+    });
+    test("useSelector is called", () => {
+        expect(useMockSelector).toHaveBeenCalled();
     });
     test("useState is called", () => {
         expect(useMockState).toHaveBeenCalled();
     });
-    test("useSelector is called", () => {
-        expect(useMockSelector).toHaveBeenCalled();
-    })
-    test("useDispatch is called", () => {
-        expect(useMockDispatch).toHaveBeenCalled();
-    });
     test("contains the lyrics of the song", () => {
         const lyricsBody = screen.getByTestId("lyrics__body");
-        expect(lyricsBody).toHaveTextContent(testShowStore.entities.track[1].lyrics);
+        expect(lyricsBody).toHaveTextContent(testShowStoreWithoutUser.entities.track[1].lyrics);
     });
     test("contains the correct number of annotated sections", () => {
         const lyricsBody = screen.getByTestId("lyrics__body");
