@@ -39,6 +39,7 @@ function AnnotationShow(props: Props) {
                         position: "relative",
                         top: yCoord ? yCoord : -367
                     }}
+                    data-testid="annotation-show"
                 >
                     <AnnotationShowItem
                         annotation={annotation}
@@ -54,6 +55,7 @@ function AnnotationShow(props: Props) {
                         position: "relative",
                         top: yCoord ? yCoord : -367
                     }}
+                    data-testid="annotation-show"
                 >
                     {currentUser 
                         ? annotationForm()
@@ -67,7 +69,10 @@ function AnnotationShow(props: Props) {
             );
         } else {
             return(
-                <p className="annotation-show__without-annotation">
+                <p 
+                    className="annotation-show__without-annotation"
+                    data-testid="annotation-show"
+                >
                     About "{track.title}"
                 </p>
             );
