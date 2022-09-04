@@ -4,8 +4,8 @@ import userEvent from "@testing-library/user-event"
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import * as reactRedux from "react-redux";
-import configureMockStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
+import configureMockStore from "redux-mock-store";
+import thunk from "redux-thunk";
 import { testIndexStore } from "../../test_store_data";
 import * as trackActions from "../../../actions/track_actions";
 import { IndexTrack } from "../../../my_types";
@@ -15,11 +15,11 @@ const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 const testStore = mockStore(testIndexStore);
 
-const useMockDispatch = jest.spyOn(reactRedux, 'useDispatch');
-const useMockEffect = jest.spyOn(React, 'useEffect');
-const useMockState = jest.spyOn(React, 'useState');
-const useMockSelector = jest.spyOn(reactRedux, 'useSelector');
-const useFetchTracks = jest.spyOn(trackActions, 'fetchTracks');
+const useMockDispatch = jest.spyOn(reactRedux, "useDispatch");
+const useMockEffect = jest.spyOn(React, "useEffect");
+const useMockSelector = jest.spyOn(reactRedux, "useSelector");
+const useMockState = jest.spyOn(React, "useState");
+const useFetchTracks = jest.spyOn(trackActions, "fetchTracks");
 
 describe("track index", () => {
     beforeEach(() => {
@@ -29,7 +29,7 @@ describe("track index", () => {
                     <TrackIndex />
                 </Provider>
             </BrowserRouter>
-        )
+        );
     });
     afterEach(() => {
         cleanup();
