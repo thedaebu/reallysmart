@@ -1,22 +1,22 @@
 import React from "react";
-import { cleanup, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import * as reactRedux from "react-redux";
-import configureMockStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
+import configureMockStore from "redux-mock-store";
+import thunk from "redux-thunk";
 import TrackShow from "../../../components/tracks/track_show";
 import * as trackActions from "../../../actions/track_actions";
-import { testMatch, testShowStore } from "../../test_store_data";
+import { testMatch, testShowStoreWithoutUser } from "../../test_store_data";
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
-const testStore = mockStore(testShowStore);
+const testStore = mockStore(testShowStoreWithoutUser);
 
-const useMockEffect = jest.spyOn(React, 'useEffect');
-const useMockSelector = jest.spyOn(reactRedux, 'useSelector');
-const useMockDispatch = jest.spyOn(reactRedux, 'useDispatch');
-const useFetchTrack = jest.spyOn(trackActions, 'fetchTrack');
+const useMockDispatch = jest.spyOn(reactRedux, "useDispatch");
+const useMockEffect = jest.spyOn(React, "useEffect");
+const useMockSelector = jest.spyOn(reactRedux, "useSelector");
+const useFetchTrack = jest.spyOn(trackActions, "fetchTrack");
 
 
 describe("track show", () => {
@@ -26,7 +26,7 @@ describe("track show", () => {
                 <TrackShow history={undefined} location={undefined} match={testMatch} />
             </Provider>
         </BrowserRouter>
-    )
+    );
 
     test("useEffect is called", () => {
         expect(useMockEffect).toHaveBeenCalled();
@@ -41,11 +41,11 @@ describe("track show", () => {
         expect(useFetchTrack).toHaveBeenCalled();
     });
     describe("track show header", () => {
-        const track = testShowStore.entities.track[1]
+        const track = testShowStoreWithoutUser.entities.track[1];
         const header = screen.queryByTestId("track-show-header");
         test("contains the artist and title of the track", () => {
             expect(header).toHaveTextContent(track.artist);
             expect(header).toHaveTextContent(track.title);
         });
     });
-})
+});
