@@ -5,7 +5,7 @@ import {
   Link
 } from "react-router-dom";
 import { AuthRoute } from "../util/route_util";
-import DemoUser from "./demo_user/demo_user";
+import DemoLogin from "./demo_login/demo_login";
 import LoginForm from "./session_form/login_form";
 import SessionMenu from "./session_menu/session_menu";
 import SignupForm from "./session_form/signup_form";
@@ -21,7 +21,7 @@ function App() {
                 <Link to="/" className="header__logo">REALLYSMART</Link>
                 <div className="session-buttons">
                     <SessionMenu />
-                    <DemoUser />
+                    <DemoLogin />
                 </div>
             </header>
             <Switch>
