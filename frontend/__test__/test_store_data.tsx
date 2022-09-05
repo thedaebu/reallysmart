@@ -12,8 +12,8 @@ export const testAnnotationsData: {[key: number]: Annotation} = {
         track_id: 1
     },
     2: {
-        annotator_id: 1,
-        annotator_name: "reallysmart",
+        annotator_id: 2,
+        annotator_name: "notsosmart",
         body: "She is allowing Selene to take over. She and Selene want the same thing.",
         end_index: 516,
         id: 2,
