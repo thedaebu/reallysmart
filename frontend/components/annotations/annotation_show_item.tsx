@@ -46,6 +46,7 @@ function AnnotationShowItem({ annotation, track }: { annotation: Annotation, tra
                 <form
                     id="annotation-show-form"
                     onSubmit={handleUpdatedAnnotationSubmit}
+                    data-testid="annotation-show-form"
                 >
                     <textarea
                         className="annotation-show-form__body" 
@@ -75,11 +76,12 @@ function AnnotationShowItem({ annotation, track }: { annotation: Annotation, tra
                     <div className="annotation-show-form__bottom">
                         <button className="annotation-show-form__bottom-save"
                         type="submit">
-                            <p className="annotation-show-form__bottom-save-text">Edit</p>
+                            <p className="annotation-show-form__bottom-save-text">Save</p>
                         </button>
                         <button
                             className="annotation-show-form__bottom-cancel"
                             onClick={handleAnnotationEditStatus}
+                            data-testid="annotation-show-form__bottom-cancel"
                         >
                             Cancel
                         </button>
@@ -121,7 +123,11 @@ function AnnotationShowItem({ annotation, track }: { annotation: Annotation, tra
                     <button className="annotation-show-item__delete" onClick={handleAnnotationDeleteSubmit}>
                         Yes
                     </button>
-                    <button className="annotation-show-item__delete" onClick={handleAnnotationDeleteStatus}>
+                    <button
+                        className="annotation-show-item__delete"
+                        onClick={handleAnnotationDeleteStatus}
+                        data-testid="annotation-show-item__delete-no"
+                    >
                         No
                     </button>
                 </div>
