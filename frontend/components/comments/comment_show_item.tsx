@@ -42,19 +42,22 @@ function CommentShowItem(props: Props) {
                         <form
                             className="comment-show-form"
                             onSubmit={handleUpdatedCommentSubmit}
+                            data-testid="comment-show-form"
                         >
                             <textarea
                                 className="comment-show-form__annotation-text"
                                 onChange={handleUpdatedCommentBodyChange()}
                                 value={updatedCommentBody}
+                                data-testid="comment-show-form__text"
                             />
                             <div className="comment-show-form__buttons">
                                 <button className="comment-show-form__submit">
-                                    <p>Edit</p>
+                                    <p>Save</p>
                                 </button>
                                 <button
                                     className="comment-show-form__cancel"
                                     onClick={handleCommentUpdateStatus}
+                                    data-testid="comment-show-form__cancel"
                                 >
                                     <p>Cancel</p>
                                 </button>
@@ -76,19 +79,22 @@ function CommentShowItem(props: Props) {
                         <form
                             className="comment-show-form"
                             onSubmit={handleUpdatedCommentSubmit}
+                            data-testid="comment-show-form"
                         >
                             <textarea
                                 className="comment-show-form__annotation-text"
                                 onChange={handleUpdatedCommentBodyChange()}
                                 value={updatedCommentBody}
+                                data-testid="comment-show-form__text"
                             />
                             <div className="comment-show-form__buttons">
                                 <button className="comment-show-form__submit">
-                                    <p>Edit</p>
+                                    <p>Save</p>
                                 </button>
                                 <button
                                     className="comment-show-form__cancel"
                                     onClick={handleCommentUpdateStatus}
+                                    data-testid="comment-show-form__cancel"
                                 >
                                     <p>Cancel</p>
                                 </button>
@@ -147,28 +153,40 @@ function CommentShowItem(props: Props) {
         if (currentUser.id === currentComment.commenter_id && commentDeleteStatus === false) {
             return (
                 <div className="comment-show-item__buttons">
-                    <button className="comment-show-item__edit" onClick={handleCommentUpdateStatus}>
+                    <button
+                        className="comment-show-item__edit"
+                        onClick={handleCommentUpdateStatus}
+                        data-testid="comment-show-item__edit"
+                    >
                         Edit
                     </button>
-                    <button className="comment-show-item__delete" onClick={handleCommentDeleteStatus}>
+                    <button
+                        className="comment-show-item__delete"
+                        onClick={handleCommentDeleteStatus}
+                        data-testid="comment-show-item__delete"
+                    >
                         Delete
                     </button>
                 </div>
             );
         } else if (commentDeleteStatus === true) {
             return (
-                <div className="comment-show-item__buttons">
+                <div className="comment-show-item__buttons" data-testid="comment-show-item__buttons">
                     <p className="comment-show-item__question">
                         Are you sure?
                     </p>
                     <button className="comment-show-item__delete" onClick={handleCommentDeleteSubmit}>
                         Yes
                     </button>
-                    <button className="comment-show-item__delete" onClick={handleCommentDeleteStatus}>
-                        Cancel
+                    <button 
+                        className="comment-show-item__delete"
+                        onClick={handleCommentDeleteStatus}
+                        data-testid="comment-show-item__delete"
+                    >
+                        No
                     </button>
                 </div>
-            )
+            );
         }
     }
 
@@ -179,7 +197,7 @@ function CommentShowItem(props: Props) {
     }
 
     function handleUpdatedCommentBodyChange() {
-        return (e: ChangeEvent<HTMLTextAreaElement>) => setUpdatedCommentBody(e.currentTarget.value)
+        return (e: ChangeEvent<HTMLTextAreaElement>) => setUpdatedCommentBody(e.currentTarget.value);
     }
 
     function handleUpdatedCommentSubmit(e: MouseEvent<HTMLFormElement>) {
