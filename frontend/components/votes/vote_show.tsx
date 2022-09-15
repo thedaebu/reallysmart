@@ -24,11 +24,11 @@ function VoteShow({ parent, voteableType }: { parent: Annotation | Comment, vote
 
     useEffect(() => {
         getCurrentVotes(votes);
-    }, [])
+    }, []);
 
     useEffect(() => {
         getCurrentVotes(votes);
-    }, [currentUser])
+    }, [currentUser]);
 
     function voteThumb() {
         if (currentUserVote) {
@@ -36,6 +36,7 @@ function VoteShow({ parent, voteableType }: { parent: Annotation | Comment, vote
                 <RiThumbUpLine
                     className="vote-show__voted"
                     onClick={handleVoteUpdate}
+                    data-testid="vote-show__voted"
                 />
             );
         } else {
@@ -43,6 +44,7 @@ function VoteShow({ parent, voteableType }: { parent: Annotation | Comment, vote
                 <RiThumbUpLine
                     className="vote-show__not-voted"
                     onClick={handleVoteUpdate}
+                    data-testid="vote-show__not-voted"
                 />
             );
         } 
@@ -52,10 +54,11 @@ function VoteShow({ parent, voteableType }: { parent: Annotation | Comment, vote
         e.preventDefault();
 
         if (currentUserVote) {
-            deleteVote(currentUserVote.id);
-
-            setCurrentUserVote(null);
-            setCurrentNumberOfVotes(currentNumberOfVotes-1);
+            deleteVote(currentUserVote.id)
+                .then(() => {
+                    setCurrentUserVote(null);
+                    setCurrentNumberOfVotes(currentNumberOfVotes-1);
+                });
         } else {
             const vote: CreatedVote = {
                 voteable_type: voteableType,
@@ -90,7 +93,7 @@ function VoteShow({ parent, voteableType }: { parent: Annotation | Comment, vote
         <div className="vote-show" data-testid="vote-show">
             {currentUser 
                 ? voteThumb()
-                : <RiThumbUpLine className="vote-show__not-voted" />
+                : <RiThumbUpLine className="vote-show__not-voted" data-testid="vote-show__not-voted" />
             }
             <div className="vote-show__count">
                 +{currentNumberOfVotes}
