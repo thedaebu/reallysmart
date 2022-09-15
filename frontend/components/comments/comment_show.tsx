@@ -7,7 +7,7 @@ import * as TrackActions from "../../actions/track_actions";
 import { Annotation, Comment, CreatedComment, State, Track, User } from "../../my_types";
 import CommentShowItem from "./comment_show_item";
 
-function CommentShow({ commentableType, parent }: { commentableType: "Track" | "Annotation", parent: Annotation | Track }) {
+function CommentShow({ commentableType, parent }: { commentableType: "Track" | "Annotation", parent: Track | Annotation }) {
     const comments: {[key:number]: Comment} = useSelector((state: State) => state.entities.comments);
     const currentUser: User = useSelector((state: State) => state.entities.user[state.session.id]);
 
@@ -33,6 +33,7 @@ function CommentShow({ commentableType, parent }: { commentableType: "Track" | "
                         <textarea
                             onClick={handleCommentCreateStatus}
                             placeholder="Add a comment"
+                            data-testid="comment-show__begin-text"
                         />
                     </div>
                 );
@@ -41,11 +42,13 @@ function CommentShow({ commentableType, parent }: { commentableType: "Track" | "
                     <form
                         className="comment-show-form"
                         onSubmit={handleCommentSubmit}
+                        data-testid="comment-show-form"
                     >
                         <textarea
                             className="comment-show-form__track-text"
                             onChange={handleCommentBodyChange()}
                             placeholder="Add a comment"
+                            data-testid="comment-show-form__text"
                         />
                         <div className="comment-show-form__buttons">
                             <button className="comment-show-form__submit">
@@ -54,6 +57,7 @@ function CommentShow({ commentableType, parent }: { commentableType: "Track" | "
                             <button
                                 className="comment-show-form__cancel"
                                 onClick={handleCommentCreateStatus}
+                                data-testid="comment-show-form__cancel"
                             >
                                 <p>Cancel</p>
                             </button>
@@ -69,6 +73,7 @@ function CommentShow({ commentableType, parent }: { commentableType: "Track" | "
                         <textarea
                             onClick={handleCommentCreateStatus}
                             placeholder="You think you're really smarter?"
+                            data-testid="comment-show__begin-text"
                         />
                     </div>
                 );
@@ -77,11 +82,13 @@ function CommentShow({ commentableType, parent }: { commentableType: "Track" | "
                     <form
                         className="comment-show-form"
                         onSubmit={handleCommentSubmit}
+                        data-testid="comment-show-form"
                     >
                         <textarea
                             className="comment-show-form__annotation-text"
                             onChange={handleCommentBodyChange()}
                             placeholder="You think you're really smarter?"
+                            data-testid="comment-show-form__text"
                         />
                         <div className="comment-show-form__buttons">
                             <button className="comment-show-form__submit">
@@ -90,6 +97,7 @@ function CommentShow({ commentableType, parent }: { commentableType: "Track" | "
                             <button
                                 className="comment-show-form__cancel"
                                 onClick={handleCommentCreateStatus}
+                                data-testid="comment-show-form__cancel"
                             >
                                 <p>Cancel</p>
                             </button>
@@ -138,11 +146,11 @@ function CommentShow({ commentableType, parent }: { commentableType: "Track" | "
     }
 
     return (
-        <div className="comment-show">
+        <div className="comment-show" data-testid="comment-show">
             {currentUser
                 ? commentForm()
                 : (
-                    <div className="comment-show__session">
+                    <div className="comment-show__session" data-testid="comment-show__session">
                         <p>Please</p>
                         <Link to="/signup">Sign Up</Link>
                         <p>or</p>

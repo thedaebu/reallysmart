@@ -4,20 +4,20 @@ import userEvent from "@testing-library/user-event";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import * as reactRedux from "react-redux";
-import configureMockStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
-import { testShowStore } from "../../test_store_data";
+import configureMockStore from "redux-mock-store";
+import thunk from "redux-thunk";
+import { testShowStoreWithoutUser } from "../../test_store_data";
 import * as SearchActions from "../../../actions/search_actions";
 import { IndexTrack } from "../../../my_types";
 import Searchbar from "../../../components/searchbar/searchbar";
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
-const testStore = mockStore(testShowStore);
+const testStore = mockStore(testShowStoreWithoutUser);
 
-const useMockDispatch = jest.spyOn(reactRedux, 'useDispatch');
-const useMockState = jest.spyOn(React, 'useState');
-const mockFetchSearches = jest.spyOn(SearchActions, 'fetchSearches');
+const useMockDispatch = jest.spyOn(reactRedux, "useDispatch");
+const useMockState = jest.spyOn(React, "useState");
+const mockFetchSearches = jest.spyOn(SearchActions, "fetchSearches");
 
 describe("search index", () => {
     beforeEach(() => {
@@ -78,7 +78,7 @@ describe("search index", () => {
             expect(searchIndexItems.length).toBeLessThan(6);
         });
         test("contains the artist and the title of the track", () => {
-            const searchIndexData: {[key: number]: IndexTrack} = testShowStore.entities.searches
+            const searchIndexData: {[key: number]: IndexTrack} = testShowStoreWithoutUser.entities.searches
             const searchbarField = screen.queryByTestId("searchbar-field");
             userEvent.type(searchbarField, "Niki");
             const searchIndex = screen.queryByTestId("search-index");
@@ -96,6 +96,6 @@ describe("search index", () => {
         const searchIndexItem = within(searchIndex).queryAllByTestId("search-index-item")[0];
         userEvent.click(searchIndexItem);
         let pathName = global.window.location.pathname;
-        expect(pathName).toEqual('/tracks/1');
+        expect(pathName).toEqual("/tracks/1");
     });
 });

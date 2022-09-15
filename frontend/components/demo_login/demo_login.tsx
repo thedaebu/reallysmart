@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import * as SessionActions from "../../actions/session_actions";
 import { SessionUser, State, User } from "../../my_types";
 
-function DemoUser() {
+function DemoLogin() {
     const currentUser: User = useSelector((state: State) => state.entities.user[state.session.id]);
 
     const dispatch: Dispatch<any> = useDispatch();
@@ -21,9 +21,15 @@ function DemoUser() {
 
     return (
         <>
-            {!currentUser && <button className="demo-user" onClick={loginWithDemo}>DEMO</button>}
+            {!currentUser && <button 
+                className="demo-login" 
+                onClick={loginWithDemo}
+                data-testid="demo-login"
+            >
+                DEMO
+            </button>}
         </>
     );
 }
 
-export default DemoUser;
+export default DemoLogin;
