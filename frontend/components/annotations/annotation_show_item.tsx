@@ -159,8 +159,10 @@ function AnnotationShowItem({ annotation, track }: { annotation: Annotation, tra
         };
 
         updateAnnotation(updatedAnnotation)
-            .then(() => fetchTrack(trackId.toString()));
-        setAnnotationEditStatus(false);
+            .then(() => {
+                fetchTrack(trackId.toString());
+                setAnnotationEditStatus(false);
+            });
     }
 
     function handleAnnotationDeleteStatus(e: MouseEvent<HTMLButtonElement>) {
@@ -173,9 +175,11 @@ function AnnotationShowItem({ annotation, track }: { annotation: Annotation, tra
         e.preventDefault();
 
         deleteAnnotation(currentAnnotation.id)
-            .then(() => fetchTrack(trackId.toString()));
-        setCurrentAnnotation(null);
-        setAnnotationDeleteStatus(false);
+            .then(() => {
+                fetchTrack(trackId.toString());
+                setCurrentAnnotation(null);
+                setAnnotationDeleteStatus(false);
+            });
     }
 
     return (

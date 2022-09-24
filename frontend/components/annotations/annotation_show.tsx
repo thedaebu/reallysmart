@@ -169,11 +169,10 @@ function AnnotationShow(props: Props) {
         createAnnotation(annotation)
             .then(() => {
                 fetchTrack(track.id.toString());
-            })
-
-        closeAnnotationModal();
-        setAnnotationBody("");
-        handleAnnotationCreateStatus();
+                closeAnnotationModal();
+                setAnnotationBody("");
+                handleAnnotationCreateStatus();
+            });
     }
 
     function handleAnnotationCancel(e: MouseEvent<HTMLButtonElement>) {
