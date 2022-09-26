@@ -1,4 +1,4 @@
-import { Annotation, Comment, IndexTrack, State, Track, User, Vote } from "../my_types";
+import { Annotation, Comment, IndexTrack, State, Track, User } from "../my_types";
 
 // test data
 export const testAnnotationsData: {[key: number]: Annotation} = {
@@ -9,7 +9,15 @@ export const testAnnotationsData: {[key: number]: Annotation} = {
         end_index: 140,
         id: 1,
         start_index: 9,
-        track_id: 1
+        track_id: 1,
+        votes: {
+            1: {
+                id: 1,
+                voteable_id: 1,
+                voteable_type: "Annotation",
+                voter_id: 1,
+            }
+        }
     },
     2: {
         annotator_id: 2,
@@ -18,7 +26,8 @@ export const testAnnotationsData: {[key: number]: Annotation} = {
         end_index: 516,
         id: 2,
         start_index: 459,
-        track_id: 1
+        track_id: 1,
+        votes: {}
     }
 };
 export const testCommentsData: {[key: number]: Comment} = {
@@ -29,7 +38,15 @@ export const testCommentsData: {[key: number]: Comment} = {
         commenter_id: 1,
         commenter_name: "reallysmart",
         id: 1,
-        updated_at: "2022-03-20T17:56:15.610Z"
+        updated_at: "2022-03-20T17:56:15.610Z",
+        votes: {
+            2: {
+                id: 2,
+                voteable_id: 1,
+                voteable_type: "Comment",
+                voter_id: 2
+            }
+        }
     },
     2: {
         body: "OOOOOHHHHHHH! Now I get it.",
@@ -38,7 +55,8 @@ export const testCommentsData: {[key: number]: Comment} = {
         commenter_id: 2,
         commenter_name: "notsosmart",
         id: 2,
-        updated_at: "2022-03-20T17:56:15.624Z"
+        updated_at: "2022-03-20T17:56:15.624Z",
+        votes: {}
     },
     3: {
         body: "I wonder what these lyrics mean.",
@@ -47,7 +65,8 @@ export const testCommentsData: {[key: number]: Comment} = {
         commenter_id: 2,
         commenter_name: "notsosmart",
         id: 3,
-        updated_at: "2022-03-20T17:56:15.629Z"
+        updated_at: "2022-03-20T17:56:15.629Z",
+        votes: {}
     }
 };
 export const testTrackData1: {[key: number]: Track} = {
@@ -113,20 +132,6 @@ export const testUserData: {[key: number]: User} = {
         username: "reallysmart"
     }
 };
-export const testVotesData: {[key: number]: Vote} = {
-    1: {
-        id: 1,
-        voteable_id: 1,
-        voteable_type: "Annotation",
-        voter_id: 1,
-    },
-    2: {
-        id: 2,
-        voteable_id: 1,
-        voteable_type: "Comment",
-        voter_id: 2
-    }
-};
 
 // test stores
 export const testIndexStore: State = {
@@ -136,8 +141,7 @@ export const testIndexStore: State = {
         indexTracks: testIndexTracksData,
         searches: {},
         track: {},
-        user: {},
-        votes: {}
+        user: {}
     },
     errors: {
         annotationErrors: [""],
@@ -157,8 +161,7 @@ export const testShowStoreWithoutUser: State = {
         indexTracks: {},
         searches: testIndexTracksData,
         track: testTrackData1,
-        user: {},
-        votes: testVotesData
+        user: {}
     },
     errors: {
         annotationErrors: [""],
@@ -178,8 +181,7 @@ export const testShowStoreWithUser: State = {
         indexTracks: {},
         searches: testIndexTracksData,
         track: testTrackData1,
-        user: testUserData,
-        votes: testVotesData
+        user: testUserData
     },
     errors: {
         annotationErrors: [""],
