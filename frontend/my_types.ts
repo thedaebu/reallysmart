@@ -40,9 +40,6 @@ export type ReceivedTracks = {
 export type ReceivedUser = {
     user: User
 };
-export type ReceivedVote = {
-    vote: Vote
-};
 export type UpdatedAnnotation = {
     annotator_id: number,
     annotator_name: string,
@@ -78,8 +75,7 @@ type Entities = {
     indexTracks: {[key: number]: IndexTrack},
     searches: {[key:number]: IndexTrack},
     track: {[key:number]: Track},
-    user: {[key:number]: User},
-    votes: {[key:number]: Vote}
+    user: {[key:number]: User}
 };
 type Errors = {
     annotationErrors: Array<string>,
@@ -105,10 +101,7 @@ export type Action = {
     track: Track,
     tracks: {[key: number]: IndexTrack},
     type: string,
-    user: User,
-    vote: Vote,
-    votes:{[key: number]: Vote},
-    voteId: number
+    user: User
 };
 
 // main feature types
@@ -119,7 +112,8 @@ export type Annotation = {
     end_index: number,
     id: number,
     start_index: number,
-    track_id: number
+    track_id: number,
+    votes: {[key: number]: Vote}
 };
 export type Comment = {
     body: string,
@@ -128,6 +122,7 @@ export type Comment = {
     commenter_id: number,
     commenter_name: string,
     id: number,
+    votes: {[key: number]: Vote},
     updated_at: string
 };
 export type IndexTrack = {
