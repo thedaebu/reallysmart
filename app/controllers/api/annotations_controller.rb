@@ -1,6 +1,11 @@
 class Api::AnnotationsController < ApplicationController
     def show
-        @annotation = Annotation.select("annotator_id, annotator_name, body, end_index, id, start_index, track_id").find(params[:id])
+        annotation = Annotation.find(params[:id])
+        @annotation = annotation.slice(:annotator_id, :annotator_name, :body, :end_index, :id, :start_index, :track_id)
+        @annotation[:votes] = {}
+        annotation.votes.each do |vote|
+            @annotation[:votes][vote.id] = vote.slice(:id, :voteable_id, :voteable_type, :voter_id)
+        end
 
         result = {:annotation => @annotation}
         render json: result
@@ -10,6 +15,7 @@ class Api::AnnotationsController < ApplicationController
         created_annotation = Annotation.new(annotation_params)
         if created_annotation.save
             @annotation = created_annotation.slice(:annotator_id, :annotator_name, :body, :end_index, :id, :start_index, :track_id)
+            @annotation[:votes] = {}
 
             result = {:annotation => @annotation}
             render json: result
@@ -22,6 +28,10 @@ class Api::AnnotationsController < ApplicationController
         updated_annotation = Annotation.find(params[:id])
         if updated_annotation.update(annotation_params)
             @annotation = updated_annotation.slice(:annotator_id, :annotator_name, :body, :end_index, :id, :start_index, :track_id)
+            @annotation[:votes] = {}
+            updated_annotation.votes.each do |vote|
+                @annotation[:votes][vote.id] = vote.slice(:id, :voteable_id, :voteable_type, :voter_id)
+            end
 
             result = {:annotation => @annotation}
             render json: result
