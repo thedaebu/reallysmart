@@ -2,7 +2,6 @@ import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
 import * as SessionActions from "../../actions/session_actions";
 import * as SessionAPIUtil from "../../util/api/session_api_util";
-import * as UserAPIUtil from "../../util/api/user_api_util"
 import { Middleware } from "redux";
 
 const middlewares: Array<Middleware> = [ thunk ];
@@ -71,20 +70,6 @@ describe("session actions", () => {
                 ));
                 const actions: any = [{type: "LOGOUT_CURRENT_USER"}];
                 return store.dispatch(SessionActions.logout()).then(() => {
-                    expect(store.getActions()).toEqual(actions);
-                });
-            });
-        });
-        describe("fetchUser", () => {
-            test("is exported", () => {
-                expect(typeof SessionActions.fetchUser).toEqual("function");
-            });
-            test("dispatches RECEIVE_CURRENT_USER when fetchUser is called", () => {
-                UserAPIUtil.fetchUser = jest.fn(() => (
-                    Promise.resolve({user: { username: "reallysmart"}})
-                ));
-                const actions: any = [{type: "RECEIVE_CURRENT_USER", user: {username: "reallysmart"}}];
-                return store.dispatch(SessionActions.fetchUser(1)).then(() => {
                     expect(store.getActions()).toEqual(actions);
                 });
             });
