@@ -16,8 +16,7 @@ const receiveTrack = (receivedTrack: ReceivedTrack) => {
         type: RECEIVE_TRACK,
         annotations: receivedTrack.annotations,
         comments: receivedTrack.comments,
-        track: receivedTrack.track,
-        votes: receivedTrack.votes
+        track: receivedTrack.track
     });
 };
 

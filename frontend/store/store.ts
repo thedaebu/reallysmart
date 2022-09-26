@@ -1,8 +1,7 @@
 import { configureStore, EnhancedStore, getDefaultMiddleware, Middleware } from "@reduxjs/toolkit";
-import { State } from "../my_types";
 import rootReducer from "../reducers/root_reducer";
 
-function configureAppStore(preloadedState: State | {} = {}) {
+function configureAppStore(preloadedState: {} = {}) {
     const middleware: Array<Middleware> = [...getDefaultMiddleware()];
     // if (process.env.NODE_ENV === "development") {
     //     const { logger } = require("redux-logger");

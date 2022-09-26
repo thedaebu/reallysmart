@@ -5,7 +5,6 @@ import indexTracksReducer from "./index_tracks_reducer";
 import searchesReducer from "./searches_reducer";
 import trackReducer from "./track_reducer";
 import userReducer from "./user_reducer";
-import votesReducer from "./votes_reducer";
 
 const entitiesReducer = combineReducers({
     annotations: annotationsReducer,
@@ -13,8 +12,7 @@ const entitiesReducer = combineReducers({
     indexTracks: indexTracksReducer,
     searches: searchesReducer,
     track: trackReducer,
-    user: userReducer,
-    votes: votesReducer
+    user: userReducer
 });
 
 export default entitiesReducer;

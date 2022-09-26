@@ -17,7 +17,6 @@ class Api::UsersController < ApplicationController
         if created_user.save
             login!(created_user)
             @user = created_user.slice(:id, :username)
-            @user[:vote_ids] = []
             # avatar_url = url_for(user.avatar)
 
             result = {:user => @user}

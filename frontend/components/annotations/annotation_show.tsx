@@ -55,7 +55,7 @@ function AnnotationShow(props: Props) {
                         position: "relative",
                         top: yCoord ? yCoord : -367
                     }}
-                    data-testid="annotation-show"
+                    data-testid="annotation-show__without-annotation"
                 >
                     {currentUser 
                         ? annotationForm()
@@ -71,7 +71,7 @@ function AnnotationShow(props: Props) {
             return(
                 <p 
                     className="annotation-show__without-annotation"
-                    data-testid="annotation-show"
+                    data-testid="annotation-show__without-annotation"
                 >
                     About "{track.title}"
                 </p>
@@ -169,11 +169,10 @@ function AnnotationShow(props: Props) {
         createAnnotation(annotation)
             .then(() => {
                 fetchTrack(track.id.toString());
-            })
-
-        closeAnnotationModal();
-        setAnnotationBody("");
-        handleAnnotationCreateStatus();
+                closeAnnotationModal();
+                setAnnotationBody("");
+                handleAnnotationCreateStatus();
+            });
     }
 
     function handleAnnotationCancel(e: MouseEvent<HTMLButtonElement>) {
