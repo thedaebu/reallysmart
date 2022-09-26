@@ -13,14 +13,11 @@ type Highlighted = {
     focusOffset: number
 };
 type HighlightedNode = {
-    parentNode: ParentNode
-};
-type ParentNode = {
-    dataset: Dataset
-};
-type Dataset = {
-    add: string,
-    name: string
+    parentNode: {
+        dataset: {
+            add: string, name: string
+        }
+    }
 };
 
 function LyricsShow({ track }: { track: Track }) {
