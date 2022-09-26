@@ -3,21 +3,19 @@ import { RiThumbUpLine } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import * as AnnotationActions from "../../actions/annotation_actions";
 import * as CommentActions from "../../actions/comment_actions";
-import * as SessionActions from "../../actions/session_actions"
 import * as VoteActions from "../../actions/vote_actions";
-import { Annotation, Comment, CreatedVote, ReceivedVote, State, User, Vote } from "../../my_types";
+import { Annotation, Comment, CreatedVote, State, User, Vote } from "../../my_types";
 
 function VoteShow({ parent, voteableType }: { parent: Annotation | Comment, voteableType: "Annotation" | "Comment" }) {
     const currentUser: User = useSelector((state: State) => state.entities.user[state.session.id]);
-    const votes: {[key: number]: Vote} = useSelector((state: State) => state.entities.votes);
+    const votes: {[key: number]: Vote} = parent.votes;
 
     const dispatch: Dispatch<any> = useDispatch();
-    const createVote: Function = (vote: CreatedVote) => dispatch(VoteActions.createVote(vote));
-    const deleteVote: Function = (voteId: number) => dispatch(VoteActions.deleteVote(voteId));
+    const createVote: Function = (vote: CreatedVote) => VoteActions.createVote(vote);
+    const deleteVote: Function = (voteId: number) => VoteActions.deleteVote(voteId);
     const fetchParent: Function = voteableType === "Annotation"
         ? (annotationId: number) => dispatch(AnnotationActions.fetchAnnotation(annotationId))
         : (commentId: number) => dispatch(CommentActions.fetchComment(commentId));
-    const fetchUser: Function = (userId: number) => dispatch(SessionActions.fetchUser(userId));
 
     const [currentNumberOfVotes, setCurrentNumberOfVotes] = useState<number>(0);
     const [currentUserVote, setCurrentUserVote] = useState<Vote | null>(null);
@@ -28,7 +26,7 @@ function VoteShow({ parent, voteableType }: { parent: Annotation | Comment, vote
 
     useEffect(() => {
         getCurrentVotes(votes);
-    }, [currentUser]);
+    }, [currentUser, votes]);
 
     function voteThumb() {
         if (currentUserVote) {
@@ -55,10 +53,8 @@ function VoteShow({ parent, voteableType }: { parent: Annotation | Comment, vote
 
         if (currentUserVote) {
             deleteVote(currentUserVote.id)
-                .then(() => {
-                    setCurrentUserVote(null);
-                    setCurrentNumberOfVotes(currentNumberOfVotes-1);
-                });
+            setCurrentUserVote(null);
+            setCurrentNumberOfVotes(currentNumberOfVotes-1);
         } else {
             const vote: CreatedVote = {
                 voteable_type: voteableType,
@@ -67,26 +63,23 @@ function VoteShow({ parent, voteableType }: { parent: Annotation | Comment, vote
             };
 
             createVote(vote)
-                .then((receivedVote: ReceivedVote) => {
-                    setCurrentUserVote(receivedVote.vote);
-                    setCurrentNumberOfVotes(currentNumberOfVotes+1);
-                    fetchParent(parent.id);
-                    fetchUser(currentUser.id);
-                });
+                .then(() => fetchParent(parent.id));
         }
     }
 
     function getCurrentVotes(votes: {[key: number]: Vote}) {
-        let voteCount: number = 0;
-        Object.values(votes).forEach((vote: Vote) => {
-            if (vote.voteable_type === voteableType && vote.voteable_id === parent.id) {
-                voteCount++;
-                if (currentUser && currentUser.id === vote.voter_id) {
+        const currentVotes: Array<Vote> = Object.values(votes);
+        const voteCount: number = currentVotes.length;
+
+        setCurrentNumberOfVotes(voteCount);
+        if (currentUser) {
+            for (let i = 0; i < voteCount; i++) {
+                const vote: Vote = currentVotes[i];
+                if (currentUser.id === vote.voter_id) {
                     setCurrentUserVote(vote);
                 }
-            }
-        });
-        setCurrentNumberOfVotes(voteCount);
+            };
+        }
     }
 
     return (
