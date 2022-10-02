@@ -51,7 +51,7 @@ describe("lyrics", () => {
     });
     test("contains the lyrics of the song", () => {
         const lyricsBody = screen.getByTestId("lyrics__body");
-        expect(lyricsBody).toHaveTextContent(testShowStoreWithoutUser.entities.track[1].lyrics);
+        expect(lyricsBody).toHaveTextContent(testShowStoreWithoutUser.entities.track.lyrics);
     });
     test("contains the correct number of annotated sections", () => {
         const lyricsBody = screen.getByTestId("lyrics__body");

@@ -27,9 +27,9 @@ export const fetchTracks = () => (dispatch: Dispatch<AnyAction>) => {
                 dispatch(receiveTracks(receivedTracks)))
     );
 };
-export const fetchTrack = (trackId: string) => (dispatch: Dispatch<AnyAction>) => {
+export const fetchTrack = (trackInfo: Array<string>) => (dispatch: Dispatch<AnyAction>) => {
     return (
-        TrackAPIUtil.fetchTrack(trackId)
+        TrackAPIUtil.fetchTrack(trackInfo)
             .then((receivedTrack: ReceivedTrack) => dispatch(receiveTrack(receivedTrack)))
     );
 };

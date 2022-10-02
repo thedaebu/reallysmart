@@ -9,7 +9,11 @@ class Api::TracksController < ApplicationController
     end
 
     def show
-        @track = Track.select("artist, artwork_path, id, lyrics, spotify_path, title").find(params[:id])
+        search = params[:trackInfo]
+        artist = search[0];
+        title = search[1];
+        @track = Track.select("artist, artwork_path, id, lyrics, spotify_path, title").where("lower(artist) LIKE ? AND lower(title) LIKE ?", artist, title)[0]
+        # @track = Track.select("artist, artwork_path, id, lyrics, spotify_path, title").find(params[:id])
 
         queried_annotations = @track.annotations
         @annotations = {}

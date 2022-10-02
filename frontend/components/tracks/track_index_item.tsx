@@ -5,7 +5,14 @@ import { IndexTrack, Window } from "../../my_types";
 declare const window: Window;
 
 function TrackIndexItem({ listNumber, track }: { listNumber: number, track: IndexTrack }) {
-    const { artist, artwork_path, id, title } = track;
+    const { artist, artwork_path, title } = track;
+    const urlArtist: string = urlify(artist);
+    const urlTitle: string = urlify(title);
+
+    function urlify(string: string) {
+        const words: Array<string> = string.split(" ");
+        return words.join("_").toLowerCase();
+    }
 
     function randomNum() {
         return Math.floor(Math.random() * 1000);
@@ -13,8 +20,8 @@ function TrackIndexItem({ listNumber, track }: { listNumber: number, track: Inde
 
     return (
         <Link
+            to={`/tracks/${urlArtist}__${urlTitle}`}
             className="track-index-item"
-            to={`/tracks/${id}`}
             data-testid="track-index-item"
         >
             <p className="track-index-item__id">{listNumber}</p>

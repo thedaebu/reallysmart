@@ -96,6 +96,6 @@ describe("search index", () => {
         const searchIndexItem = within(searchIndex).queryAllByTestId("search-index-item")[0];
         userEvent.click(searchIndexItem);
         let pathName = global.window.location.pathname;
-        expect(pathName).toEqual("/tracks/1");
+        expect(pathName).toEqual("/tracks/niki__selene");
     });
 });

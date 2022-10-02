@@ -2,7 +2,6 @@ import { Dispatch } from "react";
 import { AnyAction } from "redux";
 import { ReceivedUser, SessionUser, User } from "../my_types";
 import * as SessionAPIUtil from "./../util/api/session_api_util";
-import * as UserAPIUtil from "./../util/api/user_api_util";
 
 export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 export const LOGOUT_CURRENT_USER = "LOGOUT_CURRENT_USER";
@@ -39,12 +38,6 @@ export const logout = () => (dispatch: Dispatch<AnyAction>) => {
     return (
         SessionAPIUtil.logout()
             .then(() => dispatch(logoutCurrentUser()))
-    );
-};
-export const fetchUser = (userId: number) => (dispatch: Dispatch<AnyAction>) => {
-    return (
-        UserAPIUtil.fetchUser(userId)
-            .then((receivedUser: ReceivedUser) => dispatch(receiveCurrentUser(receivedUser)), errors => dispatch(receiveSessionErrors(errors.responseJSON)))
     );
 };
 export const clearErrors = () => ({

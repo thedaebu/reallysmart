@@ -20,7 +20,7 @@ type HighlightedNode = {
     }
 };
 
-function LyricsShow({ track }: { track: Track }) {
+function LyricsShow({ track, trackInfo }: { track: Track, trackInfo: Array<string> }) {
     const { lyrics, title } = track;
 
     const annotations: {[key:number]: Annotation} = useSelector((state: State) => state.entities.annotations);
@@ -39,7 +39,6 @@ function LyricsShow({ track }: { track: Track }) {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-        annotateLyrics();
     }, []);
 
     useEffect(() => {
@@ -86,7 +85,7 @@ function LyricsShow({ track }: { track: Track }) {
                     currentLyricsParts.push(
                         <span
                             className="lyrics__is-annotation"
-                            key={`anno-${annotation.id}`}
+                            key={`is-anno-${annotation.id}`}
                             onClick={() => openAnnotation(annotation)}
                             data-name={`is-anno-${annotation.id}`}
                             data-testid="lyrics__is-annotation"
@@ -109,7 +108,7 @@ function LyricsShow({ track }: { track: Track }) {
                     currentLyricsParts.push(
                         <span
                             className="lyrics__is-annotation"
-                            key={`anno-${annotation.id}`}
+                            key={`is-anno-${annotation.id}`}
                             onClick={() => openAnnotation(annotation)}
                             data-name={`is-anno-${annotation.id}`}
                             data-testid="lyrics__is-annotation"
@@ -133,6 +132,7 @@ function LyricsShow({ track }: { track: Track }) {
                 }
                 currentIndex = endIndex + 1;
             });
+
             setLyricsParts(currentLyricsParts);
         } else {
             setLyricsParts([
@@ -250,13 +250,14 @@ function LyricsShow({ track }: { track: Track }) {
         <div className="lyrics__shade">
             <div className="lyrics__main" data-testid="lyrics__main">
                 <div className="lyrics__text" onMouseDown={handleTextDeselect} onMouseUp={handleTextSelect}>
-                    <p className="lyrics__top">{title.toUpperCase()} LYRICS</p>
+                    {title && <p className="lyrics__top">{title.toUpperCase()} LYRICS</p>}
                     <pre className="lyrics__body" data-testid="lyrics__body">
                         {lyricsParts}
                     </pre>
                     <CommentShow
                         commentableType="Track"
                         parent={track}
+                        trackInfo={trackInfo}
                     />
                 </div>
                 <div className="lyrics__right">
@@ -268,6 +269,7 @@ function LyricsShow({ track }: { track: Track }) {
                         removeLyricsPartHighlight={removeLyricsPartHighlight}
                         startIndex={startIndex}
                         track={track}
+                        trackInfo={trackInfo}
                         yCoord={yCoord}
                     />
                 </div>

@@ -2,7 +2,7 @@ import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
 import * as TrackActions from "../../actions/track_actions";
 import * as TrackAPIUtil from "../../util/api/track_api_util";
-import { testAnnotationsData, testCommentsData, testTrackData1, testIndexTracksData, testVotesData } from "../test_store_data";
+import { testAnnotationsData, testCommentsData, testTrackData1, testIndexTracksData } from "../test_store_data";
 import { Middleware } from "redux";
 import { ReceivedTrack } from "../../my_types";
 
@@ -50,14 +50,13 @@ describe("track actions", () => {
                 const data: ReceivedTrack = { 
                     annotations: testAnnotationsData,
                     comments: testCommentsData,
-                    track: testTrackData1,
-                    votes: testVotesData
+                    track: testTrackData1
                 };
                 TrackAPIUtil.fetchTrack = jest.fn(() => (
                     Promise.resolve(data)
                 ));
-                const actions = [{type: "RECEIVE_TRACK", annotations: data.annotations, comments: data.comments, track: data.track, votes: data.votes}];
-                return store.dispatch(TrackActions.fetchTrack(data.track[1].id.toString())).then(() => {
+                const actions = [{type: "RECEIVE_TRACK", annotations: data.annotations, comments: data.comments, track: data.track}];
+                return store.dispatch(TrackActions.fetchTrack(["niki", "selene"])).then(() => {
                     expect(store.getActions()).toEqual(actions);
                 });
             });

@@ -79,6 +79,6 @@ describe("track index", () => {
         const firstTrackIndexItem = screen.queryAllByTestId("track-index-item")[0];
         userEvent.click(firstTrackIndexItem);
         const pathName = global.window.location.pathname;
-        expect(pathName).toEqual("/tracks/1");
+        expect(pathName).toEqual("/tracks/niki__selene");
     });
 });

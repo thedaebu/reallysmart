@@ -31,8 +31,7 @@ export type ReceivedSearches = {
 export type ReceivedTrack = {
     annotations: {[key:number]: Annotation},
     comments: {[key:number]: Comment},
-    track: {[key:number]: Track},
-    votes: {[key:number]: Vote}
+    track: {[key:number]: Track}
 };
 export type ReceivedTracks = {
     tracks: {[key: number]: IndexTrack}
@@ -74,7 +73,7 @@ type Entities = {
     comments: {[key:number]: Comment},
     indexTracks: {[key: number]: IndexTrack},
     searches: {[key:number]: IndexTrack},
-    track: {[key:number]: Track},
+    track: Track,
     user: {[key:number]: User}
 };
 type Errors = {

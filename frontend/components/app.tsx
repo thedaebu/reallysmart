@@ -28,7 +28,7 @@ function App() {
                 <Route exact path="/" component={TrackIndex} />
                 <AuthRoute exact path="/signup" component={SignupForm} />
                 <AuthRoute exact path="/login"  component={LoginForm} />
-                <Route path="/tracks/:trackId" component={TrackShow} />
+                <Route path="/tracks/:trackName" component={TrackShow} />
             </Switch>
         </div>
     );
