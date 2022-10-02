@@ -6,14 +6,14 @@ import { Annotation, State, Track, UpdatedAnnotation, User } from "../../my_type
 import CommentShow from "../comments/comment_show";
 import VoteShow from "../votes/vote_show";
 
-function AnnotationShowItem({ annotation, track }: { annotation: Annotation, track: Track }) {
+function AnnotationShowItem({ annotation, track, trackInfo }: { annotation: Annotation, track: Track, trackInfo: Array<string> }) {
     const trackId: number = track.id;
 
     const currentUser: User = useSelector((state: State) => state.entities.user[state.session.id]);
 
     const dispatch: Dispatch<any> = useDispatch();
     const deleteAnnotation: Function = (annotationId: number) => dispatch(AnnotationActions.deleteAnnotation(annotationId));
-    const fetchTrack: Function = (trackId: string) => dispatch(TrackActions.fetchTrack(trackId));
+    const fetchTrack: Function = (trackInfo: Array<string>) => dispatch(TrackActions.fetchTrack(trackInfo));
     const updateAnnotation: Function = (annotation: UpdatedAnnotation) => dispatch(AnnotationActions.updateAnnotation(annotation));
 
     const [annotationDeleteStatus, setAnnotationDeleteStatus] = useState<boolean>(false);
@@ -160,7 +160,7 @@ function AnnotationShowItem({ annotation, track }: { annotation: Annotation, tra
 
         updateAnnotation(updatedAnnotation)
             .then(() => {
-                fetchTrack(trackId.toString());
+                fetchTrack(trackInfo);
                 setAnnotationEditStatus(false);
             });
     }
@@ -176,7 +176,7 @@ function AnnotationShowItem({ annotation, track }: { annotation: Annotation, tra
 
         deleteAnnotation(currentAnnotation.id)
             .then(() => {
-                fetchTrack(trackId.toString());
+                fetchTrack(trackInfo);
                 setCurrentAnnotation(null);
                 setAnnotationDeleteStatus(false);
             });

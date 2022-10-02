@@ -7,14 +7,14 @@ import * as TrackActions from "../../actions/track_actions";
 import { Annotation, Comment, CreatedComment, State, Track, User } from "../../my_types";
 import CommentShowItem from "./comment_show_item";
 
-function CommentShow({ commentableType, parent }: { commentableType: "Track" | "Annotation", parent: Track | Annotation }) {
+function CommentShow({ commentableType, parent, trackInfo }: { commentableType: "Track" | "Annotation", parent: Track | Annotation, trackInfo: Array<string> }) {
     const comments: {[key:number]: Comment} = useSelector((state: State) => state.entities.comments);
     const currentUser: User = useSelector((state: State) => state.entities.user[state.session.id]);
 
     const dispatch: Dispatch<any> = useDispatch();
     const createComment: Function = (comment: CreatedComment) => dispatch(CommentActions.createComment(comment));
     const fetchAnnotation: Function = (annotationId: number) => dispatch(AnnotationActions.fetchAnnotation(annotationId));
-    const fetchTrack: Function = (trackId: string) => dispatch(TrackActions.fetchTrack(trackId));
+    const fetchTrack: Function = (trackInfo: Array<string>) => dispatch(TrackActions.fetchTrack(trackInfo));
 
     const [currentComments, setCurrentComments] = useState<Array<Comment>>([]);
     const [commentBody, setCommentBody] = useState<string>("");
@@ -136,7 +136,7 @@ function CommentShow({ commentableType, parent }: { commentableType: "Track" | "
 
         if (commentableType === "Track") {
             createComment(comment)
-                .then(() => fetchTrack(parent.id.toString()));
+                .then(() => fetchTrack(trackInfo));
         } else {
             createComment(comment)
                 .then(() => fetchAnnotation(parent.id))
@@ -167,6 +167,7 @@ function CommentShow({ commentableType, parent }: { commentableType: "Track" | "
                                 comment={comment}
                                 commentableType={commentableType}
                                 parent={parent}
+                                trackInfo={trackInfo}
                                 key={idx}
                             />
                         );

@@ -15,17 +15,18 @@ type Props = {
     removeLyricsPartHighlight: Function,
     startIndex: number,
     track: Track,
+    trackInfo: Array<string>,
     yCoord: number
 };
 
 function AnnotationShow(props: Props) {
-    const { annotation, annotationCreateStatus, endIndex, handleAnnotationCreateStatus, removeLyricsPartHighlight, startIndex, track, yCoord } = props;
+    const { annotation, annotationCreateStatus, endIndex, handleAnnotationCreateStatus, removeLyricsPartHighlight, startIndex, track, trackInfo, yCoord } = props;
 
     const annotationModal: boolean = useSelector((state: State) => state.modal.annotationModal);
     const currentUser: User = useSelector((state: State) => state.entities.user[state.session.id]);
 
     const dispatch: Dispatch<any> = useDispatch();
-    const fetchTrack: Function = (trackId: string) => dispatch(TrackActions.fetchTrack(trackId));
+    const fetchTrack: Function = (trackInfo: Array<string>) => dispatch(TrackActions.fetchTrack(trackInfo));
     const closeAnnotationModal: Function = () => dispatch(AnnotationModalActions.closeAnnotationModal());
     const createAnnotation: Function = (annotation: CreatedAnnotation) => dispatch(AnnotationActions.createAnnotation(annotation));
 
@@ -44,6 +45,7 @@ function AnnotationShow(props: Props) {
                     <AnnotationShowItem
                         annotation={annotation}
                         track={track}
+                        trackInfo={trackInfo}
                     />
                 </div>
             );
@@ -168,7 +170,7 @@ function AnnotationShow(props: Props) {
 
         createAnnotation(annotation)
             .then(() => {
-                fetchTrack(track.id.toString());
+                fetchTrack(trackInfo);
                 closeAnnotationModal();
                 setAnnotationBody("");
                 handleAnnotationCreateStatus();

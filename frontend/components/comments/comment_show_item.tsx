@@ -9,18 +9,19 @@ import VoteShow from "../votes/vote_show";
 type Props = {
     comment: Comment;
     commentableType: "Track" | "Annotation",
-    parent: Annotation | Track
+    parent: Annotation | Track,
+    trackInfo: Array<string>
 };
 
 function CommentShowItem(props: Props) {
-    const { comment, commentableType, parent } = props;
+    const { comment, commentableType, parent, trackInfo } = props;
 
     const currentUser: User = useSelector((state: State) => state.entities.user[state.session.id]);
 
     const dispatch: Dispatch<any> = useDispatch();
     const deleteComment: Function = (commentId: number) => dispatch(CommentActions.deleteComment(commentId));
     const fetchAnnotation: Function = (annotationId: number) => dispatch(AnnotationActions.fetchAnnotation(annotationId));
-    const fetchTrack: Function = (trackId: string) => dispatch(TrackActions.fetchTrack(trackId));
+    const fetchTrack: Function = (trackInfo: Array<string>) => dispatch(TrackActions.fetchTrack(trackInfo));
     const updateComment: Function = (comment: UpdatedComment) => dispatch(CommentActions.updateComment(comment));
 
     const [commentDeleteStatus, setCommentDeleteStatus] = useState<boolean>(false);
@@ -214,7 +215,7 @@ function CommentShowItem(props: Props) {
 
         updateComment(updatedComment);
         if (commentableType === "Track") {
-            fetchTrack(parent.id.toString());
+            fetchTrack(trackInfo);
         } else {
             fetchAnnotation(parent.id);
         }
@@ -233,7 +234,7 @@ function CommentShowItem(props: Props) {
 
         deleteComment(currentComment.id);
         if (commentableType === "Track") {
-            fetchTrack(parent.id.toString());
+            fetchTrack(trackInfo);
         } else {
             fetchAnnotation(parent.id);
         }
