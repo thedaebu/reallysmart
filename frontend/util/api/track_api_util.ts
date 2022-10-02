@@ -8,11 +8,12 @@ export const fetchTracks = () => {
         })
     );
 };
-export const fetchTrack = (trackId: string) => {
+export const fetchTrack = (trackInfo: Array<string>) => {
     return (
         $.ajax({
             method: "GET",
-            url: `api/tracks/${trackId}`
+            url: `api/tracks/:id`,
+            data: { trackInfo }
         })
     );
 };
