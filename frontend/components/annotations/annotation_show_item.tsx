@@ -38,6 +38,7 @@ function AnnotationShowItem({ annotation, track, trackInfo }: { annotation: Anno
                     <CommentShow
                         commentableType="Annotation"
                         parent={annotation}
+                        trackInfo={trackInfo}
                     />
                 </div>
             );
