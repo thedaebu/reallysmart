@@ -11,9 +11,9 @@ export const fetchTracks = () => {
 export const fetchTrack = (trackInfo: Array<string>) => {
     return (
         $.ajax({
+            data: { trackInfo },
             method: "GET",
-            url: `api/tracks/:id`,
-            data: { trackInfo }
+            url: `api/tracks/:id`
         })
     );
 };

@@ -13,11 +13,11 @@ export const createComment = (comment: CreatedComment) => {
     return (
         $.ajax({
             data: {
-                authenticity_token: $('[name="csrf-token"]').attr("content"),
-                comment
+                comment,
+                authenticity_token: $('[name="csrf-token"]').attr("content")
             },
             method: "POST",
-            url: `api/comments`,
+            url: `api/comments`
         })
     );
 };
@@ -25,20 +25,20 @@ export const updateComment = (comment: UpdatedComment) => {
     return (
         $.ajax({
             data: {
-                authenticity_token: $('[name="csrf-token"]').attr("content"),
-                comment
+                comment,
+                authenticity_token: $('[name="csrf-token"]').attr("content")
             },
             method: "PUT",
-            url: `api/comments/${comment.id.toString()}`,
+            url: `api/comments/${comment.id.toString()}`
         })
     );
-}
+};
 export const deleteComment = (commentId: number) => {
     return (
         $.ajax({
-            data: { authenticity_token: $('[name="csrf-token"]').attr("content") },
+            data: {authenticity_token: $('[name="csrf-token"]').attr("content")},
             method: "DELETE",
             url: `api/comments/${commentId.toString()}`
         })
     );
-}
+};

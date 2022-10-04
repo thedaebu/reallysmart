@@ -5,8 +5,8 @@ export const createVote = (vote: CreatedVote) => {
     return (
         $.ajax({
             data: {
-                authenticity_token: $('[name="csrf-token"]').attr("content"),
-                vote
+                vote,
+                authenticity_token: $('[name="csrf-token"]').attr("content")
             },
             method: "POST",
             url: `api/votes`
@@ -16,7 +16,7 @@ export const createVote = (vote: CreatedVote) => {
 export const deleteVote = (voteId: number) => {
     return (
         $.ajax({
-            data: { authenticity_token: $('[name="csrf-token"]').attr("content") },
+            data: {authenticity_token: $('[name="csrf-token"]').attr("content")},
             method: "DELETE",
             url: `api/votes/${voteId.toString()}`
         })

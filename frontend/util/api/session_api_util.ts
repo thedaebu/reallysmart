@@ -28,9 +28,9 @@ export const signup = (user: SessionUser) => {
 export const logout = () => {
     return (
         $.ajax({
+            data: {authenticity_token: $('[name="csrf-token"]').attr("content")},
             method: "DELETE",
-            url: "/api/session",
-            data: { authenticity_token: $('[name="csrf-token"]').attr("content") }
+            url: "/api/session"
         })
     );
 };

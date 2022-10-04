@@ -12,12 +12,12 @@ export const fetchAnnotation = (annotationId: number) => {
 export const createAnnotation = (annotation: CreatedAnnotation) => {
     return (
         $.ajax({
-            method: "POST",
-            url: `api/annotations`,
             data: {
                 annotation,
                 authenticity_token: $('[name="csrf-token"]').attr("content")
-            }
+            },
+            method: "POST",
+            url: `api/annotations`
         })
     );
 };
@@ -32,13 +32,13 @@ export const updateAnnotation = (annotation: UpdatedAnnotation) => {
             url: `api/annotations/${annotation.id.toString()}`
         })
     );
-}
+};
 export const deleteAnnotation = (annotationId: number) => {
     return (
         $.ajax({
-            data: { authenticity_token: $('[name="csrf-token"]').attr("content") },
+            data: {authenticity_token: $('[name="csrf-token"]').attr("content")},
             method: "DELETE",
             url: `api/annotations/${annotationId.toString()}`
         })
     );
-}
+};
