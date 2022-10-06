@@ -3,10 +3,10 @@ Rails.application.routes.draw do
     mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "graphql#execute"
   end
   post "/graphql", to: "graphql#execute"
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root to: "static_pages#root"
 
-  namespace :api, defaults: { format: :json } do
+  root to: "static_pages#root"
+  resources :status, only: [:index]
+  namespace :api do
     resources :users, only: [:show, :create]
     resource :session, only: [:create, :destroy]
     resources :tracks, only: [:index, :show]
@@ -16,7 +16,4 @@ Rails.application.routes.draw do
     resources :searches, only: [:index]
     resources :tags, only: [:index]
   end
-
-  resources :status, only: [:index]
-  
 end
