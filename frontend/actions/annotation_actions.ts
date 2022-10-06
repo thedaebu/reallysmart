@@ -5,6 +5,7 @@ import * as AnnotationAPIUtil from "../util/api/annotation_api_util";
 
 export const RECEIVE_ANNOTATION = "RECEIVE_ANNOTATION";
 export const RECEIVE_ANNOTATION_ERRORS = "RECEIVE_ANNOTATION_ERRORS";
+export const CLEAR_ANNOTATION_ERRORS = "CLEAR_ANNOTATION_ERRORS";
 export const REMOVE_ANNOTATION = "REMOVE_ANNOTATION";
 
 const receiveAnnotation = ({ annotation }: {annotation: Annotation}) => {
@@ -35,18 +36,21 @@ export const fetchAnnotation = (annotationId: number) => (dispatch: Dispatch<Any
 export const createAnnotation = (createdAnnotation: CreatedAnnotation) => (dispatch: Dispatch<AnyAction>) => {
     return (
         AnnotationAPIUtil.createAnnotation(createdAnnotation)
-            .then((receivedAnnotation: ReceivedAnnotation) => dispatch(receiveAnnotation(receivedAnnotation)), errors => dispatch(receiveAnnotationErrors(errors.responseJSON)))
+            .then((receivedAnnotation: ReceivedAnnotation) => dispatch(receiveAnnotation(receivedAnnotation)), (errors) => dispatch(receiveAnnotationErrors(errors.responseJSON)))
     );
 };
 export const updateAnnotation = (updatedAnnotation: UpdatedAnnotation) => (dispatch: Dispatch<AnyAction>) => {
     return (
         AnnotationAPIUtil.updateAnnotation(updatedAnnotation)
-            .then((receivedAnnotation: ReceivedAnnotation) => dispatch(receiveAnnotation(receivedAnnotation)))
+            .then((receivedAnnotation: ReceivedAnnotation) => dispatch(receiveAnnotation(receivedAnnotation)), errors => dispatch(receiveAnnotationErrors(errors.responseJSON)))
     );
 };
 export const deleteAnnotation = (annotationId: number) => (dispatch: Dispatch<AnyAction>) => {
     return (
         AnnotationAPIUtil.deleteAnnotation(annotationId)
-            .then(() => dispatch(removeAnnotation(annotationId)))
+            .then(() => dispatch(removeAnnotation(annotationId)), errors => dispatch(receiveAnnotationErrors(errors.responseJSON)))
     );
 };
+export const clearAnnotationErrors = () => ({
+    type: CLEAR_ANNOTATION_ERRORS
+});
