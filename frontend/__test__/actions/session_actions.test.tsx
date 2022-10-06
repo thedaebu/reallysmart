@@ -74,13 +74,13 @@ describe("session actions", () => {
                 });
             });
         });
-        describe("clearErrors", () => {
+        describe("clearSessionErrors", () => {
             test("is exported", () => {
-                expect(typeof SessionActions.clearErrors).toEqual("function");
+                expect(typeof SessionActions.clearSessionErrors).toEqual("function");
             });
             test("dispatches CLEAR_ERRORS when login is called", () => {
                 const actions: any = [{type: "CLEAR_ERRORS"}];
-                store.dispatch(SessionActions.clearErrors());
+                store.dispatch(SessionActions.clearSessionErrors());
                 expect(store.getActions()).toEqual(actions);
             });
         });

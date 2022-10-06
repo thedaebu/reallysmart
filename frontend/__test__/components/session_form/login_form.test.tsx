@@ -18,7 +18,7 @@ const useMockDispatch = jest.spyOn(reactRedux, "useDispatch");
 const useMockEffect = jest.spyOn(React, "useEffect");
 const useMockSelector = jest.spyOn(reactRedux, "useSelector");
 const useMockState = jest.spyOn(React, "useState");
-const useMockClearErrors = jest.spyOn(SessionActions, "clearErrors");
+const useMockClearSessionErrors = jest.spyOn(SessionActions, "clearSessionErrors");
 
 describe("login form", () => {
     beforeEach(() => {
@@ -46,8 +46,8 @@ describe("login form", () => {
     test("useState is called", () => {
         expect(useMockState).toHaveBeenCalled();
     });
-    test("clearErrors is called from session actions", () => {
-        expect(useMockClearErrors).toHaveBeenCalled();
+    test("clearSessionErrors is called from session actions", () => {
+        expect(useMockClearSessionErrors).toHaveBeenCalled();
     });
     describe("input values", () => {
         test("username value changes when user types in username input", () => {
