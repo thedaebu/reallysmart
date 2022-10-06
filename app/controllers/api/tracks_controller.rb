@@ -1,6 +1,6 @@
 class Api::TracksController < ApplicationController
     def index
-        queried_tracks = Track.select("artist, artwork_path, id, spotify_path, title").all
+        queried_tracks = Track.select("artist, artwork_path, id, title").all
         @tracks = {}
         queried_tracks.each {|track| @tracks[track.id] = track}
 
