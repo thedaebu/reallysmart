@@ -10,14 +10,14 @@ function LoginForm() {
     const errors: Array<string> = useSelector((state: State) => state.errors.sessionErrors);
 
     const dispatch: Dispatch<any> = useDispatch();
-    const clearErrors: Function = () => dispatch(SessionActions.clearErrors());
+    const clearSessionErrors: Function = () => dispatch(SessionActions.clearSessionErrors());
     const login: Function = (sessionUser: SessionUser) => dispatch(SessionActions.login(sessionUser));
 
     const [password, setPassword] = useState<string>("");
     const [username, setUsername] = useState<string>("");
 
     useEffect(() => {
-        clearErrors();
+        clearSessionErrors();
         window.scrollTo(0, 0);
     }, [])
 
@@ -43,7 +43,7 @@ function LoginForm() {
         <div className="session-form">
             <h1 className="session-form__login-h1">Log In</h1>
             <form className="session-form__form" onSubmit={handleSignupFormSubmit}>
-                {errors.length && (
+                {errors.length > 0 && (
                     <div className="session-form__errors">
                         <h2>Ruh-roh!</h2>
                         <p>Something is wrong</p>
