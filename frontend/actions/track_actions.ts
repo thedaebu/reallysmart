@@ -23,8 +23,7 @@ const receiveTrack = (receivedTrack: ReceivedTrack) => {
 export const fetchTracks = () => (dispatch: Dispatch<AnyAction>) => {  
     return (
         TrackAPIUtil.fetchTracks()
-            .then((receivedTracks: ReceivedTracks) =>
-                dispatch(receiveTracks(receivedTracks)))
+            .then((receivedTracks: ReceivedTracks) => dispatch(receiveTracks(receivedTracks)))
     );
 };
 export const fetchTrack = (trackInfo: Array<string>) => (dispatch: Dispatch<AnyAction>) => {
