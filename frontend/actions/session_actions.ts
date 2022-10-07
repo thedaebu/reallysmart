@@ -16,8 +16,8 @@ const logoutCurrentUser: Function = () => ({
     type: LOGOUT_CURRENT_USER
 });
 const receiveSessionErrors: Function = (errors: Array<string>) => ({
-    type: RECEIVE_SESSION_ERRORS,
-    errors
+    errors,
+    type: RECEIVE_SESSION_ERRORS
 });
 export const clearSessionErrors: Function = () => ({
     type: CLEAR_SESSION_ERRORS

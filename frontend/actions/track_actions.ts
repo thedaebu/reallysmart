@@ -6,14 +6,14 @@ export const RECEIVE_TRACKS: string = "RECEIVE_TRACKS";
 export const RECEIVE_TRACK: string = "RECEIVE_TRACK";
 
 const receiveTracks: Function = ({ tracks }: {tracks: {[key: number]: IndexTrack}}) => ({
-    type: RECEIVE_TRACKS,
-    tracks
+    tracks,
+    type: RECEIVE_TRACKS
 });
 const receiveTrack: Function = (receivedTrack: ReceivedTrack) => ({
-    type: RECEIVE_TRACK,
     annotations: receivedTrack.annotations,
     comments: receivedTrack.comments,
-    track: receivedTrack.track
+    track: receivedTrack.track,
+    type: RECEIVE_TRACK
 });
 
 export const fetchTracks: Function = () => (dispatch: Dispatch<AnyAction>) => (

@@ -7,8 +7,8 @@ export const RECEIVE_SEARCHES: string = "RECEIVE_SEARCHES";
 export const CLEAR_SEARCHES: string = "CLEAR_SEARCHES";
 
 const receiveSearches: Function = ({ searches }: {searches: {[key: number]: IndexTrack}}) => ({
-    type: RECEIVE_SEARCHES,
-    searches
+    searches,
+    type: RECEIVE_SEARCHES
 });
 export const clearSearches: Function = () => ({
     type: CLEAR_SEARCHES
