@@ -30,13 +30,13 @@ export const fetchAnnotation: Function = (annotationId: number) => (dispatch: Di
 );
 export const createAnnotation: Function = (createdAnnotation: CreatedAnnotation) => (dispatch: Dispatch<AnyAction>) => (
     AnnotationAPIUtil.createAnnotation(createdAnnotation)
-        .then((receivedAnnotation: ReceivedAnnotation) => dispatch(receiveAnnotation(receivedAnnotation)), (errors) => dispatch(receiveAnnotationErrors(errors.responseJSON)))
+        .then((receivedAnnotation: ReceivedAnnotation) => dispatch(receiveAnnotation(receivedAnnotation)), (errors: JQuery.jqXHR) => dispatch(receiveAnnotationErrors(errors.responseJSON)))
 );
 export const updateAnnotation: Function = (updatedAnnotation: UpdatedAnnotation) => (dispatch: Dispatch<AnyAction>) => (
     AnnotationAPIUtil.updateAnnotation(updatedAnnotation)
-        .then((receivedAnnotation: ReceivedAnnotation) => dispatch(receiveAnnotation(receivedAnnotation)), errors => dispatch(receiveAnnotationErrors(errors.responseJSON)))
+        .then((receivedAnnotation: ReceivedAnnotation) => dispatch(receiveAnnotation(receivedAnnotation)), (errors: JQuery.jqXHR) => dispatch(receiveAnnotationErrors(errors.responseJSON)))
 );
 export const deleteAnnotation: Function = (annotationId: number) => (dispatch: Dispatch<AnyAction>) => (
     AnnotationAPIUtil.deleteAnnotation(annotationId)
-        .then(() => dispatch(removeAnnotation(annotationId)), errors => dispatch(receiveAnnotationErrors(errors.responseJSON)))
+        .then(() => dispatch(removeAnnotation(annotationId)), (errors: JQuery.jqXHR) => dispatch(receiveAnnotationErrors(errors.responseJSON)))
 );
