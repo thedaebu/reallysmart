@@ -6,7 +6,7 @@ import * as SessionAPIUtil from "./../util/api/session_api_util";
 export const RECEIVE_CURRENT_USER: string = "RECEIVE_CURRENT_USER";
 export const LOGOUT_CURRENT_USER: string = "LOGOUT_CURRENT_USER";
 export const RECEIVE_SESSION_ERRORS: string = "RECEIVE_SESSION_ERRORS";
-export const CLEAR_SESSION_ERRORS: string = "CLEAR_ERRORS";
+export const CLEAR_SESSION_ERRORS: string = "CLEAR_SESSION_ERRORS";
 
 const receiveCurrentUser: Function = ({ user }: { user: User }) => ({
     user,
