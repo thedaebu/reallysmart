@@ -68,7 +68,9 @@ function LoginForm() {
                 <label htmlFor="session-form__password">Really Smart Password
                     <a
                         className="session-form-forgot-password"
-                        href="" >(I forgot my password)
+                        href="" 
+                    >
+                        (I forgot my password)
                     </a>
                     <input
                         id="session-form__password"

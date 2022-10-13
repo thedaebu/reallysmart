@@ -26,9 +26,9 @@ function SearchIndexItem({ track }: { track: IndexTrack }) {
             replace
         >
             <div
-                className="search-index-item__image" style={{ 
-                    backgroundImage: `url(${artwork_path}`
-                }}> 
+                className="search-index-item__image"
+                style={{backgroundImage: `url(${artwork_path}`}}
+            > 
             </div>
             <div className="search-index-item__body">
                 <div className="search-index-item__body-top">
