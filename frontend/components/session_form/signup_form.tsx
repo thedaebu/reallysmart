@@ -7,7 +7,7 @@ import { SessionUser, State, Window } from "../../my_types";
 declare const window: Window;
 
 function SignupForm() {
-    const errors: Array<string> = useSelector((state: State) => state.errors.sessionErrors);
+    const sessionErrors: Array<string> = useSelector((state: State) => state.errors.sessionErrors);
 
     const dispatch: Dispatch<any> = useDispatch();
     const clearSessionErrors: Function = () => dispatch(SessionActions.clearSessionErrors());
@@ -18,6 +18,7 @@ function SignupForm() {
 
     useEffect(() => {
         clearSessionErrors();
+        document.title = "Really Smart";
         window.scrollTo(0, 0);
     }, [])
 
@@ -44,12 +45,12 @@ function SignupForm() {
             <h1 className="session-form__signup--h1">SIGN UP</h1>
             <h2 className="session-form__signup--h2">and show off your really smartness</h2>
             <form className="session-form__form" onSubmit={handleSignupFormSubmit}>
-                {errors.length > 0 && (
+                {sessionErrors.length > 0 && (
                     <div className="session-form__errors">
                         <h2>Ruh-roh!</h2>
                         <p>Something is wrong</p>
                         <ul>
-                            {errors.map((error: string, idx: number) => {
+                            {sessionErrors.map((error: string, idx: number) => {
                                 return (
                                     <li key={idx}>{error}</li>
                                 );
