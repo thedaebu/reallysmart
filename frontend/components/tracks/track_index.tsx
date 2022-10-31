@@ -18,6 +18,7 @@ function TrackIndex() {
 
     useEffect(() => {
         fetchTracks();
+        document.title = "Really Smart";
         window.scrollTo(0, 0);
     }, []);
 
