@@ -78,6 +78,7 @@ type Entities = {
 };
 type Errors = {
     annotationErrors: Array<string>,
+    commentErrors: Array<string>,
     sessionErrors: Array<string>
 };
 type AnnotationModal = {
