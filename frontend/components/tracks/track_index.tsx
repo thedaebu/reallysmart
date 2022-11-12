@@ -18,6 +18,7 @@ function TrackIndex() {
 
     useEffect(() => {
         fetchTracks();
+        document.title = "Really Smart";
         window.scrollTo(0, 0);
     }, []);
 
@@ -80,7 +81,7 @@ function TrackIndex() {
                 <h1 className="track-index__h1">CHARTS</h1>
                 <h2 className="track-index__h2">REALLY POPULAR ON REALLY SMART</h2>
                 <ul className="track-index__items">
-                    {indexTracks.length && trackIndexItems()}
+                    {indexTracks.length > 0 && trackIndexItems()}
                 </ul>
             </div>
             {indexCount <= 10 && extendIndexCountButton()}

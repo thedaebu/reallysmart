@@ -32,7 +32,7 @@ $programmelight: 'Programme Light', sans-serif;
                     background: rgb(224, 224, 224);
                     font-family: $programmelight;
                     font-size: 18px;
-                    padding: 3px 0px 4px 0px;
+                    padding: 4px 0px 5px 0px;
                     &:hover {
                         background: rgb(121, 164, 255);
                     }
@@ -40,7 +40,7 @@ $programmelight: 'Programme Light', sans-serif;
                 .lyrics__highlighted {
                     background: rgb(121, 164, 255);
                     font-family: $programmelight;
-                    padding: 5px 0px 6px 0px;
+                    padding: 4px 0px 5px 0px;
                 }
             }
         }

@@ -7,21 +7,22 @@ import { SessionUser, State, Window } from "../../my_types";
 declare const window: Window;
 
 function LoginForm() {
-    const errors: Array<string> = useSelector((state: State) => state.errors.sessionErrors);
+    const sessionErrors: Array<string> = useSelector((state: State) => state.errors.sessionErrors);
 
     const dispatch: Dispatch<any> = useDispatch();
-    const clearErrors: Function = () => dispatch(SessionActions.clearErrors());
+    const clearSessionErrors: Function = () => dispatch(SessionActions.clearSessionErrors());
     const login: Function = (sessionUser: SessionUser) => dispatch(SessionActions.login(sessionUser));
 
     const [password, setPassword] = useState<string>("");
     const [username, setUsername] = useState<string>("");
 
     useEffect(() => {
-        clearErrors();
+        clearSessionErrors();
+        document.title = "Really Smart";
         window.scrollTo(0, 0);
     }, [])
 
-    function handleSignupFormSubmit(e: FormEvent<HTMLFormElement>) {
+    function handleLoginSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
 
         const user: SessionUser = {
@@ -42,13 +43,13 @@ function LoginForm() {
     return (
         <div className="session-form">
             <h1 className="session-form__login-h1">Log In</h1>
-            <form className="session-form__form" onSubmit={handleSignupFormSubmit}>
-                {errors.length && (
+            <form className="session-form__form" onSubmit={handleLoginSubmit}>
+                {sessionErrors.length > 0 && (
                     <div className="session-form__errors">
                         <h2>Ruh-roh!</h2>
                         <p>Something is wrong</p>
                         <ul>
-                            {errors.map((error: string, idx: number) => {
+                            {sessionErrors.map((error: string, idx: number) => {
                                 return (
                                     <li key={idx}>{error}</li>
                                 );
@@ -66,9 +67,8 @@ function LoginForm() {
                     />
                 </label>
                 <label htmlFor="session-form__password">Really Smart Password
-                    <a
-                        className="session-form-forgot-password"
-                        href="" >(I forgot my password)
+                    <a className="session-form-forgot-password" href="">
+                        (I forgot my password)
                     </a>
                     <input
                         id="session-form__password"

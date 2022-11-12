@@ -18,36 +18,38 @@ function SessionMenu() {
 
     return (
         <>
-            {!currentUser ? (
-                <div className="session-menu">
-                    <Link
-                        to="/signup" 
-                        className="session-menu__signup"
-                        data-testid="session-menu__signup"
-                    >
-                        SIGN UP
-                    </Link>
-                    <Link
-                        to="/login"
-                        className="session-menu__login"
-                        data-testid="session-menu__login"
-                    >
-                        LOG IN
-                    </Link>
-                </div>
-            ) : (
-                <div className="session-menu">
-                    {/* <input type="file"/> */}
-                    {/* <img src={currentUser.avatar_url} /> */}
-                    <a 
-                        className="session-menu__logout" 
-                        onClick={sessionLogout}
-                        data-testid="session-menu__logout"
-                    >
-                        LOG OUT
-                    </a>
-                </div>
-            )}
+            {!currentUser 
+                ? (
+                    <div className="session-menu">
+                        <Link
+                            to="/signup" 
+                            className="session-menu__signup"
+                            data-testid="session-menu__signup"
+                        >
+                            SIGN UP
+                        </Link>
+                        <Link
+                            to="/login"
+                            className="session-menu__login"
+                            data-testid="session-menu__login"
+                        >
+                            LOG IN
+                        </Link>
+                    </div>
+                ) : (
+                    <div className="session-menu">
+                        {/* <input type="file"/> */}
+                        {/* <img src={currentUser.avatar_url} /> */}
+                        <a 
+                            className="session-menu__logout" 
+                            onClick={sessionLogout}
+                            data-testid="session-menu__logout"
+                        >
+                            LOG OUT
+                        </a>
+                    </div>
+                )
+            }
         </>
     );
 }

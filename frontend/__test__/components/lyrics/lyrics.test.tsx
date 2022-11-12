@@ -63,16 +63,10 @@ describe("lyrics", () => {
         const annotatedSections = within(lyricsBody).getAllByTestId("lyrics__not-annotation");
         expect(annotatedSections.length).toBe(3);
     });
-    describe("highlighted lyrics part", () => {
-        test("does not exist at start", () => {
-            const highlightedCurrentLyricsPart = screen.queryByTestId("lyrics__highlighted");
-            expect(highlightedCurrentLyricsPart).not.toBeInTheDocument();
-        });
-    });
     describe("annotation show component", () => {
-        test("is not shown at start", () => {
+        test("shows 'About <track title>' by default", () => {
             const annotationShow = screen.queryByTestId("annotation-show");
-            expect(annotationShow).toBeFalsy();
+            expect(annotationShow).toHaveTextContent('About "Selene"');
         });
         test("is shown when an annotated section is clicked on", () => {
             const annotatedSection = screen.queryAllByTestId("lyrics__is-annotation")[0];
@@ -80,13 +74,13 @@ describe("lyrics", () => {
             const annotationShow = screen.queryByTestId("annotation-show");
             expect(annotationShow).toBeInTheDocument();
         });
-        test("disappears when anywhere except an annotated section is clicked on after already clicking on an annotated section", () => {
+        test("shows default text when anywhere except an annotated section is clicked on after already clicking on an annotated section", () => {
             const annotatedSection = screen.queryAllByTestId("lyrics__is-annotation")[0];
             userEvent.click(annotatedSection);
             const nonAnnotatedSection = screen.queryAllByTestId("lyrics__not-annotation")[0];
             userEvent.click(nonAnnotatedSection);
             const annotationShow = screen.queryByTestId("annotation-show");
-            expect(annotationShow).toBeFalsy();
+            expect(annotationShow).toHaveTextContent('About "Selene"');
         });
     });
     describe("comment show component", () => {

@@ -1,8 +1,8 @@
-import React, { Dispatch, useEffect, useState } from "react";
+import React, { Dispatch, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as TrackActions from "../../actions/track_actions";
 import { RouteComponentProps } from "react-router";
-import { State, Track, Window } from "../../my_types";
+import { Action, State, Track, Window } from "../../my_types";
 import LyricsShow from "../lyrics/lyrics";
 import NavBar from "../navbar/navbar";
 import TrackShowHeader from "./track_show_header";
@@ -17,11 +17,10 @@ function TrackShow(props: RouteComponentProps<{ trackName: string }>) {
     const dispatch: Dispatch<any> = useDispatch();
     const fetchTrack: Function = (trackInfo: Array<string>) => dispatch(TrackActions.fetchTrack(trackInfo));
 
-    const [trackInfo, setTrackInfo] = useState<Array<string>>([]);
-
     useEffect(() => {
         const trackSearch: Array<string> = formatTrackName(trackName);
-        fetchTrack(trackSearch);
+        fetchTrack(trackSearch)
+            .then((result: Action) => document.title = `${result.track.artist} - ${result.track.title}`)
         window.scrollTo(0, 0);
     }, [trackName]);
 
@@ -30,7 +29,6 @@ function TrackShow(props: RouteComponentProps<{ trackName: string }>) {
         for (let i = 0; i < 2; i++) {
             unUrlifiedWords[i] = unUrlify(unUrlifiedWords[i]);
         }
-        setTrackInfo(unUrlifiedWords);
         return unUrlifiedWords;
     }
 
@@ -41,11 +39,11 @@ function TrackShow(props: RouteComponentProps<{ trackName: string }>) {
 
     return(
         <>
+            <NavBar />
             {Object.keys(track).length > 0 && (
                 <>
-                    <NavBar />
                     <TrackShowHeader track={track} />
-                    <LyricsShow track={track} trackInfo={trackInfo} />
+                    <LyricsShow track={track} />
                     <footer className="track-show__footer">
                         <iframe className="spotify-player" src={track.spotify_path}></iframe>
                     </footer>

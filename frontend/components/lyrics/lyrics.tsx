@@ -20,7 +20,7 @@ type HighlightedNode = {
     }
 };
 
-function LyricsShow({ track, trackInfo }: { track: Track, trackInfo: Array<string> }) {
+function LyricsShow({ track }: { track: Track }) {
     const { lyrics, title } = track;
 
     const annotations: {[key:number]: Annotation} = useSelector((state: State) => state.entities.annotations);
@@ -36,10 +36,6 @@ function LyricsShow({ track, trackInfo }: { track: Track, trackInfo: Array<strin
     const [selectedAnnotation, setSelectedAnnotation] = useState<Annotation | null>(null);
     const [startIndex, setStartIndex] = useState<number>(0);
     const [yCoord, setYCoord] = useState<number>(-367);
-
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []);
 
     useEffect(() => {
         if (lyricsPartHighlightStatus === false) {
@@ -151,6 +147,7 @@ function LyricsShow({ track, trackInfo }: { track: Track, trackInfo: Array<strin
 
     function openAnnotation(annotation: Annotation) {
         setSelectedAnnotation(annotation);
+        openAnnotationModal();
     }
 
     function handleTextSelect(e: MouseEvent<HTMLElement>) {
@@ -254,11 +251,7 @@ function LyricsShow({ track, trackInfo }: { track: Track, trackInfo: Array<strin
                     <pre className="lyrics__body" data-testid="lyrics__body">
                         {lyricsParts}
                     </pre>
-                    <CommentShow
-                        commentableType="Track"
-                        parent={track}
-                        trackInfo={trackInfo}
-                    />
+                    <CommentShow commentableType="Track" parent={track} />
                 </div>
                 <div className="lyrics__right">
                     <AnnotationShow
@@ -269,7 +262,6 @@ function LyricsShow({ track, trackInfo }: { track: Track, trackInfo: Array<strin
                         removeLyricsPartHighlight={removeLyricsPartHighlight}
                         startIndex={startIndex}
                         track={track}
-                        trackInfo={trackInfo}
                         yCoord={yCoord}
                     />
                 </div>

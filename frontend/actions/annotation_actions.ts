@@ -3,50 +3,40 @@ import { AnyAction } from "redux";
 import { Annotation, CreatedAnnotation, ReceivedAnnotation, UpdatedAnnotation } from "../my_types";
 import * as AnnotationAPIUtil from "../util/api/annotation_api_util";
 
-export const RECEIVE_ANNOTATION = "RECEIVE_ANNOTATION";
-export const RECEIVE_ANNOTATION_ERRORS = "RECEIVE_ANNOTATION_ERRORS";
-export const REMOVE_ANNOTATION = "REMOVE_ANNOTATION";
+export const RECEIVE_ANNOTATION: string = "RECEIVE_ANNOTATION";
+export const REMOVE_ANNOTATION: string = "REMOVE_ANNOTATION";
+export const RECEIVE_ANNOTATION_ERRORS: string = "RECEIVE_ANNOTATION_ERRORS";
+export const CLEAR_ANNOTATION_ERRORS: string = "CLEAR_ANNOTATION_ERRORS";
 
-const receiveAnnotation = ({ annotation }: {annotation: Annotation}) => {
-    return({
-        type: RECEIVE_ANNOTATION,
-        annotation
-    });
-};
-const receiveAnnotationErrors = (errors: Array<string>) => {
-    return ({
-        type: RECEIVE_ANNOTATION_ERRORS,
-        errors
-    });
-};
-const removeAnnotation = (annotationId: number) => {
-    return ({
-        type: REMOVE_ANNOTATION,
-        annotationId
-    });
-};
+const receiveAnnotation: Function = ({ annotation }: {annotation: Annotation}) => ({
+    annotation,
+    type: RECEIVE_ANNOTATION
+});
+const removeAnnotation: Function = (annotationId: number) => ({
+    annotationId,
+    type: REMOVE_ANNOTATION
+});
+const receiveAnnotationErrors: Function = (errors: Array<string>) => ({
+    errors,
+    type: RECEIVE_ANNOTATION_ERRORS
+});
+export const clearAnnotationErrors: Function = () => ({
+    type: CLEAR_ANNOTATION_ERRORS
+});
 
-export const fetchAnnotation = (annotationId: number) => (dispatch: Dispatch<AnyAction>) => {
-    return (
-        AnnotationAPIUtil.fetchAnnotation(annotationId)
-            .then((receivedAnnotation: ReceivedAnnotation) => dispatch(receiveAnnotation(receivedAnnotation)))
-    );
-};
-export const createAnnotation = (createdAnnotation: CreatedAnnotation) => (dispatch: Dispatch<AnyAction>) => {
-    return (
-        AnnotationAPIUtil.createAnnotation(createdAnnotation)
-            .then((receivedAnnotation: ReceivedAnnotation) => dispatch(receiveAnnotation(receivedAnnotation)), errors => dispatch(receiveAnnotationErrors(errors.responseJSON)))
-    );
-};
-export const updateAnnotation = (updatedAnnotation: UpdatedAnnotation) => (dispatch: Dispatch<AnyAction>) => {
-    return (
-        AnnotationAPIUtil.updateAnnotation(updatedAnnotation)
-            .then((receivedAnnotation: ReceivedAnnotation) => dispatch(receiveAnnotation(receivedAnnotation)))
-    );
-};
-export const deleteAnnotation = (annotationId: number) => (dispatch: Dispatch<AnyAction>) => {
-    return (
-        AnnotationAPIUtil.deleteAnnotation(annotationId)
-            .then(() => dispatch(removeAnnotation(annotationId)))
-    );
-};
+export const fetchAnnotation: Function = (annotationId: number) => (dispatch: Dispatch<AnyAction>) => (
+    AnnotationAPIUtil.fetchAnnotation(annotationId)
+        .then((receivedAnnotation: ReceivedAnnotation) => dispatch(receiveAnnotation(receivedAnnotation)))
+);
+export const createAnnotation: Function = (createdAnnotation: CreatedAnnotation) => (dispatch: Dispatch<AnyAction>) => (
+    AnnotationAPIUtil.createAnnotation(createdAnnotation)
+        .then((receivedAnnotation: ReceivedAnnotation) => dispatch(receiveAnnotation(receivedAnnotation)), (errors: JQuery.jqXHR) => dispatch(receiveAnnotationErrors(errors.responseJSON)))
+);
+export const updateAnnotation: Function = (updatedAnnotation: UpdatedAnnotation) => (dispatch: Dispatch<AnyAction>) => (
+    AnnotationAPIUtil.updateAnnotation(updatedAnnotation)
+        .then((receivedAnnotation: ReceivedAnnotation) => dispatch(receiveAnnotation(receivedAnnotation)), (errors: JQuery.jqXHR) => dispatch(receiveAnnotationErrors(errors.responseJSON)))
+);
+export const deleteAnnotation: Function = (annotationId: number) => (dispatch: Dispatch<AnyAction>) => (
+    AnnotationAPIUtil.deleteAnnotation(annotationId)
+        .then(() => dispatch(removeAnnotation(annotationId)), (errors: JQuery.jqXHR) => dispatch(receiveAnnotationErrors(errors.responseJSON)))
+);

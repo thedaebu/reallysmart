@@ -1,11 +1,9 @@
 import $ from "jquery";
 
-export const fetchSearches = (search: string) => {
-    return (
-        $.ajax({
-            method: "GET",
-            url: `api/searches`,
-            data: { search }
-        })
-    );
-};
+export const fetchSearches: Function = (search: string) => (
+    $.ajax({
+        data: { search },
+        method: "GET",
+        url: `api/searches`
+    })
+);

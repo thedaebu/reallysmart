@@ -18,7 +18,7 @@ annotation-show-item-button-hover {
     background: rgb(182, 182, 182);
 }
 
-.annotation-show__without-annotation {
+.annotation-show {
     width: min(100%, 371px);
     margin-right: auto;
 }
@@ -26,8 +26,6 @@ annotation-show-item-button-hover {
 .annotation-show-item {
     border-left: 4px solid rgb(121, 164, 255);
     padding: 5px 0px 0px 17px;
-    width: min(100%, 371px);
-    margin-right: auto;
     .annotation-show-item__name {
         font-size: 14px;
         padding-bottom: 17px;

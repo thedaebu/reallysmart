@@ -7,21 +7,22 @@ import { SessionUser, State, Window } from "../../my_types";
 declare const window: Window;
 
 function SignupForm() {
-    const errors: Array<string> = useSelector((state: State) => state.errors.sessionErrors);
+    const sessionErrors: Array<string> = useSelector((state: State) => state.errors.sessionErrors);
 
     const dispatch: Dispatch<any> = useDispatch();
-    const clearErrors: Function = () => dispatch(SessionActions.clearErrors());
+    const clearSessionErrors: Function = () => dispatch(SessionActions.clearSessionErrors());
     const signup: Function = (sessionUser: SessionUser) => dispatch(SessionActions.signup(sessionUser));
 
     const [password, setPassword] = useState<string>("");
     const [username, setUsername] = useState<string>("");
 
     useEffect(() => {
-        clearErrors();
+        clearSessionErrors();
+        document.title = "Really Smart";
         window.scrollTo(0, 0);
     }, [])
 
-    function handleSignupFormSubmit(e: FormEvent<HTMLFormElement>) {
+    function handleSignupSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
 
         const user: SessionUser = {
@@ -43,13 +44,13 @@ function SignupForm() {
         <div className="session-form">
             <h1 className="session-form__signup--h1">SIGN UP</h1>
             <h2 className="session-form__signup--h2">and show off your really smartness</h2>
-            <form className="session-form__form" onSubmit={handleSignupFormSubmit}>
-                {errors.length && (
+            <form className="session-form__form" onSubmit={handleSignupSubmit}>
+                {sessionErrors.length > 0 && (
                     <div className="session-form__errors">
                         <h2>Ruh-roh!</h2>
                         <p>Something is wrong</p>
                         <ul>
-                            {errors.map((error: string, idx: number) => {
+                            {sessionErrors.map((error: string, idx: number) => {
                                 return (
                                     <li key={idx}>{error}</li>
                                 );

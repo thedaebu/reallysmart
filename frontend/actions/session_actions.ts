@@ -3,43 +3,35 @@ import { AnyAction } from "redux";
 import { ReceivedUser, SessionUser, User } from "../my_types";
 import * as SessionAPIUtil from "./../util/api/session_api_util";
 
-export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
-export const LOGOUT_CURRENT_USER = "LOGOUT_CURRENT_USER";
-export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
-export const CLEAR_ERRORS = "CLEAR_ERRORS";
+export const RECEIVE_CURRENT_USER: string = "RECEIVE_CURRENT_USER";
+export const LOGOUT_CURRENT_USER: string = "LOGOUT_CURRENT_USER";
+export const RECEIVE_SESSION_ERRORS: string = "RECEIVE_SESSION_ERRORS";
+export const CLEAR_SESSION_ERRORS: string = "CLEAR_SESSION_ERRORS";
 
-const receiveCurrentUser = ({ user }: {user: User}) => {
-    return ({
-        type: RECEIVE_CURRENT_USER,
-        user
-    });
-};
-const receiveSessionErrors = (errors: Array<string>) => ({
-    type: RECEIVE_SESSION_ERRORS,
-    errors
+const receiveCurrentUser: Function = ({ user }: { user: User }) => ({
+    user,
+    type: RECEIVE_CURRENT_USER
 });
-const logoutCurrentUser = () => ({
+const logoutCurrentUser: Function = () => ({
     type: LOGOUT_CURRENT_USER
 });
-
-export const signup = (sessionUser: SessionUser) => (dispatch: Dispatch<AnyAction>) => {
-    return (
-        SessionAPIUtil.signup(sessionUser)
-            .then((receivedUser: ReceivedUser) => dispatch(receiveCurrentUser(receivedUser)), errors => dispatch(receiveSessionErrors(errors.responseJSON)))
-    );
-};
-export const login = (sessionUser: SessionUser) => (dispatch: Dispatch<AnyAction>) => {
-    return (
-        SessionAPIUtil.login(sessionUser)
-            .then((receivedUser: ReceivedUser) => dispatch(receiveCurrentUser(receivedUser)), errors => dispatch(receiveSessionErrors(errors.responseJSON)))
-    );
-};
-export const logout = () => (dispatch: Dispatch<AnyAction>) => {
-    return (
-        SessionAPIUtil.logout()
-            .then(() => dispatch(logoutCurrentUser()))
-    );
-};
-export const clearErrors = () => ({
-    type: CLEAR_ERRORS
+const receiveSessionErrors: Function = (errors: Array<string>) => ({
+    errors,
+    type: RECEIVE_SESSION_ERRORS
 });
+export const clearSessionErrors: Function = () => ({
+    type: CLEAR_SESSION_ERRORS
+});
+
+export const signup: Function = (sessionUser: SessionUser) => (dispatch: Dispatch<AnyAction>) => (
+    SessionAPIUtil.signup(sessionUser)
+        .then((receivedUser: ReceivedUser) => dispatch(receiveCurrentUser(receivedUser)), (errors: JQuery.jqXHR) => dispatch(receiveSessionErrors(errors.responseJSON)))
+);
+export const login: Function = (sessionUser: SessionUser) => (dispatch: Dispatch<AnyAction>) => (
+    SessionAPIUtil.login(sessionUser)
+        .then((receivedUser: ReceivedUser) => dispatch(receiveCurrentUser(receivedUser)), (errors: JQuery.jqXHR) => dispatch(receiveSessionErrors(errors.responseJSON)))
+);
+export const logout: Function = () => (dispatch: Dispatch<AnyAction>) => (
+    SessionAPIUtil.logout()
+        .then(() => dispatch(logoutCurrentUser()))
+);
