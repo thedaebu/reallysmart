@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import * as AnnotationActions from "../../actions/annotation_actions";
 import * as AnnotationModalActions from "../../actions/annotation_modal_actions";
-import * as TrackActions from "../../actions/track_actions";
 import { Annotation, CreatedAnnotation, State, Track, User } from "../../my_types";
 import AnnotationShowItem from "./annotation_show_item";
 
@@ -15,18 +14,16 @@ type Props = {
     removeLyricsPartHighlight: Function,
     startIndex: number,
     track: Track,
-    trackInfo: Array<string>,
     yCoord: number
 };
 
 function AnnotationShow(props: Props) {
-    const { annotation, annotationCreateStatus, endIndex, handleAnnotationCreateStatus, removeLyricsPartHighlight, startIndex, track, trackInfo, yCoord } = props;
+    const { annotation, annotationCreateStatus, endIndex, handleAnnotationCreateStatus, removeLyricsPartHighlight, startIndex, track, yCoord } = props;
 
     const annotationModal: boolean = useSelector((state: State) => state.modal.annotationModal);
     const currentUser: User = useSelector((state: State) => state.entities.user[state.session.id]);
 
     const dispatch: Dispatch<any> = useDispatch();
-    const fetchTrack: Function = (trackInfo: Array<string>) => dispatch(TrackActions.fetchTrack(trackInfo));
     const closeAnnotationModal: Function = () => dispatch(AnnotationModalActions.closeAnnotationModal());
     const createAnnotation: Function = (annotation: CreatedAnnotation) => dispatch(AnnotationActions.createAnnotation(annotation));
 
@@ -40,27 +37,20 @@ function AnnotationShow(props: Props) {
                         position: "relative",
                         top: yCoord ? yCoord : -367
                     }}
-                    data-testid="annotation-show"
                 >
-                    <AnnotationShowItem
-                        annotation={annotation}
-                        track={track}
-                        trackInfo={trackInfo}
-                    />
+                    <AnnotationShowItem annotation={annotation} trackId={track.id} />
                 </div>
             );
         } else if (annotationModal) {
             return (
                 <div 
-                    className="annotation-show__without-annotation"
                     style={{
                         position: "relative",
                         top: yCoord ? yCoord : -367
                     }}
-                    data-testid="annotation-show__without-annotation"
                 >
                     {currentUser 
-                        ? annotationForm()
+                        ? annotationCreateForm()
                         : (
                             <div className="annotation-show__session" >
                                 <Link to="/signup">Sign Up to Start Really Smarting</Link>
@@ -70,27 +60,17 @@ function AnnotationShow(props: Props) {
                 </div>
             );
         } else {
-            return(
-                <p 
-                    className="annotation-show__without-annotation"
-                    data-testid="annotation-show__without-annotation"
-                >
-                    About "{track.title}"
-                </p>
+            return (
+                <p>About "{track.title}"</p>
             );
         }
     }
 
-    function annotationForm() {
+    function annotationCreateForm() {
         if (annotationCreateStatus === false) {
             return (
-                <div
-                    className="annotation-show-begin" 
-                >
-                    <button
-                        className="annotation-show-begin__button"
-                        onClick={setAnnotationCreateStatus}
-                    >
+                <div className="annotation-show-begin">
+                    <button className="annotation-show-begin__button" onClick={setAnnotationCreateStatus}>
                         <h1>Start the Really Smart Annotation</h1>
                         <h2>(+5 RSQ)</h2>
                     </button>
@@ -129,15 +109,11 @@ function AnnotationShow(props: Props) {
                         </div>
                     </div>
                     <div className="annotation-show-form__bottom">
-                        <button className="annotation-show-form__bottom-save"
-                        type="submit">
+                        <button className="annotation-show-form__bottom-save" type="submit">
                             <p className="annotation-show-form__bottom-save-text">Save</p>
                             <p className="annotation-show-form__bottom-save-score">(+5 RSQ)</p>
                         </button>
-                        <button
-                            className="annotation-show-form__bottom-cancel"
-                            onClick={handleAnnotationCancel}
-                        >
+                        <button className="annotation-show-form__bottom-cancel" onClick={handleAnnotationCancel}>
                             Cancel
                         </button>
                     </div>
@@ -170,7 +146,6 @@ function AnnotationShow(props: Props) {
 
         createAnnotation(annotation)
             .then(() => {
-                fetchTrack(trackInfo);
                 closeAnnotationModal();
                 setAnnotationBody("");
                 handleAnnotationCreateStatus();
@@ -187,9 +162,9 @@ function AnnotationShow(props: Props) {
     }
 
     return (
-        <>
+        <div className="annotation-show" data-testid="annotation-show">
             {annotationShow()}
-        </>
+        </div>
     );
 }
 
