@@ -22,7 +22,7 @@ function LoginForm() {
         window.scrollTo(0, 0);
     }, [])
 
-    function handleSignupFormSubmit(e: FormEvent<HTMLFormElement>) {
+    function handleLoginSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
 
         const user: SessionUser = {
@@ -43,7 +43,7 @@ function LoginForm() {
     return (
         <div className="session-form">
             <h1 className="session-form__login-h1">Log In</h1>
-            <form className="session-form__form" onSubmit={handleSignupFormSubmit}>
+            <form className="session-form__form" onSubmit={handleLoginSubmit}>
                 {sessionErrors.length > 0 && (
                     <div className="session-form__errors">
                         <h2>Ruh-roh!</h2>
