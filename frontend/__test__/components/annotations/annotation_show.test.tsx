@@ -32,13 +32,11 @@ describe("annotation show", () => {
         afterEach(() => {
             cleanup();
         });
-    
+
         test("contains the about section when annotation is not clicked on", () => {
             const { title } = testShowStoreWithoutUser.entities.track;
-            const annotationShow = screen.queryByTestId("annotatation-show");
-            expect(annotationShow).toBeFalsy();
-            const annotationShowWithoutAnnotation = screen.queryByTestId("annotation-show__without-annotation");
-            expect(annotationShowWithoutAnnotation).toHaveTextContent(`About "${title}"`);
+            const annotationShow = screen.queryByTestId("annotation-show");
+            expect(annotationShow).toHaveTextContent(`About "${title}"`);
         });
         test("contains the annotator username and annotation body when annotation is clicked on", () => {
             const { annotator_name, body } = testShowStoreWithoutUser.entities.annotations[1];
