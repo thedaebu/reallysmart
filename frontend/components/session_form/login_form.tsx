@@ -1,26 +1,23 @@
 import React, { ChangeEvent, Dispatch, FormEvent, useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import * as SessionActions from "../../actions/session_actions";
-import { SessionUser, State, Window } from "../../my_types";
+import { Action, SessionUser, Window } from "../../my_types";
 
 declare const window: Window;
 
 function LoginForm() {
-    const sessionErrors: Array<string> = useSelector((state: State) => state.errors.sessionErrors);
-
     const dispatch: Dispatch<any> = useDispatch();
-    const clearSessionErrors: Function = () => dispatch(SessionActions.clearSessionErrors());
     const login: Function = (sessionUser: SessionUser) => dispatch(SessionActions.login(sessionUser));
 
     const [password, setPassword] = useState<string>("");
+    const [sessionErrors, setSessionErrors] = useState<Array<string>>([]);
     const [username, setUsername] = useState<string>("");
 
     useEffect(() => {
-        clearSessionErrors();
         document.title = "Really Smart";
         window.scrollTo(0, 0);
-    }, [])
+    }, []);
 
     function handleLoginSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
@@ -29,7 +26,13 @@ function LoginForm() {
             password: password,
             username: username
         };
-        login(user);
+
+        login(user)
+            .then((result: Action) => {
+                if (result.type === "RECEIVE_SESSION_ERRORS") {
+                    setSessionErrors(result.errors);
+                }
+            });
     }
 
     function handleInputChange(type: string) {
