@@ -6,7 +6,6 @@ import * as AnnotationAPIUtil from "../util/api/annotation_api_util";
 export const RECEIVE_ANNOTATION: string = "RECEIVE_ANNOTATION";
 export const REMOVE_ANNOTATION: string = "REMOVE_ANNOTATION";
 export const RECEIVE_ANNOTATION_ERRORS: string = "RECEIVE_ANNOTATION_ERRORS";
-export const CLEAR_ANNOTATION_ERRORS: string = "CLEAR_ANNOTATION_ERRORS";
 
 const receiveAnnotation: Function = ({ annotation }: {annotation: Annotation}) => ({
     annotation,
@@ -19,9 +18,6 @@ const removeAnnotation: Function = (annotationId: number) => ({
 const receiveAnnotationErrors: Function = (errors: Array<string>) => ({
     errors,
     type: RECEIVE_ANNOTATION_ERRORS
-});
-export const clearAnnotationErrors: Function = () => ({
-    type: CLEAR_ANNOTATION_ERRORS
 });
 
 export const fetchAnnotation: Function = (annotationId: number) => (dispatch: Dispatch<AnyAction>) => (
