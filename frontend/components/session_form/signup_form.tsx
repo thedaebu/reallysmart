@@ -49,11 +49,9 @@ function SignupForm() {
                 <h2>Ruh-roh!</h2>
                 <p>Something is wrong</p>
                 <ul>
-                    {sessionErrors.map((error: string, idx: number) => {
-                        return (
-                            <li key={idx}>{error}</li>
-                        );
-                    })}
+                    {sessionErrors.map((sessionError: string, idx: number) => (
+                        <li key={idx}>{sessionError}</li>
+                    ))}
                 </ul>
             </div>
         );
