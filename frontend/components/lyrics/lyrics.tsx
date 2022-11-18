@@ -59,10 +59,6 @@ function LyricsShow({ track }: { track: Track }) {
         setAnnotationCreateStatus(!annotationCreateStatus);
     }, []);
 
-    const removeLyricsPartHighlight = useCallback(() => {
-        setLyricsPartHighlightStatus(false);
-    }, []);
-
     function annotateLyrics() {
         const currentAnnotations: Array<Annotation> = Object.values(annotations);
         if (currentAnnotations.length > 0) {
@@ -235,6 +231,10 @@ function LyricsShow({ track }: { track: Track }) {
         let newLyricsParts: Array<JSX.Element> = [...lyricsParts.slice(0, currentIndex), ...highlightedCurrentLyricsPart, ...lyricsParts.slice(currentIndex + 1)];
         setLyricsParts(newLyricsParts);
     }
+
+    function removeLyricsPartHighlight() {
+        setLyricsPartHighlightStatus(false);
+    };
 
     function handleTextDeselect() {
         setSelectedAnnotation(null);
