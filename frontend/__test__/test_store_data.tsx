@@ -139,10 +139,6 @@ export const testIndexStore: State = {
         track: null,
         user: {}
     },
-    errors: {
-        annotationErrors: [""],
-        sessionErrors: [""]
-    },
     modal: {
         annotationModal: false
     },
@@ -159,10 +155,6 @@ export const testShowStoreWithoutUser: State = {
         track: testTrackData1,
         user: {}
     },
-    errors: {
-        annotationErrors: [""],
-        sessionErrors: [""]
-    },
     modal: {
         annotationModal: false
     },
@@ -178,10 +170,6 @@ export const testShowStoreWithUser: State = {
         searches: testIndexTracksData,
         track: testTrackData1,
         user: testUserData
-    },
-    errors: {
-        annotationErrors: [""],
-        sessionErrors: [""]
     },
     modal: {
         annotationModal: false
