@@ -26,7 +26,7 @@ function SignupForm() {
             password: password,
             username: username
         };
-        
+
         signup(user)
             .then((result: Action) => {
                 if (result.type === "RECEIVE_SESSION_ERRORS") {
@@ -43,24 +43,28 @@ function SignupForm() {
         }
     }
 
+    function errorsDisplay() {
+        return (
+            <div className="session-form__errors">
+                <h2>Ruh-roh!</h2>
+                <p>Something is wrong</p>
+                <ul>
+                    {sessionErrors.map((error: string, idx: number) => {
+                        return (
+                            <li key={idx}>{error}</li>
+                        );
+                    })}
+                </ul>
+            </div>
+        );
+    }
+
     return (
         <div className="session-form">
             <h1 className="session-form__signup--h1">SIGN UP</h1>
             <h2 className="session-form__signup--h2">and show off your really smartness</h2>
             <form className="session-form__form" onSubmit={handleSignupSubmit}>
-                {sessionErrors.length > 0 && (
-                    <div className="session-form__errors">
-                        <h2>Ruh-roh!</h2>
-                        <p>Something is wrong</p>
-                        <ul>
-                            {sessionErrors.map((error: string, idx: number) => {
-                                return (
-                                    <li key={idx}>{error}</li>
-                                );
-                            })}
-                        </ul>
-                    </div>
-                )}
+                {sessionErrors.length > 0 && errorsDisplay()}
                 <label htmlFor="session-form__username">Really Smart Nickname
                     <input
                         id="session-form__username"
