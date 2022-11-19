@@ -64,7 +64,6 @@ export type PreloadedState = {
 };
 export type State = {
     entities: Entities,
-    modal: AnnotationModal,
     session: SessionId
 };
 type Entities = {
@@ -74,9 +73,6 @@ type Entities = {
     searches: {[key:number]: IndexTrack},
     track: Track,
     user: {[key:number]: User}
-};
-type AnnotationModal = {
-    annotationModal: boolean
 };
 type SessionId = {
     id: number | null
