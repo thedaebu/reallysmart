@@ -1,7 +1,7 @@
-import React, { ChangeEvent, Dispatch, MouseEvent, useState } from "react";
+import React, { ChangeEvent, Dispatch, MouseEvent, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as AnnotationActions from "../../actions/annotation_actions";
-import { Annotation, State, UpdatedAnnotation, User } from "../../my_types";
+import { Action, Annotation, State, UpdatedAnnotation, User } from "../../my_types";
 import CommentShow from "../comments/comment_show";
 import VoteShow from "../votes/vote_show";
 
@@ -14,8 +14,13 @@ function AnnotationShowItem({ annotation, trackId }: { annotation: Annotation, t
 
     const [annotationBody, setAnnotationBody] = useState<string>(annotation.body);
     const [annotationDeleteStatus, setAnnotationDeleteStatus] = useState<boolean>(false);
+    const [annotationErrors, setAnnotationErrors] = useState<Array<string>>([]);
     const [annotationUpdateStatus, setAnnotationUpdateStatus] = useState<boolean>(false);
     const [currentAnnotation, setCurrentAnnotation] = useState<Annotation>(annotation);
+
+    useEffect(() => {
+        setAnnotationBody(annotation.body);
+    }, [annotationUpdateStatus]);
 
     function updatebuttons() {
         if (currentUser.id === currentAnnotation.annotator_id && annotationDeleteStatus === false) {
@@ -62,6 +67,7 @@ function AnnotationShowItem({ annotation, trackId }: { annotation: Annotation, t
         e.preventDefault();
 
         setAnnotationUpdateStatus(!annotationUpdateStatus);
+        setAnnotationErrors([]);
     }
 
     function annotationUpdateForm() {
@@ -77,6 +83,7 @@ function AnnotationShowItem({ annotation, trackId }: { annotation: Annotation, t
                     value={annotationBody}
                 >
                 </textarea>
+                {annotationErrors.length > 0 && errorsDisplay()}
                 <div className="annotation-show-form__middle">
                     <p className="annotation-show-form__middle__tools">Tools:</p>
                     <div className="annotation-show-form__middle__items">
@@ -130,7 +137,23 @@ function AnnotationShowItem({ annotation, trackId }: { annotation: Annotation, t
         };
 
         updateAnnotation(updatedAnnotation)
-            .then(() => setAnnotationUpdateStatus(false));
+            .then((result: Action) => {
+                if (result.type === "RECEIVE_ANNOTATION_ERRORS") {
+                    setAnnotationErrors(result.errors);
+                } else {
+                    setAnnotationUpdateStatus(false);
+                }
+            });
+    }
+
+    function errorsDisplay() {
+        return (
+            <ul>
+                {annotationErrors.map((annotationError: string, idx: number) => (
+                    <li key={idx}>{annotationError}</li>
+                ))}
+            </ul>
+        );
     }
 
     function handleAnnotationDeleteStatus(e: MouseEvent<HTMLButtonElement>) {
