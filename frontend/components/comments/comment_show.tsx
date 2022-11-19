@@ -143,16 +143,14 @@ function CommentShow({ commentableType, parent }: { commentableType: "Track" | "
             }
             {currentComments.length > 0 && (
                 <ul className="comment-show__items">
-                    {currentComments.map((comment, idx) => {
-                        return (
-                            <CommentShowItem
-                                comment={comment}
-                                commentableType={commentableType}
-                                parent={parent}
-                                key={idx}
-                            />
-                        );
-                    })}
+                    {currentComments.map((comment, idx) => (
+                        <CommentShowItem
+                            comment={comment}
+                            commentableType={commentableType}
+                            parent={parent}
+                            key={idx}
+                        />
+                    ))}
                 </ul>
             )}
         </div>
