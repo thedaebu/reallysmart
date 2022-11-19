@@ -11,7 +11,7 @@ annotation-show-item-button {
     border: 1px solid rgb(182, 182, 182);
     border-radius: 2px;
     padding: 0px 4px;
-    margin: 0px 4px;
+    margin-right: 8px;
 }
 annotation-show-item-button-hover {
     color:rgb(70, 70, 70);
@@ -82,11 +82,15 @@ annotation-show-item-button-hover {
         font-weight: lighter;
         border: none;
         padding: 10px;
-        margin: 20px 0px 19px 0px;
+        margin-top: 20px;
         &:focus {
             box-shadow: inset 0px 0px 2px 2px rgb(194, 213, 255);
             border: 1px, solid rgb(194, 213, 255);
         }
+    }
+    .errors-list {
+        color: #a70021;
+        margin: 3px 0px 0px 0px;
     }
     .annotation-show-form__middle {
         display: flex;
@@ -94,7 +98,7 @@ annotation-show-item-button-hover {
         font-size: 14px;
         border-bottom: 1px solid rgb(226, 226, 226);
         padding-bottom: 12px;
-        margin-left: 5px;
+        margin: 19px 0px 0px 5px;
         > .annotation-show-form__middle__tools {
             font-family: $programmelight; 
             color: rgb(168, 168, 168);
