@@ -96,56 +96,6 @@ function CommentShowItem(props: Props) {
         setCommentUpdateStatus(!commentUpdateStatus);
     }
 
-    function handlecommentBodyChange() {
-        return (e: ChangeEvent<HTMLTextAreaElement>) => setCommentBody(e.currentTarget.value);
-    }
-
-    function handleUpdatedCommentSubmit(e: MouseEvent<HTMLFormElement>) {
-        e.preventDefault();
-
-        const updatedComment: UpdatedComment = {
-            body: commentBody,
-            commentable_type: commentableType,
-            commentable_id: parent.id,
-            commenter_id: currentUser.id,
-            commenter_name: currentUser.username,
-            id: comment.id
-        };
-
-        updateComment(updatedComment)
-            .then((result: Action) => {
-                if (result.type === "RECEIVE_COMMENT_ERRORS") {
-                    setCommentErrors(result.errors);
-                } else {
-                    setCommentErrors([]);
-                    setCommentUpdateStatus(false);
-                }
-            });
-    }
-
-    function errorsDisplay() {
-        return (
-            <ul>
-                {commentErrors.map((commentError: string, idx: number) => (
-                    <li key={idx}>{commentError}</li>
-                ))}
-            </ul>
-        );
-    }
-
-    function handleCommentDeleteStatus(e: MouseEvent<HTMLButtonElement>) {
-        e.preventDefault();
-
-        setCommentDeleteStatus(!commentDeleteStatus);
-    }
-
-    function handleCommentDeleteSubmit(e: MouseEvent<HTMLButtonElement>) {
-        e.preventDefault();
-
-        deleteComment(comment.id)
-            .then(() => setCommentDeleteStatus(false));
-    }
-
     function commentUpdateForm() {
         return (
             <form
@@ -177,6 +127,56 @@ function CommentShowItem(props: Props) {
                 </div>
             </form>
         )
+    }
+
+    function handlecommentBodyChange() {
+        return (e: ChangeEvent<HTMLTextAreaElement>) => setCommentBody(e.currentTarget.value);
+    }
+
+    function handleUpdatedCommentSubmit(e: MouseEvent<HTMLFormElement>) {
+        e.preventDefault();
+
+        const updatedComment: UpdatedComment = {
+            body: commentBody,
+            commentable_type: commentableType,
+            commentable_id: parent.id,
+            commenter_id: currentUser.id,
+            commenter_name: currentUser.username,
+            id: comment.id
+        };
+
+        updateComment(updatedComment)
+            .then((result: Action) => {
+                if (result.type === "RECEIVE_COMMENT_ERRORS") {
+                    setCommentErrors(result.errors);
+                } else {
+                    setCommentErrors([]);
+                    setCommentUpdateStatus(false);
+                }
+            });
+    }
+
+    function errorsDisplay() {
+        return (
+            <ul className="errors-list">
+                {commentErrors.map((commentError: string, idx: number) => (
+                    <li key={idx}>{commentError}</li>
+                ))}
+            </ul>
+        );
+    }
+
+    function handleCommentDeleteStatus(e: MouseEvent<HTMLButtonElement>) {
+        e.preventDefault();
+
+        setCommentDeleteStatus(!commentDeleteStatus);
+    }
+
+    function handleCommentDeleteSubmit(e: MouseEvent<HTMLButtonElement>) {
+        e.preventDefault();
+
+        deleteComment(comment.id)
+            .then(() => setCommentDeleteStatus(false));
     }
 
     return (

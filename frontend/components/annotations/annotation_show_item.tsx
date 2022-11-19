@@ -148,7 +148,7 @@ function AnnotationShowItem({ annotation, trackId }: { annotation: Annotation, t
 
     function errorsDisplay() {
         return (
-            <ul>
+            <ul className="errors-list">
                 {annotationErrors.map((annotationError: string, idx: number) => (
                     <li key={idx}>{annotationError}</li>
                 ))}

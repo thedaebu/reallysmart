@@ -119,7 +119,7 @@ function CommentShow({ commentableType, parent }: { commentableType: "Track" | "
 
     function errorsDisplay() {
         return (
-            <ul>
+            <ul className="errors-list">
                 {commentErrors.map((commentError: string, idx: number) => (
                     <li key={idx}>{commentError}</li>
                 ))}
