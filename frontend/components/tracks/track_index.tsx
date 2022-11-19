@@ -23,15 +23,13 @@ function TrackIndex() {
     }, []);
 
     useEffect(() => {
-        setIndexTracks(tracks.map((track: IndexTrack, idx: number) => {
-            return (
-                <MemoizedTrackIndexItem
-                    listNumber={idx+1}
-                    track={track}
-                    key={idx+1}
-                />
-            );
-        }));
+        setIndexTracks(tracks.map((track: IndexTrack, idx: number) => (
+            <MemoizedTrackIndexItem
+                listNumber={idx+1}
+                track={track}
+                key={idx+1}
+            />
+        )));
     }, [tracks.length]);
 
     function trackIndexItems() {
