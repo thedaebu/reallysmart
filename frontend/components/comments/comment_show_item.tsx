@@ -1,7 +1,7 @@
 import React, { ChangeEvent, Dispatch, MouseEvent, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as CommentActions from "../../actions/comment_actions";
-import { Annotation, Comment, State, Track, UpdatedComment, User } from "../../my_types";
+import { Action, Annotation, Comment, State, Track, UpdatedComment, User } from "../../my_types";
 import VoteShow from "../votes/vote_show";
 
 type Props = {
@@ -19,9 +19,10 @@ function CommentShowItem(props: Props) {
     const deleteComment: Function = (commentId: number) => dispatch(CommentActions.deleteComment(commentId));
     const updateComment: Function = (comment: UpdatedComment) => dispatch(CommentActions.updateComment(comment));
 
-    const [commentDeleteStatus, setCommentDeleteStatus] = useState<boolean>(false);
-    const [commentUpdateStatus, setCommentUpdateStatus] = useState<boolean>(false);
     const [commentBody, setCommentBody] = useState<string>(comment.body);
+    const [commentDeleteStatus, setCommentDeleteStatus] = useState<boolean>(false);
+    const [commentErrors, setCommentErrors] = useState<Array<string>>([]);
+    const [commentUpdateStatus, setCommentUpdateStatus] = useState<boolean>(false);
 
     function handleTime(dateTime: string) {
         const oldDate: Date = new Date(Date.parse(dateTime));
@@ -90,7 +91,42 @@ function CommentShowItem(props: Props) {
     function handleCommentUpdateStatus(e: MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
 
+        setCommentBody(comment.body);
+        setCommentErrors([]);
         setCommentUpdateStatus(!commentUpdateStatus);
+    }
+
+    function commentUpdateForm() {
+        return (
+            <form
+                className="comment-show-form"
+                onSubmit={handleUpdatedCommentSubmit}
+                data-testid="comment-show-form"
+            >
+                <textarea
+                    className={commentableType === "Track" 
+                        ? "comment-show-form__track-text"
+                        : "comment-show-form__annotation-text"
+                    }
+                    onChange={handlecommentBodyChange()}
+                    value={commentBody}
+                    data-testid="comment-show-form__text"
+                />
+                {commentErrors.length > 0 && errorsDisplay()}
+                <div className="comment-show-form__buttons">
+                    <button className="comment-show-form__submit">
+                        <p>Save</p>
+                    </button>
+                    <button
+                        className="comment-show-form__cancel"
+                        onClick={handleCommentUpdateStatus}
+                        data-testid="comment-show-form__cancel"
+                    >
+                        <p>Cancel</p>
+                    </button>
+                </div>
+            </form>
+        )
     }
 
     function handlecommentBodyChange() {
@@ -110,7 +146,24 @@ function CommentShowItem(props: Props) {
         };
 
         updateComment(updatedComment)
-            .then(() => setCommentUpdateStatus(false));
+            .then((result: Action) => {
+                if (result.type === "RECEIVE_COMMENT_ERRORS") {
+                    setCommentErrors(result.errors);
+                } else {
+                    setCommentErrors([]);
+                    setCommentUpdateStatus(false);
+                }
+            });
+    }
+
+    function errorsDisplay() {
+        return (
+            <ul className="errors-list">
+                {commentErrors.map((commentError: string, idx: number) => (
+                    <li key={idx}>{commentError}</li>
+                ))}
+            </ul>
+        );
     }
 
     function handleCommentDeleteStatus(e: MouseEvent<HTMLButtonElement>) {
@@ -124,38 +177,6 @@ function CommentShowItem(props: Props) {
 
         deleteComment(comment.id)
             .then(() => setCommentDeleteStatus(false));
-    }
-
-    function commentUpdateForm() {
-        return (
-            <form
-                className="comment-show-form"
-                onSubmit={handleUpdatedCommentSubmit}
-                data-testid="comment-show-form"
-            >
-                <textarea
-                    className={commentableType === "Track" 
-                        ? "comment-show-form__track-text"
-                        : "comment-show-form__annotation-text"
-                    }
-                    onChange={handlecommentBodyChange()}
-                    value={commentBody}
-                    data-testid="comment-show-form__text"
-                />
-                <div className="comment-show-form__buttons">
-                    <button className="comment-show-form__submit">
-                        <p>Save</p>
-                    </button>
-                    <button
-                        className="comment-show-form__cancel"
-                        onClick={handleCommentUpdateStatus}
-                        data-testid="comment-show-form__cancel"
-                    >
-                        <p>Cancel</p>
-                    </button>
-                </div>
-            </form>
-        )
     }
 
     return (

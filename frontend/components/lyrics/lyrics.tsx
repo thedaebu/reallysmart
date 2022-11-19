@@ -1,6 +1,5 @@
-import React, { MouseEvent, useState, useEffect, Dispatch, useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import * as AnnotationModalActions from "../../actions/annotation_modal_actions";
+import React, { MouseEvent, useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { Annotation, State, Track, Window } from "../../my_types";
 import AnnotationShow from "../annotations/annotation_show";
 import CommentShow from "../comments/comment_show";
@@ -25,11 +24,8 @@ function LyricsShow({ track }: { track: Track }) {
 
     const annotations: {[key:number]: Annotation} = useSelector((state: State) => state.entities.annotations);
 
-    const dispatch: Dispatch<any> = useDispatch();
-    const closeAnnotationModal: Function = () => dispatch(AnnotationModalActions.closeAnnotationModal());
-    const openAnnotationModal: Function = () => dispatch(AnnotationModalActions.openAnnotationModal());
-
     const [annotationCreateStatus, setAnnotationCreateStatus] = useState<boolean>(false);
+    const [annotationOpenStatus, setAnnotationOpenStatus] = useState<boolean>(false);
     const [endIndex, setEndIndex] = useState<number>(0);
     const [lyricsPartHighlightStatus, setLyricsPartHighlightStatus] = useState<boolean>(false);
     const [lyricsParts, setLyricsParts] = useState<Array<JSX.Element>>([]);
@@ -55,14 +51,6 @@ function LyricsShow({ track }: { track: Track }) {
         annotateLyrics();
     }, [annotations]);
 
-    const handleAnnotationCreateStatus = useCallback(() => {
-        setAnnotationCreateStatus(!annotationCreateStatus);
-    }, []);
-
-    const removeLyricsPartHighlight = useCallback(() => {
-        setLyricsPartHighlightStatus(false);
-    }, []);
-
     function annotateLyrics() {
         const currentAnnotations: Array<Annotation> = Object.values(annotations);
         if (currentAnnotations.length > 0) {
@@ -82,7 +70,7 @@ function LyricsShow({ track }: { track: Track }) {
                         <span
                             className="lyrics__is-annotation"
                             key={`is-anno-${annotation.id}`}
-                            onClick={() => openAnnotation(annotation)}
+                            onClick={() => selectAnnotation(annotation)}
                             data-name={`is-anno-${annotation.id}`}
                             data-testid="lyrics__is-annotation"
                         >
@@ -105,7 +93,7 @@ function LyricsShow({ track }: { track: Track }) {
                         <span
                             className="lyrics__is-annotation"
                             key={`is-anno-${annotation.id}`}
-                            onClick={() => openAnnotation(annotation)}
+                            onClick={() => selectAnnotation(annotation)}
                             data-name={`is-anno-${annotation.id}`}
                             data-testid="lyrics__is-annotation"
                         >
@@ -145,9 +133,8 @@ function LyricsShow({ track }: { track: Track }) {
         }
     }
 
-    function openAnnotation(annotation: Annotation) {
+    function selectAnnotation(annotation: Annotation) {
         setSelectedAnnotation(annotation);
-        openAnnotationModal();
     }
 
     function handleTextSelect(e: MouseEvent<HTMLElement>) {
@@ -164,8 +151,8 @@ function LyricsShow({ track }: { track: Track }) {
             setStartIndex(start);
             setEndIndex(end);
             if (startIndex < endIndex) {
-                dispatch(openAnnotationModal());
                 handleLyricsPartHighlight(start, end, highlighted);
+                setAnnotationOpenStatus(true);
             }
         }
     }
@@ -236,12 +223,20 @@ function LyricsShow({ track }: { track: Track }) {
         setLyricsParts(newLyricsParts);
     }
 
+    function removeLyricsPartHighlight() {
+        setLyricsPartHighlightStatus(false);
+    };
+
     function handleTextDeselect() {
+        setAnnotationOpenStatus(false);
         setSelectedAnnotation(null);
-        dispatch(closeAnnotationModal());
         setLyricsPartHighlightStatus(false);
         setAnnotationCreateStatus(false);
     }
+
+    function handleAnnotationCreateStatus(){
+        setAnnotationCreateStatus(!annotationCreateStatus);
+    };
 
     return (
         <div className="lyrics__shade">
@@ -257,8 +252,10 @@ function LyricsShow({ track }: { track: Track }) {
                     <AnnotationShow
                         annotation={selectedAnnotation}
                         annotationCreateStatus={annotationCreateStatus}
+                        annotationOpenStatus={annotationOpenStatus}
                         endIndex={endIndex}
                         handleAnnotationCreateStatus={handleAnnotationCreateStatus}
+                        handleTextDeselect={handleTextDeselect}
                         removeLyricsPartHighlight={removeLyricsPartHighlight}
                         startIndex={startIndex}
                         track={track}

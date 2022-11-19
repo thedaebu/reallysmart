@@ -1,16 +1,17 @@
-import React, { ChangeEvent, Dispatch, MouseEvent, useState } from "react";
+import React, { ChangeEvent, Dispatch, MouseEvent, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import * as AnnotationActions from "../../actions/annotation_actions";
-import * as AnnotationModalActions from "../../actions/annotation_modal_actions";
-import { Annotation, CreatedAnnotation, State, Track, User } from "../../my_types";
+import { Action, Annotation, CreatedAnnotation, State, Track, User } from "../../my_types";
 import AnnotationShowItem from "./annotation_show_item";
 
 type Props = {
     annotation: Annotation | null,
     annotationCreateStatus: boolean,
+    annotationOpenStatus: boolean,
     endIndex: number,
     handleAnnotationCreateStatus: Function,
+    handleTextDeselect: Function,
     removeLyricsPartHighlight: Function,
     startIndex: number,
     track: Track,
@@ -18,16 +19,19 @@ type Props = {
 };
 
 function AnnotationShow(props: Props) {
-    const { annotation, annotationCreateStatus, endIndex, handleAnnotationCreateStatus, removeLyricsPartHighlight, startIndex, track, yCoord } = props;
+    const { annotation, annotationCreateStatus, endIndex, handleAnnotationCreateStatus, removeLyricsPartHighlight, startIndex, track, yCoord, annotationOpenStatus, handleTextDeselect } = props;
 
-    const annotationModal: boolean = useSelector((state: State) => state.modal.annotationModal);
     const currentUser: User = useSelector((state: State) => state.entities.user[state.session.id]);
 
     const dispatch: Dispatch<any> = useDispatch();
-    const closeAnnotationModal: Function = () => dispatch(AnnotationModalActions.closeAnnotationModal());
     const createAnnotation: Function = (annotation: CreatedAnnotation) => dispatch(AnnotationActions.createAnnotation(annotation));
 
     const [annotationBody, setAnnotationBody] = useState<string>("");
+    const [annotationErrors, setAnnotationErrors] = useState<Array<string>>([]);
+
+    useEffect(() => {
+        setAnnotationBody("");
+    }, [annotationOpenStatus]);
 
     function annotationShow() {
         if (annotation) {
@@ -41,7 +45,7 @@ function AnnotationShow(props: Props) {
                     <AnnotationShowItem annotation={annotation} trackId={track.id} />
                 </div>
             );
-        } else if (annotationModal) {
+        } else if (annotationOpenStatus) {
             return (
                 <div 
                     style={{
@@ -89,6 +93,7 @@ function AnnotationShow(props: Props) {
                         value={annotationBody}
                     >
                     </textarea>
+                    {annotationErrors.length > 0 && errorsDisplay()}
                     <div className="annotation-show-form__middle">
                         <p className="annotation-show-form__middle__tools">Tools:</p>
                         <div className="annotation-show-form__middle__items">
@@ -145,20 +150,34 @@ function AnnotationShow(props: Props) {
         };
 
         createAnnotation(annotation)
-            .then(() => {
-                closeAnnotationModal();
-                setAnnotationBody("");
-                handleAnnotationCreateStatus();
+            .then((result: Action) => {
+                if (result.type === "RECEIVE_ANNOTATION_ERRORS") {
+                    setAnnotationErrors(result.errors);
+                } else {
+                    handleTextDeselect();
+                    setAnnotationBody("");
+                    setAnnotationErrors([]);
+                }
             });
     }
 
     function handleAnnotationCancel(e: MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
 
-        closeAnnotationModal();
-        setAnnotationBody("");
+        handleTextDeselect();
         removeLyricsPartHighlight();
-        handleAnnotationCreateStatus();
+        setAnnotationBody("");
+        setAnnotationErrors([]);
+    }
+
+    function errorsDisplay() {
+        return (
+            <ul className="errors-list">
+                {annotationErrors.map((annotationError: string, idx: number) => (
+                    <li key={idx}>{annotationError}</li>
+                ))}
+            </ul>
+        );
     }
 
     return (

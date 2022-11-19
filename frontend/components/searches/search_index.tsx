@@ -26,14 +26,9 @@ function SearchIndex({ clearSearchField, searchField }: { clearSearchField: Func
                     <p className="search-index__results">SEARCH RESULTS</p>
                     <p className="search-index__songs">SONGS</p>
                     <ul className="search-index__items" onClick={clearSearch}>
-                        {searches.slice(0, 5).map((track: IndexTrack, idx: number) => {
-                            return (
-                                <MemoizedSearchIndexItem
-                                    key={idx}
-                                    track={track}
-                                />
-                            );
-                        })}
+                        {searches.slice(0, 5).map((track: IndexTrack, idx: number) => (
+                            <MemoizedSearchIndexItem track={track} key={idx} />
+                        ))}
                     </ul>
                 </div>
             );

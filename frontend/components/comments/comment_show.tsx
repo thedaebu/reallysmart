@@ -2,7 +2,7 @@ import React, { ChangeEvent, Dispatch, FormEvent, MouseEvent, useEffect, useStat
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import * as CommentActions from "../../actions/comment_actions";
-import { Annotation, Comment, CreatedComment, State, Track, User } from "../../my_types";
+import { Action, Annotation, Comment, CreatedComment, State, Track, User } from "../../my_types";
 import CommentShowItem from "./comment_show_item";
 
 function CommentShow({ commentableType, parent }: { commentableType: "Track" | "Annotation", parent: Track | Annotation }) {
@@ -15,6 +15,7 @@ function CommentShow({ commentableType, parent }: { commentableType: "Track" | "
     const [currentComments, setCurrentComments] = useState<Array<Comment>>([]);
     const [commentBody, setCommentBody] = useState<string>("");
     const [commentCreateStatus, setCommentCreateStatus] = useState<boolean>(false);
+    const [commentErrors, setCommentErrors] = useState<Array<string>>([]);
 
     useEffect(() => {
         setCurrentComments(Object.values(comments).filter((comment: Comment) => comment.commentable_type === commentableType && comment.commentable_id === parent.id));
@@ -49,6 +50,7 @@ function CommentShow({ commentableType, parent }: { commentableType: "Track" | "
         } else {
             setCommentBody("");
             setCommentCreateStatus(false);
+            setCommentErrors([]);
         }
     }
 
@@ -71,6 +73,7 @@ function CommentShow({ commentableType, parent }: { commentableType: "Track" | "
                     }
                     data-testid="comment-show-form__text"
                 />
+                {commentErrors.length > 0 && errorsDisplay()}
                 <div className="comment-show-form__buttons">
                     <button className="comment-show-form__submit">
                         <p>Submit</p>
@@ -103,10 +106,25 @@ function CommentShow({ commentableType, parent }: { commentableType: "Track" | "
         };
 
         createComment(comment)
-            .then(() => {
-                setCommentBody("");
-                setCommentCreateStatus(false);
+            .then((result: Action) => {
+                if (result.type === "RECEIVE_COMMENT_ERRORS") {
+                    setCommentErrors(result.errors);
+                } else {
+                    setCommentBody("");
+                    setCommentCreateStatus(false);
+                    setCommentErrors([]);
+                }
             });
+    }
+
+    function errorsDisplay() {
+        return (
+            <ul className="errors-list">
+                {commentErrors.map((commentError: string, idx: number) => (
+                    <li key={idx}>{commentError}</li>
+                ))}
+            </ul>
+        );
     }
 
     return (
@@ -125,16 +143,14 @@ function CommentShow({ commentableType, parent }: { commentableType: "Track" | "
             }
             {currentComments.length > 0 && (
                 <ul className="comment-show__items">
-                    {currentComments.map((comment, idx) => {
-                        return (
-                            <CommentShowItem
-                                comment={comment}
-                                commentableType={commentableType}
-                                parent={parent}
-                                key={idx}
-                            />
-                        );
-                    })}
+                    {currentComments.map((comment, idx) => (
+                        <CommentShowItem
+                            comment={comment}
+                            commentableType={commentableType}
+                            parent={parent}
+                            key={idx}
+                        />
+                    ))}
                 </ul>
             )}
         </div>

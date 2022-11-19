@@ -1,26 +1,23 @@
 import React, { ChangeEvent, Dispatch, FormEvent, useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import * as SessionActions from "../../actions/session_actions";
-import { SessionUser, State, Window } from "../../my_types";
+import { Action, SessionUser, Window } from "../../my_types";
 
 declare const window: Window;
 
 function SignupForm() {
-    const sessionErrors: Array<string> = useSelector((state: State) => state.errors.sessionErrors);
-
     const dispatch: Dispatch<any> = useDispatch();
-    const clearSessionErrors: Function = () => dispatch(SessionActions.clearSessionErrors());
     const signup: Function = (sessionUser: SessionUser) => dispatch(SessionActions.signup(sessionUser));
 
     const [password, setPassword] = useState<string>("");
+    const [sessionErrors, setSessionErrors] = useState<Array<string>>([]);
     const [username, setUsername] = useState<string>("");
 
     useEffect(() => {
-        clearSessionErrors();
         document.title = "Really Smart";
         window.scrollTo(0, 0);
-    }, [])
+    }, []);
 
     function handleSignupSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
@@ -29,7 +26,13 @@ function SignupForm() {
             password: password,
             username: username
         };
-        signup(user);
+
+        signup(user)
+            .then((result: Action) => {
+                if (result.type === "RECEIVE_SESSION_ERRORS") {
+                    setSessionErrors(result.errors);
+                }
+            });
     }
 
     function handleInputChange(type: string) {
@@ -40,24 +43,26 @@ function SignupForm() {
         }
     }
 
+    function errorsDisplay() {
+        return (
+            <div className="session-form__errors">
+                <h2>Ruh-roh!</h2>
+                <p>Something is wrong</p>
+                <ul>
+                    {sessionErrors.map((sessionError: string, idx: number) => (
+                        <li key={idx}>{sessionError}</li>
+                    ))}
+                </ul>
+            </div>
+        );
+    }
+
     return (
         <div className="session-form">
             <h1 className="session-form__signup--h1">SIGN UP</h1>
             <h2 className="session-form__signup--h2">and show off your really smartness</h2>
             <form className="session-form__form" onSubmit={handleSignupSubmit}>
-                {sessionErrors.length > 0 && (
-                    <div className="session-form__errors">
-                        <h2>Ruh-roh!</h2>
-                        <p>Something is wrong</p>
-                        <ul>
-                            {sessionErrors.map((error: string, idx: number) => {
-                                return (
-                                    <li key={idx}>{error}</li>
-                                );
-                            })}
-                        </ul>
-                    </div>
-                )}
+                {sessionErrors.length > 0 && errorsDisplay()}
                 <label htmlFor="session-form__username">Really Smart Nickname
                     <input
                         id="session-form__username"

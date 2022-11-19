@@ -14,9 +14,6 @@ describe("search actions", () => {
         test("exports a RECEIVE_SEARCHES constant", () => {
             expect(SearchActions.RECEIVE_SEARCHES).toEqual("RECEIVE_SEARCHES");
         });
-        test("exports a CLEAR_SEARCHES constant", () => {
-            expect(SearchActions.CLEAR_SEARCHES).toEqual("CLEAR_SEARCHES");
-        });
     });
     describe("functions", () => {
         const searches: {[key: number]: IndexTrack} = testIndexTracksData;
@@ -40,16 +37,6 @@ describe("search actions", () => {
                 return store.dispatch(SearchActions.fetchSearches("N")).then(() => {
                     expect(store.getActions()).toEqual(actions);
                 });
-            });
-        });
-        describe("clearSearches", () => {
-            test("is exported", () => {
-                expect(typeof SearchActions.clearSearches).toEqual("function");
-            });
-            test("dispatches CLEAR_SEARCHES when clearSearches is called", () => {
-                const actions = [{ type: "CLEAR_SEARCHES" }];
-                store.dispatch(SearchActions.clearSearches());
-                expect(store.getActions()).toEqual(actions);
             });
         });
     });

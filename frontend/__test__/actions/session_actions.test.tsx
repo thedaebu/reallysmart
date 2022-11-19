@@ -18,9 +18,6 @@ describe("session actions", () => {
         test("exports a RECEIVE_SESSION_ERRORS constant", () => {
             expect(SessionActions.RECEIVE_SESSION_ERRORS).toEqual("RECEIVE_SESSION_ERRORS");
         });
-        test("exports a CLEAR_SESSION_ERRORS constant", () => {
-            expect(SessionActions.CLEAR_SESSION_ERRORS).toEqual("CLEAR_SESSION_ERRORS");
-        });
     });
     describe("functions", () => {
         let store: any;
@@ -72,16 +69,6 @@ describe("session actions", () => {
                 return store.dispatch(SessionActions.logout()).then(() => {
                     expect(store.getActions()).toEqual(actions);
                 });
-            });
-        });
-        describe("clearSessionErrors", () => {
-            test("is exported", () => {
-                expect(typeof SessionActions.clearSessionErrors).toEqual("function");
-            });
-            test("dispatches CLEAR_SESSION_ERRORS when login is called", () => {
-                const actions: any = [{type: "CLEAR_SESSION_ERRORS"}];
-                store.dispatch(SessionActions.clearSessionErrors());
-                expect(store.getActions()).toEqual(actions);
             });
         });
     });
