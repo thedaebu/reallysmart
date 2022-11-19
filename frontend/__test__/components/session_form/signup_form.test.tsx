@@ -7,7 +7,6 @@ import * as reactRedux from "react-redux";
 import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
 import { testShowStoreWithoutUser } from "../../test_store_data";
-import * as SessionActions from "../../../actions/session_actions";
 import SignupForm from "../../../components/session_form/signup_form";
 
 const middlewares = [thunk];
@@ -16,9 +15,7 @@ const testStore = mockStore(testShowStoreWithoutUser);
 
 const useMockDispatch = jest.spyOn(reactRedux, "useDispatch");
 const useMockEffect = jest.spyOn(React, "useEffect");
-const useMockSelector = jest.spyOn(reactRedux, "useSelector");
 const useMockState = jest.spyOn(React, "useState");
-const useMockClearSessionErrors = jest.spyOn(SessionActions, "clearSessionErrors");
 
 describe("signup form", () => {
     beforeEach(() => {
@@ -40,14 +37,8 @@ describe("signup form", () => {
     test("useEffect is called", () => {
         expect(useMockEffect).toHaveBeenCalled();
     });
-    test("useSelector is called", () => {
-        expect(useMockSelector).toHaveBeenCalled();
-    });
     test("useState is called", () => {
         expect(useMockState).toHaveBeenCalled();
-    });
-    test("clearSessionErrors is called from session actions", () => {
-        expect(useMockClearSessionErrors).toHaveBeenCalled();
     });
     describe("input values", () => {
         test("username value changes when user types in username input", () => {
