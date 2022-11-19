@@ -14,14 +14,18 @@ const receiveCurrentUser: Function = ({ user }: { user: User }) => ({
 const logoutCurrentUser: Function = () => ({
     type: LOGOUT_CURRENT_USER
 });
+const receiveSessionErrors: Function = (errors: Array<string>) => ({
+    errors,
+    type: RECEIVE_SESSION_ERRORS
+});
 
 export const signup: Function = (sessionUser: SessionUser) => (dispatch: Dispatch<AnyAction>) => (
     SessionAPIUtil.signup(sessionUser)
-        .then((receivedUser: ReceivedUser) => dispatch(receiveCurrentUser(receivedUser)), (errors: JQuery.jqXHR) => ({errors: errors.responseJSON}))
+        .then((receivedUser: ReceivedUser) => dispatch(receiveCurrentUser(receivedUser)), (errors: JQuery.jqXHR) => receiveSessionErrors(errors.responseJSON))
 );
 export const login: Function = (sessionUser: SessionUser) => (dispatch: Dispatch<AnyAction>) => (
     SessionAPIUtil.login(sessionUser)
-        .then((receivedUser: ReceivedUser) => dispatch(receiveCurrentUser(receivedUser)), (errors: JQuery.jqXHR) => ({errors: errors.responseJSON}))
+        .then((receivedUser: ReceivedUser) => dispatch(receiveCurrentUser(receivedUser)), (errors: JQuery.jqXHR) => receiveSessionErrors(errors.responseJSON))
 );
 export const logout: Function = () => (dispatch: Dispatch<AnyAction>) => (
     SessionAPIUtil.logout()
