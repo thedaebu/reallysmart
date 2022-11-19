@@ -139,9 +139,6 @@ export const testIndexStore: State = {
         track: null,
         user: {}
     },
-    modal: {
-        annotationModal: false
-    },
     session: {
         id: null
     }
@@ -155,9 +152,6 @@ export const testShowStoreWithoutUser: State = {
         track: testTrackData1,
         user: {}
     },
-    modal: {
-        annotationModal: false
-    },
     session: {
         id: null
     }
@@ -170,9 +164,6 @@ export const testShowStoreWithUser: State = {
         searches: testIndexTracksData,
         track: testTrackData1,
         user: testUserData
-    },
-    modal: {
-        annotationModal: false
     },
     session: {
         id: 1
