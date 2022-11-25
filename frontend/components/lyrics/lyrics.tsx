@@ -143,11 +143,8 @@ function LyricsShow({ track }: { track: Track }) {
         setLyricsPartHighlightStatus(true);
         setYCoord(e.pageY-(e.pageY % 30)-367);
         const highlighted: Highlighted = window.getSelection();
-
         if (highlighted && highlighted.anchorOffset !== highlighted.focusOffset) {
-            const newIndices: Array<number> = makeNewIndices(highlighted);
-            const start: number = newIndices[0] + 1;
-            const end: number = newIndices[1] - 1;
+            const [start, end]: Array<number> = makeNewIndices(highlighted);
             setStartIndex(start);
             setEndIndex(end);
             if (startIndex < endIndex) {
@@ -163,7 +160,6 @@ function LyricsShow({ track }: { track: Track }) {
         const add: number = parseInt(highlighted.focusNode.parentNode.dataset.add);
         let start: number = 0;
         let end: number = 0;
-
         if (anchorName.includes("not-anno") && anchorName === focusName) {
             const currentStart: number = highlighted.anchorOffset + add;
             const currentEnd: number = highlighted.focusOffset + add;
@@ -171,7 +167,7 @@ function LyricsShow({ track }: { track: Track }) {
             end = Math.max(currentStart, currentEnd) + 1;
         }
 
-        return [start, end];
+        return [start + 1, end - 1];
     }
 
     function handleLyricsPartHighlight(start: number, end: number, highlighted: Highlighted) {

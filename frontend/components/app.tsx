@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import {
   Route,
   Switch,
@@ -9,9 +9,9 @@ import DemoLogin from "./demo_login/demo_login";
 import LoginForm from "./session_form/login_form";
 import SessionMenu from "./session_menu/session_menu";
 import SignupForm from "./session_form/signup_form";
-import TrackIndex from "./tracks/track_index";
-import TrackShow from "./tracks/track_show";
 import Searchbar from "./searchbar/searchbar";
+const TrackIndex = lazy(() => import("./tracks/track_index"));
+const TrackShow = lazy(() => import("./tracks/track_show"));
 
 function App() {
     return (
@@ -25,10 +25,18 @@ function App() {
                 </div>
             </header>
             <Switch>
-                <Route exact path="/" component={TrackIndex} />
+                <Route exact path="/">
+                    <Suspense fallback={<div></div>}>
+                        <TrackIndex />
+                    </Suspense>
+                </Route>
                 <AuthRoute exact path="/signup" component={SignupForm} />
                 <AuthRoute exact path="/login"  component={LoginForm} />
-                <Route path="/tracks/:trackName" component={TrackShow} />
+                <Route path="/tracks/:trackName">
+                    <Suspense fallback={<div></div>}>
+                        <TrackShow />
+                    </Suspense>
+                </Route>
             </Switch>
         </div>
     );

@@ -169,13 +169,3 @@ export const testShowStoreWithUser: State = {
         id: 1
     }
 };
-
-// test match
-export const testMatch = {
-    isExact: true,
-    params: {
-        trackName: 'niki__selene'
-    },
-    path: "/tracks/:trackName",
-    url: "/tracks/niki__selene"
-};

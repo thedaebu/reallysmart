@@ -1,13 +1,13 @@
 import React from "react";
 import { cleanup, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, MemoryRouter, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import * as reactRedux from "react-redux";
 import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
 import TrackShow from "../../../components/tracks/track_show";
-import { testMatch, testShowStoreWithoutUser } from "../../test_store_data";
+import { testShowStoreWithoutUser } from "../../test_store_data";
 import { Store } from "../../../store/store";
 
 const middlewares = [thunk];
@@ -22,9 +22,13 @@ const useMockState = jest.spyOn(React, "useState");
 function renderComponent(store: Store) {
     render(
         <BrowserRouter>
-            <Provider store={store}>
-                <TrackShow history={undefined} location={undefined} match={testMatch} />
-            </Provider>
+            <MemoryRouter initialEntries={['tracks/niki__selene']}>
+                <Provider store={store}>
+                    <Route path='tracks/:trackName'>
+                        <TrackShow/>
+                    </Route>
+                </Provider>
+            </MemoryRouter>
         </BrowserRouter>
     );
 }
