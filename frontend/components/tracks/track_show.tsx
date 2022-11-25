@@ -1,7 +1,7 @@
 import React, { Dispatch, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as TrackActions from "../../actions/track_actions";
-import { RouteComponentProps } from "react-router";
+import { useParams } from "react-router";
 import { Action, State, Track, Window } from "../../my_types";
 import LyricsShow from "../lyrics/lyrics";
 import NavBar from "../navbar/navbar";
@@ -9,8 +9,8 @@ import TrackShowHeader from "./track_show_header";
 
 declare const window: Window;
 
-function TrackShow(props: RouteComponentProps<{ trackName: string }>) {
-    const trackName: string = props.match.params.trackName;
+function TrackShow() {
+    const { trackName }: { trackName: string } = useParams();
 
     const track: Track = useSelector((state: State) => state.entities.track);
 
