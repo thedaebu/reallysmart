@@ -1,7 +1,7 @@
 class Api::CommentsController < ApplicationController
     def show
         comment = Comment.find(params[:id])
-        @comment = comment.slice(:body, :commentable_id, :commentable_type, :commenter_id, :commenter_name, :id, :updated_at)
+        @comment = comment.as_json
         @comment[:votes] = {}
         comment.votes.each do |vote|
             @comment[:votes][vote.id] = vote.slice(:id, :voteable_id, :voteable_type, :voter_id)
@@ -14,7 +14,7 @@ class Api::CommentsController < ApplicationController
     def create
         created_comment = Comment.new(comment_params)
         if created_comment.save
-            @comment = created_comment.slice(:body, :commentable_id, :commentable_type, :commenter_id, :commenter_name, :id, :updated_at)
+            @comment = created_comment.as_json
             @comment[:votes] = {}
 
             result = {:comment => @comment}
@@ -27,7 +27,7 @@ class Api::CommentsController < ApplicationController
     def update
         updated_comment = Comment.find(params[:id])
         if updated_comment.update(comment_params)
-            @comment = updated_comment.slice(:body, :commentable_id, :commentable_type, :commenter_id, :commenter_name, :id, :updated_at)
+            @comment = updated_comment.as_json
             @comment[:votes] = {}
             updated_comment.votes.each do |vote|
                 @comment[:votes][vote.id] = vote.slice(:id, :voteable_id, :voteable_type, :voter_id)
