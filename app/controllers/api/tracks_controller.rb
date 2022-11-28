@@ -18,7 +18,7 @@ class Api::TracksController < ApplicationController
         queried_annotations = @track.annotations
         @annotations = {}
         queried_annotations.each do |annotation|
-            temp_annotation = annotation.slice(:annotator_id, :annotator_name, :body, :end_index, :id, :start_index, :track_id)
+            temp_annotation = annotation.as_json
             temp_annotation[:votes] = {}
             @annotations[annotation.id] = temp_annotation
         end
@@ -26,7 +26,7 @@ class Api::TracksController < ApplicationController
         queried_comments = @track.comments + @track.annotation_comments
         @comments = {}
         queried_comments.each do |comment|
-            temp_comment = comment.slice(:body, :commentable_id, :commentable_type, :commenter_id, :commenter_name, :id, :updated_at)
+            temp_comment = comment.as_json
             temp_comment[:votes] = {}
             @comments[comment.id] = temp_comment
         end
