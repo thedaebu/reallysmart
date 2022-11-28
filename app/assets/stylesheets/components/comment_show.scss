@@ -1,5 +1,5 @@
-$programmereg: 'Programme Regular', sans-serif;
 $programmelight: 'Programme Light', sans-serif;
+$programmereg: 'Programme Regular', sans-serif;
 
 comment-show-item {
     border-top: 1px solid #99a7ee;
@@ -199,13 +199,36 @@ comment-show-item-button-hover {
         }
         .comment-show-item__time {
             font-size: 15px;
+            display: flex;
+            justify-content: flex-end;
+            .comment-show-item__time--tooltip {
+                visibility: hidden;
+                z-index: 2;
+                width: 100px;
+                position: absolute;
+                background: #adb9f5;
+                font-family: $programmelight;
+                color: rgb(56, 56, 56);
+                font-size: 12px;
+                line-height: 16px;
+                text-align: center;
+                border-radius: 1px;
+                white-space: nowrap;
+            }
+            &:hover .comment-show-item__time--tooltip {
+                visibility: visible;
+            }
         }
     }
     .comment-show-item__body {
         font-family: $programmelight;
         font-size: 17px;
         line-height: 23px;
-        padding-top: 17px;
+        padding: 17px 0px 25px 0px;
+    }
+    .comment-show-item__edited {
+        color: rgb(161, 161, 161);
+        font-size: 12px;
     }
 }
 
