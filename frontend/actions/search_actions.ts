@@ -1,6 +1,5 @@
 import { Dispatch } from "react";
-import { AnyAction } from "redux";
-import { IndexTrack, ReceivedSearches } from "../my_types";
+import { IndexTrack, ReceivedSearches, SearchAction } from "../my_types";
 import * as SearchAPIUtil from "./../util/api/search_api_util";
 
 export const RECEIVE_SEARCHES: string = "RECEIVE_SEARCHES";
@@ -10,7 +9,7 @@ const receiveSearches: Function = ({ searches }: {searches: {[key: number]: Inde
     type: RECEIVE_SEARCHES
 });
 
-export const fetchSearches: Function = (search: string) => (dispatch: Dispatch<AnyAction>) => (
+export const fetchSearches: Function = (search: string) => (dispatch: Dispatch<SearchAction>) => (
     SearchAPIUtil.fetchSearches(search)
         .then((receivedSearches: ReceivedSearches) => dispatch(receiveSearches(receivedSearches)))
 );

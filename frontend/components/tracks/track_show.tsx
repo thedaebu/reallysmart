@@ -2,7 +2,8 @@ import React, { Dispatch, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as TrackActions from "../../actions/track_actions";
 import { useParams } from "react-router";
-import { Action, State, Track, Window } from "../../my_types";
+import { AnyAction } from "@reduxjs/toolkit";
+import { State, Track, TrackAction, Window } from "../../my_types";
 import LyricsShow from "../lyrics/lyrics";
 import NavBar from "../navbar/navbar";
 import TrackShowHeader from "./track_show_header";
@@ -14,13 +15,13 @@ function TrackShow() {
 
     const track: Track = useSelector((state: State) => state.entities.track);
 
-    const dispatch: Dispatch<any> = useDispatch();
+    const dispatch: Dispatch<AnyAction> = useDispatch();
     const fetchTrack: Function = (trackInfo: Array<string>) => dispatch(TrackActions.fetchTrack(trackInfo));
 
     useEffect(() => {
         const trackSearch: Array<string> = formatTrackName(trackName);
         fetchTrack(trackSearch)
-            .then((result: Action) => document.title = `${result.track.artist} - ${result.track.title}`)
+            .then((result: TrackAction) => document.title = `${result.track.artist} - ${result.track.title}`)
         window.scrollTo(0, 0);
     }, [trackName]);
 

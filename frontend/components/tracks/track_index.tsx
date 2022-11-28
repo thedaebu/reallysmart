@@ -1,6 +1,7 @@
 import React, { Dispatch, MouseEvent, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as TrackActions from "../../actions/track_actions";
+import { AnyAction } from "@reduxjs/toolkit";
 import { IndexTrack, State, Window } from "../../my_types";
 import Navbar from "../navbar/navbar";
 import MemoizedTrackIndexItem, { TrackIndexItem } from "./track_index_item";
@@ -10,7 +11,7 @@ declare const window: Window;
 function TrackIndex() {
     const tracks: Array<IndexTrack> = useSelector((state: State) => Object.values(state.entities.indexTracks));
 
-    const dispatch: Dispatch<any> = useDispatch();
+    const dispatch: Dispatch<AnyAction> = useDispatch();
     const fetchTracks: Function = () => dispatch(TrackActions.fetchTracks());
 
     const [indexCount, setIndexCount] = useState<number>(5);

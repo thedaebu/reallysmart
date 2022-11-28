@@ -1,7 +1,8 @@
 import React, { ChangeEvent, Dispatch, MouseEvent, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as CommentActions from "../../actions/comment_actions";
-import { Action, Annotation, Comment, State, Track, UpdatedComment, User } from "../../my_types";
+import { AnyAction } from "@reduxjs/toolkit";
+import { Annotation, Comment, CommentAction, State, Track, UpdatedComment, User } from "../../my_types";
 import VoteShow from "../votes/vote_show";
 
 type Props = {
@@ -14,7 +15,7 @@ function CommentShowItem(props: Props) {
     const { comment, commentableType, parent } = props;
     const currentUser: User = useSelector((state: State) => state.entities.user[state.session.id]);
 
-    const dispatch: Dispatch<any> = useDispatch();
+    const dispatch: Dispatch<AnyAction> = useDispatch();
     const deleteComment: Function = (commentId: number) => dispatch(CommentActions.deleteComment(commentId));
     const updateComment: Function = (comment: UpdatedComment) => dispatch(CommentActions.updateComment(comment));
 
@@ -154,7 +155,7 @@ function CommentShowItem(props: Props) {
         };
 
         updateComment(updatedComment)
-            .then((result: Action) => {
+            .then((result: CommentAction) => {
                 if (result.type === "RECEIVE_COMMENT_ERRORS") {
                     setCommentErrors(result.errors);
                 } else {

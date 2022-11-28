@@ -2,11 +2,12 @@ import React, { ChangeEvent, Dispatch, useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import * as SearchActions from "../../actions/search_actions";
+import { AnyAction } from "@reduxjs/toolkit";
 import useDebounce from "../../hooks/debounce_hook";
 import SearchIndex from "../searches/search_index";
 
 function Searchbar() {
-    const dispatch: Dispatch<any> = useDispatch();
+    const dispatch: Dispatch<AnyAction> = useDispatch();
     const fetchSearches: Function = (search: string) => dispatch(SearchActions.fetchSearches(search));
 
     const [searchField, setSearchField] = useState<string>("");
