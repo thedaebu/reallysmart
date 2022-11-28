@@ -43,6 +43,24 @@ describe("comment show", () => {
             expect(commentShowItem).toHaveTextContent("This is one of my new favorite songs now.");
             expect(commentShowItem).toHaveTextContent("reallysmart");
         });
+        describe("edited displays", () => {
+            test("does not display edited info when never edited", () => {
+                const commentShow = screen.queryByTestId("comment-show");
+                const commentShowItem = within(commentShow).queryAllByTestId("comment-show-item")[0];
+                expect(commentShowItem).not.toHaveTextContent("edited: 2022-04-09 21:05");
+            });
+            test("does display edited info when edited", () => {
+                const commentShow = screen.queryByTestId("comment-show");
+                const commentShowItem = within(commentShow).queryAllByTestId("comment-show-item")[1];
+                expect(commentShowItem).toHaveTextContent("edited: 2022-04-09 21:05");
+            });
+        });
+        test("contains votes show component", () => {
+            const lyrics = screen.queryByTestId("lyrics__main");
+            const commentShowItem = within(lyrics).queryAllByTestId("comment-show-item")[0];
+            const voteShow = within(commentShowItem).queryByTestId("vote-show");
+            expect(voteShow).toBeInTheDocument();
+        });
         describe("comments for track", () => {
             test("contains the correct amount of comments for the track", () => {
                 const commentShow = screen.queryByTestId("comment-show");
@@ -74,12 +92,6 @@ describe("comment show", () => {
                 const commentShowItem = within(annotationShow).queryAllByTestId("comment-show-item")[0];
                 expect(commentShowItem).toHaveTextContent("OOOOOHHHHHHH! Now I get it.");
             });
-        });
-        test("contains votes show component", () => {
-            const lyrics = screen.queryByTestId("lyrics__main");
-            const commentShowItem = within(lyrics).queryAllByTestId("comment-show-item")[0];
-            const voteShow = within(commentShowItem).queryByTestId("vote-show");
-            expect(voteShow).toBeInTheDocument();
         });
     });
     describe("no user tests", () => {

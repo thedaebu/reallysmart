@@ -6,10 +6,12 @@ export const testAnnotationsData: {[key: number]: Annotation} = {
         annotator_id: 1,
         annotator_name: "reallysmart",
         body: "She is singing about Selene, her alter-ego, who comes out when she becomes under the influence. She is claiming Selene is making her do things not of her own will but she is not trying to will herself against Selene.",
+        created_at: "2022-04-10T01:05:36.835Z",
         end_index: 140,
         id: 1,
         start_index: 9,
         track_id: 1,
+        updated_at: "2022-04-10T01:05:36.835Z",
         votes: {
             1: {
                 id: 1,
@@ -23,10 +25,12 @@ export const testAnnotationsData: {[key: number]: Annotation} = {
         annotator_id: 2,
         annotator_name: "notsosmart",
         body: "She is allowing Selene to take over. She and Selene want the same thing.",
+        created_at: "2022-04-10T01:05:36.835Z",
         end_index: 516,
         id: 2,
         start_index: 459,
         track_id: 1,
+        updated_at: "2022-05-10T01:05:36.835Z",
         votes: {}
     }
 };
@@ -37,8 +41,9 @@ export const testCommentsData: {[key: number]: Comment} = {
         commentable_type: "Track",
         commenter_id: 1,
         commenter_name: "reallysmart",
+        created_at: "2022-04-10T01:05:36.835Z",
         id: 1,
-        updated_at: "2022-03-20T17:56:15.610Z",
+        updated_at: "2022-04-10T01:05:36.835Z",
         votes: {
             2: {
                 id: 2,
@@ -54,8 +59,9 @@ export const testCommentsData: {[key: number]: Comment} = {
         commentable_type: "Annotation",
         commenter_id: 2,
         commenter_name: "notsosmart",
+        created_at: "2022-04-10T01:05:36.835Z",
         id: 2,
-        updated_at: "2022-03-20T17:56:15.624Z",
+        updated_at: "2022-04-10T01:05:36.835Z",
         votes: {}
     },
     3: {
@@ -64,8 +70,9 @@ export const testCommentsData: {[key: number]: Comment} = {
         commentable_type: "Track",
         commenter_id: 2,
         commenter_name: "notsosmart",
+        created_at: "2022-04-10T01:05:36.835Z",
         id: 3,
-        updated_at: "2022-03-20T17:56:15.629Z",
+        updated_at: "2022-05-10T01:05:36.835Z",
         votes: {}
     }
 };
