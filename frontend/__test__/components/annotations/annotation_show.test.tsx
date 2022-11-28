@@ -50,12 +50,19 @@ describe("annotation show", () => {
             expect(annotationShow).toHaveTextContent(`${annotator_name}`);
             expect(annotationShow).toHaveTextContent(`${body}`);
         });
-        test("contains comment show component when annotation is clicked on", () => {
-            const annotation = screen.queryAllByTestId("lyrics__is-annotation")[0];
-            userEvent.click(annotation);
-            const annotationShow = screen.queryByTestId("annotation-show-item");
-            const commentShowItem = within(annotationShow).queryAllByTestId("comment-show-item")[0];
-            expect(commentShowItem).toBeInTheDocument();
+        describe("edited displays", () => {
+            test("does not display edited info when never edited", () => {
+                const annotation = screen.queryAllByTestId("lyrics__is-annotation")[0];
+                userEvent.click(annotation);
+                const annotationShow = screen.queryByTestId("annotation-show-item");
+                expect(annotationShow).not.toHaveTextContent("edited: 2022-04-09 21:05");
+            });
+            test("does display edited info when edited", () => {
+                const annotation = screen.queryAllByTestId("lyrics__is-annotation")[1];
+                userEvent.click(annotation);
+                const annotationShow = screen.queryByTestId("annotation-show-item");
+                expect(annotationShow).toHaveTextContent("edited: 2022-04-09 21:05");
+            });
         });
         test("contains votes show component when annotation is clicked on", () => {
             const annotation = screen.queryAllByTestId("lyrics__is-annotation")[0];
@@ -63,6 +70,13 @@ describe("annotation show", () => {
             const annotationShow = screen.queryByTestId("annotation-show-item");
             const voteShow = within(annotationShow).queryAllByTestId("vote-show")[0];
             expect(voteShow).toBeInTheDocument();
+        });
+        test("contains comment show component when annotation is clicked on", () => {
+            const annotation = screen.queryAllByTestId("lyrics__is-annotation")[0];
+            userEvent.click(annotation);
+            const annotationShow = screen.queryByTestId("annotation-show-item");
+            const commentShowItem = within(annotationShow).queryAllByTestId("comment-show-item")[0];
+            expect(commentShowItem).toBeInTheDocument();
         });
     });
     describe("no user tests", () => {

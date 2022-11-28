@@ -22,6 +22,15 @@ function AnnotationShowItem({ annotation, trackId }: { annotation: Annotation, t
         setAnnotationBody(annotation.body);
     }, [annotationUpdateStatus]);
 
+    function dateDisplay() {
+        const date: Date = new Date(Date.parse(annotation.updated_at));
+        const month: string = date.getMonth() < 10 ? `0${date.getMonth().toString()}` : `${date.getMonth().toString()}`;
+        const day: string = date.getDate() < 10 ? `0${date.getDate().toString()}` : `${date.getDate().toString()}`;
+        const hour: string = date.getHours() < 10 ? `0${date.getHours().toString()}` : `${date.getHours().toString()}`;
+        const minute = date.getMinutes() < 10 ? `0${date.getMinutes().toString()}` : `${date.getMinutes().toString()}`;
+        return `${date.getFullYear().toString()}-${month}-${day} ${hour}:${minute}`;
+    }
+
     function updatebuttons() {
         if (currentUser.id === currentAnnotation.annotator_id && annotationDeleteStatus === false) {
             return (
@@ -178,6 +187,7 @@ function AnnotationShowItem({ annotation, trackId }: { annotation: Annotation, t
                         <div className="annotation-show-item" data-testid="annotation-show-item">
                             <p className="annotation-show-item__name">Really Smart Annotation by {annotation.annotator_name}</p>
                             <p className="annotation-show-item__body">{annotation.body}</p>
+                            {annotation.created_at !== annotation.updated_at && <p className="annotation-show-item__edited">edited: {`${dateDisplay()}`}</p>}
                             <VoteShow parent={annotation} voteableType="Annotation" />
                             {currentUser && updatebuttons()}
                             <CommentShow commentableType="Annotation" parent={annotation} />

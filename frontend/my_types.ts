@@ -99,10 +99,12 @@ export type Annotation = {
     annotator_id: number,
     annotator_name: string,
     body: string,
+    created_at: string,
     end_index: number,
     id: number,
     start_index: number,
     track_id: number,
+    updated_at: string,
     votes: {[key: number]: Vote}
 };
 export type Comment = {
@@ -111,9 +113,10 @@ export type Comment = {
     commentable_type: "Track" | "Annotation",
     commenter_id: number,
     commenter_name: string,
+    created_at: string,
     id: number,
-    votes: {[key: number]: Vote},
-    updated_at: string
+    updated_at: string,
+    votes: {[key: number]: Vote}
 };
 export type IndexTrack = {
     artist: string,

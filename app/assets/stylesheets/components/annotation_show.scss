@@ -1,5 +1,5 @@
-$programmereg: 'Programme Regular', sans-serif;
 $programmelight: 'Programme Light', sans-serif;
+$programmereg: 'Programme Regular', sans-serif;
 
 annotation-show-item-button {
     cursor: pointer;
@@ -36,6 +36,11 @@ annotation-show-item-button-hover {
         font-size: 16px;
         font-weight: lighter;
         line-height: 23px;
+        padding-bottom: 25px;
+    }
+    .annotation-show-item__edited {
+        color: rgb(161, 161, 161);
+        font-size: 12px;
     }
 }
 
@@ -121,16 +126,16 @@ annotation-show-item-button-hover {
                 .tooltip {
                     visibility: hidden;
                     z-index: 2;
-                    width: 110px;
+                    width: 114px;
                     position: absolute;
                     bottom: 14px;
                     left: 20px;
                     background: #adb9f5;
                     font-family: $programmelight;
                     color: rgb(56, 56, 56);
+                    line-height: 18px;
                     text-align: center;
-                    border: rgb(106, 153, 255) 2px solid;
-                    border-radius: 2px;
+                    border-radius: 1px;
                 }
                 &:hover .tooltip {
                     visibility: visible;
