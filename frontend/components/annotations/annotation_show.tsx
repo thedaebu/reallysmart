@@ -2,7 +2,8 @@ import React, { ChangeEvent, Dispatch, MouseEvent, useEffect, useState } from "r
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import * as AnnotationActions from "../../actions/annotation_actions";
-import { Action, Annotation, CreatedAnnotation, State, Track, User } from "../../my_types";
+import { AnyAction } from "@reduxjs/toolkit";
+import { Annotation, AnnotationAction, CreatedAnnotation, State, Track, User } from "../../my_types";
 import AnnotationShowItem from "./annotation_show_item";
 
 type Props = {
@@ -23,7 +24,7 @@ function AnnotationShow(props: Props) {
 
     const currentUser: User = useSelector((state: State) => state.entities.user[state.session.id]);
 
-    const dispatch: Dispatch<any> = useDispatch();
+    const dispatch: Dispatch<AnyAction> = useDispatch();
     const createAnnotation: Function = (annotation: CreatedAnnotation) => dispatch(AnnotationActions.createAnnotation(annotation));
 
     const [annotationBody, setAnnotationBody] = useState<string>("");
@@ -150,7 +151,7 @@ function AnnotationShow(props: Props) {
         };
 
         createAnnotation(annotation)
-            .then((result: Action) => {
+            .then((result: AnnotationAction) => {
                 if (result.type === "RECEIVE_ANNOTATION_ERRORS") {
                     setAnnotationErrors(result.errors);
                 } else {

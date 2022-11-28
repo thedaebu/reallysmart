@@ -1,14 +1,15 @@
 import React, { ChangeEvent, Dispatch, MouseEvent, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as AnnotationActions from "../../actions/annotation_actions";
-import { Action, Annotation, State, UpdatedAnnotation, User } from "../../my_types";
+import { AnyAction } from "@reduxjs/toolkit";
+import { Annotation, AnnotationAction, State, UpdatedAnnotation, User } from "../../my_types";
 import CommentShow from "../comments/comment_show";
 import VoteShow from "../votes/vote_show";
 
 function AnnotationShowItem({ annotation, trackId }: { annotation: Annotation, trackId: number }) {
     const currentUser: User = useSelector((state: State) => state.entities.user[state.session.id]);
 
-    const dispatch: Dispatch<any> = useDispatch();
+    const dispatch: Dispatch<AnyAction> = useDispatch();
     const deleteAnnotation: Function = (annotationId: number) => dispatch(AnnotationActions.deleteAnnotation(annotationId));
     const updateAnnotation: Function = (annotation: UpdatedAnnotation) => dispatch(AnnotationActions.updateAnnotation(annotation));
 
@@ -146,7 +147,7 @@ function AnnotationShowItem({ annotation, trackId }: { annotation: Annotation, t
         };
 
         updateAnnotation(updatedAnnotation)
-            .then((result: Action) => {
+            .then((result: AnnotationAction) => {
                 if (result.type === "RECEIVE_ANNOTATION_ERRORS") {
                     setAnnotationErrors(result.errors);
                 } else {

@@ -60,11 +60,11 @@ export type UpdatedComment = {
 // used for redux store
 export type PreloadedState = {
     entities: { user: {[key: number]: User} },
-    session: { id: number }
+    session: { id: number | null }
 };
 export type State = {
     entities: Entities,
-    session: SessionId
+    session: { id: number | null }
 };
 type Entities = {
     annotations: {[key:number]: Annotation},
@@ -74,24 +74,38 @@ type Entities = {
     track: Track,
     user: {[key:number]: User}
 };
-type SessionId = {
-    id: number | null
-};
 
 // used for reducer files
-export type Action = {
+export type AnnotationAction = {
     annotation: Annotation,
     annotationId: number,
-    annotations: {[key: number]: Annotation},
+    errors: Array<string>,
+    type: "RECEIVE_ANNOTATION" | "REMOVE_ANNOTATION" | "RECEIVE_ANNOTATION_ERRORS"
+};
+export type CommentAction = {
     comment: Comment,
     commentId: number,
-    comments: {[key: number]: Comment},
     errors: Array<string>,
+    type: "RECEIVE_COMMENT" | "REMOVE_COMMENT" | "RECEIVE_COMMENT_ERRORS"
+};
+export type SearchAction = {
     searches: {[key: number]: IndexTrack},
-    track: Track,
-    tracks: {[key: number]: IndexTrack},
-    type: string,
+    type: "RECEIVE_SEARCHES"
+};
+export type SessionAction = {
+    errors: Array<string>,
+    type: "RECEIVE_CURRENT_USER" | "LOGOUT_CURRENT_USER" | "RECEIVE_SESSION_ERRORS",
     user: User
+};
+export type TrackAction = {
+    annotations: {[key: number]: Annotation},
+    comments: {[key: number]: Comment},
+    track: Track,
+    type: "RECEIVE_TRACK"
+};
+export type TracksAction = {
+    tracks: {[key: number]: IndexTrack},
+    type: "RECEIVE_TRACKS"
 };
 
 // main feature types

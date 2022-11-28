@@ -1,5 +1,5 @@
-import { AnyAction, Dispatch } from "redux";
-import { IndexTrack, ReceivedTrack, ReceivedTracks } from "../my_types";
+import { Dispatch } from "redux";
+import { IndexTrack, ReceivedTrack, ReceivedTracks, TrackAction, TracksAction } from "../my_types";
 import * as TrackAPIUtil from "./../util/api/track_api_util";
 
 export const RECEIVE_TRACKS: string = "RECEIVE_TRACKS";
@@ -16,11 +16,11 @@ const receiveTrack: Function = (receivedTrack: ReceivedTrack) => ({
     type: RECEIVE_TRACK
 });
 
-export const fetchTracks: Function = () => (dispatch: Dispatch<AnyAction>) => (
+export const fetchTracks: Function = () => (dispatch: Dispatch<TracksAction>) => (
     TrackAPIUtil.fetchTracks()
         .then((receivedTracks: ReceivedTracks) => dispatch(receiveTracks(receivedTracks)))
 );
-export const fetchTrack: Function = (trackInfo: Array<string>) => (dispatch: Dispatch<AnyAction>) => (
+export const fetchTrack: Function = (trackInfo: Array<string>) => (dispatch: Dispatch<TrackAction>) => (
     TrackAPIUtil.fetchTrack(trackInfo)
         .then((receivedTrack: ReceivedTrack) => dispatch(receiveTrack(receivedTrack)))
 );

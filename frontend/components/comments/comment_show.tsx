@@ -2,14 +2,15 @@ import React, { ChangeEvent, Dispatch, FormEvent, MouseEvent, useEffect, useStat
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import * as CommentActions from "../../actions/comment_actions";
-import { Action, Annotation, Comment, CreatedComment, State, Track, User } from "../../my_types";
+import { AnyAction } from "@reduxjs/toolkit";
+import { Annotation, Comment, CommentAction, CreatedComment, State, Track, User } from "../../my_types";
 import CommentShowItem from "./comment_show_item";
 
 function CommentShow({ commentableType, parent }: { commentableType: "Track" | "Annotation", parent: Track | Annotation }) {
     const comments: {[key:number]: Comment} = useSelector((state: State) => state.entities.comments);
     const currentUser: User = useSelector((state: State) => state.entities.user[state.session.id]);
 
-    const dispatch: Dispatch<any> = useDispatch();
+    const dispatch: Dispatch<AnyAction> = useDispatch();
     const createComment: Function = (comment: CreatedComment) => dispatch(CommentActions.createComment(comment));
 
     const [currentComments, setCurrentComments] = useState<Array<Comment>>([]);
@@ -106,7 +107,7 @@ function CommentShow({ commentableType, parent }: { commentableType: "Track" | "
         };
 
         createComment(comment)
-            .then((result: Action) => {
+            .then((result: CommentAction) => {
                 if (result.type === "RECEIVE_COMMENT_ERRORS") {
                     setCommentErrors(result.errors);
                 } else {

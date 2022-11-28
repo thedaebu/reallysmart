@@ -2,12 +2,13 @@ import React, { Dispatch, MouseEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import * as SessionActions from "../../actions/session_actions";
+import { AnyAction } from "@reduxjs/toolkit";
 import { State, User } from "../../my_types";
 
 function SessionMenu() {
     const currentUser: User = useSelector((state: State) => state.entities.user[state.session.id]);
 
-    const dispatch: Dispatch<any> = useDispatch();
+    const dispatch: Dispatch<AnyAction> = useDispatch();
     const logout: Function = () => dispatch(SessionActions.logout());
 
     function sessionLogout(e: MouseEvent<HTMLAnchorElement>) {

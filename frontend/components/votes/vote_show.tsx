@@ -4,13 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 import * as AnnotationActions from "../../actions/annotation_actions";
 import * as CommentActions from "../../actions/comment_actions";
 import * as VoteActions from "../../actions/vote_actions";
+import { AnyAction } from "@reduxjs/toolkit";
 import { Annotation, Comment, CreatedVote, State, User, Vote } from "../../my_types";
 
 function VoteShow({ parent, voteableType }: { parent: Annotation | Comment, voteableType: "Annotation" | "Comment" }) {
     const currentUser: User = useSelector((state: State) => state.entities.user[state.session.id]);
     const votes: {[key: number]: Vote} = parent.votes;
 
-    const dispatch: Dispatch<any> = useDispatch();
+    const dispatch: Dispatch<AnyAction> = useDispatch();
     const createVote: Function = (vote: CreatedVote) => VoteActions.createVote(vote);
     const deleteVote: Function = (voteId: number) => VoteActions.deleteVote(voteId);
     const fetchParent: Function = voteableType === "Annotation"

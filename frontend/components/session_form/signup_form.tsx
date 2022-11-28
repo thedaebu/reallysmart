@@ -2,12 +2,13 @@ import React, { ChangeEvent, Dispatch, FormEvent, useState, useEffect } from "re
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import * as SessionActions from "../../actions/session_actions";
-import { Action, SessionUser, Window } from "../../my_types";
+import { AnyAction } from "@reduxjs/toolkit";
+import { SessionAction, SessionUser, Window } from "../../my_types";
 
 declare const window: Window;
 
 function SignupForm() {
-    const dispatch: Dispatch<any> = useDispatch();
+    const dispatch: Dispatch<AnyAction> = useDispatch();
     const signup: Function = (sessionUser: SessionUser) => dispatch(SessionActions.signup(sessionUser));
 
     const [password, setPassword] = useState<string>("");
@@ -28,7 +29,7 @@ function SignupForm() {
         };
 
         signup(user)
-            .then((result: Action) => {
+            .then((result: SessionAction) => {
                 if (result.type === "RECEIVE_SESSION_ERRORS") {
                     setSessionErrors(result.errors);
                 }
