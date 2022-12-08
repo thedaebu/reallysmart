@@ -10,13 +10,17 @@ class Annotation < ApplicationRecord
         foreign_key: :annotator_id,
         class_name: "User"
 
+    has_many :notifications,
+        foreign_key: :annotation_id,
+        class_name: "AnnotationNotification"
+
+    has_many :comments,
+        as: :commentable,
+        dependent: :destroy
+
     belongs_to :track,
         foreign_key: :track_id,
         class_name: "Track"
-
-    has_many :comments, 
-        as: :commentable,
-        dependent: :destroy
 
     has_many :votes,
         as: :voteable,
