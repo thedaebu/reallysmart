@@ -2,7 +2,8 @@ class Api::UsersController < ApplicationController
     def show
         user = User.find(params[:id])
         if user
-            @user = user.slice(:id, :username)
+            @user = user.slice(:id, :username).as_json
+            @user[:notifications] = user.annotation_notifications
             # avatar_url = url_for(user.avatar)
 
             result = {:user => @user}
@@ -17,6 +18,7 @@ class Api::UsersController < ApplicationController
         if created_user.save
             login!(created_user)
             @user = created_user.slice(:id, :username)
+            @user[:notifications] = []
             # avatar_url = url_for(user.avatar)
 
             result = {:user => @user}

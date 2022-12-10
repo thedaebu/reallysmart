@@ -4,6 +4,7 @@ class Api::SessionsController < ApplicationController
         if user
             login!(user)
             @user = user.slice(:id, :username)
+            @user[:notifications] = user.annotation_notifications
             # avatar_url = url_for(user.avatar)
 
             result = {:user => @user}
