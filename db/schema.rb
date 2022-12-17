@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 2022_12_03_160949) do
 
   create_table "annotation_notifications", force: :cascade do |t|
     t.bigint "commenter_id", null: false
+    t.boolean "read", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "annotation_id"
