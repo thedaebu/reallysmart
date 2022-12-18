@@ -10,10 +10,11 @@ import LoginForm from "./session_form/login_form";
 import SessionMenu from "./session_menu/session_menu";
 import SignupForm from "./session_form/signup_form";
 import Searchbar from "./searchbar/searchbar";
+import NotificationsShow from "./notifications/notifications";
 const TrackIndex = lazy(() => import("./tracks/track_index"));
 const TrackShow = lazy(() => import("./tracks/track_show"));
 
-function App() {
+function App({ cableApp }: { cableApp: any}) {
     return (
         <div>
             <header className="header">
@@ -24,6 +25,7 @@ function App() {
                     <DemoLogin />
                 </div>
             </header>
+            <NotificationsShow cableApp={cableApp} />
             <Switch>
                 <Route exact path="/">
                     <Suspense fallback={<div></div>}>
