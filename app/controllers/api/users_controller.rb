@@ -2,16 +2,7 @@ class Api::UsersController < ApplicationController
     def show
         user = User.find(params[:id])
         if user
-            @user = user.slice(:id, :username).as_json
-            annotation_notifications = user.annotation_notifications
-            annotation_notifications.map! do |notification|
-                temp = notification.slice(:created_at, :read).as_json
-                temp[:body] = notification.annotation.body
-                temp[:commenter] = notification.commenter.username
-                temp[:track] = notification.annotation.track
-                temp
-            end
-            @user[:notifications] = annotation_notifications
+            @user = user.slice(:id, :username)
             # avatar_url = url_for(user.avatar)
             
             result = {:user => @user}
