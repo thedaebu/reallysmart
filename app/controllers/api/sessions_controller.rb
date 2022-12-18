@@ -4,7 +4,14 @@ class Api::SessionsController < ApplicationController
         if user
             login!(user)
             @user = user.slice(:id, :username)
-            @user[:notifications] = user.annotation_notifications
+            annotation_notifications = user.annotation_notifications.map do |notification|
+                temp = notification.slice(:created_at, :read)
+                temp[:body] = notification.annotation.body
+                temp[:commenter] = notification.commenter.username
+                temp[:track] = notification.annotation.track.slice(:artist, :title)
+                temp
+            end
+            @user[:notifications] = annotation_notifications
             # avatar_url = url_for(user.avatar)
 
             result = {:user => @user}
