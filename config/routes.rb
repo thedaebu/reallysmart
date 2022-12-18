@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   namespace :api do
     resources :annotations, only: [:show, :create, :update, :destroy]
     resources :comments, only: [:show, :create, :update, :destroy]
-    resources :notifications, only: [:index, :create]
+    resources :notifications, only: [:update]
     resources :searches, only: [:index]
     resource :session, only: [:create, :destroy]
     resources :tags, only: [:index]
