@@ -2,7 +2,7 @@ class AnnotationNotification < ApplicationRecord
     validates :annotation_id, presence: true
     validates :comment_id, presence: true
     validates :commenter_id, presence: true
-    validates :read, presence: true
+    validates :read, inclusion: [true, false]
 
     belongs_to :annotation,
         foreign_key: :annotation_id,
