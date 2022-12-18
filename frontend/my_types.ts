@@ -121,6 +121,16 @@ export type Annotation = {
     updated_at: string,
     votes: {[key: number]: Vote}
 };
+export type AnnotationNotification = {
+    body: string,
+    commenter: string,
+    id: number,
+    read: boolean
+    track: {
+        artist: string,
+        title: string
+    }
+}
 export type Comment = {
     body: string,
     commentable_id: number,
@@ -152,6 +162,7 @@ export type Track = {
 };
 export type User = {
     id: number,
+    notifications: Array<AnnotationNotification>,
     username: string
 };
 export type Vote = {
