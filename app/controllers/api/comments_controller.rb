@@ -14,12 +14,30 @@ class Api::CommentsController < ApplicationController
     def create
         created_comment = Comment.new(comment_params)
         if created_comment.save
+            @comment = created_comment
+
+            if created_comment.commentable_type == "Annotation"
+                notification = AnnotationNotification.new(
+                    annotation_id: @comment.commentable.id,
+                    comment_id: @comment.id,
+                    commenter_id: @comment.commenter.id,
+                    read: false
+                )
+
+                if notification.save
+                    user = notification.annotator
+                    broadcast(user, notification)
+                end
+            end
+
             @comment = created_comment.as_json
             @comment[:votes] = {}
 
             result = {:comment => @comment}
             render json: result
         else
+            head :ok
+
             render json: created_comment.errors.full_messages, status: 422
         end
     end
@@ -52,5 +70,19 @@ class Api::CommentsController < ApplicationController
     private
     def comment_params
         params.require(:comment).permit(:body, :commentable_id, :commentable_type, :commenter_id, :commenter_name)
+    end
+
+    def broadcast(user, notification)
+        temp = notification.slice(:created_at, :read)
+        temp[:body] = notification.annotation.body
+        temp[:commenter] = notification.commenter.username
+        temp[:track] = notification.annotation.track.slice(:artist, :title)
+        temp
+
+        NotificationChannel.broadcast_to(user,
+            {
+                notification: temp
+            }
+        )
     end
 end
