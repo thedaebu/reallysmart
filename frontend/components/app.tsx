@@ -21,11 +21,11 @@ function App({ cableApp }: { cableApp: any}) {
                 <Searchbar />
                 <Link to="/" className="header__logo">REALLYSMART</Link>
                 <div className="session-buttons">
+                    <NotificationsShow cableApp={cableApp} />
                     <SessionMenu />
                     <DemoLogin />
                 </div>
             </header>
-            <NotificationsShow cableApp={cableApp} />
             <Switch>
                 <Route exact path="/">
                     <Suspense fallback={<div></div>}>
