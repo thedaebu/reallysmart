@@ -21,7 +21,7 @@ function SessionMenu() {
         <>
             {!currentUser 
                 ? (
-                    <div className="session-menu">
+                    <div className="session-menu__no-user">
                         <Link
                             to="/signup" 
                             className="session-menu__signup"
@@ -38,7 +38,7 @@ function SessionMenu() {
                         </Link>
                     </div>
                 ) : (
-                    <div className="session-menu">
+                    <div className="session-menu__user">
                         {/* <input type="file"/> */}
                         {/* <img src={currentUser.avatar_url} /> */}
                         <a 
