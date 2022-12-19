@@ -10,7 +10,7 @@ import LoginForm from "./session_form/login_form";
 import SessionMenu from "./session_menu/session_menu";
 import SignupForm from "./session_form/signup_form";
 import Searchbar from "./searchbar/searchbar";
-import NotificationsShow from "./notifications/notifications";
+import NotificationShow from "./notifications/notification_show";
 const TrackIndex = lazy(() => import("./tracks/track_index"));
 const TrackShow = lazy(() => import("./tracks/track_show"));
 
@@ -21,7 +21,7 @@ function App({ cableApp }: { cableApp: any}) {
                 <Searchbar />
                 <Link to="/" className="header__logo">REALLYSMART</Link>
                 <div className="session-buttons">
-                    <NotificationsShow cableApp={cableApp} />
+                    <NotificationShow cableApp={cableApp} />
                     <SessionMenu />
                     <DemoLogin />
                 </div>
