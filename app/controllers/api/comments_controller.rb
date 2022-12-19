@@ -24,7 +24,7 @@ class Api::CommentsController < ApplicationController
                     read: false
                 )
 
-                if notification.save
+                if notification.annotator.id != notification.commenter_id && notification.save
                     user = notification.annotator
                     broadcast(user, notification)
                 end
