@@ -124,6 +124,7 @@ export type Annotation = {
 export type AnnotationNotification = {
     body: string,
     commenter: string,
+    created_at: string,
     id: number,
     read: boolean
     track: {
