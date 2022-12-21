@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_03_160949) do
+ActiveRecord::Schema.define(version: 2022_12_20_211412) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,19 @@ ActiveRecord::Schema.define(version: 2022_12_03_160949) do
     t.datetime "updated_at", null: false
     t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
     t.index ["commenter_id"], name: "index_comments_on_commenter_id"
+  end
+
+  create_table "mentions", force: :cascade do |t|
+    t.string "mentionable_type", null: false
+    t.bigint "mentionable_id", null: false
+    t.bigint "mentionee_id", null: false
+    t.bigint "mentioner_id", null: false
+    t.boolean "read", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["mentionable_type", "mentionable_id"], name: "index_mentions_on_mentionable_type_and_mentionable_id"
+    t.index ["mentionee_id"], name: "index_mentions_on_mentionee_id"
+    t.index ["mentioner_id"], name: "index_mentions_on_mentioner_id"
   end
 
   create_table "tags", force: :cascade do |t|
