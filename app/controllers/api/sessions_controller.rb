@@ -5,7 +5,7 @@ class Api::SessionsController < ApplicationController
             login!(user)
             @user = user.slice(:id, :username)
             annotation_notifications = user.annotation_notifications.map do |notification|
-                temp = notification.slice(:created_at, :read)
+                temp = notification.slice(:created_at, :id, :read)
                 temp[:body] = notification.annotation.body
                 temp[:commenter] = notification.commenter.username
                 temp[:track] = notification.annotation.track.slice(:artist, :title)
