@@ -1,9 +1,24 @@
 json.extract! user, :id, :username
-json.notifications (user.annotation_notifications) do |notification|
-    json.body notification.annotation.body
-    json.commenter notification.commenter.username
-    json.created_at notification.created_at
-    json.read notification.read
-    json.track notification.annotation.track.slice(:artist, :title)
+
+annotation_notifications = user.annotation_notifications.map do |notification|
+    temp = notification.slice(:created_at, :id, :read)
+    temp[:body] = notification.annotation.body
+    temp[:commenter] = notification.commenter.username
+    temp[:track] = notification.annotation.track.slice(:artist, :title)
+    temp[:type] = "AnnotationNotification"
+    temp
 end
+mentions = user.mentions.map do |notification|
+    temp = notification.slice(:created_at, :id, :read)
+    temp[:body] = notification.mentionable_type == "Annotation" ?
+        notification.mentionable.body
+        : ""
+    temp[:mentionable_type] = notification.mentionable_type
+    temp[:mentioner] = notification.mentioner.username
+    temp[:track] = notification.mentionable_type == "Track" ?
+        notification.mentionable.slice(:artist, :title)
+        :notification.mentionable.track.slice(:artist, :title)
+    temp[:type] = "Mention"
+end
+json.notifications annotation_notifications.concat(mentions)
 # json.avatar_url url_for(user.avatar)
