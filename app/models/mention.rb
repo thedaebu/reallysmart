@@ -5,6 +5,9 @@ class Mention < ApplicationRecord
     validates :mentioner_id, presence: true
     validates :read, inclusion: [true, false]
 
+    belongs_to :mentionable,
+        polymorphic: true
+
     belongs_to :mentionee,
         foreign_key: :mentionee_id,
         class_name: "User"
@@ -12,7 +15,4 @@ class Mention < ApplicationRecord
     belongs_to :mentioner,
         foreign_key: :mentioner_id,
         class_name: "User"
-
-    belongs_to :mentionable,
-        polymorphic: true
 end
