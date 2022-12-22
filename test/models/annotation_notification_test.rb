@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class AnnotationNotificationTest < ActiveSupport::TestCase
+class AnnotationAlertTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

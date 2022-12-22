@@ -5,9 +5,9 @@ class Comment < ApplicationRecord
     validates :commenter_id, presence: true
     validates :commenter_name, presence: true
 
-    has_one :annotation_notification,
+    has_one :annotation_alert,
         foreign_key: :comment_id,
-        class_name: "AnnotationNotification",
+        class_name: "AnnotationAlert",
         dependent: :destroy
 
     belongs_to :commenter,

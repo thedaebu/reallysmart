@@ -36,16 +36,16 @@ ActiveRecord::Schema.define(version: 2022_12_20_211412) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "annotation_notifications", force: :cascade do |t|
+  create_table "annotation_alerts", force: :cascade do |t|
     t.bigint "commenter_id", null: false
     t.boolean "read", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "annotation_id"
     t.bigint "comment_id"
-    t.index ["annotation_id"], name: "index_annotation_notifications_on_annotation_id"
-    t.index ["comment_id"], name: "index_annotation_notifications_on_comment_id"
-    t.index ["commenter_id"], name: "index_annotation_notifications_on_commenter_id"
+    t.index ["annotation_id"], name: "index_annotation_alerts_on_annotation_id"
+    t.index ["comment_id"], name: "index_annotation_alerts_on_comment_id"
+    t.index ["commenter_id"], name: "index_annotation_alerts_on_commenter_id"
   end
 
   create_table "annotations", force: :cascade do |t|

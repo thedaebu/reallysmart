@@ -17,7 +17,7 @@ class Api::CommentsController < ApplicationController
             @comment = created_comment
 
             if created_comment.commentable_type == "Annotation"
-                notification = AnnotationNotification.new(
+                notification = AnnotationAlert.new(
                     annotation_id: @comment.commentable.id,
                     comment_id: @comment.id,
                     commenter_id: @comment.commenter.id,
@@ -77,7 +77,6 @@ class Api::CommentsController < ApplicationController
         temp[:body] = notification.annotation.body
         temp[:commenter] = notification.commenter.username
         temp[:track] = notification.annotation.track.slice(:artist, :title)
-        temp
 
         NotificationChannel.broadcast_to(user,
             {

@@ -1,9 +1,9 @@
 class Api::NotificationsController < ApplicationController
     def update
-        if params[:notification][:type] === "Annotation"
-            annotation_notification = AnnotationNotification.find(params[:id])
-            annotation_notification.read = true
-            annotation_notification.save
+        if params[:notification][:type] === "AnnotationAlert"
+            annotation_alert = AnnotationAlert.find(params[:id])
+            annotation_alert.read = true
+            annotation_alert.save
         end
     end
 end

@@ -6,6 +6,10 @@ class Annotation < ApplicationRecord
     validates :start_index, presence: true
     validates :track_id, presence: true
 
+    has_many :alerts,
+        foreign_key: :annotation_id,
+        class_name: "AnnotationAlert"
+
     belongs_to :annotator,
         foreign_key: :annotator_id,
         class_name: "User"
@@ -13,10 +17,6 @@ class Annotation < ApplicationRecord
     has_many :comments,
         as: :commentable,
         dependent: :destroy
-
-    has_many :notifications,
-        foreign_key: :annotation_id,
-        class_name: "AnnotationNotification"
 
     belongs_to :track,
         foreign_key: :track_id,

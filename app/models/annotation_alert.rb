@@ -1,4 +1,4 @@
-class AnnotationNotification < ApplicationRecord
+class AnnotationAlert < ApplicationRecord
     validates :annotation_id, presence: true
     validates :comment_id, presence: true
     validates :commenter_id, presence: true
