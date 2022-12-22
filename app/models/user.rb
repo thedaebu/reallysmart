@@ -2,7 +2,7 @@ class User < ApplicationRecord
     validates :password, length: { minimum: 6 }, allow_nil: true
     validates :password_digest, presence: true
     validates :session_token, presence: true
-    validates :username, presence: true, uniqueness: true
+    validates :username, presence: true, uniqueness: true, format: { with: /\A[a-z0-9A-Z ]+\z/ }
 
     attr_reader :password
 
