@@ -8,13 +8,13 @@ class User < ApplicationRecord
 
     after_initialize :ensure_session_token
 
-    has_many :annotation_alerts,
-        through: :annotations,
-        source: :alerts
-
     has_many :annotations,
         foreign_key: :annotator_id,
         class_name: "Annotation"
+
+    has_many :annotation_alerts,
+        through: :annotations,
+        source: :alerts
 
     has_many :comments,
         foreign_key: :commenter_id,
