@@ -154,7 +154,6 @@ export type Mention = {
     body: string,
     created_at: string,
     id: number,
-    commentable_type: "Track" | "Annotation",
     mentioner: string,
     read: boolean,
     track: {
