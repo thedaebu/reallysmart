@@ -53,7 +53,7 @@ notification-icon {
         &:hover {
             background-color: #dbdbdb;
         }
-        span {
+        .notification-list__item-highlighted {
             color: rgb(106, 153, 255);
         }
     }
