@@ -7,7 +7,7 @@ class Api::NotificationsController < ApplicationController
         else 
             mention = Mention.find(params[:id])
             mention.read = true
-            mentino.save
+            mention.save
         end
     end
 end
