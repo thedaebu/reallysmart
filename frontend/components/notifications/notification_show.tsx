@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { AnnotationNotification, State } from "../../my_types";
+import { AnnotationAlert, Mention, State, User } from "../../my_types";
 import { BiEnvelope } from "react-icons/bi";
 import NotificationList from "./notification_list";
 
 function NotificationShow({ cableApp }: { cableApp: any }) {
-    const currentUser = useSelector((state:State) => state.entities.user[state.session.id]);
+    const currentUser: User = useSelector((state:State) => state.entities.user[state.session.id]);
 
     const [notificationOpenStatus, setNotificationOpenStatus] = useState<boolean>(false);
-    const [notifications, setNotifications] = useState<Array<AnnotationNotification>>([]);
+    const [notifications, setNotifications] = useState<Array<AnnotationAlert | Mention>>([]);
     const [readStatus, setReadStatus] = useState<boolean>(true);
 
     useEffect(() => {
         if(currentUser) {
-            const sortedNotifications: Array<AnnotationNotification> = currentUser.notifications.sort((a,b) => (new Date(Date.parse(b.created_at)).getTime() - (new Date(Date.parse(a.created_at)).getTime())));
+            const sortedNotifications: Array<AnnotationAlert | Mention> = currentUser.notifications.sort((a,b) => (new Date(Date.parse(b.created_at)).getTime() - (new Date(Date.parse(a.created_at)).getTime())));
             setNotifications(() => ([...sortedNotifications]));
             isRead(sortedNotifications);
 
@@ -23,8 +23,8 @@ function NotificationShow({ cableApp }: { cableApp: any }) {
                     user_id: currentUser.id
                 },
                 {
-                    received: ({ notification }: { notification: AnnotationNotification }) => {
-                        setNotifications((notifications: Array<AnnotationNotification>) => [...notifications, notification]);
+                    received: ({ notification }: { notification: AnnotationAlert | Mention }) => {
+                        setNotifications((notifications: Array<AnnotationAlert | Mention>) => [...notifications, notification]);
                         setReadStatus(false);
                     }
                 }
@@ -32,8 +32,8 @@ function NotificationShow({ cableApp }: { cableApp: any }) {
         }
     }, [currentUser]);
 
-    function isRead(notifications: Array<AnnotationNotification>) {
-        if (notifications.length && notifications[0].read === false) setReadStatus(false);
+    function isRead(notifications: Array<AnnotationAlert | Mention>) {
+        if (notifications.length > 0 && notifications[0].read === false) setReadStatus(false);
     }
 
     function makeReadStatusTrue() {
