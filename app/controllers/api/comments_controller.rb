@@ -74,7 +74,7 @@ class Api::CommentsController < ApplicationController
             mentionees.each do |mentionee|
                 mention = Mention.new(
                     comment_id: comment.id,
-                    mentionee_id: User.find_by_username(comment.commenter.username).id,
+                    mentionee_id: User.find_by_username(mentionee).id,
                     mentioner_id: comment.commenter.id,
                     read: false
                 )
