@@ -14,22 +14,7 @@ class Api::CommentsController < ApplicationController
     def create
         created_comment = Comment.new(comment_params)
         if created_comment.save
-            @comment = created_comment
-
-            if created_comment.commentable_type == "Annotation"
-                notification = AnnotationAlert.new(
-                    annotation_id: @comment.commentable.id,
-                    comment_id: @comment.id,
-                    commenter_id: @comment.commenter.id,
-                    read: false
-                )
-
-                if notification.annotator.id != notification.commenter_id && notification.save
-                    user = notification.annotator
-                    broadcast(user, notification)
-                end
-            end
-
+            create_notifications(created_comment)
             @comment = created_comment.as_json
             @comment[:votes] = {}
 
@@ -72,16 +57,89 @@ class Api::CommentsController < ApplicationController
         params.require(:comment).permit(:body, :commentable_id, :commentable_type, :commenter_id, :commenter_name)
     end
 
-    def broadcast(user, notification)
-        temp = notification.slice(:created_at, :read)
-        temp[:body] = notification.annotation.body
-        temp[:commenter] = notification.commenter.username
-        temp[:track] = notification.annotation.track.slice(:artist, :title)
+    def create_notifications(comment)
+        if comment.commentable_type === "Annotation"
+            annotation_alert = AnnotationAlert.new(
+                annotation_id: comment.commentable.id,
+                comment_id: comment.id,
+                read: false
+            )
+            if annotation_alert.annotator.id != annotation_alert.commenter.id && annotation_alert.save
+                user = annotation_alert.annotator
+                broadcast_annotation_alert(user, annotation_alert)
+            end
+        end
+        mentionees = check_for_mentions(comment.body)
+        if mentionees.length > 0
+            mentionees.each do |mentionee|
+                mention = Mention.new(
+                    comment_id: comment.id,
+                    mentionee_id: User.find_by_username(comment.commenter.username).id,
+                    mentioner_id: comment.commenter.id,
+                    read: false
+                )
+                if mentionee != comment.commenter.username && mention.save
+                    user = mention.mentionee
+                    broadcast_mention(user, mention)
+                end
+            end
+        end
+    end
 
-        NotificationChannel.broadcast_to(user,
-            {
-                notification: temp
-            }
-        )
+    def check_for_mentions(body)
+        mentionees = []
+        alphanumeric = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        index = 0
+        while index < body.length
+            if body[index] == "@"
+                index += add_mention(alphanumeric, mentionees, index + 1, body)
+            end
+            index += 1
+        end
+
+        mentionees
+    end
+
+    def add_mention(alphanumeric, mentionees, start_index, body)
+        index = start_index + 1
+        while index < body.length
+            if alphanumeric.include?(body[index])
+                index += 1
+            else
+                break
+            end
+        end
+        username = body.slice(start_index..index-1)
+        if username.length > 5 && User.find_by_username(username)
+            mentionees << username
+        end
+
+        username.length
+    end
+
+    def broadcast_annotation_alert(user, annotation_alert)
+        annotation = annotation_alert.annotation
+
+        temp_annotation_alert = annotation_alert.slice(:created_at, :id, :read)
+        temp_annotation_alert[:body] = annotation.body
+        temp_annotation_alert[:commenter] = annotation_alert.commenter.username
+        temp_annotation_alert[:track] = annotation.track.slice(:artist, :title)
+        temp_annotation_alert[:type] = "AnnotationAlert"
+
+        NotificationChannel.broadcast_to(user, {notification: temp_annotation_alert})
+    end
+
+    def broadcast_mention(user, mention)
+        comment = mention.comment
+        commentable_type = comment.commentable_type
+
+        temp_mention = mention.slice(:created_at, :id, :read)
+        temp_mention[:body] = commentable_type == "Track" ? "" : comment.commentable.body
+        temp_mention[:commentable_type] = commentable_type
+        temp_mention[:mentioner] = mention.mentioner.username
+        temp_mention[:track] = commentable_type == "Track" ? comment.commentable.slice(:artist, :title) : comment.commentable.track.slice(:artist, :title)
+        temp_mention[:type] = "Mention"
+
+        NotificationChannel.broadcast_to(user, {notification: temp_mention})
     end
 end

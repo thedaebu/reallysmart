@@ -37,7 +37,6 @@ ActiveRecord::Schema.define(version: 2022_12_20_211412) do
   end
 
   create_table "annotation_alerts", force: :cascade do |t|
-    t.bigint "commenter_id", null: false
     t.boolean "read", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -45,7 +44,6 @@ ActiveRecord::Schema.define(version: 2022_12_20_211412) do
     t.bigint "comment_id"
     t.index ["annotation_id"], name: "index_annotation_alerts_on_annotation_id"
     t.index ["comment_id"], name: "index_annotation_alerts_on_comment_id"
-    t.index ["commenter_id"], name: "index_annotation_alerts_on_commenter_id"
   end
 
   create_table "annotations", force: :cascade do |t|
@@ -74,14 +72,13 @@ ActiveRecord::Schema.define(version: 2022_12_20_211412) do
   end
 
   create_table "mentions", force: :cascade do |t|
-    t.string "mentionable_type", null: false
-    t.bigint "mentionable_id", null: false
     t.bigint "mentionee_id", null: false
     t.bigint "mentioner_id", null: false
     t.boolean "read", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["mentionable_type", "mentionable_id"], name: "index_mentions_on_mentionable_type_and_mentionable_id"
+    t.bigint "comment_id"
+    t.index ["comment_id"], name: "index_mentions_on_comment_id"
     t.index ["mentionee_id"], name: "index_mentions_on_mentionee_id"
     t.index ["mentioner_id"], name: "index_mentions_on_mentioner_id"
   end

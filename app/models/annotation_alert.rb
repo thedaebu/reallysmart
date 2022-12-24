@@ -1,7 +1,6 @@
 class AnnotationAlert < ApplicationRecord
     validates :annotation_id, presence: true
     validates :comment_id, presence: true
-    validates :commenter_id, presence: true
     validates :read, inclusion: [true, false]
 
     belongs_to :annotation,
@@ -16,7 +15,7 @@ class AnnotationAlert < ApplicationRecord
         foreign_key: :comment_id,
         class_name: "Comment"
 
-    belongs_to :commenter,
-        foreign_key: :commenter_id,
-        class_name: "User"
+    has_one :commenter,
+        through: :comment,
+        source: :commenter
 end

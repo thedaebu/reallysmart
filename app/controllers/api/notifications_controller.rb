@@ -4,6 +4,10 @@ class Api::NotificationsController < ApplicationController
             annotation_alert = AnnotationAlert.find(params[:id])
             annotation_alert.read = true
             annotation_alert.save
+        else 
+            mention = Mention.find(params[:id])
+            mention.read = true
+            mentino.save
         end
     end
 end

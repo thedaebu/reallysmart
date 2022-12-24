@@ -17,6 +17,11 @@ class Comment < ApplicationRecord
     belongs_to :commentable,
         polymorphic: true
 
+    has_many :mentions,
+        foreign_key: :comment_id,
+        class_name: "Mention",
+        dependent: :destroy
+
     has_many :votes,
         as: :voteable,
         dependent: :destroy

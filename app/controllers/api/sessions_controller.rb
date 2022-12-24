@@ -5,19 +5,23 @@ class Api::SessionsController < ApplicationController
             login!(user)
             @user = user.slice(:id, :username)
             annotation_alerts = user.annotation_alerts.map do |annotation_alert|
+                annotation = annotation_alert.annotation
+
                 temp_annotation_alert = annotation_alert.slice(:created_at, :id, :read)
-                temp_annotation_alert[:body] = annotation_alert.annotation.body
+                temp_annotation_alert[:body] = annotation.body
                 temp_annotation_alert[:commenter] = annotation_alert.commenter.username
-                temp_annotation_alert[:track] = annotation_alert.annotation.track.slice(:artist, :title)
+                temp_annotation_alert[:track] = annotation.track.slice(:artist, :title)
                 temp_annotation_alert[:type] = "AnnotationAlert"
                 temp_annotation_alert
             end
             mentions = user.mentions.map do |mention|
+                comment = mention.comment
+                commentable_type = comment.commentable_type
+
                 temp_mention = mention.slice(:created_at, :id, :read)
-                temp_mention[:body] = mention.mentionable_type == "Annotation" ? mention.mentionable.body : ""
-                temp_mention[:mentionable_type] = mention.mentionable_type
+                temp_mention[:body] = commentable_type == "Track" ? "" : comment.commentable.body
                 temp_mention[:mentioner] = mention.mentioner.username
-                temp_mention[:track] = mention.mentionable_type == "Track" ? mention.mentionable.slice(:artist, :title) : mention.mentionable.track.slice(:artist, :title)
+                temp_mention[:track] = commentable_type == "Track" ? comment.commentable.slice(:artist, :title) : comment.commentable.track.slice(:artist, :title)
                 temp_mention[:type] = "Mention"
                 temp_mention
             end
