@@ -24,7 +24,7 @@ function NotificationShow({ cableApp }: { cableApp: any }) {
                 },
                 {
                     received: ({ notification }: { notification: AnnotationAlert | Mention }) => {
-                        setNotifications((notifications: Array<AnnotationAlert | Mention>) => [...notifications, notification]);
+                        setNotifications((notifications: Array<AnnotationAlert | Mention>) => [notification, ...notifications]);
                         setReadStatus(false);
                     }
                 }
