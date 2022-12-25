@@ -4,6 +4,9 @@ class ApplicationController < ActionController::Base
     private
     def current_user
         return nil unless session[:session_token]
+        if user = User.find_by_session_token(session[:session_token])
+            cookies['user_id'] = user.id
+        end
         @current_user ||= User.find_by_session_token(session[:session_token])
     end
 
