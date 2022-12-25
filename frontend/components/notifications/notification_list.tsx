@@ -12,13 +12,13 @@ type Props = {
 
 function NotificationList(props: Props) {
     const { changeNotificationOpenStatus, makeReadStatusTrue, notifications } = props;
-    console.log(notifications)
+
+    const updateNotification: Function = (notification: AnnotationAlert | Mention) => NotificationActions.updateNotification(notification);
+
     useEffect(() => {
         makeReadStatusTrue();
         updateNotifications();
     }, []);
-
-    const updateNotification: Function = (notification: any) => NotificationActions.updateNotification(notification);
 
     function updateNotifications() {
         for (let i = 0; i < notifications.length; i++) {
@@ -38,7 +38,7 @@ function NotificationList(props: Props) {
 
     function notificationItem(notification: AnnotationAlert | Mention) {
         if (notification.type === "AnnotationAlert"){
-            const { body, commenter, track } = notification;
+            const { body, commenter, created_at, track } = notification;
             const { artist, title } = track;
 
             return (
@@ -48,10 +48,11 @@ function NotificationList(props: Props) {
                     <span className="notification-list__item-highlighted">{` '${(notificationify(body))}' `}</span>
                     for
                     <span className="notification-list__item-highlighted">{` ${artist} - ${title}`}</span>
+                    <span className="notification-list__item-date">{` -${dateDisplay(created_at)}`}</span>
                 </Link>
             );
         } else {
-            const { body, mentioner, track } = notification;
+            const { body, created_at, mentioner, track } = notification;
             const { artist, title } = track;
 
             return (
@@ -65,6 +66,7 @@ function NotificationList(props: Props) {
                     }
                     {' for'}
                     <span className="notification-list__item-highlighted">{` ${artist} - ${title}`}</span>
+                    {` - ${dateDisplay(created_at)}`}
                 </Link>
             );
         }
@@ -79,6 +81,13 @@ function NotificationList(props: Props) {
         return body.length > 30
             ? `${body.slice(0,27)}...`
             : body;
+    }
+
+    function dateDisplay(dateTime: string) {
+        const date: Date = new Date(Date.parse(dateTime));
+        const month: string = date.getMonth() < 10 ? `0${date.getMonth().toString()}` : `${date.getMonth().toString()}`;
+        const day: string = date.getDate() < 10 ? `0${date.getDate().toString()}` : `${date.getDate().toString()}`;
+        return `${date.getFullYear().toString()}-${month}-${day}`;
     }
 
     return (
