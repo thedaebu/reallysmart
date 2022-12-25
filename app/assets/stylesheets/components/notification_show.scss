@@ -41,7 +41,7 @@ notification-icon {
             color: rgb(197, 0, 0);
             cursor: pointer;
             &:hover {
-                color: rgb(223, 0, 0)
+                color: rgb(223, 0, 0);
             }
         }
     }
@@ -55,6 +55,9 @@ notification-icon {
         }
         .notification-list__item-highlighted {
             color: rgb(106, 153, 255);
+        }
+        .notification-list__item-date {
+            color: rgb(161, 161, 161);
         }
     }
 }
