@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { AnnotationAlert, Mention, State, User } from "../../my_types";
 import { BiEnvelope } from "react-icons/bi";
 import NotificationList from "./notification_list";
+import { useLocation } from "react-router-dom";
 
 function NotificationShow({ cableApp }: { cableApp: any }) {
     const currentUser: User = useSelector((state:State) => state.entities.user[state.session.id]);
@@ -10,6 +11,8 @@ function NotificationShow({ cableApp }: { cableApp: any }) {
     const [notificationOpenStatus, setNotificationOpenStatus] = useState<boolean>(false);
     const [notifications, setNotifications] = useState<Array<AnnotationAlert | Mention>>([]);
     const [readStatus, setReadStatus] = useState<boolean>(true);
+
+    const location: string = useLocation().pathname;
 
     useEffect(() => {
         if(currentUser) {
@@ -31,6 +34,10 @@ function NotificationShow({ cableApp }: { cableApp: any }) {
             )
         }
     }, [currentUser]);
+
+    useEffect(() => {
+        setNotificationOpenStatus(false);
+    }, [location]);
 
     function isRead(notifications: Array<AnnotationAlert | Mention>) {
         if (notifications.length > 0 && notifications[0].read === false) setReadStatus(false);
