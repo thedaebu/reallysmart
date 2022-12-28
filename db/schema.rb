@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_04_004559) do
+ActiveRecord::Schema.define(version: 2022_12_20_211412) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,15 +36,25 @@ ActiveRecord::Schema.define(version: 2021_08_04_004559) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "annotation_alerts", force: :cascade do |t|
+    t.boolean "read", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "annotation_id"
+    t.bigint "comment_id"
+    t.index ["annotation_id"], name: "index_annotation_alerts_on_annotation_id"
+    t.index ["comment_id"], name: "index_annotation_alerts_on_comment_id"
+  end
+
   create_table "annotations", force: :cascade do |t|
     t.text "body", null: false
-    t.integer "annotator_id", null: false
+    t.bigint "annotator_id", null: false
     t.string "annotator_name", null: false
     t.integer "end_index", null: false
     t.integer "start_index", null: false
-    t.integer "track_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "track_id"
     t.index ["annotator_id"], name: "index_annotations_on_annotator_id"
     t.index ["track_id"], name: "index_annotations_on_track_id"
   end
@@ -53,7 +63,7 @@ ActiveRecord::Schema.define(version: 2021_08_04_004559) do
     t.text "body", null: false
     t.string "commentable_type", null: false
     t.bigint "commentable_id", null: false
-    t.integer "commenter_id", null: false
+    t.bigint "commenter_id", null: false
     t.string "commenter_name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -61,11 +71,23 @@ ActiveRecord::Schema.define(version: 2021_08_04_004559) do
     t.index ["commenter_id"], name: "index_comments_on_commenter_id"
   end
 
-  create_table "tags", force: :cascade do |t|
-    t.string "name", null: false
-    t.integer "track_id", null: false
+  create_table "mentions", force: :cascade do |t|
+    t.bigint "mentionee_id", null: false
+    t.bigint "mentioner_id", null: false
+    t.boolean "read", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "comment_id"
+    t.index ["comment_id"], name: "index_mentions_on_comment_id"
+    t.index ["mentionee_id"], name: "index_mentions_on_mentionee_id"
+    t.index ["mentioner_id"], name: "index_mentions_on_mentioner_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "track_id"
     t.index ["track_id"], name: "index_tags_on_track_id"
   end
 
@@ -92,7 +114,7 @@ ActiveRecord::Schema.define(version: 2021_08_04_004559) do
   create_table "votes", force: :cascade do |t|
     t.string "voteable_type", null: false
     t.bigint "voteable_id", null: false
-    t.integer "voter_id", null: false
+    t.bigint "voter_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["voteable_type", "voteable_id"], name: "index_votes_on_voteable_type_and_voteable_id"

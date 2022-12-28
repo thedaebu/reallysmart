@@ -4,16 +4,19 @@ Rails.application.routes.draw do
   end
   post "/graphql", to: "graphql#execute"
 
+  mount ActionCable.server => '/cable'
+
   root to: "static_pages#root"
   resources :status, only: [:index]
   namespace :api do
-    resources :users, only: [:show, :create]
-    resource :session, only: [:create, :destroy]
-    resources :tracks, only: [:index, :show]
     resources :annotations, only: [:show, :create, :update, :destroy]
     resources :comments, only: [:show, :create, :update, :destroy]
-    resources :votes, only: [:show, :create, :destroy]
+    resources :notifications, only: [:update]
     resources :searches, only: [:index]
+    resource :session, only: [:create, :destroy]
     resources :tags, only: [:index]
+    resources :tracks, only: [:index, :show]
+    resources :users, only: [:show, :create]
+    resources :votes, only: [:show, :create, :destroy]
   end
 end

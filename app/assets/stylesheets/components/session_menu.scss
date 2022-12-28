@@ -10,17 +10,22 @@ header-right-buttons {
     }
 }
 
-.session-menu {
-    width: 108px;
+.session-menu__no-user {
     display: flex;
     justify-content: flex-end;
+    width: 108px;
     .session-menu__signup {
         @extend header-right-buttons;
     }
     .session-menu__login {
-        margin-left: 15px;
         @extend header-right-buttons;
+        margin-left: 15px;
     }
+}
+
+.session-menu__user {
+    display: flex;
+    justify-content: flex-end;
     .session-menu__logout {
         @extend header-right-buttons;
         cursor: pointer;

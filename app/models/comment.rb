@@ -5,12 +5,22 @@ class Comment < ApplicationRecord
     validates :commenter_id, presence: true
     validates :commenter_name, presence: true
 
+    has_one :annotation_alert,
+        foreign_key: :comment_id,
+        class_name: "AnnotationAlert",
+        dependent: :destroy
+
     belongs_to :commenter,
         foreign_key: :commenter_id,
         class_name: "User"
 
-    belongs_to :commentable, 
+    belongs_to :commentable,
         polymorphic: true
+
+    has_many :mentions,
+        foreign_key: :comment_id,
+        class_name: "Mention",
+        dependent: :destroy
 
     has_many :votes,
         as: :voteable,

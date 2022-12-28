@@ -121,6 +121,18 @@ export type Annotation = {
     updated_at: string,
     votes: {[key: number]: Vote}
 };
+export type AnnotationAlert = {
+    body: string,
+    commenter: string,
+    created_at: string,
+    id: number,
+    read: boolean
+    track: {
+        artist: string,
+        title: string
+    },
+    type: "AnnotationAlert"
+}
 export type Comment = {
     body: string,
     commentable_id: number,
@@ -138,6 +150,18 @@ export type IndexTrack = {
     id: number,
     title: string
 };
+export type Mention = {
+    body: string,
+    created_at: string,
+    id: number,
+    mentioner: string,
+    read: boolean,
+    track: {
+        artist: string,
+        title: string
+    },
+    type: "Mention"
+}
 export type SessionUser = {
     password: string,
     username: string
@@ -152,6 +176,7 @@ export type Track = {
 };
 export type User = {
     id: number,
+    notifications: Array<AnnotationAlert | Mention>,
     username: string
 };
 export type Vote = {

@@ -10,16 +10,18 @@ import LoginForm from "./session_form/login_form";
 import SessionMenu from "./session_menu/session_menu";
 import SignupForm from "./session_form/signup_form";
 import Searchbar from "./searchbar/searchbar";
+import NotificationShow from "./notifications/notification_show";
 const TrackIndex = lazy(() => import("./tracks/track_index"));
 const TrackShow = lazy(() => import("./tracks/track_show"));
 
-function App() {
+function App({ cableApp }: { cableApp: any}) {
     return (
         <div>
             <header className="header">
                 <Searchbar />
                 <Link to="/" className="header__logo">REALLYSMART</Link>
                 <div className="session-buttons">
+                    <NotificationShow cableApp={cableApp} />
                     <SessionMenu />
                     <DemoLogin />
                 </div>
