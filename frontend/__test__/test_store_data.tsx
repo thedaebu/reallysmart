@@ -1,4 +1,4 @@
-import { Annotation, Comment, IndexTrack, State, Track, User } from "../my_types";
+import { Annotation, AnnotationAlert, Comment, IndexTrack, Mention, State, Track, User } from "../my_types";
 
 // test data
 export const testAnnotationsData: {[key: number]: Annotation} = {
@@ -76,6 +76,42 @@ export const testCommentsData: {[key: number]: Comment} = {
         votes: {}
     }
 };
+export const testNotificationsData: Array<AnnotationAlert | Mention> = [
+    {
+        body: testAnnotationsData[1].body,
+        commenter: "notsosmart",
+        created_at: "2022-04-10T01:05:36.835Z",
+        id: 1,
+        read: false,
+        track: {
+            artist: "NIKI",
+            title: "Selene"
+        },
+        type: "AnnotationAlert"
+    },{
+        body: testAnnotationsData[1].body,
+        created_at: "2022-04-11T01:05:36.835Z",
+        id: 2,
+        mentioner: "notsosmart",
+        read: false,
+        track: {
+            artist: "NIKI",
+            title: "Selene"
+        },
+        type: "Mention"
+    }, {
+        body: "",
+        created_at: "2022-04-12T01:05:36.835Z",
+        id: 3,
+        mentioner: "notsosmart",
+        read: false,
+        track: {
+            artist: "Niki",
+            title: "Selene"
+        },
+        type: "Mention"
+    }
+];
 export const testTrackData1: Track = {
     artist: "NIKI",
     artwork_path: "https://i.ytimg.com/vi/GBqqoPSJ9GY/maxresdefault.jpg",
@@ -132,6 +168,7 @@ export const testIndexTracksData: {[key: number]: IndexTrack} = {
 export const testUserData: {[key: number]: User} = {
     1: {
         id: 1,
+        notifications: testNotificationsData,
         username: "reallysmart"
     }
 };
