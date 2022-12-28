@@ -54,11 +54,12 @@ function NotificationShow({ cableApp }: { cableApp: any }) {
     return (
         <>
             {currentUser &&
-                <div>
+                <>
                     <BiEnvelope
                         className={readStatus === false ? "notification-icon__unread" : "notification-icon__read"}
                         size={16}
                         onClick={changeNotificationOpenStatus}
+                        data-testid="notification-icon"
                     />
                     {notificationOpenStatus === true && (
                         <NotificationList
@@ -67,7 +68,7 @@ function NotificationShow({ cableApp }: { cableApp: any }) {
                             notifications={notifications}
                         />
                     )}
-                </div>
+                </>
             }
         </>
     );

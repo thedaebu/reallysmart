@@ -91,7 +91,7 @@ function NotificationList(props: Props) {
     }
 
     return (
-        <div className="notification-list">
+        <div className="notification-list" data-testid="notification-list">
             <div className="notification-list__top">
                 <p className="notification-list__top-notifications">NOTIFICATIONS</p>
                 <RiCheckboxIndeterminateFill 
@@ -103,7 +103,11 @@ function NotificationList(props: Props) {
             <ul>
                 {notifications.map((notification: AnnotationAlert | Mention, idx: number) => {
                     return (
-                        <li className="notification-list__item" key={idx}>
+                        <li
+                            className="notification-list__item"
+                            key={idx}
+                            data-testid="notification-list__item"
+                        >
                             {notificationItem(notification)}
                         </li>
                     )
