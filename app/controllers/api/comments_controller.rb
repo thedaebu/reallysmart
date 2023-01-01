@@ -21,8 +21,6 @@ class Api::CommentsController < ApplicationController
             result = {:comment => @comment}
             render json: result
         else
-            head :ok
-
             render json: created_comment.errors.full_messages, status: 422
         end
     end
