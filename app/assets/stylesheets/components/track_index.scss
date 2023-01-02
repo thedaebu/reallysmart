@@ -13,12 +13,11 @@ track-index-number {
     flex-direction: column;
     align-items: center;
     font-family: $programme;
-    margin: 0px 0px 40px 0px;
     .track-index__h1 {
         font-size: 80px;
         font-weight: bold;
         letter-spacing: 1px;
-        margin: 71px 0px 0px 0px;
+        margin-top: 71px;
     }
     .track-index__h2 {
         color: rgb(255, 20, 100);
@@ -33,7 +32,6 @@ track-index-number {
             align-items: center;
             height: 71px;
             width: auto;
-            color: black;
             background-position: center;
             background-size: cover;
             border-bottom: rgb(224, 224, 224) solid 2px;
@@ -43,7 +41,7 @@ track-index-number {
             }
             .track-index-item__id {
                 font-size: 23px;
-                padding: 0px 0px 0px 12px;
+                padding-left: 12px;
             }
             .track-index-item__image { 
                 height: 60px;
@@ -75,29 +73,21 @@ track-index-number {
             .track-index-item__artist {
                 position: relative;
                 bottom: 1px;
-                font-family: $raleway;    
+                font-family: $raleway;
                 font-size: 23px;
             }
-            .track-index-item__fire-main {
+            .track-index-item__count {
                 display: flex;
-                .track-index-item__fire {
+                .track-index-item__count--icon {
                     height: 20px;
                     width: 20px;
-                    margin: 0px 15px; 
+                    margin: 0px 15px;
                 }
-                .track-index-item__fire-number {
+                .track-index-item__count--number--fire {
                     @extend track-index-number;
                     color: red;
                 }
-            }
-            .track-index-item__eye-main {
-                display: flex;
-                .track-index-item__eye {
-                    height: 20px;
-                    width: 20px;
-                    margin: 0px 15px; 
-                }
-                .track-index-item__eye-number {
+                .track-index-item__count--number--eye {
                     @extend track-index-number;
                     color: rgb(197, 197, 197);
                 }
@@ -105,20 +95,150 @@ track-index-number {
         }
     }
 }
-.track-index__load-more {
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    width: 136px;
-    background: white;
-    color: rgb(106, 153, 255);
-    font-size: 14px;
-    border: 2px solid rgb(106, 153, 255);
-    text-align: center;
-    padding: 12px 21px;
-    margin: 0px auto 50px auto;
-    &:hover {
-        background: rgb(106, 153, 255);
-        color: white;
+.track-index__bottom {
+    padding-top: 40px;
+    padding-bottom: 50px;
+    .track-index__load-more {
+        display: flex;
+        justify-content: center;
+        width: 136px;
+        background: white;
+        color: rgb(106, 153, 255);
+        font-size: 14px;
+        border: 2px solid rgb(106, 153, 255);
+        text-align: center;
+        padding: 12px 21px;
+        margin: 0px auto;
+        cursor: pointer;
+        &:hover {
+            background: rgb(106, 153, 255);
+            color: white;
+        }
     }
 }
+
+.track-index--dark {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: $programme;
+    .track-index__h1 {
+        color: rgb(173, 173, 173);
+        font-size: 80px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        margin-top: 71px;
+    }
+    .track-index__h2 {
+        color: rgb(255, 43, 114);
+        font-size: 14px;
+        margin: 11px 0px 20.5px 0px;
+    }
+    .track-index__items {
+        width: min(1150px, 100%);
+        .track-index-item {
+            display: grid;
+            grid-template-columns: 95px 2fr 9fr 8fr 3fr 3fr;
+            align-items: center;
+            height: 71px;
+            width: auto;
+            background-position: center;
+            background-size: cover;
+            border-bottom: rgb(80, 80, 80) solid 2px;
+            padding: 2px 0px 2px 0px;
+            &:hover {
+                background-color: rgb(80, 80, 80);
+            }
+            .track-index-item__id {
+                color: rgb(173, 173, 173);
+                font-size: 23px;
+                padding-left: 12px;
+            }
+            .track-index-item__image {
+                height: 60px;
+                width: 60px;
+                background-position: center;
+                background-size: cover;
+            }
+            .track-index-item__title-main {
+                display: flex;
+                .track-index-item__title {
+                    position: relative;
+                    bottom: 0.5px;
+                    color: rgb(173, 173, 173);
+                    font-family: $programme;
+                    font-size: 24px;
+                    font-weight: normal;
+                }
+                .track-index-item__lyrics {
+                    position: relative;
+                    top: 1.5px;
+                    display: flex;
+                    align-items: center;
+                    color: rgb(121, 121, 121);
+                    font-size: 12px;
+                    font-weight: 600px;
+                    letter-spacing: 1px;
+                    margin-left: 5px;
+                }
+            }
+            .track-index-item__artist {
+                position: relative;
+                bottom: 1px;
+                color: rgb(173, 173, 173);
+                font-family: $raleway;
+                font-size: 23px;
+            }
+            .track-index-item__count {
+                display: flex;
+                .track-index-item__count--icon {
+                    height: 20px;
+                    width: 20px;
+                    margin: 0px 15px;
+                }
+                .track-index-item__count--number--fire {
+                    @extend track-index-number;
+                    color: red;
+                }
+                .track-index-item__count--number--eye {
+                    @extend track-index-number;
+                    color: rgb(197, 197, 197);
+                }
+            }
+        }
+    }
+}
+.track-index__bottom--dark {
+    height: 100%;
+    padding-top: 40px;
+    padding-bottom: 50px;
+    .track-index__load-more {
+        display: flex;
+        justify-content: center;
+        width: 136px;
+        background: rgb(50, 50, 50);
+        color: rgb(106, 153, 255);
+        font-size: 14px;
+        border: 2px solid rgb(106, 153, 255);
+        text-align: center;
+        padding: 12px 21px;
+        margin: 0px auto;
+        cursor: pointer;
+        &:hover {
+            background: rgb(106, 153, 255);
+            color: rgb(50, 50, 50);
+        }
+    }
+}
+
+// rgb(50, 50, 50);
+// rgb(173, 173, 173);
+
+// rgb(80, 80, 80);
+
+// rgb(70, 70, 70);
+//1px solid rgb(140, 140, 140);
+
+//hover
+//rgb(193, 193, 193);
+//rgb(80, 80, 80);

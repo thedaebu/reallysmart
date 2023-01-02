@@ -46,7 +46,60 @@ $programmelight: 'Programme Light', sans-serif;
         }
         .lyrics__right {
             min-width: 371px;
-            margin: 0px auto 0px 0px;
+            margin-right: auto;
+        }
+    }
+}
+
+.lyrics__shade--dark {
+    width: 100%;
+    background: rgb(80, 80, 80);
+    .lyrics__main {
+        width: min(970px, 100vw);
+        display: flex;
+        background: rgb(50, 50, 50);
+        margin: 0px auto;
+        .lyrics__text {
+            min-width: 530px;
+            padding: 16px 0px 96px 16px;
+            .lyrics__top {
+                font-family: $programmereg;
+                color: #9a9a9a;
+                font-size: 12px;
+                letter-spacing: 0.2px;
+                margin: 2px 0px 26px 0px;
+            }
+            .lyrics__body {
+                width: 530px;
+                font-size: 18px;
+                line-height: 30px;
+                .lyrics__not-annotation {
+                    color: rgb(173, 173, 173);
+                    font-family: $programmelight;
+                    font-size: 18px;
+                }
+                .lyrics__is-annotation {
+                    cursor: pointer;
+                    background: rgb(80, 80, 80);
+                    color: rgb(173, 173, 173);
+                    font-family: $programmelight;
+                    font-size: 18px;
+                    padding: 4px 0px 5px 0px;
+                    &:hover {
+                        color: rgb(50, 50, 50);
+                        background: rgb(121, 164, 255);
+                    }
+                }
+                .lyrics__highlighted {
+                    background: rgb(121, 164, 255);
+                    font-family: $programmelight;
+                    padding: 4px 0px 5px 0px;
+                }
+            }
+        }
+        .lyrics__right {
+            min-width: 371px;
+            margin-right: auto;
         }
     }
 }

@@ -4,8 +4,7 @@
         height: 27px;
         width: 180px;
         font-family: 'Programme Regular', sans-serif;
-        color: black;
-        font-size: 15px;  
+        font-size: 15px;
         font-weight: 800px;
         border: none;
         padding: 1px 1px 1px 10px;
@@ -17,6 +16,31 @@
         height: 25px;
         width: 25px;
         background: white;
+        padding: 2px 0px;
+    }
+}
+
+.searchbar--dark {
+    display: flex;
+    input {
+        height: 27px;
+        width: 180px;
+        background: rgb(50, 50, 50);
+        color: rgb(173, 173, 173);
+        font-family: 'Programme Regular', sans-serif;
+        font-size: 15px;
+        font-weight: 800px;
+        border: none;
+        padding: 1px 1px 1px 10px;
+        &:focus::placeholder {
+            color: rgb(119, 119, 119);
+        }
+    }
+    .searchbar__glass {
+        height: 25px;
+        width: 25px;
+        background: rgb(50, 50, 50);
+        color: rgb(173, 173, 173);
         padding: 2px 0px;
     }
 }
