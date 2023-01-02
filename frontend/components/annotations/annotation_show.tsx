@@ -1,7 +1,8 @@
-import React, { ChangeEvent, Dispatch, MouseEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, Dispatch, MouseEvent, useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import * as AnnotationActions from "../../actions/annotation_actions";
+import { ThemeContext } from "../../contexts/theme_context";
 import { AnyAction } from "@reduxjs/toolkit";
 import { Annotation, AnnotationAction, CreatedAnnotation, State, Track, User } from "../../my_types";
 import AnnotationShowItem from "./annotation_show_item";
@@ -30,8 +31,11 @@ function AnnotationShow(props: Props) {
     const [annotationBody, setAnnotationBody] = useState<string>("");
     const [annotationErrors, setAnnotationErrors] = useState<Array<string>>([]);
 
+    const { theme } = useContext(ThemeContext);
+
     useEffect(() => {
         setAnnotationBody("");
+        setAnnotationErrors([]);
     }, [annotationOpenStatus]);
 
     function annotationShow() {
@@ -57,7 +61,7 @@ function AnnotationShow(props: Props) {
                     {currentUser 
                         ? annotationCreateForm()
                         : (
-                            <div className="annotation-show__session" >
+                            <div className="annotation-show-session" >
                                 <Link to="/signup">Sign Up to Start Really Smarting</Link>
                             </div>
                         )
@@ -66,7 +70,7 @@ function AnnotationShow(props: Props) {
             );
         } else {
             return (
-                <p>About "{track.title}"</p>
+                <p className="annotation-show-about">About "{track.title}"</p>
             );
         }
     }
@@ -182,7 +186,7 @@ function AnnotationShow(props: Props) {
     }
 
     return (
-        <div className="annotation-show" data-testid="annotation-show">
+        <div className={theme === "light" ? "annotation-show" : "annotation-show--dark"} data-testid="annotation-show">
             {annotationShow()}
         </div>
     );

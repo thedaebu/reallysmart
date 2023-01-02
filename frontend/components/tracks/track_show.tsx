@@ -41,7 +41,7 @@ function TrackShow() {
     return(
         <>
             <NavBar />
-            {Object.keys(track).length > 0 && (
+            {track && (
                 <>
                     <TrackShowHeader track={track} />
                     <LyricsShow track={track} />

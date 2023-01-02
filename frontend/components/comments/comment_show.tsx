@@ -1,7 +1,8 @@
-import React, { ChangeEvent, Dispatch, FormEvent, MouseEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, Dispatch, FormEvent, MouseEvent, useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import * as CommentActions from "../../actions/comment_actions";
+import { ThemeContext } from "../../contexts/theme_context";
 import { AnyAction } from "@reduxjs/toolkit";
 import { Annotation, Comment, CommentAction, CreatedComment, State, Track, User } from "../../my_types";
 import CommentShowItem from "./comment_show_item";
@@ -18,29 +19,62 @@ function CommentShow({ commentableType, parent }: { commentableType: "Track" | "
     const [commentCreateStatus, setCommentCreateStatus] = useState<boolean>(false);
     const [commentErrors, setCommentErrors] = useState<Array<string>>([]);
 
+    const { theme } = useContext(ThemeContext);
+
     useEffect(() => {
         setCurrentComments(Object.values(comments).filter((comment: Comment) => comment.commentable_type === commentableType && comment.commentable_id === parent.id));
     }, [comments]);
 
-    function commentCreatePrompt() {
-        return (
-            <>
-                {commentCreateStatus === true 
-                    ? commentCreateForm()
-                    : <div className="comment-show__begin">
-                        <img src="https://assets.genius.com/images/default_avatar_100.png" alt="Baby" />
-                        <textarea
+    function commentCreateForm() {
+        if (commentCreateStatus === false) {
+            return (
+                <div className="comment-show__begin">
+                    <img src="https://assets.genius.com/images/default_avatar_100.png" alt="Baby" />
+                    <textarea
+                        onClick={handleCommentCreateStatus}
+                        placeholder={commentableType === "Track"
+                            ? "Add a comment"
+                            : "You think you're really smarter?"
+                        }
+                        data-testid="comment-show__begin-text"
+                    />
+                </div>
+            )
+        } else {
+            return (
+                <form
+                    className="comment-show-form"
+                    onSubmit={handleCommentCreateSubmit}
+                    data-testid="comment-show-form"
+                >
+                    <textarea
+                        className={commentableType === "Track"
+                            ? "comment-show-form__track-text"
+                            : "comment-show-form__annotation-text"
+                        }
+                        onChange={handleCommentBodyChange()}
+                        placeholder={commentableType === "Track"
+                            ? "Add a comment"
+                            : "You think you're really smarter?"
+                        }
+                        data-testid="comment-show-form__text"
+                    />
+                    {commentErrors.length > 0 && errorsDisplay()}
+                    <div className="comment-show-form__buttons">
+                        <button className="comment-show-form__submit">
+                            <p>Submit</p>
+                        </button>
+                        <button
+                            className="comment-show-form__cancel"
                             onClick={handleCommentCreateStatus}
-                            placeholder={commentableType === "Track"
-                                ? "Add a comment"
-                                : "You think you're really smarter?"
-                            }
-                            data-testid="comment-show__begin-text"
-                        />
+                            data-testid="comment-show-form__cancel"
+                        >
+                            <p>Cancel</p>
+                        </button>
                     </div>
-                }
-            </>
-        );
+                </form>
+            );
+        }
     }
 
     function handleCommentCreateStatus(e: MouseEvent<HTMLTextAreaElement | HTMLButtonElement>) {
@@ -53,42 +87,6 @@ function CommentShow({ commentableType, parent }: { commentableType: "Track" | "
             setCommentCreateStatus(false);
             setCommentErrors([]);
         }
-    }
-
-    function commentCreateForm() {
-        return (
-            <form
-                className="comment-show-form"
-                onSubmit={handleCommentCreateSubmit}
-                data-testid="comment-show-form"
-            >
-                <textarea
-                    className={commentableType === "Track"
-                        ? "comment-show-form__track-text"
-                        : "comment-show-form__annotation-text"
-                    }
-                    onChange={handleCommentBodyChange()}
-                    placeholder={commentableType === "Track"
-                        ? "Add a comment"
-                        : "You think you're really smarter?"
-                    }
-                    data-testid="comment-show-form__text"
-                />
-                {commentErrors.length > 0 && errorsDisplay()}
-                <div className="comment-show-form__buttons">
-                    <button className="comment-show-form__submit">
-                        <p>Submit</p>
-                    </button>
-                    <button
-                        className="comment-show-form__cancel"
-                        onClick={handleCommentCreateStatus}
-                        data-testid="comment-show-form__cancel"
-                    >
-                        <p>Cancel</p>
-                    </button>
-                </div>
-            </form>
-        );
     }
 
     function handleCommentBodyChange() {
@@ -129,9 +127,9 @@ function CommentShow({ commentableType, parent }: { commentableType: "Track" | "
     }
 
     return (
-        <div className="comment-show" data-testid="comment-show">
+        <div className={theme === "light" ? "comment-show" : "comment-show--dark"} data-testid="comment-show">
             {currentUser
-                ? commentCreatePrompt()
+                ? commentCreateForm()
                 : (
                     <div className="comment-show__session" data-testid="comment-show__session">
                         <p>Please</p>
