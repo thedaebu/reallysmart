@@ -6,6 +6,7 @@ module Types
     field :password_digest, String, null: false
     field :session_token, String, null: false
     field :username, String, null: false
+    field :vote_ids, [Integer], null: false
     field :created_at, GraphQL::Types::ISO8601DateTime, null: false
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
 
