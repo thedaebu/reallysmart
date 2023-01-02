@@ -1,5 +1,6 @@
-import React, { Dispatch, MouseEvent, useState, useEffect } from "react";
+import React, { Dispatch, MouseEvent, useState, useEffect, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { ThemeContext } from "../../contexts/theme_context";
 import * as TrackActions from "../../actions/track_actions";
 import { AnyAction } from "@reduxjs/toolkit";
 import { IndexTrack, State, Window } from "../../my_types";
@@ -16,6 +17,8 @@ function TrackIndex() {
 
     const [indexCount, setIndexCount] = useState<number>(5);
     const [indexTracks, setIndexTracks] = useState<Array<TrackIndexItem>>([]);
+
+    const { theme } = useContext(ThemeContext);
 
     useEffect(() => {
         fetchTracks();
@@ -76,14 +79,16 @@ function TrackIndex() {
     return (
         <>
             <Navbar />
-            <div className="track-index">
+            <div className={theme === "light" ? "track-index" : "track-index--dark"}>
                 <h1 className="track-index__h1">CHARTS</h1>
                 <h2 className="track-index__h2">REALLY POPULAR ON REALLY SMART</h2>
                 <ul className="track-index__items">
                     {indexTracks.length > 0 && trackIndexItems()}
                 </ul>
             </div>
-            {indexCount <= 10 && extendIndexCountButton()}
+            <div className={theme === "light" ? "track-index__bottom" : "track-index__bottom--dark"}>
+                {indexCount <= 10 && extendIndexCountButton()}
+            </div>
         </>
     );
 }

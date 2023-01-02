@@ -37,13 +37,13 @@ function TrackIndexItem({ listNumber, track }: { listNumber: number, track: Inde
                 <p className="track-index-item__lyrics">LYRICS</p>
             </div>
             <p className="track-index-item__artist">{artist}</p>
-            <div className="track-index-item__fire-main">
-                <img className="track-index-item__fire" src={window.fireIcon} alt="Fire" />
-                <p className="track-index-item__fire-number">{randomNum()}</p>
+            <div className="track-index-item__count">
+                <img className="track-index-item__count--icon" src={window.fireIcon} alt="Fire" />
+                <p className="track-index-item__count--number--fire">{randomNum()}</p>
             </div>
-            <div className="track-index-item__eye-main">
-                <img className="track-index-item__eye" src={window.eyeIcon} alt="Eye" />
-                <p className="track-index-item__eye-number">{randomNum() * 10}</p>
+            <div className="track-index-item__count">
+                <img className="track-index-item__count--icon" src={window.eyeIcon} alt="Eye" />
+                <p className="track-index-item__count--number--eye">{randomNum() * 10}</p>
             </div>
         </Link>
     );

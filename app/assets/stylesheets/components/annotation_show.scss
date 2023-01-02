@@ -1,221 +1,420 @@
 $programmelight: 'Programme Light', sans-serif;
 $programmereg: 'Programme Regular', sans-serif;
 
-annotation-show-item-button {
-    cursor: pointer;
-    background: #eeeeee;
-    font-family: $programmereg;
-    color:rgb(112, 112, 112);
-    font-size: 15px;
-    line-height: 20px;
-    border: 1px solid rgb(182, 182, 182);
-    border-radius: 2px;
-    padding: 0px 4px;
-    margin-right: 8px;
-}
-annotation-show-item-button-hover {
-    color:rgb(70, 70, 70);
-    background: rgb(182, 182, 182);
-}
-
 .annotation-show {
     width: min(100%, 371px);
     margin-right: auto;
-}
-
-.annotation-show-item {
-    border-left: 4px solid rgb(121, 164, 255);
-    padding: 5px 0px 0px 17px;
-    .annotation-show-item__name {
-        font-size: 14px;
-        padding-bottom: 17px;
-    }
-    .annotation-show-item__body {
-        font-family: $programmelight;
-        color: rgb(7, 7, 7);
-        font-size: 16px;
-        font-weight: lighter;
-        line-height: 23px;
-        padding-bottom: 25px;
-    }
-    .annotation-show-item__edited {
-        color: rgb(161, 161, 161);
-        font-size: 12px;
-    }
-}
-
-.annotation-show-begin {
-    border-left: 4px solid rgb(121, 164, 255);
-    padding-left: 17px;
-    .annotation-show-begin__button {
-        cursor: pointer;
-        display: flex;
-        background: white;
-        color:rgb(7, 7, 7);
-        line-height: 28px;
-        border: 2px solid black;
-        padding: 2px 8px 2px 10px;
-        > h1 {
-            position: relative;
-            top: 3px;
-            line-height: 23px;
-        }
-        > h2 {
-            position: relative;
-            bottom: 1px;
-            left: 6px;
-            color: rgb(51, 197, 51);
-            font-size: 12px;
-            padding-right: 3px;
-        }
-    }
-}
-
-#annotation-show-form {
-    width: min(100%, 371px);
-    border-left: 4px solid rgb(121, 164, 255);
-    padding: 6px 0px 0px 9px;
-    margin: auto auto auto auto;
-    .annotation-show-form__body {
-        height: 180px;
-        width: min(100%, 371px);
-        resize: none;
-        display: block;
-        background: rgb(245, 245, 245);
-        font-family: $programmelight; 
-        font-size: 16px;
-        font-weight: lighter;
-        border: none;
-        padding: 10px;
-        margin-top: 20px;
-        &:focus {
-            box-shadow: inset 0px 0px 2px 2px rgb(194, 213, 255);
-            border: 1px, solid rgb(194, 213, 255);
-        }
-    }
-    .errors-list {
-        color: #a70021;
-        margin: 3px 0px 0px 0px;
-    }
-    .annotation-show-form__middle {
-        display: flex;
-        font-family: $programmelight;
-        font-size: 14px;
-        border-bottom: 1px solid rgb(226, 226, 226);
-        padding-bottom: 12px;
-        margin: 19px 0px 0px 5px;
-        > .annotation-show-form__middle__tools {
-            font-family: $programmelight; 
-            color: rgb(168, 168, 168);
+    .annotation-show-item {
+        border-left: 4px solid rgb(121, 164, 255);
+        padding: 5px 0px 0px 17px;
+        .annotation-show-item__name {
             font-size: 14px;
+            padding-bottom: 17px;
         }
-        .annotation-show-form__middle__items {
-            max-width: 250px;
-            position: relative;
-            bottom: 4px;
-            font-family: $programmelight; 
-            padding-left: 5px;    
-            .annotation-show-form__middle__item {
+        .annotation-show-item__body {
+            font-family: $programmelight;
+            color: rgb(7, 7, 7);
+            font-size: 16px;
+            font-weight: lighter;
+            line-height: 23px;
+            padding-bottom: 25px;
+        }
+        .annotation-show-item__edited {
+            color: rgb(161, 161, 161);
+            font-size: 12px;
+        }
+        .annotation-show-item__buttons {
+            font-size: 15px;
+            .annotation-show-item__question {
+                padding-bottom: 4px;
+            }
+            .annotation-show-item__button {
                 cursor: pointer;
-                position: relative;
-                font-family: $programmelight; 
-                color: #99a7ee;
-                font-size: 14px;
-                line-height: 24px;
-                margin: 0px 4px 0px 8px;
-                .tooltip {
-                    visibility: hidden;
-                    z-index: 2;
-                    width: 114px;
-                    position: absolute;
-                    bottom: 14px;
-                    left: 20px;
-                    background: #adb9f5;
-                    font-family: $programmelight;
-                    color: rgb(56, 56, 56);
-                    line-height: 18px;
-                    text-align: center;
-                    border-radius: 1px;
-                }
-                &:hover .tooltip {
-                    visibility: visible;
+                background: #eeeeee;
+                font-family: $programmereg;
+                color: rgb(112, 112, 112);
+                font-size: 15px;
+                line-height: 20px;
+                border: 1px solid rgb(182, 182, 182);
+                border-radius: 2px;
+                padding: 0px 4px;
+                margin-right: 8px;
+                &:hover {
+                    color: rgb(70, 70, 70);
+                    background: rgb(182, 182, 182);
                 }
             }
         }
     }
-    .annotation-show-form__bottom {
-        display: flex;
-        margin: 15px 0px 0px 5px;
-        .annotation-show-form__bottom-save {
+    .annotation-show-begin {
+        border-left: 4px solid rgb(121, 164, 255);
+        padding-left: 17px;
+        .annotation-show-begin__button {
             cursor: pointer;
             display: flex;
             background: white;
-            color:rgb(7, 7, 7);
+            color: rgb(7, 7, 7);
             line-height: 28px;
-            border: 2px solid rgb(51, 197, 51);
-            padding: 2px 8px 1px 10px;
-            &:hover {
-                background: rgb(200, 255, 200);
-            }
-            .annotation-show-form__bottom-save-text {
-                color: rgb(51, 197, 51);
-                font-size: 15px;  
-            }
-            .annotation-show-form__bottom-save-score {
+            border: 2px solid black;
+            padding: 2px 8px 2px 10px;
+            > h1 {
                 position: relative;
+                top: 3px;
+                line-height: 23px;
+            }
+            > h2 {
+                position: relative;
+                bottom: 1px;
                 left: 6px;
                 color: rgb(51, 197, 51);
                 font-size: 12px;
                 padding-right: 3px;
             }
         }
-        .annotation-show-form__bottom-cancel {
-            cursor: pointer;
-            position: relative;
-            left: 4px;
-            display: flex;
-            background: white;
-            font-family: $programmereg;
-            color:rgb(167, 167, 167);
-            font-size: 15px;
-            line-height: 27px;
+    }
+    #annotation-show-form {
+        width: min(100%, 371px);
+        border-left: 4px solid rgb(121, 164, 255);
+        padding: 6px 0px 0px 9px;
+        margin: auto;
+        .annotation-show-form__body {
+            height: 180px;
+            width: min(100%, 371px);
+            resize: none;
+            display: block;
+            background: rgb(245, 245, 245);
+            font-family: $programmelight; 
+            font-size: 16px;
+            font-weight: lighter;
             border: none;
-            padding: 5px 6px 1px 6px;
-            &:hover {
-                background: rgb(236, 236, 236);
+            padding: 10px;
+            margin-top: 20px;
+            &:focus {
+                box-shadow: inset 0px 0px 2px 2px rgb(194, 213, 255);
+                border: 1px, solid rgb(194, 213, 255);
+            }
+        }
+        .errors-list {
+            margin-top: 3px;
+            > li {
+                color: #a70021;
+            }
+        }
+        .annotation-show-form__middle {
+            display: flex;
+            font-family: $programmelight;
+            font-size: 14px;
+            border-bottom: 1px solid rgb(226, 226, 226);
+            padding-bottom: 12px;
+            margin: 19px 0px 0px 5px;
+            > .annotation-show-form__middle__tools {
+                font-family: $programmelight; 
+                color: rgb(168, 168, 168);
+                font-size: 14px;
+            }
+            .annotation-show-form__middle__items {
+                max-width: 250px;
+                position: relative;
+                bottom: 4px;
+                font-family: $programmelight; 
+                padding-left: 5px;    
+                .annotation-show-form__middle__item {
+                    cursor: pointer;
+                    position: relative;
+                    font-family: $programmelight; 
+                    color: #99a7ee;
+                    font-size: 14px;
+                    line-height: 24px;
+                    margin: 0px 4px 0px 8px;
+                    .tooltip {
+                        visibility: hidden;
+                        z-index: 2;
+                        width: 114px;
+                        position: absolute;
+                        bottom: 14px;
+                        left: 20px;
+                        background: #adb9f5;
+                        font-family: $programmelight;
+                        color: rgb(56, 56, 56);
+                        line-height: 18px;
+                        text-align: center;
+                        border-radius: 1px;
+                    }
+                    &:hover .tooltip {
+                        visibility: visible;
+                    }
+                }
+            }
+        }
+        .annotation-show-form__bottom {
+            display: flex;
+            margin: 15px 0px 0px 5px;
+            .annotation-show-form__bottom-save {
+                cursor: pointer;
+                display: flex;
+                background: white;
+                color: rgb(7, 7, 7);
+                line-height: 28px;
+                border: 2px solid rgb(51, 197, 51);
+                padding: 2px 8px 1px 10px;
+                &:hover {
+                    background: rgb(200, 255, 200);
+                }
+                .annotation-show-form__bottom-save-text {
+                    color: rgb(51, 197, 51);
+                    font-size: 15px;  
+                }
+                .annotation-show-form__bottom-save-score {
+                    position: relative;
+                    left: 6px;
+                    color: rgb(51, 197, 51);
+                    font-size: 12px;
+                    padding-right: 3px;
+                }
+            }
+            .annotation-show-form__bottom-cancel {
+                cursor: pointer;
+                position: relative;
+                left: 4px;
+                display: flex;
+                background: white;
+                font-family: $programmereg;
+                color: rgb(167, 167, 167);
+                font-size: 15px;
+                line-height: 27px;
+                border: none;
+                padding: 5px 6px 1px 6px;
+                &:hover {
+                    background: rgb(236, 236, 236);
+                }
             }
         }
     }
-}
-
-.annotation-show-item__buttons {
-    font-size: 15px;
-    .annotation-show-item__question {
-        padding-bottom: 4px;
-    }
-    .annotation-show-item__edit {
-        @extend annotation-show-item-button;
-        &:hover {
-            @extend annotation-show-item-button-hover;
+    .annotation-show-session {
+        border-left: 4px solid rgb(121, 164, 255);
+        padding: 5px 0px 0px 17px;
+        > a {
+            position: relative;
+            bottom: 2px;
+            color: rgb(7, 7, 7);
+            line-height: 31px;
+            border: 2px solid black;
+            padding: 8px 10px;
         }
     }
-    .annotation-show-item__delete {
-        @extend annotation-show-item-button;
-        &:hover {
-            @extend annotation-show-item-button-hover
-        }
+    .annotation-show-about {
+        color: black;
     }
 }
 
-.annotation-show__session {
-    border-left: 4px solid rgb(121, 164, 255);
-    padding: 5px 0px 0px 17px;
-    > a {
-        position: relative;
-        bottom: 2px;
-        color:rgb(7, 7, 7);
-        line-height: 31px;
-        border: 2px solid black;
-        padding: 8px 10px;
+.annotation-show--dark {
+    width: min(100%, 371px);
+    margin-right: auto;
+    .annotation-show-item {
+        border-left: 4px solid rgb(121, 164, 255);
+        padding: 5px 0px 0px 17px;
+        .annotation-show-item__name {
+            color: rgb(173, 173, 173);
+            font-size: 14px;
+            padding-bottom: 17px;
+        }
+        .annotation-show-item__body {
+            font-family: $programmelight;
+            color: rgb(173, 173, 173);
+            font-size: 16px;
+            font-weight: lighter;
+            line-height: 23px;
+            padding-bottom: 25px;
+        }
+        .annotation-show-item__edited {
+            color: rgb(80, 80, 80);
+            font-size: 12px;
+        }
+        .annotation-show-item__buttons {
+            font-size: 15px;
+            .annotation-show-item__question {
+                color: rgb(173, 173, 173);
+                padding-bottom: 4px;
+            }
+            .annotation-show-item__button {
+                cursor: pointer;
+                background: rgb(70, 70, 70);
+                font-family: $programmereg;
+                color: rgb(173, 173, 173);
+                font-size: 15px;
+                line-height: 20px;
+                border: 1px solid rgb(140, 140, 140);
+                border-radius: 2px;
+                padding: 0px 4px;
+                margin-right: 8px;
+                &:hover {
+                    color: rgb(193, 193, 193);
+                    background: rgb(80, 80, 80);
+                }
+            }
+        }
+    }
+    .annotation-show-begin {
+        border-left: 4px solid rgb(121, 164, 255);
+        padding-left: 17px;
+        .annotation-show-begin__button {
+            cursor: pointer;
+            display: flex;
+            background: rgb(50, 50, 50);
+            line-height: 28px;
+            border: 2px solid rgb(173, 173, 173);
+            padding: 2px 8px 2px 10px;
+            >h1 {
+                position: relative;
+                top: 3px;
+                color: rgb(173, 173, 173);
+                line-height: 23px;
+            }
+            >h2 {
+                position: relative;
+                bottom: 1px;
+                left: 6px;
+                color: rgb(51, 197, 51);
+                font-size: 12px;
+                padding-right: 3px;
+            }
+        }
+    }
+    #annotation-show-form {
+        width: min(100%, 371px);
+        border-left: 4px solid rgb(121, 164, 255);
+        padding: 6px 0px 0px 9px;
+        margin: auto;
+        .annotation-show-form__body {
+            height: 180px;
+            width: min(100%, 371px);
+            resize: none;
+            display: block;
+            background: rgb(80, 80, 80);
+            font-family: $programmelight;
+            color: rgb(173, 173, 173);
+            font-size: 16px;
+            font-weight: lighter;
+            border: none;
+            padding: 10px;
+            margin-top: 20px;
+            &::placeholder {
+                color: rgb(140, 140, 140);
+            }
+            &:focus {
+                box-shadow: inset 0px 0px 2px 2px rgb(194, 213, 255);
+                border: 1px, solid rgb(194, 213, 255);
+            }
+        }
+        .errors-list {
+            margin-top: 3px;
+            > li {
+                color: #a70021;
+            }
+        }
+        .annotation-show-form__middle {
+            display: flex;
+            font-family: $programmelight;
+            font-size: 14px;
+            border-bottom: 1px solid rgb(226, 226, 226);
+            padding-bottom: 12px;
+            margin: 19px 0px 0px 5px;
+            >.annotation-show-form__middle__tools {
+                font-family: $programmelight;
+                color: rgb(168, 168, 168);
+                font-size: 14px;
+            }
+            .annotation-show-form__middle__items {
+                max-width: 250px;
+                position: relative;
+                bottom: 4px;
+                font-family: $programmelight;
+                padding-left: 5px;
+                .annotation-show-form__middle__item {
+                    cursor: pointer;
+                    position: relative;
+                    font-family: $programmelight;
+                    color: #99a7ee;
+                    font-size: 14px;
+                    line-height: 24px;
+                    margin: 0px 4px 0px 8px;
+                    .tooltip {
+                        visibility: hidden;
+                        z-index: 2;
+                        width: 114px;
+                        position: absolute;
+                        bottom: 14px;
+                        left: 20px;
+                        background: #adb9f5;
+                        font-family: $programmelight;
+                        color: rgb(56, 56, 56);
+                        line-height: 18px;
+                        text-align: center;
+                        border-radius: 1px;
+                    }
+                    &:hover .tooltip {
+                        visibility: visible;
+                    }
+                }
+            }
+        }
+        .annotation-show-form__bottom {
+            display: flex;
+            margin: 15px 0px 0px 5px;
+            .annotation-show-form__bottom-save {
+                cursor: pointer;
+                display: flex;
+                background: rgb(50, 50, 50);
+                line-height: 28px;
+                border: 2px solid rgb(51, 197, 51);
+                padding: 2px 8px 1px 10px;
+                &:hover {
+                    background: rgb(200, 255, 200);
+                    color: rgb(50, 50, 50);
+                }
+                .annotation-show-form__bottom-save-text {
+                    color: rgb(51, 197, 51);
+                    font-size: 15px;
+                }
+                .annotation-show-form__bottom-save-score {
+                    position: relative;
+                    left: 6px;
+                    color: rgb(51, 197, 51);
+                    font-size: 12px;
+                    padding-right: 3px;
+                }
+            }
+            .annotation-show-form__bottom-cancel {
+                cursor: pointer;
+                position: relative;
+                left: 4px;
+                display: flex;
+                background: rgb(50, 50, 50);
+                font-family: $programmereg;
+                color: rgb(173, 173, 173);
+                font-size: 15px;
+                line-height: 27px;
+                border: none;
+                padding: 5px 6px 1px 6px;
+                &:hover {
+                    background: rgb(80, 80, 80);
+                }
+            }
+        }
+    }
+    .annotation-show-session {
+        border-left: 4px solid rgb(121, 164, 255);
+        padding: 5px 0px 0px 17px;
+        > a {
+            position: relative;
+            bottom: 2px;
+            color: rgb(173, 173, 173);
+            line-height: 31px;
+            border: 2px solid rgb(173, 173, 173);
+            padding: 8px 10px;
+        }
+    }
+    .annotation-show-about {
+        color: rgb(173, 173, 173);
     }
 }

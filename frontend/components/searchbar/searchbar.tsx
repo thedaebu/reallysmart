@@ -6,7 +6,7 @@ import { AnyAction } from "@reduxjs/toolkit";
 import useDebounce from "../../hooks/debounce_hook";
 import SearchIndex from "../searches/search_index";
 
-function Searchbar() {
+function Searchbar({ theme } : { theme : string }) {
     const dispatch: Dispatch<AnyAction> = useDispatch();
     const fetchSearches: Function = (search: string) => dispatch(SearchActions.fetchSearches(search));
 
@@ -26,7 +26,7 @@ function Searchbar() {
 
     return (
         <>
-            <div className="searchbar">
+            <div className={theme === "light" ? "searchbar" : "searchbar--dark"}>
                 <input
                     onChange={handleSearchChange()} 
                     placeholder="Search lyrics & more"

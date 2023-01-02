@@ -1,5 +1,6 @@
-import React, { MouseEvent, useState, useEffect } from "react";
+import React, { MouseEvent, useState, useEffect, useContext } from "react";
 import { useSelector } from "react-redux";
+import { ThemeContext } from "../../contexts/theme_context";
 import { Annotation, State, Track, Window } from "../../my_types";
 import AnnotationShow from "../annotations/annotation_show";
 import CommentShow from "../comments/comment_show";
@@ -32,6 +33,8 @@ function LyricsShow({ track }: { track: Track }) {
     const [selectedAnnotation, setSelectedAnnotation] = useState<Annotation | null>(null);
     const [startIndex, setStartIndex] = useState<number>(0);
     const [yCoord, setYCoord] = useState<number>(-367);
+
+    const { theme } = useContext(ThemeContext);
 
     useEffect(() => {
         if (lyricsPartHighlightStatus === false) {
@@ -158,6 +161,7 @@ function LyricsShow({ track }: { track: Track }) {
         const anchorName: string = highlighted.anchorNode.parentNode.dataset.name;
         const focusName: string = highlighted.focusNode.parentNode.dataset.name;
         const add: number = parseInt(highlighted.focusNode.parentNode.dataset.add);
+
         let start: number = 0;
         let end: number = 0;
         if (anchorName.includes("not-anno") && anchorName === focusName) {
@@ -235,14 +239,21 @@ function LyricsShow({ track }: { track: Track }) {
     };
 
     return (
-        <div className="lyrics__shade">
+        <div className={theme === "light" ? "lyrics__shade" : "lyrics__shade--dark"}>
             <div className="lyrics__main" data-testid="lyrics__main">
-                <div className="lyrics__text" onMouseDown={handleTextDeselect} onMouseUp={handleTextSelect}>
+                <div
+                    className="lyrics__text"
+                    onMouseDown={handleTextDeselect}
+                    onMouseUp={handleTextSelect}
+                >
                     {title && <p className="lyrics__top">{title.toUpperCase()} LYRICS</p>}
                     <pre className="lyrics__body" data-testid="lyrics__body">
                         {lyricsParts}
                     </pre>
-                    <CommentShow commentableType="Track" parent={track} />
+                    <CommentShow
+                        commentableType="Track"
+                        parent={track}
+                    />
                 </div>
                 <div className="lyrics__right">
                     <AnnotationShow
