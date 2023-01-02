@@ -2,6 +2,7 @@ class Api::CommentsController < ApplicationController
     def show
         comment = Comment.find(params[:id])
         @comment = comment.as_json
+        @comment[:commenter_name] = comment.commenter.username
         @comment[:votes] = {}
         comment.votes.each do |vote|
             @comment[:votes][vote.id] = vote.slice(:id, :voteable_id, :voteable_type, :voter_id)
@@ -16,6 +17,7 @@ class Api::CommentsController < ApplicationController
         if created_comment.save
             create_notifications(created_comment)
             @comment = created_comment.as_json
+            @comment[:commenter_name] = created_comment.commenter.username
             @comment[:votes] = {}
 
             result = {:comment => @comment}
@@ -29,6 +31,7 @@ class Api::CommentsController < ApplicationController
         updated_comment = Comment.find(params[:id])
         if updated_comment.update(comment_params)
             @comment = updated_comment.as_json
+            @comment[:commenter_name] = updated_comment.commenter.username
             @comment[:votes] = {}
             updated_comment.votes.each do |vote|
                 @comment[:votes][vote.id] = vote.slice(:id, :voteable_id, :voteable_type, :voter_id)
@@ -52,7 +55,7 @@ class Api::CommentsController < ApplicationController
 
     private
     def comment_params
-        params.require(:comment).permit(:body, :commentable_id, :commentable_type, :commenter_id, :commenter_name)
+        params.require(:comment).permit(:body, :commentable_id, :commentable_type, :commenter_id)
     end
 
     def create_notifications(comment)
