@@ -138,7 +138,6 @@ function AnnotationShowItem({ annotation, trackId }: { annotation: Annotation, t
 
         const updatedAnnotation: UpdatedAnnotation = {
             annotator_id: currentUser.id,
-            annotator_name: currentUser.username,
             body: annotationBody,
             end_index: currentAnnotation.end_index,
             id: currentAnnotation.id,
