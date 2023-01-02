@@ -29,7 +29,7 @@ function CommentShowItem(props: Props) {
         const currentDate: Date = new Date();
         const timeDiff: number = currentDate.getTime() - oldDate.getTime();
         const dayDiff: number = Math.floor(timeDiff / (1000 * 3600 * 24));
-        
+
         if (dayDiff > 730) {
             return `${Math.floor(dayDiff/365).toString()} years ago`;
         } else if (dayDiff > 365) {
@@ -61,14 +61,14 @@ function CommentShowItem(props: Props) {
             return (
                 <div className="comment-show-item__buttons">
                     <button
-                        className="comment-show-item__edit"
+                        className="comment-show-item__button"
                         onClick={handleCommentUpdateStatus}
                         data-testid="comment-show-item__edit"
                     >
                         Edit
                     </button>
                     <button
-                        className="comment-show-item__delete"
+                        className="comment-show-item__button"
                         onClick={handleCommentDeleteStatus}
                         data-testid="comment-show-item__delete"
                     >
@@ -82,11 +82,11 @@ function CommentShowItem(props: Props) {
                     <p className="comment-show-item__question">
                         Are you sure?
                     </p>
-                    <button className="comment-show-item__delete" onClick={handleCommentDeleteSubmit}>
+                    <button className="comment-show-item__button" onClick={handleCommentDeleteSubmit}>
                         Yes
                     </button>
                     <button 
-                        className="comment-show-item__delete"
+                        className="comment-show-item__button"
                         onClick={handleCommentDeleteStatus}
                         data-testid="comment-show-item__delete"
                     >

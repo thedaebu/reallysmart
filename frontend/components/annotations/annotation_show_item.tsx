@@ -37,14 +37,14 @@ function AnnotationShowItem({ annotation, trackId }: { annotation: Annotation, t
             return (
                 <div className="annotation-show-item__buttons">
                     <button 
-                        className="annotation-show-item__edit"
+                        className="annotation-show-item__button"
                         onClick={handleAnnotationUpdateStatus}
                         data-testid="annotation-show-item__edit"
                     >
                         Edit
                     </button>
                     <button
-                        className="annotation-show-item__delete"
+                        className="annotation-show-item__button"
                         onClick={handleAnnotationDeleteStatus}
                         data-testid="annotation-show-item__delete"
                     >
@@ -58,11 +58,11 @@ function AnnotationShowItem({ annotation, trackId }: { annotation: Annotation, t
                     <p className="annotation-show-item__question" data-testid="annotation-show-item__question">
                         Are you sure?
                     </p>
-                    <button className="annotation-show-item__delete" onClick={handleAnnotationDeleteSubmit}>
+                    <button className="annotation-show-item__button" onClick={handleAnnotationDeleteSubmit}>
                         Yes
                     </button>
                     <button
-                        className="annotation-show-item__delete"
+                        className="annotation-show-item__button"
                         onClick={handleAnnotationDeleteStatus}
                         data-testid="annotation-show-item__delete-no"
                     >
@@ -191,7 +191,10 @@ function AnnotationShowItem({ annotation, trackId }: { annotation: Annotation, t
                             {annotation.created_at !== annotation.updated_at && <p className="annotation-show-item__edited">edited: {`${dateDisplay()}`}</p>}
                             <VoteShow parent={annotation} voteableType="Annotation" />
                             {currentUser && updatebuttons()}
-                            <CommentShow commentableType="Annotation" parent={annotation} />
+                            <CommentShow
+                                commentableType="Annotation"
+                                parent={annotation}
+                            />
                         </div>
                     )
                 )
