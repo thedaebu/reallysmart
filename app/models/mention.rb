@@ -1,8 +1,8 @@
 class Mention < ApplicationRecord
-    validates :comment_id, presence: true
-    validates :mentionee_id, presence: true
-    validates :mentioner_id, presence: true
-    validates :read, inclusion: [true, false]
+    validates :comment_id, numericality: { only_integer: true }, presence: true
+    validates :mentionee_id, numericality: { only_integer: true }, presence: true
+    validates :mentioner_id, numericality: { only_integer: true }, presence: true
+    validates :read, inclusion: [true, false], presence: true
 
     belongs_to :comment,
         foreign_key: :comment_id,

@@ -1,10 +1,9 @@
 class Annotation < ApplicationRecord
-    validates :annotator_id, presence: true
-    validates :annotator_name, presence: true
+    validates :annotator_id, numericality: { only_integer: true }, presence: true
     validates :body, presence: true
-    validates :end_index, presence: true
-    validates :start_index, presence: true
-    validates :track_id, presence: true
+    validates :end_index, numericality: { only_integer: true }, presence: true
+    validates :start_index, numericality: { only_integer: true }, presence: true
+    validates :track_id, numericality: { only_integer: true }, presence: true
 
     has_many :alerts,
         foreign_key: :annotation_id,

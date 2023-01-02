@@ -1,6 +1,6 @@
 class AnnotationAlert < ApplicationRecord
-    validates :annotation_id, presence: true
-    validates :comment_id, presence: true
+    validates :annotation_id, numericality: { only_integer: true }, presence: true
+    validates :comment_id, numericality: { only_integer: true }, presence: true
     validates :read, inclusion: [true, false]
 
     belongs_to :annotation,
