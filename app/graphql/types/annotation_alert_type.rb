@@ -3,7 +3,7 @@
 module Types
   class AnnotationAlertType < Types::BaseObject
     field :body, String, null: false
-    field :commenter, String, null: false
+    field :commenter_name, String, null: false
     field :created_at, GraphQL::Types::ISO8601DateTime, null: false
     field :id, ID, null: false
     field :read, Boolean, null: false
@@ -13,7 +13,7 @@ module Types
     def body
       object.annotation.body
     end
-    def commenter
+    def commenter_name
       object.commenter.username
     end
     def track
