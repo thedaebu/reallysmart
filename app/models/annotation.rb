@@ -7,7 +7,8 @@ class Annotation < ApplicationRecord
 
     has_many :alerts,
         foreign_key: :annotation_id,
-        class_name: "AnnotationAlert"
+        class_name: "AnnotationAlert",
+        dependent: :destroy
 
     belongs_to :annotator,
         foreign_key: :annotator_id,
