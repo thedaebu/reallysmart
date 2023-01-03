@@ -8,17 +8,17 @@ module Types
     field :lyrics, String, null: false
     field :spotify_path, String, null: false
     field :title, String, null: false
-    field :total_annotations, [Types::AnnotationType], null: false
-    field :total_comments, [Types::CommentType], null: false
-    field :total_votes, [Types::VoteType], null: false
+    field :annotations, [Types::AnnotationType], null: false
+    field :comments, [Types::CommentType], null: false
+    field :votes, [Types::VoteType], null: false
 
-    def total_annotations
+    def annotations
       object.annotations
     end
-    def total_comments
+    def comments
       object.comments + object.annotation_comments
     end
-    def total_votes
+    def votes
       object.annotation_votes + object.annotation_comment_votes + object.comment_votes
     end
   end

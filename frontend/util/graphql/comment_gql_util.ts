@@ -6,10 +6,16 @@ const FETCH_COMMENT: DocumentNode = gql`
             body
             commentableId
             commentableType
-            commenterId
             commenterName
+            createdAt
             id
             updatedAt
+            votes {
+                id
+                voteableId
+                voteableType
+                voterId
+            }
         }
     }
 `;

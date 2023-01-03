@@ -3,13 +3,21 @@ import { DocumentNode, gql, useMutation, useQuery } from "@apollo/client";
 const FETCH_ANNOTATION: DocumentNode = gql`
     query FETCH_ANNOTATION($id: ID!) {
         annotation(id: $id) {
-            body
             annotatorId
             annotatorName
+            body
+            createdAt
             endIndex
             id
             startIndex
             trackId
+            updatedAt
+            votes {
+                id
+                voteableId
+                voteableType
+                voterId
+            }
         }
     }
 `;
