@@ -119,7 +119,7 @@ export type Annotation = {
 };
 export type AnnotationAlert = {
     body: string,
-    commenter: string,
+    commenter_name: string,
     created_at: string,
     id: number,
     read: boolean
@@ -150,7 +150,7 @@ export type Mention = {
     body: string,
     created_at: string,
     id: number,
-    mentioner: string,
+    mentioner_name: string,
     read: boolean,
     track: {
         artist: string,
