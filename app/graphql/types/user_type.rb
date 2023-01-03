@@ -2,14 +2,12 @@
 
 module Types
   class UserType < Types::BaseObject
+    field :annotation_alerts, [Types::AnnotationAlertType], null: false
     field :id, ID, null: false
-    field :password_digest, String, null: false
-    field :session_token, String, null: false
+    field :mentions, [Types::MentionType], null: false
     field :username, String, null: false
     field :vote_ids, [Integer], null: false
-    field :created_at, GraphQL::Types::ISO8601DateTime, null: false
-    field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
-
+    
     def vote_ids
       object.votes.map{|vote| vote.id}
     end

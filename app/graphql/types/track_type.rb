@@ -11,8 +11,6 @@ module Types
     field :total_annotations, [Types::AnnotationType], null: false
     field :total_comments, [Types::CommentType], null: false
     field :total_votes, [Types::VoteType], null: false
-    field :created_at, GraphQL::Types::ISO8601DateTime, null: false
-    field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
 
     def total_annotations
       object.annotations
