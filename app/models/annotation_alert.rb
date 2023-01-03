@@ -7,10 +7,6 @@ class AnnotationAlert < ApplicationRecord
         foreign_key: :annotation_id,
         class_name: "Annotation"
 
-    has_one :annotator,
-        through: :annotation,
-        source: :annotator
-
     belongs_to :comment,
         foreign_key: :comment_id,
         class_name: "Comment"
