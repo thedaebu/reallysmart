@@ -14,13 +14,13 @@ comment-show-item {
     .comment-show__begin {
         display: flex;
         padding: 16px 10px 19px 10px; 
-        > img {
+        .comment-show__begin--baby {
             height: 24px;
             width: 24px;
             position: relative;
             top: 5px;
         }
-        > textarea {
+        .comment-show__begin--input {
             height: 28px; 
             width: 100%;
             resize: none;
@@ -242,13 +242,13 @@ comment-show-item {
     .comment-show__begin {
         display: flex;
         padding: 16px 10px 19px 10px;
-        > img {
+        .comment-show__begin--baby {
             height: 24px;
             width: 24px;
             position: relative;
             top: 5px;
         }
-        > textarea {
+        .comment-show__begin--input {
             height: 28px;
             width: 100%;
             resize: none;
