@@ -128,7 +128,7 @@ export type AnnotationAlert = {
         title: string
     },
     type: "AnnotationAlert"
-}
+};
 export type Comment = {
     body: string,
     commentable_id: number,
@@ -157,7 +157,7 @@ export type Mention = {
         title: string
     },
     type: "Mention"
-}
+};
 export type SessionUser = {
     password: string,
     username: string
@@ -171,8 +171,9 @@ export type Track = {
     title: string
 };
 export type User = {
+    annotation_alerts: Array<AnnotationAlert>,
     id: number,
-    notifications: Array<AnnotationAlert | Mention>,
+    mentions: Array<Mention>,
     username: string
 };
 export type Vote = {

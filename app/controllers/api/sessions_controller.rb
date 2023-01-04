@@ -25,7 +25,8 @@ class Api::SessionsController < ApplicationController
                 temp_mention[:type] = "Mention"
                 temp_mention
             end
-            @user[:notifications] = annotation_alerts.concat(mentions)
+            @user[:annotation_alerts] = annotation_alerts
+            @user[:mentions] = mentions
             # avatar_url = url_for(user.avatar)
 
             result = {:user => @user}

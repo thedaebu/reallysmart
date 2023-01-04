@@ -21,5 +21,6 @@ mentions = user.mentions.map do |mention|
     temp_mention[:type] = "Mention"
     temp_mention
 end
-json.notifications annotation_alerts.concat(mentions)
+json.annotation_alerts annotation_alerts
+json.mentions mentions
 # json.avatar_url url_for(user.avatar)
