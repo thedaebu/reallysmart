@@ -20,31 +20,43 @@ const FETCH_COMMENT: DocumentNode = gql`
     }
 `;
 const CREATE_COMMENT: DocumentNode = gql`
-    mutation CREATE_COMMENT($body: String!, $commentableId: Integer!, $commentableType: String!, $commenterId: Integer!, $commenterName: String!) {
-        createComment(input: {body: $body, commentableId: $commentableId, commentableType: $commentableType, commenterId: $commenterId, commenterName: $commenterName) {
+    mutation CREATE_COMMENT($body: String!, $commentableId: Integer!, $commentableType: String!, $commenterId: Integer!) {
+        createComment(input: {body: $body, commentableId: $commentableId, commentableType: $commentableType, commenterId: $commenterId) {
             comment {
                 body
                 commentableId
                 commentableType
-                commenterId
                 commenterName
+                createdAt
                 id
                 updatedAt
+                votes {
+                    id
+                    voteableId
+                    voteableType
+                    voterId
+                }
             }
         }
     }
 `;
 const UPDATE_COMMENT: DocumentNode = gql`
-    mutation UPDATE_COMMENT($body: String!, $commentableId: Integer!, $commentableType: String!, $commenterId: Integer!, $commenterName: String!, $id: ID!) {
-        updateComment(input: {body: $body, commentableId: $commentableId, commentableType: $commentableType, commenterId: $commenterId, commenterName: $commenterName, id: $id}) {
+    mutation UPDATE_COMMENT($body: String!, $commentableId: Integer!, $commentableType: String!, $commenterId: Integer!, $id: ID!) {
+        updateComment(input: {body: $body, commentableId: $commentableId, commentableType: $commentableType, commenterId: $commenterId, id: $id}) {
             comment {
                 body
                 commentableId
                 commentableType
-                commenterId
                 commenterName
+                createdAt
                 id
                 updatedAt
+                votes {
+                    id
+                    voteableId
+                    voteableType
+                    voterId
+                }
             }
         }
     }
@@ -56,8 +68,8 @@ const DELETE_COMMENT: DocumentNode = gql`
                 body
                 commentableId
                 commentableType
-                commenterId
                 commenterName
+                createdAt
                 id
                 updatedAt
             }
@@ -70,25 +82,23 @@ export const fetchComment: Function = (id: Number) => {
         useQuery(FETCH_COMMENT, { variables: { id } })
     );
 };
-export const createComment: Function = (body: String, commentableId: Number, commentableType: String, commenterId: Number, commenterName: String) => {
+export const createComment: Function = (body: String, commentableId: Number, commentableType: String, commenterId: Number) => {
     return (
         useMutation(CREATE_COMMENT, { variables: {
             body,
             commentableId,
             commentableType,
-            commenterId,
-            commenterName
+            commenterId
         }})
     );
 };
-export const updateComment: Function = (body: String, commentableId: Number, commentableType: String, commenterId: Number, commenterName: String, id: Number) => {
+export const updateComment: Function = (body: String, commentableId: Number, commentableType: String, commenterId: Number, id: Number) => {
     return (
         useMutation(UPDATE_COMMENT, { variables: {
             body,
             commentableId,
             commentableType,
             commenterId,
-            commenterName,
             id
         }})
     );
