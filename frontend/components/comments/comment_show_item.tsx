@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import * as CommentActions from "../../actions/comment_actions";
 import { AnyAction } from "@reduxjs/toolkit";
 import { Annotation, Comment, CommentAction, State, Track, UpdatedComment, User } from "../../my_types";
+import { AiOutlineLeft } from "react-icons/ai";
 import VoteShow from "../votes/vote_show";
 
 type Props = {
@@ -43,7 +44,7 @@ function CommentShowItem(props: Props) {
         } else if (dayDiff > 1) {
             return `1 day ago`;
         } else {
-            return `<1 day ago`;
+            return <><AiOutlineLeft size={16} />1 day ago</>;
         }
     }
 
