@@ -6,6 +6,8 @@ import {
 } from "react-router-dom";
 import { AuthRoute } from "../util/route_util";
 import { ThemeContext } from "../contexts/theme_context";
+import { useSelector } from "react-redux";
+import { State, User } from "../my_types";
 import DemoLogin from "./demo_login/demo_login";
 import LoginForm from "./session_form/login_form";
 import SessionMenu from "./session_menu/session_menu";
@@ -17,6 +19,8 @@ const TrackIndex = lazy(() => import("./tracks/track_index"));
 const TrackShow = lazy(() => import("./tracks/track_show"));
 
 function App({ cableApp }: { cableApp: any}) {
+    const currentUser: User = useSelector((state: State) => state.entities.user[state.session.id]);
+
     const { theme } = useContext(ThemeContext);
 
     return (
@@ -25,7 +29,7 @@ function App({ cableApp }: { cableApp: any}) {
                 <Searchbar theme={theme} />
                 <Link to="/" className="header__logo">REALLYSMART</Link>
                 <div className="session-buttons">
-                    <NotificationShow cableApp={cableApp} />
+                    {currentUser && <NotificationShow cableApp={cableApp} />}
                     <SessionMenu />
                     <DemoLogin />
                     <ThemeToggle />
