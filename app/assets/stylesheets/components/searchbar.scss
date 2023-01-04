@@ -1,6 +1,6 @@
 .searchbar {
     display: flex;
-    input {
+    .searchbar__input {
         height: 27px;
         width: 180px;
         font-family: 'Programme Regular', sans-serif;
@@ -22,7 +22,7 @@
 
 .searchbar--dark {
     display: flex;
-    input {
+    .searchbar__input {
         height: 27px;
         width: 180px;
         background: rgb(50, 50, 50);

@@ -1,51 +1,11 @@
 .theme-toggle {
+    cursor: pointer;
     position: relative;
-    bottom: 1px;
-    display: inline-block;
-    width: 30px;
-    height: 14px;
-    margin-left: 15px;
-    > input {
-        opacity: 0;
-        width: 0;
-        height: 0;
-    }
-    > .slider {
-        position: absolute;
-        cursor: pointer;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgb(30, 84, 159); 
-        background: linear-gradient(90deg, rgba(30, 84, 159, 1) 0%, rgb(95, 201, 243) 100%);
-        -webkit-transition: .4s;
-        transition: .4s;
-        border-radius: 34px;
-        &::before {
-            position: absolute;
-            content: "";
-            width: 10px;
-            height: 10px;
-            left: 4px;
-            bottom: 2px;
-            background: rgb(95, 201, 243);
-            background: linear-gradient(90deg, rgb(95, 201, 243) 0%, rgba(8, 31, 55, 1) 100%);
-            -webkit-transition: .4s;
-            transition: .4s;
-            border-radius: 50%;
-        }
-    }
-    input:checked + .slider {
-        background: rgb(8, 31, 55);
-        background: linear-gradient(90deg, rgba(8, 31, 55, 1) 0%,rgb(46, 121, 186) 100%);
-    }
-    input:focus + .slider {
-        box-shadow: 0 0 1px #2196F3;
-    }
-    input:checked + .slider:before {
-        -webkit-transform: translateX(12px);
-        -ms-transform: translateX(12px);
-        transform: translateX(12px);
+    bottom: 4px;
+    padding-bottom: 26px;
+    margin-left: 14px;
+    transition: 0.2s;
+    &:hover {
+        border-bottom: 4px red solid;
     }
 }

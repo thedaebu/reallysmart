@@ -42,18 +42,18 @@ $ubuntu: 'Ubuntu Condensed', sans-serif;
         .session-form__errors {
             background: #242424;
             margin-bottom: 26px;
-            > h2 {
+            .session-form__errors--header {
                 background-color: #94001e;
                 font-family: $barlow;
                 color: white;
                 font-size: 15px;
                 padding: 9px 32px;
             }
-            > p {
+            .session-form__errors--caption {
                 font-size: 13px;
                 padding: 20px 32px;
             }
-            > ul {
+            .session-form__errors-list {
                 position: relative;
                 left: 5px;
                 list-style: disc;
@@ -62,17 +62,17 @@ $ubuntu: 'Ubuntu Condensed', sans-serif;
                 margin-bottom: 10px;
             }
         }
-        > label {
+        .session-form__label {
             color: white;
             font-size: 13px;  
-            > a {
+            .session-form__forgot-password {
                 color: #5BA7C2;
                 font-size: 12px;
                 &:hover {
                     color: #7ecce9;
                 }
             }
-            > input {
+            #session-form__username, #session-form__password {
                 display: flex;
                 flex-direction: row; 
                 width: 335px;

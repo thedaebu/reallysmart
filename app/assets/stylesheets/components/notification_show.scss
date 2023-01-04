@@ -1,25 +1,22 @@
 notification-icon {
     position: relative;
     bottom: 2px;
+    padding-bottom: 8px;
     margin-right: 15px;
     cursor: pointer;
+    transition: 0.2s;
+    &:hover {
+        border-bottom: 4px red solid;
+    }
 }
 
 .notification-icon__unread {
     @extend notification-icon;
     color: rgb(197, 0, 0);
-    &:hover {
-        color: rgb(223, 0, 0);
-    }
 }
-
 .notification-icon__read {
     @extend notification-icon;
-    &:hover {
-        color: rgb(60, 60, 60);
-    }
 }
-
 .notification-list {
     z-index: 3;
     position: absolute;

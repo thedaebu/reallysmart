@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { BiMoon, BiSun} from "react-icons/bi";
 import { ThemeContext } from "../../contexts/theme_context";
 
 function ThemeToggle() {
@@ -12,14 +13,12 @@ function ThemeToggle() {
     }
 
     return (
-        <label className="theme-toggle">
-            <input
-                type="checkbox"
-                defaultChecked={checkedStatus}
-                onClick={handleChangeTheme}
-            />
-            <span className="slider"></span>
-        </label>
+        <div className="theme-toggle" onClick={handleChangeTheme}>
+            {theme === "light"
+                ? <BiMoon size={18} />
+                : <BiSun size={18} />
+            }
+        </div>
     );
 }
 export default ThemeToggle;

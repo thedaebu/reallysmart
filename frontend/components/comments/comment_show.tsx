@@ -29,13 +29,14 @@ function CommentShow({ commentableType, parent }: { commentableType: "Track" | "
         if (commentCreateStatus === false) {
             return (
                 <div className="comment-show__begin">
-                    <img src="https://assets.genius.com/images/default_avatar_100.png" alt="Baby" />
+                    <img className="comment-show__begin--baby" src="https://assets.genius.com/images/default_avatar_100.png" alt="Baby" />
                     <textarea
-                        onClick={handleCommentCreateStatus}
+                        className="comment-show__begin--input"
                         placeholder={commentableType === "Track"
                             ? "Add a comment"
                             : "You think you're really smarter?"
                         }
+                        onClick={handleCommentCreateStatus}
                         data-testid="comment-show__begin-text"
                     />
                 </div>
