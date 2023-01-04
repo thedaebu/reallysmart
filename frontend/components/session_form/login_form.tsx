@@ -47,9 +47,9 @@ function LoginForm() {
     function errorsDisplay() {
         return (
             <div className="session-form__errors">
-                <h2>Ruh-roh!</h2>
-                <p>Something is wrong</p>
-                <ul>
+                <h2 className="session-form__errors--header">Ruh-roh!</h2>
+                <p className="session-form__errors--caption">Something is wrong</p>
+                <ul className="session-form__errors-list">
                     {sessionErrors.map((sessionError: string, idx: number) => (
                         <li key={idx}>{sessionError}</li>
                     ))}
@@ -63,7 +63,7 @@ function LoginForm() {
             <h1 className="session-form__login-h1">Log In</h1>
             <form className="session-form__form" onSubmit={handleLoginSubmit}>
                 {sessionErrors.length > 0 && errorsDisplay()}
-                <label htmlFor="session-form__username">Really Smart Nickname
+                <label className="session-form__label" htmlFor="session-form__username">Really Smart Nickname
                     <input
                         id="session-form__username"
                         onChange={handleInputChange("username")}
@@ -72,8 +72,8 @@ function LoginForm() {
                         data-testid="session-form__username"
                     />
                 </label>
-                <label htmlFor="session-form__password">Really Smart Password
-                    <a className="session-form-forgot-password" href="">
+                <label className="session-form__label" htmlFor="session-form__password">Really Smart Password
+                    <a className="session-form__forgot-password" href="">
                         (I forgot my password)
                     </a>
                     <input

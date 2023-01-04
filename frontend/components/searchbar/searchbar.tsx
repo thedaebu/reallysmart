@@ -28,10 +28,11 @@ function Searchbar({ theme } : { theme : string }) {
         <>
             <div className={theme === "light" ? "searchbar" : "searchbar--dark"}>
                 <input
-                    onChange={handleSearchChange()} 
+                    className="searchbar__input"
                     placeholder="Search lyrics & more"
                     type="text" 
                     value={searchField}
+                    onChange={handleSearchChange()} 
                     data-testid="searchbar-field"
                 />
                 <AiOutlineSearch className="searchbar__glass" />
