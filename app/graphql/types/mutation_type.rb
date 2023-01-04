@@ -8,6 +8,8 @@ module Types
     field :delete_comment, mutation: Mutations::DeleteComment
     field :delete_vote, mutation: Mutations::DeleteVote
     field :update_annotation, mutation: Mutations::UpdateAnnotation
+    field :update_annotation_alert, mutation: Mutations::UpdateAnnotationAlert
     field :update_comment, mutation: Mutations::UpdateComment
+    field :update_mention, mutation: Mutations::UpdateMention
   end
 end

@@ -27,8 +27,4 @@ class Track < ApplicationRecord
     has_many :comment_votes,
         through: :comments,
         source: :votes
-
-    has_many :tags,
-        foreign_key: :track_id,
-        class_name: "Tag"
 end

@@ -2,6 +2,7 @@ class Api::AnnotationsController < ApplicationController
     def show
         annotation = Annotation.find(params[:id])
         @annotation = annotation.as_json
+        @annotation[:annotator_name] = annotation.annotator.username
         @annotation[:votes] = {}
         annotation.votes.each do |vote|
             @annotation[:votes][vote.id] = vote.slice(:id, :voteable_id, :voteable_type, :voter_id)
@@ -15,6 +16,7 @@ class Api::AnnotationsController < ApplicationController
         created_annotation = Annotation.new(annotation_params)
         if created_annotation.save
             @annotation = created_annotation.as_json
+            @annotation[:annotator_name] = created_annotation.annotator.username
             @annotation[:votes] = {}
 
             result = {:annotation => @annotation}
@@ -28,6 +30,7 @@ class Api::AnnotationsController < ApplicationController
         updated_annotation = Annotation.find(params[:id])
         if updated_annotation.update(annotation_params)
             @annotation = updated_annotation.as_json
+            @annotation[:annotator_name] = updated_annotation.annotator.username
             @annotation[:votes] = {}
             updated_annotation.votes.each do |vote|
                 @annotation[:votes][vote.id] = vote.slice(:id, :voteable_id, :voteable_type, :voter_id)
@@ -51,6 +54,6 @@ class Api::AnnotationsController < ApplicationController
 
     private
     def annotation_params
-        params.require(:annotation).permit(:annotator_id, :annotator_name, :body, :end_index, :start_index, :track_id)
+        params.require(:annotation).permit(:annotator_id, :body, :end_index, :start_index, :track_id)
     end
 end

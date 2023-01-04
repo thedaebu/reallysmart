@@ -1,7 +1,6 @@
 // used for action files
 export type CreatedAnnotation = {
     annotator_id: number,
-    annotator_name: string,
     body: string,
     end_index: number,
     start_index: number,
@@ -11,8 +10,7 @@ export type CreatedComment = {
     body: string,
     commentable_id: number
     commentable_type: "Track" | "Annotation",
-    commenter_id: number,
-    commenter_name: string
+    commenter_id: number
 };
 export type CreatedVote = {
     voteable_type: "Annotation" | "Comment",
@@ -40,8 +38,7 @@ export type ReceivedUser = {
     user: User
 };
 export type UpdatedAnnotation = {
-    annotator_id: number,
-    annotator_name: string,
+    annotator_id: number
     body: string,
     end_index: number,
     id: number,
@@ -52,8 +49,7 @@ export type UpdatedComment = {
     body: string,
     commentable_id: number
     commentable_type: "Track" | "Annotation",
-    commenter_id: number,
-    commenter_name: string,
+    commenter_id: number
     id: number
 };
 
@@ -123,7 +119,7 @@ export type Annotation = {
 };
 export type AnnotationAlert = {
     body: string,
-    commenter: string,
+    commenter_name: string,
     created_at: string,
     id: number,
     read: boolean
@@ -132,7 +128,7 @@ export type AnnotationAlert = {
         title: string
     },
     type: "AnnotationAlert"
-}
+};
 export type Comment = {
     body: string,
     commentable_id: number,
@@ -154,14 +150,14 @@ export type Mention = {
     body: string,
     created_at: string,
     id: number,
-    mentioner: string,
+    mentioner_name: string,
     read: boolean,
     track: {
         artist: string,
         title: string
     },
     type: "Mention"
-}
+};
 export type SessionUser = {
     password: string,
     username: string
@@ -175,8 +171,9 @@ export type Track = {
     title: string
 };
 export type User = {
+    annotation_alerts: Array<AnnotationAlert>,
     id: number,
-    notifications: Array<AnnotationAlert | Mention>,
+    mentions: Array<Mention>,
     username: string
 };
 export type Vote = {

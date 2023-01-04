@@ -150,7 +150,6 @@ function CommentShowItem(props: Props) {
             commentable_type: commentableType,
             commentable_id: parent.id,
             commenter_id: currentUser.id,
-            commenter_name: currentUser.username,
             id: comment.id
         };
 

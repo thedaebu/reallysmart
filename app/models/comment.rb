@@ -1,9 +1,8 @@
 class Comment < ApplicationRecord
     validates :body, presence: true
-    validates :commentable_id, presence: true
-    validates :commentable_type, presence: true
-    validates :commenter_id, presence: true
-    validates :commenter_name, presence: true
+    validates :commentable_id, numericality: { only_integer: true }, presence: true
+    validates :commentable_type, inclusion: ["Track", "Annotation"], presence: true
+    validates :commenter_id, numericality: { only_integer: true }, presence: true
 
     has_one :annotation_alert,
         foreign_key: :comment_id,

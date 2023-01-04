@@ -3,9 +3,9 @@ import { DocumentNode, gql, useQuery } from "@apollo/client";
 const FETCH_TRACKS: DocumentNode = gql`
     query FETCH_TRACKS {
         tracks {
-            id
             artist
             artworkPath
+            id
             title
         }
     }
@@ -13,34 +13,35 @@ const FETCH_TRACKS: DocumentNode = gql`
 const FETCH_TRACK: DocumentNode = gql`
     query FETCH_TRACKS($id: ID!) {
         track(id: $id) {
-            id
             artist
             artworkPath
+            id
             lyrics
             spotifyPath
             title
-            totalAnnotations {
-                id
-                body
+            annotations {
                 annotatorId
                 annotatorName
+                body
+                createdAt
                 endIndex
+                id
                 startIndex
                 trackId
-            }
-            totalComments {
-                id
-                body
-                commentableType
-                commentableId
-                commenterId
-                commenterName
                 updatedAt
             }
-            totalVotes {
+            comments {
+                body
+                commentableId
+                commentableType
+                commenterName
                 id
-                voteableType
+                updatedAt
+            }
+            votes {
+                id
                 voteableId
+                voteableType
                 voterId
             }
         }

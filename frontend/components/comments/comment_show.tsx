@@ -100,8 +100,7 @@ function CommentShow({ commentableType, parent }: { commentableType: "Track" | "
             body: commentBody,
             commentable_type: commentableType,
             commentable_id: parent.id,
-            commenter_id: currentUser.id,
-            commenter_name: currentUser.username
+            commenter_id: currentUser.id
         };
 
         createComment(comment)

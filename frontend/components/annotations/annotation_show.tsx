@@ -147,7 +147,6 @@ function AnnotationShow(props: Props) {
 
         const annotation: CreatedAnnotation = {
             annotator_id: currentUser.id,
-            annotator_name: currentUser.username,
             body: annotationBody,
             end_index: endIndex,
             start_index: startIndex,

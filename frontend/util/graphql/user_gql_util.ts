@@ -6,6 +6,30 @@ const FETCH_USER: DocumentNode = gql`
             id
             username
             voteIds
+            annotationAlerts {
+                body
+                commenter_name
+                created_at
+                id
+                read
+                track {
+                    artist
+                    title
+                }
+                type
+            }
+            mentions {
+                body
+                created_at
+                id
+                mentioner_name
+                read
+                track {
+                    artist
+                    title
+                }
+                type
+            }
         }
     }
 `;
@@ -15,6 +39,31 @@ const CREATE_USER: DocumentNode = gql`
             user {
                 id
                 username
+                voteIds
+                annotationAlerts {
+                    body
+                    commenter_name
+                    created_at
+                    id
+                    read
+                    track {
+                        artist
+                        title
+                    }
+                    type
+                }
+                mentions {
+                    body
+                    created_at
+                    id
+                    mentioner_name
+                    read
+                    track {
+                        artist
+                        title
+                    }
+                    type
+                }
             }
         }
     }

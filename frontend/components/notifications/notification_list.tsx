@@ -38,12 +38,12 @@ function NotificationList(props: Props) {
 
     function notificationItem(notification: AnnotationAlert | Mention) {
         if (notification.type === "AnnotationAlert"){
-            const { body, commenter, created_at, track } = notification;
+            const { body, commenter_name, created_at, track } = notification;
             const { artist, title } = track;
 
             return (
                 <Link to={`/tracks/${urlify(artist)}__${urlify(title)}`}>
-                    <span className="notification-list__item-highlighted">{`${commenter} `}</span>
+                    <span className="notification-list__item-highlighted">{`${commenter_name} `}</span>
                     commented on your annotation
                     <span className="notification-list__item-highlighted">{` '${(notificationify(body))}' `}</span>
                     for
@@ -52,12 +52,12 @@ function NotificationList(props: Props) {
                 </Link>
             );
         } else {
-            const { body, created_at, mentioner, track } = notification;
+            const { body, created_at, mentioner_name, track } = notification;
             const { artist, title } = track;
 
             return (
                 <Link to={`/tracks/${urlify(artist)}__${urlify(title)}`}>
-                    <span className="notification-list__item-highlighted">{`${mentioner} `}</span>
+                    <span className="notification-list__item-highlighted">{`${mentioner_name} `}</span>
                     mentioned you in a comment
                     {body.length > 0 &&
                         <span>

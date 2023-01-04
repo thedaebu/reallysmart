@@ -915,7 +915,6 @@ Get me back on my feet so I can tear shit up",
 
 selene_annotation1 = Annotation.create(
     annotator_id: reallysmart.id,
-    annotator_name: reallysmart.username,
     body: "She is singing about Selene, her alter-ego, who comes out when she becomes under the influence. She is claiming Selene is making her do things not of her own will but she is not trying to will herself against Selene.",
     end_index: 140,
     start_index: 9,
@@ -923,7 +922,6 @@ selene_annotation1 = Annotation.create(
 )
 selene_annotation2 = Annotation.create(
     annotator_id: reallysmart.id,
-    annotator_name: reallysmart.username,
     body: "She is allowing Selene to take over. She and Selene want the same thing.",
     end_index: 516,
     start_index: 459,
@@ -931,7 +929,6 @@ selene_annotation2 = Annotation.create(
 )
 selene_annotation3 = Annotation.create(
     annotator_id: reallysmart.id,
-    annotator_name: reallysmart.username,
     body: "Selene is the Greek goddess of the moon and her symbols include the torch and the chariot. It is said that she drives her chariot  across the heavens carrying her torch. She is saying that when Selene takes over her, everyone will notice it as if the Greek goddess arrived.",
     end_index: 1049,
     start_index: 778,
@@ -942,22 +939,19 @@ selene_comment1 = Comment.create(
     body: "This is one of my new favorite songs now.",
     commentable_id: selene.id,
     commentable_type: "Track",
-    commenter_id: reallysmart.id,
-    commenter_name: reallysmart.username
+    commenter_id: reallysmart.id
 )
 selene_comment2 = Comment.create(
     body: "OOOOOHHHHHHH! Now I get it.",
     commentable_id: selene_annotation1.id,
     commentable_type: "Annotation",
-    commenter_id: notsosmart.id,
-    commenter_name: notsosmart.username
+    commenter_id: notsosmart.id
 )
 selene_comment3 = Comment.create(
     body: "I wonder what these lyrics mean.",
     commentable_id: selene.id,
     commentable_type: "Track",
-    commenter_id: notsosmart.id,
-    commenter_name: notsosmart.username
+    commenter_id: notsosmart.id
 )
 
 selene_vote1 = Vote.create(
@@ -1041,7 +1035,6 @@ selene_tag3 = Tag.create(
 
 lady_annotation1= Annotation.create(
     annotator_id: reallysmart.id,
-    annotator_name: reallysmart.username,
     body: "The person is conveying to the woman whom he is with is the person he is finally meant to be with. He also knows by how the woman is reacting to him.",
     end_index: 279,
     start_index: 0,
@@ -1052,8 +1045,7 @@ lady_comment1 = Comment.create(
     body: "This is one of my new favorite songs now.",
     commentable_id: lady.id,
     commentable_type: "Track",
-    commenter_id: reallysmart.id,
-    commenter_name: reallysmart.username
+    commenter_id: reallysmart.id
 )
 
 lady_vote1 = Vote.create(
@@ -1102,7 +1094,6 @@ lady_tag3 = Tag.create(
 
 fake_love_annotation1 = Annotation.create(
     annotator_id: reallysmart.id,
-    annotator_name: reallysmart.username,
     body: "He had been at a low place in his life for so long that any affection he had received when he became successful felt real but realizes they were not genuine.",
     end_index: 162,
     start_index: 8,
@@ -1110,7 +1101,6 @@ fake_love_annotation1 = Annotation.create(
 )
 fake_love_annotation2 = Annotation.create(
     annotator_id: reallysmart.id,
-    annotator_name: reallysmart.username,
     body: "He senses that whenever he talks to his friend that the friend is always hiding something.",
     end_index: 465,
     start_index: 327,
@@ -1118,7 +1108,6 @@ fake_love_annotation2 = Annotation.create(
 )
 fake_love_annotation3 = Annotation.create(
     annotator_id: reallysmart.id,
-    annotator_name: reallysmart.username,
     body: "Now that he experienced all the fake affection and the ways people tried to use him, he is immediately able to see the deception of those around him.",
     end_index: 1473,
     start_index: 1277,
@@ -1129,15 +1118,13 @@ fake_love_comment1 = Comment.create(
     body: "This song really grew on me and I would say it's my favorite song ever.",
     commentable_id: fake_love.id,
     commentable_type: "Track",
-    commenter_id: reallysmart.id,
-    commenter_name: reallysmart.username
+    commenter_id: reallysmart.id
 )
 fake_love_comment2 = Comment.create(
     body: "I see.",
     commentable_id: fake_love_annotation1.id,
     commentable_type: "Annotation",
-    commenter_id: notsosmart.id,
-    commenter_name: notsosmart.username
+    commenter_id: notsosmart.id
 )
 
 fake_love_vote1 = Vote.create(
@@ -1181,7 +1168,6 @@ fake_love_tag3 = Tag.create(
 
 river_annotation1 = Annotation.create(
     annotator_id: reallysmart.id,
-    annotator_name: reallysmart.username,
     body: "This is a sexual innuendo.",
     end_index: 138,
     start_index: 98,
@@ -1189,7 +1175,6 @@ river_annotation1 = Annotation.create(
 )
 river_annotation2 = Annotation.create(
     annotator_id: reallysmart.id,
-    annotator_name: reallysmart.username,
     body: "She says love for someone else can be the deepest feeling anyone feels but at the same time, that love can be the most fragile.",
     end_index: 261,
     start_index: 149,
@@ -1197,7 +1182,6 @@ river_annotation2 = Annotation.create(
 )
 river_annotation3 = Annotation.create(
     annotator_id: reallysmart.id,
-    annotator_name: reallysmart.username,
     body: "She is saying that if he says anything, then the relationship will break. So, she just tells him to perform on her.",
     end_index: 410,
     start_index: 275,
@@ -1208,8 +1192,7 @@ river_comment1 = Comment.create(
     body: "The beat just fires me up.",
     commentable_id: river.id,
     commentable_type: "Track",
-    commenter_id: reallysmart.id,
-    commenter_name: reallysmart.username
+    commenter_id: reallysmart.id
 )
 
 river_vote1 = Vote.create(
@@ -1268,7 +1251,6 @@ river_tag3 = Tag.create(
 
 reflection_annotation1 = Annotation.create(
     annotator_id: reallysmart.id,
-    annotator_name: reallysmart.username,
     body: "She wants to know why she does not see her true self.",
     end_index: 436,
     start_index: 344,
@@ -1279,8 +1261,7 @@ reflection_comment1 = Comment.create(
     body: "This gets me in the feels all the time.",
     commentable_id: reflection.id,
     commentable_type: "Track",
-    commenter_id: reallysmart.id,
-    commenter_name: reallysmart.username
+    commenter_id: reallysmart.id
 )
 
 reflection_vote1 = Vote.create(
@@ -1349,7 +1330,6 @@ reflection_tag3 = Tag.create(
 
 stay_annotation1 = Annotation.create(
     annotator_id: reallysmart.id,
-    annotator_name: reallysmart.username,
     body: "He feels like his body is breaking down just at the though of separating from the woman he is in love with.",
     end_index: 377,
     start_index: 120,
@@ -1357,7 +1337,6 @@ stay_annotation1 = Annotation.create(
 )
 stay_annotation2 = Annotation.create(
     annotator_id: reallysmart.id,
-    annotator_name: reallysmart.username,
     body: "He is willing to change and do anything just so the woman he loves would stay with him.",
     end_index: 1143,
     start_index: 1035,
@@ -1368,8 +1347,7 @@ stay_comment1 = Comment.create(
     body: "I never listened to this a lot when I was younger but this was such a banger.",
     commentable_id: stay.id,
     commentable_type: "Track",
-    commenter_id: reallysmart.id,
-    commenter_name: reallysmart.username
+    commenter_id: reallysmart.id
 )
 
 stay_vote1 = Vote.create(
@@ -1408,7 +1386,6 @@ stay_tag3 = Tag.create(
 
 just_a_friend_2002_annotation1 = Annotation.create(
     annotator_id: reallysmart.id,
-    annotator_name: reallysmart.username,
     body: "He wants to know everything about the girl that he is into, even if the girl has a boyfriend. He ultimately wants to be together with her but she continues to keep him in the friend zone.",
     end_index: 324,
     start_index: 36,
@@ -1416,7 +1393,6 @@ just_a_friend_2002_annotation1 = Annotation.create(
 )
 just_a_friend_2002_annotation2 = Annotation.create(
     annotator_id: reallysmart.id,
-    annotator_name: reallysmart.username,
     body: "He wants to know everything about the girl he is talking with because he is obsessed with being with her. However, the girl is rebuffing his advancements by telling him that he is 'just a friend.'",
     end_index: 905,
     start_index: 623,
@@ -1427,15 +1403,13 @@ just_a_friend_2002_comment1 = Comment.create(
     body: "This is one catchy song!",
     commentable_id: just_a_friend_2002.id,
     commentable_type: "Track",
-    commenter_id: reallysmart.id,
-    commenter_name: reallysmart.username
+    commenter_id: reallysmart.id
 )
 just_a_friend_2002_comment2 = Comment.create(
     body: "I can relate!",
     commentable_id: just_a_friend_2002_annotation1.id,
     commentable_type: "Annotation",
-    commenter_id: reallysmart.id,
-    commenter_name: reallysmart.username
+    commenter_id: reallysmart.id
 )
 
 just_a_friend_2002_vote1 = Vote.create(
@@ -1484,7 +1458,6 @@ just_a_friend_2002_tag3 = Tag.create(
 
 revenge_annotation1 = Annotation.create(
     annotator_id: reallysmart.id,
-    annotator_name: reallysmart.username,
     body: "She says she will never allow the person to be in her life again but also felt disappointed because she genuinely cared for him.",
     end_index: 246,
     start_index: 135,
@@ -1492,7 +1465,6 @@ revenge_annotation1 = Annotation.create(
 )
 revenge_annotation2 = Annotation.create(
     annotator_id: reallysmart.id,
-    annotator_name: reallysmart.username,
     body: "She vows to the person she gave her love to will regret everything he did once she becomes as successful as much as she believes she would be.",
     end_index: 752,
     start_index: 434,
@@ -1500,7 +1472,6 @@ revenge_annotation2 = Annotation.create(
 )
 revenge_annotation3 = Annotation.create(
     annotator_id: reallysmart.id,
-    annotator_name: reallysmart.username,
     body: "She reiterates that she used to be in love with him. But, she no longer cares that he starts to want to be with her again after she became more successful.",
     end_index: 998,
     start_index: 763,
@@ -1511,8 +1482,7 @@ revenge_comment1 = Comment.create(
     body: "I am on her side!",
     commentable_id: revenge.id,
     commentable_type: "Track",
-    commenter_id: reallysmart.id,
-    commenter_name: reallysmart.username
+    commenter_id: reallysmart.id
 )
 
 revenge_vote1 = Vote.create(
@@ -1581,7 +1551,6 @@ revenge_tag3 = Tag.create(
 
 blue_annotation1 = Annotation.create(
     annotator_id: reallysmart.id,
-    annotator_name: reallysmart.username,
     body: "He says the sky is blue, you are next to him, the sea is blue, and it's hot.",
     end_index: 303,
     start_index: 23,
@@ -1589,7 +1558,6 @@ blue_annotation1 = Annotation.create(
 )
 blue_annotation2 = Annotation.create(
     annotator_id: reallysmart.id,
-    annotator_name: reallysmart.username,
     body: "He says that the summer is ours and that if there is an angel then it is you so let's get lost in the sky.",
     end_index: 685,
     start_index: 597,
@@ -1600,8 +1568,7 @@ blue_comment1 = Comment.create(
     body: "This is a summer banger!",
     commentable_id: blue.id,
     commentable_type: "Track",
-    commenter_id: reallysmart.id,
-    commenter_name: reallysmart.username
+    commenter_id: reallysmart.id
 )
 
 blue_vote1 = Vote.create(
@@ -1674,7 +1641,6 @@ blue_tag4 = Tag.create(
 
 shiki_no_uta_annotation1 = Annotation.create(
     annotator_id: reallysmart.id,
-    annotator_name: reallysmart.username,
     body: "When dawn breaks again, we'll say our farewells. Our dreams become distant phantoms. The times we were embraced. In the light that chased you, relying on the warm winds.",
     end_index: 133,
     start_index: 0,
@@ -1685,8 +1651,7 @@ shiki_no_uta_comment1 = Comment.create(
     body: "Best anime ending.",
     commentable_id: shiki_no_uta.id,
     commentable_type: "Track",
-    commenter_id: reallysmart.id,
-    commenter_name: reallysmart.username
+    commenter_id: reallysmart.id
 )
 
 shiki_no_uta_vote1 = Vote.create(

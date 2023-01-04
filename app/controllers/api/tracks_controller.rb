@@ -19,6 +19,7 @@ class Api::TracksController < ApplicationController
         @annotations = {}
         queried_annotations.each do |annotation|
             temp_annotation = annotation.as_json
+            temp_annotation[:annotator_name] = annotation.annotator.username
             temp_annotation[:votes] = {}
             @annotations[annotation.id] = temp_annotation
         end
@@ -27,6 +28,7 @@ class Api::TracksController < ApplicationController
         @comments = {}
         queried_comments.each do |comment|
             temp_comment = comment.as_json
+            temp_comment[:commenter_name] = comment.commenter.username
             temp_comment[:votes] = {}
             @comments[comment.id] = temp_comment
         end
