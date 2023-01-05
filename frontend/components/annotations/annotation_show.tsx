@@ -70,7 +70,7 @@ function AnnotationShow(props: Props) {
             );
         } else {
             return (
-                <p className="annotation-show-about">Highlight part of the lyrics to add an annotation</p>
+                <p className="annotation-show-about">Highlight part of the lyrics to add an annotation<br />Click on a highlighted section to show annotation</p>
             );
         }
     }
