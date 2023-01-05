@@ -7,7 +7,7 @@ function Navbar() {
     return (
         <div className="navbar-main">
             <div className="navbar">
-                <a className="collective-sounds" href="https://soundcloud.com/thedaebu" target="_blank" rel="noopener noreferrer">COLLECTIVE SOUNDS</a>
+                <a className="navbar-link" href="https://soundcloud.com/thedaebu" target="_blank" rel="noopener noreferrer">COLLECTIVE SOUNDS</a>
                 <a className="navbar-link" href="">GENIUS LIVE</a>
                 <a className="navbar-link" href="">FEATURED</a>
                 <a className="navbar-link" href="">CHARTS</a>
