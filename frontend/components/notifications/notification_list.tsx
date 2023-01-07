@@ -44,9 +44,9 @@ function NotificationList(props: Props) {
             return (
                 <Link to={`/tracks/${urlify(artist)}__${urlify(title)}`}>
                     <span className="notification-list__item-highlighted">{`${commenter_name} `}</span>
-                    commented on your annotation
+                    <span className="notification-list__item-regular">commented on your annotation</span>
                     <span className="notification-list__item-highlighted">{` '${(notificationify(body))}' `}</span>
-                    for
+                    <span className="notification-list__item-regular">for</span>
                     <span className="notification-list__item-highlighted">{` ${artist} - ${title}`}</span>
                     <span className="notification-list__item-date">{` -${dateDisplay(created_at)}`}</span>
                 </Link>
@@ -58,13 +58,13 @@ function NotificationList(props: Props) {
             return (
                 <Link to={`/tracks/${urlify(artist)}__${urlify(title)}`}>
                     <span className="notification-list__item-highlighted">{`${mentioner_name} `}</span>
-                    mentioned you in a comment
+                    <span className="notification-list__item-regular">mentioned you in a comment</span>
                     {body.length > 0 &&
                         <span>
                             {' for the annotation '}<span className="notification-list__item-highlighted">{`'${(notificationify(body))}' `}</span>
                         </span>
                     }
-                    {' for'}
+                    <span className="notification-list__item-regular">{" for"}</span>
                     <span className="notification-list__item-highlighted">{` ${artist} - ${title}`}</span>
                     {` - ${dateDisplay(created_at)}`}
                 </Link>
@@ -85,7 +85,7 @@ function NotificationList(props: Props) {
 
     function dateDisplay(dateTime: string) {
         const date: Date = new Date(Date.parse(dateTime));
-        const month: string = date.getMonth() < 10 ? `0${date.getMonth().toString()}` : `${date.getMonth().toString()}`;
+        const month: string = date.getMonth() + 1 < 10 ? `0${(date.getMonth() + 1).toString()}` : `${(date.getMonth() + 1).toString()}`;
         const day: string = date.getDate() < 10 ? `0${date.getDate().toString()}` : `${date.getDate().toString()}`;
         return `${date.getFullYear().toString()}-${month}-${day}`;
     }
