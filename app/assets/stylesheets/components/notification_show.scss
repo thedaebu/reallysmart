@@ -50,6 +50,9 @@ notification-icon {
         &:hover {
             background-color: #dbdbdb;
         }
+        .notification-list__item-regular {
+            color: black;
+        }
         .notification-list__item-highlighted {
             color: rgb(106, 153, 255);
         }
