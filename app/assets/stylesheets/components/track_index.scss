@@ -25,7 +25,7 @@ track-index-number {
         margin: 11px 0px 20.5px 0px;
     }
     .track-index__items {
-        width: min(1150px, 100%);
+        width: #{"min(1150px, 100%)"};
         .track-index-item {
             display: grid;
             grid-template-columns: 95px 2fr 9fr 8fr 3fr 3fr;
@@ -138,7 +138,7 @@ track-index-number {
         margin: 11px 0px 20.5px 0px;
     }
     .track-index__items {
-        width: min(1150px, 100%);
+        width: #{"min(1150px, 100%)"};
         .track-index-item {
             display: grid;
             grid-template-columns: 95px 2fr 9fr 8fr 3fr 3fr;

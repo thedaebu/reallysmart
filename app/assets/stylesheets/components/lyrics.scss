@@ -5,7 +5,7 @@ $programmelight: 'Programme Light', sans-serif;
     width: 100%;
     background: #f7f7f7;
     .lyrics__main {
-        width: min(970px, 100vw);
+        width: #{"min(970px, 100vw)"};
         display: flex;
         background: rgb(255, 255, 255);
         margin: 0px auto;
@@ -55,7 +55,7 @@ $programmelight: 'Programme Light', sans-serif;
     width: 100%;
     background: rgb(80, 80, 80);
     .lyrics__main {
-        width: min(970px, 100vw);
+        width: #{"min(970px, 100vw)"};
         display: flex;
         background: rgb(50, 50, 50);
         margin: 0px auto;
