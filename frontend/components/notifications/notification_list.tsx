@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { RiCheckboxIndeterminateFill } from "react-icons/ri"
-import * as NotificationActions from "./../../actions/notification_actions";
+import * as NotificationAPIUtil from "../../util/api/notification_api_util";
 import { AnnotationAlert, Mention } from '../../my_types';
 
 type Props = {
@@ -13,7 +13,7 @@ type Props = {
 function NotificationList(props: Props) {
     const { changeNotificationOpenStatus, makeReadStatusTrue, notifications } = props;
 
-    const updateNotification: Function = (notification: AnnotationAlert | Mention) => NotificationActions.updateNotification(notification);
+    const updateNotification: Function = (notification: AnnotationAlert | Mention) => NotificationAPIUtil.updateNotification(notification);
 
     useEffect(() => {
         makeReadStatusTrue();
