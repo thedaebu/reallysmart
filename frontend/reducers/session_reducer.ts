@@ -1,11 +1,11 @@
 import { LOGOUT_CURRENT_USER, RECEIVE_CURRENT_USER } from "../actions/session_actions";
-import { Action } from "../my_types";
+import { SessionAction } from "../my_types";
 
 const nullUser: { id: number | null } = Object.freeze({
     id: null
 });
 
-const sessionReducer = (state: {id: number | null}= nullUser, action: Action) => {
+const sessionReducer = (state: {id: number | null}= nullUser, action: SessionAction) => {
     Object.freeze(state);
 
     switch (action.type) {

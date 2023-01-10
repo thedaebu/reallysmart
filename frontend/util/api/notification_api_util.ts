@@ -1,6 +1,7 @@
 import $ from "jquery";
+import { AnnotationAlert, Mention } from "../../my_types";
 
-export const updateNotification = (notification: any) => (
+export const updateNotification = (notification: AnnotationAlert | Mention) => (
     $.ajax({
         data: {
             notification,
