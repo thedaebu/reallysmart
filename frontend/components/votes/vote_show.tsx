@@ -3,7 +3,7 @@ import { RiThumbUpLine } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import * as AnnotationActions from "../../actions/annotation_actions";
 import * as CommentActions from "../../actions/comment_actions";
-import * as VoteActions from "../../actions/vote_actions";
+import * as VoteAPIUtil from "../../util/api/vote_api_util";
 import { AnyAction } from "@reduxjs/toolkit";
 import { Annotation, Comment, CreatedVote, State, User, Vote } from "../../my_types";
 
@@ -12,8 +12,8 @@ function VoteShow({ parent, voteableType }: { parent: Annotation | Comment, vote
     const votes: {[key: number]: Vote} = parent.votes;
 
     const dispatch: Dispatch<AnyAction> = useDispatch();
-    const createVote: Function = (vote: CreatedVote) => VoteActions.createVote(vote);
-    const deleteVote: Function = (voteId: number) => VoteActions.deleteVote(voteId);
+    const createVote: Function = (vote: CreatedVote) => VoteAPIUtil.createVote(vote);
+    const deleteVote: Function = (voteId: number) => VoteAPIUtil.deleteVote(voteId);
     const fetchParent: Function = voteableType === "Annotation"
         ? (annotationId: number) => dispatch(AnnotationActions.fetchAnnotation(annotationId))
         : (commentId: number) => dispatch(CommentActions.fetchComment(commentId));

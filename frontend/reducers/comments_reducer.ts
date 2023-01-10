@@ -1,8 +1,8 @@
 import { RECEIVE_TRACK, RECEIVE_TRACKS } from "../actions/track_actions"
 import { RECEIVE_COMMENT, REMOVE_COMMENT } from "../actions/comment_actions";
-import { Action, Comment } from "../my_types";
+import { Comment, CommentAction, TrackAction } from "../my_types";
 
-const commentsReducer = (state: {[key: number]: Comment} = {}, action: Action) => {
+const commentsReducer = (state: {[key: number]: Comment} = {}, action: CommentAction | TrackAction) => {
     Object.freeze(state);
     const newState: {[key: number]: Comment} = Object.assign({}, state);
 
