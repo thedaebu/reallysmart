@@ -1,8 +1,5 @@
 class Tag < ApplicationRecord
-    validates :name, presence: true
-    validates :track_id, numericality: { only_integer: true }, presence: true
+    validates_presence_of :name, :track_id
 
-    belongs_to :track,
-        foreign_key: :track_id,
-        class_name: "Track"
+    belongs_to :track, class_name: "Track"
 end

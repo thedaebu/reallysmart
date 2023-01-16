@@ -1,36 +1,18 @@
 class User < ApplicationRecord
+    validates_presence_of :password_digest, :session_token, :username
     validates :password, allow_nil: true, length: { in: 6..20 }, format: { with: /\A[a-z0-9A-Z ]+\z/ }
-    validates :password_digest, presence: true
-    validates :session_token, presence: true
-    validates :username, format: { with: /\A[a-z0-9A-Z ]+\z/ }, length: { in: 6..20 }, presence: true, uniqueness: true
+    validates :username, format: { with: /\A[a-z0-9A-Z ]+\z/ }, length: { in: 6..20 }, uniqueness: true
 
     attr_reader :password
 
     after_initialize :ensure_session_token
 
-    has_many :annotations,
-        foreign_key: :annotator_id,
-        class_name: "Annotation"
-
-    has_many :annotation_alerts,
-        through: :annotations,
-        source: :alerts
-
-    has_many :comments,
-        foreign_key: :commenter_id,
-        class_name: "Comment"
-
-    has_many :mentions,
-        foreign_key: :mentionee_id,
-        class_name: "Mention"
-
-    has_many :mentioneds,
-        foreign_key: :mentioner_id,
-        class_name: "Mention"
-
-    has_many :votes,
-        foreign_key: :voter_id,
-        class_name: "Vote"
+    has_many :annotations, foreign_key: :annotator_id, class_name: "Annotation"
+    has_many :annotation_alerts, through: :annotations, source: :alerts
+    has_many :comments, foreign_key: :commenter_id, class_name: "Comment"
+    has_many :mentions, foreign_key: :mentionee_id, class_name: "Mention"
+    has_many :mentioneds, foreign_key: :mentioner_id, class_name: "Mention"
+    has_many :votes, foreign_key: :voter_id, class_name: "Vote"
 
     # has_one_attached :avatar
 
