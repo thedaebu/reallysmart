@@ -19,6 +19,10 @@ bundle exec rails db:seed
 lsof -wni tcp:3000
 kill -9 <PID>
 
+# testing
+bundle exec rspec --format documentation
+npm run test:watch
+
 # fonts
 font-family: 'Programme', sans-serif;
 font-family: 'Programme Regular', sans-serif;

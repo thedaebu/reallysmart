@@ -1,17 +1,8 @@
 class AnnotationAlert < ApplicationRecord
-    validates :annotation_id, numericality: { only_integer: true }, presence: true
-    validates :comment_id, numericality: { only_integer: true }, presence: true
+    validates_presence_of :annotation_id, :comment_id, :read
     validates :read, inclusion: [true, false]
 
-    belongs_to :annotation,
-        foreign_key: :annotation_id,
-        class_name: "Annotation"
-
-    belongs_to :comment,
-        foreign_key: :comment_id,
-        class_name: "Comment"
-
-    has_one :commenter,
-        through: :comment,
-        source: :commenter
+    belongs_to :annotation, class_name: "Annotation"
+    belongs_to :comment, class_name: "Comment"
+    has_one :commenter, through: :comment, source: :commenter
 end
