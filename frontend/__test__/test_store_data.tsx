@@ -76,10 +76,10 @@ export const testCommentsData: {[key: number]: Comment} = {
         votes: {}
     }
 };
-export const testNotificationsData: Array<AnnotationAlert | Mention> = [
+export const testAnnotationAlertsData: Array<AnnotationAlert> = [
     {
         body: testAnnotationsData[1].body,
-        commenter: "notsosmart",
+        commenter_name: "notsosmart",
         created_at: "2022-04-10T01:05:36.835Z",
         id: 1,
         read: false,
@@ -88,11 +88,14 @@ export const testNotificationsData: Array<AnnotationAlert | Mention> = [
             title: "Selene"
         },
         type: "AnnotationAlert"
-    },{
+    }
+];
+export const testMentionsData: Array<Mention> = [
+    {
         body: testAnnotationsData[1].body,
         created_at: "2022-04-11T01:05:36.835Z",
         id: 2,
-        mentioner: "notsosmart",
+        mentioner_name: "notsosmart",
         read: false,
         track: {
             artist: "NIKI",
@@ -103,7 +106,7 @@ export const testNotificationsData: Array<AnnotationAlert | Mention> = [
         body: "",
         created_at: "2022-04-12T01:05:36.835Z",
         id: 3,
-        mentioner: "notsosmart",
+        mentioner_name: "notsosmart",
         read: false,
         track: {
             artist: "Niki",
@@ -167,8 +170,9 @@ export const testIndexTracksData: {[key: number]: IndexTrack} = {
 };
 export const testUserData: {[key: number]: User} = {
     1: {
+        annotation_alerts: testAnnotationAlertsData,
         id: 1,
-        notifications: testNotificationsData,
+        mentions: testMentionsData,
         username: "reallysmart"
     }
 };

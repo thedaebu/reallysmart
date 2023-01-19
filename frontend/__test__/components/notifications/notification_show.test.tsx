@@ -8,9 +8,10 @@ import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
 import { testShowStoreWithoutUser, testShowStoreWithUser } from "../../test_store_data";
 import actionCable from "actioncable";
-import * as notificationActions from "../../../actions/notification_actions";
+import * as NotificationAPIUtil from "../../../util/api/notification_api_util";
 import NotificationShow from "../../../components/notifications/notification_show";
 import { Store } from "../../../store/store";
+import { AnnotationAlert, Mention } from "../../../my_types";
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -20,7 +21,7 @@ const testStoreWithUser: any = mockStore(testShowStoreWithUser);
 const useMockEffect = jest.spyOn(React, "useEffect");
 const useMockSelector = jest.spyOn(reactRedux, "useSelector");
 const useMockState = jest.spyOn(React, "useState");
-const useUpdateNotification = jest.spyOn(notificationActions, "updateNotification");
+const useUpdateNotification = jest.spyOn(NotificationAPIUtil, "updateNotification");
 
 const cableApp: any = {};
 cableApp["cable"] = actionCable.createConsumer(`ws://${window.location.hostname}:3000/cable`)
@@ -81,7 +82,8 @@ describe("notification show", () => {
             expect(notificationList).toBeFalsy();
         });
         describe("notification list", () => {
-            const notifications = testShowStoreWithUser.entities.user[1].notifications;
+            const { annotation_alerts, mentions } = testShowStoreWithUser.entities.user[1];
+            const notifications: Array<AnnotationAlert | Mention> = annotation_alerts.concat(mentions);
             let notificationIcon: any;
             let notificationList: any;
             let notificationItems: Array<any>;
