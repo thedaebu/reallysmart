@@ -1,4 +1,4 @@
-AWS
+https://reallysmart.onrender.com
 
 # assets precompile
 bundle exec rails assets:precompile
