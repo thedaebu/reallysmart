@@ -1,5 +1,5 @@
 class AnnotationAlert < ApplicationRecord
-    validates_presence_of :annotation_id, :comment_id, :read
+    validates_presence_of :annotation_id, :comment_id
     validates :read, inclusion: [true, false]
 
     belongs_to :annotation, class_name: "Annotation"

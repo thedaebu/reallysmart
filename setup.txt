@@ -1,4 +1,4 @@
-AWS
+https://reallysmart.onrender.com
 
 # assets precompile
 bundle exec rails assets:precompile
@@ -30,7 +30,3 @@ font-family: 'Programme Light', sans-serif;
 font-family: 'Barlow Condensed', sans-serif;
 font-family: 'Ubuntu Condensed', sans-serif;
 font-family: 'Raleway', sans-serif;
-
-issues:
-firebase
-redis
