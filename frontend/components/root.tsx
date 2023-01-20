@@ -10,7 +10,10 @@ import App from "./app";
 
 function Root({ store }: { store: Store<any, AnyAction> }) {
     const cableApp: any = {};
-    cableApp["cable"] = actionCable.createConsumer(`ws://${window.location.hostname}:3000/cable`);
+    const cableName: string = process.env.NODE_ENV === "development"
+        ? `ws://${window.location.hostname}:3000/cable`
+        : "ws://https://reallysmart.onrender.com/cable";
+    cableApp["cable"] = actionCable.createConsumer(cableName);
 
     const [theme, setTheme] = useState<"light" | "dark">(window.sessionStorage.theme ? window.sessionStorage.theme : "light");
 
