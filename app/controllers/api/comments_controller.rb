@@ -65,8 +65,8 @@ class Api::CommentsController < ApplicationController
                 comment_id: comment.id,
                 read: false
             )
-            if annotation_alert.annotator.id != annotation_alert.commenter.id && annotation_alert.save
-                user = annotation_alert.annotator
+            if annotation_alert.annotation.annotator.id != annotation_alert.commenter.id && annotation_alert.save
+                user = annotation_alert.annotation.annotator
                 broadcast_annotation_alert(user, annotation_alert)
             end
         end
