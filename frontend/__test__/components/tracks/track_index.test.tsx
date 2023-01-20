@@ -3,6 +3,7 @@ import { cleanup, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event"
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
+import { ThemeContext } from "../../../contexts/theme_context";
 import * as reactRedux from "react-redux";
 import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
@@ -26,7 +27,9 @@ describe("track index", () => {
         render(
             <BrowserRouter>
                 <Provider store={testStore}>
-                    <TrackIndex />
+                    <ThemeContext.Provider value={{theme: "light", changeTheme: jest.fn}}>
+                        <TrackIndex />
+                    </ThemeContext.Provider>
                 </Provider>
             </BrowserRouter>
         );

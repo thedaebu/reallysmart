@@ -3,6 +3,7 @@ import { cleanup, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { BrowserRouter, MemoryRouter, Route } from "react-router-dom";
 import { Provider } from "react-redux";
+import { ThemeContext } from "../../../contexts/theme_context";
 import * as reactRedux from "react-redux";
 import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
@@ -25,7 +26,9 @@ function renderComponent(store: Store) {
             <MemoryRouter initialEntries={['tracks/niki__selene']}>
                 <Provider store={store}>
                     <Route path='tracks/:trackName'>
-                        <TrackShow/>
+                        <ThemeContext.Provider value={{theme: "light", changeTheme: jest.fn}}>
+                            <TrackShow />
+                        </ThemeContext.Provider>
                     </Route>
                 </Provider>
             </MemoryRouter>
@@ -70,7 +73,7 @@ describe("lyrics", () => {
     describe("annotation show component", () => {
         test("shows 'About <track title>' by default", () => {
             const annotationShow = screen.queryByTestId("annotation-show");
-            expect(annotationShow).toHaveTextContent('About "Selene"');
+            expect(annotationShow).toHaveTextContent("Highlight part of the lyrics to add an annotationClick on a highlighted section to show annotation");
         });
         test("is shown when an annotated section is clicked on", () => {
             const annotatedSection = screen.queryAllByTestId("lyrics__is-annotation")[0];
@@ -84,7 +87,7 @@ describe("lyrics", () => {
             const nonAnnotatedSection = screen.queryAllByTestId("lyrics__not-annotation")[0];
             userEvent.click(nonAnnotatedSection);
             const annotationShow = screen.queryByTestId("annotation-show");
-            expect(annotationShow).toHaveTextContent('About "Selene"');
+            expect(annotationShow).toHaveTextContent("Highlight part of the lyrics to add an annotationClick on a highlighted section to show annotation");
         });
     });
     describe("comment show component", () => {

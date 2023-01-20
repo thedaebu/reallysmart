@@ -3,15 +3,15 @@ import { cleanup, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { BrowserRouter, MemoryRouter, Route } from "react-router-dom";
 import { Provider } from "react-redux";
+import { ThemeContext } from "../../../contexts/theme_context";
 import * as reactRedux from "react-redux";
 import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
 import { testShowStoreWithoutUser, testShowStoreWithUser } from "../../test_store_data";
 import actionCable from "actioncable";
 import * as NotificationAPIUtil from "../../../util/api/notification_api_util";
-import NotificationShow from "../../../components/notifications/notification_show";
+import App from "../../../components/app";
 import { Store } from "../../../store/store";
-import { AnnotationAlert, Mention } from "../../../my_types";
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -32,7 +32,9 @@ function renderComponent(store: Store) {
             <MemoryRouter initialEntries={['tracks/niki__selene']}>
                 <Provider store={store}>
                     <Route path='tracks/:trackName'>
-                        <NotificationShow cableApp={cableApp} />
+                        <ThemeContext.Provider value={{theme: "light", changeTheme: jest.fn}}>
+                            <App cableApp={cableApp} />
+                        </ThemeContext.Provider>
                     </Route>
                 </Provider>
             </MemoryRouter>
@@ -82,8 +84,6 @@ describe("notification show", () => {
             expect(notificationList).toBeFalsy();
         });
         describe("notification list", () => {
-            const { annotation_alerts, mentions } = testShowStoreWithUser.entities.user[1];
-            const notifications: Array<AnnotationAlert | Mention> = annotation_alerts.concat(mentions);
             let notificationIcon: any;
             let notificationList: any;
             let notificationItems: Array<any>;
@@ -105,9 +105,9 @@ describe("notification show", () => {
                 expect(useUpdateNotification).toHaveBeenCalled();
             });
             test("displays notifications sorted by latest notification", () => {
-                expect(notificationItems[0]).toHaveTextContent("2022-03-11");
-                expect(notificationItems[1]).toHaveTextContent("2022-03-10");
-                expect(notificationItems[2]).toHaveTextContent("2022-03-09");
+                expect(notificationItems[0]).toHaveTextContent("2022-04-11");
+                expect(notificationItems[1]).toHaveTextContent("2022-04-10");
+                expect(notificationItems[2]).toHaveTextContent("2022-04-09");
             });
             test("displays correct format for annotation alert", () => {
                 expect(notificationItems[2]).toHaveTextContent("commented on your annotation");

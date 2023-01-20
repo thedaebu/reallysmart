@@ -2,6 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import { BrowserRouter, MemoryRouter, Route } from "react-router-dom";
 import { Provider } from "react-redux";
+import { ThemeContext } from "../../../contexts/theme_context";
 import * as reactRedux from "react-redux";
 import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
@@ -24,7 +25,9 @@ describe("track show", () => {
             <MemoryRouter initialEntries={['tracks/niki__selene']}>
                 <Provider store={testStore}>
                     <Route path='tracks/:trackName'>
-                        <TrackShow/>
+                        <ThemeContext.Provider value={{theme: "light", changeTheme: jest.fn}}>
+                            <TrackShow />
+                        </ThemeContext.Provider>
                     </Route>
                 </Provider>
             </MemoryRouter>
