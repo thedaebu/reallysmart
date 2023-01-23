@@ -1,12 +1,12 @@
 import React, { Dispatch, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as TrackActions from "../../actions/track_actions";
-import { useParams } from "react-router";
 import { AnyAction } from "@reduxjs/toolkit";
 import { State, Track, TrackAction, Window } from "../../my_types";
 import LyricsShow from "../lyrics/lyrics";
 import NavBar from "../navbar/navbar";
 import TrackShowHeader from "./track_show_header";
+import { useParams } from "react-router-dom";
 
 declare const window: Window;
 

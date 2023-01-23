@@ -1,6 +1,6 @@
 import React, { MouseEvent, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useLocation } from "react-router";
+import { useLocation } from "react-router-dom";
 import { IndexTrack, State } from "../../my_types";
 import MemoizedSearchIndexItem from "./search_index_item";
 
