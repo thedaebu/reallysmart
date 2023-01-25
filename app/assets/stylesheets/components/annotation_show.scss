@@ -2,7 +2,7 @@ $programmelight: 'Programme Light', sans-serif;
 $programmereg: 'Programme Regular', sans-serif;
 
 .annotation-show {
-    width: #{"min(100%, 371px)"};
+    width: unquote("min(100%, 371px)");
     margin-right: auto;
     .annotation-show-item {
         border-left: 4px solid rgb(121, 164, 255);
@@ -73,13 +73,13 @@ $programmereg: 'Programme Regular', sans-serif;
         }
     }
     #annotation-show-form {
-        width: #{"min(100%, 371px)"};
+        width: unquote("min(100%, 371px)");
         border-left: 4px solid rgb(121, 164, 255);
         padding: 6px 0px 0px 9px;
         margin: auto;
         .annotation-show-form__body {
             height: 180px;
-            width: #{"min(100%, 371px)"};
+            width: unquote("min(100%, 371px)");
             resize: none;
             display: block;
             background: rgb(245, 245, 245);
@@ -210,7 +210,7 @@ $programmereg: 'Programme Regular', sans-serif;
 }
 
 .annotation-show--dark {
-    width: #{"min(100%, 371px)"};
+    width: unquote("min(100%, 371px)");
     margin-right: auto;
     .annotation-show-item {
         border-left: 4px solid rgb(121, 164, 255);
@@ -283,13 +283,13 @@ $programmereg: 'Programme Regular', sans-serif;
         }
     }
     #annotation-show-form {
-        width: #{"min(100%, 371px)"};
+        width: unquote("min(100%, 371px)");
         border-left: 4px solid rgb(121, 164, 255);
         padding: 6px 0px 0px 9px;
         margin: auto;
         .annotation-show-form__body {
             height: 180px;
-            width: #{"min(100%, 371px)"};
+            width: unquote("min(100%, 371px)");
             resize: none;
             display: block;
             background: rgb(80, 80, 80);

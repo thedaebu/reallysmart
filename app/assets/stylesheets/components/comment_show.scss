@@ -43,7 +43,7 @@ comment-show-item {
         padding: 15px 6px 10px 6px;
         .comment-show-form__track-text {
             height: 51px;
-            width: #{"min(98%, 510px)"};
+            width: unquote("min(98%, 510px)");
             resize: none;
             overflow: hidden;
             font-family: $programmelight;
@@ -64,7 +64,7 @@ comment-show-item {
         }
         .comment-show-form__annotation-text {
             height: 46px;
-            width: #{"min(96%, 307px)"};
+            width: unquote("min(96%, 307px)");
             resize: none;
             overflow: hidden;
             font-family: $programmelight;
@@ -153,11 +153,11 @@ comment-show-item {
         right: 4px;
         .comment-show-item--track {
             @extend comment-show-item;
-            width: #{"min(95%, 537px)"};
+            width: unquote("min(95%, 537px)");
         }
         .comment-show-item--annotation {
             @extend comment-show-item;
-            width: #{"min(93%, 314px)"};
+            width: unquote("min(93%, 314px)");
         }
         .comment-show-item__top {
             display: flex;
@@ -273,7 +273,7 @@ comment-show-item {
         padding: 15px 6px 10px 6px;
         .comment-show-form__track-text {
             height: 51px;
-            width: #{"min(98%, 510px)"};
+            width: unquote("min(98%, 510px)");
             resize: none;
             overflow: hidden;
             background: rgb(80, 80, 80);
@@ -296,7 +296,7 @@ comment-show-item {
         }
         .comment-show-form__annotation-text {
             height: 46px;
-            width: #{"min(96%, 307px)"};
+            width: unquote("min(96%, 307px)");
             resize: none;
             overflow: hidden;
             background: rgb(80, 80, 80);
@@ -389,11 +389,11 @@ comment-show-item {
         right: 4px;
         .comment-show-item--track {
             @extend comment-show-item;
-            width: #{"min(95%, 537px)"};
+            width: unquote("min(95%, 537px)");
         }
         .comment-show-item--annotation {
             @extend comment-show-item;
-            width: #{"min(93%, 314px)"};
+            width: unquote("min(93%, 314px)");
         }
         .comment-show-item__top {
             display: flex;
