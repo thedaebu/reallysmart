@@ -1,7 +1,7 @@
 set -o errexit
 
 bundle install
-yarn build
+yarn install
 npm run postinstall
 bundle exec rake assets:precompile
 bundle exec rake assets:clean
