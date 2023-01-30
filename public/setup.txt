@@ -5,3 +5,36 @@ Client Secret:
 ujBnK30-Lwj6IvobLud31HNsYZeBPSGO6_HxbCQ8Y1C7UiIDrjJQlamVEL8hwlbXzuw5ZkGnKudkmQoiclQU_g
 Client Access Token:
 tM5QuSkPbXIp0_2EUoDuKWqco1r1T-zB33hB7wSGVBuab5-UXNu1yCEz1f0iUtST
+
+https://reallysmart.onrender.com
+
+# assets precompile
+bundle exec rails assets:precompile
+
+# heroku
+heroku pg:reset DATABASE_URL
+heroku run bundle exec rails db:migrate
+heroku run bundle exec rails db:seed
+
+# reset database
+bundle exec rails db:drop
+bundle exec rails db:create
+bundle exec rails db:migrate
+bundle exec rails db:schema:load
+bundle exec rails db:seed
+
+# pid
+lsof -wni tcp:3000
+kill -9 <PID>
+
+# testing
+bundle exec rspec --format documentation
+npm run test:watch
+
+# fonts
+font-family: 'Programme', sans-serif;
+font-family: 'Programme Regular', sans-serif;
+font-family: 'Programme Light', sans-serif;
+font-family: 'Barlow Condensed', sans-serif;
+font-family: 'Ubuntu Condensed', sans-serif;
+font-family: 'Raleway', sans-serif;
