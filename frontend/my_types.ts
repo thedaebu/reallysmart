@@ -54,10 +54,6 @@ export type UpdatedComment = {
 };
 
 // used for redux store
-export type PreloadedState = {
-    entities: { user: {[key: number]: User} },
-    session: { id: number | null }
-};
 export type State = {
     entities: Entities,
     session: { id: number | null }
@@ -68,7 +64,7 @@ type Entities = {
     indexTracks: {[key: number]: IndexTrack},
     searches: {[key:number]: IndexTrack},
     track: Track,
-    user: {[key:number]: User}
+    user: User
 };
 
 // used for reducer files
@@ -186,7 +182,7 @@ export type Vote = {
 // used for Window
 export type Window = {
     angellist: string,
-    currentUser: User,
+    currentUser: { session_token: string },
     eyeIcon: string,
     fireIcon: string,
     getSelection: Function,
