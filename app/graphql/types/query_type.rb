@@ -18,7 +18,7 @@ module Types
     end
     field :tracks, [Types::TrackType], null: false
     field :user, Types::UserType, null: false do 
-      argument :id, ID, required: true
+      argument :sessionToken, String, required: true
     end
 
     def annotation(id:)
@@ -39,8 +39,8 @@ module Types
     def tracks
       Track.all
     end
-    def user(id:)
-      User.find(id)
+    def user(sessionToken:)
+      User.find_by_session_token(sessionToken)
     end
   end
 end
