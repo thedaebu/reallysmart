@@ -1,5 +1,6 @@
 import { Dispatch } from "react";
 import { ReceivedUser, SessionAction, SessionUser, User } from "../my_types";
+import * as UserAPIUtil from "./../util/api/user_api_util";
 import * as SessionAPIUtil from "./../util/api/session_api_util";
 
 export const RECEIVE_CURRENT_USER: string = "RECEIVE_CURRENT_USER";
@@ -18,6 +19,10 @@ const receiveSessionErrors: Function = (errors: Array<string>) => ({
     type: RECEIVE_SESSION_ERRORS
 });
 
+export const fetchUser: Function = (sessionToken: string) => (dispatch: Dispatch<SessionAction>) => (
+    UserAPIUtil.fetchUser(sessionToken)
+        .then((receivedUser: ReceivedUser) => dispatch(receiveCurrentUser(receivedUser)), (errors: JQuery.jqXHR) => receiveSessionErrors(errors.responseJSON))
+);
 export const signup: Function = (sessionUser: SessionUser) => (dispatch: Dispatch<SessionAction>) => (
     SessionAPIUtil.signup(sessionUser)
         .then((receivedUser: ReceivedUser) => dispatch(receiveCurrentUser(receivedUser)), (errors: JQuery.jqXHR) => receiveSessionErrors(errors.responseJSON))
