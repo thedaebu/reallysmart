@@ -6,7 +6,7 @@ import NotificationList from "./notification_list";
 import { useLocation } from "react-router-dom";
 
 function NotificationShow({ cableApp }: { cableApp: any }) {
-    const currentUser: User = useSelector((state:State) => state.entities.user[state.session.id]);
+    const currentUser: User = useSelector((state:State) => state.entities.user);
     const { annotation_alerts, mentions } = currentUser;
 
     const [notificationOpenStatus, setNotificationOpenStatus] = useState<boolean>(false);

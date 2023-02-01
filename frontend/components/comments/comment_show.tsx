@@ -9,7 +9,7 @@ import CommentShowItem from "./comment_show_item";
 
 function CommentShow({ commentableType, parent }: { commentableType: "Track" | "Annotation", parent: Track | Annotation }) {
     const comments: {[key:number]: Comment} = useSelector((state: State) => state.entities.comments);
-    const currentUser: User = useSelector((state: State) => state.entities.user[state.session.id]);
+    const currentUser: User = useSelector((state: State) => state.entities.user);
 
     const dispatch: Dispatch<AnyAction> = useDispatch();
     const createComment: Function = (comment: CreatedComment) => dispatch(CommentActions.createComment(comment));

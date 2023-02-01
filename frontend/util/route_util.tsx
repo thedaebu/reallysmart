@@ -1,13 +1,13 @@
 import React, { ComponentType } from "react";
 import { connect } from "react-redux";
 import {
-  Route,
-  Redirect,
-  Switch,
-  Link,
-  HashRouter, 
-  withRouter,
-  RouteComponentProps
+    Route,
+    Redirect,
+    Switch,
+    Link,
+    HashRouter, 
+    withRouter,
+    RouteComponentProps
 } from "react-router-dom";
 import { State } from "../my_types";
 
@@ -18,11 +18,9 @@ interface Props extends RouteComponentProps {
     path: string,
 }
 
-const mSTP = (state: State) => {
-  return (
-    { loggedIn: !!state.session.id }
-  );
-};
+const mSTP = (state: State) => (
+    { loggedIn: !!state.entities.user }
+)
 
 const Auth = (props: Props) => {
     const { component, exact, loggedIn, path } = props;

@@ -5,37 +5,37 @@ import userReducer from "../../reducers/user_reducer";
 import { testUserData } from "../test_store_data";
 
 describe("user reducer", () => {
-    const testUser: { [key: number]: User } = testUserData;
-    const blankUser: { [key: number]: User } = {};
+    const testUser: User = testUserData;
+    const blankUser: {} = {};
 
     test("exports a function", () => {
         expect(typeof userReducer).toEqual("function");
     });
     describe("user actions", () => {
-        test("initializes with an empty object as the default state", () => {
-            expect(userReducer(undefined, {})).toEqual({});
+        test("initializes with null as the default state", () => {
+            expect(userReducer(undefined, {})).toEqual(null);
         });
         test("returns the previous state if an action is not matched", () => {
-            const state: { [key: number]: User } = userReducer(testUser, {type:"NONUSER_ACTION"});
+            const state: User = userReducer(testUser, {type: "NONUSER_ACTION"});
             expect(state).toEqual(testUser);
         });
         describe("RECEIVE_CURRENT_USER action", () => {
             test("returns the data of the current user", () => {
-                const state: { [key: number]: User } = userReducer(blankUser, {type: "RECEIVE_CURRENT_USER", user: testUser[1]});
+                const state: User = userReducer(null, {type: "RECEIVE_CURRENT_USER", user: testUser});
                 expect(state).toEqual(testUser);
             });
             test("does not modify the previous state", () => {
-                const state: { [key: number]: User } = userReducer(blankUser, {type: "RECEIVE_CURRENT_USER", user: testUser[1]});
+                const state: User = userReducer(null, {type: "RECEIVE_CURRENT_USER", user: testUser});
                 expect(blankUser).toEqual(blankUser);
             });
         });
         describe("LOGOUT_CURRENT_USER action", () => {
             test("removes the the current user", () => {
-                const state: { [key: number]: User } = userReducer(testUser, {type: "LOGOUT_CURRENT_USER"});
-                expect(state).toEqual(blankUser);
+                const state: User = userReducer(testUser, {type: "LOGOUT_CURRENT_USER"});
+                expect(state).toEqual(null);
             });
             test("does not modify the previous state", () => {
-                const state: { [key: number]: User } = userReducer(testUser, {type: "LOGOUT_CURRENT_USER"});
+                const state: User = userReducer(testUser, {type: "LOGOUT_CURRENT_USER"});
                 expect(testUser).toEqual(testUser);
             });
         });
@@ -46,14 +46,14 @@ describe("user reducer", () => {
             testStore = createStore(rootReducer);
         });
         test("contains the correct data for RECEIVE_CURRENT_USER action", () => {
-            testStore.dispatch({type: "RECEIVE_CURRENT_USER", user: testUser[1]});
+            testStore.dispatch({type: "RECEIVE_CURRENT_USER", user: testUser});
             expect(testStore.getState().entities.user).toEqual(testUser);
         });
         test("contains the correct data for LOGOUT_CURRENT_USER", () => {
-            testStore.dispatch({type: "RECEIVE_CURRENT_USER", user: testUser[1]});
+            testStore.dispatch({type: "RECEIVE_CURRENT_USER", user: testUser});
             expect(testStore.getState().entities.user).toEqual(testUser);
             testStore.dispatch({type: "LOGOUT_CURRENT_USER"});
-            expect(testStore.getState().entities.user).toEqual({});
+            expect(testStore.getState().entities.user).toEqual(null);
         });
     });
 });

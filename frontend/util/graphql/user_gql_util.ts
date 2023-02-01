@@ -1,8 +1,8 @@
 import { DocumentNode, gql, useMutation, useQuery } from "@apollo/client";
 
 const FETCH_USER: DocumentNode = gql`
-    query FETCH_USER($id: ID!) {
-        user(id: $id) {
+    query FETCH_USER($sessionToken: String!) {
+        user(sessionToken: $sessionToken) {
             id
             username
             voteIds
