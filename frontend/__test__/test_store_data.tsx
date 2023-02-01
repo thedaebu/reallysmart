@@ -168,13 +168,11 @@ export const testIndexTracksData: {[key: number]: IndexTrack} = {
         title: "Stay"
     }
 };
-export const testUserData: {[key: number]: User} = {
-    1: {
-        annotation_alerts: testAnnotationAlertsData,
-        id: 1,
-        mentions: testMentionsData,
-        username: "reallysmart"
-    }
+export const testUserData: User = {
+    annotation_alerts: testAnnotationAlertsData,
+    id: 1,
+    mentions: testMentionsData,
+    username: "reallysmart"
 };
 
 // test stores
@@ -185,10 +183,7 @@ export const testIndexStore: State = {
         indexTracks: testIndexTracksData,
         searches: {},
         track: null,
-        user: {}
-    },
-    session: {
-        id: null
+        user: null
     }
 };
 export const testShowStoreWithoutUser: State = {
@@ -198,10 +193,7 @@ export const testShowStoreWithoutUser: State = {
         indexTracks: {},
         searches: testIndexTracksData,
         track: testTrackData1,
-        user: {}
-    },
-    session: {
-        id: null
+        user: null
     }
 };
 export const testShowStoreWithUser: State = {
@@ -212,8 +204,5 @@ export const testShowStoreWithUser: State = {
         searches: testIndexTracksData,
         track: testTrackData1,
         user: testUserData
-    },
-    session: {
-        id: 1
     }
 };
