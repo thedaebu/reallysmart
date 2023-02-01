@@ -7,7 +7,7 @@ import CommentShow from "../comments/comment_show";
 import VoteShow from "../votes/vote_show";
 
 function AnnotationShowItem({ annotation, trackId }: { annotation: Annotation, trackId: number }) {
-    const currentUser: User = useSelector((state: State) => state.entities.user[state.session.id]);
+    const currentUser: User = useSelector((state: State) => state.entities.user);
 
     const dispatch: Dispatch<AnyAction> = useDispatch();
     const deleteAnnotation: Function = (annotationId: number) => dispatch(AnnotationActions.deleteAnnotation(annotationId));

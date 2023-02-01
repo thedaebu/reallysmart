@@ -14,7 +14,7 @@ type Props = {
 
 function CommentShowItem(props: Props) {
     const { comment, commentableType, parent } = props;
-    const currentUser: User = useSelector((state: State) => state.entities.user[state.session.id]);
+    const currentUser: User = useSelector((state: State) => state.entities.user);
 
     const dispatch: Dispatch<AnyAction> = useDispatch();
     const deleteComment: Function = (commentId: number) => dispatch(CommentActions.deleteComment(commentId));

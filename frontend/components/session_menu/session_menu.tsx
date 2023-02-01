@@ -6,7 +6,7 @@ import { AnyAction } from "@reduxjs/toolkit";
 import { State, User } from "../../my_types";
 
 function SessionMenu() {
-    const currentUser: User = useSelector((state: State) => state.entities.user[state.session.id]);
+    const currentUser: User = useSelector((state: State) => state.entities.user);
 
     const dispatch: Dispatch<AnyAction> = useDispatch();
     const logout: Function = () => dispatch(SessionActions.logout());

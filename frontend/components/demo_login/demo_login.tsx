@@ -5,7 +5,7 @@ import { AnyAction } from "@reduxjs/toolkit";
 import { SessionUser, State, User } from "../../my_types";
 
 function DemoLogin() {
-    const currentUser: User = useSelector((state: State) => state.entities.user[state.session.id]);
+    const currentUser: User = useSelector((state: State) => state.entities.user);
 
     const dispatch: Dispatch<AnyAction> = useDispatch();
     const login: Function = (sessionUser: SessionUser) => dispatch(SessionActions.login(sessionUser));

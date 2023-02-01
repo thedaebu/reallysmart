@@ -8,7 +8,7 @@ import { AnyAction } from "@reduxjs/toolkit";
 import { Annotation, Comment, CreatedVote, State, User, Vote } from "../../my_types";
 
 function VoteShow({ parent, voteableType }: { parent: Annotation | Comment, voteableType: "Annotation" | "Comment" }) {
-    const currentUser: User = useSelector((state: State) => state.entities.user[state.session.id]);
+    const currentUser: User = useSelector((state: State) => state.entities.user);
     const votes: {[key: number]: Vote} = parent.votes;
 
     const dispatch: Dispatch<AnyAction> = useDispatch();
