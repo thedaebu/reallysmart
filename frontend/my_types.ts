@@ -55,8 +55,7 @@ export type UpdatedComment = {
 
 // used for redux store
 export type State = {
-    entities: Entities,
-    session: { id: number | null }
+    entities: Entities
 };
 type Entities = {
     annotations: {[key:number]: Annotation},
