@@ -12,7 +12,7 @@ function Root({ store }: { store: Store<any, AnyAction> }) {
     const cableApp: any = {};
     const cableName: string = process.env.NODE_ENV === "development"
         ? `ws://${window.location.hostname}:3000/cable`
-        : "ws://reallysmart.onrender.com/cable";
+        : "wss://reallysmart.onrender.com/cable";
     cableApp["cable"] = actionCable.createConsumer(cableName);
 
     const [theme, setTheme] = useState<"light" | "dark">(window.sessionStorage.theme ? window.sessionStorage.theme : "light");
