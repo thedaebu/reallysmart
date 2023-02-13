@@ -20,10 +20,10 @@ function CommentShowItem(props: Props) {
     const deleteComment: Function = (commentId: number) => dispatch(CommentActions.deleteComment(commentId));
     const updateComment: Function = (comment: UpdatedComment) => dispatch(CommentActions.updateComment(comment));
 
-    const [commentBody, setCommentBody] = useState<string>(comment.body);
-    const [commentDeleteStatus, setCommentDeleteStatus] = useState<boolean>(false);
-    const [commentErrors, setCommentErrors] = useState<Array<string>>([]);
-    const [commentUpdateStatus, setCommentUpdateStatus] = useState<boolean>(false);
+    const [body, setBody] = useState<string>(comment.body);
+    const [deleteStatus, setDeleteStatus] = useState<boolean>(false);
+    const [errors, setErrors] = useState<Array<string>>([]);
+    const [updateStatus, setUpdateStatus] = useState<boolean>(false);
 
     function timeDisplay() {
         const oldDate: Date = new Date(Date.parse(comment.created_at));
@@ -50,45 +50,46 @@ function CommentShowItem(props: Props) {
 
     function dateDisplay(dateTime: string) {
         const date: Date = new Date(Date.parse(dateTime));
-        const month: string = date.getMonth() < 10 ? `0${date.getMonth().toString()}` : `${date.getMonth().toString()}`;
+        const year: string = date.getFullYear().toString();
+        const month: string = date.getMonth() < 9 ? `0${(date.getMonth()+1).toString()}` : `${(date.getMonth()+1).toString()}`;
         const day: string = date.getDate() < 10 ? `0${date.getDate().toString()}` : `${date.getDate().toString()}`;
         const hour: string = date.getHours() < 10 ? `0${date.getHours().toString()}` : `${date.getHours().toString()}`;
         const minute = date.getMinutes() < 10 ? `0${date.getMinutes().toString()}` : `${date.getMinutes().toString()}`;
-        return `${date.getFullYear().toString()}-${month}-${day} ${hour}:${minute}`;
+        return `${year}-${month}-${day} ${hour}:${minute}`;
     }
 
     function updatebuttons() {
-        if (currentUser.id === comment.commenter_id && commentDeleteStatus === false) {
+        if (deleteStatus === false) {
             return (
                 <div className="comment-show-item__buttons">
                     <button
                         className="comment-show-item__button"
-                        onClick={handleCommentUpdateStatus}
+                        onClick={handleUpdateStatus}
                         data-testid="comment-show-item__edit"
                     >
                         Edit
                     </button>
                     <button
                         className="comment-show-item__button"
-                        onClick={handleCommentDeleteStatus}
+                        onClick={handleDeleteStatus}
                         data-testid="comment-show-item__delete"
                     >
                         Delete
                     </button>
                 </div>
             );
-        } else if (commentDeleteStatus === true) {
+        } else {
             return (
                 <div className="comment-show-item__buttons" data-testid="comment-show-item__buttons">
                     <p className="comment-show-item__question">
                         Are you sure?
                     </p>
-                    <button className="comment-show-item__button" onClick={handleCommentDeleteSubmit}>
+                    <button className="comment-show-item__button" onClick={handleDeleteSubmit}>
                         Yes
                     </button>
                     <button 
                         className="comment-show-item__button"
-                        onClick={handleCommentDeleteStatus}
+                        onClick={handleDeleteStatus}
                         data-testid="comment-show-item__delete"
                     >
                         No
@@ -98,19 +99,19 @@ function CommentShowItem(props: Props) {
         }
     }
 
-    function handleCommentUpdateStatus(e: MouseEvent<HTMLButtonElement>) {
+    function handleUpdateStatus(e: MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
 
-        setCommentBody(comment.body);
-        setCommentErrors([]);
-        setCommentUpdateStatus(!commentUpdateStatus);
+        setBody(comment.body);
+        setErrors([]);
+        setUpdateStatus(!updateStatus);
     }
 
     function commentUpdateForm() {
         return (
             <form
                 className="comment-show-form"
-                onSubmit={handleUpdatedCommentSubmit}
+                onSubmit={handleUpdateSubmit}
                 data-testid="comment-show-form"
             >
                 <textarea
@@ -118,18 +119,18 @@ function CommentShowItem(props: Props) {
                         ? "comment-show-form__track-text"
                         : "comment-show-form__annotation-text"
                     }
-                    onChange={handlecommentBodyChange()}
-                    value={commentBody}
+                    onChange={handleBodyChange()}
+                    value={body}
                     data-testid="comment-show-form__text"
                 />
-                {commentErrors.length > 0 && errorsDisplay()}
+                {errors.length > 0 && errorsDisplay()}
                 <div className="comment-show-form__buttons">
                     <button className="comment-show-form__submit">
                         <p>Save</p>
                     </button>
                     <button
                         className="comment-show-form__cancel"
-                        onClick={handleCommentUpdateStatus}
+                        onClick={handleUpdateStatus}
                         data-testid="comment-show-form__cancel"
                     >
                         <p>Cancel</p>
@@ -139,15 +140,15 @@ function CommentShowItem(props: Props) {
         );
     }
 
-    function handlecommentBodyChange() {
-        return (e: ChangeEvent<HTMLTextAreaElement>) => setCommentBody(e.currentTarget.value);
+    function handleBodyChange() {
+        return (e: ChangeEvent<HTMLTextAreaElement>) => setBody(e.currentTarget.value);
     }
 
-    function handleUpdatedCommentSubmit(e: MouseEvent<HTMLFormElement>) {
+    function handleUpdateSubmit(e: MouseEvent<HTMLFormElement>) {
         e.preventDefault();
 
         const updatedComment: UpdatedComment = {
-            body: commentBody,
+            body,
             commentable_type: commentableType,
             commentable_id: parent.id,
             commenter_id: currentUser.id,
@@ -157,10 +158,10 @@ function CommentShowItem(props: Props) {
         updateComment(updatedComment)
             .then((result: CommentAction) => {
                 if (result.type === "RECEIVE_COMMENT_ERRORS") {
-                    setCommentErrors(result.errors);
+                    setErrors(result.errors);
                 } else {
-                    setCommentErrors([]);
-                    setCommentUpdateStatus(false);
+                    setErrors([]);
+                    setUpdateStatus(false);
                 }
             });
     }
@@ -168,24 +169,24 @@ function CommentShowItem(props: Props) {
     function errorsDisplay() {
         return (
             <ul className="errors-list">
-                {commentErrors.map((commentError: string, idx: number) => (
+                {errors.map((commentError: string, idx: number) => (
                     <li key={idx}>{commentError}</li>
                 ))}
             </ul>
         );
     }
 
-    function handleCommentDeleteStatus(e: MouseEvent<HTMLButtonElement>) {
+    function handleDeleteStatus(e: MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
 
-        setCommentDeleteStatus(!commentDeleteStatus);
+        setDeleteStatus(!deleteStatus);
     }
 
-    function handleCommentDeleteSubmit(e: MouseEvent<HTMLButtonElement>) {
+    function handleDeleteSubmit(e: MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
 
         deleteComment(comment.id)
-            .then(() => setCommentDeleteStatus(false));
+            .then(() => setDeleteStatus(false));
     }
 
     return (
@@ -196,7 +197,7 @@ function CommentShowItem(props: Props) {
                     : "comment-show-item--annotation"
                 }
             >
-                {commentUpdateStatus === true 
+                {updateStatus 
                     ? commentUpdateForm()
                     : (
                         <div data-testid="comment-show-item">
@@ -213,7 +214,7 @@ function CommentShowItem(props: Props) {
                             <p className="comment-show-item__body">{comment.body}</p>
                             {comment.created_at !== comment.updated_at && <p className="comment-show-item__edited">edited: {`${dateDisplay(comment.updated_at)}`}</p>}
                             <VoteShow parent={comment} voteableType="Comment" />
-                            {currentUser && updatebuttons()}
+                            {(currentUser && currentUser.id === comment.commenter_id) && updatebuttons()}
                         </div>
                     )
                 }

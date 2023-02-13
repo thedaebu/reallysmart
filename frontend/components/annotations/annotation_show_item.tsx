@@ -13,57 +13,58 @@ function AnnotationShowItem({ annotation, trackId }: { annotation: Annotation, t
     const deleteAnnotation: Function = (annotationId: number) => dispatch(AnnotationActions.deleteAnnotation(annotationId));
     const updateAnnotation: Function = (annotation: UpdatedAnnotation) => dispatch(AnnotationActions.updateAnnotation(annotation));
 
-    const [annotationBody, setAnnotationBody] = useState<string>(annotation.body);
-    const [annotationDeleteStatus, setAnnotationDeleteStatus] = useState<boolean>(false);
-    const [annotationErrors, setAnnotationErrors] = useState<Array<string>>([]);
-    const [annotationUpdateStatus, setAnnotationUpdateStatus] = useState<boolean>(false);
+    const [body, setBody] = useState<string>(annotation.body);
     const [currentAnnotation, setCurrentAnnotation] = useState<Annotation>(annotation);
+    const [deleteStatus, setDeleteStatus] = useState<boolean>(false);
+    const [errors, setErrors] = useState<Array<string>>([]);
+    const [updateStatus, setUpdateStatus] = useState<boolean>(false);
 
     useEffect(() => {
-        setAnnotationBody(annotation.body);
-    }, [annotationUpdateStatus]);
+        setBody(annotation.body);
+    }, [updateStatus]);
 
-    function dateDisplay() {
-        const date: Date = new Date(Date.parse(annotation.updated_at));
-        const month: string = date.getMonth() < 10 ? `0${date.getMonth().toString()}` : `${date.getMonth().toString()}`;
+    function dateDisplay(dateTime: string) {
+        const date: Date = new Date(Date.parse(dateTime));
+        const year: string = date.getFullYear().toString();
+        const month: string = date.getMonth() < 9 ? `0${(date.getMonth()+1).toString()}` : `${(date.getMonth()+1).toString()}`;
         const day: string = date.getDate() < 10 ? `0${date.getDate().toString()}` : `${date.getDate().toString()}`;
         const hour: string = date.getHours() < 10 ? `0${date.getHours().toString()}` : `${date.getHours().toString()}`;
         const minute = date.getMinutes() < 10 ? `0${date.getMinutes().toString()}` : `${date.getMinutes().toString()}`;
-        return `${date.getFullYear().toString()}-${month}-${day} ${hour}:${minute}`;
+        return `${year}-${month}-${day} ${hour}:${minute}`;
     }
 
-    function updatebuttons() {
-        if (currentUser.id === currentAnnotation.annotator_id && annotationDeleteStatus === false) {
+    function updateButtons() {
+        if (deleteStatus === false) {
             return (
                 <div className="annotation-show-item__buttons">
                     <button 
                         className="annotation-show-item__button"
-                        onClick={handleAnnotationUpdateStatus}
+                        onClick={handleupdateStatus}
                         data-testid="annotation-show-item__edit"
                     >
                         Edit
                     </button>
                     <button
                         className="annotation-show-item__button"
-                        onClick={handleAnnotationDeleteStatus}
+                        onClick={handleDeleteStatus}
                         data-testid="annotation-show-item__delete"
                     >
                         Delete
                     </button>
                 </div>
             );
-        } else if (annotationDeleteStatus === true) {
+        } else {
             return (
                 <div className="annotation-show-item__buttons">
                     <p className="annotation-show-item__question" data-testid="annotation-show-item__question">
                         Are you sure?
                     </p>
-                    <button className="annotation-show-item__button" onClick={handleAnnotationDeleteSubmit}>
+                    <button className="annotation-show-item__button" onClick={handleDeleteSubmit}>
                         Yes
                     </button>
                     <button
                         className="annotation-show-item__button"
-                        onClick={handleAnnotationDeleteStatus}
+                        onClick={handleDeleteStatus}
                         data-testid="annotation-show-item__delete-no"
                     >
                         No
@@ -73,27 +74,27 @@ function AnnotationShowItem({ annotation, trackId }: { annotation: Annotation, t
         }
     }
 
-    function handleAnnotationUpdateStatus(e: MouseEvent<HTMLButtonElement>) {
+    function handleupdateStatus(e: MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
 
-        setAnnotationUpdateStatus(!annotationUpdateStatus);
-        setAnnotationErrors([]);
+        setUpdateStatus(!updateStatus);
+        setErrors([]);
     }
 
-    function annotationUpdateForm() {
+    function updateForm() {
         return (
             <form
                 id="annotation-show-form"
-                onSubmit={handleAnnotationUpdateSubmit}
+                onSubmit={handleUpdateSubmit}
                 data-testid="annotation-show-form"
             >
                 <textarea
                     className="annotation-show-form__body" 
-                    onChange={handleAnnotationBodyChange()}
-                    value={annotationBody}
+                    onChange={handleBodyChange()}
+                    value={body}
                 >
                 </textarea>
-                {annotationErrors.length > 0 && errorsDisplay()}
+                {errors.length > 0 && errorsDisplay()}
                 <div className="annotation-show-form__middle">
                     <p className="annotation-show-form__middle__tools">Tools:</p>
                     <div className="annotation-show-form__middle__items">
@@ -119,7 +120,7 @@ function AnnotationShowItem({ annotation, trackId }: { annotation: Annotation, t
                     </button>
                     <button
                         className="annotation-show-form__bottom-cancel"
-                        onClick={handleAnnotationUpdateStatus}
+                        onClick={handleupdateStatus}
                         data-testid="annotation-show-form__bottom-cancel"
                     >
                         Cancel
@@ -129,16 +130,16 @@ function AnnotationShowItem({ annotation, trackId }: { annotation: Annotation, t
         );
     }
 
-    function handleAnnotationBodyChange() {
-        return (e: ChangeEvent<HTMLTextAreaElement>) => setAnnotationBody(e.currentTarget.value);
+    function handleBodyChange() {
+        return (e: ChangeEvent<HTMLTextAreaElement>) => setBody(e.currentTarget.value);
     }
 
-    function handleAnnotationUpdateSubmit(e: MouseEvent<HTMLFormElement>) {
+    function handleUpdateSubmit(e: MouseEvent<HTMLFormElement>) {
         e.preventDefault();
 
         const updatedAnnotation: UpdatedAnnotation = {
             annotator_id: currentUser.id,
-            body: annotationBody,
+            body,
             end_index: currentAnnotation.end_index,
             id: currentAnnotation.id,
             start_index: currentAnnotation.start_index,
@@ -148,9 +149,9 @@ function AnnotationShowItem({ annotation, trackId }: { annotation: Annotation, t
         updateAnnotation(updatedAnnotation)
             .then((result: AnnotationAction) => {
                 if (result.type === "RECEIVE_ANNOTATION_ERRORS") {
-                    setAnnotationErrors(result.errors);
+                    setErrors(result.errors);
                 } else {
-                    setAnnotationUpdateStatus(false);
+                    setUpdateStatus(false);
                 }
             });
     }
@@ -158,20 +159,20 @@ function AnnotationShowItem({ annotation, trackId }: { annotation: Annotation, t
     function errorsDisplay() {
         return (
             <ul className="errors-list">
-                {annotationErrors.map((annotationError: string, idx: number) => (
+                {errors.map((annotationError: string, idx: number) => (
                     <li key={idx}>{annotationError}</li>
                 ))}
             </ul>
         );
     }
 
-    function handleAnnotationDeleteStatus(e: MouseEvent<HTMLButtonElement>) {
+    function handleDeleteStatus(e: MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
 
-        setAnnotationDeleteStatus(!annotationDeleteStatus);
+        setDeleteStatus(!deleteStatus);
     }
 
-    function handleAnnotationDeleteSubmit(e: MouseEvent<HTMLButtonElement>) {
+    function handleDeleteSubmit(e: MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
 
         deleteAnnotation(currentAnnotation.id)
@@ -181,15 +182,15 @@ function AnnotationShowItem({ annotation, trackId }: { annotation: Annotation, t
     return (
         <>
             {currentAnnotation && (
-                annotationUpdateStatus === true 
-                    ? annotationUpdateForm()
+                updateStatus
+                    ? updateForm()
                     : (
                         <div className="annotation-show-item" data-testid="annotation-show-item">
                             <p className="annotation-show-item__name">Really Smart Annotation by {annotation.annotator_name}</p>
                             <p className="annotation-show-item__body">{annotation.body}</p>
-                            {annotation.created_at !== annotation.updated_at && <p className="annotation-show-item__edited">edited: {`${dateDisplay()}`}</p>}
+                            {annotation.created_at !== annotation.updated_at && <p className="annotation-show-item__edited">edited: {dateDisplay(annotation.updated_at)}</p>}
                             <VoteShow parent={annotation} voteableType="Annotation" />
-                            {currentUser && updatebuttons()}
+                            {(currentUser && currentUser.id === currentAnnotation.annotator_id) && updateButtons()}
                             <CommentShow
                                 commentableType="Annotation"
                                 parent={annotation}
