@@ -39,7 +39,7 @@ function AnnotationShowItem({ annotation, trackId }: { annotation: Annotation, t
                 <div className="annotation-show-item__buttons">
                     <button 
                         className="annotation-show-item__button"
-                        onClick={handleupdateStatus}
+                        onClick={handleUpdateStatus}
                         data-testid="annotation-show-item__edit"
                     >
                         Edit
@@ -74,7 +74,7 @@ function AnnotationShowItem({ annotation, trackId }: { annotation: Annotation, t
         }
     }
 
-    function handleupdateStatus(e: MouseEvent<HTMLButtonElement>) {
+    function handleUpdateStatus(e: MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
 
         setUpdateStatus(!updateStatus);
@@ -120,7 +120,7 @@ function AnnotationShowItem({ annotation, trackId }: { annotation: Annotation, t
                     </button>
                     <button
                         className="annotation-show-form__bottom-cancel"
-                        onClick={handleupdateStatus}
+                        onClick={handleUpdateStatus}
                         data-testid="annotation-show-form__bottom-cancel"
                     >
                         Cancel
