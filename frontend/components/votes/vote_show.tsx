@@ -34,7 +34,7 @@ function VoteShow({ parent, voteableType }: { parent: Annotation | Comment, vote
             return (
                 <RiThumbUpLine
                     className="vote-show__voted"
-                    onClick={handleVoteUpdate}
+                    onClick={handleUpdate}
                     data-testid="vote-show__voted"
                 />
             );
@@ -42,14 +42,14 @@ function VoteShow({ parent, voteableType }: { parent: Annotation | Comment, vote
             return (
                 <RiThumbUpLine
                     className="vote-show__not-voted"
-                    onClick={handleVoteUpdate}
+                    onClick={handleUpdate}
                     data-testid="vote-show__not-voted"
                 />
             );
         } 
     }
 
-    function handleVoteUpdate(e: MouseEvent<HTMLOrSVGElement>) {
+    function handleUpdate(e: MouseEvent<HTMLOrSVGElement>) {
         e.preventDefault();
 
         if (currentUserVote) {
@@ -62,7 +62,6 @@ function VoteShow({ parent, voteableType }: { parent: Annotation | Comment, vote
                 voteable_id: parent.id,
                 voter_id: currentUser.id
             };
-
             createVote(vote)
                 .then(() => fetchParent(parent.id));
         }
@@ -71,13 +70,13 @@ function VoteShow({ parent, voteableType }: { parent: Annotation | Comment, vote
     function getCurrentVotes(votes: {[key: number]: Vote}) {
         const currentVotes: Array<Vote> = Object.values(votes);
         const voteCount: number = currentVotes.length;
-
         setCurrentNumberOfVotes(voteCount);
         if (currentUser) {
             for (let i = 0; i < voteCount; i++) {
                 const vote: Vote = currentVotes[i];
                 if (currentUser.id === vote.voter_id) {
                     setCurrentUserVote(vote);
+                    break;
                 }
             };
         }

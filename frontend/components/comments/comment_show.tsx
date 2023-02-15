@@ -8,25 +8,33 @@ import { Annotation, Comment, CommentAction, CreatedComment, State, Track, User 
 import CommentShowItem from "./comment_show_item";
 
 function CommentShow({ commentableType, parent }: { commentableType: "Track" | "Annotation", parent: Track | Annotation }) {
-    const comments: {[key:number]: Comment} = useSelector((state: State) => state.entities.comments);
+    const comments: {[key: number]: Comment} = useSelector((state: State) => state.entities.comments);
     const currentUser: User = useSelector((state: State) => state.entities.user);
 
     const dispatch: Dispatch<AnyAction> = useDispatch();
     const createComment: Function = (comment: CreatedComment) => dispatch(CommentActions.createComment(comment));
 
+    const [body, setBody] = useState<string>("");
+    const [createStatus, setCreateStatus] = useState<boolean>(false);
     const [currentComments, setCurrentComments] = useState<Array<Comment>>([]);
-    const [commentBody, setCommentBody] = useState<string>("");
-    const [commentCreateStatus, setCommentCreateStatus] = useState<boolean>(false);
-    const [commentErrors, setCommentErrors] = useState<Array<string>>([]);
-
+    const [errors, setErrors] = useState<Array<string>>([]);
+    
     const { theme } = useContext(ThemeContext);
 
     useEffect(() => {
-        setCurrentComments(Object.values(comments).filter((comment: Comment) => comment.commentable_type === commentableType && comment.commentable_id === parent.id));
+        setCurrentComments(handleCurrentComments(Object.values(comments)));
     }, [comments]);
 
-    function commentCreateForm() {
-        if (commentCreateStatus === false) {
+    function handleCurrentComments(comments: Array<Comment>) {
+        return comments.filter((comment: Comment) => isCurrentComment(comment));
+    }
+
+    function isCurrentComment(comment: Comment) {
+        return comment.commentable_type === commentableType && comment.commentable_id === parent.id;
+    }
+
+    function createForm() {
+        if (createStatus === false) {
             return (
                 <div className="comment-show__begin">
                     <img className="comment-show__begin--baby" src="https://assets.genius.com/images/default_avatar_100.png" alt="Baby" />
@@ -36,7 +44,7 @@ function CommentShow({ commentableType, parent }: { commentableType: "Track" | "
                             ? "Add a comment"
                             : "You think you're really smarter?"
                         }
-                        onClick={handleCommentCreateStatus}
+                        onClick={handleCreateStatus}
                         data-testid="comment-show__begin-text"
                     />
                 </div>
@@ -45,7 +53,7 @@ function CommentShow({ commentableType, parent }: { commentableType: "Track" | "
             return (
                 <form
                     className="comment-show-form"
-                    onSubmit={handleCommentCreateSubmit}
+                    onSubmit={handleCreateSubmit}
                     data-testid="comment-show-form"
                 >
                     <textarea
@@ -53,21 +61,21 @@ function CommentShow({ commentableType, parent }: { commentableType: "Track" | "
                             ? "comment-show-form__track-text"
                             : "comment-show-form__annotation-text"
                         }
-                        onChange={handleCommentBodyChange()}
+                        onChange={handleBodyChange()}
                         placeholder={commentableType === "Track"
                             ? "Add a comment"
                             : "You think you're really smarter?"
                         }
                         data-testid="comment-show-form__text"
                     />
-                    {commentErrors.length > 0 && errorsDisplay()}
+                    {errors.length > 0 && errorsDisplay()}
                     <div className="comment-show-form__buttons">
                         <button className="comment-show-form__submit">
                             <p>Submit</p>
                         </button>
                         <button
                             className="comment-show-form__cancel"
-                            onClick={handleCommentCreateStatus}
+                            onClick={handleCreateStatus}
                             data-testid="comment-show-form__cancel"
                         >
                             <p>Cancel</p>
@@ -78,40 +86,39 @@ function CommentShow({ commentableType, parent }: { commentableType: "Track" | "
         }
     }
 
-    function handleCommentCreateStatus(e: MouseEvent<HTMLTextAreaElement | HTMLButtonElement>) {
+    function handleCreateStatus(e: MouseEvent<HTMLTextAreaElement | HTMLButtonElement>) {
         e.preventDefault();
 
-        if (commentCreateStatus === false) {
-            setCommentCreateStatus(true);
+        if (createStatus === false) {
+            setCreateStatus(true);
         } else {
-            setCommentBody("");
-            setCommentCreateStatus(false);
-            setCommentErrors([]);
+            setBody("");
+            setCreateStatus(false);
+            setErrors([]);
         }
     }
 
-    function handleCommentBodyChange() {
-        return (e: ChangeEvent<HTMLTextAreaElement>) => setCommentBody(e.target.value);
+    function handleBodyChange() {
+        return (e: ChangeEvent<HTMLTextAreaElement>) => setBody(e.target.value);
     }
 
-    function handleCommentCreateSubmit(e: FormEvent<HTMLFormElement>) {
+    function handleCreateSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
 
         const comment: CreatedComment = {
-            body: commentBody,
-            commentable_type: commentableType,
+            body: body,
             commentable_id: parent.id,
+            commentable_type: commentableType,
             commenter_id: currentUser.id
         };
-
         createComment(comment)
             .then((result: CommentAction) => {
                 if (result.type === "RECEIVE_COMMENT_ERRORS") {
-                    setCommentErrors(result.errors);
+                    setErrors(result.errors);
                 } else {
-                    setCommentBody("");
-                    setCommentCreateStatus(false);
-                    setCommentErrors([]);
+                    setBody("");
+                    setCreateStatus(false);
+                    setErrors([]);
                 }
             });
     }
@@ -119,7 +126,7 @@ function CommentShow({ commentableType, parent }: { commentableType: "Track" | "
     function errorsDisplay() {
         return (
             <ul className="errors-list">
-                {commentErrors.map((commentError: string, idx: number) => (
+                {errors.map((commentError: string, idx: number) => (
                     <li key={idx}>{commentError}</li>
                 ))}
             </ul>
@@ -129,7 +136,7 @@ function CommentShow({ commentableType, parent }: { commentableType: "Track" | "
     return (
         <div className={theme === "light" ? "comment-show" : "comment-show--dark"} data-testid="comment-show">
             {currentUser
-                ? commentCreateForm()
+                ? createForm()
                 : (
                     <div className="comment-show__session" data-testid="comment-show__session">
                         <p>Please</p>

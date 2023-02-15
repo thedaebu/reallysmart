@@ -1,4 +1,4 @@
-import React, { Dispatch, MouseEvent } from "react";
+import React, { Dispatch } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import * as SessionActions from "../../actions/session_actions";
@@ -11,16 +11,20 @@ function SessionMenu() {
     const dispatch: Dispatch<AnyAction> = useDispatch();
     const logout: Function = () => dispatch(SessionActions.logout());
 
-    function sessionLogout(e: MouseEvent<HTMLAnchorElement>) {
-        e.preventDefault();
-
-        logout();
-    }
-
     return (
         <>
-            {!currentUser 
+            {currentUser 
                 ? (
+                    <div className="session-menu__user">
+                        <a 
+                            className="session-menu__logout" 
+                            onClick={() => logout()}
+                            data-testid="session-menu__logout"
+                        >
+                            LOG OUT
+                        </a>
+                    </div>
+                ) : (
                     <div className="session-menu__no-user">
                         <Link
                             to="/signup" 
@@ -36,18 +40,6 @@ function SessionMenu() {
                         >
                             LOG IN
                         </Link>
-                    </div>
-                ) : (
-                    <div className="session-menu__user">
-                        {/* <input type="file"/> */}
-                        {/* <img src={currentUser.avatar_url} /> */}
-                        <a 
-                            className="session-menu__logout" 
-                            onClick={sessionLogout}
-                            data-testid="session-menu__logout"
-                        >
-                            LOG OUT
-                        </a>
                     </div>
                 )
             }

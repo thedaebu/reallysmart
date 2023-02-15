@@ -6,12 +6,9 @@ declare const window: Window;
 
 function TrackIndexItem({ listNumber, track }: { listNumber: number, track: IndexTrack }) {
     const { artist, artwork_path, title } = track;
-    const urlArtist: string = urlify(artist);
-    const urlTitle: string = urlify(title);
 
     function urlify(string: string) {
-        const words: Array<string> = string.split(" ");
-        return words.join("_").toLowerCase();
+        return string.split(" ").join("_").toLowerCase();
     }
 
     function randomNum() {
@@ -20,7 +17,7 @@ function TrackIndexItem({ listNumber, track }: { listNumber: number, track: Inde
 
     return (
         <Link
-            to={`/tracks/${urlArtist}__${urlTitle}`}
+            to={`/tracks/${urlify(artist)}__${urlify(title)}`}
             className="track-index-item"
             data-testid="track-index-item"
         >
