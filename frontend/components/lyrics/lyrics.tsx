@@ -23,13 +23,13 @@ type HighlightedNode = {
 function LyricsShow({ track }: { track: Track }) {
     const { lyrics, title } = track;
 
-    const annotations: {[key:number]: Annotation} = useSelector((state: State) => state.entities.annotations);
+    const annotations: {[key: number]: Annotation} = useSelector((state: State) => state.entities.annotations);
 
-    const [annotationCreateStatus, setAnnotationCreateStatus] = useState<boolean>(false);
-    const [annotationOpenStatus, setAnnotationOpenStatus] = useState<boolean>(false);
+    const [annotatedLyrics, setAnnotatedLyrics] = useState<Array<JSX.Element>>([]);
+    const [createStatus, setCreateStatus] = useState<boolean>(false);
     const [endIndex, setEndIndex] = useState<number>(0);
-    const [lyricsPartHighlightStatus, setLyricsPartHighlightStatus] = useState<boolean>(false);
-    const [lyricsParts, setLyricsParts] = useState<Array<JSX.Element>>([]);
+    const [highlightStatus, setHighlightStatus] = useState<boolean>(false);
+    const [openStatus, setOpenStatus] = useState<boolean>(false);
     const [selectedAnnotation, setSelectedAnnotation] = useState<Annotation | null>(null);
     const [startIndex, setStartIndex] = useState<number>(0);
     const [yCoord, setYCoord] = useState<number>(-367);
@@ -37,10 +37,10 @@ function LyricsShow({ track }: { track: Track }) {
     const { theme } = useContext(ThemeContext);
 
     useEffect(() => {
-        if (lyricsPartHighlightStatus === false) {
-            annotateLyrics();
+        if (highlightStatus === false) {
+            annotateLyrics(Object.values(annotations));
         }
-    }, [lyricsPartHighlightStatus]);
+    }, [highlightStatus]);
 
     // used for editing annotations
     // without it, annotation will not update live and user would have to click out of annotation and click on annotation again
@@ -51,15 +51,13 @@ function LyricsShow({ track }: { track: Track }) {
                 setSelectedAnnotation(annotations[tempAnnotationId]);
             }
         }
-        annotateLyrics();
+        annotateLyrics(Object.values(annotations));
     }, [annotations]);
 
-    function annotateLyrics() {
-        const currentAnnotations: Array<Annotation> = Object.values(annotations);
-        if (currentAnnotations.length > 0) {
-            const sortedAnnotations: Array<Annotation> = currentAnnotations.sort((a: Annotation, b: Annotation) => (a.start_index - b.start_index));
-
-            const currentLyricsParts: Array<JSX.Element> = [];
+    function annotateLyrics(annotations: Array<Annotation>) {
+        if (annotations.length > 0) {
+            const sortedAnnotations: Array<Annotation> = annotations.sort((a: Annotation, b: Annotation) => (a.start_index - b.start_index));
+            const currentAnnotatedLyrics: Array<JSX.Element> = [];
             let currentIndex: number = 0;
             sortedAnnotations.forEach((annotation: Annotation, idx: number) => {
                 const addIndex: number = idx === 0
@@ -67,13 +65,12 @@ function LyricsShow({ track }: { track: Track }) {
                     : sortedAnnotations[idx-1].end_index;
                 const startIndex: number = annotation.start_index;
                 const endIndex: number = annotation.end_index;
-
                 if (currentIndex === startIndex) {
-                    currentLyricsParts.push(
+                    currentAnnotatedLyrics.push(
                         <span
                             className="lyrics__is-annotation"
                             key={`is-anno-${annotation.id}`}
-                            onClick={() => selectAnnotation(annotation)}
+                            onClick={() => setSelectedAnnotation(annotation)}
                             data-name={`is-anno-${annotation.id}`}
                             data-testid="lyrics__is-annotation"
                         >
@@ -81,7 +78,7 @@ function LyricsShow({ track }: { track: Track }) {
                         </span>
                     );
                 } else {
-                    currentLyricsParts.push(
+                    currentAnnotatedLyrics.push(
                         <span
                             className="lyrics__not-annotation"
                             key={`not-anno-${idx}`}
@@ -92,11 +89,11 @@ function LyricsShow({ track }: { track: Track }) {
                             {lyrics.slice(currentIndex, startIndex)}
                         </span>
                     );
-                    currentLyricsParts.push(
+                    currentAnnotatedLyrics.push(
                         <span
                             className="lyrics__is-annotation"
                             key={`is-anno-${annotation.id}`}
-                            onClick={() => selectAnnotation(annotation)}
+                            onClick={() => setSelectedAnnotation(annotation)}
                             data-name={`is-anno-${annotation.id}`}
                             data-testid="lyrics__is-annotation"
                         >
@@ -105,7 +102,7 @@ function LyricsShow({ track }: { track: Track }) {
                     );
                 }
                 if (idx === sortedAnnotations.length - 1) {
-                    currentLyricsParts.push(
+                    currentAnnotatedLyrics.push(
                         <span
                             className="lyrics__not-annotation"
                             key={`not-anno-${idx + 1}`}
@@ -119,12 +116,13 @@ function LyricsShow({ track }: { track: Track }) {
                 }
                 currentIndex = endIndex + 1;
             });
-
-            setLyricsParts(currentLyricsParts);
+            
+            setAnnotatedLyrics(currentAnnotatedLyrics);
         } else {
-            setLyricsParts([
+            setAnnotatedLyrics([
                 <span
                     className="lyrics__not-annotation"
+                    key="not-anno-0"
                     onMouseUp={handleTextSelect}
                     data-add="0"
                     data-name={"not-anno-0"}
@@ -136,14 +134,10 @@ function LyricsShow({ track }: { track: Track }) {
         }
     }
 
-    function selectAnnotation(annotation: Annotation) {
-        setSelectedAnnotation(annotation);
-    }
-
     function handleTextSelect(e: MouseEvent<HTMLElement>) {
         e.preventDefault();
 
-        setLyricsPartHighlightStatus(true);
+        setHighlightStatus(true);
         setYCoord(e.pageY-(e.pageY % 30)-367);
         const highlighted: Highlighted = window.getSelection();
         if (highlighted && highlighted.anchorOffset !== highlighted.focusOffset) {
@@ -151,8 +145,8 @@ function LyricsShow({ track }: { track: Track }) {
             setStartIndex(start);
             setEndIndex(end);
             if (startIndex < endIndex) {
-                handleLyricsPartHighlight(start, end, highlighted);
-                setAnnotationOpenStatus(true);
+                handleHighlight(start, end, highlighted);
+                setOpenStatus(true);
             }
         }
     }
@@ -161,7 +155,6 @@ function LyricsShow({ track }: { track: Track }) {
         const anchorName: string = highlighted.anchorNode.parentNode.dataset.name;
         const focusName: string = highlighted.focusNode.parentNode.dataset.name;
         const add: number = parseInt(highlighted.focusNode.parentNode.dataset.add);
-
         let start: number = 0;
         let end: number = 0;
         if (anchorName.includes("not-anno") && anchorName === focusName) {
@@ -174,69 +167,67 @@ function LyricsShow({ track }: { track: Track }) {
         return [start + 1, end - 1];
     }
 
-    function handleLyricsPartHighlight(start: number, end: number, highlighted: Highlighted) {
-        const { name }: {name: string} = highlighted.anchorNode.parentNode.dataset;
+    function handleHighlight(start: number, end: number, highlighted: Highlighted) {
+        const { name }: { name: string } = highlighted.anchorNode.parentNode.dataset;
         const add: number = parseInt(highlighted.anchorNode.parentNode.dataset.add);
-
-        let currentLyricsPart: JSX.Element;
+        let currentSection: JSX.Element;
         let currentIndex: number;
-        for (let i = 0; i < lyricsParts.length; i++) {
-            const lyricsPart: JSX.Element = lyricsParts[i];
+        for (let i = 0; i < annotatedLyrics.length; i++) {
+            const lyricsPart: JSX.Element = annotatedLyrics[i];
             if (lyricsPart.key === name) {
-                currentLyricsPart = lyricsPart;
+                currentSection = lyricsPart;
                 currentIndex = i;
                 break;
             }
         }
 
-        const highlightedCurrentLyricsPart: Array<JSX.Element> = [];
-        const currentLyricsPartLyrics: string = currentLyricsPart.props.children;
-        highlightedCurrentLyricsPart.push(
+        const currentSectionWithHighlight: Array<JSX.Element> = [];
+        const currentSectionLyrics: string = currentSection.props.children;
+        currentSectionWithHighlight.push(
             <span
                 className="lyrics__not-annotation"
                 key="highlighted_0"
                 data-testid="lyrics__unhighlighted"
             >
-                {currentLyricsPartLyrics.slice(0, start - add - 1)}
+                {currentSectionLyrics.slice(0, start - add - 1)}
             </span>
         );
-        highlightedCurrentLyricsPart.push(
+        currentSectionWithHighlight.push(
             <span
                 className="lyrics__highlighted"
                 key="highlighted_1"
                 data-testid="lyrics__highlighted"
             >
-                {currentLyricsPartLyrics.slice(start - add - 1, end - add)}
+                {currentSectionLyrics.slice(start - add - 1, end - add)}
             </span>
         );
-        highlightedCurrentLyricsPart.push(
+        currentSectionWithHighlight.push(
             <span
                 className="lyrics__not-annotation"
                 key="highlighted_2"
                 data-testid="lyrics__unhighlighted"
             >
-                {currentLyricsPartLyrics.slice(end - add)}
+                {currentSectionLyrics.slice(end - add)}
             </span>
         );
-
-        let newLyricsParts: Array<JSX.Element> = [...lyricsParts.slice(0, currentIndex), ...highlightedCurrentLyricsPart, ...lyricsParts.slice(currentIndex + 1)];
-        setLyricsParts(newLyricsParts);
+        const annotatedLyricsWithHighlight: Array<JSX.Element> = [...annotatedLyrics.slice(0, currentIndex), ...currentSectionWithHighlight, ...annotatedLyrics.slice(currentIndex + 1)];
+        setAnnotatedLyrics(annotatedLyricsWithHighlight);
     }
 
-    function removeLyricsPartHighlight() {
-        setLyricsPartHighlightStatus(false);
-    };
+    function removeHighlight() {
+        setHighlightStatus(false);
+    }
 
     function handleTextDeselect() {
-        setAnnotationOpenStatus(false);
+        setOpenStatus(false);
         setSelectedAnnotation(null);
-        setLyricsPartHighlightStatus(false);
-        setAnnotationCreateStatus(false);
+        setHighlightStatus(false);
+        setCreateStatus(false);
     }
 
-    function handleAnnotationCreateStatus(){
-        setAnnotationCreateStatus(!annotationCreateStatus);
-    };
+    function handleCreateStatus(){
+        setCreateStatus(!createStatus);
+    }
 
     return (
         <div className={theme === "light" ? "lyrics__shade" : "lyrics__shade--dark"}>
@@ -248,7 +239,7 @@ function LyricsShow({ track }: { track: Track }) {
                 >
                     {title && <p className="lyrics__top">{title.toUpperCase()} LYRICS</p>}
                     <pre className="lyrics__body" data-testid="lyrics__body">
-                        {lyricsParts}
+                        {annotatedLyrics}
                     </pre>
                     <CommentShow
                         commentableType="Track"
@@ -258,12 +249,12 @@ function LyricsShow({ track }: { track: Track }) {
                 <div className="lyrics__right">
                     <AnnotationShow
                         annotation={selectedAnnotation}
-                        annotationCreateStatus={annotationCreateStatus}
-                        annotationOpenStatus={annotationOpenStatus}
+                        createStatus={createStatus}
+                        openStatus={openStatus}
                         endIndex={endIndex}
-                        handleAnnotationCreateStatus={handleAnnotationCreateStatus}
+                        handleCreateStatus={handleCreateStatus}
                         handleTextDeselect={handleTextDeselect}
-                        removeLyricsPartHighlight={removeLyricsPartHighlight}
+                        removeHighlight={removeHighlight}
                         startIndex={startIndex}
                         track={track}
                         yCoord={yCoord}

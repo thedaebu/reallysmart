@@ -109,7 +109,6 @@ function AnnotationPrompt(props: Props) {
             start_index: startIndex,
             track_id: track.id
         };
-
         createAnnotation(annotation)
             .then((result: AnnotationAction) => {
                 if (result.type === "RECEIVE_ANNOTATION_ERRORS") {

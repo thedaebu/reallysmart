@@ -5,13 +5,13 @@ import * as NotificationAPIUtil from "../../util/api/notification_api_util";
 import { AnnotationAlert, Mention } from '../../my_types';
 
 type Props = {
-    changeNotificationOpenStatus: Function,
+    changeOpenStatus: Function,
     makeReadStatusTrue: Function,
     notifications: Array<AnnotationAlert | Mention>
 }
 
 function NotificationList(props: Props) {
-    const { changeNotificationOpenStatus, makeReadStatusTrue, notifications } = props;
+    const { changeOpenStatus, makeReadStatusTrue, notifications } = props;
 
     const updateNotification: Function = (notification: AnnotationAlert | Mention) => NotificationAPIUtil.updateNotification(notification);
 
@@ -32,18 +32,15 @@ function NotificationList(props: Props) {
         }
     }
 
-    function handleNotificationOpenStatus() {
-        changeNotificationOpenStatus();
-    }
-
     function notificationItem(notification: AnnotationAlert | Mention) {
-        if (notification.type === "AnnotationAlert"){
-            const { body, commenter_name, created_at, track } = notification;
-            const { artist, title } = track;
+        const name: string = notification.type === "AnnotationAlert" ? notification.commenter_name : notification.mentioner_name;
+        const { body, created_at, track } = notification;
+        const { artist, title } = track;
 
+        if (notification.type === "AnnotationAlert"){
             return (
                 <Link to={`/tracks/${urlify(artist)}__${urlify(title)}`}>
-                    <span className="notification-list__item-highlighted">{`${commenter_name} `}</span>
+                    <span className="notification-list__item-highlighted">{`${name} `}</span>
                     <span className="notification-list__item-regular">commented on your annotation</span>
                     <span className="notification-list__item-highlighted">{` '${(notificationify(body))}' `}</span>
                     <span className="notification-list__item-regular">for</span>
@@ -52,12 +49,9 @@ function NotificationList(props: Props) {
                 </Link>
             );
         } else {
-            const { body, created_at, mentioner_name, track } = notification;
-            const { artist, title } = track;
-
             return (
                 <Link to={`/tracks/${urlify(artist)}__${urlify(title)}`}>
-                    <span className="notification-list__item-highlighted">{`${mentioner_name} `}</span>
+                    <span className="notification-list__item-highlighted">{`${name} `}</span>
                     <span className="notification-list__item-regular">mentioned you in a comment</span>
                     {body.length > 0 &&
                         <span>
@@ -73,8 +67,7 @@ function NotificationList(props: Props) {
     }
 
     function urlify(string: string) {
-        const words: Array<string> = string.split(" ");
-        return words.join("_").toLowerCase();
+        return string.split(" ").join("_").toLowerCase();
     }
 
     function notificationify(body: string) {
@@ -87,6 +80,7 @@ function NotificationList(props: Props) {
         const date: Date = new Date(Date.parse(dateTime));
         const month: string = date.getMonth() < 9 ? `0${(date.getMonth()+1).toString()}` : `${(date.getMonth()+1).toString()}`;
         const day: string = date.getDate() < 10 ? `0${date.getDate().toString()}` : `${date.getDate().toString()}`;
+        
         return `${date.getFullYear().toString()}-${month}-${day}`;
     }
 
@@ -97,7 +91,7 @@ function NotificationList(props: Props) {
                 <RiCheckboxIndeterminateFill 
                     className="notification-list__top-exit"
                     size={16}
-                    onClick={handleNotificationOpenStatus}
+                    onClick={() => changeOpenStatus()}
                 />
             </div>
             <ul>

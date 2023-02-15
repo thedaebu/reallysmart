@@ -9,8 +9,8 @@ function NotificationShow({ cableApp }: { cableApp: any }) {
     const currentUser: User = useSelector((state:State) => state.entities.user);
     const { annotation_alerts, mentions } = currentUser;
 
-    const [notificationOpenStatus, setNotificationOpenStatus] = useState<boolean>(false);
     const [notifications, setNotifications] = useState<Array<AnnotationAlert | Mention>>([]);
+    const [openStatus, setOpenStatus] = useState<boolean>(false);
     const [readStatus, setReadStatus] = useState<boolean>(true);
 
     const location: string = useLocation().pathname;
@@ -18,7 +18,7 @@ function NotificationShow({ cableApp }: { cableApp: any }) {
     useEffect(() => {
         const sortedNotifications: Array<AnnotationAlert | Mention> = [...annotation_alerts, ...mentions].sort((a,b) => (new Date(Date.parse(b.created_at)).getTime() - (new Date(Date.parse(a.created_at)).getTime())));
         setNotifications(() => ([...sortedNotifications]));
-        isRead(sortedNotifications);
+        checkReadStatus(sortedNotifications);
 
         cableApp.cable.subscriptions.create(
             {
@@ -35,10 +35,10 @@ function NotificationShow({ cableApp }: { cableApp: any }) {
     }, []);
 
     useEffect(() => {
-        setNotificationOpenStatus(false);
+        setOpenStatus(false);
     }, [location]);
 
-    function isRead(notifications: Array<AnnotationAlert | Mention>) {
+    function checkReadStatus(notifications: Array<AnnotationAlert | Mention>) {
         if (notifications.length > 0 && notifications[0].read === false) setReadStatus(false);
     }
 
@@ -46,8 +46,8 @@ function NotificationShow({ cableApp }: { cableApp: any }) {
         setReadStatus(true);
     }
 
-    function changeNotificationOpenStatus() {
-        setNotificationOpenStatus(!notificationOpenStatus);
+    function changeOpenStatus() {
+        setOpenStatus(!openStatus);
     }
 
     return (
@@ -55,12 +55,12 @@ function NotificationShow({ cableApp }: { cableApp: any }) {
             <BiEnvelope
                 className={readStatus === false ? "notification-icon__unread" : "notification-icon__read"}
                 size={16}
-                onClick={changeNotificationOpenStatus}
+                onClick={changeOpenStatus}
                 data-testid="notification-icon"
             />
-            {notificationOpenStatus === true && (
+            {openStatus === true && (
                 <NotificationList
-                    changeNotificationOpenStatus={changeNotificationOpenStatus}
+                    changeOpenStatus={changeOpenStatus}
                     makeReadStatusTrue={makeReadStatusTrue}
                     notifications={notifications}
                 />

@@ -55,6 +55,7 @@ function CommentShowItem(props: Props) {
         const day: string = date.getDate() < 10 ? `0${date.getDate().toString()}` : `${date.getDate().toString()}`;
         const hour: string = date.getHours() < 10 ? `0${date.getHours().toString()}` : `${date.getHours().toString()}`;
         const minute = date.getMinutes() < 10 ? `0${date.getMinutes().toString()}` : `${date.getMinutes().toString()}`;
+        
         return `${year}-${month}-${day} ${hour}:${minute}`;
     }
 
@@ -107,7 +108,7 @@ function CommentShowItem(props: Props) {
         setUpdateStatus(!updateStatus);
     }
 
-    function commentUpdateForm() {
+    function updateForm() {
         return (
             <form
                 className="comment-show-form"
@@ -149,12 +150,11 @@ function CommentShowItem(props: Props) {
 
         const updatedComment: UpdatedComment = {
             body,
-            commentable_type: commentableType,
             commentable_id: parent.id,
+            commentable_type: commentableType,
             commenter_id: currentUser.id,
             id: comment.id
         };
-
         updateComment(updatedComment)
             .then((result: CommentAction) => {
                 if (result.type === "RECEIVE_COMMENT_ERRORS") {
@@ -198,7 +198,7 @@ function CommentShowItem(props: Props) {
                 }
             >
                 {updateStatus 
-                    ? commentUpdateForm()
+                    ? updateForm()
                     : (
                         <div data-testid="comment-show-item">
                             <div className="comment-show-item__top">

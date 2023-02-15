@@ -30,6 +30,7 @@ function AnnotationShowItem({ annotation, trackId }: { annotation: Annotation, t
         const day: string = date.getDate() < 10 ? `0${date.getDate().toString()}` : `${date.getDate().toString()}`;
         const hour: string = date.getHours() < 10 ? `0${date.getHours().toString()}` : `${date.getHours().toString()}`;
         const minute = date.getMinutes() < 10 ? `0${date.getMinutes().toString()}` : `${date.getMinutes().toString()}`;
+
         return `${year}-${month}-${day} ${hour}:${minute}`;
     }
 
@@ -145,7 +146,6 @@ function AnnotationShowItem({ annotation, trackId }: { annotation: Annotation, t
             start_index: currentAnnotation.start_index,
             track_id: trackId
         };
-
         updateAnnotation(updatedAnnotation)
             .then((result: AnnotationAction) => {
                 if (result.type === "RECEIVE_ANNOTATION_ERRORS") {
@@ -191,10 +191,7 @@ function AnnotationShowItem({ annotation, trackId }: { annotation: Annotation, t
                             {annotation.created_at !== annotation.updated_at && <p className="annotation-show-item__edited">edited: {dateDisplay(annotation.updated_at)}</p>}
                             <VoteShow parent={annotation} voteableType="Annotation" />
                             {(currentUser && currentUser.id === currentAnnotation.annotator_id) && updateButtons()}
-                            <CommentShow
-                                commentableType="Annotation"
-                                parent={annotation}
-                            />
+                            <CommentShow commentableType="Annotation" parent={annotation} />
                         </div>
                     )
                 )
