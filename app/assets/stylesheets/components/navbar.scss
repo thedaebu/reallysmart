@@ -15,16 +15,20 @@
         margin: 0 auto;
         white-space: nowrap;
         .navbar-link {
+            display: inline-block;
             color: white;
             border-right: 1px solid white;
             padding: 0px 1.9vw;
             margin: 14px auto 12px auto;
+            &:hover {
+                color: rgb(156, 156, 156);
+            }
         }
         .navbar-image-main {
             display: flex;
             justify-content: space-around;
             align-items: center;
-            width: 127px;
+            width: 73px;
             padding: 0px 1.9vw;
             margin: auto;
             .navbar-image {

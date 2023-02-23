@@ -180,7 +180,6 @@ export type Vote = {
 
 // used for Window
 export type Window = {
-    angellist: string,
     currentUser: { session_token: string },
     eyeIcon: string,
     fireIcon: string,

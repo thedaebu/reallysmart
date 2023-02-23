@@ -20,9 +20,6 @@ function Navbar() {
                     <a href="https://www.linkedin.com/in/edkim163/" target="_blank" rel="noopener noreferrer">
                         <img className="navbar-image" src={window.linkedin} alt="LinkedIn" />
                     </a>
-                    <a href="https://angel.co/u/edwardkim163" target="_blank" rel="noopener noreferrer">
-                        <img className="navbar-image" src={window.angellist} alt="AngelList" />
-                    </a>
                     <a href="https://eddie-kim.com/" target="_blank" rel="noopener noreferrer">
                         <img className="navbar-image" src={window.website} alt="Website" />
                     </a>
