@@ -9,7 +9,7 @@ comment-show-item {
 
 .comment-show {
     width: 96%;
-    background: #eeeeee;
+    background: rgb(238, 238, 238);
     margin: 20px 15px 0px 0px;
     .comment-show__begin {
         display: flex;
@@ -137,7 +137,7 @@ comment-show-item {
     }
     .comment-show__session {
         display: flex;
-        background: #eeeeee;
+        background: rgb(238, 238, 238);
         padding: 10px;
         > p {
             margin-right: 5px;
@@ -145,6 +145,9 @@ comment-show-item {
         > a {
             color: rgb(95, 124, 255);
             margin-right: 5px;
+            &:hover {
+                color: rgb(130, 161, 255);
+            }
         }
     }
     .comment-show__items {
@@ -217,7 +220,7 @@ comment-show-item {
             }
             .comment-show-item__button {
                 cursor: pointer;
-                background: #eeeeee;
+                background: rgb(238, 238, 238);
                 font-family: $programmereg;
                 color: rgb(112, 112, 112);
                 font-size: 15px;
@@ -381,6 +384,9 @@ comment-show-item {
         > a {
             color: rgb(95, 124, 255);
             margin-right: 5px;
+            &:hover {
+                color: rgb(130, 161, 255);
+            }
         }
     }
     .comment-show__items {
