@@ -3,7 +3,7 @@ $programmelight: 'Programme Light', sans-serif;
 
 .lyrics__shade {
     width: 100%;
-    background: #f7f7f7;
+    background: rgb(219, 219, 219);
     .lyrics__main {
         width: unquote("min(970px, 100vw)");
         display: flex;
@@ -14,7 +14,7 @@ $programmelight: 'Programme Light', sans-serif;
             padding: 16px 0px 96px 16px;
             .lyrics__top {
                 font-family: $programmereg;
-                color: #9a9a9a;
+                color: rgb(156, 156, 156);
                 font-size: 12px;
                 letter-spacing: 0.2px;
                 margin: 2px 0px 26px 0px;
@@ -29,7 +29,7 @@ $programmelight: 'Programme Light', sans-serif;
                 }
                 .lyrics__is-annotation {
                     cursor: pointer;
-                    background: rgb(224, 224, 224);
+                    background: rgb(219, 219, 219);
                     font-family: $programmelight;
                     font-size: 18px;
                     padding: 4px 0px 5px 0px;
@@ -64,7 +64,7 @@ $programmelight: 'Programme Light', sans-serif;
             padding: 16px 0px 96px 16px;
             .lyrics__top {
                 font-family: $programmereg;
-                color: #9a9a9a;
+                color: rgb(156, 156, 156);
                 font-size: 12px;
                 letter-spacing: 0.2px;
                 margin: 2px 0px 26px 0px;

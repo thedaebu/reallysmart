@@ -3,27 +3,31 @@
     justify-content: center;
     height: 41px;
     width: 100%;
-    background: black;
+    background: rgb(0, 0, 0);
     .navbar {
         display: flex;
         justify-content: space-around;
         align-items: center;
         height: inherit;
-        background:black;
+        background: rgb(0, 0, 0);
         font-size: 14px;
         margin: 0 auto;
         white-space: nowrap;
         .navbar-link {
-            color: white;
-            border-right: 1px solid white;
+            display: inline-block;
+            color: rgb(255, 255, 255);
+            border-right: 1px solid rgb(255, 255, 255);
             padding: 0px 1.9vw;
             margin: 14px auto 12px auto;
+            &:hover {
+                color: rgb(156, 156, 156);
+            }
         }
         .navbar-image-main {
             display: flex;
             justify-content: space-around;
             align-items: center;
-            width: 127px;
+            width: 73px;
             padding: 0px 1.9vw;
             margin: auto;
             .navbar-image {

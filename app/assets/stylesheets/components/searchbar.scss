@@ -9,13 +9,13 @@
         border: none;
         padding: 1px 1px 1px 10px;
         &:focus::placeholder {
-            color: rgb(196, 196, 196);
+            color: rgb(197, 197, 197);
         }
     }
     .searchbar__glass {
         height: 25px;
         width: 25px;
-        background: white;
+        background: rgb(255, 255, 255);
         padding: 2px 0px;
     }
 }
@@ -33,7 +33,7 @@
         border: none;
         padding: 1px 1px 1px 10px;
         &:focus::placeholder {
-            color: rgb(119, 119, 119);
+            color: rgb(112, 112, 112);
         }
     }
     .searchbar__glass {
