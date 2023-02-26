@@ -20,7 +20,7 @@ $programmereg: 'Programme Regular', sans-serif;
             padding-bottom: 25px;
         }
         .annotation-show-item__edited {
-            color: rgb(161, 161, 161);
+            color: rgb(156, 156, 156);
             font-size: 12px;
         }
         .annotation-show-item__buttons {
@@ -30,7 +30,7 @@ $programmereg: 'Programme Regular', sans-serif;
             }
             .annotation-show-item__button {
                 cursor: pointer;
-                background: rgb(238, 238, 238);
+                background: rgb(219, 219, 219);
                 font-family: $programmereg;
                 color: rgb(112, 112, 112);
                 font-size: 15px;
@@ -52,11 +52,11 @@ $programmereg: 'Programme Regular', sans-serif;
         .annotation-show-begin__button {
             cursor: pointer;
             display: flex;
-            background: white;
+            background: rgb(255, 255, 255);
             color: rgb(0, 0, 0);
-            line-height: 28px;
+            line-height: 27px;
             border: 2px solid rgb(0, 0, 0);
-            padding: 2px 8px 2px 10px;
+            padding: 1px 15px 2px 10px;
             > h1 {
                 position: relative;
                 top: 3px;
@@ -68,10 +68,9 @@ $programmereg: 'Programme Regular', sans-serif;
                 left: 6px;
                 color: rgb(51, 197, 51);
                 font-size: 12px;
-                padding-right: 3px;
             }
             &:hover {
-                background: rgb(238, 238, 238);
+                background: rgb(219, 219, 219);
             }
         }
     }
@@ -85,7 +84,7 @@ $programmereg: 'Programme Regular', sans-serif;
             width: unquote("min(100%, 371px)");
             resize: none;
             display: block;
-            background: rgb(245, 245, 245);
+            background: rgb(219, 219, 219);
             font-family: $programmelight; 
             font-size: 16px;
             font-weight: lighter;
@@ -100,32 +99,32 @@ $programmereg: 'Programme Regular', sans-serif;
         .errors-list {
             margin-top: 3px;
             > li {
-                color: #a70021;
+                color: rgb(197, 0, 0);
             }
         }
         .annotation-show-form__middle {
             display: flex;
             font-family: $programmelight;
             font-size: 14px;
-            border-bottom: 1px solid rgb(226, 226, 226);
+            border-bottom: 1px solid rgb(219, 219, 219);
             padding-bottom: 12px;
             margin: 19px 0px 0px 5px;
             > .annotation-show-form__middle__tools {
                 font-family: $programmelight; 
-                color: rgb(168, 168, 168);
+                color: rgb(156, 156, 156);
                 font-size: 14px;
             }
             .annotation-show-form__middle__items {
                 max-width: 250px;
                 position: relative;
                 bottom: 4px;
-                font-family: $programmelight; 
-                padding-left: 5px;    
+                font-family: $programmelight;
+                padding-left: 5px;
                 .annotation-show-form__middle__item {
                     cursor: pointer;
                     position: relative;
                     font-family: $programmelight; 
-                    color: #99a7ee;
+                    color: rgb(121, 164, 255);
                     font-size: 14px;
                     line-height: 24px;
                     margin: 0px 4px 0px 8px;
@@ -136,7 +135,7 @@ $programmereg: 'Programme Regular', sans-serif;
                         position: absolute;
                         bottom: 14px;
                         left: 20px;
-                        background: #adb9f5;
+                        background: rgb(121, 164, 255);
                         font-family: $programmelight;
                         color: rgb(56, 56, 56);
                         line-height: 18px;
@@ -155,7 +154,7 @@ $programmereg: 'Programme Regular', sans-serif;
             .annotation-show-form__bottom-save {
                 cursor: pointer;
                 display: flex;
-                background: white;
+                background: rgb(255, 255, 255);
                 color: rgb(0, 0, 0);
                 line-height: 28px;
                 border: 2px solid rgb(51, 197, 51);
@@ -180,15 +179,15 @@ $programmereg: 'Programme Regular', sans-serif;
                 position: relative;
                 left: 4px;
                 display: flex;
-                background: white;
+                background: rgb(255, 255, 255);
                 font-family: $programmereg;
-                color: rgb(167, 167, 167);
+                color: rgb(156, 156, 156);
                 font-size: 15px;
                 line-height: 27px;
                 border: none;
                 padding: 4px 6px 1px 6px;
                 &:hover {
-                    background: rgb(238, 238, 238);
+                    background: rgb(219, 219, 219);
                 }
             }
         }
@@ -200,11 +199,11 @@ $programmereg: 'Programme Regular', sans-serif;
             position: relative;
             bottom: 2px;
             color: rgb(0, 0, 0);
-            line-height: 31px;
+            line-height: 29px;
             border: 2px solid rgb(0, 0, 0);
-            padding: 8px 10px;
+            padding: 7px 10px;
             &:hover {
-                background: rgb(238, 238, 238);
+                background: rgb(219, 219, 219);
             }
         }
     }
@@ -256,7 +255,7 @@ $programmereg: 'Programme Regular', sans-serif;
                 padding: 0px 4px;
                 margin-right: 8px;
                 &:hover {
-                    color: rgb(193, 193, 193);
+                    color: rgb(197, 197, 197);
                     background: rgb(80, 80, 80);
                 }
             }
@@ -269,9 +268,9 @@ $programmereg: 'Programme Regular', sans-serif;
             cursor: pointer;
             display: flex;
             background: rgb(50, 50, 50);
-            line-height: 28px;
+            line-height: 27px;
             border: 2px solid rgb(173, 173, 173);
-            padding: 2px 8px 2px 10px;
+            padding: 1px 15px 2px 10px;
             >h1 {
                 position: relative;
                 top: 3px;
@@ -284,7 +283,6 @@ $programmereg: 'Programme Regular', sans-serif;
                 left: 6px;
                 color: rgb(51, 197, 51);
                 font-size: 12px;
-                padding-right: 3px;
             }
             &:hover {
                 background: rgb(80, 80, 80);
@@ -320,19 +318,19 @@ $programmereg: 'Programme Regular', sans-serif;
         .errors-list {
             margin-top: 3px;
             > li {
-                color: #a70021;
+                color: rgb(197, 0, 0);
             }
         }
         .annotation-show-form__middle {
             display: flex;
             font-family: $programmelight;
             font-size: 14px;
-            border-bottom: 1px solid rgb(226, 226, 226);
+            border-bottom: 1px solid rgb(219, 219, 219);
             padding-bottom: 12px;
             margin: 19px 0px 0px 5px;
-            >.annotation-show-form__middle__tools {
+            > .annotation-show-form__middle__tools {
                 font-family: $programmelight;
-                color: rgb(168, 168, 168);
+                color: rgb(156, 156, 156);
                 font-size: 14px;
             }
             .annotation-show-form__middle__items {
@@ -345,7 +343,7 @@ $programmereg: 'Programme Regular', sans-serif;
                     cursor: pointer;
                     position: relative;
                     font-family: $programmelight;
-                    color: #99a7ee;
+                    color: rgb(121, 164, 255);
                     font-size: 14px;
                     line-height: 24px;
                     margin: 0px 4px 0px 8px;
@@ -356,7 +354,7 @@ $programmereg: 'Programme Regular', sans-serif;
                         position: absolute;
                         bottom: 14px;
                         left: 20px;
-                        background: #adb9f5;
+                        background: rgb(121, 164, 255);
                         font-family: $programmelight;
                         color: rgb(56, 56, 56);
                         line-height: 18px;
@@ -420,9 +418,9 @@ $programmereg: 'Programme Regular', sans-serif;
             position: relative;
             bottom: 2px;
             color: rgb(173, 173, 173);
-            line-height: 31px;
+            line-height: 29px;
             border: 2px solid rgb(173, 173, 173);
-            padding: 8px 10px;
+            padding: 7px 10px;
             &:hover {
                 background: rgb(80, 80, 80);
             }

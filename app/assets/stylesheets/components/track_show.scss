@@ -32,7 +32,7 @@ track-show-number {
                     right: 22px;
                     background-position: center;
                     background-size: cover;
-                    border: 2px solid rgb(145, 145, 145);
+                    border: 2px solid rgb(140, 140, 140);
                 }
                 .track-show__text {
                     position: relative;
@@ -47,7 +47,7 @@ track-show-number {
                     .track-show__artist {
                         position: relative;
                         top: 6px;
-                        color: white;
+                        color: rgb(255, 255, 255);
                         font-size: 25px;
                         font-weight: lighter;
                     }
@@ -68,7 +68,7 @@ track-show-number {
                     }
                     .track-show__fire-number {
                         @extend track-show-number;
-                        color: red;
+                        color: rgb(255, 0, 0);
                     }
                     .track-show__eye-number {
                         @extend track-show-number;

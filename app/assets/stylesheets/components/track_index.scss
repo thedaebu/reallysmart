@@ -34,13 +34,13 @@ track-index-number {
             width: auto;
             background-position: center;
             background-size: cover;
-            border-bottom: rgb(224, 224, 224) solid 2px;
+            border-bottom: rgb(219, 219, 219) solid 2px;
             padding: 2px 0px 2px 0px;
             &:hover {
-                background-color: rgb(228, 228, 228);
+                background-color: rgb(219, 219, 219);
             }
             .track-index-item__id {
-                color: black;
+                color: rgb(0, 0, 0);
                 font-size: 23px;
                 padding-left: 12px;
             }
@@ -56,7 +56,7 @@ track-index-number {
                     position: relative;
                     bottom: 0.5px;
                     font-family: $programme;
-                    color: black;
+                    color: rgb(0, 0, 0);
                     font-size: 24px;
                     font-weight: normal;
                 }
@@ -76,7 +76,7 @@ track-index-number {
                 position: relative;
                 bottom: 1px;
                 font-family: $raleway;
-                color: black;
+                color: rgb(0, 0, 0);
                 font-size: 23px;
             }
             .track-index-item__count {
@@ -88,7 +88,7 @@ track-index-number {
                 }
                 .track-index-item__count--number--fire {
                     @extend track-index-number;
-                    color: red;
+                    color: rgb(255, 0, 0);
                 }
                 .track-index-item__count--number--eye {
                     @extend track-index-number;
@@ -105,7 +105,7 @@ track-index-number {
         display: flex;
         justify-content: center;
         width: 136px;
-        background: white;
+        background: rgb(255, 255, 255);
         color: rgb(106, 153, 255);
         font-size: 14px;
         border: 2px solid rgb(106, 153, 255);
@@ -115,7 +115,7 @@ track-index-number {
         cursor: pointer;
         &:hover {
             background: rgb(106, 153, 255);
-            color: white;
+            color: rgb(255, 255, 255);
         }
     }
 }
@@ -133,7 +133,7 @@ track-index-number {
         margin-top: 71px;
     }
     .track-index__h2 {
-        color: rgb(255, 43, 114);
+        color: rgb(255, 0, 0);
         font-size: 14px;
         margin: 11px 0px 20.5px 0px;
     }
@@ -178,7 +178,7 @@ track-index-number {
                     top: 1.5px;
                     display: flex;
                     align-items: center;
-                    color: rgb(121, 121, 121);
+                    color: rgb(112, 112, 112);
                     font-size: 12px;
                     font-weight: 600px;
                     letter-spacing: 1px;
@@ -201,7 +201,7 @@ track-index-number {
                 }
                 .track-index-item__count--number--fire {
                     @extend track-index-number;
-                    color: red;
+                    color: rgb(255, 0, 0);
                 }
                 .track-index-item__count--number--eye {
                     @extend track-index-number;
@@ -233,15 +233,3 @@ track-index-number {
         }
     }
 }
-
-// rgb(50, 50, 50);
-// rgb(173, 173, 173);
-
-// rgb(80, 80, 80);
-
-// rgb(70, 70, 70);
-//1px solid rgb(140, 140, 140);
-
-//hover
-//rgb(193, 193, 193);
-//rgb(80, 80, 80);

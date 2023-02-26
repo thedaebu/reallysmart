@@ -4,14 +4,14 @@
     top: 57px;
     left: 16px;
     width: 370px;
-    background-color: #f7f7f7;
+    background-color: rgb(238, 238, 238);
     .search-index__results {
         font-size: 14px;
-        border-bottom: 1px solid #ccc;
+        border-bottom: 1px solid rgb(204, 204, 204);
         padding: 12px 0px 11px 16px;
     }
     .search-index__songs {
-        color: #a1a1a1;
+        color: rgb(156, 156, 156);
         font-size: 12px;
         padding: 21px 0px 12px 16px;
     }
@@ -26,10 +26,10 @@
         .search-index-item {
             cursor: pointer;
             display: flex;
-            background-color: white;
+            background-color: rgb(255, 255, 255);
             margin-bottom: 4px;
             &:hover {
-                background-color: #dbdbdb;
+                background-color: rgb(197, 197, 197);
             }
             .search-index-item__image {
                 height: 75px;
@@ -43,7 +43,7 @@
                 justify-content: space-between;
                 padding: 6px 6px 4px 6px;
                 .search-index-item__body-top {
-                    color: black;
+                    color: rgb(0, 0, 0);
                     .search-index-item__title {
                         font-size: 16px;
                     }
@@ -53,7 +53,7 @@
                 }
                 .search-index-item__body-bottom {
                     display: flex;
-                    color: black;
+                    color: rgb(0, 0, 0);
                 }
                 .search-index-item__eye {
                     height: 12px;

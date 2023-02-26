@@ -4,22 +4,22 @@
     .vote-show__voted {
         cursor: pointer;
         height: 19px;
-        width: 19px; 
-        color: #0ec426;
+        width: 19px;
+        color: rgb(51, 197, 51);
     }
     .vote-show__not-voted {
-        cursor: pointer;    
+        cursor: pointer;
         height: 19px;
-        width: 19px; 
-        color: rgb(161, 161, 161);
+        width: 19px;
+        color: rgb(156, 156, 156);
         font-size: 17px;
         &:hover {
-            color: #0ec426;
+            color: rgb(51, 197, 51);
         }
     }
     .vote-show__count {
-        color: #0ec426;
-        font-size: 17px; 
-        margin-left: 7px; 
+        color: rgb(51, 197, 51);
+        font-size: 17px;
+        margin-left: 7px 
     }
 }

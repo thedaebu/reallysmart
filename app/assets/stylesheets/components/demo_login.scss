@@ -1,7 +1,7 @@
 .demo-login {
     cursor: pointer;
     font-family: 'Programme Regular', sans-serif;
-    color: black;
+    color: rgb(0, 0, 0);
     background: inherit;
     text-decoration: none;
     letter-spacing: 0.75px;
@@ -9,6 +9,6 @@
     margin-left: 15px;
     transition: 0.2s;
     &:hover {
-        border-bottom: 4px red solid;
+        border-bottom: 4px rgb(255, 0, 0) solid;
     }
 }
