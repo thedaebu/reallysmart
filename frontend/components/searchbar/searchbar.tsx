@@ -1,6 +1,7 @@
-import React, { ChangeEvent, Dispatch, useState } from "react";
+import React, { ChangeEvent, Dispatch, useEffect, useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { useDispatch } from "react-redux";
+import { useLocation } from "react-router-dom";
 import * as SearchActions from "../../actions/search_actions";
 import { AnyAction } from "@reduxjs/toolkit";
 import useDebounce from "../../hooks/debounce_hook";
@@ -12,11 +13,18 @@ function Searchbar({ theme } : { theme : string }) {
 
     const [searchField, setSearchField] = useState<string>("");
 
+    const location: string = useLocation().pathname;
+
+    useEffect(() => {
+        clearSearchField();
+    }, [location]);
+
     function handleSearchChange() {
         const debouncedSearchField = useDebounce(searchField);
         if (searchField !== "") {
             fetchSearches(debouncedSearchField.toLowerCase());
         }
+        
         return (e: ChangeEvent<HTMLInputElement>) => setSearchField(e.currentTarget.value);
     }
 
@@ -37,10 +45,7 @@ function Searchbar({ theme } : { theme : string }) {
                 />
                 <AiOutlineSearch className="searchbar__glass" />
             </div>
-            <SearchIndex
-                clearSearchField={clearSearchField}
-                searchField={searchField}
-            />
+            {searchField && <SearchIndex clearSearchField={clearSearchField} />}
         </>
     );
 }

@@ -45,7 +45,7 @@ function App({ cableApp }: { cableApp: any}) {
                 <div className="session-buttons">
                     {currentUser && <NotificationShow cableApp={cableApp} />}
                     <SessionMenu />
-                    <DemoLogin />
+                    {!currentUser && <DemoLogin />}
                     <ThemeToggle />
                 </div>
             </header>

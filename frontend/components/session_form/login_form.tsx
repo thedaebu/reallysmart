@@ -27,7 +27,6 @@ function LoginForm() {
             password: password,
             username: username
         };
-
         login(user)
             .then((result: SessionAction) => {
                 if (result.type === "RECEIVE_SESSION_ERRORS") {

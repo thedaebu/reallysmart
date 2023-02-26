@@ -1,32 +1,20 @@
-import React, { MouseEvent, useEffect } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
 import { IndexTrack, State } from "../../my_types";
 import MemoizedSearchIndexItem from "./search_index_item";
 
-function SearchIndex({ clearSearchField, searchField }: { clearSearchField: Function, searchField: string }) {
-    const searches: Array<IndexTrack> = useSelector((state: State) => Object.values(state.entities.searches));
+function SearchIndex({ clearSearchField }: { clearSearchField: Function }) {
+    const searches: {[key: number]: IndexTrack} = useSelector((state: State) => state.entities.searches);
 
-    const location: string = useLocation().pathname;
-
-    useEffect(() => {
-        clearSearchField();
-    }, [location])
-
-    function clearSearch(e: MouseEvent<HTMLUListElement>) {
-        e.preventDefault();
-
-        clearSearchField();
-    }
-
-    function searchResult() {
-        if (searches.length > 0) {
+    function searchResultDisplay() {
+        const searchResults: Array<IndexTrack> = Object.values(searches);
+        if (searchResults.length > 0) {
             return (
                 <div className="search-index" data-testid="search-index">
                     <p className="search-index__results">SEARCH RESULTS</p>
                     <p className="search-index__songs">SONGS</p>
-                    <ul className="search-index__items" onClick={clearSearch}>
-                        {searches.slice(0, 5).map((track: IndexTrack, idx: number) => (
+                    <ul className="search-index__items" onClick={() => clearSearchField()}>
+                        {searchResults.slice(0, 5).map((track: IndexTrack, idx: number) => (
                             <MemoizedSearchIndexItem track={track} key={idx} />
                         ))}
                     </ul>
@@ -44,7 +32,7 @@ function SearchIndex({ clearSearchField, searchField }: { clearSearchField: Func
 
     return (
         <>
-            {searchField && searchResult()}
+            {searchResultDisplay()}
         </>
     );
 }

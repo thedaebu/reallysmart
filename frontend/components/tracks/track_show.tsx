@@ -26,16 +26,11 @@ function TrackShow() {
     }, [trackName]);
 
     function formatTrackName(trackName: string) {
-        const unUrlifiedWords: Array<string> = trackName.split("__");
-        for (let i = 0; i < 2; i++) {
-            unUrlifiedWords[i] = unUrlify(unUrlifiedWords[i]);
-        }
-        return unUrlifiedWords;
+        return trackName.split("__").map((word: string) => unUrlify(word));
     }
 
     function unUrlify(string: string) {
-        const words = string.split("_");
-        return words.join(" ");
+        return string.split("_").join(" ");
     }
 
     return(
