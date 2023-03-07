@@ -141,7 +141,7 @@ function LyricsShow({ track }: { track: Track }) {
         setYCoord(e.pageY-(e.pageY % 30)-367);
         const highlighted: Highlighted = window.getSelection();
         if (highlighted && highlighted.anchorOffset !== highlighted.focusOffset) {
-            const [start, end]: Array<number> = makeNewIndices(highlighted);
+            const { end, start }: { end: number, start: number } = makeNewIndices(highlighted);
             setStartIndex(start);
             setEndIndex(end);
             if (startIndex < endIndex) {
@@ -164,7 +164,7 @@ function LyricsShow({ track }: { track: Track }) {
             end = Math.max(currentStart, currentEnd) + 1;
         }
 
-        return [start + 1, end - 1];
+        return {end, start};
     }
 
     function handleHighlight(start: number, end: number, highlighted: Highlighted) {
@@ -210,6 +210,7 @@ function LyricsShow({ track }: { track: Track }) {
                 {currentSectionLyrics.slice(end - add)}
             </span>
         );
+
         const annotatedLyricsWithHighlight: Array<JSX.Element> = [...annotatedLyrics.slice(0, currentIndex), ...currentSectionWithHighlight, ...annotatedLyrics.slice(currentIndex + 1)];
         setAnnotatedLyrics(annotatedLyricsWithHighlight);
     }
