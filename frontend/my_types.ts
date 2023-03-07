@@ -1,22 +1,16 @@
-// used for action files
-export type CreatedAnnotation = {
-    annotator_id: number,
-    body: string,
-    end_index: number,
-    start_index: number,
-    track_id: number
-};
-export type CreatedComment = {
-    body: string,
-    commentable_id: number
-    commentable_type: "Track" | "Annotation",
-    commenter_id: number
-};
-export type CreatedVote = {
-    voteable_type: "Annotation" | "Comment",
-    voteable_id: number,
-    voter_id: number
-};
+// used for create/update actions
+export type CreatedAnnotation = Omit<
+    Annotation,
+    "annotator_name" | "created_at" | "id" | "updated_at" | "votes"
+>;
+export type CreatedComment = Omit<
+    Comment,
+    "commenter_name" | "created_at" | "id" | "updated_at" | "votes"
+>;
+export type CreatedVote = Omit<
+    Vote,
+    "id"
+>;
 export type ReceivedAnnotation = {
     annotation: Annotation
 };
@@ -37,20 +31,17 @@ export type ReceivedTracks = {
 export type ReceivedUser = {
     user: User
 };
-export type UpdatedAnnotation = {
-    annotator_id: number
-    body: string,
-    end_index: number,
+export type UpdatedAnnotation = Omit<
+    Annotation,
+    "annotator_name" | "created_at" | "updated_at" | "votes"
+>;
+export type UpdatedComment = Omit<
+    Comment,
+    "commenter_name" | "created_at" | "updated_at" | "votes"
+>;
+export type UpdatedNotification = {
     id: number,
-    start_index: number,
-    track_id: number
-};
-export type UpdatedComment = {
-    body: string,
-    commentable_id: number
-    commentable_type: "Track" | "Annotation",
-    commenter_id: number
-    id: number
+    type: "AnnotationAlert" | "Mention"
 };
 
 // used for redux store
@@ -135,12 +126,10 @@ export type Comment = {
     updated_at: string,
     votes: {[key: number]: Vote}
 };
-export type IndexTrack = {
-    artist: string,
-    artwork_path: string,
-    id: number,
-    title: string
-};
+export type IndexTrack = Omit<
+    Track,
+    "lyrics" | "spotify_path"
+>;
 export type Mention = {
     body: string,
     created_at: string,
@@ -153,6 +142,7 @@ export type Mention = {
     },
     type: "Mention"
 };
+export type Notification = AnnotationAlert | Mention;
 export type SessionUser = {
     password: string,
     username: string
