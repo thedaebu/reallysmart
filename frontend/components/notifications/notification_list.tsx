@@ -78,10 +78,11 @@ function NotificationList(props: Props) {
 
     function dateDisplay(dateTime: string) {
         const date: Date = new Date(Date.parse(dateTime));
-        const month: string = date.getMonth() < 9 ? `0${(date.getMonth()+1).toString()}` : `${(date.getMonth()+1).toString()}`;
-        const day: string = date.getDate() < 10 ? `0${date.getDate().toString()}` : `${date.getDate().toString()}`;
-        
-        return `${date.getFullYear().toString()}-${month}-${day}`;
+        const year: string = date.getFullYear().toString();
+        const month: string = (date.getMonth()+1).toString().padStart(2, "0")
+        const day: string = date.getDate().toString().padStart(2, "0");
+
+        return `${year}-${month}-${day}`;
     }
 
     return (

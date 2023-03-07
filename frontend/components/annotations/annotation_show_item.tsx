@@ -26,10 +26,10 @@ function AnnotationShowItem({ annotation, trackId }: { annotation: Annotation, t
     function dateDisplay(dateTime: string) {
         const date: Date = new Date(Date.parse(dateTime));
         const year: string = date.getFullYear().toString();
-        const month: string = date.getMonth() < 9 ? `0${(date.getMonth()+1).toString()}` : `${(date.getMonth()+1).toString()}`;
-        const day: string = date.getDate() < 10 ? `0${date.getDate().toString()}` : `${date.getDate().toString()}`;
-        const hour: string = date.getHours() < 10 ? `0${date.getHours().toString()}` : `${date.getHours().toString()}`;
-        const minute = date.getMinutes() < 10 ? `0${date.getMinutes().toString()}` : `${date.getMinutes().toString()}`;
+        const month: string = (date.getMonth()+1).toString().padStart(2, "0")
+        const day: string = date.getDate().toString().padStart(2, "0");
+        const hour: string = date.getHours().toString().padStart(2, "0");
+        const minute = date.getMinutes().toString().padStart(2, "0");
 
         return `${year}-${month}-${day} ${hour}:${minute}`;
     }
