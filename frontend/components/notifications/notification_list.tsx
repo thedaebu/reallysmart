@@ -2,18 +2,18 @@ import React, { useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { RiCheckboxIndeterminateFill } from "react-icons/ri"
 import * as NotificationAPIUtil from "../../util/api/notification_api_util";
-import { AnnotationAlert, Mention } from '../../my_types';
+import { Notification, UpdatedNotification } from '../../my_types';
 
 type Props = {
     changeOpenStatus: Function,
     makeReadStatusTrue: Function,
-    notifications: Array<AnnotationAlert | Mention>
-}
+    notifications: Array<Notification>
+};
 
 function NotificationList(props: Props) {
     const { changeOpenStatus, makeReadStatusTrue, notifications } = props;
 
-    const updateNotification: Function = (notification: AnnotationAlert | Mention) => NotificationAPIUtil.updateNotification(notification);
+    const updateNotification: Function = (notification: Notification) => NotificationAPIUtil.updateNotification(notification);
 
     useEffect(() => {
         makeReadStatusTrue();
@@ -22,9 +22,9 @@ function NotificationList(props: Props) {
 
     function updateNotifications() {
         for (let i = 0; i < notifications.length; i++) {
-            let notification: AnnotationAlert | Mention = notifications[i];
+            let notification: Notification = notifications[i];
             if (notification.read === true) break;
-            const updatedNotification = {
+            const updatedNotification: UpdatedNotification = {
                 id: notification.id,
                 type: notification.type === "AnnotationAlert" ? "AnnotationAlert" : "Mention"
             }
@@ -32,7 +32,7 @@ function NotificationList(props: Props) {
         }
     }
 
-    function notificationItem(notification: AnnotationAlert | Mention) {
+    function notificationItem(notification: Notification) {
         const name: string = notification.type === "AnnotationAlert" ? notification.commenter_name : notification.mentioner_name;
         const { body, created_at, track } = notification;
         const { artist, title } = track;
@@ -95,7 +95,7 @@ function NotificationList(props: Props) {
                 />
             </div>
             <ul>
-                {notifications.map((notification: AnnotationAlert | Mention, idx: number) => {
+                {notifications.map((notification: Notification, idx: number) => {
                     return (
                         <li
                             className="notification-list__item"
