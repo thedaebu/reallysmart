@@ -11,9 +11,9 @@ function Navbar() {
                 <a className="navbar-link" href="">GENIUS LIVE</a>
                 <a className="navbar-link" href="">FEATURED</a>
                 <a className="navbar-link" href="">CHARTS</a>
-                <a className="navbar-link" href="" >VIDEOS</a>
+                <a className="navbar-link" href="">VIDEOS</a>
                 <a className="navbar-link" href="">SHOP</a>
-                <div className="navbar-image-main">
+                <section className="navbar-image-main">
                     <a href="https://github.com/thedaebu/reallysmart" target="_blank" rel="noopener noreferrer">
                         <img className="navbar-image" src={window.github} alt="Github" />
                     </a>
@@ -23,7 +23,7 @@ function Navbar() {
                     <a href="https://eddie-kim.com/" target="_blank" rel="noopener noreferrer">
                         <img className="navbar-image" src={window.website} alt="Website" />
                     </a>
-                </div>
+                </section>
             </div>
         </div>
     );

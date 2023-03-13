@@ -96,7 +96,7 @@ function AnnotationShowItem({ annotation, trackId }: { annotation: Annotation, t
                 >
                 </textarea>
                 {errors.length > 0 && errorsDisplay()}
-                <div className="annotation-show-form__middle">
+                <section className="annotation-show-form__middle">
                     <p className="annotation-show-form__middle__tools">Tools:</p>
                     <div className="annotation-show-form__middle__items">
                         <a className="annotation-show-form__middle__item">
@@ -114,8 +114,8 @@ function AnnotationShowItem({ annotation, trackId }: { annotation: Annotation, t
                             </a>
                         </div>
                     </div>
-                </div>
-                <div className="annotation-show-form__bottom">
+                </section>
+                <section className="annotation-show-form__bottom">
                     <button className="annotation-show-form__bottom-save" type="submit">
                         <p className="annotation-show-form__bottom-save-text">Save</p>
                     </button>
@@ -126,7 +126,7 @@ function AnnotationShowItem({ annotation, trackId }: { annotation: Annotation, t
                     >
                         Cancel
                     </button>
-                </div>
+                </section>
             </form>
         );
     }
@@ -188,7 +188,7 @@ function AnnotationShowItem({ annotation, trackId }: { annotation: Annotation, t
                         <div className="annotation-show-item" data-testid="annotation-show-item">
                             <p className="annotation-show-item__name">Really Smart Annotation by {annotation.annotator_name}</p>
                             <p className="annotation-show-item__body">{annotation.body}</p>
-                            {annotation.created_at !== annotation.updated_at && <p className="annotation-show-item__edited">edited: {dateDisplay(annotation.updated_at)}</p>}
+                            {annotation.created_at !== annotation.updated_at && <time className="annotation-show-item__edited">edited: {dateDisplay(annotation.updated_at)}</time>}
                             <VoteShow parent={annotation} voteableType="Annotation" />
                             {(currentUser && currentUser.id === currentAnnotation.annotator_id) && updateButtons()}
                             <CommentShow commentableType="Annotation" parent={annotation} />

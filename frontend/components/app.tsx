@@ -42,12 +42,12 @@ function App({ cableApp }: { cableApp: any}) {
             <header className="header">
                 <Searchbar theme={theme} />
                 <Link to="/" className="header__logo">REALLYSMART</Link>
-                <div className="session-buttons">
+                <section className="session-buttons">
                     {currentUser && <NotificationShow cableApp={cableApp} />}
                     <SessionMenu />
                     {!currentUser && <DemoLogin />}
                     <ThemeToggle />
-                </div>
+                </section>
             </header>
             <Switch>
                 <Route exact path="/">
