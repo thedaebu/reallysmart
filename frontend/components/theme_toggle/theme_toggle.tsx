@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { MouseEvent, useContext, useState } from "react";
 import { BiMoon, BiSun} from "react-icons/bi";
 import { ThemeContext } from "../../contexts/theme_context";
 
@@ -7,18 +7,20 @@ function ThemeToggle() {
 
     const [checkedStatus, setCheckedStatus] = useState<boolean>(theme === "light" ? false : true);
 
-    function handleChangeTheme() {
+    function handleChangeTheme(e: MouseEvent<HTMLButtonElement>) {
+        e.preventDefault();
+
         changeTheme();
         setCheckedStatus(!checkedStatus);
     }
 
     return (
-        <div className="theme-toggle" onClick={handleChangeTheme}>
+        <button className="theme-toggle" onClick={handleChangeTheme}>
             {theme === "light"
                 ? <BiMoon size={18} />
                 : <BiSun size={18} />
             }
-        </div>
+        </button>
     );
 }
 export default ThemeToggle;

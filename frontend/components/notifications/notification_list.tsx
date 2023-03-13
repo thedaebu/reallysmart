@@ -45,7 +45,7 @@ function NotificationList(props: Props) {
                     <span className="notification-list__item-highlighted">{` '${(notificationify(body))}' `}</span>
                     <span className="notification-list__item-regular">for</span>
                     <span className="notification-list__item-highlighted">{` ${artist} - ${title}`}</span>
-                    <span className="notification-list__item-date">{` -${dateDisplay(created_at)}`}</span>
+                    <time className="notification-list__item-date">{` - ${dateDisplay(created_at)}`}</time>
                 </Link>
             );
         } else {
@@ -60,7 +60,7 @@ function NotificationList(props: Props) {
                     }
                     <span className="notification-list__item-regular">{" for"}</span>
                     <span className="notification-list__item-highlighted">{` ${artist} - ${title}`}</span>
-                    {` - ${dateDisplay(created_at)}`}
+                    <time>{` - ${dateDisplay(created_at)}`}</time>
                 </Link>
             );
         }

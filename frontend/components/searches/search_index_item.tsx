@@ -27,7 +27,7 @@ function SearchIndexItem({ track }: { track: IndexTrack }) {
                 style={{backgroundImage: `url(${artwork_path}`}}
             > 
             </div>
-            <div className="search-index-item__body">
+            <section className="search-index-item__body">
                 <div className="search-index-item__body-top">
                     <p className="search-index-item__title">{title}</p>
                     <p className="search-index-item__artist">{artist}</p>
@@ -36,7 +36,7 @@ function SearchIndexItem({ track }: { track: IndexTrack }) {
                     <img className="search-index-item__eye" src={window.eyeIcon} alt="Eye" />
                     <p className="search-index-item__views">{randomNum()}</p>
                 </div>
-            </div>
+            </section>
         </Link>
     );
 }

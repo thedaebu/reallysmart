@@ -20,7 +20,7 @@ function TrackShowHeader({ track }: { track: Track }) {
         >
             <div className="track-show__shade">
                 <div>
-                    <div className="track-show__left">
+                    <section className="track-show__left">
                         <div
                             className="track-show__image"
                             style={{
@@ -32,8 +32,8 @@ function TrackShowHeader({ track }: { track: Track }) {
                             <p className="track-show__title">{title}</p>
                             <p className="track-show__artist">{artist}</p>
                         </div>
-                    </div>
-                    <div className="track-show__right">
+                    </section>
+                    <section className="track-show__right">
                         <div>
                             <img src={window.fireIcon} alt="Fire" />
                             <p className="track-show__fire-number">{randomNum()}</p>
@@ -42,7 +42,7 @@ function TrackShowHeader({ track }: { track: Track }) {
                             <img src={window.eyeIcon} alt="Eye" />
                             <p className="track-show__eye-number">{randomNum() * 10}</p>
                         </div>
-                    </div>
+                    </section>
                 </div>
             </div>
         </div>

@@ -233,7 +233,7 @@ function LyricsShow({ track }: { track: Track }) {
     return (
         <div className={theme === "light" ? "lyrics__shade" : "lyrics__shade--dark"}>
             <div className="lyrics__main" data-testid="lyrics__main">
-                <div
+                <section
                     className="lyrics__text"
                     onMouseDown={handleTextDeselect}
                     onMouseUp={handleTextSelect}
@@ -246,7 +246,7 @@ function LyricsShow({ track }: { track: Track }) {
                         commentableType="Track"
                         parent={track}
                     />
-                </div>
+                </section>
                 <div className="lyrics__right">
                     <AnnotationShow
                         annotation={selectedAnnotation}

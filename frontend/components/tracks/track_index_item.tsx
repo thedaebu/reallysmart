@@ -29,19 +29,19 @@ function TrackIndexItem({ listNumber, track }: { listNumber: number, track: Inde
                 }}
             > 
             </div>
-            <div className="track-index-item__title-main">
+            <section className="track-index-item__title-main">
                 <p className="track-index-item__title">{title}</p>
                 <p className="track-index-item__lyrics">LYRICS</p>
-            </div>
+            </section>
             <p className="track-index-item__artist">{artist}</p>
-            <div className="track-index-item__count">
+            <section className="track-index-item__count">
                 <img className="track-index-item__count--icon" src={window.fireIcon} alt="Fire" />
                 <p className="track-index-item__count--number--fire">{randomNum()}</p>
-            </div>
-            <div className="track-index-item__count">
+            </section>
+            <section className="track-index-item__count">
                 <img className="track-index-item__count--icon" src={window.eyeIcon} alt="Eye" />
                 <p className="track-index-item__count--number--eye">{randomNum() * 10}</p>
-            </div>
+            </section>
         </Link>
     );
 }

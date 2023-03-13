@@ -62,7 +62,7 @@ function CommentShowItem(props: Props) {
     function updatebuttons() {
         if (deleteStatus === false) {
             return (
-                <div className="comment-show-item__buttons">
+                <section className="comment-show-item__buttons">
                     <button
                         className="comment-show-item__button"
                         onClick={handleUpdateStatus}
@@ -77,11 +77,11 @@ function CommentShowItem(props: Props) {
                     >
                         Delete
                     </button>
-                </div>
+                </section>
             );
         } else {
             return (
-                <div className="comment-show-item__buttons" data-testid="comment-show-item__buttons">
+                <section className="comment-show-item__buttons" data-testid="comment-show-item__buttons">
                     <p className="comment-show-item__question">
                         Are you sure?
                     </p>
@@ -95,7 +95,7 @@ function CommentShowItem(props: Props) {
                     >
                         No
                     </button>
-                </div>
+                </section>
             );
         }
     }
@@ -125,7 +125,7 @@ function CommentShowItem(props: Props) {
                     data-testid="comment-show-form__text"
                 />
                 {errors.length > 0 && errorsDisplay()}
-                <div className="comment-show-form__buttons">
+                <section className="comment-show-form__buttons">
                     <button className="comment-show-form__submit">
                         <p>Save</p>
                     </button>
@@ -136,7 +136,7 @@ function CommentShowItem(props: Props) {
                     >
                         <p>Cancel</p>
                     </button>
-                </div>
+                </section>
             </form>
         );
     }
@@ -212,7 +212,7 @@ function CommentShowItem(props: Props) {
                                 </div>
                             </div>
                             <p className="comment-show-item__body">{comment.body}</p>
-                            {comment.created_at !== comment.updated_at && <p className="comment-show-item__edited">edited: {`${dateDisplay(comment.updated_at)}`}</p>}
+                            {comment.created_at !== comment.updated_at && <time className="comment-show-item__edited">edited: {`${dateDisplay(comment.updated_at)}`}</time>}
                             <VoteShow parent={comment} voteableType="Comment" />
                             {(currentUser && currentUser.id === comment.commenter_id) && updatebuttons()}
                         </div>

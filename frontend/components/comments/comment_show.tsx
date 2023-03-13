@@ -69,7 +69,7 @@ function CommentShow({ commentableType, parent }: { commentableType: "Track" | "
                         data-testid="comment-show-form__text"
                     />
                     {errors.length > 0 && errorsDisplay()}
-                    <div className="comment-show-form__buttons">
+                    <section className="comment-show-form__buttons">
                         <button className="comment-show-form__submit">
                             <p>Submit</p>
                         </button>
@@ -80,7 +80,7 @@ function CommentShow({ commentableType, parent }: { commentableType: "Track" | "
                         >
                             <p>Cancel</p>
                         </button>
-                    </div>
+                    </section>
                 </form>
             );
         }

@@ -56,7 +56,7 @@ function AnnotationPrompt(props: Props) {
                     >
                     </textarea>
                     {errors.length > 0 && errorsDisplay()}
-                    <div className="annotation-show-form__middle">
+                    <section className="annotation-show-form__middle">
                         <p className="annotation-show-form__middle__tools">Tools:</p>
                         <div className="annotation-show-form__middle__items">
                             <a className="annotation-show-form__middle__item">
@@ -74,8 +74,8 @@ function AnnotationPrompt(props: Props) {
                                 </a>
                             </div>
                         </div>
-                    </div>
-                    <div className="annotation-show-form__bottom">
+                    </section>
+                    <section className="annotation-show-form__bottom">
                         <button className="annotation-show-form__bottom-save" type="submit">
                             <p className="annotation-show-form__bottom-save-text">Save</p>
                             <p className="annotation-show-form__bottom-save-score">(+5 RSQ)</p>
@@ -83,7 +83,7 @@ function AnnotationPrompt(props: Props) {
                         <button className="annotation-show-form__bottom-cancel" onClick={handleAnnotationCancel}>
                             Cancel
                         </button>
-                    </div>
+                    </section>
                 </form>
             );
         }
