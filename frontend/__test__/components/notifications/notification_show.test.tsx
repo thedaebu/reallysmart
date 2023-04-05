@@ -13,7 +13,7 @@ const useMockState = jest.spyOn(React, "useState");
 const useUpdateNotification = jest.spyOn(NotificationAPIUtil, "updateNotification");
 
 const cable: Cable = actionCable.createConsumer(`ws://${window.location.hostname}:3000/cable`);
-const cableApp: {"cable": Cable} = {"cable": cable};
+const cableApp: {cable: Cable} = {cable};
 
 describe("notification show", () => {
     describe("no user tests", () => {

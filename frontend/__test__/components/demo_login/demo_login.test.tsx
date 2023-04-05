@@ -8,7 +8,7 @@ import App from "../../../components/app";
 const useMockDispatch = jest.spyOn(reactRedux, "useDispatch");
 
 const cable: Cable = actionCable.createConsumer(`ws://${window.location.hostname}:3000/cable`);
-const cableApp: {"cable": Cable} = {"cable": cable};
+const cableApp: {cable: Cable} = {cable};
 
 describe("demo login", () => {
     describe("user irrelevant tests", () => {
