@@ -1,4 +1,12 @@
+import React, { ReactElement } from "react";
+import { render } from "@testing-library/react";
+import { BrowserRouter, MemoryRouter, Route } from "react-router-dom";
+import { Provider } from "react-redux";
+import { ThemeContext } from "../contexts/theme_context";
+import thunk, { ThunkMiddleware } from "redux-thunk";
+import configureMockStore, { MockStoreCreator, MockStoreEnhanced } from "redux-mock-store";
 import { Annotation, AnnotationAlert, Comment, IndexTrack, Mention, State, Track, User } from "../my_types";
+import { AnyAction } from "@reduxjs/toolkit";
 
 // test data
 export const testAnnotationsData: {[key: number]: Annotation} = {
@@ -206,3 +214,51 @@ export const testShowStoreWithUser: State = {
         user: testUserData
     }
 };
+
+// render functions
+
+function renderNonShowComponent(store: MockStoreEnhanced, component: ReactElement) {
+    render(
+        <BrowserRouter>
+            <Provider store={store}>
+                <ThemeContext.Provider value={{theme: "light", changeTheme: jest.fn}}>
+                    {component}
+                </ThemeContext.Provider>
+            </Provider>
+        </BrowserRouter>
+    );
+}
+function renderShowComponent(store: MockStoreEnhanced, component: ReactElement) {
+    render(
+        <BrowserRouter>
+            <MemoryRouter initialEntries={['tracks/niki__selene']}>
+                <Provider store={store}>
+                    <Route path='tracks/:trackName'>
+                        <ThemeContext.Provider value={{theme: "light", changeTheme: jest.fn}}>
+                            {component}
+                        </ThemeContext.Provider>
+                    </Route>
+                </Provider>
+            </MemoryRouter>
+        </BrowserRouter>
+    );
+}
+
+const middlewares: Array<ThunkMiddleware<any, AnyAction, any>> = [thunk];
+const mockStore: MockStoreCreator = configureMockStore(middlewares);
+
+export function renderIndexComponent(component: ReactElement) {
+    renderNonShowComponent(mockStore(testIndexStore), component);
+}
+export function renderNonShowComponentWithoutUser(component: ReactElement) {
+    renderNonShowComponent(mockStore(testShowStoreWithoutUser), component);
+}
+export function renderNonShowComponentWithUser(component: ReactElement) {
+    renderNonShowComponent(mockStore(testShowStoreWithUser), component);
+}
+export function renderShowComponentWithoutUser(component: ReactElement) {
+    renderShowComponent(mockStore(testShowStoreWithoutUser), component);
+}
+export function renderShowComponentWithUser(component: ReactElement) {
+    renderShowComponent(mockStore(testShowStoreWithUser), component);
+}
