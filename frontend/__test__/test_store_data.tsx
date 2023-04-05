@@ -216,7 +216,6 @@ export const testShowStoreWithUser: State = {
 };
 
 // render functions
-
 function renderNonShowComponent(store: MockStoreEnhanced, component: ReactElement) {
     render(
         <BrowserRouter>
