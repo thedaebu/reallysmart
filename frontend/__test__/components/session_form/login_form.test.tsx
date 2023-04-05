@@ -1,17 +1,9 @@
 import React from "react";
-import { cleanup, render, screen } from "@testing-library/react";
+import { cleanup, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event"
-import { BrowserRouter } from "react-router-dom";
-import { Provider } from "react-redux";
 import * as reactRedux from "react-redux";
-import configureMockStore from "redux-mock-store";
-import thunk from "redux-thunk";
-import { testShowStoreWithoutUser } from "../../test_store_data";
+import { renderNonShowComponentWithoutUser } from "../../test_store_data";
 import LoginForm from "../../../components/session_form/login_form";
-
-const middlewares = [thunk];
-const mockStore = configureMockStore(middlewares);
-const testStore = mockStore(testShowStoreWithoutUser);
 
 const useMockDispatch = jest.spyOn(reactRedux, "useDispatch");
 const useMockEffect = jest.spyOn(React, "useEffect");
@@ -19,13 +11,7 @@ const useMockState = jest.spyOn(React, "useState");
 
 describe("login form", () => {
     beforeEach(() => {
-        render(
-            <BrowserRouter>
-                <Provider store={testStore}>
-                    <LoginForm />
-                </Provider>
-            </BrowserRouter>
-        );
+        renderNonShowComponentWithoutUser(<LoginForm />);
     });
     afterEach(() => {
         cleanup();

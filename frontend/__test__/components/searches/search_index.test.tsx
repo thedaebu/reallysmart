@@ -1,19 +1,11 @@
 import React from "react";
-import { cleanup, render, screen, within } from "@testing-library/react";
+import { cleanup, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { BrowserRouter } from "react-router-dom";
-import { Provider } from "react-redux";
 import * as reactRedux from "react-redux";
-import configureMockStore from "redux-mock-store";
-import thunk from "redux-thunk";
-import { testShowStoreWithoutUser } from "../../test_store_data";
+import { renderNonShowComponentWithoutUser, testShowStoreWithoutUser } from "../../test_store_data";
 import * as SearchActions from "../../../actions/search_actions";
 import { IndexTrack } from "../../../my_types";
 import Searchbar from "../../../components/searchbar/searchbar";
-
-const middlewares = [thunk];
-const mockStore = configureMockStore(middlewares);
-const testStore = mockStore(testShowStoreWithoutUser);
 
 const useMockDispatch = jest.spyOn(reactRedux, "useDispatch");
 const useMockState = jest.spyOn(React, "useState");
@@ -21,13 +13,7 @@ const mockFetchSearches = jest.spyOn(SearchActions, "fetchSearches");
 
 describe("search index", () => {
     beforeEach(() => {
-        render(
-            <BrowserRouter>
-                <Provider store={testStore}>
-                    <Searchbar />
-                </Provider>
-            </BrowserRouter>
-        );
+        renderNonShowComponentWithoutUser(<Searchbar theme="light" />);
     })
     afterEach(() => {
         cleanup();

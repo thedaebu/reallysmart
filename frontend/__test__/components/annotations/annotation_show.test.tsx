@@ -1,47 +1,19 @@
 import React from "react";
-import { cleanup, render, screen, within } from "@testing-library/react";
+import { cleanup, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { BrowserRouter, MemoryRouter, Route } from "react-router-dom";
-import { Provider } from "react-redux";
-import { ThemeContext } from "../../../contexts/theme_context";
-import configureMockStore from "redux-mock-store";
-import thunk from "redux-thunk";
+import { renderShowComponentWithoutUser, renderShowComponentWithUser, testShowStoreWithoutUser, testShowStoreWithUser } from "../../test_store_data";
 import TrackShow from "../../../components/tracks/track_show";
-import { testShowStoreWithoutUser, testShowStoreWithUser } from "../../test_store_data";
-import { Store } from "../../../store/store";
-
-const middlewares = [thunk];
-const mockStore = configureMockStore(middlewares);
-const testStoreWithoutUser: any = mockStore(testShowStoreWithoutUser);
-const testStoreWithUser: any = mockStore(testShowStoreWithUser);
-
-function renderComponent(store: Store) {
-    render(
-        <BrowserRouter>
-            <MemoryRouter initialEntries={['tracks/niki__selene']}>
-                <Provider store={store}>
-                    <Route path='tracks/:trackName'>
-                        <ThemeContext.Provider value={{theme: "light", changeTheme: jest.fn}}>
-                            <TrackShow />
-                        </ThemeContext.Provider>
-                    </Route>
-                </Provider>
-            </MemoryRouter>
-        </BrowserRouter>
-    );
-}
 
 describe("annotation show", () => {
     describe("user irrelevant tests", () => {
         beforeEach(() => {
-            renderComponent(testStoreWithoutUser);
+            renderShowComponentWithoutUser(<TrackShow />);
         });
         afterEach(() => {
             cleanup();
         });
 
         test("contains the about section when annotation is not clicked on", () => {
-            const { title } = testShowStoreWithoutUser.entities.track;
             const annotationShow = screen.queryByTestId("annotation-show");
             expect(annotationShow).toHaveTextContent("Highlight part of the lyrics to add an annotationClick on a highlighted section to show annotation");
         });
@@ -58,13 +30,13 @@ describe("annotation show", () => {
                 const annotation = screen.queryAllByTestId("lyrics__is-annotation")[0];
                 userEvent.click(annotation);
                 const annotationShow = screen.queryByTestId("annotation-show-item");
-                expect(annotationShow).not.toHaveTextContent("edited: 2022-04-09 21:05");
+                expect(annotationShow).not.toHaveTextContent("edited: 2022-05-09 21:05");
             });
             test("does display edited info when edited", () => {
                 const annotation = screen.queryAllByTestId("lyrics__is-annotation")[1];
                 userEvent.click(annotation);
                 const annotationShow = screen.queryByTestId("annotation-show-item");
-                expect(annotationShow).toHaveTextContent("edited: 2022-04-09 21:05");
+                expect(annotationShow).toHaveTextContent("edited: 2022-05-09 21:05");
             });
         });
         test("contains votes show component when annotation is clicked on", () => {
@@ -84,7 +56,7 @@ describe("annotation show", () => {
     });
     describe("no user tests", () => {
         beforeEach(() => {
-            renderComponent(testStoreWithoutUser);
+            renderShowComponentWithoutUser(<TrackShow />);
         });
         afterEach(() => {
             cleanup();
@@ -102,7 +74,7 @@ describe("annotation show", () => {
     });
     describe("current user tests", () => {
         beforeEach(() => {
-            renderComponent(testStoreWithUser);
+            renderShowComponentWithUser(<TrackShow />);
         });
         afterEach(() => {
             cleanup();

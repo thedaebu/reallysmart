@@ -1,20 +1,11 @@
 import React from "react";
-import { cleanup, render, screen } from "@testing-library/react";
+import { cleanup, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event"
-import { BrowserRouter } from "react-router-dom";
-import { Provider } from "react-redux";
-import { ThemeContext } from "../../../contexts/theme_context";
 import * as reactRedux from "react-redux";
-import configureMockStore from "redux-mock-store";
-import thunk from "redux-thunk";
-import { testIndexStore } from "../../test_store_data";
+import { renderIndexComponent, testIndexStore } from "../../test_store_data";
 import * as trackActions from "../../../actions/track_actions";
 import { IndexTrack } from "../../../my_types";
 import TrackIndex from "../../../components/tracks/track_index";
-
-const middlewares = [thunk];
-const mockStore = configureMockStore(middlewares);
-const testStore = mockStore(testIndexStore);
 
 const useMockDispatch = jest.spyOn(reactRedux, "useDispatch");
 const useMockEffect = jest.spyOn(React, "useEffect");
@@ -24,15 +15,7 @@ const useFetchTracks = jest.spyOn(trackActions, "fetchTracks");
 
 describe("track index", () => {
     beforeEach(() => {
-        render(
-            <BrowserRouter>
-                <Provider store={testStore}>
-                    <ThemeContext.Provider value={{theme: "light", changeTheme: jest.fn}}>
-                        <TrackIndex />
-                    </ThemeContext.Provider>
-                </Provider>
-            </BrowserRouter>
-        );
+        renderIndexComponent(<TrackIndex />);
     });
     afterEach(() => {
         cleanup();

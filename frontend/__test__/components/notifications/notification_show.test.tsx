@@ -1,51 +1,24 @@
 import React from "react";
-import { cleanup, render, screen, within } from "@testing-library/react";
+import { cleanup, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { BrowserRouter, MemoryRouter, Route } from "react-router-dom";
-import { Provider } from "react-redux";
-import { ThemeContext } from "../../../contexts/theme_context";
 import * as reactRedux from "react-redux";
-import configureMockStore from "redux-mock-store";
-import thunk from "redux-thunk";
-import { testShowStoreWithoutUser, testShowStoreWithUser } from "../../test_store_data";
-import actionCable from "actioncable";
 import * as NotificationAPIUtil from "../../../util/api/notification_api_util";
+import { renderShowComponentWithoutUser, renderShowComponentWithUser } from "../../test_store_data";
+import actionCable, { Cable } from "actioncable";
 import App from "../../../components/app";
-import { Store } from "../../../store/store";
-
-const middlewares = [thunk];
-const mockStore = configureMockStore(middlewares);
-const testStoreWithoutUser: any = mockStore(testShowStoreWithoutUser);
-const testStoreWithUser: any = mockStore(testShowStoreWithUser);
 
 const useMockEffect = jest.spyOn(React, "useEffect");
 const useMockSelector = jest.spyOn(reactRedux, "useSelector");
 const useMockState = jest.spyOn(React, "useState");
 const useUpdateNotification = jest.spyOn(NotificationAPIUtil, "updateNotification");
 
-const cableApp: any = {};
-cableApp["cable"] = actionCable.createConsumer(`ws://${window.location.hostname}:3000/cable`)
-
-function renderComponent(store: Store) {
-    render(
-        <BrowserRouter>
-            <MemoryRouter initialEntries={['tracks/niki__selene']}>
-                <Provider store={store}>
-                    <Route path='tracks/:trackName'>
-                        <ThemeContext.Provider value={{theme: "light", changeTheme: jest.fn}}>
-                            <App cableApp={cableApp} />
-                        </ThemeContext.Provider>
-                    </Route>
-                </Provider>
-            </MemoryRouter>
-        </BrowserRouter>
-    );
-}
+const cable: Cable = actionCable.createConsumer(`ws://${window.location.hostname}:3000/cable`);
+const cableApp: {"cable": Cable} = {"cable": cable};
 
 describe("notification show", () => {
     describe("no user tests", () => {
         beforeEach(() => {
-            renderComponent(testStoreWithoutUser);
+            renderShowComponentWithoutUser(<App cableApp={cableApp} />);
         });
         afterEach(() => {
             cleanup();
@@ -58,7 +31,7 @@ describe("notification show", () => {
     });
     describe("current user tests", () => {
         beforeEach(() => {
-            renderComponent(testStoreWithUser);
+            renderShowComponentWithUser(<App cableApp={cableApp} />);
         });
         afterEach(() => {
             cleanup();
