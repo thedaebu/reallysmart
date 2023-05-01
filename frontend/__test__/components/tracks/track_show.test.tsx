@@ -1,18 +1,9 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
-import { BrowserRouter, MemoryRouter, Route } from "react-router-dom";
-import { Provider } from "react-redux";
-import { ThemeContext } from "../../../contexts/theme_context";
+import { screen } from "@testing-library/react";
 import * as reactRedux from "react-redux";
-import configureMockStore from "redux-mock-store";
-import thunk from "redux-thunk";
-import TrackShow from "../../../components/tracks/track_show";
 import * as trackActions from "../../../actions/track_actions";
-import { testShowStoreWithoutUser } from "../../test_store_data";
-
-const middlewares = [thunk];
-const mockStore = configureMockStore(middlewares);
-const testStore = mockStore(testShowStoreWithoutUser);
+import { renderShowComponentWithoutUser, testShowStoreWithoutUser } from "../../test_store_data";
+import TrackShow from "../../../components/tracks/track_show";
 
 const useMockDispatch = jest.spyOn(reactRedux, "useDispatch");
 const useMockEffect = jest.spyOn(React, "useEffect");
@@ -20,19 +11,7 @@ const useMockSelector = jest.spyOn(reactRedux, "useSelector");
 const useFetchTrack = jest.spyOn(trackActions, "fetchTrack");
 
 describe("track show", () => {
-    render(
-        <BrowserRouter>
-            <MemoryRouter initialEntries={['tracks/niki__selene']}>
-                <Provider store={testStore}>
-                    <Route path='tracks/:trackName'>
-                        <ThemeContext.Provider value={{theme: "light", changeTheme: jest.fn}}>
-                            <TrackShow />
-                        </ThemeContext.Provider>
-                    </Route>
-                </Provider>
-            </MemoryRouter>
-        </BrowserRouter>
-    );
+    renderShowComponentWithoutUser(<TrackShow />);
 
     test("useEffect is called", () => {
         expect(useMockEffect).toHaveBeenCalled();

@@ -28,6 +28,7 @@ lsof -wni tcp:3000
 kill -9 <PID>
 
 # testing
+rails console -e test 
 bundle exec rspec --format documentation
 npm run test:watch
 

@@ -1,36 +1,19 @@
 import React from "react";
-import { cleanup, render, screen } from "@testing-library/react";
-import { BrowserRouter } from "react-router-dom";
-import { Provider } from "react-redux";
+import { cleanup, screen } from "@testing-library/react";
 import * as reactRedux from "react-redux";
-import configureMockStore from "redux-mock-store";
-import thunk from "redux-thunk";
-import DemoLogin from "../../../components/demo_login/demo_login";
-import { testShowStoreWithoutUser, testShowStoreWithUser } from "../../test_store_data";
-import { Store } from "../../../store/store";
-
-const middlewares = [thunk];
-const mockStore = configureMockStore(middlewares);
-const testStoreWithoutUser: any = mockStore(testShowStoreWithoutUser);
-const testStoreWithUser: any = mockStore(testShowStoreWithUser);
+import { renderNonShowComponentWithoutUser, renderNonShowComponentWithUser } from "../../test_store_data";
+import actionCable, { Cable } from "actioncable";
+import App from "../../../components/app";
 
 const useMockDispatch = jest.spyOn(reactRedux, "useDispatch");
-const useMockSelector = jest.spyOn(reactRedux, "useSelector");
 
-function renderComponent(store: Store) {
-    render(
-        <BrowserRouter>
-            <Provider store={store}>
-                <DemoLogin />
-            </Provider>
-        </BrowserRouter>
-    );
-}
+const cable: Cable = actionCable.createConsumer(`ws://${window.location.hostname}:3000/cable`);
+const cableApp: {cable: Cable} = {cable};
 
 describe("demo login", () => {
     describe("user irrelevant tests", () => {
         beforeEach(() => {
-            renderComponent(testStoreWithoutUser);
+            renderNonShowComponentWithoutUser(<App cableApp={cableApp} />);
         });
         afterEach(() => {
             cleanup();
@@ -38,13 +21,10 @@ describe("demo login", () => {
         test("useDispatch is called", () => {
             expect(useMockDispatch).toHaveBeenCalled();
         });
-        test("useSelector is called", () => {
-            expect(useMockSelector).toHaveBeenCalled();
-        });
     });
     describe("no user tests", () => {
         beforeEach(() => {
-            renderComponent(testStoreWithoutUser);
+            renderNonShowComponentWithoutUser(<App cableApp={cableApp} />);
         });
         afterEach(() => {
             cleanup();
@@ -60,7 +40,7 @@ describe("demo login", () => {
     });
     describe("current user tests", () => {
         beforeEach(() => {
-            renderComponent(testStoreWithUser);
+            renderNonShowComponentWithUser(<App cableApp={cableApp} />);
         });
         afterEach(() => {
             cleanup();

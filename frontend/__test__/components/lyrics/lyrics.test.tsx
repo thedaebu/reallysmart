@@ -1,44 +1,18 @@
 import React from "react";
-import { cleanup, render, screen, within } from "@testing-library/react";
+import { cleanup, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { BrowserRouter, MemoryRouter, Route } from "react-router-dom";
-import { Provider } from "react-redux";
-import { ThemeContext } from "../../../contexts/theme_context";
 import * as reactRedux from "react-redux";
-import configureMockStore from "redux-mock-store";
-import thunk from "redux-thunk";
+import { renderShowComponentWithoutUser, testShowStoreWithoutUser } from "../../test_store_data";
 import TrackShow from "../../../components/tracks/track_show";
-import { testShowStoreWithoutUser } from "../../test_store_data";
-import { Store } from "../../../store/store";
-
-const middlewares = [thunk];
-const mockStore = configureMockStore(middlewares);
-const testStore: any = mockStore(testShowStoreWithoutUser);
 
 const useMockDispatch = jest.spyOn(reactRedux, "useDispatch");
 const useMockEffect = jest.spyOn(React, "useEffect");
 const useMockSelector = jest.spyOn(reactRedux, "useSelector");
 const useMockState = jest.spyOn(React, "useState");
 
-function renderComponent(store: Store) {
-    render(
-        <BrowserRouter>
-            <MemoryRouter initialEntries={['tracks/niki__selene']}>
-                <Provider store={store}>
-                    <Route path='tracks/:trackName'>
-                        <ThemeContext.Provider value={{theme: "light", changeTheme: jest.fn}}>
-                            <TrackShow />
-                        </ThemeContext.Provider>
-                    </Route>
-                </Provider>
-            </MemoryRouter>
-        </BrowserRouter>
-    );
-}
-
 describe("lyrics", () => {
     beforeEach(() => {
-        renderComponent(testStore);
+        renderShowComponentWithoutUser(<TrackShow />);
     });
     afterEach(() => {
         cleanup();

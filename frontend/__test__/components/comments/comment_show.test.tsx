@@ -1,45 +1,18 @@
 import React from "react";
-import { cleanup, render, screen, within } from "@testing-library/react";
+import { cleanup, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { BrowserRouter, MemoryRouter, Route } from "react-router-dom";
-import { Provider } from "react-redux";
-import { ThemeContext } from "../../../contexts/theme_context";
-import configureMockStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
+import { renderShowComponentWithoutUser, renderShowComponentWithUser, testShowStoreWithUser } from "../../test_store_data";
 import TrackShow from "../../../components/tracks/track_show";
-import { testShowStoreWithoutUser, testShowStoreWithUser } from "../../test_store_data";
-import { Store } from "../../../store/store";
-
-const middlewares = [thunk];
-const mockStore = configureMockStore(middlewares);
-const testStoreWithoutUser: any = mockStore(testShowStoreWithoutUser);
-const testStoreWithUser: any = mockStore(testShowStoreWithUser);
-
-function renderComponent(store: Store) {
-    render(
-        <BrowserRouter>
-            <MemoryRouter initialEntries={['tracks/niki__selene']}>
-                <Provider store={store}>
-                    <Route path='tracks/:trackName'>
-                        <ThemeContext.Provider value={{theme: "light", changeTheme: jest.fn}}>
-                            <TrackShow />
-                        </ThemeContext.Provider>
-                    </Route>
-                </Provider>
-            </MemoryRouter>
-        </BrowserRouter>
-    );
-}
 
 describe("comment show", () => {
     describe("user irrelevant tests", () => {
         beforeEach(() => {
-            renderComponent(testStoreWithoutUser);
+            renderShowComponentWithoutUser(<TrackShow />);
         });
         afterEach(() => {
             cleanup();
         });
-    
+
         test("contains the commenter username and the body of the comment", () => {
             const commentShow = screen.queryByTestId("comment-show");
             const commentShowItem = within(commentShow).queryAllByTestId("comment-show-item")[0];
@@ -50,12 +23,12 @@ describe("comment show", () => {
             test("does not display edited info when never edited", () => {
                 const commentShow = screen.queryByTestId("comment-show");
                 const commentShowItem = within(commentShow).queryAllByTestId("comment-show-item")[0];
-                expect(commentShowItem).not.toHaveTextContent("edited: 2022-04-09 21:05");
+                expect(commentShowItem).not.toHaveTextContent("edited: 2022-05-09 21:05");
             });
             test("does display edited info when edited", () => {
                 const commentShow = screen.queryByTestId("comment-show");
                 const commentShowItem = within(commentShow).queryAllByTestId("comment-show-item")[1];
-                expect(commentShowItem).toHaveTextContent("edited: 2022-04-09 21:05");
+                expect(commentShowItem).toHaveTextContent("edited: 2022-05-09 21:05");
             });
         });
         test("contains votes show component", () => {
@@ -99,7 +72,7 @@ describe("comment show", () => {
     });
     describe("no user tests", () => {
         beforeEach(() => {
-            renderComponent(testStoreWithoutUser);
+            renderShowComponentWithoutUser(<TrackShow />);
         });
         afterEach(() => {
             cleanup();
@@ -126,7 +99,7 @@ describe("comment show", () => {
     });
     describe("current user tests", () => {
         beforeEach(() => {
-            renderComponent(testStoreWithUser);
+            renderShowComponentWithUser(<TrackShow />);
         });
         afterEach(() => {
             cleanup();

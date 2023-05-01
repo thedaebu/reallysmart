@@ -1,37 +1,17 @@
 import React from "react";
-import { cleanup, render, screen, within } from "@testing-library/react";
+import { cleanup, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { BrowserRouter } from "react-router-dom";
-import { Provider } from "react-redux";
 import * as reactRedux from "react-redux";
-import configureMockStore from "redux-mock-store";
-import thunk from "redux-thunk";
+import { renderNonShowComponentWithoutUser, renderNonShowComponentWithUser } from "../../test_store_data";
 import SessionMenu from "../../../components/session_menu/session_menu";
-import { testShowStoreWithoutUser, testShowStoreWithUser } from "../../test_store_data";
-import { Store } from "../../../store/store";
-
-const middlewares = [thunk];
-const mockStore = configureMockStore(middlewares);
-const testStoreWithoutUser: any = mockStore(testShowStoreWithoutUser);
-const testStoreWithUser: any = mockStore(testShowStoreWithUser);
 
 const useMockDispatch = jest.spyOn(reactRedux, "useDispatch");
 const useMockSelector = jest.spyOn(reactRedux, "useSelector");
 
-function renderComponent(store: Store) {
-    render(
-        <BrowserRouter>
-            <Provider store={store}>
-                <SessionMenu />
-            </Provider>
-        </BrowserRouter>
-    );
-}
-
 describe("session menu", () => {
     describe("user irrelevant tests", () => {
         beforeEach(() => {
-            renderComponent(testStoreWithoutUser);
+            renderNonShowComponentWithoutUser(<SessionMenu />);
         });
         afterEach(() => {
             cleanup();
@@ -45,7 +25,7 @@ describe("session menu", () => {
     });
     describe("no user tests", () => {
         beforeEach(() => {
-            renderComponent(testStoreWithoutUser);
+            renderNonShowComponentWithoutUser(<SessionMenu />);
         });
         afterEach(() => {
             cleanup();
@@ -85,7 +65,7 @@ describe("session menu", () => {
     });
     describe("current user tests", () => {
         beforeEach(() => {
-            renderComponent(testStoreWithUser);
+            renderNonShowComponentWithUser(<SessionMenu />);
         });
         afterEach(() => {
             cleanup();
