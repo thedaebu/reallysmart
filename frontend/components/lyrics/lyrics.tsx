@@ -54,6 +54,12 @@ function LyricsShow({ track }: { track: Track }) {
         annotateLyrics(Object.values(annotations));
     }, [annotations]);
 
+    useEffect(() => {
+        if (selectedAnnotation) {
+            handleSelectedAnnotation(selectedAnnotation);
+        }
+    }, [selectedAnnotation])
+
     function annotateLyrics(annotations: Array<Annotation>) {
         if (annotations.length > 0) {
             const sortedAnnotations: Array<Annotation> = annotations.sort((a: Annotation, b: Annotation) => (a.start_index - b.start_index));
@@ -134,6 +140,29 @@ function LyricsShow({ track }: { track: Track }) {
         }
     }
 
+    function handleSelectedAnnotation(annotation: Annotation) {
+        const name = `is-anno-${annotation.id}`
+        let currentLyrics: JSX.Element;
+        let currentIndex: number;
+        for (let i = 0; i < annotatedLyrics.length; i++) {
+            const lyricsPart: JSX.Element = annotatedLyrics[i];
+            if (lyricsPart.key === name) {
+                currentLyrics = lyricsPart.props['children'];
+                currentIndex = i;
+                break;
+            }
+        }
+        const element: JSX.Element = <span
+            className="lyrics__highlighted"
+            key="highlighted_1"
+            data-testid="lyrics__highlighted"
+        >
+            {currentLyrics}
+        </span>;
+        const annotatedLyricsWithHighlight: Array<JSX.Element> = [...annotatedLyrics.slice(0, currentIndex), element, ...annotatedLyrics.slice(currentIndex + 1)];
+        setAnnotatedLyrics(annotatedLyricsWithHighlight);
+    }
+
     function handleTextSelect(e: MouseEvent<HTMLElement>) {
         e.preventDefault();
 
@@ -160,8 +189,8 @@ function LyricsShow({ track }: { track: Track }) {
         if (anchorName.includes("not-anno") && anchorName === focusName) {
             const currentStart: number = highlighted.anchorOffset + add;
             const currentEnd: number = highlighted.focusOffset + add;
-            start = Math.min(currentStart, currentEnd);
-            end = Math.max(currentStart, currentEnd) + 1;
+            start = Math.min(currentStart, currentEnd) + 1;
+            end = Math.max(currentStart, currentEnd);
         }
 
         return {end, start};
