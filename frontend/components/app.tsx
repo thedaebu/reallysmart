@@ -1,10 +1,6 @@
 import React, { Dispatch, lazy, Suspense, useContext, useEffect } from "react";
-import {
-    Route,
-    Switch,
-    Link
-} from "react-router-dom";
-import { AuthRoute } from "../util/route_util";
+import { Link, Route, Routes } from "react-router-dom";
+import { AccountRoute, SessionRoute } from "../util/route_util";
 import { ThemeContext } from "../contexts/theme_context";
 import { useDispatch, useSelector } from "react-redux";
 import { State, User, Window } from "../my_types";
@@ -17,6 +13,7 @@ import NotificationShow from "./notifications/notification_show";
 import ThemeToggle from "./theme_toggle/theme_toggle";
 import * as SessionActions from "./../actions/session_actions";
 import { AnyAction } from "redux";
+import AccountPage from "./account/account_page";
 const TrackIndex = lazy(() => import("./tracks/track_index"));
 const TrackShow = lazy(() => import("./tracks/track_show"));
 
@@ -49,20 +46,40 @@ function App({ cableApp }: { cableApp: any}) {
                     <ThemeToggle />
                 </section>
             </header>
-            <Switch>
-                <Route exact path="/">
-                    <Suspense fallback={<div></div>}>
+            <Routes>
+                <Route
+                    path="/"
+                    element={<Suspense fallback={<div></div>}>
                         <TrackIndex />
-                    </Suspense>
-                </Route>
-                <AuthRoute exact path="/signup" component={SignupForm} />
-                <AuthRoute exact path="/login" component={LoginForm} />
-                <Route path="/tracks/:trackName">
-                    <Suspense fallback={<div></div>}>
+                    </Suspense>}
+                />
+                <Route
+                    path="/signup"
+                    element={<SessionRoute
+                        component={SignupForm}
+                        loggedIn={!!currentUser}
+                    />}
+                />
+                <Route
+                    path="/login"
+                    element={<SessionRoute
+                        component={LoginForm}
+                        loggedIn={!!currentUser}
+                    />}
+                />
+                <Route
+                    path="/tracks/:trackName"
+                    element={<Suspense fallback={<div></div>}>
                         <TrackShow />
-                    </Suspense>
-                </Route>
-            </Switch>
+                    </Suspense>}
+                />
+                <Route path="/account" element={
+                    <AccountRoute
+                        component={AccountPage}
+                        loggedIn={!!currentUser}
+                    />
+                } />
+            </Routes>
         </div>
     );
 }
