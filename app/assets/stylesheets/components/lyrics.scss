@@ -35,10 +35,12 @@ $programmelight: 'Programme Light', sans-serif;
                     padding: 4px 0px 5px 0px;
                     &:hover {
                         background: rgb(121, 164, 255);
+                        color: white;
                     }
                 }
                 .lyrics__highlighted {
                     background: rgb(121, 164, 255);
+                    color: white;
                     font-family: $programmelight;
                     padding: 4px 0px 5px 0px;
                 }
