@@ -15,7 +15,14 @@ function SessionMenu() {
         <>
             {currentUser 
                 ? (
-                    <section className="session-menu__user">
+                    <section className="session-menu">
+                        <Link
+                            to="/account" 
+                            className="session-menu__account"
+                            data-testid="session-menu__account"
+                        >
+                            ACCOUNT
+                        </Link>
                         <a 
                             className="session-menu__logout" 
                             onClick={() => logout()}
@@ -25,7 +32,7 @@ function SessionMenu() {
                         </a>
                     </section>
                 ) : (
-                    <section className="session-menu__no-user">
+                    <section className="session-menu">
                         <Link
                             to="/signup" 
                             className="session-menu__signup"
