@@ -4,6 +4,9 @@ module Types
     include GraphQL::Types::Relay::HasNodeField
     include GraphQL::Types::Relay::HasNodesField
 
+    field :account, Types::AccountType, null: false do
+      argument :sessionToken, String, require: true
+    end
     field :annotation, Types::AnnotationType, null: false do
       argument :id, ID, required: true
     end
@@ -21,6 +24,9 @@ module Types
       argument :sessionToken, String, required: true
     end
 
+    def account(sessionToken:)
+      User.find_by_session_token(sessionToken)
+    end
     def annotation(id:)
       Annotation.find(id)
     end
