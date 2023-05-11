@@ -1,6 +1,7 @@
 class Api::SessionsController < ApplicationController
   def create
-    user = User.find_by_credentials(params[:user][:username], params[:user][:password])
+    user_info = params[:user]
+    user = User.find_by_credentials(user_info[:username], user_info[:password])
     if user
       login!(user)
       @user = user.slice(:id, :username)
@@ -11,7 +12,7 @@ class Api::SessionsController < ApplicationController
         temp_annotation_alert[:body] = annotation.body
         temp_annotation_alert[:commenter_name] = annotation_alert.commenter.username
         temp_annotation_alert[:track] = annotation.track.slice(:artist, :title)
-        temp_annotation_alert[:type] = "AnnotationAlert"
+        temp_annotation_alert[:type] = 'AnnotationAlert'
 
         temp_annotation_alert
       end
@@ -20,21 +21,20 @@ class Api::SessionsController < ApplicationController
         commentable_type = comment.commentable_type
         temp_mention = mention.slice(:created_at, :id, :read)
 
-        temp_mention[:body] = commentable_type == "Track" ? "" : comment.commentable.body
+        temp_mention[:body] = commentable_type == 'Track' ? '' : comment.commentable.body
         temp_mention[:mentioner_name] = mention.mentioner.username
-        temp_mention[:track] = commentable_type == "Track" ? comment.commentable.slice(:artist, :title) : comment.commentable.track.slice(:artist, :title)
-        temp_mention[:type] = "Mention"
+        temp_mention[:track] = commentable_type == 'Track' ? comment.commentable.slice(:artist, :title) : comment.commentable.track.slice(:artist, :title)
+        temp_mention[:type] = 'Mention'
 
         temp_mention
       end
       @user[:annotation_alerts] = annotation_alerts
       @user[:mentions] = mentions
-      # avatar_url = url_for(user.avatar)
 
       result = {:user => @user}
       render json: result
     else
-      render json: ["Invalid credentials"], status: 401
+      render json: ['Invalid credentials'], status: 401
     end
   end
 
