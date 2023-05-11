@@ -45,6 +45,33 @@ class User < ApplicationRecord
     user_with_notifications
   end
 
+  def self.add_account_info(user)
+    user_with_account_info = user.slice(:id, :username)
+      annotations = user.annotations.map do |annotation|
+        temp_annotation = annotation
+
+        temp_annotation[:body] = annotation.body
+        temp_annotation[:track] = annotation.track.slice(:artist, :title)
+
+        temp_annotation
+      end
+      comments = user.comments.map do |comment|
+        commentable_type = comment.commentable_type
+        temp_comment = comment
+
+        temp_comment[:body] = comment.body
+        temp_comment[:commentable_body] = commentable_type == "Track" ? "" : comment.commentable.body
+        temp_comment[:commentable_type] = comment.commentable_type
+        temp_mention[:track] = commentable_type == "Track" ? comment.commentable.slice(:artist, :title) : comment.commentable.track.slice(:artist, :title)
+
+        temp_comment
+      end
+      user_with_account_info[:annotations] = annotations
+      user_with_account_info[:comments] = comments
+
+      user_with_account_info
+  end
+
   def self.find_by_credentials(username, password)
     user = User.find_by(username: username)
     return nil unless user
