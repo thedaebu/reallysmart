@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   root to: "static_pages#root"
   resources :status, only: [:index]
   namespace :api do
+    resources :accounts, only: [:show]
     resources :annotations, only: [:show, :create, :update, :destroy]
     resources :comments, only: [:show, :create, :update, :destroy]
     resources :notifications, only: [:update]
@@ -16,7 +17,7 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy]
     resources :tags, only: [:index]
     resources :tracks, only: [:index, :show]
-    resources :users, only: [:show, :create]
+    resource :users, only: [:show, :create, :update]
     resources :votes, only: [:show, :create, :destroy]
   end
 end
