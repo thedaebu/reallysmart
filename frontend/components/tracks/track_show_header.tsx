@@ -24,7 +24,7 @@ function TrackShowHeader({ track }: { track: Track }) {
                         <div
                             className="track-show__image"
                             style={{
-                                backgroundImage: `url(${artwork_path}`
+                                backgroundImage: `url(${artwork_path})`
                             }}
                         >
                         </div>
