@@ -58,6 +58,10 @@ type Entities = {
 };
 
 // used for reducer files
+export type AccountAction = {
+    account: Account,
+    type: "RECEIVE_ACCOUNT"
+};
 export type AnnotationAction = {
     annotation: Annotation,
     annotationId: number,
@@ -91,6 +95,26 @@ export type TracksAction = {
 };
 
 // main feature types
+export type Account = {
+    annotations: Array<{
+        body: string,
+        track: {
+            artist: string,
+            title: string
+        }
+    }>,
+    comments: Array<{
+        body: string,
+        commentable_body: string,
+        commentable_type: "Track" | "Annotation",
+        track: {
+            artist: string,
+            title: string
+        }
+    }>,
+    id: number,
+    username: string
+};
 export type Annotation = {
     annotator_id: number,
     annotator_name: string,
