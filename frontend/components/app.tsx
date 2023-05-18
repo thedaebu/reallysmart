@@ -11,9 +11,9 @@ import SignupForm from "./session_form/signup_form";
 import Searchbar from "./searchbar/searchbar";
 import NotificationShow from "./notifications/notification_show";
 import ThemeToggle from "./theme_toggle/theme_toggle";
+import AccountShow from "./account/account_show";
 import * as SessionActions from "./../actions/session_actions";
 import { AnyAction } from "redux";
-import AccountPage from "./account/account_page";
 const TrackIndex = lazy(() => import("./tracks/track_index"));
 const TrackShow = lazy(() => import("./tracks/track_show"));
 
@@ -75,7 +75,7 @@ function App({ cableApp }: { cableApp: any}) {
                 />
                 <Route path="/account" element={
                     <AccountRoute
-                        component={AccountPage}
+                        component={AccountShow}
                         loggedIn={!!currentUser}
                     />
                 } />
