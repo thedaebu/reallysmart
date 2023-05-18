@@ -1,6 +1,6 @@
-class Api::AnnotationsController < ApplicationController
+class Api::AccountsController < ApplicationController
   def show
-    user = User.find_by_session_token(params[:sessionToken])
+    user = User.find(params[:id])
     if user
       @account = User.add_account_info(user)
 
