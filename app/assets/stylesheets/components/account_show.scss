@@ -1,0 +1,72 @@
+account-tabdisplay-item {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    border-bottom: 4px solid transparent;
+    margin-right: 15px;
+    cursor: pointer;
+    transition: 0.2s;
+    &:hover {
+        border-bottom: 4px solid rgb(255, 0, 0);
+    }
+}
+
+.account-show-header__background {
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+    height: 280px;
+    width: inherit;
+    background-position: center;
+    background-size: cover;
+    .account-show-header__shade {
+        z-index: 2;
+        height: inherit;
+        width: 970px;
+        background-color: rgba(0, 0, 0, 0.5);
+        > div {
+            height: inherit;
+            display: flex;
+            justify-content: space-between;
+            .account-show-header__left {
+                display: flex;
+                position: relative;
+                top: 34px;
+                .account-show-header__image {
+                    position: relative;
+                    height: 220px;
+                    width: 220px;
+                    right: 22px;
+                    background-position: center;
+                    background-size: cover;
+                    border: 2px solid rgb(140, 140, 140);
+                    border-radius: 50%;
+                }
+                .account-show-header__text {
+                    position: relative;
+                    top: 14px;
+                    right: 10px;
+                    display: flex;
+                    flex-direction: column;
+                    .account-show-header__username {
+                        color: rgb(106, 153, 255);
+                        font-size: 35px;
+                    }
+                }
+            }
+            .account-tabdisplay {
+                display: flex;
+                align-items: flex-end;
+                white-space: nowrap;
+                margin-right: 290px;
+                .account-tabdisplay-item {
+                    @extend account-tabdisplay-item;
+                }
+                .account-tabdisplay-item__highlighted {
+                    @extend account-tabdisplay-item;
+                    border-bottom: 4px solid rgb(255, 0, 0);
+                }
+            }
+        }
+    }
+}
+
