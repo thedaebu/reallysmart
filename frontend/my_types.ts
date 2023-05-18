@@ -49,6 +49,7 @@ export type State = {
     entities: Entities
 };
 type Entities = {
+    account: Account,
     annotations: {[key:number]: Annotation},
     comments: {[key:number]: Comment},
     indexTracks: {[key: number]: IndexTrack},
