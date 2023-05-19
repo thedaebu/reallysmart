@@ -25,26 +25,30 @@ class Api::UsersController < ApplicationController
   end
 
   def update
-    user_info = params[:user]
+    user_info = params[:updatedUser]
     updated_user = User.find_by_credentials(user_info[:username], user_info[:password])
-    if user_info[:updateType] == 'username'
-      if updated_user.update(username: user_info[:updateInfo])
-        @user = User.add_notifications(updated_user)
-  
-        result = {:user => @user}
-        render json: result
+    if updated_user
+      if user_info[:updateType] == 'updateUsername'
+        if updated_user.update(username: user_info[:updateInfo])
+          @user = User.add_notifications(updated_user)
+
+          result = {:user => @user}
+          render json: result
+        else
+          render json: updated_user.errors.full_messages, status: 422
+        end
       else
-        render json: updated_user.errors.full_messages, status: 422
+        if updated_user.password=(user_info[:updateInfo])
+          @user = User.add_notifications(updated_user)
+    
+          result = {:user => @user}
+          render json: result
+        else
+          render json: updated_user.errors.full_messages, status: 422
+        end
       end
     else
-      if updated_user.password=(user_info[:updateInfo])
-        @user = User.add_notifications(updated_user)
-  
-        result = {:user => @user}
-        render json: result
-      else
-        render json: updated_user.errors.full_messages, status: 422
-      end
+      render json: updated_user.errors.full_messages, status: 422
     end
   end
 
