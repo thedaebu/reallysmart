@@ -43,6 +43,12 @@ export type UpdatedNotification = {
     id: number,
     type: "AnnotationAlert" | "Mention"
 };
+export type UpdatedUser = {
+    password: string,
+    updateInfo: string,
+    updateType: "updatePassword" | "updateUsername",
+    username: string
+};
 
 // used for redux store
 export type State = {
