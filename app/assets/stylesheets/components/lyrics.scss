@@ -3,9 +3,11 @@ $programmelight: 'Programme Light', sans-serif;
 
 .lyrics__shade {
     width: 100%;
+    min-height: calc(100vh - 362px);
     background: rgb(219, 219, 219);
     .lyrics__main {
         width: unquote("min(970px, 100vw)");
+        min-height: calc(100vh - 362px);
         display: flex;
         background: rgb(255, 255, 255);
         margin: 0px auto;
@@ -55,9 +57,11 @@ $programmelight: 'Programme Light', sans-serif;
 
 .lyrics__shade--dark {
     width: 100%;
+    min-height: calc(100vh - 362px);
     background: rgb(80, 80, 80);
     .lyrics__main {
         width: unquote("min(970px, 100vw)");
+        min-height: calc(100vh - 362px);
         display: flex;
         background: rgb(50, 50, 50);
         margin: 0px auto;
