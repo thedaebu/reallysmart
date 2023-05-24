@@ -38,9 +38,9 @@ class Api::UsersController < ApplicationController
           render json: updated_user.errors.full_messages, status: 422
         end
       else
-        if updated_user.password=(user_info[:updateInfo])
+        if updated_user.update(password: user_info[:updateInfo])
           @user = User.add_notifications(updated_user)
-    
+
           result = {:user => @user}
           render json: result
         else
