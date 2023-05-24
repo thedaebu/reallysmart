@@ -39,3 +39,39 @@ font-family: 'Programme Light', sans-serif;
 font-family: 'Barlow Condensed', sans-serif;
 font-family: 'Ubuntu Condensed', sans-serif;
 font-family: 'Raleway', sans-serif;
+
+# colors
+# gray
+rgb(38, 38, 38)
+rgb(44, 44, 44)
+rgb(50, 50, 50)
+rgb(56, 56, 56) - tooltip
+rgb(70, 70, 70)
+rgb(80, 80, 80)
+rgb(99, 99, 99)
+rgb(112, 112, 112)
+rgb(140, 140, 140)
+rgb(156, 156, 156)
+rgb(173, 173, 173)
+rgb(182, 182, 182)
+rgb(197, 197, 197)
+rgb(219, 219, 219)
+rgb(238, 238, 238)
+rgb(255, 255, 255)
+
+# blue
+rgb(18, 93, 255)
+rgb(106, 153, 255)
+rgb(121, 164, 255)
+rgb(126, 204, 233)
+rgb(194, 213, 255)
+rgb(215, 222, 255)
+
+# green
+rgb(200, 255, 200)
+
+# red
+rgb(197, 0, 0)
+rgb(223, 0, 0)
+rgb(255, 0, 0)
+rgb(255, 20, 100)
