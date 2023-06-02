@@ -4,6 +4,14 @@ import { AnyAction } from "@reduxjs/toolkit";
 import * as SessionActions from "../../actions/session_actions"
 import { SessionAction, State, UpdatedUser, User } from "../../my_types";
 
+type TargetData = {
+    target: {
+        dataset: {
+            formname: string
+        }
+    }
+} & FormEvent<HTMLFormElement>;
+
 function AccountShowProfile() {
     const currentUser: User = useSelector((state: State) => state.entities.user);
 
@@ -22,33 +30,20 @@ function AccountShowProfile() {
     const [usernameConfirmation, setUsernameConfirmation] = useState<string>("");
     const [usernameErrors, setUsernameErrors] = useState<Array<string>>([]);
 
-    function handleInputChange(input: string) {
-        switch (input) {
-            case "confirmedNewPassword":
-                return (e: ChangeEvent<HTMLInputElement>) => setConfirmedNewPassword(e.currentTarget.value);
-            case "confirmedOldPassword":
-                return (e: ChangeEvent<HTMLInputElement>) => setConfirmedOldPassword(e.currentTarget.value);
-            case "confirmedPassword":
-                return (e: ChangeEvent<HTMLInputElement>) => setConfirmedPassword(e.currentTarget.value);
-            case "newPassword":
-                return (e: ChangeEvent<HTMLInputElement>) => setNewPassword(e.currentTarget.value);
-            case "newUsername":
-                return (e: ChangeEvent<HTMLInputElement>) => setNewUsername(e.currentTarget.value);
-            case "oldPassword":
-                return (e: ChangeEvent<HTMLInputElement>) => setOldPassword(e.currentTarget.value);
-            case "password":
-                return (e: ChangeEvent<HTMLInputElement>) => setPassword(e.currentTarget.value);
-        }
-    }
-
-    function handleFormSubmit(e: FormEvent<HTMLFormElement>) {
+    function handleFormSubmit(e: TargetData) {
         e.preventDefault();
 
         const formName: string = e.target.dataset.formname;
+        console.log(formName);
         switch (formName) {
             case "updateUsername":
-                if (password !== confirmedPassword) {
+                if (!password) {
+                    setUsernameErrors(["Please type password."]);
+                    console.log("correct")
+                } else if (password !== confirmedPassword) {
                     setUsernameErrors(["Passwords do not match."]);
+                } else if (!newUsername) {
+                    setUsernameErrors(["Please type new username."]);
                 } else {
                     const updatedUser: UpdatedUser = {
                         password,
@@ -70,9 +65,15 @@ function AccountShowProfile() {
                             }
                         });
                 }
+                break;
             case "updatePassword":
-                if (oldPassword !== confirmedOldPassword) {
+                if (!oldPassword) {
+                    setPasswordErrors(["Please type old password."]);
+                    console.log("why?")
+                } else if (oldPassword !== confirmedOldPassword) {
                     setPasswordErrors(["Old passwords do not match."]);
+                } else if (!newPassword) {
+                    setPasswordErrors(["Please type new password."]);
                 } else if (newPassword !== confirmedNewPassword) {  
                     setPasswordErrors(["New passwords do not match."]);
                 } else {
@@ -97,6 +98,7 @@ function AccountShowProfile() {
                             }
                         });
                 }
+                break;
         }
     }
 
@@ -114,7 +116,7 @@ function AccountShowProfile() {
             <div className="account-show-profile__errors">
                 <ul className="account-show-profile__errors-list">
                     {errors.map((error: string, idx: number) => (
-                        <li key={idx}>{error}</li>
+                        <li className="account-show-profile__error" key={idx}>{error}</li>
                     ))}
                 </ul>
             </div>
@@ -124,19 +126,19 @@ function AccountShowProfile() {
     return (
         <div className="account-show-profile">
             <h1 className="account-show-profile__h1">Profile Info</h1>
-            <h2 className="account-show-profile__h2">Update Username</h2>
             <form
                 className="account-show-profile__form"
                 onSubmit={handleFormSubmit}
                 data-formname="updateUsername"
             >
-                {usernameErrors.length && errorsDisplay(usernameErrors)}
-                {usernameConfirmation.length && confirmationDisplay("usernameConfirmation")}
+                <h2 className="account-show-profile__h2">Update Username</h2>
+                {usernameErrors.length > 0 && errorsDisplay(usernameErrors)}
+                {usernameConfirmation.length > 0 && confirmationDisplay("usernameConfirmation")}
                 <label className="account-show-profile__label" htmlFor="account-show-profile__password">Password:</label>
                 <input
                     className="account-show-profile__input"
                     id="account-show-profile__password"
-                    onChange={handleInputChange("password")}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
                     type="password"
                     value={password}
                 />
@@ -144,7 +146,7 @@ function AccountShowProfile() {
                 <input
                     className="account-show-profile__input"
                     id="account-show-profile__confirmed-password"
-                    onChange={handleInputChange("confirmedPassword")}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) => setConfirmedPassword(e.target.value)}
                     type="password"
                     value={confirmedPassword}
                 />
@@ -152,7 +154,7 @@ function AccountShowProfile() {
                 <input
                     className="account-show-profile__input"
                     id="account-show-profile__new-username"
-                    onChange={handleInputChange("newUsername")}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) => setNewUsername(e.target.value)}
                     type="text"
                     value={newUsername}
                 />
@@ -163,27 +165,27 @@ function AccountShowProfile() {
                     value="Update"
                 />
             </form>
-            <h2 className="account-show-profile__h2">Update Password</h2>
             <form
                 className="account-show-profile__form"
                 onSubmit={handleFormSubmit}
                 data-formname="updatePassword"
             >
-                {passwordErrors.length && errorsDisplay(passwordErrors)}
-                {passwordConfirmation.length && confirmationDisplay("passwordConfirmation")}
+                <h2 className="account-show-profile__h2">Update Password</h2>
+                {passwordErrors.length > 0 && errorsDisplay(passwordErrors)}
+                {passwordConfirmation.length > 0 && confirmationDisplay("passwordConfirmation")}
                 <label className="account-show-profile__label" htmlFor="account-show-profile__old-password">Old Password:</label>
                 <input
                     className="account-show-profile__input"
                     id="account-show-profile__old-password"
-                    onChange={handleInputChange("oldPassword")}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) => setOldPassword(e.target.value)}
                     type="password"
                     value={oldPassword}
                 />
-                <label className="account-show-profile__label" htmlFor="account-show-profile__confirmed-old-password">Old Password:</label>
+                <label className="account-show-profile__label" htmlFor="account-show-profile__confirmed-old-password">Confirm Old Password:</label>
                 <input
                     className="account-show-profile__input"
                     id="account-show-profile__confirmed-old-password"
-                    onChange={handleInputChange("confirmedOldPassword")}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) => setConfirmedOldPassword(e.target.value)}
                     type="password"
                     value={confirmedOldPassword}
                 />
@@ -191,7 +193,7 @@ function AccountShowProfile() {
                 <input
                     className="account-show-profile__input"
                     id="account-show-profile__new-password"
-                    onChange={handleInputChange("newPassword")}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) => setNewPassword(e.target.value)}
                     type="password"
                     value={newPassword}
                 />
@@ -199,7 +201,7 @@ function AccountShowProfile() {
                 <input
                     className="account-show-profile__input"
                     id="account-show-profile__confirmed-new-password"
-                    onChange={handleInputChange("confirmedNewPassword")}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) => setConfirmedNewPassword(e.target.value)}
                     type="password"
                     value={confirmedNewPassword}
                 />
