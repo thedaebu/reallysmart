@@ -11,14 +11,14 @@ $ubuntu: 'Ubuntu Condensed', sans-serif;
     color: rgb(204, 204, 204);
     .session-form__signup--h1 {
         font-family: $barlow;
-        color: rgb(106, 153, 255);
+        color: rgb(106, 153, 240);
         font-size: 62px;
         font-weight: bold;
         padding: 40px 0px 6px 0px;
     }
     .session-form__signup--h2 {
         font-family: $barlow;
-        color: rgb(106, 153, 255);
+        color: rgb(106, 153, 240);
         font-size: 30px;
         font-weight: lighter;
         letter-spacing: -0.5px;
@@ -26,7 +26,7 @@ $ubuntu: 'Ubuntu Condensed', sans-serif;
     }
     .session-form__login-h1 {
         font-family: $ubuntu;
-        color: rgb(255, 255, 255);
+        color: rgb(240, 240, 240);
         font-size: 40px;
         font-weight: bolder;
         letter-spacing: -0.5px;
@@ -45,7 +45,7 @@ $ubuntu: 'Ubuntu Condensed', sans-serif;
             .session-form__errors--header {
                 background-color: rgb(197, 0, 0);
                 font-family: $barlow;
-                color: rgb(255, 255, 255);
+                color: rgb(240, 240, 240);
                 font-size: 15px;
                 padding: 9px 32px;
             }
@@ -63,7 +63,7 @@ $ubuntu: 'Ubuntu Condensed', sans-serif;
             }
         }
         .session-form__label {
-            color: rgb(255, 255, 255);
+            color: rgb(240, 240, 240);
             font-size: 13px;  
             .session-form__forgot-password {
                 color: rgb(91, 167, 194);
@@ -77,7 +77,7 @@ $ubuntu: 'Ubuntu Condensed', sans-serif;
                 flex-direction: row; 
                 width: 335px;
                 background-color: rgb(59, 59, 59);
-                color: rgb(255, 255, 255);
+                color: rgb(240, 240, 240);
                 font-size: 14;
                 border: 1px solid rgb(80, 80, 80);
                 border-radius: 2px;
@@ -112,7 +112,7 @@ $ubuntu: 'Ubuntu Condensed', sans-serif;
             margin-top: 1px;
             &:hover {
                 background-color: rgb(44, 44, 44);
-                color: rgb(255, 255, 255);
+                color: rgb(240, 240, 240);
             }
             &:active {
                 background: linear-gradient(336deg, rgb(61, 61, 61), rgb(38, 38, 38) 70.71%);   

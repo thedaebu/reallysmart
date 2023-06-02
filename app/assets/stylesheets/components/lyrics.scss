@@ -9,10 +9,10 @@ $programmelight: 'Programme Light', sans-serif;
         width: unquote("min(970px, 100vw)");
         min-height: calc(100vh - 362px);
         display: flex;
-        background: rgb(255, 255, 255);
+        background: rgb(240, 240, 240);
         margin: 0px auto;
         .lyrics__text {
-            min-width: 530px;
+            width: 530px;
             padding: 16px 0px 96px 16px;
             .lyrics__top {
                 font-family: $programmereg;
@@ -37,7 +37,7 @@ $programmelight: 'Programme Light', sans-serif;
                     padding: 4px 0px 5px 0px;
                     &:hover {
                         background: rgb(121, 164, 255);
-                        color: white;
+                        color: rgb(240, 240, 240);
                     }
                 }
                 .lyrics__highlighted {
