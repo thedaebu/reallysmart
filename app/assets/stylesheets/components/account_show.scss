@@ -1,5 +1,5 @@
 account-tabdisplay-item {
-    color: rgb(255, 255, 255);
+    color: rgb(240, 240, 240);
     text-decoration: none;
     border-bottom: 4px solid transparent;
     margin-right: 15px;
@@ -29,8 +29,7 @@ account-tabdisplay-item {
             justify-content: space-between;
             .account-show-header__left {
                 display: flex;
-                position: relative;
-                top: 34px;
+                margin-top: 34px;
                 .account-show-header__image {
                     position: relative;
                     height: 220px;
@@ -70,3 +69,58 @@ account-tabdisplay-item {
     }
 }
 
+.account-show__shade {
+    width: 100%;
+    min-height: calc(100vh - 362px);
+    background: rgb(219, 219, 219);
+    .account-show-profile {
+        width: unquote("min(970px, 100vw)");
+        min-height: calc(100vh - 362px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: rgb(240, 240, 240);
+        margin: 0px auto;
+        padding-bottom: 20px;
+        .account-show-profile__h1 {
+            padding: 16px 0px 5px 0px;
+            font-size: 20px;
+        }
+        .account-show-profile__form {
+            display: flex;
+            flex-direction: column;
+            width: unquote("min(300px, 80vw)");
+            border-bottom: 2px solid rgb(219, 219, 219);
+            padding: 7px 0px;
+            margin-left: 16px;
+            .account-show-profile__h2 {
+                font-size: 18px;
+                margin-bottom: 7px;
+            }
+            .account-show-profile__label {
+                margin-bottom: 3px;
+            }
+            .account-show-profile__input {
+                margin-bottom: 5px;
+            }
+            .account-show-profile__submit {
+                cursor: pointer;
+                width: 70px;
+                font-family: 'Programme Regular', sans-serif;
+                background-color: rgb(38, 38, 38);
+                color: rgb(197, 197, 197);
+                font-size: 13px;
+                border: 1px solid rgb(80, 80, 80);
+                border-radius: 2px;
+                margin-bottom: 5px;
+                &:hover {
+                    background-color: rgb(44, 44, 44);
+                    color: rgb(240, 240, 240);
+                }
+            }
+        }
+        .account-show-profile__error {
+            color: rgb(197, 0, 0)
+        }
+    }
+}
