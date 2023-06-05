@@ -73,17 +73,14 @@ account-tabdisplay-item {
     width: 100%;
     min-height: calc(100vh - 362px);
     background: rgb(219, 219, 219);
-    .account-show-profile {
-        width: unquote("min(970px, 100vw)");
+    .account-show__main {
+        width: unquote("min(938px, 100vw)");
         min-height: calc(100vh - 362px);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
         background: rgb(240, 240, 240);
         margin: 0px auto;
-        padding-bottom: 20px;
-        .account-show-profile__h1 {
-            padding: 16px 0px 5px 0px;
+        padding: 16px 16px 20px 16px;
+        .account-show__h1 {
+            padding-bottom: 5px;
             font-size: 20px;
         }
         .account-show-profile__form {
@@ -92,7 +89,6 @@ account-tabdisplay-item {
             width: unquote("min(300px, 80vw)");
             border-bottom: 2px solid rgb(219, 219, 219);
             padding: 7px 0px;
-            margin-left: 16px;
             .account-show-profile__h2 {
                 font-size: 18px;
                 margin-bottom: 7px;
@@ -119,8 +115,13 @@ account-tabdisplay-item {
                 }
             }
         }
+        .account-show-item {
+            border-bottom: 2px solid rgb(219, 219, 219);
+            padding: 7px 0px;
+        }
         .account-show-profile__error {
             color: rgb(197, 0, 0)
         }
     }
+    
 }
