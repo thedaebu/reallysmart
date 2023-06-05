@@ -34,7 +34,6 @@ function AccountShowProfile() {
         e.preventDefault();
 
         const formName: string = e.target.dataset.formname;
-        console.log(formName);
         switch (formName) {
             case "updateUsername":
                 if (!password) {
@@ -124,8 +123,8 @@ function AccountShowProfile() {
     }
 
     return (
-        <div className="account-show-profile">
-            <h1 className="account-show-profile__h1">Profile Info</h1>
+        <>
+            <h1 className="account-show__h1">Profile Info</h1>
             <form
                 className="account-show-profile__form"
                 onSubmit={handleFormSubmit}
@@ -212,7 +211,7 @@ function AccountShowProfile() {
                     value="Update"
                 />
             </form>
-        </div>
+        </>
     );
 }
 
