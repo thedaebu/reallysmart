@@ -35,14 +35,6 @@ function LoginForm() {
             });
     }
 
-    function handleInputChange(type: string) {
-        if (type === "username") {
-            return (e: ChangeEvent<HTMLInputElement>) => setUsername(e.currentTarget.value);
-        } else {
-            return (e: ChangeEvent<HTMLInputElement>) => setPassword(e.currentTarget.value);
-        }
-    }
-
     function errorsDisplay() {
         return (
             <div className="session-form__errors">
@@ -65,7 +57,7 @@ function LoginForm() {
                 <label className="session-form__label" htmlFor="session-form__username">Really Smart Nickname
                     <input
                         id="session-form__username"
-                        onChange={handleInputChange("username")}
+                        onChange={(e: ChangeEvent<HTMLInputElement>) => setUsername(e.target.value)}
                         type="text"
                         value={username}
                         data-testid="session-form__username"
@@ -77,7 +69,7 @@ function LoginForm() {
                     </a>
                     <input
                         id="session-form__password"
-                        onChange={handleInputChange("password")}
+                        onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
                         type="password"
                         value={password}
                         data-testid="session-form__password"
