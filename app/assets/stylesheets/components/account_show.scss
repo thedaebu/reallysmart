@@ -115,9 +115,18 @@ account-tabdisplay-item {
                 }
             }
         }
-        .account-show-item {
+        .account-show__item {
             border-bottom: 2px solid rgb(219, 219, 219);
             padding: 7px 0px;
+            .account-show__item-highlighted {
+                color: rgb(106, 153, 255);
+            }
+            .account-show__item-votes {
+                color: rgb(51, 197, 51);
+            }
+            .account-show__item-date {
+                color: rgb(156, 156, 156);
+            }
         }
         .account-show-profile__error {
             color: rgb(197, 0, 0)
