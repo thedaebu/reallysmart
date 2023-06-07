@@ -201,7 +201,7 @@ export type Vote = {
 
 // used for Window
 export type Window = {
-    currentUser: { session_token: string },
+    currentUser: User,
     eyeIcon: string,
     fireIcon: string,
     getSelection: Function,
