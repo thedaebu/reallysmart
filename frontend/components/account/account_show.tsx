@@ -12,6 +12,8 @@ import { Account, State, User } from "../../my_types";
 function AccountShow() {
     const currentUser: User = useSelector((state: State) => state.entities.user);
     const account: Account = useSelector((state: State) => state.entities.account);
+    const { id, username } = currentUser;
+    const { annotations, comments } = account;
 
     const dispatch: Dispatch<AnyAction> = useDispatch();
     const fetchAccount: Function = (userId: number) => dispatch(AccountActions.fetchAccount(userId));
@@ -19,7 +21,7 @@ function AccountShow() {
     const [currentTab, setCurrentTab] = useState<string>("Profile");
 
     useEffect(() => {
-        fetchAccount(currentUser.id);
+        fetchAccount(id);
     }, [currentUser]);
 
     function handleCurrentTab(tabName: string) {
@@ -29,11 +31,11 @@ function AccountShow() {
     function accountShowDisplay() {
         switch (currentTab) {
             case "Profile":
-                return <AccountShowProfile />
+                return <AccountShowProfile username={username} />
             case "Annotations":
-                return <AccountShowAnnotations />;
+                return <AccountShowAnnotations annotations={annotations} />;
             case "Comments":
-                return <AccountShowComments />;
+                return <AccountShowComments comments={comments} />;
         }
     }
 
@@ -43,7 +45,7 @@ function AccountShow() {
             <AccountShowHeader
                 currentTab={currentTab}
                 handleCurrentTab={handleCurrentTab}
-                username={account.username}
+                username={username}
             />
             <div className="account-show__shade">
                 <div className="account-show__main">
