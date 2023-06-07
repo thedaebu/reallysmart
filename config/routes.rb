@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy]
     resources :tags, only: [:index]
     resources :tracks, only: [:index, :show]
-    resource :users, only: [:show, :create, :update]
+    resource :users, only: [:create, :update]
     resources :votes, only: [:show, :create, :destroy]
   end
 end
