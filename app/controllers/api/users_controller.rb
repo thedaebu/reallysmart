@@ -1,16 +1,4 @@
 class Api::UsersController < ApplicationController
-  def show
-    user = User.find_by_session_token(params[:sessionToken])
-    if user
-      @user = User.add_notifications(user)
-
-      result = {:user => @user}
-      render json: result
-    else
-      render json: user.errors.full_messages, status: 422
-    end
-  end
-
   def create
     created_user = User.new(user_params)
     if created_user.save
