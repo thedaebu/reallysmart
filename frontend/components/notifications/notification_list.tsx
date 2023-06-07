@@ -1,13 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { RiCheckboxIndeterminateFill } from "react-icons/ri"
 import * as NotificationAPIUtil from "../../util/api/notification_api_util";
-import { Notification, UpdatedNotification } from '../../my_types';
+import { Notification, UpdatedNotification } from "../../my_types";
 
 type Props = {
-    changeOpenStatus: Function,
-    makeReadStatusTrue: Function,
-    notifications: Array<Notification>
+    changeOpenStatus: Function;
+    makeReadStatusTrue: Function;
+    notifications: Array<Notification>;
 };
 
 function NotificationList(props: Props) {
@@ -26,7 +26,7 @@ function NotificationList(props: Props) {
             if (notification.read === true) break;
             const updatedNotification: UpdatedNotification = {
                 id: notification.id,
-                type: notification.type === "AnnotationAlert" ? "AnnotationAlert" : "Mention"
+                type: notification.type
             }
             updateNotification(updatedNotification);
         }
@@ -50,11 +50,12 @@ function NotificationList(props: Props) {
                     </Link>
                 );
             case "Mention":
+                const { commentable_type } = notification;
                 return (
                     <Link to={`/tracks/${urlify(artist)}__${urlify(title)}`}>
                         <span className="notification-list__item-highlighted">{`${name} `}</span>
                         <span className="notification-list__item-regular">mentioned you in a comment</span>
-                        {body.length > 0 &&
+                        {commentable_type === "Annotation" &&
                             <span className="notification-list__item-regular">
                                 {' for the annotation '}<span className="notification-list__item-highlighted">{`'${(notificationify(body))}' `}</span>
                             </span>
