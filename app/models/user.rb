@@ -30,7 +30,7 @@ class User < ApplicationRecord
     mentions = user.mentions.map do |mention|
       comment = mention.comment
       commentable_type = comment.commentable_type
-      temp_mention = mention.slice(:created_at, :id, :read)
+      temp_mention = mention.slice(:commentable_type, :created_at, :id, :read)
 
       temp_mention[:body] = commentable_type == 'Track' ? '' : comment.commentable.body
       temp_mention[:mentioner_name] = mention.mentioner.username
@@ -50,6 +50,7 @@ class User < ApplicationRecord
     annotations = user.annotations.map do |annotation|
       temp_annotation = annotation.slice(:body, :created_at)
       temp_annotation[:track] = annotation.track.slice(:artist, :title)
+      temp_annotation[:votes] = annotation.votes.length
 
       temp_annotation
     end
@@ -59,6 +60,7 @@ class User < ApplicationRecord
 
       temp_comment[:commentable_body] = commentable_type == "Track" ? "" : comment.commentable.body
       temp_comment[:track] = commentable_type == "Track" ? comment.commentable.slice(:artist, :title) : comment.commentable.track.slice(:artist, :title)
+      temp_comment[:votes] = comment.votes.length
 
       temp_comment
     end
