@@ -1,8 +1,8 @@
 import React, { ChangeEvent, Dispatch, FormEvent, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { AnyAction } from "@reduxjs/toolkit";
 import * as SessionActions from "../../actions/session_actions"
-import { SessionAction, State, UpdatedUser, User } from "../../my_types";
+import { SessionAction, UpdatedUser } from "../../my_types";
 
 type TargetData = {
     target: {
@@ -12,9 +12,7 @@ type TargetData = {
     }
 } & FormEvent<HTMLFormElement>;
 
-function AccountShowProfile() {
-    const currentUser: User = useSelector((state: State) => state.entities.user);
-
+function AccountShowProfile({ username }: { username: string; }) {
     const dispatch: Dispatch<AnyAction> = useDispatch();
     const updateUser: Function = (updatedUser: UpdatedUser) => dispatch(SessionActions.updateUser(updatedUser));
 
@@ -38,7 +36,6 @@ function AccountShowProfile() {
             case "updateUsername":
                 if (!password) {
                     setUsernameErrors(["Please type password."]);
-                    console.log("correct")
                 } else if (password !== confirmedPassword) {
                     setUsernameErrors(["Passwords do not match."]);
                 } else if (!newUsername) {
@@ -48,7 +45,7 @@ function AccountShowProfile() {
                         password,
                         updateInfo: newUsername,
                         updateType: "updateUsername",
-                        username: currentUser.username
+                        username
                     };
                     updateUser(updatedUser)
                         .then((result: SessionAction) => {
@@ -68,7 +65,6 @@ function AccountShowProfile() {
             case "updatePassword":
                 if (!oldPassword) {
                     setPasswordErrors(["Please type old password."]);
-                    console.log("why?")
                 } else if (oldPassword !== confirmedOldPassword) {
                     setPasswordErrors(["Old passwords do not match."]);
                 } else if (!newPassword) {
@@ -80,7 +76,7 @@ function AccountShowProfile() {
                         password: oldPassword,
                         updateInfo: newPassword,
                         updateType: "updatePassword",
-                        username: currentUser.username
+                        username
                     };
                     updateUser(updatedUser)
                         .then((result: SessionAction) => {
