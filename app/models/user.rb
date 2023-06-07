@@ -48,20 +48,16 @@ class User < ApplicationRecord
   def self.add_account_info(user)
     user_with_account_info = user.slice(:id, :username)
     annotations = user.annotations.map do |annotation|
-      temp_annotation = annotation.as_json
-
-      temp_annotation[:body] = annotation.body
+      temp_annotation = annotation.slice(:body, :created_at)
       temp_annotation[:track] = annotation.track.slice(:artist, :title)
 
       temp_annotation
     end
     comments = user.comments.map do |comment|
       commentable_type = comment.commentable_type
-      temp_comment = comment.as_json
+      temp_comment = comment.slice(:body, :commentable_type, :created_at)
 
-      temp_comment[:body] = comment.body
       temp_comment[:commentable_body] = commentable_type == "Track" ? "" : comment.commentable.body
-      temp_comment[:commentable_type] = comment.commentable_type
       temp_comment[:track] = commentable_type == "Track" ? comment.commentable.slice(:artist, :title) : comment.commentable.track.slice(:artist, :title)
 
       temp_comment
