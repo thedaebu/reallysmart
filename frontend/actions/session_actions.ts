@@ -19,10 +19,6 @@ const receiveSessionErrors: Function = (errors: Array<string>) => ({
     type: RECEIVE_SESSION_ERRORS
 });
 
-export const fetchUser: Function = (sessionToken: string) => (dispatch: Dispatch<SessionAction>) => (
-    UserAPIUtil.fetchUser(sessionToken)
-        .then((receivedUser: ReceivedUser) => dispatch(receiveCurrentUser(receivedUser)), (errors: JQuery.jqXHR) => receiveSessionErrors(errors.responseJSON))
-);
 export const updateUser: Function = (updatedUser: UpdatedUser) => (dispatch: Dispatch<SessionAction>) => (
     UserAPIUtil.updateUser(updatedUser)
         .then((receivedUser: ReceivedUser) => dispatch(receiveCurrentUser(receivedUser)), (errors: JQuery.jqXHR) => receiveSessionErrors(errors.responseJSON))
