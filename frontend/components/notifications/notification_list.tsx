@@ -39,31 +39,31 @@ function NotificationList(props: Props) {
 
         switch (type) {
             case "AnnotationAlert":
-               return (
-                   <Link to={`/tracks/${urlify(artist)}__${urlify(title)}`}>
-                       <span className="notification-list__item-highlighted">{`${name} `}</span>
-                       <span className="notification-list__item-regular">commented on your annotation</span>
-                       <span className="notification-list__item-highlighted">{` '${(notificationify(body))}' `}</span>
-                       <span className="notification-list__item-regular">for</span>
-                       <span className="notification-list__item-highlighted">{` ${artist} - ${title}`}</span>
-                       <time className="notification-list__item-date">{` - ${dateDisplay(created_at)}`}</time>
-                   </Link>
-               );
-           case "Mention":
-               return (
-                   <Link to={`/tracks/${urlify(artist)}__${urlify(title)}`}>
-                       <span className="notification-list__item-highlighted">{`${name} `}</span>
-                       <span className="notification-list__item-regular">mentioned you in a comment</span>
-                       {body.length > 0 &&
-                           <span>
-                               {' for the annotation '}<span className="notification-list__item-highlighted">{`'${(notificationify(body))}' `}</span>
-                           </span>
-                       }
-                       <span className="notification-list__item-regular">{" for"}</span>
-                       <span className="notification-list__item-highlighted">{` ${artist} - ${title}`}</span>
-                       <time>{` - ${dateDisplay(created_at)}`}</time>
-                   </Link>
-               );
+                return (
+                    <Link to={`/tracks/${urlify(artist)}__${urlify(title)}`}>
+                        <span className="notification-list__item-highlighted">{`${name} `}</span>
+                        <span className="notification-list__item-regular">commented on your annotation</span>
+                        <span className="notification-list__item-highlighted">{` '${(notificationify(body))}' `}</span>
+                        <span className="notification-list__item-regular">for</span>
+                        <span className="notification-list__item-highlighted">{` ${artist} - ${title}`}</span>
+                        <time className="notification-list__item-date">{` - ${dateDisplay(created_at)}`}</time>
+                    </Link>
+                );
+            case "Mention":
+                return (
+                    <Link to={`/tracks/${urlify(artist)}__${urlify(title)}`}>
+                        <span className="notification-list__item-highlighted">{`${name} `}</span>
+                        <span className="notification-list__item-regular">mentioned you in a comment</span>
+                        {body.length > 0 &&
+                            <span className="notification-list__item-regular">
+                                {' for the annotation '}<span className="notification-list__item-highlighted">{`'${(notificationify(body))}' `}</span>
+                            </span>
+                        }
+                        <span className="notification-list__item-regular">{" for"}</span>
+                        <span className="notification-list__item-highlighted">{` ${artist} - ${title}`}</span>
+                        <time className="notification-list__item-date">{` - ${dateDisplay(created_at)}`}</time>
+                    </Link>
+                );
         }
     }
 
