@@ -20,9 +20,6 @@ module Types
       argument :id, ID, required: true
     end
     field :tracks, [Types::TrackType], null: false
-    field :user, Types::UserType, null: false do 
-      argument :sessionToken, String, required: true
-    end
 
     def account(sessionToken:)
       User.find_by_session_token(sessionToken)
@@ -44,9 +41,6 @@ module Types
     end
     def tracks
       Track.all
-    end
-    def user(sessionToken:)
-      User.find_by_session_token(sessionToken)
     end
   end
 end
