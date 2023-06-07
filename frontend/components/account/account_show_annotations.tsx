@@ -1,25 +1,45 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { Account, State } from "../../my_types";
+import { AccountAnnotation } from "../../my_types";
 
-function AccountShowAnnotations() {
-    const account: Account = useSelector((state: State) => state.entities.account);
+function AccountShowAnnotations({ annotations }: { annotations: Array<AccountAnnotation>; }) {
+    const sortedAnnotations: Array<AccountAnnotation> = annotations.sort((a,b) => (new Date(Date.parse(b.created_at)).getTime() - (new Date(Date.parse(a.created_at)).getTime())));
+
+    function annotationItem(annotation: AccountAnnotation, idx: number) {
+        const { body, created_at, track, votes } = annotation;
+        const { artist, title } = track;
+
+        return (
+            <li className="account-show__item" key={idx}>
+                <p>{body}<span className="account-show__item-votes"> +{votes}</span></p>
+                <Link to={`/tracks/${urlify(artist)}__${urlify(title)}`}>
+                    <span className="account-show__item-highlighted">
+                        {` ${artist} - ${title}`}
+                    </span>
+                </Link>
+                <time className="account-show__item-date">{` - ${dateDisplay(created_at)}`}</time>
+            </li>
+        );
+    }
 
     function urlify(string: string) {
         return string.split(" ").join("_").toLowerCase();
+    }
+
+    function dateDisplay(dateTime: string) {
+        const date: Date = new Date(Date.parse(dateTime));
+        const year: string = date.getFullYear().toString();
+        const month: string = (date.getMonth()+1).toString().padStart(2, "0")
+        const day: string = date.getDate().toString().padStart(2, "0");
+
+        return `${year}-${month}-${day}`;
     }
     
     return (
         <ul>
             <h1 className="account-show__h1">Annotations</h1>
-            {account.annotations.map((annotation: {body: string, track: {artist: string, title: string}}, idx: number) => (
-                <li className="account-show-item" key={idx}>
-                    <p>{annotation.body}</p>
-                    <Link to={`/tracks/${urlify(annotation.track.artist)}__${urlify(annotation.track.title)}`}>
-                        {` ${annotation.track.artist} - ${annotation.track.title}`}
-                    </Link>
-                </li>
+            {sortedAnnotations.map((annotation: AccountAnnotation, idx: number) => (
+                annotationItem(annotation, idx)
             ))}
         </ul>
     );
