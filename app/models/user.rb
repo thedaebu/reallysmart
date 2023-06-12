@@ -30,9 +30,10 @@ class User < ApplicationRecord
     mentions = user.mentions.map do |mention|
       comment = mention.comment
       commentable_type = comment.commentable_type
-      temp_mention = mention.slice(:commentable_type, :created_at, :id, :read)
+      temp_mention = mention.slice(:created_at, :id, :read)
 
       temp_mention[:body] = commentable_type == 'Track' ? '' : comment.commentable.body
+      temp_mention[:commentable_type] = commentable_type
       temp_mention[:mentioner_name] = mention.mentioner.username
       temp_mention[:track] = commentable_type == 'Track' ? comment.commentable.slice(:artist, :title) : comment.commentable.track.slice(:artist, :title)
       temp_mention[:type] = 'Mention'
