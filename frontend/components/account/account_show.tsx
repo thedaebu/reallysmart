@@ -1,7 +1,8 @@
-import React, { Dispatch, useEffect, useState } from "react";
+import React, { Dispatch, useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AnyAction } from "@reduxjs/toolkit";
 import * as AccountActions from "../../actions/account_actions";
+import { ThemeContext } from "../../contexts/theme_context";
 import Navbar from "../navbar/navbar";
 import AccountShowHeader from "./account_show_header";
 import AccountShowProfile from "./account_show_profile";
@@ -20,6 +21,8 @@ function AccountShow() {
 
     const [currentTab, setCurrentTab] = useState<string>("Profile");
 
+    const { theme } = useContext(ThemeContext);
+
     useEffect(() => {
         fetchAccount(id);
     }, [currentUser]);
@@ -31,7 +34,7 @@ function AccountShow() {
     function accountShowDisplay() {
         switch (currentTab) {
             case "Profile":
-                return <AccountShowProfile username={username} />
+                return <AccountShowProfile username={username} />;
             case "Annotations":
                 return <AccountShowAnnotations annotations={annotations} />;
             case "Comments":
@@ -47,7 +50,7 @@ function AccountShow() {
                 handleCurrentTab={handleCurrentTab}
                 username={username}
             />
-            <div className="account-show__shade">
+            <div className={theme === "light" ? "account-show__shade" : "account-show__shade--dark"}>
                 <div className="account-show__main">
                     {accountShowDisplay()}
                 </div>
