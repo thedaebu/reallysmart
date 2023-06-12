@@ -35,7 +35,7 @@ function AnnotationShowItem({ annotation, trackId }: { annotation: Annotation, t
     }
 
     function updateButtons() {
-        if (deleteStatus === false) {
+        if (!deleteStatus) {
             return (
                 <div className="annotation-show-item__buttons">
                     <button 

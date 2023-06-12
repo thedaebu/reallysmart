@@ -2,8 +2,8 @@ import React, { Suspense } from "react";
 import { Navigate } from "react-router-dom";
 
 type Props = {
-    component: any,
-    loggedIn: boolean
+    component: any;
+    loggedIn: boolean;
 };
 
 export function AccountRoute(props: Props) {
@@ -12,9 +12,11 @@ export function AccountRoute(props: Props) {
 
     return (
         loggedIn
-            ? <Suspense fallback={<div></div>}>
-                <Component />
-            </Suspense>
+            ? (
+                <Suspense fallback={<div></div>}>
+                    <Component />
+                </Suspense>
+            )
             : <Navigate to="/" />
     );
 }

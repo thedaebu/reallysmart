@@ -7,9 +7,9 @@ import { SessionAction, UpdatedUser } from "../../my_types";
 type TargetData = {
     target: {
         dataset: {
-            formname: string
-        }
-    }
+            formname: string;
+        };
+    };
 } & FormEvent<HTMLFormElement>;
 
 function AccountShowProfile({ username }: { username: string; }) {

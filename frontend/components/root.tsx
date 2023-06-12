@@ -15,15 +15,21 @@ function Root({ store }: { store: Store<any, AnyAction> }) {
     const cable: Cable = actionCable.createConsumer(cableName);
     const cableApp: {cable: Cable} = {cable};
 
-    const [theme, setTheme] = useState<"light" | "dark">(window.sessionStorage.theme ? window.sessionStorage.theme : "light");
+    const [theme, setTheme] = useState<"light" | "dark">(window.sessionStorage.theme
+        ? window.sessionStorage.theme
+        : "light"
+    );
 
     function changeTheme() {
-        if (theme === "light") {
-            setTheme("dark");
-            window.sessionStorage.setItem("theme", "dark");
-        } else {
-            setTheme("light");
-            window.sessionStorage.setItem("theme", "light");
+        switch (theme) {
+            case "light":
+                setTheme("dark");
+                window.sessionStorage.setItem("theme", "dark");
+                break;
+            case "dark":
+                setTheme("light");
+                window.sessionStorage.setItem("theme", "light");
+                break;
         }
     }
 

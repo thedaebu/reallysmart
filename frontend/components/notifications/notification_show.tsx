@@ -39,7 +39,7 @@ function NotificationShow({ cableApp }: { cableApp: any }) {
     }, [location]);
 
     function checkReadStatus(notifications: Array<Notification>) {
-        if (notifications.length > 0 && notifications[0].read === false) setReadStatus(false);
+        if (notifications.length && notifications[0].read === false) setReadStatus(false);
     }
 
     function makeReadStatusTrue() {
@@ -53,7 +53,10 @@ function NotificationShow({ cableApp }: { cableApp: any }) {
     return (
         <>
             <BiEnvelope
-                className={readStatus === false ? "notification-icon__unread" : "notification-icon__read"}
+                className={readStatus === false
+                    ? "notification-icon__unread"
+                    : "notification-icon__read"
+                }
                 size={16}
                 onClick={changeOpenStatus}
                 data-testid="notification-icon"

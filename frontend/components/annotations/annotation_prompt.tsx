@@ -6,14 +6,14 @@ import { AnyAction } from "@reduxjs/toolkit";
 import { AnnotationAction, CreatedAnnotation, State, Track, User } from "../../my_types";
 
 type Props = {
-    createStatus: boolean,
-    endIndex: number,
-    handleCreateStatus: Function,
-    handleTextDeselect: Function,
-    openStatus: boolean,
-    removeHighlight: Function,
-    startIndex: number,
-    track: Track
+    createStatus: boolean;
+    endIndex: number;
+    handleCreateStatus: Function;
+    handleTextDeselect: Function;
+    openStatus: boolean;
+    removeHighlight: Function;
+    startIndex: number;
+    track: Track;
 };
 
 function AnnotationPrompt(props: Props) {
@@ -33,7 +33,7 @@ function AnnotationPrompt(props: Props) {
     }, [openStatus]);
 
     function createForm() {
-        if (createStatus === false) {
+        if (!createStatus) {
             return (
                 <div className="annotation-show-begin">
                     <button className="annotation-show-begin__button" onClick={makeCreateStatusTrue}>

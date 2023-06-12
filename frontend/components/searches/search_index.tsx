@@ -8,7 +8,7 @@ function SearchIndex({ clearSearchField }: { clearSearchField: Function }) {
 
     function searchResultDisplay() {
         const searchResults: Array<IndexTrack> = Object.values(searches);
-        if (searchResults.length > 0) {
+        if (searchResults.length) {
             return (
                 <div className="search-index" data-testid="search-index">
                     <p className="search-index__results">SEARCH RESULTS</p>

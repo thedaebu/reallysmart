@@ -31,7 +31,8 @@ function SessionMenu() {
                             LOG OUT
                         </a>
                     </section>
-                ) : (
+                )
+                : (
                     <section className="session-menu">
                         <Link
                             to="/signup" 

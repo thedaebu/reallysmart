@@ -7,17 +7,18 @@ import CommentShow from "../comments/comment_show";
 
 declare const window: Window;
 type Highlighted = {
-    anchorNode: HighlightedNode,
-    anchorOffset: number,
-    focusNode: HighlightedNode,
-    focusOffset: number
+    anchorNode: HighlightedNode;
+    anchorOffset: number;
+    focusNode: HighlightedNode;
+    focusOffset: number;
 };
 type HighlightedNode = {
     parentNode: {
         dataset: {
-            add: string, name: string
-        }
-    }
+            add: string;
+            name: string;
+        };
+    };
 };
 
 function LyricsShow({ track }: { track: Track }) {
@@ -37,7 +38,7 @@ function LyricsShow({ track }: { track: Track }) {
     const { theme } = useContext(ThemeContext);
 
     useEffect(() => {
-        if (highlightStatus === false) {
+        if (!highlightStatus) {
             annotateLyrics(Object.values(annotations));
         }
     }, [highlightStatus]);
@@ -61,7 +62,7 @@ function LyricsShow({ track }: { track: Track }) {
     }, [selectedAnnotation])
 
     function annotateLyrics(annotations: Array<Annotation>) {
-        if (annotations.length > 0) {
+        if (annotations.length) {
             const sortedAnnotations: Array<Annotation> = annotations.sort((a: Annotation, b: Annotation) => (a.start_index - b.start_index));
             const currentAnnotatedLyrics: Array<JSX.Element> = [];
             let currentIndex: number = 0;
@@ -260,7 +261,12 @@ function LyricsShow({ track }: { track: Track }) {
     }
 
     return (
-        <div className={theme === "light" ? "lyrics__shade" : "lyrics__shade--dark"}>
+        <div
+            className={theme === "light"
+                ? "lyrics__shade"
+                : "lyrics__shade--dark"
+            }
+        >
             <div className="lyrics__main" data-testid="lyrics__main">
                 <section
                     className="lyrics__text"

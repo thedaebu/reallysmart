@@ -34,7 +34,7 @@ function CommentShow({ commentableType, parent }: { commentableType: "Track" | "
     }
 
     function createForm() {
-        if (createStatus === false) {
+        if (!createStatus) {
             return (
                 <div className="comment-show__begin">
                     <img className="comment-show__begin--baby" src="https://assets.genius.com/images/default_avatar_100.png" alt="Baby" />
@@ -89,7 +89,7 @@ function CommentShow({ commentableType, parent }: { commentableType: "Track" | "
     function handleCreateStatus(e: MouseEvent<HTMLTextAreaElement | HTMLButtonElement>) {
         e.preventDefault();
 
-        if (createStatus === false) {
+        if (!createStatus) {
             setCreateStatus(true);
         } else {
             setBody("");
@@ -134,7 +134,13 @@ function CommentShow({ commentableType, parent }: { commentableType: "Track" | "
     }
 
     return (
-        <div className={theme === "light" ? "comment-show" : "comment-show--dark"} data-testid="comment-show">
+        <div 
+            className={theme === "light"
+                ? "comment-show"
+                : "comment-show--dark"
+            }
+            data-testid="comment-show"
+        >
             {currentUser
                 ? createForm()
                 : (

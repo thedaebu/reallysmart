@@ -26,15 +26,17 @@ function AccountShowComments({ comments }: { comments: Array<AccountComment>; })
     }
 
     function notificationify(body: string) {
-        return body.length > 30
-            ? `${body.slice(0,27)}...`
-            : body;
+        return ( 
+            body.length > 30
+                ? `${body.slice(0,27)}...`
+                : body
+        );
     }
 
     function dateDisplay(dateTime: string) {
         const date: Date = new Date(Date.parse(dateTime));
         const year: string = date.getFullYear().toString();
-        const month: string = (date.getMonth()+1).toString().padStart(2, "0")
+        const month: string = (date.getMonth()+1).toString().padStart(2, "0");
         const day: string = date.getDate().toString().padStart(2, "0");
 
         return `${year}-${month}-${day}`;

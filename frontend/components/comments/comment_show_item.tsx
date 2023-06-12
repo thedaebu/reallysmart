@@ -8,8 +8,8 @@ import VoteShow from "../votes/vote_show";
 
 type Props = {
     comment: Comment;
-    commentableType: "Track" | "Annotation",
-    parent: Annotation | Track
+    commentableType: "Track" | "Annotation";
+    parent: Annotation | Track;
 };
 
 function CommentShowItem(props: Props) {
@@ -60,7 +60,7 @@ function CommentShowItem(props: Props) {
     }
 
     function updatebuttons() {
-        if (deleteStatus === false) {
+        if (!deleteStatus) {
             return (
                 <section className="comment-show-item__buttons">
                     <button

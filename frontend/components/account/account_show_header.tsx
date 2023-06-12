@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 
 type Props = {
-    currentTab: string,
-    handleCurrentTab: Function,
-    username: string
+    currentTab: string;
+    handleCurrentTab: Function;
+    username: string;
 };
 
 function AccountShowHeader(props: Props) {
@@ -17,29 +17,18 @@ function AccountShowHeader(props: Props) {
 
     function handleTabItems() {
         const tabNames: Array<string> = ["Profile", "Annotations", "Comments"];
-        const tabList: Array<JSX.Element> = tabNames.map((tabName: string, idx: number) => {
-            if (currentTab === tabName) {
-                return (
-                    <li
-                        className="account-tabdisplay-item__highlighted"
-                        onClick={() => handleCurrentTab(tabName)}
-                        key={idx}
-                    >
-                        {tabName}
-                    </li>
-                )
-            } else {
-                return (
-                    <li
-                        className="account-tabdisplay-item"
-                        onClick={() => handleCurrentTab(tabName)}
-                        key={idx}
-                    >
-                        {tabName}
-                    </li>
-                )
-            }
-        });
+        const tabList: Array<JSX.Element> = tabNames.map((tabName: string, idx: number) => (
+            <li
+                className={currentTab === tabName
+                    ? "account-tabdisplay-item__highlighted"
+                    : "account-tabdisplay-item"
+                }
+                onClick={() => handleCurrentTab(tabName)}
+                key={idx}
+            >
+                {tabName}
+            </li>
+        ));
         setTabItems(tabList);
     }
 

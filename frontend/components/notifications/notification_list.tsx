@@ -23,7 +23,7 @@ function NotificationList(props: Props) {
     function updateNotifications() {
         for (let i = 0; i < notifications.length; i++) {
             let notification: Notification = notifications[i];
-            if (notification.read === true) break;
+            if (notification.read) break;
             const updatedNotification: UpdatedNotification = {
                 id: notification.id,
                 type: notification.type
@@ -35,7 +35,9 @@ function NotificationList(props: Props) {
     function notificationItem(notification: Notification) {
         const { body, created_at, track, type } = notification;
         const { artist, title } = track;
-        const name: string = type === "AnnotationAlert" ? notification.commenter_name : notification.mentioner_name;
+        const name: string = type === "AnnotationAlert"
+            ? notification.commenter_name
+            : notification.mentioner_name;
 
         switch (type) {
             case "AnnotationAlert":
@@ -73,9 +75,11 @@ function NotificationList(props: Props) {
     }
 
     function notificationify(body: string) {
-        return body.length > 30
-            ? `${body.slice(0,27)}...`
-            : body;
+        return (
+            body.length > 30
+                ? `${body.slice(0,27)}...`
+                : body
+        );
     }
 
     function dateDisplay(dateTime: string) {

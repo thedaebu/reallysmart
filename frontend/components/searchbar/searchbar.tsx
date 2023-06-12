@@ -21,7 +21,7 @@ function Searchbar({ theme } : { theme : string }) {
 
     function handleSearchChange() {
         const debouncedSearchField = useDebounce(searchField);
-        if (searchField !== "") {
+        if (searchField) {
             fetchSearches(debouncedSearchField.toLowerCase());
         }
         
@@ -34,7 +34,12 @@ function Searchbar({ theme } : { theme : string }) {
 
     return (
         <>
-            <div className={theme === "light" ? "searchbar" : "searchbar--dark"}>
+            <div 
+                className={theme === "light"
+                    ? "searchbar"
+                    : "searchbar--dark"
+                }
+            >
                 <input
                     className="searchbar__input"
                     placeholder="Search lyrics & more"

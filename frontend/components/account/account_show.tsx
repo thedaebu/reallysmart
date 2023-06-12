@@ -50,7 +50,10 @@ function AccountShow() {
                 handleCurrentTab={handleCurrentTab}
                 username={username}
             />
-            <div className={theme === "light" ? "account-show__shade" : "account-show__shade--dark"}>
+            <div className={theme === "light"
+                ? "account-show__shade"
+                : "account-show__shade--dark"
+            }>
                 <div className="account-show__main">
                     {accountShowDisplay()}
                 </div>

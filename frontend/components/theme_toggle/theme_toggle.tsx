@@ -5,7 +5,10 @@ import { ThemeContext } from "../../contexts/theme_context";
 function ThemeToggle() {
     const { theme, changeTheme } = useContext(ThemeContext);
 
-    const [checkedStatus, setCheckedStatus] = useState<boolean>(theme === "light" ? false : true);
+    const [checkedStatus, setCheckedStatus] = useState<boolean>(theme === "light"
+        ? false
+        : true
+    );
 
     function handleChangeTheme(e: MouseEvent<HTMLButtonElement>) {
         e.preventDefault();

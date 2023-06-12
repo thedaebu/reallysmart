@@ -21,7 +21,10 @@ function App({ cableApp }: { cableApp: any}) {
     const { theme } = useContext(ThemeContext);
 
     return (
-        <div className={theme === "light" ? "app" : "app--dark"}>
+        <div className={theme === "light"
+            ? "app"
+            : "app--dark"}
+        >
             <header className="header">
                 <Searchbar theme={theme} />
                 <Link to="/" className="header__logo">REALLYSMART</Link>
