@@ -80,8 +80,8 @@ account-tabdisplay-item {
         margin: 0px auto;
         padding: 16px 16px 20px 16px;
         .account-show__h1 {
-            padding-bottom: 5px;
             font-size: 20px;
+            padding-bottom: 5px;
         }
         .account-show-profile__form {
             display: flex;
@@ -97,6 +97,7 @@ account-tabdisplay-item {
                 margin-bottom: 3px;
             }
             .account-show-profile__input {
+                color: rgb(240, 240, 240);
                 margin-bottom: 5px;
             }
             .account-show-profile__submit {
@@ -110,7 +111,7 @@ account-tabdisplay-item {
                 border-radius: 2px;
                 margin-bottom: 5px;
                 &:hover {
-                    background-color: rgb(44, 44, 44);
+                    background-color: rgb(56, 56, 56);
                     color: rgb(240, 240, 240);
                 }
             }
@@ -132,5 +133,77 @@ account-tabdisplay-item {
             color: rgb(197, 0, 0)
         }
     }
-    
+}
+
+.account-show__shade--dark {
+    width: 100%;
+    min-height: calc(100vh - 362px);
+    background: rgb(80, 80, 80);
+    .account-show__main {
+        width: unquote("min(938px, 100vw)");
+        min-height: calc(100vh - 362px);
+        background: rgb(50, 50, 50);
+        margin: 0px auto;
+        padding: 16px 16px 20px 16px;
+        .account-show__h1 {
+            color: rgb(156, 156, 156);
+            font-size: 20px;
+            padding-bottom: 5px;
+        }
+        .account-show-profile__form {
+            display: flex;
+            flex-direction: column;
+            width: unquote("min(300px, 80vw)");
+            border-bottom: 2px solid rgb(80, 80, 80);
+            padding: 7px 0px;
+            .account-show-profile__h2 {
+                color: rgb(156, 156, 156);
+                font-size: 18px;
+                margin-bottom: 7px;
+            }
+            .account-show-profile__label {
+                color: rgb(156, 156, 156);
+                margin-bottom: 3px;
+            }
+            .account-show-profile__input {
+                background: rgb(80, 80, 80);
+                color: rgb(173, 173, 173);
+                border: 1px solid rgb(99, 99, 99);
+                border-radius: 2px;
+                margin-bottom: 5px;
+            }
+            .account-show-profile__submit {
+                cursor: pointer;
+                width: 70px;
+                font-family: 'Programme Regular', sans-serif;
+                background-color: rgb(38, 38, 38);
+                color: rgb(197, 197, 197);
+                font-size: 13px;
+                border: 1px solid rgb(80, 80, 80);
+                border-radius: 2px;
+                margin-bottom: 5px;
+                &:hover {
+                    background-color: rgb(56, 56, 56);
+                    color: rgb(240, 240, 240);
+                }
+            }
+        }
+        .account-show__item {
+            color: rgb(156, 156, 156);
+            border-bottom: 2px solid rgb(80, 80, 80);
+            padding: 7px 0px;
+            .account-show__item-highlighted {
+                color: rgb(106, 153, 255);
+            }
+            .account-show__item-votes {
+                color: rgb(51, 197, 51);
+            }
+            .account-show__item-date {
+                color: rgb(156, 156, 156);
+            }
+        }
+        .account-show-profile__error {
+            color: rgb(197, 0, 0)
+        }
+    }
 }
