@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import { AccountComment } from "../../my_types";
 
 function AccountShowComments({ comments }: { comments: Array<AccountComment>; }) {
-    const sortedComments: Array<AccountComment> = comments.sort((a,b) => (new Date(Date.parse(b.created_at)).getTime() - (new Date(Date.parse(a.created_at)).getTime())));
-    
     function commentItem(comment: AccountComment, idx: number) {
         const { body, commentable_body, commentable_type, created_at, track, votes } = comment;
         const { artist, title } = track;
@@ -45,7 +43,7 @@ function AccountShowComments({ comments }: { comments: Array<AccountComment>; })
     return (
         <ul >
             <h1 className="account-show__h1">Comments</h1>
-            {sortedComments.map((comment: AccountComment, idx: number) => (
+            {comments.map((comment: AccountComment, idx: number) => (
                 commentItem(comment, idx)
             ))}
         </ul>

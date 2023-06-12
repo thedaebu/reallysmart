@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import { AccountAnnotation } from "../../my_types";
 
 function AccountShowAnnotations({ annotations }: { annotations: Array<AccountAnnotation>; }) {
-    const sortedAnnotations: Array<AccountAnnotation> = annotations.sort((a,b) => (new Date(Date.parse(b.created_at)).getTime() - (new Date(Date.parse(a.created_at)).getTime())));
-
     function annotationItem(annotation: AccountAnnotation, idx: number) {
         const { body, created_at, track, votes } = annotation;
         const { artist, title } = track;
@@ -38,7 +36,7 @@ function AccountShowAnnotations({ annotations }: { annotations: Array<AccountAnn
     return (
         <ul>
             <h1 className="account-show__h1">Annotations</h1>
-            {sortedAnnotations.map((annotation: AccountAnnotation, idx: number) => (
+            {annotations.map((annotation: AccountAnnotation, idx: number) => (
                 annotationItem(annotation, idx)
             ))}
         </ul>
