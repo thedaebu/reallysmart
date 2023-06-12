@@ -48,14 +48,14 @@ class User < ApplicationRecord
 
   def self.add_account_info(user)
     user_with_account_info = user.slice(:id, :username)
-    annotations = user.annotations.map do |annotation|
+    annotations = user.annotations.order('created_at DESC').map do |annotation|
       temp_annotation = annotation.slice(:body, :created_at)
       temp_annotation[:track] = annotation.track.slice(:artist, :title)
       temp_annotation[:votes] = annotation.votes.length
 
       temp_annotation
     end
-    comments = user.comments.map do |comment|
+    comments = user.comments.order('created_at DESC').map do |comment|
       commentable_type = comment.commentable_type
       temp_comment = comment.slice(:body, :commentable_type, :created_at)
 
