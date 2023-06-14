@@ -1,5 +1,5 @@
-import { AnyAction } from "@reduxjs/toolkit";
 import { Dispatch } from "react";
+import { AnyAction } from "@reduxjs/toolkit";
 
 export const CLEAR_FLASH_MESSAGE: string = "CLEAR_FLASH_MESSAGE";
 
