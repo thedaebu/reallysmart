@@ -1,0 +1,24 @@
+.flash-message {
+    z-index: 3;
+    position: fixed;
+    top: 50px;
+    width: 100%;
+    text-align: center;
+    .flash-message__container {
+        display: inline-block;
+        padding: 0px 5px 2px 5px;
+        margin: auto;
+        background-color: rgb(197, 197, 197);
+        border-radius: 1px;
+        .flash-message__exit {
+            position: relative;
+            top: 2px;
+            padding-left: 5px;
+            color: rgb(197, 0, 0);
+            cursor: pointer;
+            &:hover {
+                color: rgb(223, 0, 0);
+            }
+        }
+    }
+}
