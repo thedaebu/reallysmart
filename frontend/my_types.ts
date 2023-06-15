@@ -50,6 +50,7 @@ type Entities = {
     account: Account;
     annotations: { [key:number]: Annotation; };
     comments: { [key:number]: Comment; };
+    flashMessage: string;
     indexTracks: { [key: number]: IndexTrack; };
     searches: { [key:number]: IndexTrack; };
     track: Track;
