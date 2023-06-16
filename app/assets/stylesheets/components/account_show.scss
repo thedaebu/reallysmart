@@ -97,22 +97,21 @@ account-tabdisplay-item {
                 margin-bottom: 3px;
             }
             .account-show-profile__input {
-                color: rgb(240, 240, 240);
                 margin-bottom: 5px;
             }
             .account-show-profile__submit {
                 cursor: pointer;
                 width: 70px;
                 font-family: 'Programme Regular', sans-serif;
-                background-color: rgb(38, 38, 38);
-                color: rgb(197, 197, 197);
+                background-color: rgb(240, 240, 240);
+                color: rgb(112, 112, 112);
                 font-size: 13px;
-                border: 1px solid rgb(80, 80, 80);
+                border: 1px solid rgb(112, 112, 112);
                 border-radius: 2px;
                 margin-bottom: 5px;
                 &:hover {
-                    background-color: rgb(56, 56, 56);
-                    color: rgb(240, 240, 240);
+                    background-color: rgb(112, 112, 112);
+                    color: rgb(197, 197, 197);
                 }
             }
         }
@@ -126,11 +125,14 @@ account-tabdisplay-item {
                 color: rgb(51, 197, 51);
             }
             .account-show__item-date {
-                color: rgb(156, 156, 156);
+                color: rgb(173, 173, 173);
+            }
+            &:hover {
+                background-color: rgb(219, 219, 219);
             }
         }
         .account-show-profile__error {
-            color: rgb(197, 0, 0)
+            color: rgb(197, 0, 0);
         }
     }
 }
@@ -146,7 +148,7 @@ account-tabdisplay-item {
         margin: 0px auto;
         padding: 16px 16px 20px 16px;
         .account-show__h1 {
-            color: rgb(156, 156, 156);
+            color: rgb(173, 173, 173);
             font-size: 20px;
             padding-bottom: 5px;
         }
@@ -157,18 +159,18 @@ account-tabdisplay-item {
             border-bottom: 2px solid rgb(80, 80, 80);
             padding: 7px 0px;
             .account-show-profile__h2 {
-                color: rgb(156, 156, 156);
+                color: rgb(173, 173, 173);
                 font-size: 18px;
                 margin-bottom: 7px;
             }
             .account-show-profile__label {
-                color: rgb(156, 156, 156);
+                color: rgb(173, 173, 173);
                 margin-bottom: 3px;
             }
             .account-show-profile__input {
                 background: rgb(80, 80, 80);
                 color: rgb(173, 173, 173);
-                border: 1px solid rgb(99, 99, 99);
+                border: 1px solid rgb(112, 112, 112);
                 border-radius: 2px;
                 margin-bottom: 5px;
             }
@@ -176,20 +178,20 @@ account-tabdisplay-item {
                 cursor: pointer;
                 width: 70px;
                 font-family: 'Programme Regular', sans-serif;
-                background-color: rgb(38, 38, 38);
-                color: rgb(197, 197, 197);
+                background-color: rgb(50, 50, 50);
+                color: rgb(173, 173, 173);
                 font-size: 13px;
-                border: 1px solid rgb(80, 80, 80);
+                border: 1px solid rgb(173, 173, 173);
                 border-radius: 2px;
                 margin-bottom: 5px;
                 &:hover {
-                    background-color: rgb(56, 56, 56);
-                    color: rgb(240, 240, 240);
+                    background-color: rgb(173, 173, 173);
+                    color: rgb(80, 80, 80);
                 }
             }
         }
         .account-show__item {
-            color: rgb(156, 156, 156);
+            color: rgb(173, 173, 173);
             border-bottom: 2px solid rgb(80, 80, 80);
             padding: 7px 0px;
             .account-show__item-highlighted {
@@ -199,11 +201,14 @@ account-tabdisplay-item {
                 color: rgb(51, 197, 51);
             }
             .account-show__item-date {
-                color: rgb(156, 156, 156);
+                color: rgb(173, 173, 173);
+            }
+            &:hover {
+                background-color: rgb(80, 80, 80);
             }
         }
         .account-show-profile__error {
-            color: rgb(197, 0, 0)
+            color: rgb(197, 0, 0);
         }
     }
 }

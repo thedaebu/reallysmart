@@ -9,7 +9,7 @@ comment-show-item {
 
 .comment-show {
     width: 96%;
-    background: rgb(219, 219, 219);
+    background-color: rgb(219, 219, 219);
     margin: 20px 15px 0px 0px;
     .comment-show__begin {
         display: flex;
@@ -26,13 +26,14 @@ comment-show-item {
             resize: none;
             overflow: hidden;
             font-family: $programmelight;
-            border: 2px solid rgb(182, 182, 182);
+            background-color: rgb(240, 240, 240);
+            border: 2px solid rgb(173, 173, 173);
             margin-left: 5px;
             &::placeholder {
                 position: relative;
                 top: 3px;
                 left: 3px;
-                color: rgb(99, 99, 99);
+                color: rgb(80, 80, 80);
                 font-size: 16px;
             }
         }
@@ -49,15 +50,14 @@ comment-show-item {
             font-size: 16px;
             text-indent: 3px;
             text-anchor: 2px;
-            border: 2px solid rgb(182, 182, 182);
+            border: 2px solid rgb(173, 173, 173);
             padding: 10px 4px, 10px, 6px;
             &::placeholder {
-                color: rgb(99, 99, 99);
+                color: rgb(80, 80, 80);
                 font-size: 16px;
             }
-            &:focus {
-                border: 2px, solid rgb(194, 213, 255);
-                box-shadow: inset 0px 0px 2px 2px rgb(194, 213, 255);
+            &:focus::placeholder {
+                color: rgb(197, 197, 197);
             }
         }
         .comment-show-form__annotation-text {
@@ -68,16 +68,15 @@ comment-show-item {
             font-family: $programmelight;
             font-size: 16px;
             text-indent: 3px;
-            border: 2px solid rgb(182, 182, 182);
+            border: 2px solid rgb(173, 173, 173);
             padding: 6px 4px, 4px, 6px;
             margin-left: 5px;
             &::placeholder {
-                color: rgb(99, 99, 99);
+                color: rgb(80, 80, 80);
                 font-size: 16px;
             }
-            &:focus {
-                border: 2px, solid rgb(194, 213, 255);
-                box-shadow: inset 0px 0px 2px 2px rgb(194, 213, 255);
+            &:focus::placeholder {
+                color: rgb(197, 197, 197);
             }
         }
         .errors-list {
@@ -93,14 +92,14 @@ comment-show-item {
             display: flex;
             .comment-show-form__submit {
                 cursor: pointer;
-                background: rgb(240, 240, 240);
+                background-color: rgb(240, 240, 240);
                 font-family: $programmereg;
                 line-height: 28px;
                 border: 2px solid rgb(51, 197, 51);
                 padding: 0px 8px 0px 10px;
                 margin: 10px;
                 &:hover {
-                    background: rgb(200, 255, 200);
+                    background-color: rgb(200, 255, 200);
                 }
                 > p {
                     position:relative;
@@ -113,29 +112,27 @@ comment-show-item {
                 cursor: pointer;
                 position: relative;
                 left: 4px;
-                background: rgb(215, 222, 255);
+                background-color: rgb(219, 219, 219);
+                color: rgb(112, 112, 112);
                 font-family: $programmereg;
                 line-height: 27px;
-                border: 2px solid rgb(215, 222, 255);
                 padding: 4px 6px 0px;
                 margin: 10px;
-                &:hover {
-                    background: rgb(194, 213, 255);
-                    color: rgb(99, 99, 99);
-                    border: 2px solid rgb(194, 213, 255);
-                }
                 > p {
                     position: relative;
                     bottom: 2px;
-                    color: rgb(112, 112, 112);
                     font-size: 15px;
+                }
+                &:hover {
+                    background-color: rgb(173, 173, 173);
+                    color: rgb(80, 80, 80);
                 }
             }
         }
     }
     .comment-show__session {
         display: flex;
-        background: rgb(219, 219, 219);
+        background-color: rgb(219, 219, 219);
         padding: 10px;
         > p {
             margin-right: 5px;
@@ -187,9 +184,9 @@ comment-show-item {
                     z-index: 2;
                     width: 100px;
                     position: absolute;
-                    background: rgb(121, 164, 255);
+                    background-color: rgb(121, 164, 255);
                     font-family: $programmelight;
-                    color: rgb(56, 56, 56);
+                    color: rgb(50, 50, 50);
                     font-size: 12px;
                     line-height: 16px;
                     text-align: center;
@@ -208,7 +205,7 @@ comment-show-item {
             padding: 17px 0px 25px;
         }
         .comment-show-item__edited {
-            color: rgb(156, 156, 156);
+            color: rgb(150, 150, 150);
             font-size: 12px;
         }
         .comment-show-item__buttons {
@@ -218,18 +215,18 @@ comment-show-item {
             }
             .comment-show-item__button {
                 cursor: pointer;
-                background: rgb(219, 219, 219);
+                background-color: rgb(219, 219, 219);
                 font-family: $programmereg;
                 color: rgb(112, 112, 112);
                 font-size: 15px;
                 line-height: 20px;
-                border: 1px solid rgb(182, 182, 182);
+                border: 1px solid rgb(173, 173, 173);
                 border-radius: 2px;
                 padding: 0px 4px;
                 margin-right: 4px;
                 &:hover {
-                    color: rgb(70, 70, 70);
-                    background: rgb(182, 182, 182);
+                    background-color: rgb(173, 173, 173);
+                    color: rgb(80, 80, 80);
                 }
             }
         }
@@ -238,7 +235,7 @@ comment-show-item {
 
 .comment-show--dark {
     width: 96%;
-    background: rgb(70, 70, 70);
+    background-color: rgb(80, 80, 80);
     margin: 20px 15px 0px 0px;
     .comment-show__begin {
         display: flex;
@@ -254,16 +251,15 @@ comment-show-item {
             width: 100%;
             resize: none;
             overflow: hidden;
-            background: rgb(80, 80, 80);
+            background-color: rgb(80, 80, 80);
             font-family: $programmelight;
-            color: rgb(173, 173, 173);
             border: 2px solid rgb(140, 140, 140);
             margin-left: 5px;
             &::placeholder {
                 position: relative;
                 top: 3px;
                 left: 3px;
-                color: rgb(140, 140, 140);
+                color: rgb(197, 197, 197);
                 font-size: 16px;
             }
         }
@@ -275,22 +271,21 @@ comment-show-item {
             width: unquote("min(98%, 510px)");
             resize: none;
             overflow: hidden;
-            background: rgb(80, 80, 80);
+            background-color: rgb(80, 80, 80);
             font-family: $programmelight;
             color: rgb(173, 173, 173);
             font-size: 16px;
             text-indent: 3px;
             text-anchor: 2px;
-            border: 2px solid rgb(140, 140, 140);
+            border: 2px solid rgb(173, 173, 173);
             padding: 10px 4px, 10px, 6px;
             margin-left: 5px;
             &::placeholder {
-                color: rgb(140, 140, 140);
+                color: rgb(173, 173, 173);
                 font-size: 16px;
             }
-            &:focus {
-                border: 2px, solid rgb(194, 213, 255);
-                box-shadow: inset 0px 0px 2px 2px rgb(141, 156, 188);
+            &:focus::placeholder {
+                color: rgb(112, 112, 112);
             }
         }
         .comment-show-form__annotation-text {
@@ -298,21 +293,20 @@ comment-show-item {
             width: unquote("min(96%, 307px)");
             resize: none;
             overflow: hidden;
-            background: rgb(80, 80, 80);
+            background-color: rgb(80, 80, 80);
             font-family: $programmelight;
             color: rgb(173, 173, 173);
             font-size: 16px;
             text-indent: 3px;
-            border: 2px solid rgb(140, 140, 140);
+            border: 2px solid rgb(173, 173, 173);
             padding: 6px 4px, 4px, 6px;
             margin-left: 5px;
             &::placeholder {
-                color: rgb(140, 140, 140);
+                color: rgb(173, 173, 173);
                 font-size: 16px;
             }
-            &:focus {
-                border: 2px, solid rgb(194, 213, 255);
-                box-shadow: inset 0px 0px 2px 2px rgb(141, 156, 188);
+            &:focus::placeholder {
+                color: rgb(112, 112, 112);
             }
         }
         .errors-list {
@@ -328,14 +322,14 @@ comment-show-item {
             display: flex;
             .comment-show-form__submit {
                 cursor: pointer;
-                background: rgb(50, 50, 50);
+                background-color: rgb(50, 50, 50);
                 font-family: $programmereg;
                 line-height: 28px;
                 border: 2px solid rgb(51, 197, 51);
                 padding: 0px 8px 0px 10px;
                 margin: 10px;
                 &:hover {
-                    background: rgb(200, 255, 200);
+                    background-color: rgb(200, 255, 200);
                     color: rgb(50, 50, 50);
                 }
                 > p {
@@ -349,21 +343,19 @@ comment-show-item {
                 cursor: pointer;
                 position: relative;
                 left: 4px;
-                background: rgb(215, 222, 255);
+                background-color: rgb(80, 80, 80);
+                color: rgb(173, 173, 173);
                 font-family: $programmereg;
                 line-height: 27px;
-                border: 2px solid rgb(215, 222, 255);
                 padding: 4px 6px 0px;
                 margin: 10px;
                 &:hover {
-                    background: rgb(194, 213, 255);
-                    color: rgb(99, 99, 99);
-                    border: 2px solid rgb(194, 213, 255);
+                    background-color: rgb(112,112, 112);
+                    color: rgb(219, 219, 219);
                 }
                 > p {
                     position: relative;
                     bottom: 2px;
-                    color: rgb(112, 112, 112);
                     font-size: 15px;
                 }
             }
@@ -371,7 +363,7 @@ comment-show-item {
     }
     .comment-show__session {
         display: flex;
-        background: rgb(70, 70, 70);
+        background-color: rgb(80, 80, 80);
         padding: 10px;
         > p {
             color: rgb(173, 173, 173);
@@ -381,7 +373,7 @@ comment-show-item {
             color: rgb(106, 153, 255);
             margin-right: 5px;
             &:hover {
-                color: rgb(194, 213, 255);
+                color: rgb(121, 164, 255);
             }
         }
     }
@@ -426,9 +418,9 @@ comment-show-item {
                     z-index: 2;
                     width: 100px;
                     position: absolute;
-                    background: rgb(121, 164, 255);
+                    background-color: rgb(121, 164, 255);
                     font-family: $programmelight;
-                    color: rgb(56, 56, 56);
+                    color: rgb(50, 50, 50);
                     font-size: 12px;
                     line-height: 16px;
                     text-align: center;
@@ -459,7 +451,7 @@ comment-show-item {
             }
             .comment-show-item__button {
                 cursor: pointer;
-                background: rgb(70, 70, 70);
+                background-color: rgb(80, 80, 80);
                 font-family: $programmereg;
                 color: rgb(173, 173, 173);
                 font-size: 15px;
@@ -469,8 +461,8 @@ comment-show-item {
                 padding: 0px 4px;
                 margin-right: 4px;
                 &:hover {
-                    color: rgb(197, 197, 197);
-                    background: rgb(80, 80, 80);
+                    background-color: rgb(112, 112, 112);
+                    color: rgb(219, 219, 219);
                 }
             }
         }

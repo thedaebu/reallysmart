@@ -23,7 +23,7 @@ notification-icon {
     top: 57px;
     right: 16px;
     width: 370px;
-    background-color: rgb(238, 238, 238);
+    background-color: rgb(240, 240, 240);
     .notification-list__top {
         display: flex;
         justify-content: space-between;
@@ -46,6 +46,7 @@ notification-icon {
         cursor: pointer;
         background-color: rgb(255, 255, 255);
         font-size: 12px;
+        padding: 0px 2px;
         margin-bottom: 4px;
         &:hover {
             background-color: rgb(197, 197, 197);
@@ -57,7 +58,7 @@ notification-icon {
             color: rgb(106, 153, 255);
         }
         .notification-list__item-date {
-            color: rgb(156, 156, 156);
+            color: rgb(140, 140, 140);
         }
     }
 }
