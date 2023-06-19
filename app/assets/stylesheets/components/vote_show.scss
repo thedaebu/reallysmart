@@ -2,24 +2,24 @@
     display: flex;
     padding-bottom: 3px;
     .vote-show__voted {
-        cursor: pointer;
-        height: 19px;
         width: 19px;
+        height: 19px;
+        cursor: pointer;
         color: rgb(51, 197, 51);
     }
     .vote-show__not-voted {
-        cursor: pointer;
-        height: 19px;
         width: 19px;
-        color: rgb(140, 140, 140);
+        height: 19px;
+        cursor: pointer;
         font-size: 17px;
+        color: rgb(140, 140, 140);
         &:hover {
             color: rgb(51, 197, 51);
         }
     }
     .vote-show__count {
-        color: rgb(51, 197, 51);
+        margin-left: 7px;
         font-size: 17px;
-        margin-left: 7px 
+        color: rgb(51, 197, 51);
     }
 }

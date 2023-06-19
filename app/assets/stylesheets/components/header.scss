@@ -1,24 +1,24 @@
 .header {
-    height: 31px;
     display: flex;
     justify-content: space-between;
-    background: rgb(106, 153, 255);
+    height: 31px;
     padding: 6px 5px 4px 5px;
+    background-color: rgb(106, 153, 255);
     .header__logo {
-        font-family: 'Programme', Arial, sans-serif;
-        color: rgb(106, 153, 255);
+        margin: 7px auto 0px auto;
         font-size: 20px;
         letter-spacing: 8px;
+        font-family: 'Programme', Arial, sans-serif;
         text-decoration: none;
         text-shadow: 2.4px -2.2px 0px rgb(0, 0, 0);
-        margin: 7px auto 0px auto;
+        color: rgb(106, 153, 255);
     }
     .session-buttons {
         display: flex;
         justify-content: flex-end;
-        color: rgb(0, 0, 0);
+        margin: 9px 10px 0px 0px;
         font-size: 12px;
         letter-spacing: 1px;
-        margin: 9px 10px 0px 0px;
+        color: rgb(0, 0, 0);
     }
 }

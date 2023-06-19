@@ -1,10 +1,10 @@
 account-tabdisplay-item {
-    color: rgb(240, 240, 240);
-    text-decoration: none;
-    border-bottom: 4px solid transparent;
-    margin-right: 15px;
-    cursor: pointer;
     transition: 0.2s;
+    margin-right: 15px;
+    border-bottom: 4px solid transparent;
+    cursor: pointer;
+    text-decoration: none;
+    color: rgb(240, 240, 240);
     &:hover {
         border-bottom: 4px solid rgb(255, 0, 0);
     }
@@ -13,42 +13,41 @@ account-tabdisplay-item {
 .account-show-header__background {
     display: flex;
     justify-content: space-around;
-    position: relative;
-    height: 280px;
     width: inherit;
+    height: 280px;
     background-position: center;
     background-size: cover;
     .account-show-header__shade {
         z-index: 2;
-        height: inherit;
         width: 970px;
+        height: inherit;
         background-color: rgba(0, 0, 0, 0.5);
         > div {
-            height: inherit;
             display: flex;
             justify-content: space-between;
+            height: inherit;
             .account-show-header__left {
                 display: flex;
                 margin-top: 34px;
                 .account-show-header__image {
                     position: relative;
-                    height: 220px;
-                    width: 220px;
                     right: 22px;
-                    background-position: center;
-                    background-size: cover;
+                    width: 220px;
+                    height: 220px;
                     border: 2px solid rgb(140, 140, 140);
                     border-radius: 50%;
+                    background-position: center;
+                    background-size: cover;
                 }
                 .account-show-header__text {
+                    display: flex;
+                    flex-direction: column;
                     position: relative;
                     top: 14px;
                     right: 10px;
-                    display: flex;
-                    flex-direction: column;
                     .account-show-header__username {
-                        color: rgb(106, 153, 255);
                         font-size: 35px;
+                        color: rgb(106, 153, 255);
                     }
                 }
             }
@@ -72,26 +71,26 @@ account-tabdisplay-item {
 .account-show__shade {
     width: 100%;
     min-height: calc(100vh - 362px);
-    background: rgb(219, 219, 219);
+    background-color: rgb(219, 219, 219);
     .account-show__main {
+        margin: 0px auto;
         width: unquote("min(938px, 100vw)");
         min-height: calc(100vh - 362px);
-        background: rgb(240, 240, 240);
-        margin: 0px auto;
         padding: 16px 16px 20px 16px;
+        background-color: rgb(240, 240, 240);
         .account-show__h1 {
-            font-size: 20px;
             padding-bottom: 5px;
+            font-size: 20px;
         }
         .account-show-profile__form {
             display: flex;
             flex-direction: column;
-            width: unquote("min(300px, 80vw)");
             border-bottom: 2px solid rgb(219, 219, 219);
+            width: unquote("min(300px, 80vw)");
             padding: 7px 0px;
             .account-show-profile__h2 {
-                font-size: 18px;
                 margin-bottom: 7px;
+                font-size: 18px;
             }
             .account-show-profile__label {
                 margin-bottom: 3px;
@@ -100,15 +99,15 @@ account-tabdisplay-item {
                 margin-bottom: 5px;
             }
             .account-show-profile__submit {
-                cursor: pointer;
-                width: 70px;
-                font-family: 'Programme Regular', sans-serif;
-                background-color: rgb(240, 240, 240);
-                color: rgb(112, 112, 112);
-                font-size: 13px;
+                margin-bottom: 5px;
                 border: 1px solid rgb(112, 112, 112);
                 border-radius: 2px;
-                margin-bottom: 5px;
+                width: 70px;
+                background-color: rgb(240, 240, 240);
+                cursor: pointer;
+                font-size: 13px;
+                font-family: 'Programme Regular', sans-serif;
+                color: rgb(112, 112, 112);
                 &:hover {
                     background-color: rgb(112, 112, 112);
                     color: rgb(197, 197, 197);
@@ -140,50 +139,50 @@ account-tabdisplay-item {
 .account-show__shade--dark {
     width: 100%;
     min-height: calc(100vh - 362px);
-    background: rgb(80, 80, 80);
+    background-color: rgb(80, 80, 80);
     .account-show__main {
+        margin: 0px auto;
         width: unquote("min(938px, 100vw)");
         min-height: calc(100vh - 362px);
-        background: rgb(50, 50, 50);
-        margin: 0px auto;
         padding: 16px 16px 20px 16px;
+        background-color: rgb(50, 50, 50);
         .account-show__h1 {
-            color: rgb(173, 173, 173);
-            font-size: 20px;
             padding-bottom: 5px;
+            font-size: 20px;
+            color: rgb(173, 173, 173);
         }
         .account-show-profile__form {
             display: flex;
             flex-direction: column;
-            width: unquote("min(300px, 80vw)");
             border-bottom: 2px solid rgb(80, 80, 80);
+            width: unquote("min(300px, 80vw)");
             padding: 7px 0px;
             .account-show-profile__h2 {
-                color: rgb(173, 173, 173);
-                font-size: 18px;
                 margin-bottom: 7px;
+                font-size: 18px;
+                color: rgb(173, 173, 173);
             }
             .account-show-profile__label {
-                color: rgb(173, 173, 173);
                 margin-bottom: 3px;
+                color: rgb(173, 173, 173);
             }
             .account-show-profile__input {
-                background: rgb(80, 80, 80);
-                color: rgb(173, 173, 173);
+                margin-bottom: 5px;
                 border: 1px solid rgb(112, 112, 112);
                 border-radius: 2px;
-                margin-bottom: 5px;
+                background-color: rgb(80, 80, 80);
+                color: rgb(173, 173, 173);
             }
             .account-show-profile__submit {
-                cursor: pointer;
-                width: 70px;
-                font-family: 'Programme Regular', sans-serif;
-                background-color: rgb(50, 50, 50);
-                color: rgb(173, 173, 173);
-                font-size: 13px;
+                margin-bottom: 5px;
                 border: 1px solid rgb(173, 173, 173);
                 border-radius: 2px;
-                margin-bottom: 5px;
+                width: 70px;
+                background-color: rgb(50, 50, 50);
+                cursor: pointer;
+                font-size: 13px;
+                font-family: 'Programme Regular', sans-serif;
+                color: rgb(173, 173, 173);
                 &:hover {
                     background-color: rgb(173, 173, 173);
                     color: rgb(80, 80, 80);
@@ -191,9 +190,9 @@ account-tabdisplay-item {
             }
         }
         .account-show__item {
-            color: rgb(173, 173, 173);
             border-bottom: 2px solid rgb(80, 80, 80);
             padding: 7px 0px;
+            color: rgb(173, 173, 173);
             .account-show__item-highlighted {
                 color: rgb(106, 153, 255);
             }

@@ -7,9 +7,9 @@
     .flash-message__container {
         display: inline-block;
         padding: 0px 5px 2px 5px;
+        border-radius: 1px;
         margin: auto;
         background-color: rgb(197, 197, 197);
-        border-radius: 1px;
         .flash-message__exit {
             position: relative;
             top: 2px;

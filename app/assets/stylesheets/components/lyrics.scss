@@ -4,47 +4,47 @@ $programmelight: 'Programme Light', sans-serif;
 .lyrics__shade {
     width: 100%;
     min-height: calc(100vh - 362px);
-    background: rgb(219, 219, 219);
+    background-color: rgb(219, 219, 219);
     .lyrics__main {
+        display: flex;
         width: unquote("min(970px, 100vw)");
         min-height: calc(100vh - 362px);
-        display: flex;
-        background: rgb(240, 240, 240);
         margin: 0px auto;
+        background-color: rgb(240, 240, 240);
         .lyrics__text {
             width: 530px;
             padding: 16px 0px 96px 16px;
             .lyrics__top {
-                font-family: $programmereg;
-                color: rgb(173, 173, 173);
+                margin: 2px 0px 26px 0px;
                 font-size: 12px;
                 letter-spacing: 0.2px;
-                margin: 2px 0px 26px 0px;
+                font-family: $programmereg;
+                color: rgb(173, 173, 173);
             }
             .lyrics__body {
                 width: 530px;
                 font-size: 18px;
                 line-height: 30px;
                 .lyrics__not-annotation {
-                    font-family: $programmelight;
                     font-size: 18px;
+                    font-family: $programmelight;
                 }
                 .lyrics__is-annotation {
-                    cursor: pointer;
-                    background: rgb(219, 219, 219);
-                    font-family: $programmelight;
-                    font-size: 18px;
                     padding: 4px 0px 5px 0px;
+                    background-color: rgb(219, 219, 219);
+                    cursor: pointer;
+                    font-size: 18px;
+                    font-family: $programmelight;
                     &:hover {
-                        background: rgb(121, 164, 255);
+                        background-color: rgb(121, 164, 255);
                         color: rgb(240, 240, 240);
                     }
                 }
                 .lyrics__highlighted {
-                    background: rgb(121, 164, 255);
-                    color: rgb(240, 240, 240);
-                    font-family: $programmelight;
                     padding: 4px 0px 5px 0px;
+                    background-color: rgb(121, 164, 255);
+                    font-family: $programmelight;
+                    color: rgb(240, 240, 240);
                 }
             }
         }
@@ -58,48 +58,48 @@ $programmelight: 'Programme Light', sans-serif;
 .lyrics__shade--dark {
     width: 100%;
     min-height: calc(100vh - 362px);
-    background: rgb(80, 80, 80);
+    background-color: rgb(80, 80, 80);
     .lyrics__main {
+        display: flex;
         width: unquote("min(970px, 100vw)");
         min-height: calc(100vh - 362px);
-        display: flex;
-        background: rgb(50, 50, 50);
         margin: 0px auto;
+        background-color: rgb(50, 50, 50);
         .lyrics__text {
             min-width: 530px;
             padding: 16px 0px 96px 16px;
             .lyrics__top {
-                font-family: $programmereg;
-                color: rgb(173, 173, 173);
-                font-size: 12px;
-                letter-spacing: 0.2px;
                 margin: 2px 0px 26px 0px;
+                font-size: 12px;
+                font-family: $programmereg;
+                letter-spacing: 0.2px;
+                color: rgb(173, 173, 173);
             }
             .lyrics__body {
                 width: 530px;
                 font-size: 18px;
                 line-height: 30px;
                 .lyrics__not-annotation {
-                    color: rgb(173, 173, 173);
-                    font-family: $programmelight;
                     font-size: 18px;
+                    font-family: $programmelight;
+                    color: rgb(173, 173, 173);
                 }
                 .lyrics__is-annotation {
-                    cursor: pointer;
-                    background: rgb(80, 80, 80);
-                    color: rgb(173, 173, 173);
-                    font-family: $programmelight;
-                    font-size: 18px;
                     padding: 4px 0px 5px 0px;
+                    background-color: rgb(80, 80, 80);
+                    cursor: pointer;
+                    font-size: 18px;
+                    font-family: $programmelight;
+                    color: rgb(173, 173, 173);
                     &:hover {
-                        background: rgb(121, 164, 255);
+                        background-color: rgb(121, 164, 255);
                         color: rgb(50, 50, 50);
                     }
                 }
                 .lyrics__highlighted {
-                    background: rgb(121, 164, 255);
-                    font-family: $programmelight;
                     padding: 4px 0px 5px 0px;
+                    background-color: rgb(121, 164, 255);
+                    font-family: $programmelight;
                 }
             }
         }

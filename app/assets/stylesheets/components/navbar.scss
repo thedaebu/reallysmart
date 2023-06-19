@@ -1,24 +1,24 @@
 .navbar-main {
     display: flex;
     justify-content: center;
-    height: 41px;
     width: 100%;
-    background: rgb(0, 0, 0);
+    height: 41px;
+    background-color: rgb(0, 0, 0);
     .navbar {
         display: flex;
         justify-content: space-around;
         align-items: center;
-        height: inherit;
-        background: rgb(0, 0, 0);
-        font-size: 14px;
-        margin: 0 auto;
         white-space: nowrap;
+        height: inherit;
+        margin: 0 auto;
+        background-color: rgb(0, 0, 0);
+        font-size: 14px;
         .navbar-link {
             display: inline-block;
-            color: rgb(255, 255, 255);
-            border-right: 1px solid rgb(255, 255, 255);
             padding: 0px 1.9vw;
+            border-right: 1px solid rgb(255, 255, 255);
             margin: 14px auto 12px auto;
+            color: rgb(255, 255, 255);
             &:hover {
                 color: rgb(197, 197, 197);
             }
@@ -31,8 +31,8 @@
             padding: 0px 1.9vw;
             margin: auto;
             .navbar-image {
-                height: 20px;
                 width: 20px;
+                height: 20px;
                 padding-left: 1vw;
             }
         }

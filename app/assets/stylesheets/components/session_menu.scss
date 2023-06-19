@@ -1,10 +1,10 @@
 header-right-buttons {
+    transition: 0.2s;
+    padding-bottom: 22px;
+    letter-spacing: 0.75px;
+    text-decoration: none;
     font-family: 'Programme Regular', sans-serif;
     color: rgb(0, 0, 0);
-    text-decoration: none;
-    letter-spacing: 0.75px;
-    padding-bottom: 22px;
-    transition: 0.2s;
     &:hover {
         border-bottom: 4px rgb(255, 0, 0) solid;
     }

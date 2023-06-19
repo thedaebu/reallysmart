@@ -5,68 +5,68 @@ $ubuntu: 'Ubuntu Condensed', sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: calc(100vh - 41px);
     width: 100%;
+    min-height: calc(100vh - 41px);
     background-color: rgb(38, 38, 38);
     .session-form__signup--h1 {
-        font-family: $barlow;
-        color: rgb(106, 153, 240);
+        padding: 40px 0px 6px 0px;
         font-size: 62px;
         font-weight: bold;
-        padding: 40px 0px 6px 0px;
-    }
-    .session-form__signup--h2 {
         font-family: $barlow;
         color: rgb(106, 153, 240);
-        font-size: 30px;
-        font-weight: lighter;
-        letter-spacing: -0.5px;
+    }
+    .session-form__signup--h2 {
         padding-bottom: 20px;
+        font-size: 30px;
+        letter-spacing: -0.5px;
+        font-weight: lighter;
+        font-family: $barlow;
+        color: rgb(106, 153, 240);
     }
     .session-form__login-h1 {
+        padding: 40px 0px 30px 0px;
+        font-size: 40px;
+        letter-spacing: -0.5px;
+        font-weight: bolder;
         font-family: $ubuntu;
         color: rgb(240, 240, 240);
-        font-size: 40px;
-        font-weight: bolder;
-        letter-spacing: -0.5px;
-        padding: 40px 0px 30px 0px;
     }
     .session-form__form {
         width: 350px;
-        background: rgb(50, 50, 50);
+        padding: 12px 10px 8px 10px;
         border-top: 1px solid rgb(38, 38, 38);
         border-radius: 2px;
-        padding: 12px 10px 8px 10px;
         margin-bottom: 30px;
+        background-color: rgb(50, 50, 50);
         .session-form__errors {
-            background: rgb(38, 38, 38);
             margin-bottom: 26px;
+            background-color: rgb(38, 38, 38);
             .session-form__errors--header {
+                padding: 9px 32px;
                 background-color: rgb(197, 0, 0);
+                font-size: 15px;
                 font-family: $barlow;
                 color: rgb(240, 240, 240);
-                font-size: 15px;
-                padding: 9px 32px;
             }
             .session-form__errors--caption {
-                font-size: 13px;
                 padding: 20px 32px;
+                font-size: 13px;
             }
             .session-form__errors-list {
                 position: relative;
                 left: 5px;
-                list-style: disc;
-                font-size: 14px;
                 padding: 15px 32px;
                 margin-bottom: 10px;
+                list-style: disc;
+                font-size: 14px;
             }
         }
         .session-form__label {
+            font-size: 13px;
             color: rgb(240, 240, 240);
-            font-size: 13px;  
             .session-form__forgot-password {
-                color: rgb(91, 167, 194);
                 font-size: 12px;
+                color: rgb(91, 167, 194);
                 &:hover {
                     color: rgb(126, 204, 233);
                 }
@@ -75,45 +75,45 @@ $ubuntu: 'Ubuntu Condensed', sans-serif;
                 display: flex;
                 flex-direction: row; 
                 width: 335px;
-                background-color: rgb(59, 59, 59);
-                color: rgb(240, 240, 240);
-                font-size: 14;
+                padding: 6px;   
                 border: 1px solid rgb(80, 80, 80);
                 border-radius: 2px;
-                padding: 6px;   
                 margin: 4px 0px 15px 0px;
+                background-color: rgb(59, 59, 59);
+                font-size: 14;
+                color: rgb(240, 240, 240);
                 &:focus {
                     border: 1px solid rgb(140, 140, 140);
                 }
             }
         }
         .session-form__tos {
-            font-size: 13px;
-            line-height: 18px;
             padding-bottom: 16px;
+            line-height: 18px;
+            font-size: 13px;
             > a {
-                color: rgb(91, 167, 194);
                 font-size: 13px;
+                color: rgb(91, 167, 194);
                 &:hover {
                     color: rgb(126, 204, 233);
                 }
             }
         }
         #session-form__submit {
-            cursor: pointer;
-            font-family: 'Programme Regular', sans-serif;
-            background-color: rgb(50, 50, 50);
-            color: rgb(240, 240, 240);
-            font-size: 13px;
+            padding: 5px 10px 5px 10px;
             border: 1px solid rgb(80, 80, 80);
             border-radius: 2px;
-            padding: 5px 10px 5px 10px;
             margin-top: 1px;
+            background-color: rgb(50, 50, 50);
+            cursor: pointer;
+            font-size: 13px;
+            font-family: 'Programme Regular', sans-serif;
+            color: rgb(240, 240, 240);
             &:hover {
                 background-color: rgb(38, 38, 38);
             }
             &:active {
-                background: linear-gradient(336deg, rgb(61, 61, 61), rgb(38, 38, 38) 70.71%);   
+                background: linear-gradient(336deg, rgb(61, 61, 61), rgb(38, 38, 38) 70.71%);
             }
         }
     }
@@ -121,8 +121,8 @@ $ubuntu: 'Ubuntu Condensed', sans-serif;
         font-size: 15px;
         color: rgb(240, 240, 240);
         > a {
-            color: rgb(91, 167, 194);
             font-size: 15px;
+            color: rgb(91, 167, 194);
             &:hover {
                 color: rgb(126, 204, 233);
             }
