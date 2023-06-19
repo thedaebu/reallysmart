@@ -26,7 +26,6 @@ comment-show-item {
             resize: none;
             overflow: hidden;
             font-family: $programmelight;
-            background-color: rgb(240, 240, 240);
             border: 2px solid rgb(173, 173, 173);
             margin-left: 5px;
             &::placeholder {
@@ -138,10 +137,10 @@ comment-show-item {
             margin-right: 5px;
         }
         > a {
-            color: rgb(106, 153, 255);
             margin-right: 5px;
+            color: rgb(91, 167, 194);
             &:hover {
-                color: rgb(18, 93, 255);
+                color: rgb(126, 204, 233);
             }
         }
     }
@@ -205,7 +204,7 @@ comment-show-item {
             padding: 17px 0px 25px;
         }
         .comment-show-item__edited {
-            color: rgb(150, 150, 150);
+            color: rgb(140, 140, 140);
             font-size: 12px;
         }
         .comment-show-item__buttons {

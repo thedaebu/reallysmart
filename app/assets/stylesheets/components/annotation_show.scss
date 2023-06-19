@@ -91,6 +91,12 @@ $programmereg: 'Programme Regular', sans-serif;
             border: none;
             padding: 10px;
             margin-top: 20px;
+            &::placeholder {
+                color: rgb(50, 50, 50);
+            }
+            &:focus::placeholder {
+                color: rgb(140, 140, 140);
+            }
         }
         .errors-list {
             margin-top: 3px;
