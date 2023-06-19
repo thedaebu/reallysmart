@@ -36,7 +36,7 @@ describe("session actions", () => {
                 SessionAPIUtil.signup = jest.fn(() => (
                     Promise.resolve(data)
                 ));
-                const actions: any = [{type: "RECEIVE_CURRENT_USER", user: data.user}];
+                const actions: any = [{ type: "RECEIVE_CURRENT_USER", user: data.user, flashMessage: "Sign Up Successful." }];
                 return store.dispatch(SessionActions.signup({password: "reallysmart", username: "reallysmart"})).then(() => {
                     expect(store.getActions()).toEqual(actions);
                 });
@@ -51,7 +51,7 @@ describe("session actions", () => {
                 SessionAPIUtil.login = jest.fn(() => (
                     Promise.resolve(data)
                 ));
-                const actions: any = [{type: "RECEIVE_CURRENT_USER", user: data.user}];
+                const actions: any = [{ type: "RECEIVE_CURRENT_USER", user: data.user, flashMessage: "Log In Successful." }];
                 return store.dispatch(SessionActions.login({password: "reallysmart", username: "reallysmart"})).then(() => {
                     expect(store.getActions()).toEqual(actions);
                 });
@@ -65,7 +65,7 @@ describe("session actions", () => {
                 SessionAPIUtil.logout = jest.fn(() => (
                     Promise.resolve({})
                 ));
-                const actions: any = [{type: "LOGOUT_CURRENT_USER"}];
+                const actions: any = [{ type: "LOGOUT_CURRENT_USER", flashMessage: "Log Out Successful." }];
                 return store.dispatch(SessionActions.logout()).then(() => {
                     expect(store.getActions()).toEqual(actions);
                 });

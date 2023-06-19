@@ -39,7 +39,7 @@ describe("annotation actions", () => {
                 AnnotationAPIUtil.fetchAnnotation = jest.fn((annotationId: number) => (
                     Promise.resolve(data)
                 ));
-                const actions = [{ type: "RECEIVE_ANNOTATION", annotation: data.annotation }];
+                const actions = [{ type: "RECEIVE_ANNOTATION", annotation: data.annotation, flashMessage: "" }];
                 return store.dispatch(AnnotationActions.fetchAnnotation(1)).then(() => {
                     expect(store.getActions()).toEqual(actions);
                 });
@@ -62,7 +62,7 @@ describe("annotation actions", () => {
                 AnnotationAPIUtil.createAnnotation = jest.fn((createdAnnotation: CreatedAnnotation) => (
                     Promise.resolve(data)
                 ));
-                const actions = [{ type: "RECEIVE_ANNOTATION", annotation: data.annotation }];
+                const actions = [{ type: "RECEIVE_ANNOTATION", annotation: data.annotation, flashMessage: "Annotation Creation Successful." }];
                 return store.dispatch(AnnotationActions.createAnnotation(createdAnnotation)).then(() => {
                     expect(store.getActions()).toEqual(actions);
                 });
@@ -86,7 +86,7 @@ describe("annotation actions", () => {
                 AnnotationAPIUtil.updateAnnotation = jest.fn((updatedAnnotation: UpdatedAnnotation) => (
                     Promise.resolve(data)
                 ));
-                const actions = [{ type: "RECEIVE_ANNOTATION", annotation: data.annotation }];
+                const actions = [{ type: "RECEIVE_ANNOTATION", annotation: data.annotation, flashMessage: "Annotation Update Successful." }];
                 return store.dispatch(AnnotationActions.updateAnnotation(updatedAnnotation)).then(() => {
                     expect(store.getActions()).toEqual(actions);
                 });
@@ -101,7 +101,7 @@ describe("annotation actions", () => {
                 AnnotationAPIUtil.deleteAnnotation = jest.fn((annotationId: number) => (
                     Promise.resolve(data)
                 ));
-                const actions = [{ type: "REMOVE_ANNOTATION", annotationId: 1 }];
+                const actions = [{ type: "REMOVE_ANNOTATION", annotationId: 1, flashMessage: "Annotation Deletion Successful." }];
                 return store.dispatch(AnnotationActions.deleteAnnotation(1)).then(() => {
                     expect(store.getActions()).toEqual(actions);
                 });

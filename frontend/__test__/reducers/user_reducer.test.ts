@@ -16,26 +16,32 @@ describe("user reducer", () => {
             expect(userReducer(undefined, {})).toEqual(null);
         });
         test("returns the previous state if an action is not matched", () => {
-            const state: User = userReducer(testUser, {type: "NONUSER_ACTION"});
+            const state: User = userReducer(testUser, { type: "NONUSER_ACTION" });
             expect(state).toEqual(testUser);
         });
         describe("RECEIVE_CURRENT_USER action", () => {
             test("returns the data of the current user", () => {
-                const state: User = userReducer(null, {type: "RECEIVE_CURRENT_USER", user: testUser});
+                const state: User = userReducer(null, {
+                    errors: [],
+                    type: "RECEIVE_CURRENT_USER",
+                    user: testUser
+                });
                 expect(state).toEqual(testUser);
             });
             test("does not modify the previous state", () => {
-                const state: User = userReducer(null, {type: "RECEIVE_CURRENT_USER", user: testUser});
                 expect(blankUser).toEqual(blankUser);
             });
         });
         describe("LOGOUT_CURRENT_USER action", () => {
             test("removes the the current user", () => {
-                const state: User = userReducer(testUser, {type: "LOGOUT_CURRENT_USER"});
+                const state: User = userReducer(testUser, {
+                    errors: [],
+                    type: "LOGOUT_CURRENT_USER",
+                    user: null
+                });
                 expect(state).toEqual(null);
             });
             test("does not modify the previous state", () => {
-                const state: User = userReducer(testUser, {type: "LOGOUT_CURRENT_USER"});
                 expect(testUser).toEqual(testUser);
             });
         });
@@ -46,13 +52,21 @@ describe("user reducer", () => {
             testStore = createStore(rootReducer);
         });
         test("contains the correct data for RECEIVE_CURRENT_USER action", () => {
-            testStore.dispatch({type: "RECEIVE_CURRENT_USER", user: testUser});
+            testStore.dispatch({
+                flashMessage: "Log In Successful.",
+                type: "RECEIVE_CURRENT_USER",
+                user: testUser
+            });
             expect(testStore.getState().entities.user).toEqual(testUser);
         });
         test("contains the correct data for LOGOUT_CURRENT_USER", () => {
-            testStore.dispatch({type: "RECEIVE_CURRENT_USER", user: testUser});
+            testStore.dispatch({
+                flashMessage: "Log In Successful.",
+                type: "RECEIVE_CURRENT_USER",
+                user: testUser
+            });
             expect(testStore.getState().entities.user).toEqual(testUser);
-            testStore.dispatch({type: "LOGOUT_CURRENT_USER"});
+            testStore.dispatch({ flashMessage: "Log Out Successful.", type: "LOGOUT_CURRENT_USER" });
             expect(testStore.getState().entities.user).toEqual(null);
         });
     });

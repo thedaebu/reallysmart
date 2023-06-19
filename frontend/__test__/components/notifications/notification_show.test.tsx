@@ -13,7 +13,7 @@ const useMockState = jest.spyOn(React, "useState");
 const useUpdateNotification = jest.spyOn(NotificationAPIUtil, "updateNotification");
 
 const cable: Cable = actionCable.createConsumer(`ws://${window.location.hostname}:3000/cable`);
-const cableApp: {cable: Cable} = {cable};
+const cableApp: { cable: Cable } = {cable};
 
 describe("notification show", () => {
     describe("no user tests", () => {
@@ -86,12 +86,12 @@ describe("notification show", () => {
                 expect(notificationItems[2]).toHaveTextContent("commented on your annotation");
             });
             test("displays correct format for mention in track comment", () => {
-                expect(notificationItems[0]).toHaveTextContent("mentioned you in a comment");
-                expect(notificationItems[0]).not.toHaveTextContent("for your annotation");
+                expect(notificationItems[1]).toHaveTextContent("mentioned you in a comment");
+                expect(notificationItems[1]).not.toHaveTextContent("for the annotation");
             });
             test("displays correct format for mention in annotation comment", () => {
-                expect(notificationItems[1]).toHaveTextContent("mentioned you in a comment");
-                expect(notificationItems[1]).toHaveTextContent("for the annotation");
+                expect(notificationItems[0]).toHaveTextContent("mentioned you in a comment");
+                expect(notificationItems[0]).toHaveTextContent("for the annotation");
             });
         });
     });

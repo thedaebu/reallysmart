@@ -36,7 +36,7 @@ describe("comment actions", () => {
                 CommentAPIUtil.fetchComment = jest.fn((commentId: number) => (
                     Promise.resolve(data)
                 ));
-                const actions = [{ type: "RECEIVE_COMMENT", comment: comment }];
+                const actions = [{ type: "RECEIVE_COMMENT", comment: comment, flashMessage: "" }];
                 return store.dispatch(CommentActions.fetchComment(comment.id)).then(() => {
                     expect(store.getActions()).toEqual(actions);
                 });
@@ -58,7 +58,7 @@ describe("comment actions", () => {
                 CommentAPIUtil.createComment = jest.fn((createdComment: CreatedComment) => (
                     Promise.resolve(data)
                 ));
-                const actions = [{ type: "RECEIVE_COMMENT", comment: comment }];
+                const actions = [{ type: "RECEIVE_COMMENT", comment: comment, flashMessage: "Comment Creation Successful." }];
                 return store.dispatch(CommentActions.createComment(createdComment)).then(() => {
                     expect(store.getActions()).toEqual(actions);
                 });
@@ -81,7 +81,7 @@ describe("comment actions", () => {
                 CommentAPIUtil.updateComment = jest.fn((updatedComment: UpdatedComment) => (
                     Promise.resolve(data)
                 ));
-                const actions = [{ type: "RECEIVE_COMMENT", comment: comment }];
+                const actions = [{ type: "RECEIVE_COMMENT", comment: comment, flashMessage: "Comment Update Successful." }];
                 return store.dispatch(CommentActions.updateComment(updatedComment)).then(() => {
                     expect(store.getActions()).toEqual(actions);
                 });
@@ -96,7 +96,7 @@ describe("comment actions", () => {
                 CommentAPIUtil.deleteComment = jest.fn((commentId: number) => (
                     Promise.resolve(data)
                 ));
-                const actions = [{ type: "REMOVE_COMMENT", commentId: comment.id }];
+                const actions = [{ type: "REMOVE_COMMENT", commentId: comment.id, flashMessage: "Comment Deletion Successful." }];
                 return store.dispatch(CommentActions.deleteComment(comment.id)).then(() => {
                     expect(store.getActions()).toEqual(actions);
                 });
