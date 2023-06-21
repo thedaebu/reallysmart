@@ -306,7 +306,8 @@ export const mockStore: MockStoreCreator = configureMockStore(middlewares);
 export function renderIndexComponent(component: ReactElement) {
     renderNonShowComponent(mockStore(testIndexStore), component);
 }
-export function renderNonShowComponentWithoutUser(component: ReactElement) {
+export function renderNonShowComponentWithoutUser(component: ReactElement, flashMessage: string = "") {
+    if (flashMessage) testShowStoreWithoutUser.entities.flashMessage = flashMessage;
     renderNonShowComponent(mockStore(testShowStoreWithoutUser), component);
 }
 export function renderNonShowComponentWithUser(component: ReactElement) {
