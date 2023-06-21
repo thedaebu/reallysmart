@@ -13,9 +13,9 @@ function FlashMessage({ flashMessage }: { flashMessage: string; }) {
     }, [flashMessage]);
 
     return (
-        <div className="flash-message">
+        <div className="flash-message" data-testid="flash-message">
             <section className="flash-message__container">
-                <span className="flash-message__message">{flashMessage}</span>
+                <span className="flash-message__message" data-testid="flash-message__message">{flashMessage}</span>
                 <RiCheckboxIndeterminateFill 
                     className="flash-message__exit"
                     size={16}

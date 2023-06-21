@@ -136,6 +136,7 @@ function AccountShowProfile({ username }: { username: string; }) {
                     onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
                     type="password"
                     value={password}
+                    data-testid="account-show-profile__password"
                 />
                 <label className="account-show-profile__label" htmlFor="account-show-profile__confirmed-password">Confirm Password:</label>
                 <input
@@ -144,6 +145,7 @@ function AccountShowProfile({ username }: { username: string; }) {
                     onChange={(e: ChangeEvent<HTMLInputElement>) => setConfirmedPassword(e.target.value)}
                     type="password"
                     value={confirmedPassword}
+                    data-testid="account-show-profile__confirmed-password"
                 />
                 <label className="account-show-profile__label" htmlFor="account-show-profile__new-username">New Username:</label>
                 <input
@@ -152,12 +154,14 @@ function AccountShowProfile({ username }: { username: string; }) {
                     onChange={(e: ChangeEvent<HTMLInputElement>) => setNewUsername(e.target.value)}
                     type="text"
                     value={newUsername}
+                    data-testid="account-show-profile__new-username"
                 />
                 <input
                     className="account-show-profile__submit"
                     id="account-show-profile__username-submit"
                     type="submit"
                     value="Update"
+                    data-testid="account-show-profile__username-submit"
                 />
             </form>
             <form
@@ -175,6 +179,7 @@ function AccountShowProfile({ username }: { username: string; }) {
                     onChange={(e: ChangeEvent<HTMLInputElement>) => setOldPassword(e.target.value)}
                     type="password"
                     value={oldPassword}
+                    data-testid="account-show-profile__old-password"
                 />
                 <label className="account-show-profile__label" htmlFor="account-show-profile__confirmed-old-password">Confirm Old Password:</label>
                 <input
@@ -183,6 +188,7 @@ function AccountShowProfile({ username }: { username: string; }) {
                     onChange={(e: ChangeEvent<HTMLInputElement>) => setConfirmedOldPassword(e.target.value)}
                     type="password"
                     value={confirmedOldPassword}
+                    data-testid="account-show-profile__confirmed-old-password"
                 />
                 <label className="account-show-profile__label" htmlFor="account-show-profile__new-password">New Password:</label>
                 <input
@@ -191,6 +197,7 @@ function AccountShowProfile({ username }: { username: string; }) {
                     onChange={(e: ChangeEvent<HTMLInputElement>) => setNewPassword(e.target.value)}
                     type="password"
                     value={newPassword}
+                    data-testid="account-show-profile__new-password"
                 />
                 <label className="account-show-profile__label" htmlFor="account-show-profile__confirmed-new-password">Confirm New Password:</label>
                 <input
@@ -199,12 +206,14 @@ function AccountShowProfile({ username }: { username: string; }) {
                     onChange={(e: ChangeEvent<HTMLInputElement>) => setConfirmedNewPassword(e.target.value)}
                     type="password"
                     value={confirmedNewPassword}
+                    data-testid="account-show-profile__confirmed-new-password"
                 />
                 <input
                     className="account-show-profile__submit"
                     id="account-show-profile__password-submit"
                     type="submit"
                     value="Update"
+                    data-testid="account-show-profile__password-submit"
                 />
             </form>
         </>

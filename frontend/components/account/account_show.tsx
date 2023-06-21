@@ -54,7 +54,7 @@ function AccountShow() {
                 ? "account-show__shade"
                 : "account-show__shade--dark"
             }>
-                <div className="account-show__main">
+                <div className="account-show__main" data-testid="account-show__main">
                     {accountShowDisplay()}
                 </div>
             </div>
