@@ -23,9 +23,7 @@ function AccountShowProfile({ username }: { username: string; }) {
     const [newUsername, setNewUsername] = useState<string>("");
     const [oldPassword, setOldPassword] = useState<string>("");
     const [password, setPassword] = useState<string>("");
-    const [passwordConfirmation, setPasswordConfirmation] = useState<string>("");
     const [passwordErrors, setPasswordErrors] = useState<Array<string>>([]);
-    const [usernameConfirmation, setUsernameConfirmation] = useState<string>("");
     const [usernameErrors, setUsernameErrors] = useState<Array<string>>([]);
 
     function handleFormSubmit(e: TargetData) {
@@ -50,14 +48,12 @@ function AccountShowProfile({ username }: { username: string; }) {
                     updateUser(updatedUser)
                         .then((result: SessionAction) => {
                             if (result.type === "RECEIVE_SESSION_ERRORS") {
-                                setUsernameConfirmation("");
                                 setUsernameErrors(result.errors);
                             } else {
                                 setPassword("");
                                 setConfirmedPassword("");
                                 setNewUsername("");
                                 setUsernameErrors([]);
-                                setUsernameConfirmation("Username changed.")
                             }
                         });
                 }
@@ -81,7 +77,6 @@ function AccountShowProfile({ username }: { username: string; }) {
                     updateUser(updatedUser)
                         .then((result: SessionAction) => {
                             if (result.type === "RECEIVE_SESSION_ERRORS") {
-                                setPasswordConfirmation("");
                                 setPasswordErrors(result.errors);
                             } else {
                                 setOldPassword("");
@@ -89,7 +84,6 @@ function AccountShowProfile({ username }: { username: string; }) {
                                 setNewPassword("");
                                 setConfirmedNewPassword("");
                                 setPasswordErrors([]);
-                                setPasswordConfirmation("Password changed.")
                             }
                         });
                 }
@@ -97,18 +91,9 @@ function AccountShowProfile({ username }: { username: string; }) {
         }
     }
 
-    function confirmationDisplay(confirmationName: string) {
-        switch (confirmationName) {
-            case "usernameConfirmation":
-                return <p className="account-show-profile__confirmation">Username changed.</p>;
-            case "passwordConfirmation":
-                return <p className="account-show-profile__confirmation">Password changed.</p>;
-        }
-    }
-
     function errorsDisplay(errors: Array<string>) {
         return (
-            <div className="account-show-profile__errors">
+            <div className="account-show-profile__errors" data-testid="account-show-profile__errors">
                 <ul className="account-show-profile__errors-list">
                     {errors.map((error: string, idx: number) => (
                         <li className="account-show-profile__error" key={idx}>{error}</li>
@@ -128,7 +113,6 @@ function AccountShowProfile({ username }: { username: string; }) {
             >
                 <h2 className="account-show-profile__h2">Update Username</h2>
                 {usernameErrors.length > 0 && errorsDisplay(usernameErrors)}
-                {usernameConfirmation.length > 0 && confirmationDisplay("usernameConfirmation")}
                 <label className="account-show-profile__label" htmlFor="account-show-profile__password">Password:</label>
                 <input
                     className="account-show-profile__input"
@@ -171,7 +155,6 @@ function AccountShowProfile({ username }: { username: string; }) {
             >
                 <h2 className="account-show-profile__h2">Update Password</h2>
                 {passwordErrors.length > 0 && errorsDisplay(passwordErrors)}
-                {passwordConfirmation.length > 0 && confirmationDisplay("passwordConfirmation")}
                 <label className="account-show-profile__label" htmlFor="account-show-profile__old-password">Old Password:</label>
                 <input
                     className="account-show-profile__input"
