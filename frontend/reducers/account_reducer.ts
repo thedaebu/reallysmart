@@ -16,4 +16,4 @@ const accountReducer = (state: Account | {} = {}, action: AnyAction) => {
     }
 };
 
-export default accountsReducer;
+export default accountReducer;
