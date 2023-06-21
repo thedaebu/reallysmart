@@ -84,7 +84,7 @@ describe("comment show", () => {
             expect(commentShowSession).toHaveTextContent("Sign Up");
             expect(commentShowSession).toHaveTextContent("Log In");
             const commentShowBegin = within(commentShow).queryByTestId("comment-show__begin");
-            expect(commentShowBegin).toBeFalsy();
+            expect(commentShowBegin).not.toBeInTheDocument();
         });
         test("does not contain the options to edit and delete any created comment", () => {
             const commentShow = screen.queryByTestId("comment-show");
@@ -92,8 +92,8 @@ describe("comment show", () => {
             for (let commentShowItem of commentShowItems) {
                 const editButton = within(commentShowItem).queryByTestId("comment-show-item__edit");
                 const deleteButton = within(commentShowItem).queryByTestId("comment-show-item__delete");
-                expect(editButton).toBeFalsy();
-                expect(deleteButton).toBeFalsy();
+                expect(editButton).not.toBeInTheDocument();
+                expect(deleteButton).not.toBeInTheDocument();
             }
         });
     });
@@ -108,10 +108,10 @@ describe("comment show", () => {
         test("shows text area for comment creation after the 'Add a comment' box is clicked on", () => {
             const commentShow = screen.queryByTestId("comment-show");
             const commentShowBeginText = within(commentShow).queryByTestId("comment-show__begin-text");
-            expect(commentShowBeginText).toBeTruthy();
+            expect(commentShowBeginText).toBeInTheDocument();
             userEvent.click(commentShowBeginText);
             const commentShowForm = within(commentShow).queryByTestId("comment-show-form");
-            expect(commentShowForm).toBeTruthy();
+            expect(commentShowForm).toBeInTheDocument();
             expect(commentShowBeginText.tagName).toBe("TEXTAREA");
         });
         test("shows what is typed in it by user", () => {
@@ -128,29 +128,29 @@ describe("comment show", () => {
             let commentShowBeginText = within(commentShow).queryByTestId("comment-show__begin-text");
             userEvent.click(commentShowBeginText);
             let commentShowForm = within(commentShow).queryByTestId("comment-show-form");
-            expect(commentShowForm).toBeTruthy();
+            expect(commentShowForm).toBeInTheDocument();
             const commentShowFormCancel = within(commentShowForm).queryByTestId("comment-show-form__cancel");
             userEvent.click(commentShowFormCancel);
             commentShowBeginText = within(commentShow).queryByTestId("comment-show__begin-text");
-            expect(commentShowBeginText).toBeTruthy();
+            expect(commentShowBeginText).toBeInTheDocument();
             commentShowForm = within(commentShow).queryByTestId("comment-show-form");
-            expect(commentShowForm).toBeFalsy();
+            expect(commentShowForm).not.toBeInTheDocument();
         });
         test("does not contain the options to edit and delete the comment if the current user did not create the comment", () => {
             const commentShow = screen.queryByTestId("comment-show");
             const commentShowItem2 = within(commentShow).queryAllByTestId("comment-show-item")[1];
             const editButton = within(commentShowItem2).queryByTestId("comment-show-item__edit");
             const deleteButton = within(commentShowItem2).queryByTestId("comment-show-item__delete");
-            expect(editButton).toBeFalsy();
-            expect(deleteButton).toBeFalsy();
+            expect(editButton).not.toBeInTheDocument();
+            expect(deleteButton).not.toBeInTheDocument();
         });
         test("contains the options to edit and delete the comment if the current user created the comment", () => {
             const commentShow = screen.queryByTestId("comment-show");
             const commentShowItem1 = within(commentShow).queryAllByTestId("comment-show-item")[0];
             const editButton = within(commentShowItem1).queryByTestId("comment-show-item__edit");
             const deleteButton = within(commentShowItem1).queryByTestId("comment-show-item__delete");
-            expect(editButton).toBeTruthy();
-            expect(deleteButton).toBeTruthy();
+            expect(editButton).toBeInTheDocument();
+            expect(deleteButton).toBeInTheDocument();
         });
         describe("edit option", () => {
             test("contains the comment text in the text area and changes the value when typed in after the 'Edit' button is clicked on", () => {
@@ -171,11 +171,11 @@ describe("comment show", () => {
                 let editButton = within(commentShowItem1).queryByTestId("comment-show-item__edit");
                 userEvent.click(editButton);
                 let commentShowForm = within(commentShow).queryByTestId("comment-show-form");
-                expect(commentShowForm).toBeTruthy();
+                expect(commentShowForm).toBeInTheDocument();
                 const cancelButton = within(commentShowForm).queryByTestId("comment-show-form__cancel");
                 userEvent.click(cancelButton);
                 commentShowForm = within(commentShow).queryByTestId("comment-show-form");
-                expect(commentShowForm).toBeFalsy();
+                expect(commentShowForm).not.toBeInTheDocument();
             });
         });
         describe("delete option", () => {
@@ -195,11 +195,11 @@ describe("comment show", () => {
                 const deleteButton = within(commentShowItem1).queryByTestId("comment-show-item__delete");
                 userEvent.click(deleteButton);
                 let commentShowItemButtons = within(commentShow).queryByTestId("comment-show-item__buttons");
-                expect(commentShowItemButtons).toBeTruthy();
+                expect(commentShowItemButtons).toBeInTheDocument();
                 const commentShowItemDelete = within(commentShowItemButtons).queryByTestId("comment-show-item__delete");
                 userEvent.click(commentShowItemDelete);
                 commentShowItemButtons = within(commentShow).queryByTestId("comment-show-item__buttons");
-                expect(commentShowItemButtons).toBeFalsy();
+                expect(commentShowItemButtons).not.toBeInTheDocument();
             });
         });
     });

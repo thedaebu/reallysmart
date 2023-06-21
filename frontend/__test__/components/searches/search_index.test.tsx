@@ -46,7 +46,7 @@ describe("search index", () => {
     describe("search index", () => {
         test("is not shown at start", () => {
             const searchIndex = screen.queryByTestId("search-index");
-            expect(searchIndex).toBeFalsy();
+            expect(searchIndex).not.toBeInTheDocument();
         });
         test("is shown once the user types in the searchbar field", () => {
             const searchbarField = screen.queryByTestId("searchbar-field");

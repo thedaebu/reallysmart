@@ -67,9 +67,9 @@ describe("annotation show", () => {
             userEvent.click(annotation);
             const annotationShowItem = screen.queryByTestId("annotation-show-item");
             const annotationEditButton = within(annotationShowItem).queryByTestId("annotation-show-item__edit");
-            expect(annotationEditButton).toBeFalsy();
+            expect(annotationEditButton).not.toBeInTheDocument();
             const annotationDeleteButton = within(annotationShowItem).queryByTestId("annotation-show-item__delete");
-            expect(annotationDeleteButton).toBeFalsy();
+            expect(annotationDeleteButton).not.toBeInTheDocument();
         });
     });
     describe("current user tests", () => {
@@ -85,9 +85,9 @@ describe("annotation show", () => {
             userEvent.click(annotation);
             const annotationShowItem = screen.queryByTestId("annotation-show-item");
             const annotationEditButton = within(annotationShowItem).queryByTestId("annotation-show-item__edit");
-            expect(annotationEditButton).toBeFalsy();
+            expect(annotationEditButton).not.toBeInTheDocument();
             const annotationDeleteButton = within(annotationShowItem).queryByTestId("annotation-show-item__delete");
-            expect(annotationDeleteButton).toBeFalsy();
+            expect(annotationDeleteButton).not.toBeInTheDocument();
         });
         test("contains the options to edit and delete the annotation if the current user created the annotation", () => {
             const annotation = screen.queryAllByTestId("lyrics__is-annotation")[0];
@@ -118,12 +118,12 @@ describe("annotation show", () => {
                 let annotationEditButton = within(annotationShowItem).queryByTestId("annotation-show-item__edit");
                 userEvent.click(annotationEditButton);
                 annotationShowItem = screen.queryByTestId("annotation-show-item");
-                expect(annotationShowItem).toBeFalsy();
+                expect(annotationShowItem).not.toBeInTheDocument();
                 let annotationShowForm = screen.queryByTestId("annotation-show-form");
                 const cancelButton = within(annotationShowForm).queryByTestId("annotation-show-form__bottom-cancel");
                 userEvent.click(cancelButton);
                 annotationShowForm = screen.queryByTestId("annotation-show-form");
-                expect(annotationShowForm).toBeFalsy();
+                expect(annotationShowForm).not.toBeInTheDocument();
                 annotationShowItem = screen.queryByTestId("annotation-show-item");
                 annotationEditButton = within(annotationShowItem).queryByTestId("annotation-show-item__edit");
                 expect(annotationEditButton).toBeInTheDocument();
@@ -154,7 +154,7 @@ describe("annotation show", () => {
                 const noButton = screen.queryByTestId("annotation-show-item__delete-no");
                 userEvent.click(noButton);
                 annotationShowItemQuestion = within(annotationShowItem).queryByTestId("annotation-show-item__question");
-                expect(annotationShowItemQuestion).toBeFalsy();
+                expect(annotationShowItemQuestion).not.toBeInTheDocument();
                 annotationShowItem = screen.queryByTestId("annotation-show-item");
                 const annotationEditButton = within(annotationShowItem).queryByTestId("annotation-show-item__edit");
                 expect(annotationEditButton).toBeInTheDocument();

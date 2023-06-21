@@ -47,9 +47,9 @@ describe("vote show", () => {
 
         test("contains an upvote button and does not change the upvote count when clicked on", () => {
             const voteShow = screen.queryAllByTestId("vote-show")[0];
-            expect(voteShow).toBeTruthy();
+            expect(voteShow).toBeInTheDocument();
             const voteShowNotVoted = within(voteShow).queryByTestId("vote-show__not-voted");
-            expect(voteShowNotVoted).toBeTruthy();
+            expect(voteShowNotVoted).toBeInTheDocument();
             expect(voteShow).toHaveTextContent("+1");
             userEvent.click(voteShowNotVoted);
             expect(voteShow).toHaveTextContent("+1");

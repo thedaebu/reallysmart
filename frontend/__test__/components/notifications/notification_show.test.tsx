@@ -26,7 +26,7 @@ describe("notification show", () => {
 
         test("does not display notification icon", () => {
             const notificationIcon = screen.queryByTestId("notification-icon");
-            expect(notificationIcon).toBeFalsy();
+            expect(notificationIcon).not.toBeInTheDocument();
         });
     });
     describe("current user tests", () => {
@@ -50,11 +50,11 @@ describe("notification show", () => {
         });
         test("displays notification icon", () => {
             const notificationIcon = screen.queryByTestId("notification-icon");
-            expect(notificationIcon).toBeTruthy();
+            expect(notificationIcon).toBeInTheDocument();
         });
         test("does not display notification list initially", () => {
             const notificationList = screen.queryByTestId("notification-list");
-            expect(notificationList).toBeFalsy();
+            expect(notificationList).not.toBeInTheDocument();
         });
         describe("notification list", () => {
             let notificationIcon: any;
@@ -72,7 +72,7 @@ describe("notification show", () => {
             });
 
             test("displays notification list after notification icon is clicked on", () => {
-                expect(notificationList).toBeTruthy();
+                expect(notificationList).toBeInTheDocument();
             });
             test("updateNotification is called when the notification list opens", () => {
                 expect(useUpdateNotification).toHaveBeenCalled();
