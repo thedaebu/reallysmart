@@ -30,33 +30,33 @@ describe("session menu", () => {
         afterEach(() => {
             cleanup();
         });
-        test("contains link to signup form page", () => {
-            const signupLink = screen.queryByTestId("session-menu__signup");
-            expect(signupLink).toBeInTheDocument();
+        describe("sign up", () => {
+            test("contains link to signup form page", () => {
+                const signupLink = screen.queryByTestId("session-menu__signup");
+                expect(signupLink).toBeInTheDocument();
+            });
+            test("proceeds to signup form page when signup link is clicked", () => {
+                const signupLink = screen.queryByTestId("session-menu__signup");
+                userEvent.click(signupLink);
+                const pathName = global.window.location.pathname;
+                expect(pathName).toEqual("/signup");
+            });
         });
-        test("proceeds to signup form page when signup link is clicked", () => {
-            const signupLink = screen.queryByTestId("session-menu__signup");
-            userEvent.click(signupLink);
-            const pathName = global.window.location.pathname;
-            expect(pathName).toEqual("/signup");
+        describe("log in", () => {
+            test("contains link to log in form page", () => {
+                const loginLink = screen.queryByTestId("session-menu__login");
+                expect(loginLink).toBeInTheDocument();
+            });
+            test("proceeds to login form page when log in link is clicked", () => {
+                const loginLink = screen.queryByTestId("session-menu__login");
+                userEvent.click(loginLink);
+                const pathName = global.window.location.pathname;
+                expect(pathName).toEqual("/login");
+            });
         });
-        test("contains the text 'SIGN UP'", () => {
-            const signupLink = screen.queryByTestId("session-menu__signup");
-            expect(signupLink).toHaveTextContent("SIGN UP");
-        });
-        test("contains link to login form page", () => {
-            const loginLink = screen.queryByTestId("session-menu__login");
-            expect(loginLink).toBeInTheDocument();
-        });
-        test("proceeds to login form page when login link is clicked", () => {
-            const loginLink = screen.queryByTestId("session-menu__login");
-            userEvent.click(loginLink);
-            const pathName = global.window.location.pathname;
-            expect(pathName).toEqual("/login");
-        });
-        test("contains the text 'LOG IN'", () => {
-            const loginLink = screen.queryByTestId("session-menu__login");
-            expect(loginLink).toHaveTextContent("LOG IN");
+        test("does not contain option to access account page", () => {
+            const accountLink = screen.queryByTestId("session-menu__account");
+            expect(accountLink).not.toBeInTheDocument();
         });
         test("does not contain option to log out", () => {
             const logOutLink = screen.queryByTestId("session-menu__logout");
@@ -70,9 +70,23 @@ describe("session menu", () => {
         afterEach(() => {
             cleanup();
         });
-        test("contains option to log out", () => {
-            const logOutLink = screen.queryByTestId("session-menu__logout");
-            expect(logOutLink).toBeInTheDocument();
+        describe("account", () => {
+            test("contains option to access account page", () => {
+                const accountLink = screen.queryByTestId("session-menu__account");
+                expect(accountLink).toBeInTheDocument();
+            });
+            test("proceeds to account page when account link is clicked", () => {
+                const accountLink = screen.queryByTestId("session-menu__account");
+                userEvent.click(accountLink);
+                const pathName = global.window.location.pathname;
+                expect(pathName).toEqual("/account");
+            });
+        });
+        describe("log out", () => {
+            test("contains option to log out", () => {
+                const logOutLink = screen.queryByTestId("session-menu__logout");
+                expect(logOutLink).toBeInTheDocument();
+            });
         });
         test("does not contain option to sign up", () => {
             const signupLink = screen.queryByTestId("session-menu__signup");
