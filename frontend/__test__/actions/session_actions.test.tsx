@@ -1,10 +1,12 @@
 import * as SessionActions from "../../actions/session_actions";
+import { UpdatedUser } from "../../my_types";
 import * as SessionAPIUtil from "../../util/api/session_api_util";
+import * as UserAPIUtil from "../../util/api/user_api_util";
 import { mockStore } from "../test_store_data";
 
 describe("session actions", () => {
     describe("constants", () => {
-        test("exports a RECEIVE_CURRENT_USER constnat", () => {
+        test("exports a RECEIVE_CURRENT_USER constant", () => {
             expect(SessionActions.RECEIVE_CURRENT_USER).toEqual("RECEIVE_CURRENT_USER");
         });
         test("exports a LOGOUT_CURRENT_USER constant", () => {
@@ -62,6 +64,27 @@ describe("session actions", () => {
                 ));
                 const actions: any = [{ type: "LOGOUT_CURRENT_USER", flashMessage: "Log Out Successful." }];
                 return store.dispatch(SessionActions.logout()).then(() => {
+                    expect(store.getActions()).toEqual(actions);
+                });
+            });
+        });
+        describe("updateUser", () => {
+            test("is exported", () => {
+                expect(typeof SessionActions.updateUser).toEqual("function");
+            });
+            test("dispatches LOGOUT_CURRENT_USER when logout is called", () => {
+                const updatedUser: UpdatedUser = {
+                    password: "password",
+                    updateInfo: "newPassword",
+                    updateType: "updatePassword",
+                    username: "username"
+                };
+                const data = { ...updatedUser }
+                UserAPIUtil.updateUser = jest.fn((updatedUser: UpdatedUser) => (
+                    Promise.resolve(data)
+                ));
+                const actions: any = [{ type: "RECEIVE_CURRENT_USER", flashMessage: "User Update Successful." }];
+                return store.dispatch(SessionActions.updateUser()).then(() => {
                     expect(store.getActions()).toEqual(actions);
                 });
             });
