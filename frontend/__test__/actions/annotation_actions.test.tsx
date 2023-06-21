@@ -1,13 +1,8 @@
-import configureMockStore from "redux-mock-store";
-import thunk from "redux-thunk";
 import * as AnnotationActions from "../../actions/annotation_actions";
 import * as AnnotationAPIUtil from "../../util/api/annotation_api_util";
-import { testAnnotationsData } from "../test_store_data";
-import { Middleware } from "redux";
+import { mockStore, testAnnotationsData } from "../test_store_data";
+import { MockStoreEnhanced } from "redux-mock-store";
 import { Annotation, CreatedAnnotation, UpdatedAnnotation } from "../../my_types";
-
-const middlewares: Array<Middleware> = [ thunk ];
-const mockStore = configureMockStore(middlewares);
 
 describe("annotation actions", () => {
     describe("constants", () => {
@@ -23,7 +18,7 @@ describe("annotation actions", () => {
     });
     describe("functions", () => {
         const annotation: Annotation = testAnnotationsData[1];
-        let store: any;
+        let store: MockStoreEnhanced;
         beforeEach(() => {
             store = mockStore({ annotations: {} });
         });
@@ -35,7 +30,7 @@ describe("annotation actions", () => {
                 expect(typeof AnnotationActions.fetchAnnotation).toEqual("function");
             });
             test("dispatches RECEIVE_ANNOTATION when fetchAnnotation is called", () => {
-                const data = { annotation: annotation };
+                const data = { annotation };
                 AnnotationAPIUtil.fetchAnnotation = jest.fn((annotationId: number) => (
                     Promise.resolve(data)
                 ));
@@ -52,13 +47,12 @@ describe("annotation actions", () => {
             test("dispatches RECEIVE_ANNOTATION when createAnnotation is called", () => {
                 const createdAnnotation: CreatedAnnotation = {
                         annotator_id: 1,
-                        annotator_name: "reallysmart",
                         body: "annotation body",
                         end_index: 1,
                         start_index: 1,
                         track_id: 1
                 };
-                const data = { annotation: annotation };
+                const data = { annotation };
                 AnnotationAPIUtil.createAnnotation = jest.fn((createdAnnotation: CreatedAnnotation) => (
                     Promise.resolve(data)
                 ));
@@ -75,14 +69,13 @@ describe("annotation actions", () => {
             test("dispatches RECEIVE_ANNOTATION when updateAnnotation is called", () => {
                 const updatedAnnotation: UpdatedAnnotation = {
                         annotator_id: 1,
-                        annotator_name: "reallysmart",
                         body: "annotation body",
                         end_index: 1,
                         id: 1,
                         start_index: 1,
                         track_id: 1
                 };
-                const data = { annotation: annotation };
+                const data = { annotation };
                 AnnotationAPIUtil.updateAnnotation = jest.fn((updatedAnnotation: UpdatedAnnotation) => (
                     Promise.resolve(data)
                 ));
@@ -97,7 +90,7 @@ describe("annotation actions", () => {
                 expect(typeof AnnotationActions.deleteAnnotation).toEqual("function");
             });
             test("dispatched REMOVE_ANNOTATION when deleteAnnotation is called", () => {
-                const data = { annotation: annotation };
+                const data = { annotation };
                 AnnotationAPIUtil.deleteAnnotation = jest.fn((annotationId: number) => (
                     Promise.resolve(data)
                 ));

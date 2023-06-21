@@ -1,11 +1,6 @@
-import configureMockStore from "redux-mock-store";
-import thunk from "redux-thunk";
 import * as SessionActions from "../../actions/session_actions";
 import * as SessionAPIUtil from "../../util/api/session_api_util";
-import { Middleware } from "redux";
-
-const middlewares: Array<Middleware> = [ thunk ];
-const mockStore = configureMockStore(middlewares);
+import { mockStore } from "../test_store_data";
 
 describe("session actions", () => {
     describe("constants", () => {

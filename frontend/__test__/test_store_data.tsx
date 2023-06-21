@@ -301,7 +301,7 @@ function renderShowComponent(store: MockStoreEnhanced, component: ReactElement) 
 }
 
 const middlewares: Array<ThunkMiddleware<any, AnyAction, any>> = [thunk];
-const mockStore: MockStoreCreator = configureMockStore(middlewares);
+export const mockStore: MockStoreCreator = configureMockStore(middlewares);
 
 export function renderIndexComponent(component: ReactElement) {
     renderNonShowComponent(mockStore(testIndexStore), component);
