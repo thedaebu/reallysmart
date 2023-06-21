@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import accountsReducer from "./account_reducer";
+import accountReducer from "./account_reducer";
 import annotationsReducer from "./annotations_reducer";
 import commentsReducer from "./comments_reducer";
 import flashMessageReducer from "./flash_message_reducer";
@@ -9,7 +9,7 @@ import trackReducer from "./track_reducer";
 import userReducer from "./user_reducer";
 
 const entitiesReducer = combineReducers({
-    account: accountsReducer,
+    account: accountReducer,
     annotations: annotationsReducer,
     comments: commentsReducer,
     flashMessage: flashMessageReducer,

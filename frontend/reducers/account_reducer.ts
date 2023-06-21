@@ -3,7 +3,7 @@ import { LOGOUT_CURRENT_USER } from "../actions/session_actions";
 import { AnyAction } from "@reduxjs/toolkit";
 import { Account } from "../my_types";
 
-const accountsReducer = (state: Account = {}, action: AnyAction) => {
+const accountReducer = (state: Account | {} = {}, action: AnyAction) => {
     Object.freeze(state);
 
     switch (action.type) {
