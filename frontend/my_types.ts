@@ -100,7 +100,7 @@ export type Account = {
     comments: Array<AccountComment>;
     id: number;
     username: string;
-} | {};
+};
 export type AccountAnnotation = {
     body: string;
     created_at: string;
@@ -185,7 +185,7 @@ export type Track = {
     lyrics: string;
     spotify_path: string;
     title: string;
-} | {};
+};
 export type User = {
     annotation_alerts: Array<AnnotationAlert>;
     id: number;
