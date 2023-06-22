@@ -236,7 +236,12 @@ export const testUserData: User = {
 // test stores
 export const testIndexStore: State = {
     entities: {
-        account: {},
+        account: {
+            annotations: [],
+            comments: [],
+            id: null,
+            username: ""
+        },
         annotations: {},
         comments: {},
         flashMessage: "",
@@ -248,7 +253,12 @@ export const testIndexStore: State = {
 };
 export const testShowStoreWithoutUser: State = {
     entities: {
-        account: {},
+        account: {
+            annotations: [],
+            comments: [],
+            id: null,
+            username: ""
+        },
         annotations: testAnnotationsData,
         comments: testCommentsData,
         flashMessage: "",
@@ -277,9 +287,6 @@ function renderNonShowComponent(store: MockStoreEnhanced, component: ReactElemen
         <BrowserRouter>
             <Provider store={store}>
                 <ThemeContext.Provider value={{ theme: "light", changeTheme: jest.fn }}>
-                    <Routes>
-                        <Route element={component} />
-                    </Routes>
                     {component}
                 </ThemeContext.Provider>
             </Provider>
@@ -288,11 +295,11 @@ function renderNonShowComponent(store: MockStoreEnhanced, component: ReactElemen
 }
 function renderShowComponent(store: MockStoreEnhanced, component: ReactElement) {
     render(
-        <MemoryRouter initialEntries={['/tracks/niki__selene']}>
+        <MemoryRouter initialEntries={["/tracks/niki__selene"]}>
             <Provider store={store}>
                 <ThemeContext.Provider value={{ theme: "light", changeTheme: jest.fn }}>
                     <Routes>
-                        <Route path='/tracks/:trackName' element={component} />
+                        <Route path="/tracks/:trackName/*" element={component} />
                     </Routes>
                 </ThemeContext.Provider>
             </Provider>
