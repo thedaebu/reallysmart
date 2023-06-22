@@ -25,6 +25,7 @@ function AccountShowHeader(props: Props) {
                 }
                 onClick={() => handleCurrentTab(tabName)}
                 key={idx}
+                data-testid={`account-tabdisplay-item__${tabName}`}
             >
                 {tabName}
             </li>

@@ -8,12 +8,14 @@ function AccountShowAnnotations({ annotations }: { annotations: Array<AccountAnn
         const { artist, title } = track;
 
         return (
-            <li className="account-show__item" key={idx}>
+            <li
+                className="account-show__item"
+                key={idx}
+                data-testid="account-show__item"
+            >
                 <p>{body}<span className="account-show__item-votes"> +{votes}</span></p>
-                <Link to={`/tracks/${urlify(artist)}__${urlify(title)}`}>
-                    <span className="account-show__item-highlighted">
-                        {` ${artist} - ${title}`}
-                    </span>
+                <Link to={`/tracks/${urlify(artist)}__${urlify(title)}`} data-testid="account-show__item-link">
+                    <span className="account-show__item-highlighted">{` ${artist} - ${title}`}</span>
                 </Link>
                 <time className="account-show__item-date">{` - ${dateDisplay(created_at)}`}</time>
             </li>
@@ -32,7 +34,7 @@ function AccountShowAnnotations({ annotations }: { annotations: Array<AccountAnn
 
         return `${year}-${month}-${day}`;
     }
-    
+
     return (
         <ul>
             <h1 className="account-show__h1">Annotations</h1>

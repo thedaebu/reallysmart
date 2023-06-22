@@ -8,10 +8,14 @@ function AccountShowComments({ comments }: { comments: Array<AccountComment>; })
         const { artist, title } = track;
 
         return (
-            <li className="account-show__item" key={idx}>
+            <li
+                className="account-show__item"
+                key={idx}
+                data-testid="account-show__item"
+            >
                 <p>{body}<span className="account-show__item-votes"> +{votes}</span></p>
                 {commentable_type === "Annotation" && <p>- for annotation <span className="account-show__item-highlighted">{`'${(notificationify(commentable_body))}' `}</span></p>}
-                <Link to={`/tracks/${urlify(artist)}__${urlify(title)}`}>
+                <Link to={`/tracks/${urlify(artist)}__${urlify(title)}`} data-testid="account-show__item-link">
                     <span className="account-show__item-highlighted">
                         {` ${artist} - ${title}`}
                     </span>
