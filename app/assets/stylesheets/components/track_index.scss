@@ -24,9 +24,9 @@ track-index-number {
         font-size: 14px;
         color: rgb(255, 20, 100);
     }
-    .track-index__items {
+    .track-items {
         width: unquote("min(1150px, 100%)");
-        .track-index-item {
+        .track-item {
             display: grid;
             grid-template-columns: 95px 2fr 9fr 8fr 3fr 3fr;
             align-items: center;
@@ -39,20 +39,20 @@ track-index-number {
             &:hover {
                 background-color: rgb(219, 219, 219);
             }
-            .track-index-item__id {
+            .track-item__id {
                 padding-left: 12px;
                 font-size: 23px;
                 color: rgb(0, 0, 0);
             }
-            .track-index-item__image { 
+            .track-item__image { 
                 width: 60px;
                 height: 60px;
                 background-position: center;
                 background-size: cover;
             }
-            .track-index-item__title-main {
+            .track-item__title-main {
                 display: flex;
-                .track-index-item__title {
+                .track-item__title {
                     position: relative;
                     bottom: 0.5px;
                     font-size: 24px;
@@ -60,7 +60,7 @@ track-index-number {
                     font-family: $programme;
                     color: rgb(0, 0, 0);
                 }
-                .track-index-item__lyrics {
+                .track-item__lyrics {
                     position: relative;
                     top: 1.5px;
                     display: flex;
@@ -72,25 +72,25 @@ track-index-number {
                     color: rgb(140, 140, 140);
                 }
             }
-            .track-index-item__artist {
+            .track-item__artist {
                 position: relative;
                 bottom: 1px;
                 font-size: 23px;
                 font-family: $raleway;
                 color: rgb(0, 0, 0);
             }
-            .track-index-item__count {
+            .track-item__count {
                 display: flex;
-                .track-index-item__count--icon {
+                .track-item__count--icon {
                     margin: 0px 15px;
                     width: 20px;
                     height: 20px;
                 }
-                .track-index-item__count--number--fire {
+                .track-item__count--number--fire {
                     @extend track-index-number;
                     color: rgb(255, 0, 0);
                 }
-                .track-index-item__count--number--eye {
+                .track-item__count--number--eye {
                     @extend track-index-number;
                     color: rgb(197, 197, 197);
                 }
@@ -136,9 +136,9 @@ track-index-number {
         font-size: 14px;
         color: rgb(255, 0, 0);
     }
-    .track-index__items {
+    .track-items {
         width: unquote("min(1150px, 100%)");
-        .track-index-item {
+        .track-item {
             display: grid;
             grid-template-columns: 95px 2fr 9fr 8fr 3fr 3fr;
             align-items: center;
@@ -151,20 +151,20 @@ track-index-number {
             &:hover {
                 background-color: rgb(80, 80, 80);
             }
-            .track-index-item__id {
+            .track-item__id {
                 padding-left: 12px;
                 font-size: 23px;
                 color: rgb(173, 173, 173);
             }
-            .track-index-item__image {
+            .track-item__image {
                 width: 60px;
                 height: 60px;
                 background-position: center;
                 background-size: cover;
             }
-            .track-index-item__title-main {
+            .track-item__title-main {
                 display: flex;
-                .track-index-item__title {
+                .track-item__title {
                     position: relative;
                     bottom: 0.5px;
                     font-size: 24px;
@@ -172,7 +172,7 @@ track-index-number {
                     font-family: $programme;
                     color: rgb(173, 173, 173);
                 }
-                .track-index-item__lyrics {
+                .track-item__lyrics {
                     position: relative;
                     top: 1.5px;
                     display: flex;
@@ -184,25 +184,25 @@ track-index-number {
                     color: rgb(112, 112, 112);
                 }
             }
-            .track-index-item__artist {
+            .track-item__artist {
                 position: relative;
                 bottom: 1px;
                 font-size: 23px;
                 font-family: $raleway;
                 color: rgb(173, 173, 173);
             }
-            .track-index-item__count {
+            .track-item__count {
                 display: flex;
-                .track-index-item__count--icon {
+                .track-item__count--icon {
                     width: 20px;
                     height: 20px;
                     margin: 0px 15px;
                 }
-                .track-index-item__count--number--fire {
+                .track-item__count--number--fire {
                     @extend track-index-number;
                     color: rgb(255, 0, 0);
                 }
-                .track-index-item__count--number--eye {
+                .track-item__count--number--eye {
                     @extend track-index-number;
                     color: rgb(197, 197, 197);
                 }

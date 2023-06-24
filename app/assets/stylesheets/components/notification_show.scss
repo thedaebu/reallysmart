@@ -29,10 +29,10 @@ notification-icon {
         justify-content: space-between;
         padding: 12px 16px 9px 16px;
         border-bottom: 1px solid rgb(197, 197, 197);
-        .notification-list__top-notifications {
+        .notification-list__top__notifications {
             font-size: 14px;
         }
-        .notification-list__top-exit {
+        .notification-list__top__exit {
             position: relative;
             bottom: 1px;
             cursor: pointer;
@@ -42,23 +42,25 @@ notification-icon {
             }
         }
     }
-    ul > .notification-list__item {
-        padding: 0px 2px;
-        margin-bottom: 4px;
-        background-color: rgb(255, 255, 255);
-        cursor: pointer;
-        font-size: 12px;
-        &:hover {
-            background-color: rgb(197, 197, 197);
-        }
-        .notification-list__item-regular {
-            color: rgb(0, 0, 0);
-        }
-        .notification-list__item-highlighted {
-            color: rgb(106, 153, 255);
-        }
-        .notification-list__item-date {
-            color: rgb(140, 140, 140);
+    .notification-items {
+        .notification-item {
+            padding: 0px 2px;
+            margin-bottom: 4px;
+            background-color: rgb(255, 255, 255);
+            cursor: pointer;
+            font-size: 12px;
+            &:hover {
+                background-color: rgb(197, 197, 197);
+            }
+            .notification-item__regular {
+                color: rgb(0, 0, 0);
+            }
+            .notification-item__highlighted {
+                color: rgb(106, 153, 255);
+            }
+            .notification-item__date {
+                color: rgb(140, 140, 140);
+            }
         }
     }
 }

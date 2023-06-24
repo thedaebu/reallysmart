@@ -1,7 +1,7 @@
 $programmelight: 'Programme Light', sans-serif;
 $programmereg: 'Programme Regular', sans-serif;
 
-comment-show-item {
+comment-item {
     padding: 20px 0px;
     border-top: 1px solid rgb(121, 164, 255);
     margin-left: 15px;
@@ -11,20 +11,20 @@ comment-show-item {
     width: 96%;
     margin: 20px 15px 0px 0px;
     background-color: rgb(219, 219, 219);
-    .comment-show__begin {
+    .comment-show--begin {
         display: flex;
         padding: 16px 10px 19px 10px; 
-        .comment-show__begin--baby {
+        .comment-show--begin__baby {
             position: relative;
-            top: 5px;
+            top: 3px;
             width: 24px;
             height: 24px;
         }
-        .comment-show__begin--input {
+        .comment-show--begin__text {
             resize: none;
             overflow: hidden;
             width: 100%;
-            height: 24px;
+            height: 20px;
             border: 2px solid rgb(173, 173, 173);
             margin-left: 5px;
             font-family: $programmelight;
@@ -37,14 +37,14 @@ comment-show-item {
             }
         }
     }
-    .comment-show-form {
+    .comment-form {
         padding: 15px 6px 10px 6px;
-        .comment-show-form__track-text {
+        .comment-form__body--track {
             resize: none;
             overflow: hidden;
             width: unquote("min(98%, 510px)");
             height: 51px;
-            padding: 10px 4px, 10px, 6px;
+            padding: 2px 0px 0px 2px;
             border: 2px solid rgb(173, 173, 173);
             margin-left: 5px;
             font-size: 16px;
@@ -59,7 +59,7 @@ comment-show-item {
                 color: rgb(197, 197, 197);
             }
         }
-        .comment-show-form__annotation-text {
+        .comment-form__body--annotation {
             resize: none;
             overflow: hidden;
             width: unquote("min(96%, 307px)");
@@ -80,48 +80,35 @@ comment-show-item {
         }
         .errors-list {
             margin: 3px 0px 0px 5px;
-            > li {
+            .errors-list__item {
                 color: rgb(197, 0, 0);
             }
         }
-        .comment-show-form__buttons {
-            position: relative;
-            right: 5px;
-            bottom: 1px;
+        .comment-form__buttons {
             display: flex;
-            .comment-show-form__submit {
-                padding: 0px 8px 0px 10px;
+            margin: 10px 0px 0px 5px;
+            .comment-form__submit {
+                padding: 0px 9px 0px 9px;
                 border: 2px solid rgb(51, 197, 51);
-                margin: 10px;
                 background-color: rgb(240, 240, 240);
                 cursor: pointer;
+                font-size: 15px;
                 line-height: 28px;
                 font-family: $programmereg;
+                color: rgb(51, 197, 51);
                 &:hover {
                     background-color: rgb(200, 255, 200);
                 }
-                > p {
-                    position: relative;
-                    right: 1px;
-                    font-size: 15px;      
-                    color: rgb(51, 197, 51);
-                }
             }
-            .comment-show-form__cancel {
-                position: relative;
-                left: 4px;
-                padding: 4px 6px 0px;
-                margin: 10px;
+            .comment-form__cancel {
+                padding: 1px 9px 0px;
+                margin-left: 4px;
                 background-color: rgb(219, 219, 219);
                 cursor: pointer;
+                font-size: 15px;
                 line-height: 27px;
                 font-family: $programmereg;
                 color: rgb(112, 112, 112);
-                > p {
-                    position: relative;
-                    bottom: 2px;
-                    font-size: 15px;
-                }
                 &:hover {
                     background-color: rgb(173, 173, 173);
                     color: rgb(80, 80, 80);
@@ -129,7 +116,7 @@ comment-show-item {
             }
         }
     }
-    .comment-show__session {
+    .comment-show--session {
         display: flex;
         padding: 10px;
         background-color: rgb(219, 219, 219);
@@ -144,41 +131,41 @@ comment-show-item {
             }
         }
     }
-    .comment-show__items {
+    .comment-items {
         position: relative;
         right: 4px;
         width: 100%;
-        .comment-show-item--track {
-            @extend comment-show-item;
+        .comment-item--track {
+            @extend comment-item;
             width: unquote("min(95%, 537px)");
         }
-        .comment-show-item--annotation {
-            @extend comment-show-item;
+        .comment-item--annotation {
+            @extend comment-item;
             width: unquote("min(93%, 314px)");
         }
-        .comment-show-item__top {
+        .comment-item__top {
             display: flex;
             justify-content: space-between;
             > div {
                 display: flex;
-                .comment-show-item__baby {
+                .comment-item__baby {
                     position: relative;
                     top: 2px;
                     width: 20px;
                     height: 20px;
                 }
-                .comment-show-item__commenter {
+                .comment-item__commenter {
                     position: relative;
                     top: 5px;
                     left: 5px;
                     font-size: 15px;
                 }
             }
-            .comment-show-item__time {
+            .comment-item__time {
                 display: flex;
                 justify-content: flex-end;
                 font-size: 15px;
-                .comment-show-item__time--tooltip {
+                .comment-item__time--tooltip {
                     z-index: 2;
                     position: absolute;
                     visibility: hidden;
@@ -192,27 +179,27 @@ comment-show-item {
                     text-align: center;
                     color: rgb(50, 50, 50);
                 }
-                &:hover .comment-show-item__time--tooltip {
+                &:hover .comment-item__time--tooltip {
                     visibility: visible;
                 }
             }
         }
-        .comment-show-item__body {
+        .comment-item__body {
             padding: 17px 0px 25px;
             font-size: 17px;
             line-height: 23px;
             font-family: $programmelight;
         }
-        .comment-show-item__edited {
+        .comment-item__edited {
             font-size: 12px;
             color: rgb(140, 140, 140);
         }
-        .comment-show-item__buttons {
+        .comment-item__buttons {
             font-size: 15px;
-            .comment-show-item__question {
+            .comment-item__question {
                 padding-bottom: 4px;
             }
-            .comment-show-item__button {
+            .comment-item__button {
                 padding: 0px 4px;
                 border: 1px solid rgb(173, 173, 173);
                 border-radius: 2px;
@@ -233,23 +220,23 @@ comment-show-item {
 }
 
 .comment-show--dark {
-    margin: 20px 15px 0px 0px;
     width: 96%;
+    margin: 20px 15px 0px 0px;
     background-color: rgb(80, 80, 80);
-    .comment-show__begin {
+    .comment-show--begin {
         display: flex;
         padding: 16px 10px 19px 10px;
-        .comment-show__begin--baby {
+        .comment-show--begin__baby {
             position: relative;
-            top: 5px;
+            top: 3px;
             width: 24px;
             height: 24px;
         }
-        .comment-show__begin--input {
+        .comment-show--begin__text {
             resize: none;
             overflow: hidden;
             width: 100%;
-            height: 24px;
+            height: 20px;
             border: 2px solid rgb(140, 140, 140);
             margin-left: 5px;
             background-color: rgb(80, 80, 80);
@@ -263,16 +250,16 @@ comment-show-item {
             }
         }
     }
-    .comment-show-form {
+    .comment-form {
         padding: 15px 6px 10px 6px;
-        .comment-show-form__track-text {
+        .comment-form__body--track {
             resize: none;
             overflow: hidden;
-            margin-left: 5px;
             width: unquote("min(98%, 510px)");
             height: 51px;
-            padding: 10px 4px, 10px, 6px;
+            padding: 2px 0px 0px 2px;
             border: 2px solid rgb(173, 173, 173);
+            margin-left: 5px;
             background-color: rgb(80, 80, 80);
             font-size: 16px;
             font-family: $programmelight;
@@ -287,7 +274,7 @@ comment-show-item {
                 color: rgb(112, 112, 112);
             }
         }
-        .comment-show-form__annotation-text {
+        .comment-form__body--annotation {
             resize: none;
             overflow: hidden;
             width: unquote("min(96%, 307px)");
@@ -314,37 +301,29 @@ comment-show-item {
                 color: rgb(197, 0, 0);
             }
         }
-        .comment-show-form__buttons {
-            position: relative;
-            right: 5px;
-            bottom: 1px;
+        .comment-form__buttons {
             display: flex;
-            .comment-show-form__submit {
-                padding: 0px 8px 0px 10px;
+            margin: 10px 0px 0px 5px;
+            .comment-form__submit {
+                padding: 0px 9px 0px 9px;
                 border: 2px solid rgb(51, 197, 51);
-                margin: 10px;
                 background-color: rgb(50, 50, 50);
                 cursor: pointer;
+                font-size: 15px;
                 line-height: 28px;
                 font-family: $programmereg;
+                color: rgb(51, 197, 51);
                 &:hover {
-                    background-color: rgb(200, 255, 200);
+                    background-color: rgb(51, 197, 51);
                     color: rgb(50, 50, 50);
                 }
-                > p {
-                    position: relative;
-                    right: 1px;
-                    font-size: 15px;
-                    color: rgb(51, 197, 51);
-                }
             }
-            .comment-show-form__cancel {
-                position: relative;
-                left: 4px;
-                padding: 4px 6px 0px;
-                margin: 10px;
+            .comment-form__cancel {
+                padding: 1px 9px 0px;
+                margin-left: 4px;
                 background-color: rgb(80, 80, 80);
                 cursor: pointer;
+                font-size: 15px;
                 line-height: 27px;
                 font-family: $programmereg;
                 color: rgb(173, 173, 173);
@@ -352,15 +331,10 @@ comment-show-item {
                     background-color: rgb(112,112, 112);
                     color: rgb(219, 219, 219);
                 }
-                > p {
-                    position: relative;
-                    bottom: 2px;
-                    font-size: 15px;
-                }
             }
         }
     }
-    .comment-show__session {
+    .comment-show--session {
         display: flex;
         padding: 10px;
         background-color: rgb(80, 80, 80);
@@ -376,30 +350,30 @@ comment-show-item {
             }
         }
     }
-    .comment-show__items {
+    .comment-items {
         position: relative;
         right: 4px;
         width: 100%;
-        .comment-show-item--track {
-            @extend comment-show-item;
+        .comment-item--track {
+            @extend comment-item;
             width: unquote("min(95%, 537px)");
         }
-        .comment-show-item--annotation {
-            @extend comment-show-item;
+        .comment-item--annotation {
+            @extend comment-item;
             width: unquote("min(93%, 314px)");
         }
-        .comment-show-item__top {
+        .comment-item__top {
             display: flex;
             justify-content: space-between;
             > div {
                 display: flex;
-                .comment-show-item__baby {
+                .comment-item__baby {
                     position: relative;
                     top: 2px;
                     width: 20px;
                     height: 20px;
                 }
-                .comment-show-item__commenter {
+                .comment-item__commenter {
                     position: relative;
                     top: 5px;
                     left: 5px;
@@ -407,12 +381,12 @@ comment-show-item {
                     color: rgb(173, 173, 173);
                 }
             }
-            .comment-show-item__time {
+            .comment-item__time {
                 display: flex;
                 justify-content: flex-end;
                 font-size: 15px;
                 color: rgb(173, 173, 173);
-                .comment-show-item__time--tooltip {
+                .comment-item__time--tooltip {
                     z-index: 2;
                     position: absolute;
                     visibility: hidden;
@@ -426,29 +400,29 @@ comment-show-item {
                     text-align: center;
                     color: rgb(50, 50, 50);
                 }
-                &:hover .comment-show-item__time--tooltip {
+                &:hover .comment-item__time--tooltip {
                     visibility: visible;
                 }
             }
         }
-        .comment-show-item__body {
+        .comment-item__body {
             padding: 17px 0px 25px;
             font-size: 17px;
             line-height: 23px;
             font-family: $programmelight;
             color: rgb(173, 173, 173);
         }
-        .comment-show-item__edited {
+        .comment-item__edited {
             font-size: 12px;
             color: rgb(80, 80, 80);
         }
-        .comment-show-item__buttons {
+        .comment-item__buttons {
             font-size: 15px;
-            .comment-show-item__question {
+            .comment-item__question {
                 padding-bottom: 4px;
                 color: rgb(173, 173, 173);
             }
-            .comment-show-item__button {
+            .comment-item__button {
                 padding: 0px 4px;
                 border: 1px solid rgb(140, 140, 140);
                 border-radius: 2px;

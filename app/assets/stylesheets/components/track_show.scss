@@ -1,11 +1,11 @@
-track-show-number {
+track-header-number {
     position: relative;
     top: 3.5px;
     right: 4px;
     font-size: 12px;
 }
 
-.track-show__background {
+.track-header__background {
     display: flex;
     justify-content: space-around;
     position: relative;
@@ -13,19 +13,19 @@ track-show-number {
     height: 280px;
     background-position: center;
     background-size: cover;
-    .track-show__shade {
+    .track-header__shade {
         z-index: 2;
         width: 970px;
         height: inherit;
         background-color: rgba(0, 0, 0, 0.5);
-        > div {
+        .track-header__display {
             display: flex;
             justify-content: space-between;
-            .track-show__left {
+            .track-header__left {
                 position: relative;
                 top: 34px;
                 display: flex;
-                .track-show__image {
+                .track-header__image {
                     position: relative;
                     right: 22px;
                     width: 220px;
@@ -34,17 +34,17 @@ track-show-number {
                     background-position: center;
                     background-size: cover;
                 }
-                .track-show__text {
+                .track-header__text {
                     position: relative;
                     top: 14px;
                     right: 10px;
                     display: flex;
                     flex-direction: column;
-                    .track-show__title {
+                    .track-header__title {
                         font-size: 35px;
                         color: rgb(106, 153, 255);
                     }
-                    .track-show__artist {
+                    .track-header__artist {
                         position: relative;
                         top: 6px;
                         font-size: 25px;
@@ -53,25 +53,25 @@ track-show-number {
                     }
                 }
             }
-            .track-show__right {
+            .track-header__right {
                 position: relative;
                 top: 20px;
                 display: flex;
                 align-items: flex-end;
                 margin-right: 290px;
-                > div {
+                .track-header__stat {
                     display: flex;
-                    > img {
+                    .track-header__image {
                         width: 20px;
                         height: 20px;
                         margin: 0px 15px;  
                     }
-                    .track-show__fire-number {
-                        @extend track-show-number;
+                    .track-header__fire-number {
+                        @extend track-header-number;
                         color: rgb(255, 0, 0);
                     }
-                    .track-show__eye-number {
-                        @extend track-show-number;
+                    .track-header__eye-number {
+                        @extend track-header-number;
                         color: rgb(197, 197, 197);
                     }
                 }
@@ -79,7 +79,7 @@ track-show-number {
         }
     }
 }
-.track-show__footer {
+.track-footer {
     position: fixed;
     bottom: 0;
     width: 100%;

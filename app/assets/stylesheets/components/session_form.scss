@@ -8,14 +8,14 @@ $ubuntu: 'Ubuntu Condensed', sans-serif;
     width: 100%;
     min-height: calc(100vh - 41px);
     background-color: rgb(38, 38, 38);
-    .session-form__signup--h1 {
+    .session-form__signup__h1 {
         padding: 40px 0px 6px 0px;
         font-size: 62px;
         font-weight: bold;
         font-family: $barlow;
         color: rgb(106, 153, 240);
     }
-    .session-form__signup--h2 {
+    .session-form__signup__h2 {
         padding-bottom: 20px;
         font-size: 30px;
         letter-spacing: -0.5px;
@@ -41,14 +41,14 @@ $ubuntu: 'Ubuntu Condensed', sans-serif;
         .session-form__errors {
             margin-bottom: 26px;
             background-color: rgb(38, 38, 38);
-            .session-form__errors--header {
+            .session-form__errors__header {
                 padding: 9px 32px;
                 background-color: rgb(197, 0, 0);
                 font-size: 15px;
                 font-family: $barlow;
                 color: rgb(240, 240, 240);
             }
-            .session-form__errors--caption {
+            .session-form__errors__caption {
                 padding: 20px 32px;
                 font-size: 13px;
             }
@@ -91,6 +91,7 @@ $ubuntu: 'Ubuntu Condensed', sans-serif;
             padding-bottom: 16px;
             line-height: 18px;
             font-size: 13px;
+            color: rgb(240, 240, 240);
             > a {
                 font-size: 13px;
                 color: rgb(91, 167, 194);

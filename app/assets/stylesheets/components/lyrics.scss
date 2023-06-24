@@ -11,25 +11,25 @@ $programmelight: 'Programme Light', sans-serif;
         min-height: calc(100vh - 362px);
         margin: 0px auto;
         background-color: rgb(240, 240, 240);
-        .lyrics__text {
-            width: 530px;
+        .lyrics-text {
+            min-width: 530px;
             padding: 16px 0px 96px 16px;
-            .lyrics__top {
+            .lyrics-text__top {
                 margin: 2px 0px 26px 0px;
                 font-size: 12px;
                 letter-spacing: 0.2px;
                 font-family: $programmereg;
                 color: rgb(173, 173, 173);
             }
-            .lyrics__body {
+            .lyrics-text__body {
                 width: 530px;
                 font-size: 18px;
                 line-height: 30px;
-                .lyrics__not-annotation {
+                .lyrics-text__body--not-annotated {
                     font-size: 18px;
                     font-family: $programmelight;
                 }
-                .lyrics__is-annotation {
+                .lyrics-text__body--annotated {
                     padding: 4px 0px 5px 0px;
                     background-color: rgb(219, 219, 219);
                     cursor: pointer;
@@ -40,7 +40,7 @@ $programmelight: 'Programme Light', sans-serif;
                         color: rgb(240, 240, 240);
                     }
                 }
-                .lyrics__highlighted {
+                .lyrics-text__body--highlighted {
                     padding: 4px 0px 5px 0px;
                     background-color: rgb(121, 164, 255);
                     font-family: $programmelight;
@@ -65,26 +65,26 @@ $programmelight: 'Programme Light', sans-serif;
         min-height: calc(100vh - 362px);
         margin: 0px auto;
         background-color: rgb(50, 50, 50);
-        .lyrics__text {
+        .lyrics-text {
             min-width: 530px;
             padding: 16px 0px 96px 16px;
-            .lyrics__top {
+            .lyrics-text__top {
                 margin: 2px 0px 26px 0px;
                 font-size: 12px;
-                font-family: $programmereg;
                 letter-spacing: 0.2px;
+                font-family: $programmereg;
                 color: rgb(173, 173, 173);
             }
-            .lyrics__body {
+            .lyrics-text__body {
                 width: 530px;
                 font-size: 18px;
                 line-height: 30px;
-                .lyrics__not-annotation {
+                .lyrics-text__body--not-annotated {
                     font-size: 18px;
                     font-family: $programmelight;
                     color: rgb(173, 173, 173);
                 }
-                .lyrics__is-annotation {
+                .lyrics-text__body--annotated {
                     padding: 4px 0px 5px 0px;
                     background-color: rgb(80, 80, 80);
                     cursor: pointer;
@@ -96,7 +96,7 @@ $programmelight: 'Programme Light', sans-serif;
                         color: rgb(50, 50, 50);
                     }
                 }
-                .lyrics__highlighted {
+                .lyrics-text__body--highlighted {
                     padding: 4px 0px 5px 0px;
                     background-color: rgb(121, 164, 255);
                     font-family: $programmelight;

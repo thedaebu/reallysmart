@@ -22,8 +22,8 @@
         line-height: 167px;
         text-align: center;
     }
-    .search-index__items {
-        .search-index-item {
+    .search-items {
+        .search-item {
             display: flex;
             margin-bottom: 4px;
             background-color: rgb(255, 255, 255);
@@ -31,35 +31,35 @@
             &:hover {
                 background-color: rgb(197, 197, 197);
             }
-            .search-index-item__image {
+            .search-item__image {
                 width: 75px;
                 height: 75px;
                 background-position: center;
                 background-size: cover;
             }
-            .search-index-item__body {
+            .search-item__body {
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
                 padding: 6px 6px 4px 6px;
-                .search-index-item__body-top {
+                .search-item__body--top {
                     color: rgb(0, 0, 0);
-                    .search-index-item__title {
+                    .search-item__title {
                         font-size: 16px;
                     }
-                    .search-index-item__artist {
+                    .search-item__artist {
                         font-size: 12px;
                     }
                 }
-                .search-index-item__body-bottom {
+                .search-item__body--bottom {
                     display: flex;
                     color: rgb(0, 0, 0);
                 }
-                .search-index-item__eye {
+                .search-item__eye {
                     width: 12px;
                     height: 12px;
                 }
-                .search-index-item__views {
+                .search-item__views {
                     margin-left: 3px;
                     font-size: 12px;
                 }

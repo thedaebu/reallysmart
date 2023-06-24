@@ -1,4 +1,4 @@
-account-tabdisplay-item {
+account-header-tablist-item {
     transition: 0.2s;
     margin-right: 15px;
     border-bottom: 4px solid transparent;
@@ -10,26 +10,26 @@ account-tabdisplay-item {
     }
 }
 
-.account-show-header__background {
+.account-header__background {
     display: flex;
     justify-content: space-around;
     width: inherit;
     height: 280px;
     background-position: center;
     background-size: cover;
-    .account-show-header__shade {
+    .account-header__shade {
         z-index: 2;
         width: 970px;
         height: inherit;
         background-color: rgba(0, 0, 0, 0.5);
-        > div {
+        .account-header__display {
             display: flex;
             justify-content: space-between;
             height: inherit;
-            .account-show-header__left {
+            .account-header__left {
                 display: flex;
                 margin-top: 34px;
-                .account-show-header__image {
+                .account-header__image {
                     position: relative;
                     right: 22px;
                     width: 220px;
@@ -39,28 +39,24 @@ account-tabdisplay-item {
                     background-position: center;
                     background-size: cover;
                 }
-                .account-show-header__text {
-                    display: flex;
-                    flex-direction: column;
+                .account-header__username {
                     position: relative;
                     top: 14px;
                     right: 10px;
-                    .account-show-header__username {
-                        font-size: 35px;
-                        color: rgb(106, 153, 255);
-                    }
+                    font-size: 35px;
+                    color: rgb(106, 153, 255);
                 }
             }
-            .account-tabdisplay {
+            .account-header__tablist {
                 display: flex;
                 align-items: flex-end;
                 white-space: nowrap;
                 margin-right: 290px;
-                .account-tabdisplay-item {
-                    @extend account-tabdisplay-item;
+                .account-header__tablist-item {
+                    @extend account-header-tablist-item;
                 }
-                .account-tabdisplay-item__highlighted {
-                    @extend account-tabdisplay-item;
+                .account-header__tablist-item--highlighted {
+                    @extend account-header-tablist-item;
                     border-bottom: 4px solid rgb(255, 0, 0);
                 }
             }
@@ -72,7 +68,7 @@ account-tabdisplay-item {
     width: 100%;
     min-height: calc(100vh - 362px);
     background-color: rgb(219, 219, 219);
-    .account-show__main {
+    .account-show__display {
         margin: 0px auto;
         width: unquote("min(938px, 100vw)");
         min-height: calc(100vh - 362px);
@@ -82,23 +78,23 @@ account-tabdisplay-item {
             padding-bottom: 5px;
             font-size: 20px;
         }
-        .account-show-profile__form {
+        .account-profile__form {
             display: flex;
             flex-direction: column;
             border-bottom: 2px solid rgb(219, 219, 219);
             width: unquote("min(300px, 80vw)");
             padding: 7px 0px;
-            .account-show-profile__h2 {
+            .account-profile__h2 {
                 margin-bottom: 7px;
                 font-size: 18px;
             }
-            .account-show-profile__label {
+            .account-profile__label {
                 margin-bottom: 3px;
             }
-            .account-show-profile__input {
+            .account-profile__input {
                 margin-bottom: 5px;
             }
-            .account-show-profile__submit {
+            .account-profile__submit {
                 margin-bottom: 5px;
                 border: 1px solid rgb(112, 112, 112);
                 border-radius: 2px;
@@ -114,23 +110,23 @@ account-tabdisplay-item {
                 }
             }
         }
-        .account-show__item {
+        .account-item {
             border-bottom: 2px solid rgb(219, 219, 219);
             padding: 7px 0px;
-            .account-show__item-highlighted {
+            .account-item__highlighted {
                 color: rgb(106, 153, 255);
             }
-            .account-show__item-votes {
+            .account-item__votes {
                 color: rgb(51, 197, 51);
             }
-            .account-show__item-date {
+            .account-item__date {
                 color: rgb(173, 173, 173);
             }
             &:hover {
                 background-color: rgb(219, 219, 219);
             }
         }
-        .account-show-profile__error {
+        .account-profile__error {
             color: rgb(197, 0, 0);
         }
     }
@@ -140,7 +136,7 @@ account-tabdisplay-item {
     width: 100%;
     min-height: calc(100vh - 362px);
     background-color: rgb(80, 80, 80);
-    .account-show__main {
+    .account-show__display {
         margin: 0px auto;
         width: unquote("min(938px, 100vw)");
         min-height: calc(100vh - 362px);
@@ -151,29 +147,29 @@ account-tabdisplay-item {
             font-size: 20px;
             color: rgb(173, 173, 173);
         }
-        .account-show-profile__form {
+        .account-profile__form {
             display: flex;
             flex-direction: column;
             border-bottom: 2px solid rgb(80, 80, 80);
             width: unquote("min(300px, 80vw)");
             padding: 7px 0px;
-            .account-show-profile__h2 {
+            .account-profile__h2 {
                 margin-bottom: 7px;
                 font-size: 18px;
                 color: rgb(173, 173, 173);
             }
-            .account-show-profile__label {
+            .account-profile__label {
                 margin-bottom: 3px;
                 color: rgb(173, 173, 173);
             }
-            .account-show-profile__input {
+            .account-profile__input {
                 margin-bottom: 5px;
                 border: 1px solid rgb(112, 112, 112);
                 border-radius: 2px;
                 background-color: rgb(80, 80, 80);
                 color: rgb(173, 173, 173);
             }
-            .account-show-profile__submit {
+            .account-profile__submit {
                 margin-bottom: 5px;
                 border: 1px solid rgb(173, 173, 173);
                 border-radius: 2px;
@@ -189,24 +185,24 @@ account-tabdisplay-item {
                 }
             }
         }
-        .account-show__item {
+        .account-item {
             border-bottom: 2px solid rgb(80, 80, 80);
             padding: 7px 0px;
             color: rgb(173, 173, 173);
-            .account-show__item-highlighted {
+            .account-item__highlighted {
                 color: rgb(106, 153, 255);
             }
-            .account-show__item-votes {
+            .account-item__votes {
                 color: rgb(51, 197, 51);
             }
-            .account-show__item-date {
+            .account-item__date {
                 color: rgb(173, 173, 173);
             }
             &:hover {
                 background-color: rgb(80, 80, 80);
             }
         }
-        .account-show-profile__error {
+        .account-profile__error {
             color: rgb(197, 0, 0);
         }
     }
