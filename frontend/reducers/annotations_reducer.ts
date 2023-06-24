@@ -1,8 +1,9 @@
 import { RECEIVE_ANNOTATION, REMOVE_ANNOTATION } from "../actions/annotation_actions";
 import { RECEIVE_TRACK, RECEIVE_TRACKS } from "../actions/track_actions";
-import { Annotation, AnnotationAction, TrackAction } from "../my_types";
+import { AnyAction } from "@reduxjs/toolkit";
+import { Annotation } from "../my_types";
 
-const annotationsReducer = (state: {[key: number]: Annotation} = {}, action: AnnotationAction | TrackAction) => {
+const annotationsReducer = (state: {[key: number]: Annotation} = {}, action: AnyAction) => {
     Object.freeze(state);
     const newState: {[key: number]: Annotation} = Object.assign({}, state);
 

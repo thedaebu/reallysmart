@@ -1,16 +1,12 @@
-import configureMockStore from "redux-mock-store";
-import thunk from "redux-thunk";
 import * as SessionActions from "../../actions/session_actions";
+import { UpdatedUser } from "../../my_types";
 import * as SessionAPIUtil from "../../util/api/session_api_util";
 import * as UserAPIUtil from "../../util/api/user_api_util";
-import { Middleware } from "redux";
-
-const middlewares: Array<Middleware> = [ thunk ];
-const mockStore = configureMockStore(middlewares);
+import { mockStore } from "../test_store_data";
 
 describe("session actions", () => {
     describe("constants", () => {
-        test("exports a RECEIVE_CURRENT_USER constnat", () => {
+        test("exports a RECEIVE_CURRENT_USER constant", () => {
             expect(SessionActions.RECEIVE_CURRENT_USER).toEqual("RECEIVE_CURRENT_USER");
         });
         test("exports a LOGOUT_CURRENT_USER constant", () => {
@@ -28,21 +24,6 @@ describe("session actions", () => {
         afterEach(() => {
             store.clearActions();
         });
-        describe("fetchUser", () => {
-            test("is exported", () => {
-                expect(typeof SessionActions.fetchUser).toEqual("function");
-            });
-            test("dispatches RECEIVE_CURRENT_USER when fetchUser is called", () => {
-                const data = { user: { username: "reallysmart" } };
-                UserAPIUtil.fetchUser = jest.fn(() => (
-                    Promise.resolve(data)
-                ));
-                const actions: any = [{type: "RECEIVE_CURRENT_USER", user: data.user}];
-                return store.dispatch(SessionActions.fetchUser({session_token: "session_token"})).then(() => {
-                    expect(store.getActions()).toEqual(actions);
-                });
-            });
-        });
         describe("signup", () => {
             test("is exported", () => {
                 expect(typeof SessionActions.signup).toEqual("function");
@@ -52,7 +33,7 @@ describe("session actions", () => {
                 SessionAPIUtil.signup = jest.fn(() => (
                     Promise.resolve(data)
                 ));
-                const actions: any = [{type: "RECEIVE_CURRENT_USER", user: data.user}];
+                const actions: any = [{ type: "RECEIVE_CURRENT_USER", user: data.user, flashMessage: "Sign Up Successful." }];
                 return store.dispatch(SessionActions.signup({password: "reallysmart", username: "reallysmart"})).then(() => {
                     expect(store.getActions()).toEqual(actions);
                 });
@@ -67,7 +48,7 @@ describe("session actions", () => {
                 SessionAPIUtil.login = jest.fn(() => (
                     Promise.resolve(data)
                 ));
-                const actions: any = [{type: "RECEIVE_CURRENT_USER", user: data.user}];
+                const actions: any = [{ type: "RECEIVE_CURRENT_USER", user: data.user, flashMessage: "Log In Successful." }];
                 return store.dispatch(SessionActions.login({password: "reallysmart", username: "reallysmart"})).then(() => {
                     expect(store.getActions()).toEqual(actions);
                 });
@@ -81,8 +62,29 @@ describe("session actions", () => {
                 SessionAPIUtil.logout = jest.fn(() => (
                     Promise.resolve({})
                 ));
-                const actions: any = [{type: "LOGOUT_CURRENT_USER"}];
+                const actions: any = [{ type: "LOGOUT_CURRENT_USER", flashMessage: "Log Out Successful." }];
                 return store.dispatch(SessionActions.logout()).then(() => {
+                    expect(store.getActions()).toEqual(actions);
+                });
+            });
+        });
+        describe("updateUser", () => {
+            test("is exported", () => {
+                expect(typeof SessionActions.updateUser).toEqual("function");
+            });
+            test("dispatches LOGOUT_CURRENT_USER when logout is called", () => {
+                const updatedUser: UpdatedUser = {
+                    password: "password",
+                    updateInfo: "newPassword",
+                    updateType: "updatePassword",
+                    username: "username"
+                };
+                const data = { ...updatedUser }
+                UserAPIUtil.updateUser = jest.fn((updatedUser: UpdatedUser) => (
+                    Promise.resolve(data)
+                ));
+                const actions: any = [{ type: "RECEIVE_CURRENT_USER", flashMessage: "User Update Successful." }];
+                return store.dispatch(SessionActions.updateUser()).then(() => {
                     expect(store.getActions()).toEqual(actions);
                 });
             });

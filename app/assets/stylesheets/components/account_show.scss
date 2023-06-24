@@ -1,0 +1,209 @@
+account-header-tablist-item {
+    transition: 0.2s;
+    margin-right: 15px;
+    border-bottom: 4px solid transparent;
+    cursor: pointer;
+    text-decoration: none;
+    color: rgb(240, 240, 240);
+    &:hover {
+        border-bottom: 4px solid rgb(255, 0, 0);
+    }
+}
+
+.account-header__background {
+    display: flex;
+    justify-content: space-around;
+    width: inherit;
+    height: 280px;
+    background-position: center;
+    background-size: cover;
+    .account-header__shade {
+        z-index: 2;
+        width: 970px;
+        height: inherit;
+        background-color: rgba(0, 0, 0, 0.5);
+        .account-header__display {
+            display: flex;
+            justify-content: space-between;
+            height: inherit;
+            .account-header__left {
+                display: flex;
+                margin-top: 34px;
+                .account-header__image {
+                    position: relative;
+                    right: 22px;
+                    width: 220px;
+                    height: 220px;
+                    border: 2px solid rgb(140, 140, 140);
+                    border-radius: 50%;
+                    background-position: center;
+                    background-size: cover;
+                }
+                .account-header__username {
+                    position: relative;
+                    top: 14px;
+                    right: 10px;
+                    font-size: 35px;
+                    color: rgb(106, 153, 255);
+                }
+            }
+            .account-header__tablist {
+                display: flex;
+                align-items: flex-end;
+                white-space: nowrap;
+                margin-right: 290px;
+                .account-header__tablist-item {
+                    @extend account-header-tablist-item;
+                }
+                .account-header__tablist-item--highlighted {
+                    @extend account-header-tablist-item;
+                    border-bottom: 4px solid rgb(255, 0, 0);
+                }
+            }
+        }
+    }
+}
+
+.account-show__shade {
+    width: 100%;
+    min-height: calc(100vh - 362px);
+    background-color: rgb(219, 219, 219);
+    .account-show__display {
+        margin: 0px auto;
+        width: unquote("min(938px, 100vw)");
+        min-height: calc(100vh - 362px);
+        padding: 16px 16px 20px 16px;
+        background-color: rgb(240, 240, 240);
+        .account-show__h1 {
+            padding-bottom: 5px;
+            font-size: 20px;
+        }
+        .account-profile__form {
+            display: flex;
+            flex-direction: column;
+            border-bottom: 2px solid rgb(219, 219, 219);
+            width: unquote("min(300px, 80vw)");
+            padding: 7px 0px;
+            .account-profile__h2 {
+                margin-bottom: 7px;
+                font-size: 18px;
+            }
+            .account-profile__label {
+                margin-bottom: 3px;
+            }
+            .account-profile__input {
+                margin-bottom: 5px;
+            }
+            .account-profile__submit {
+                margin-bottom: 5px;
+                border: 1px solid rgb(112, 112, 112);
+                border-radius: 2px;
+                width: 70px;
+                background-color: rgb(240, 240, 240);
+                cursor: pointer;
+                font-size: 13px;
+                font-family: 'Programme Regular', sans-serif;
+                color: rgb(112, 112, 112);
+                &:hover {
+                    background-color: rgb(112, 112, 112);
+                    color: rgb(197, 197, 197);
+                }
+            }
+        }
+        .account-item {
+            border-bottom: 2px solid rgb(219, 219, 219);
+            padding: 7px 0px;
+            .account-item__highlighted {
+                color: rgb(106, 153, 255);
+            }
+            .account-item__votes {
+                color: rgb(51, 197, 51);
+            }
+            .account-item__date {
+                color: rgb(173, 173, 173);
+            }
+            &:hover {
+                background-color: rgb(219, 219, 219);
+            }
+        }
+        .account-profile__error {
+            color: rgb(197, 0, 0);
+        }
+    }
+}
+
+.account-show__shade--dark {
+    width: 100%;
+    min-height: calc(100vh - 362px);
+    background-color: rgb(80, 80, 80);
+    .account-show__display {
+        margin: 0px auto;
+        width: unquote("min(938px, 100vw)");
+        min-height: calc(100vh - 362px);
+        padding: 16px 16px 20px 16px;
+        background-color: rgb(50, 50, 50);
+        .account-show__h1 {
+            padding-bottom: 5px;
+            font-size: 20px;
+            color: rgb(173, 173, 173);
+        }
+        .account-profile__form {
+            display: flex;
+            flex-direction: column;
+            border-bottom: 2px solid rgb(80, 80, 80);
+            width: unquote("min(300px, 80vw)");
+            padding: 7px 0px;
+            .account-profile__h2 {
+                margin-bottom: 7px;
+                font-size: 18px;
+                color: rgb(173, 173, 173);
+            }
+            .account-profile__label {
+                margin-bottom: 3px;
+                color: rgb(173, 173, 173);
+            }
+            .account-profile__input {
+                margin-bottom: 5px;
+                border: 1px solid rgb(112, 112, 112);
+                border-radius: 2px;
+                background-color: rgb(80, 80, 80);
+                color: rgb(173, 173, 173);
+            }
+            .account-profile__submit {
+                margin-bottom: 5px;
+                border: 1px solid rgb(173, 173, 173);
+                border-radius: 2px;
+                width: 70px;
+                background-color: rgb(50, 50, 50);
+                cursor: pointer;
+                font-size: 13px;
+                font-family: 'Programme Regular', sans-serif;
+                color: rgb(173, 173, 173);
+                &:hover {
+                    background-color: rgb(173, 173, 173);
+                    color: rgb(80, 80, 80);
+                }
+            }
+        }
+        .account-item {
+            border-bottom: 2px solid rgb(80, 80, 80);
+            padding: 7px 0px;
+            color: rgb(173, 173, 173);
+            .account-item__highlighted {
+                color: rgb(106, 153, 255);
+            }
+            .account-item__votes {
+                color: rgb(51, 197, 51);
+            }
+            .account-item__date {
+                color: rgb(173, 173, 173);
+            }
+            &:hover {
+                background-color: rgb(80, 80, 80);
+            }
+        }
+        .account-profile__error {
+            color: rgb(197, 0, 0);
+        }
+    }
+}

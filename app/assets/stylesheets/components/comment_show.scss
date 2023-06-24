@@ -1,235 +1,218 @@
 $programmelight: 'Programme Light', sans-serif;
 $programmereg: 'Programme Regular', sans-serif;
 
-comment-show-item {
-    border-top: 1px solid rgb(121, 164, 255);
+comment-item {
     padding: 20px 0px;
+    border-top: 1px solid rgb(121, 164, 255);
     margin-left: 15px;
 }
 
 .comment-show {
     width: 96%;
-    background: rgb(219, 219, 219);
     margin: 20px 15px 0px 0px;
-    .comment-show__begin {
+    background-color: rgb(219, 219, 219);
+    .comment-show--begin {
         display: flex;
         padding: 16px 10px 19px 10px; 
-        .comment-show__begin--baby {
-            height: 24px;
-            width: 24px;
+        .comment-show--begin__baby {
             position: relative;
-            top: 5px;
-        }
-        .comment-show__begin--input {
+            top: 3px;
+            width: 24px;
             height: 24px;
-            width: 100%;
+        }
+        .comment-show--begin__text {
             resize: none;
             overflow: hidden;
-            font-family: $programmelight;
-            border: 2px solid rgb(182, 182, 182);
+            width: 100%;
+            height: 20px;
+            border: 2px solid rgb(173, 173, 173);
             margin-left: 5px;
+            font-family: $programmelight;
             &::placeholder {
                 position: relative;
                 top: 3px;
                 left: 3px;
-                color: rgb(99, 99, 99);
                 font-size: 16px;
+                color: rgb(80, 80, 80);
             }
         }
     }
-    .comment-show-form {
+    .comment-form {
         padding: 15px 6px 10px 6px;
-        .comment-show-form__track-text {
-            height: 51px;
-            width: unquote("min(98%, 510px)");
+        .comment-form__body--track {
             resize: none;
             overflow: hidden;
-            font-family: $programmelight;
+            width: unquote("min(98%, 510px)");
+            height: 51px;
+            padding: 2px 0px 0px 2px;
+            border: 2px solid rgb(173, 173, 173);
             margin-left: 5px;
             font-size: 16px;
+            font-family: $programmelight;
             text-indent: 3px;
             text-anchor: 2px;
-            border: 2px solid rgb(182, 182, 182);
-            padding: 10px 4px, 10px, 6px;
             &::placeholder {
-                color: rgb(99, 99, 99);
                 font-size: 16px;
+                color: rgb(80, 80, 80);
             }
-            &:focus {
-                border: 2px, solid rgb(194, 213, 255);
-                box-shadow: inset 0px 0px 2px 2px rgb(194, 213, 255);
+            &:focus::placeholder {
+                color: rgb(197, 197, 197);
             }
         }
-        .comment-show-form__annotation-text {
-            height: 46px;
-            width: unquote("min(96%, 307px)");
+        .comment-form__body--annotation {
             resize: none;
             overflow: hidden;
-            font-family: $programmelight;
-            font-size: 16px;
-            text-indent: 3px;
-            border: 2px solid rgb(182, 182, 182);
+            width: unquote("min(96%, 307px)");
+            height: 46px;
             padding: 6px 4px, 4px, 6px;
+            border: 2px solid rgb(173, 173, 173);
             margin-left: 5px;
+            font-size: 16px;
+            font-family: $programmelight;
+            text-indent: 3px;
             &::placeholder {
-                color: rgb(99, 99, 99);
                 font-size: 16px;
+                color: rgb(80, 80, 80);
             }
-            &:focus {
-                border: 2px, solid rgb(194, 213, 255);
-                box-shadow: inset 0px 0px 2px 2px rgb(194, 213, 255);
+            &:focus::placeholder {
+                color: rgb(197, 197, 197);
             }
         }
         .errors-list {
             margin: 3px 0px 0px 5px;
-            > li {
+            .errors-list__item {
                 color: rgb(197, 0, 0);
             }
         }
-        .comment-show-form__buttons {
-            position: relative;
-            right: 5px;
-            bottom: 1px;
+        .comment-form__buttons {
             display: flex;
-            .comment-show-form__submit {
-                cursor: pointer;
-                background: rgb(255, 255, 255);
-                font-family: $programmereg;
-                line-height: 28px;
+            margin: 10px 0px 0px 5px;
+            .comment-form__submit {
+                padding: 0px 9px 0px 9px;
                 border: 2px solid rgb(51, 197, 51);
-                padding: 0px 8px 0px 10px;
-                margin: 10px;
+                background-color: rgb(240, 240, 240);
+                cursor: pointer;
+                font-size: 15px;
+                line-height: 28px;
+                font-family: $programmereg;
+                color: rgb(51, 197, 51);
                 &:hover {
-                    background: rgb(200, 255, 200);
-                }
-                > p {
-                    position:relative;
-                    right: 1px;
-                    color: rgb(51, 197, 51);
-                    font-size: 15px;      
+                    background-color: rgb(200, 255, 200);
                 }
             }
-            .comment-show-form__cancel {
+            .comment-form__cancel {
+                padding: 1px 9px 0px;
+                margin-left: 4px;
+                background-color: rgb(219, 219, 219);
                 cursor: pointer;
-                position: relative;
-                left: 4px;
-                background: rgb(215, 222, 255);
-                font-family: $programmereg;
+                font-size: 15px;
                 line-height: 27px;
-                border: 2px solid rgb(215, 222, 255);
-                padding: 4px 6px 0px;
-                margin: 10px;
+                font-family: $programmereg;
+                color: rgb(112, 112, 112);
                 &:hover {
-                    background: rgb(194, 213, 255);
-                    color: rgb(99, 99, 99);
-                    border: 2px solid rgb(194, 213, 255);
-                }
-                > p {
-                    position: relative;
-                    bottom: 2px;
-                    color: rgb(112, 112, 112);
-                    font-size: 15px;
+                    background-color: rgb(173, 173, 173);
+                    color: rgb(80, 80, 80);
                 }
             }
         }
     }
-    .comment-show__session {
+    .comment-show--session {
         display: flex;
-        background: rgb(219, 219, 219);
         padding: 10px;
+        background-color: rgb(219, 219, 219);
         > p {
             margin-right: 5px;
         }
         > a {
-            color: rgb(106, 153, 255);
             margin-right: 5px;
+            color: rgb(91, 167, 194);
             &:hover {
-                color: rgb(18, 93, 255);
+                color: rgb(126, 204, 233);
             }
         }
     }
-    .comment-show__items {
-        width: 101%;
+    .comment-items {
         position: relative;
         right: 4px;
-        .comment-show-item--track {
-            @extend comment-show-item;
+        width: 100%;
+        .comment-item--track {
+            @extend comment-item;
             width: unquote("min(95%, 537px)");
         }
-        .comment-show-item--annotation {
-            @extend comment-show-item;
+        .comment-item--annotation {
+            @extend comment-item;
             width: unquote("min(93%, 314px)");
         }
-        .comment-show-item__top {
+        .comment-item__top {
             display: flex;
             justify-content: space-between;
             > div {
                 display: flex;
-                .comment-show-item__baby {
-                    height: 20px;
-                    width: 20px;
+                .comment-item__baby {
                     position: relative;
                     top: 2px;
+                    width: 20px;
+                    height: 20px;
                 }
-                .comment-show-item__commenter {
+                .comment-item__commenter {
                     position: relative;
                     top: 5px;
                     left: 5px;
                     font-size: 15px;
                 }
             }
-            .comment-show-item__time {
-                font-size: 15px;
+            .comment-item__time {
                 display: flex;
                 justify-content: flex-end;
-                .comment-show-item__time--tooltip {
-                    visibility: hidden;
+                font-size: 15px;
+                .comment-item__time--tooltip {
                     z-index: 2;
-                    width: 100px;
                     position: absolute;
-                    background: rgb(121, 164, 255);
-                    font-family: $programmelight;
-                    color: rgb(56, 56, 56);
+                    visibility: hidden;
+                    white-space: nowrap;
+                    width: 100px;
+                    border-radius: 1px;
+                    background-color: rgb(121, 164, 255);
                     font-size: 12px;
                     line-height: 16px;
+                    font-family: $programmelight;
                     text-align: center;
-                    border-radius: 1px;
-                    white-space: nowrap;
+                    color: rgb(50, 50, 50);
                 }
-                &:hover .comment-show-item__time--tooltip {
+                &:hover .comment-item__time--tooltip {
                     visibility: visible;
                 }
             }
         }
-        .comment-show-item__body {
-            font-family: $programmelight;
+        .comment-item__body {
+            padding: 17px 0px 25px;
             font-size: 17px;
             line-height: 23px;
-            padding: 17px 0px 25px;
+            font-family: $programmelight;
         }
-        .comment-show-item__edited {
-            color: rgb(156, 156, 156);
+        .comment-item__edited {
             font-size: 12px;
+            color: rgb(140, 140, 140);
         }
-        .comment-show-item__buttons {
+        .comment-item__buttons {
             font-size: 15px;
-            .comment-show-item__question {
+            .comment-item__question {
                 padding-bottom: 4px;
             }
-            .comment-show-item__button {
+            .comment-item__button {
+                padding: 0px 4px;
+                border: 1px solid rgb(173, 173, 173);
+                border-radius: 2px;
+                margin-right: 4px;
+                background-color: rgb(219, 219, 219);
                 cursor: pointer;
-                background: rgb(219, 219, 219);
-                font-family: $programmereg;
-                color: rgb(112, 112, 112);
                 font-size: 15px;
                 line-height: 20px;
-                border: 1px solid rgb(182, 182, 182);
-                border-radius: 2px;
-                padding: 0px 4px;
-                margin-right: 4px;
+                font-family: $programmereg;
+                color: rgb(112, 112, 112);
                 &:hover {
-                    color: rgb(70, 70, 70);
-                    background: rgb(182, 182, 182);
+                    background-color: rgb(173, 173, 173);
+                    color: rgb(80, 80, 80);
                 }
             }
         }
@@ -238,239 +221,221 @@ comment-show-item {
 
 .comment-show--dark {
     width: 96%;
-    background: rgb(70, 70, 70);
     margin: 20px 15px 0px 0px;
-    .comment-show__begin {
+    background-color: rgb(80, 80, 80);
+    .comment-show--begin {
         display: flex;
         padding: 16px 10px 19px 10px;
-        .comment-show__begin--baby {
-            height: 24px;
-            width: 24px;
+        .comment-show--begin__baby {
             position: relative;
-            top: 5px;
-        }
-        .comment-show__begin--input {
+            top: 3px;
+            width: 24px;
             height: 24px;
-            width: 100%;
+        }
+        .comment-show--begin__text {
             resize: none;
             overflow: hidden;
-            background: rgb(80, 80, 80);
-            font-family: $programmelight;
-            color: rgb(173, 173, 173);
+            width: 100%;
+            height: 20px;
             border: 2px solid rgb(140, 140, 140);
             margin-left: 5px;
+            background-color: rgb(80, 80, 80);
+            font-family: $programmelight;
             &::placeholder {
                 position: relative;
                 top: 3px;
                 left: 3px;
-                color: rgb(140, 140, 140);
                 font-size: 16px;
+                color: rgb(197, 197, 197);
             }
         }
     }
-    .comment-show-form {
+    .comment-form {
         padding: 15px 6px 10px 6px;
-        .comment-show-form__track-text {
-            height: 51px;
-            width: unquote("min(98%, 510px)");
+        .comment-form__body--track {
             resize: none;
             overflow: hidden;
-            background: rgb(80, 80, 80);
-            font-family: $programmelight;
-            color: rgb(173, 173, 173);
+            width: unquote("min(98%, 510px)");
+            height: 51px;
+            padding: 2px 0px 0px 2px;
+            border: 2px solid rgb(173, 173, 173);
+            margin-left: 5px;
+            background-color: rgb(80, 80, 80);
             font-size: 16px;
+            font-family: $programmelight;
             text-indent: 3px;
             text-anchor: 2px;
-            border: 2px solid rgb(140, 140, 140);
-            padding: 10px 4px, 10px, 6px;
-            margin-left: 5px;
+            color: rgb(173, 173, 173);
             &::placeholder {
-                color: rgb(140, 140, 140);
                 font-size: 16px;
+                color: rgb(173, 173, 173);
             }
-            &:focus {
-                border: 2px, solid rgb(194, 213, 255);
-                box-shadow: inset 0px 0px 2px 2px rgb(141, 156, 188);
+            &:focus::placeholder {
+                color: rgb(112, 112, 112);
             }
         }
-        .comment-show-form__annotation-text {
-            height: 46px;
-            width: unquote("min(96%, 307px)");
+        .comment-form__body--annotation {
             resize: none;
             overflow: hidden;
-            background: rgb(80, 80, 80);
-            font-family: $programmelight;
-            color: rgb(173, 173, 173);
-            font-size: 16px;
-            text-indent: 3px;
-            border: 2px solid rgb(140, 140, 140);
+            width: unquote("min(96%, 307px)");
+            height: 46px;
             padding: 6px 4px, 4px, 6px;
+            border: 2px solid rgb(173, 173, 173);
             margin-left: 5px;
+            background-color: rgb(80, 80, 80);
+            font-size: 16px;
+            font-family: $programmelight;
+            text-indent: 3px;
+            color: rgb(173, 173, 173);
             &::placeholder {
-                color: rgb(140, 140, 140);
                 font-size: 16px;
+                color: rgb(173, 173, 173);
             }
-            &:focus {
-                border: 2px, solid rgb(194, 213, 255);
-                box-shadow: inset 0px 0px 2px 2px rgb(141, 156, 188);
+            &:focus::placeholder {
+                color: rgb(112, 112, 112);
             }
         }
         .errors-list {
             margin: 3px 0px 0px 5px;
-            >li {
+            > li {
                 color: rgb(197, 0, 0);
             }
         }
-        .comment-show-form__buttons {
-            position: relative;
-            right: 5px;
-            bottom: 1px;
+        .comment-form__buttons {
             display: flex;
-            .comment-show-form__submit {
-                cursor: pointer;
-                background: rgb(50, 50, 50);
-                font-family: $programmereg;
-                line-height: 28px;
+            margin: 10px 0px 0px 5px;
+            .comment-form__submit {
+                padding: 0px 9px 0px 9px;
                 border: 2px solid rgb(51, 197, 51);
-                padding: 0px 8px 0px 10px;
-                margin: 10px;
+                background-color: rgb(50, 50, 50);
+                cursor: pointer;
+                font-size: 15px;
+                line-height: 28px;
+                font-family: $programmereg;
+                color: rgb(51, 197, 51);
                 &:hover {
-                    background: rgb(200, 255, 200);
+                    background-color: rgb(51, 197, 51);
                     color: rgb(50, 50, 50);
                 }
-                > p {
-                    position: relative;
-                    right: 1px;
-                    color: rgb(51, 197, 51);
-                    font-size: 15px;
-                }
             }
-            .comment-show-form__cancel {
+            .comment-form__cancel {
+                padding: 1px 9px 0px;
+                margin-left: 4px;
+                background-color: rgb(80, 80, 80);
                 cursor: pointer;
-                position: relative;
-                left: 4px;
-                background: rgb(215, 222, 255);
-                font-family: $programmereg;
+                font-size: 15px;
                 line-height: 27px;
-                border: 2px solid rgb(215, 222, 255);
-                padding: 4px 6px 0px;
-                margin: 10px;
+                font-family: $programmereg;
+                color: rgb(173, 173, 173);
                 &:hover {
-                    background: rgb(194, 213, 255);
-                    color: rgb(99, 99, 99);
-                    border: 2px solid rgb(194, 213, 255);
-                }
-                > p {
-                    position: relative;
-                    bottom: 2px;
-                    color: rgb(112, 112, 112);
-                    font-size: 15px;
+                    background-color: rgb(112,112, 112);
+                    color: rgb(219, 219, 219);
                 }
             }
         }
     }
-    .comment-show__session {
+    .comment-show--session {
         display: flex;
-        background: rgb(70, 70, 70);
         padding: 10px;
+        background-color: rgb(80, 80, 80);
         > p {
-            color: rgb(173, 173, 173);
             margin-right: 5px;
+            color: rgb(173, 173, 173);
         }
         > a {
-            color: rgb(106, 153, 255);
             margin-right: 5px;
+            color: rgb(106, 153, 255);
             &:hover {
-                color: rgb(194, 213, 255);
+                color: rgb(121, 164, 255);
             }
         }
     }
-    .comment-show__items {
-        width: 101%;
+    .comment-items {
         position: relative;
         right: 4px;
-        .comment-show-item--track {
-            @extend comment-show-item;
+        width: 100%;
+        .comment-item--track {
+            @extend comment-item;
             width: unquote("min(95%, 537px)");
         }
-        .comment-show-item--annotation {
-            @extend comment-show-item;
+        .comment-item--annotation {
+            @extend comment-item;
             width: unquote("min(93%, 314px)");
         }
-        .comment-show-item__top {
+        .comment-item__top {
             display: flex;
             justify-content: space-between;
             > div {
                 display: flex;
-                .comment-show-item__baby {
-                    height: 20px;
-                    width: 20px;
+                .comment-item__baby {
                     position: relative;
                     top: 2px;
+                    width: 20px;
+                    height: 20px;
                 }
-                .comment-show-item__commenter {
+                .comment-item__commenter {
                     position: relative;
                     top: 5px;
                     left: 5px;
-                    color: rgb(173, 173, 173);
                     font-size: 15px;
+                    color: rgb(173, 173, 173);
                 }
             }
-            .comment-show-item__time {
-                font-size: 15px;
+            .comment-item__time {
                 display: flex;
                 justify-content: flex-end;
+                font-size: 15px;
                 color: rgb(173, 173, 173);
-                .comment-show-item__time--tooltip {
-                    visibility: hidden;
+                .comment-item__time--tooltip {
                     z-index: 2;
-                    width: 100px;
                     position: absolute;
-                    background: rgb(121, 164, 255);
-                    font-family: $programmelight;
-                    color: rgb(56, 56, 56);
+                    visibility: hidden;
+                    white-space: nowrap;
+                    width: 100px;
+                    border-radius: 1px;
+                    background-color: rgb(121, 164, 255);
                     font-size: 12px;
                     line-height: 16px;
+                    font-family: $programmelight;
                     text-align: center;
-                    border-radius: 1px;
-                    white-space: nowrap;
+                    color: rgb(50, 50, 50);
                 }
-                &:hover .comment-show-item__time--tooltip {
+                &:hover .comment-item__time--tooltip {
                     visibility: visible;
                 }
             }
         }
-        .comment-show-item__body {
-            font-family: $programmelight;
-            color: rgb(173, 173, 173);
+        .comment-item__body {
+            padding: 17px 0px 25px;
             font-size: 17px;
             line-height: 23px;
-            padding: 17px 0px 25px;
+            font-family: $programmelight;
+            color: rgb(173, 173, 173);
         }
-        .comment-show-item__edited {
-            color: rgb(80, 80, 80);
+        .comment-item__edited {
             font-size: 12px;
+            color: rgb(80, 80, 80);
         }
-        .comment-show-item__buttons {
+        .comment-item__buttons {
             font-size: 15px;
-            .comment-show-item__question {
-                color: rgb(173, 173, 173);
+            .comment-item__question {
                 padding-bottom: 4px;
-            }
-            .comment-show-item__button {
-                cursor: pointer;
-                background: rgb(70, 70, 70);
-                font-family: $programmereg;
                 color: rgb(173, 173, 173);
-                font-size: 15px;
-                line-height: 20px;
+            }
+            .comment-item__button {
+                padding: 0px 4px;
                 border: 1px solid rgb(140, 140, 140);
                 border-radius: 2px;
-                padding: 0px 4px;
                 margin-right: 4px;
+                background-color: rgb(80, 80, 80);
+                cursor: pointer;
+                font-size: 15px;
+                line-height: 20px;
+                font-family: $programmereg;
+                color: rgb(173, 173, 173);
                 &:hover {
-                    color: rgb(197, 197, 197);
-                    background: rgb(80, 80, 80);
+                    background-color: rgb(112, 112, 112);
+                    color: rgb(219, 219, 219);
                 }
             }
         }

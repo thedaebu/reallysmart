@@ -11,5 +11,6 @@ module Types
     field :update_annotation_alert, mutation: Mutations::UpdateAnnotationAlert
     field :update_comment, mutation: Mutations::UpdateComment
     field :update_mention, mutation: Mutations::UpdateMention
+    field :update_user, mutation: Mutations::UpdateUser
   end
 end

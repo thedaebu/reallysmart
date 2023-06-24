@@ -1,13 +1,7 @@
-import configureMockStore from "redux-mock-store";
-import thunk from "redux-thunk";
 import * as CommentActions from "../../actions/comment_actions";
 import * as CommentAPIUtil from "../../util/api/comment_api_util";
-import { testCommentsData } from "../test_store_data";
-import { Middleware } from "redux";
+import { mockStore, testCommentsData } from "../test_store_data";
 import { Comment, CreatedComment, UpdatedComment } from "../../my_types";
-
-const middlewares: Array<Middleware> = [ thunk ];
-const mockStore = configureMockStore(middlewares);
 
 describe("comment actions", () => {
     describe("constants", () => {
@@ -36,7 +30,7 @@ describe("comment actions", () => {
                 CommentAPIUtil.fetchComment = jest.fn((commentId: number) => (
                     Promise.resolve(data)
                 ));
-                const actions = [{ type: "RECEIVE_COMMENT", comment: comment }];
+                const actions = [{ type: "RECEIVE_COMMENT", comment: comment, flashMessage: "" }];
                 return store.dispatch(CommentActions.fetchComment(comment.id)).then(() => {
                     expect(store.getActions()).toEqual(actions);
                 });
@@ -51,14 +45,13 @@ describe("comment actions", () => {
                     body: "This is one of my new favorite songs now.",
                     commentable_id: 1,
                     commentable_type: "Track",
-                    commenter_id: 1,
-                    commenter_name: "reallysmart"
+                    commenter_id: 1
                 };
                 const data = { comment: comment };
                 CommentAPIUtil.createComment = jest.fn((createdComment: CreatedComment) => (
                     Promise.resolve(data)
                 ));
-                const actions = [{ type: "RECEIVE_COMMENT", comment: comment }];
+                const actions = [{ type: "RECEIVE_COMMENT", comment: comment, flashMessage: "Comment Creation Successful." }];
                 return store.dispatch(CommentActions.createComment(createdComment)).then(() => {
                     expect(store.getActions()).toEqual(actions);
                 });
@@ -74,14 +67,13 @@ describe("comment actions", () => {
                     commentable_id: 1,
                     commentable_type: "Track",
                     commenter_id: 1,
-                    commenter_name: "reallysmart",
                     id: 1
                 };
                 const data = { comment: comment };
                 CommentAPIUtil.updateComment = jest.fn((updatedComment: UpdatedComment) => (
                     Promise.resolve(data)
                 ));
-                const actions = [{ type: "RECEIVE_COMMENT", comment: comment }];
+                const actions = [{ type: "RECEIVE_COMMENT", comment: comment, flashMessage: "Comment Update Successful." }];
                 return store.dispatch(CommentActions.updateComment(updatedComment)).then(() => {
                     expect(store.getActions()).toEqual(actions);
                 });
@@ -96,7 +88,7 @@ describe("comment actions", () => {
                 CommentAPIUtil.deleteComment = jest.fn((commentId: number) => (
                     Promise.resolve(data)
                 ));
-                const actions = [{ type: "REMOVE_COMMENT", commentId: comment.id }];
+                const actions = [{ type: "REMOVE_COMMENT", commentId: comment.id, flashMessage: "Comment Deletion Successful." }];
                 return store.dispatch(CommentActions.deleteComment(comment.id)).then(() => {
                     expect(store.getActions()).toEqual(actions);
                 });

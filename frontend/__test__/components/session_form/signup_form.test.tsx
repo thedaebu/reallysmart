@@ -3,7 +3,7 @@ import { cleanup, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event"
 import * as reactRedux from "react-redux";
 import { renderNonShowComponentWithoutUser } from "../../test_store_data";
-import SignupForm from "../../../components/session_form/signup_form";
+import SignupForm from "../../../components/session_form/SignupForm";
 
 const useMockDispatch = jest.spyOn(reactRedux, "useDispatch");
 const useMockEffect = jest.spyOn(React, "useEffect");
@@ -39,7 +39,7 @@ describe("signup form", () => {
         });
     });
     test("proceeds to login form page when login form button is clicked", () => {
-        const loginFormButton = screen.queryByTestId("login-form-button");
+        const loginFormButton = screen.queryByTestId("login-form__button");
         userEvent.click(loginFormButton);
         const pathName = global.window.location.pathname;
         expect(pathName).toEqual("/login");

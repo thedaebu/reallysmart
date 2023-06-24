@@ -1,13 +1,7 @@
-import configureMockStore from "redux-mock-store";
-import thunk from "redux-thunk";
 import * as SearchActions from "../../actions/search_actions";
 import * as SearchAPIUtil from "../../util/api/search_api_util";
-import { testIndexTracksData } from "../test_store_data";
-import { Middleware } from "redux";
+import { mockStore, testIndexTracksData } from "../test_store_data";
 import { IndexTrack } from "../../my_types";
-
-const middlewares: Array<Middleware> = [ thunk ];
-const mockStore = configureMockStore(middlewares);
 
 describe("search actions", () => {
     describe("constants", () => {

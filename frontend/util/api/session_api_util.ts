@@ -3,7 +3,7 @@ import { SessionUser } from "../../my_types";
 
 export const login: Function = (user: SessionUser) => (
     $.ajax({
-        data: { 
+        data: {
             user,
             authenticity_token: $('[name="csrf-token"]').attr("content")
         },

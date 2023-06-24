@@ -1,15 +1,63 @@
 import React, { ReactElement } from "react";
 import { render } from "@testing-library/react";
-import { BrowserRouter, MemoryRouter, Route } from "react-router-dom";
+import { BrowserRouter, MemoryRouter, Route, Routes } from "react-router-dom";
 import { Provider } from "react-redux";
-import { ThemeContext } from "../contexts/theme_context";
 import thunk, { ThunkMiddleware } from "redux-thunk";
 import configureMockStore, { MockStoreCreator, MockStoreEnhanced } from "redux-mock-store";
-import { Annotation, AnnotationAlert, Comment, IndexTrack, Mention, State, Track, User } from "../my_types";
+import { ThemeContext } from "../contexts/theme_context";
 import { AnyAction } from "@reduxjs/toolkit";
+import { Account, Annotation, AnnotationAlert, Comment, IndexTrack, Mention, State, Track, User } from "../my_types";
 
 // test data
-export const testAnnotationsData: {[key: number]: Annotation} = {
+export const testAccountData: Account = {
+    annotations: [
+        {
+            body: "She is singing about Selene, her alter-ego, who comes out when she becomes under the influence. She is claiming Selene is making her do things not of her own will but she is not trying to will herself against Selene.",
+            created_at: "2022-04-10T01:05:36.835Z",
+            track: {
+                artist: "NIKI",
+                title: "Selene"
+            },
+            votes: 1
+        },
+        {
+            body: "She is allowing Selene to take over. She and Selene want the same thing.",
+            created_at: "2022-04-11T01:05:36.835Z",
+            track: {
+                artist: "Modjo",
+                title: "Lady"
+            },
+            votes: 2
+        }
+    ],
+    comments: [
+        {
+            body: "This is one of my new favorite songs now.",
+            commentable_body: "",
+            commentable_type: "Track",
+            created_at: "2022-04-10T01:05:36.835Z",
+            track: {
+                artist: "NIKI",
+                title: "Selene"
+            },
+            votes: 3
+        },
+        {
+            body: "OOOOOHHHHHHH! Now I get it.",
+            commentable_body: "She is singing about Selene, her alter-ego, who comes out when she becomes under the influence. She is claiming Selene is making her do things not of her own will but she is not trying to will herself against Selene.",
+            commentable_type: "Annotation",
+            created_at: "2022-04-11T01:05:36.835Z",
+            track: {
+                artist: "Modjo",
+                title: "Lady"
+            },
+            votes: 4
+        }
+    ],
+    id: 1,
+    username: "reallysmart"
+};
+export const testAnnotationsData: { [key: number]: Annotation } = {
     1: {
         annotator_id: 1,
         annotator_name: "reallysmart",
@@ -42,7 +90,7 @@ export const testAnnotationsData: {[key: number]: Annotation} = {
         votes: {}
     }
 };
-export const testCommentsData: {[key: number]: Comment} = {
+export const testCommentsData: { [key: number]: Comment } = {
     1: {
         body: "This is one of my new favorite songs now.",
         commentable_id: 1,
@@ -102,6 +150,7 @@ export const testMentionsData: Array<Mention> = [
     {
         body: testAnnotationsData[1].body,
         created_at: "2022-04-11T01:05:36.835Z",
+        commentable_type: "Track",
         id: 2,
         mentioner_name: "notsosmart",
         read: false,
@@ -113,6 +162,7 @@ export const testMentionsData: Array<Mention> = [
     }, {
         body: "",
         created_at: "2022-04-12T01:05:36.835Z",
+        commentable_type: "Annotation",
         id: 3,
         mentioner_name: "notsosmart",
         read: false,
@@ -138,7 +188,7 @@ export const testTrackData2: Track = {
     lyrics: "[Chorus] Lady, hear me tonight 'Cause my feeling, is just so right As we dance, by the moonlight Can't you see, you're my delight Lady, I just feel like I won't get you, out of my mind I feel love, for the first time And I know that it's true, I can tell by the look in your eyes", spotify_path: "https://open.spotify.com/embed/track/49X0LAl6faAusYq02PRAY6?si=f26ecb25d41d4182",
     title: "Lady"
 };
-export const testIndexTracksData: {[key: number]: IndexTrack} = {
+export const testIndexTracksData: { [key: number]: IndexTrack } = {
     1:  {
         artist: "NIKI",
         artwork_path: "https://i.ytimg.com/vi/GBqqoPSJ9GY/maxresdefault.jpg",
@@ -186,8 +236,15 @@ export const testUserData: User = {
 // test stores
 export const testIndexStore: State = {
     entities: {
+        account: {
+            annotations: [],
+            comments: [],
+            id: null,
+            username: ""
+        },
         annotations: {},
         comments: {},
+        flashMessage: "",
         indexTracks: testIndexTracksData,
         searches: {},
         track: null,
@@ -196,8 +253,15 @@ export const testIndexStore: State = {
 };
 export const testShowStoreWithoutUser: State = {
     entities: {
+        account: {
+            annotations: [],
+            comments: [],
+            id: null,
+            username: ""
+        },
         annotations: testAnnotationsData,
         comments: testCommentsData,
+        flashMessage: "",
         indexTracks: {},
         searches: testIndexTracksData,
         track: testTrackData1,
@@ -206,8 +270,10 @@ export const testShowStoreWithoutUser: State = {
 };
 export const testShowStoreWithUser: State = {
     entities: {
+        account: testAccountData,
         annotations: testAnnotationsData,
         comments: testCommentsData,
+        flashMessage: "",
         indexTracks: {},
         searches: testIndexTracksData,
         track: testTrackData1,
@@ -220,7 +286,7 @@ function renderNonShowComponent(store: MockStoreEnhanced, component: ReactElemen
     render(
         <BrowserRouter>
             <Provider store={store}>
-                <ThemeContext.Provider value={{theme: "light", changeTheme: jest.fn}}>
+                <ThemeContext.Provider value={{ theme: "light", changeTheme: jest.fn }}>
                     {component}
                 </ThemeContext.Provider>
             </Provider>
@@ -229,27 +295,26 @@ function renderNonShowComponent(store: MockStoreEnhanced, component: ReactElemen
 }
 function renderShowComponent(store: MockStoreEnhanced, component: ReactElement) {
     render(
-        <BrowserRouter>
-            <MemoryRouter initialEntries={['tracks/niki__selene']}>
-                <Provider store={store}>
-                    <Route path='tracks/:trackName'>
-                        <ThemeContext.Provider value={{theme: "light", changeTheme: jest.fn}}>
-                            {component}
-                        </ThemeContext.Provider>
-                    </Route>
-                </Provider>
-            </MemoryRouter>
-        </BrowserRouter>
+        <MemoryRouter initialEntries={["/tracks/niki__selene"]}>
+            <Provider store={store}>
+                <ThemeContext.Provider value={{ theme: "light", changeTheme: jest.fn }}>
+                    <Routes>
+                        <Route path="/tracks/:trackName/*" element={component} />
+                    </Routes>
+                </ThemeContext.Provider>
+            </Provider>
+        </MemoryRouter>
     );
 }
 
 const middlewares: Array<ThunkMiddleware<any, AnyAction, any>> = [thunk];
-const mockStore: MockStoreCreator = configureMockStore(middlewares);
+export const mockStore: MockStoreCreator = configureMockStore(middlewares);
 
 export function renderIndexComponent(component: ReactElement) {
     renderNonShowComponent(mockStore(testIndexStore), component);
 }
-export function renderNonShowComponentWithoutUser(component: ReactElement) {
+export function renderNonShowComponentWithoutUser(component: ReactElement, flashMessage: string = "") {
+    if (flashMessage) testShowStoreWithoutUser.entities.flashMessage = flashMessage;
     renderNonShowComponent(mockStore(testShowStoreWithoutUser), component);
 }
 export function renderNonShowComponentWithUser(component: ReactElement) {

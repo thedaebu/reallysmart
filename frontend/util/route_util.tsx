@@ -1,44 +1,32 @@
-import React, { ComponentType } from "react";
-import { connect } from "react-redux";
-import {
-    Route,
-    Redirect,
-    Switch,
-    Link,
-    HashRouter, 
-    withRouter,
-    RouteComponentProps
-} from "react-router-dom";
-import { State } from "../my_types";
+import React, { Suspense } from "react";
+import { Navigate } from "react-router-dom";
 
-interface Props extends RouteComponentProps {
-    component: ComponentType<RouteComponentProps>,
-    exact: boolean,
-    loggedIn: boolean,
-    path: string,
-}
+type Props = {
+    component: any;
+    loggedIn: boolean;
+};
 
-const mSTP = (state: State) => (
-    { loggedIn: !!state.entities.user }
-)
-
-const Auth = (props: Props) => {
-    const { component, exact, loggedIn, path } = props;
+export function AccountRoute(props: Props) {
+    const { component, loggedIn } = props;
     const Component = component;
 
     return (
-        <Route
-            path={ path } 
-            exact={ exact } 
-            render={ (props) => {
-                return (
-                    loggedIn 
-                        ? <Redirect to="/" />
-                        : <Component { ...props } />
-                );
-            }}
-        />
+        loggedIn
+            ? (
+                <Suspense fallback={<div></div>}>
+                    <Component />
+                </Suspense>
+            )
+            : <Navigate to="/" />
     );
 }
+export function SessionRoute(props: Props) {
+    const { component, loggedIn } = props;
+    const Component = component;
 
-export const AuthRoute = withRouter(connect(mSTP, null)(Auth));
+    return (
+        loggedIn
+            ? <Navigate to="/" />
+            : <Component />
+    );
+}

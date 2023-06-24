@@ -1,9 +1,9 @@
 import React, { ChangeEvent, Dispatch, FormEvent, useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import * as SessionActions from "../../actions/session_actions";
 import { AnyAction } from "@reduxjs/toolkit";
 import { SessionAction, SessionUser, Window } from "../../my_types";
+import * as SessionActions from "../../actions/session_actions";
 
 declare const window: Window;
 
@@ -35,19 +35,11 @@ function LoginForm() {
             });
     }
 
-    function handleInputChange(type: string) {
-        if (type === "username") {
-            return (e: ChangeEvent<HTMLInputElement>) => setUsername(e.currentTarget.value);
-        } else {
-            return (e: ChangeEvent<HTMLInputElement>) => setPassword(e.currentTarget.value);
-        }
-    }
-
     function errorsDisplay() {
         return (
             <div className="session-form__errors">
-                <h2 className="session-form__errors--header">Ruh-roh!</h2>
-                <p className="session-form__errors--caption">Something is wrong</p>
+                <h2 className="session-form__errors__header">Ruh-roh!</h2>
+                <p className="session-form__errors__caption">Something is wrong</p>
                 <ul className="session-form__errors-list">
                     {sessionErrors.map((sessionError: string, idx: number) => (
                         <li key={idx}>{sessionError}</li>
@@ -65,7 +57,7 @@ function LoginForm() {
                 <label className="session-form__label" htmlFor="session-form__username">Really Smart Nickname
                     <input
                         id="session-form__username"
-                        onChange={handleInputChange("username")}
+                        onChange={(e: ChangeEvent<HTMLInputElement>) => setUsername(e.target.value)}
                         type="text"
                         value={username}
                         data-testid="session-form__username"
@@ -77,7 +69,7 @@ function LoginForm() {
                     </a>
                     <input
                         id="session-form__password"
-                        onChange={handleInputChange("password")}
+                        onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
                         type="password"
                         value={password}
                         data-testid="session-form__password"
@@ -90,7 +82,7 @@ function LoginForm() {
                 />
             </form>
             <p className="session-form__bottom">
-                Don't have an account? <Link to="/signup" data-testid="signup-form-button">Sign up here.</Link>
+                Don't have an account? <Link to="/signup" data-testid="signup-form__button">Sign up here.</Link>
             </p>
         </div>
     );

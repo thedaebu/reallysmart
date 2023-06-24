@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import * as TrackActions from "../../actions/track_actions";
 import { AnyAction } from "@reduxjs/toolkit";
 import { State, Track, TrackAction, Window } from "../../my_types";
-import LyricsShow from "../lyrics/lyrics";
-import NavBar from "../navbar/navbar";
-import TrackShowHeader from "./track_show_header";
+import Lyrics from "../lyrics/Lyrics";
+import NavBar from "../navbar/Navbar";
+import TrackHeader from "./TrackHeader";
 import { useParams } from "react-router-dom";
 
 declare const window: Window;
@@ -38,9 +38,9 @@ function TrackShow() {
             <NavBar />
             {track && (
                 <>
-                    <TrackShowHeader track={track} />
-                    <LyricsShow track={track} />
-                    <footer className="track-show__footer">
+                    <TrackHeader track={track} />
+                    <Lyrics track={track} />
+                    <footer className="track-footer">
                         <iframe className="spotify-player" src={track.spotify_path}></iframe>
                     </footer>
                 </>

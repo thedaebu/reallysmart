@@ -39,3 +39,32 @@ font-family: 'Programme Light', sans-serif;
 font-family: 'Barlow Condensed', sans-serif;
 font-family: 'Ubuntu Condensed', sans-serif;
 font-family: 'Raleway', sans-serif;
+
+# colors
+# gray
+rgb(38, 38, 38)
+rgb(50, 50, 50)
+rgb(80, 80, 80)
+rgb(112, 112, 112)
+rgb(140, 140, 140)
+rgb(173, 173, 173)
+rgb(197, 197, 197)
+rgb(219, 219, 219)
+rgb(240, 240, 240)
+rgb(255, 255, 255)
+
+# blue
+rgb(91, 167, 194) ---
+rgb(106, 153, 255)
+rgb(121, 164, 255)
+rgb(126, 204, 233) ---
+
+# green
+rgb(51, 197, 51)
+rgb(200, 255, 200)
+
+# red
+rgb(197, 0, 0)
+rgb(223, 0, 0)
+rgb(255, 0, 0)
+rgb(255, 20, 100)

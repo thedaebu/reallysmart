@@ -1,44 +1,33 @@
-import React, { Dispatch, lazy, Suspense, useContext, useEffect } from "react";
-import {
-    Route,
-    Switch,
-    Link
-} from "react-router-dom";
-import { AuthRoute } from "../util/route_util";
+import React, { lazy, Suspense, useContext } from "react";
+import { Link, Route, Routes } from "react-router-dom";
+import { AccountRoute, SessionRoute } from "../util/route_util";
 import { ThemeContext } from "../contexts/theme_context";
-import { useDispatch, useSelector } from "react-redux";
-import { State, User, Window } from "../my_types";
-import DemoLogin from "./demo_login/demo_login";
-import LoginForm from "./session_form/login_form";
-import SessionMenu from "./session_menu/session_menu";
-import SignupForm from "./session_form/signup_form";
-import Searchbar from "./searchbar/searchbar";
-import NotificationShow from "./notifications/notification_show";
-import ThemeToggle from "./theme_toggle/theme_toggle";
-import * as SessionActions from "./../actions/session_actions";
-import { AnyAction } from "redux";
-const TrackIndex = lazy(() => import("./tracks/track_index"));
-const TrackShow = lazy(() => import("./tracks/track_show"));
-
-declare const window: Window;
+import { useSelector } from "react-redux";
+import { State, User } from "../my_types";
+import AccountShow from "./account/AccountShow";
+import DemoLogin from "./demo_login/DemoLogin";
+import FlashMessage from "./flash_message/FlashMessage";
+import LoginForm from "./session_form/LoginForm";
+import NotificationShow from "./notifications/NotificationShow";
+import Searchbar from "./searches/Searchbar";
+import SessionMenu from "./session_menu/SessionMenu";
+import SignupForm from "./session_form/SignupForm";
+import ThemeToggle from "./theme_toggle/ThemeToggle";
+const TrackIndex = lazy(() => import("./tracks/TrackIndex"));
+const TrackShow = lazy(() => import("./tracks/TrackShow"));
 
 function App({ cableApp }: { cableApp: any}) {
     const currentUser: User = useSelector((state: State) => state.entities.user);
-
-    const dispatch: Dispatch<AnyAction> = useDispatch();
-    const fetchUser: Function = (sessionToken: string) => dispatch(SessionActions.fetchUser(sessionToken));
+    const flashMessage: string = useSelector((state: State) => state.entities.flashMessage);
 
     const { theme } = useContext(ThemeContext);
 
-    useEffect(() => {
-        if (window.currentUser) {
-            fetchUser(window.currentUser.session_token);
-            delete window.currentUser
-        }
-    }, [window.currentUser]);
-
     return (
-        <div className={theme === "light" ? "app" : "app--dark"}>
+        <div className={theme === "light"
+            ? "app"
+            : "app--dark"}
+        >
+            {flashMessage && <FlashMessage flashMessage={flashMessage} />}
             <header className="header">
                 <Searchbar theme={theme} />
                 <Link to="/" className="header__logo">REALLYSMART</Link>
@@ -49,20 +38,40 @@ function App({ cableApp }: { cableApp: any}) {
                     <ThemeToggle />
                 </section>
             </header>
-            <Switch>
-                <Route exact path="/">
-                    <Suspense fallback={<div></div>}>
+            <Routes>
+                <Route
+                    path="/"
+                    element={<Suspense fallback={<div></div>}>
                         <TrackIndex />
-                    </Suspense>
-                </Route>
-                <AuthRoute exact path="/signup" component={SignupForm} />
-                <AuthRoute exact path="/login" component={LoginForm} />
-                <Route path="/tracks/:trackName">
-                    <Suspense fallback={<div></div>}>
+                    </Suspense>}
+                />
+                <Route
+                    path="/signup"
+                    element={<SessionRoute
+                        component={SignupForm}
+                        loggedIn={!!currentUser}
+                    />}
+                />
+                <Route
+                    path="/login"
+                    element={<SessionRoute
+                        component={LoginForm}
+                        loggedIn={!!currentUser}
+                    />}
+                />
+                <Route
+                    path="/tracks/:trackName"
+                    element={<Suspense fallback={<div></div>}>
                         <TrackShow />
-                    </Suspense>
-                </Route>
-            </Switch>
+                    </Suspense>}
+                />
+                <Route path="/account" element={
+                    <AccountRoute
+                        component={AccountShow}
+                        loggedIn={!!currentUser}
+                    />
+                } />
+            </Routes>
         </div>
     );
 }

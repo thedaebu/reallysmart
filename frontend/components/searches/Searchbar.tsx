@@ -1,11 +1,11 @@
 import React, { ChangeEvent, Dispatch, useEffect, useState } from "react";
-import { AiOutlineSearch } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
-import * as SearchActions from "../../actions/search_actions";
 import { AnyAction } from "@reduxjs/toolkit";
 import useDebounce from "../../hooks/debounce_hook";
-import SearchIndex from "../searches/search_index";
+import * as SearchActions from "../../actions/search_actions";
+import SearchIndex from "./SearchIndex";
+import { AiOutlineSearch } from "react-icons/ai";
 
 function Searchbar({ theme } : { theme : string }) {
     const dispatch: Dispatch<AnyAction> = useDispatch();
@@ -21,10 +21,10 @@ function Searchbar({ theme } : { theme : string }) {
 
     function handleSearchChange() {
         const debouncedSearchField = useDebounce(searchField);
-        if (searchField !== "") {
+        if (searchField) {
             fetchSearches(debouncedSearchField.toLowerCase());
         }
-        
+
         return (e: ChangeEvent<HTMLInputElement>) => setSearchField(e.currentTarget.value);
     }
 
@@ -34,14 +34,19 @@ function Searchbar({ theme } : { theme : string }) {
 
     return (
         <>
-            <div className={theme === "light" ? "searchbar" : "searchbar--dark"}>
+            <div 
+                className={theme === "light" ?
+                    "searchbar" :
+                    "searchbar--dark"
+                }
+            >
                 <input
                     className="searchbar__input"
                     placeholder="Search lyrics & more"
                     type="text" 
                     value={searchField}
                     onChange={handleSearchChange()} 
-                    data-testid="searchbar-field"
+                    data-testid="searchbar__input"
                 />
                 <AiOutlineSearch className="searchbar__glass" />
             </div>

@@ -1,13 +1,7 @@
-import configureMockStore from "redux-mock-store";
-import thunk from "redux-thunk";
 import * as TrackActions from "../../actions/track_actions";
 import * as TrackAPIUtil from "../../util/api/track_api_util";
-import { testAnnotationsData, testCommentsData, testTrackData1, testIndexTracksData } from "../test_store_data";
-import { Middleware } from "redux";
+import { testAnnotationsData, testCommentsData, testTrackData1, testIndexTracksData, mockStore } from "../test_store_data";
 import { ReceivedTrack } from "../../my_types";
-
-const middlewares: Array<Middleware> = [ thunk ];
-const mockStore = configureMockStore(middlewares);
 
 describe("track actions", () => {
     describe("constants", () => {

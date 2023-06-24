@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import * as AnnotationActions from "../../actions/annotation_actions";
 import { AnyAction } from "@reduxjs/toolkit";
 import { Annotation, AnnotationAction, State, UpdatedAnnotation, User } from "../../my_types";
-import CommentShow from "../comments/comment_show";
-import VoteShow from "../votes/vote_show";
+import CommentShow from "../comments/CommentShow";
+import VoteShow from "../votes/VoteShow";
 
-function AnnotationShowItem({ annotation, trackId }: { annotation: Annotation, trackId: number }) {
+function AnnotationItem({ annotation, trackId }: { annotation: Annotation, trackId: number }) {
     const currentUser: User = useSelector((state: State) => state.entities.user);
 
     const dispatch: Dispatch<AnyAction> = useDispatch();
@@ -35,44 +35,36 @@ function AnnotationShowItem({ annotation, trackId }: { annotation: Annotation, t
     }
 
     function updateButtons() {
-        if (deleteStatus === false) {
-            return (
-                <div className="annotation-show-item__buttons">
-                    <button 
-                        className="annotation-show-item__button"
-                        onClick={handleUpdateStatus}
-                        data-testid="annotation-show-item__edit"
-                    >
-                        Edit
-                    </button>
-                    <button
-                        className="annotation-show-item__button"
-                        onClick={handleDeleteStatus}
-                        data-testid="annotation-show-item__delete"
-                    >
-                        Delete
-                    </button>
-                </div>
-            );
-        } else {
-            return (
-                <div className="annotation-show-item__buttons">
-                    <p className="annotation-show-item__question" data-testid="annotation-show-item__question">
-                        Are you sure?
-                    </p>
-                    <button className="annotation-show-item__button" onClick={handleDeleteSubmit}>
-                        Yes
-                    </button>
-                    <button
-                        className="annotation-show-item__button"
-                        onClick={handleDeleteStatus}
-                        data-testid="annotation-show-item__delete-no"
-                    >
-                        No
-                    </button>
-                </div>
-            );
-        }
+        return !deleteStatus ? (
+            <div className="annotation-item__buttons">
+                <button 
+                    className="annotation-item__button"
+                    onClick={handleUpdateStatus}
+                    data-testid="annotation-item__edit"
+                >
+                    Edit
+                </button>
+                <button
+                    className="annotation-item__button"
+                    onClick={handleDeleteStatus}
+                    data-testid="annotation-item__delete"
+                >
+                    Delete
+                </button>
+            </div>
+        ) : (
+            <div className="annotation-item__buttons">
+                <p className="annotation-item__question" data-testid="annotation-item__question">Are you sure?</p>
+                <button className="annotation-item__button" onClick={handleDeleteSubmit}>Yes</button>
+                <button
+                    className="annotation-item__button"
+                    onClick={handleDeleteStatus}
+                    data-testid="annotation-item__delete-no"
+                >
+                    No
+                </button>
+            </div>
+        )
     }
 
     function handleUpdateStatus(e: MouseEvent<HTMLButtonElement>) {
@@ -85,44 +77,44 @@ function AnnotationShowItem({ annotation, trackId }: { annotation: Annotation, t
     function updateForm() {
         return (
             <form
-                id="annotation-show-form"
+                id="annotation-form"
                 onSubmit={handleUpdateSubmit}
-                data-testid="annotation-show-form"
+                data-testid="annotation-form"
             >
                 <textarea
-                    className="annotation-show-form__body" 
+                    className="annotation-form__body" 
                     onChange={handleBodyChange()}
                     value={body}
                 >
                 </textarea>
                 {errors.length > 0 && errorsDisplay()}
-                <section className="annotation-show-form__middle">
-                    <p className="annotation-show-form__middle__tools">Tools:</p>
-                    <div className="annotation-show-form__middle__items">
-                        <a className="annotation-show-form__middle__item">
+                <section className="annotation-form__middle">
+                    <p className="annotation-form__middle__tools">Tools:</p>
+                    <div className="annotation-form__middle__items">
+                        <a className="annotation-form__middle__item">
                             Add Image
                             <p className="tooltip">Link is for styling</p>
                         </a>
-                        <a className="annotation-show-form__middle__item">
+                        <a className="annotation-form__middle__item">
                             Formatting Help
                             <p className="tooltip">Link is for styling</p>
                         </a>
                         <div>
-                            <a className="annotation-show-form__middle__item">
+                            <a className="annotation-form__middle__item">
                                 How To Annotate
                                 <p className="tooltip">Link is for styling</p>
                             </a>
                         </div>
                     </div>
                 </section>
-                <section className="annotation-show-form__bottom">
-                    <button className="annotation-show-form__bottom-save" type="submit">
-                        <p className="annotation-show-form__bottom-save-text">Save</p>
+                <section className="annotation-form__bottom">
+                    <button className="annotation-form__bottom__submit" type="submit">
+                        <p className="annotation-form__bottom__submit--text">Save</p>
                     </button>
                     <button
-                        className="annotation-show-form__bottom-cancel"
+                        className="annotation-form__bottom__cancel"
                         onClick={handleUpdateStatus}
-                        data-testid="annotation-show-form__bottom-cancel"
+                        data-testid="annotation-form__bottom__cancel"
                     >
                         Cancel
                     </button>
@@ -160,7 +152,7 @@ function AnnotationShowItem({ annotation, trackId }: { annotation: Annotation, t
         return (
             <ul className="errors-list">
                 {errors.map((annotationError: string, idx: number) => (
-                    <li key={idx}>{annotationError}</li>
+                    <li className="errors-list__item" key={idx}>{annotationError}</li>
                 ))}
             </ul>
         );
@@ -182,22 +174,25 @@ function AnnotationShowItem({ annotation, trackId }: { annotation: Annotation, t
     return (
         <>
             {currentAnnotation && (
-                updateStatus
-                    ? updateForm()
-                    : (
-                        <div className="annotation-show-item" data-testid="annotation-show-item">
-                            <p className="annotation-show-item__name">Really Smart Annotation by {annotation.annotator_name}</p>
-                            <p className="annotation-show-item__body">{annotation.body}</p>
-                            {annotation.created_at !== annotation.updated_at && <time className="annotation-show-item__edited">edited: {dateDisplay(annotation.updated_at)}</time>}
-                            <VoteShow parent={annotation} voteableType="Annotation" />
-                            {(currentUser && currentUser.id === currentAnnotation.annotator_id) && updateButtons()}
-                            <CommentShow commentableType="Annotation" parent={annotation} />
-                        </div>
-                    )
+                updateStatus ? (
+                    updateForm()
+                ) : (
+                    <div className="annotation-item" data-testid="annotation-item">
+                        <p className="annotation-item__name">Really Smart Annotation by {annotation.annotator_name}</p>
+                        <p className="annotation-item__body">{annotation.body}</p>
+                        {annotation.created_at !== annotation.updated_at && (
+                            <time className="annotation-item__edited">
+                                edited: {dateDisplay(annotation.updated_at)}
+                            </time>
+                        )}
+                        <VoteShow parent={annotation} voteableType="Annotation" />
+                        {(currentUser && currentUser.id === currentAnnotation.annotator_id) && updateButtons()}
+                        <CommentShow commentableType="Annotation" parent={annotation} />
+                    </div>
                 )
-            }
+            )}
         </>
     );
 }
 
-export default AnnotationShowItem;
+export default AnnotationItem;

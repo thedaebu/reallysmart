@@ -2,9 +2,9 @@ import React from "react";
 import { cleanup, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import * as reactRedux from "react-redux";
-import * as NotificationAPIUtil from "../../../util/api/notification_api_util";
-import { renderShowComponentWithoutUser, renderShowComponentWithUser } from "../../test_store_data";
 import actionCable, { Cable } from "actioncable";
+import { renderShowComponentWithoutUser, renderShowComponentWithUser } from "../../test_store_data";
+import * as NotificationAPIUtil from "../../../util/api/notification_api_util";
 import App from "../../../components/app";
 
 const useMockEffect = jest.spyOn(React, "useEffect");
@@ -13,7 +13,7 @@ const useMockState = jest.spyOn(React, "useState");
 const useUpdateNotification = jest.spyOn(NotificationAPIUtil, "updateNotification");
 
 const cable: Cable = actionCable.createConsumer(`ws://${window.location.hostname}:3000/cable`);
-const cableApp: {cable: Cable} = {cable};
+const cableApp: { cable: Cable } = {cable};
 
 describe("notification show", () => {
     describe("no user tests", () => {
@@ -26,7 +26,7 @@ describe("notification show", () => {
 
         test("does not display notification icon", () => {
             const notificationIcon = screen.queryByTestId("notification-icon");
-            expect(notificationIcon).toBeFalsy();
+            expect(notificationIcon).not.toBeInTheDocument();
         });
     });
     describe("current user tests", () => {
@@ -50,11 +50,11 @@ describe("notification show", () => {
         });
         test("displays notification icon", () => {
             const notificationIcon = screen.queryByTestId("notification-icon");
-            expect(notificationIcon).toBeTruthy();
+            expect(notificationIcon).toBeInTheDocument();
         });
         test("does not display notification list initially", () => {
             const notificationList = screen.queryByTestId("notification-list");
-            expect(notificationList).toBeFalsy();
+            expect(notificationList).not.toBeInTheDocument();
         });
         describe("notification list", () => {
             let notificationIcon: any;
@@ -65,14 +65,14 @@ describe("notification show", () => {
                 notificationIcon = screen.queryByTestId("notification-icon");
                 userEvent.click(notificationIcon);
                 notificationList = screen.queryByTestId("notification-list");
-                notificationItems = within(notificationList).queryAllByTestId("notification-list__item");
+                notificationItems = within(notificationList).queryAllByTestId("notification-item");
             });
             afterEach(() => {
                 cleanup();
             });
 
             test("displays notification list after notification icon is clicked on", () => {
-                expect(notificationList).toBeTruthy();
+                expect(notificationList).toBeInTheDocument();
             });
             test("updateNotification is called when the notification list opens", () => {
                 expect(useUpdateNotification).toHaveBeenCalled();
@@ -86,12 +86,12 @@ describe("notification show", () => {
                 expect(notificationItems[2]).toHaveTextContent("commented on your annotation");
             });
             test("displays correct format for mention in track comment", () => {
-                expect(notificationItems[0]).toHaveTextContent("mentioned you in a comment");
-                expect(notificationItems[0]).not.toHaveTextContent("for your annotation");
+                expect(notificationItems[1]).toHaveTextContent("mentioned you in a comment");
+                expect(notificationItems[1]).not.toHaveTextContent("for the annotation");
             });
             test("displays correct format for mention in annotation comment", () => {
-                expect(notificationItems[1]).toHaveTextContent("mentioned you in a comment");
-                expect(notificationItems[1]).toHaveTextContent("for the annotation");
+                expect(notificationItems[0]).toHaveTextContent("mentioned you in a comment");
+                expect(notificationItems[0]).toHaveTextContent("for the annotation");
             });
         });
     });

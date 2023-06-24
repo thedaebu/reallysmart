@@ -31,8 +31,9 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 html {
-   min-height: 100%;
-   width: 100%;
+    min-height: 100%;
+    width: 100%;
+    background-color: rgb(240, 240, 240);
 }
 body {
 	line-height: 1;
@@ -60,6 +61,9 @@ button:focus {
 }
 pre {
 	white-space: pre-wrap;
+}
+.app {
+	min-height: 100vh;
 }
 .app--dark {
 	min-height: 100vh;

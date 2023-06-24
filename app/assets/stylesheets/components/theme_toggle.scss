@@ -1,11 +1,11 @@
 .theme-toggle {
-    cursor: pointer;
     position: relative;
-    background: inherit;
     bottom: 4px;
+    transition: 0.2s;
     padding-bottom: 26px;
     margin-left: 14px;
-    transition: 0.2s;
+    background: inherit;
+    cursor: pointer;
     &:hover {
         border-bottom: 4px rgb(255, 0, 0) solid;
     }
