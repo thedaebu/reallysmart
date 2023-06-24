@@ -3,7 +3,7 @@ import { screen } from "@testing-library/react";
 import * as reactRedux from "react-redux";
 import * as trackActions from "../../../actions/track_actions";
 import { renderShowComponentWithoutUser, testShowStoreWithoutUser } from "../../test_store_data";
-import TrackShow from "../../../components/tracks/track_show";
+import TrackShow from "../../../components/tracks/TrackShow";
 
 const useMockDispatch = jest.spyOn(reactRedux, "useDispatch");
 const useMockEffect = jest.spyOn(React, "useEffect");
@@ -27,7 +27,7 @@ describe("track show", () => {
     });
     describe("track show header", () => {
         const track = testShowStoreWithoutUser.entities.track;
-        const header = screen.queryByTestId("track-show-header");
+        const header = screen.queryByTestId("track-header");
         test("contains the artist and title of the track", () => {
             expect(header).toHaveTextContent(track.artist);
             expect(header).toHaveTextContent(track.title);

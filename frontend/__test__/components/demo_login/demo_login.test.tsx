@@ -1,8 +1,8 @@
 import React from "react";
 import { cleanup, screen } from "@testing-library/react";
 import * as reactRedux from "react-redux";
-import { renderNonShowComponentWithoutUser, renderNonShowComponentWithUser } from "../../test_store_data";
 import actionCable, { Cable } from "actioncable";
+import { renderNonShowComponentWithoutUser, renderNonShowComponentWithUser } from "../../test_store_data";
 import App from "../../../components/app";
 
 const useMockDispatch = jest.spyOn(reactRedux, "useDispatch");

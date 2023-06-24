@@ -1,7 +1,7 @@
 import React from "react";
 import { cleanup, screen, within } from "@testing-library/react";
-import { renderNonShowComponentWithoutUser } from "../../test_store_data";
 import actionCable, { Cable } from "actioncable";
+import { renderNonShowComponentWithoutUser } from "../../test_store_data";
 import App from "../../../components/app";
 
 const cable: Cable = actionCable.createConsumer(`ws://${window.location.hostname}:3000/cable`);

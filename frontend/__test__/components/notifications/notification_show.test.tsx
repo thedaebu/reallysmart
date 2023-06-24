@@ -2,9 +2,9 @@ import React from "react";
 import { cleanup, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import * as reactRedux from "react-redux";
-import * as NotificationAPIUtil from "../../../util/api/notification_api_util";
-import { renderShowComponentWithoutUser, renderShowComponentWithUser } from "../../test_store_data";
 import actionCable, { Cable } from "actioncable";
+import { renderShowComponentWithoutUser, renderShowComponentWithUser } from "../../test_store_data";
+import * as NotificationAPIUtil from "../../../util/api/notification_api_util";
 import App from "../../../components/app";
 
 const useMockEffect = jest.spyOn(React, "useEffect");
@@ -65,7 +65,7 @@ describe("notification show", () => {
                 notificationIcon = screen.queryByTestId("notification-icon");
                 userEvent.click(notificationIcon);
                 notificationList = screen.queryByTestId("notification-list");
-                notificationItems = within(notificationList).queryAllByTestId("notification-list__item");
+                notificationItems = within(notificationList).queryAllByTestId("notification-item");
             });
             afterEach(() => {
                 cleanup();

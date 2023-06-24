@@ -5,7 +5,7 @@ import * as reactRedux from "react-redux";
 import { renderIndexComponent, testIndexStore } from "../../test_store_data";
 import * as trackActions from "../../../actions/track_actions";
 import { IndexTrack } from "../../../my_types";
-import TrackIndex from "../../../components/tracks/track_index";
+import TrackIndex from "../../../components/tracks/TrackIndex";
 
 const useMockDispatch = jest.spyOn(reactRedux, "useDispatch");
 const useMockEffect = jest.spyOn(React, "useEffect");
@@ -36,17 +36,17 @@ describe("track index", () => {
     test("fetchTracks is called", () => {
         expect(useFetchTracks).toHaveBeenCalled();
     });
-    describe("track index item", () => {
-        test("contains track index items", () => {
-            const trackIndexItems = screen.queryAllByTestId("track-index-item");
-            expect(trackIndexItems).toBeDefined();
-            const trackIndexItem = trackIndexItems;
+    describe("track item", () => {
+        test("contains track items", () => {
+            const trackItems = screen.queryAllByTestId("track-item");
+            expect(trackItems).toBeDefined();
+            const trackIndexItem = trackItems;
             expect(trackIndexItem.length).toBeGreaterThan(0);
         });
-        test("displays the artist and title for each track index item", () => {
+        test("displays the artist and title for each track item", () => {
             const trackIndexData: { [key:number]: IndexTrack } = testIndexStore.entities.indexTracks;
-            const trackIndexItems = screen.queryAllByTestId("track-index-item");
-            trackIndexItems.forEach((trackIndexItem, idx) => {
+            const trackItems = screen.queryAllByTestId("track-item");
+            trackItems.forEach((trackIndexItem, idx) => {
                 expect(trackIndexItem).toHaveTextContent(trackIndexData[idx+1].artist);
                 expect(trackIndexItem).toHaveTextContent(trackIndexData[idx+1].title);
             });
@@ -54,15 +54,15 @@ describe("track index", () => {
     });
     test("starts with five tracks and then shows the rest when the 'LOAD MORE' button is clicked", () => {
         const extendListButton = screen.queryByTestId("track-index__load-more");
-        let trackIndexItems = screen.queryAllByTestId("track-index-item");
-        expect(trackIndexItems.length).toBeLessThan(6);
+        let trackItems = screen.queryAllByTestId("track-item");
+        expect(trackItems.length).toBeLessThan(6);
 
         userEvent.click(extendListButton);
-        trackIndexItems = screen.queryAllByTestId("track-index-item");
-        expect(trackIndexItems.length).toBeGreaterThan(5);
+        trackItems = screen.queryAllByTestId("track-item");
+        expect(trackItems.length).toBeGreaterThan(5);
     });
     test("proceeds to correct url depending on which track is clicked", () => {
-        const firstTrackIndexItem = screen.queryAllByTestId("track-index-item")[0];
+        const firstTrackIndexItem = screen.queryAllByTestId("track-item")[0];
         userEvent.click(firstTrackIndexItem);
         const pathName = global.window.location.pathname;
         expect(pathName).toEqual("/tracks/niki__selene");

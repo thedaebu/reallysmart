@@ -3,7 +3,7 @@ import { cleanup, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import * as reactRedux from "react-redux";
 import { renderNonShowComponentWithoutUser, renderNonShowComponentWithUser } from "../../test_store_data";
-import SessionMenu from "../../../components/session_menu/session_menu";
+import SessionMenu from "../../../components/session_menu/SessionMenu";
 
 const useMockDispatch = jest.spyOn(reactRedux, "useDispatch");
 const useMockSelector = jest.spyOn(reactRedux, "useSelector");
