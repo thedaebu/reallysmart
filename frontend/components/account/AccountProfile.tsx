@@ -12,7 +12,7 @@ type TargetData = {
     };
 } & FormEvent<HTMLFormElement>;
 
-function AccountShowProfile({ username }: { username: string; }) {
+function AccountProfile({ username }: { username: string; }) {
     const dispatch: Dispatch<AnyAction> = useDispatch();
     const updateUser: Function = (updatedUser: UpdatedUser) => dispatch(SessionActions.updateUser(updatedUser));
 
@@ -93,10 +93,10 @@ function AccountShowProfile({ username }: { username: string; }) {
 
     function errorsDisplay(errors: Array<string>) {
         return (
-            <div className="account-show-profile__errors" data-testid="account-show-profile__errors">
-                <ul className="account-show-profile__errors-list">
+            <div className="account-profile__errors" data-testid="account-profile__errors">
+                <ul className="account-profile__errors-list">
                     {errors.map((error: string, idx: number) => (
-                        <li className="account-show-profile__error" key={idx}>{error}</li>
+                        <li className="account-profile__error" key={idx}>{error}</li>
                     ))}
                 </ul>
             </div>
@@ -107,100 +107,100 @@ function AccountShowProfile({ username }: { username: string; }) {
         <>
             <h1 className="account-show__h1">Profile Info</h1>
             <form
-                className="account-show-profile__form"
+                className="account-profile__form"
                 onSubmit={handleFormSubmit}
                 data-formname="updateUsername"
             >
-                <h2 className="account-show-profile__h2">Update Username</h2>
+                <h2 className="account-profile__h2">Update Username</h2>
                 {usernameErrors.length > 0 && errorsDisplay(usernameErrors)}
-                <label className="account-show-profile__label" htmlFor="account-show-profile__password">Password:</label>
+                <label className="account-profile__label" htmlFor="account-profile__password">Password:</label>
                 <input
-                    className="account-show-profile__input"
-                    id="account-show-profile__password"
+                    className="account-profile__input"
+                    id="account-profile__password"
                     onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
                     type="password"
                     value={password}
-                    data-testid="account-show-profile__password"
+                    data-testid="account-profile__password"
                 />
-                <label className="account-show-profile__label" htmlFor="account-show-profile__confirmed-password">Confirm Password:</label>
+                <label className="account-profile__label" htmlFor="account-profile__confirmed-password">Confirm Password:</label>
                 <input
-                    className="account-show-profile__input"
-                    id="account-show-profile__confirmed-password"
+                    className="account-profile__input"
+                    id="account-profile__confirmed-password"
                     onChange={(e: ChangeEvent<HTMLInputElement>) => setConfirmedPassword(e.target.value)}
                     type="password"
                     value={confirmedPassword}
-                    data-testid="account-show-profile__confirmed-password"
+                    data-testid="account-profile__confirmed-password"
                 />
-                <label className="account-show-profile__label" htmlFor="account-show-profile__new-username">New Username:</label>
+                <label className="account-profile__label" htmlFor="account-profile__new-username">New Username:</label>
                 <input
-                    className="account-show-profile__input"
-                    id="account-show-profile__new-username"
+                    className="account-profile__input"
+                    id="account-profile__new-username"
                     onChange={(e: ChangeEvent<HTMLInputElement>) => setNewUsername(e.target.value)}
                     type="text"
                     value={newUsername}
-                    data-testid="account-show-profile__new-username"
+                    data-testid="account-profile__new-username"
                 />
                 <input
-                    className="account-show-profile__submit"
-                    id="account-show-profile__username-submit"
+                    className="account-profile__submit"
+                    id="account-profile__username-submit"
                     type="submit"
                     value="Update"
-                    data-testid="account-show-profile__username-submit"
+                    data-testid="account-profile__username-submit"
                 />
             </form>
             <form
-                className="account-show-profile__form"
+                className="account-profile__form"
                 onSubmit={handleFormSubmit}
                 data-formname="updatePassword"
             >
-                <h2 className="account-show-profile__h2">Update Password</h2>
+                <h2 className="account-profile__h2">Update Password</h2>
                 {passwordErrors.length > 0 && errorsDisplay(passwordErrors)}
-                <label className="account-show-profile__label" htmlFor="account-show-profile__old-password">Old Password:</label>
+                <label className="account-profile__label" htmlFor="account-profile__old-password">Old Password:</label>
                 <input
-                    className="account-show-profile__input"
-                    id="account-show-profile__old-password"
+                    className="account-profile__input"
+                    id="account-profile__old-password"
                     onChange={(e: ChangeEvent<HTMLInputElement>) => setOldPassword(e.target.value)}
                     type="password"
                     value={oldPassword}
-                    data-testid="account-show-profile__old-password"
+                    data-testid="account-profile__old-password"
                 />
-                <label className="account-show-profile__label" htmlFor="account-show-profile__confirmed-old-password">Confirm Old Password:</label>
+                <label className="account-profile__label" htmlFor="account-profile__confirmed-old-password">Confirm Old Password:</label>
                 <input
-                    className="account-show-profile__input"
-                    id="account-show-profile__confirmed-old-password"
+                    className="account-profile__input"
+                    id="account-profile__confirmed-old-password"
                     onChange={(e: ChangeEvent<HTMLInputElement>) => setConfirmedOldPassword(e.target.value)}
                     type="password"
                     value={confirmedOldPassword}
-                    data-testid="account-show-profile__confirmed-old-password"
+                    data-testid="account-profile__confirmed-old-password"
                 />
-                <label className="account-show-profile__label" htmlFor="account-show-profile__new-password">New Password:</label>
+                <label className="account-profile__label" htmlFor="account-profile__new-password">New Password:</label>
                 <input
-                    className="account-show-profile__input"
-                    id="account-show-profile__new-password"
+                    className="account-profile__input"
+                    id="account-profile__new-password"
                     onChange={(e: ChangeEvent<HTMLInputElement>) => setNewPassword(e.target.value)}
                     type="password"
                     value={newPassword}
-                    data-testid="account-show-profile__new-password"
+                    data-testid="account-profile__new-password"
                 />
-                <label className="account-show-profile__label" htmlFor="account-show-profile__confirmed-new-password">Confirm New Password:</label>
+                <label className="account-profile__label" htmlFor="account-profile__confirmed-new-password">Confirm New Password:</label>
                 <input
-                    className="account-show-profile__input"
-                    id="account-show-profile__confirmed-new-password"
+                    className="account-profile__input"
+                    id="account-profile__confirmed-new-password"
                     onChange={(e: ChangeEvent<HTMLInputElement>) => setConfirmedNewPassword(e.target.value)}
                     type="password"
                     value={confirmedNewPassword}
-                    data-testid="account-show-profile__confirmed-new-password"
+                    data-testid="account-profile__confirmed-new-password"
                 />
                 <input
-                    className="account-show-profile__submit"
-                    id="account-show-profile__password-submit"
+                    className="account-profile__submit"
+                    id="account-profile__password-submit"
                     type="submit"
                     value="Update"
-                    data-testid="account-show-profile__password-submit"
+                    data-testid="account-profile__password-submit"
                 />
             </form>
         </>
     );
 }
 
-export default AccountShowProfile;
+export default AccountProfile;

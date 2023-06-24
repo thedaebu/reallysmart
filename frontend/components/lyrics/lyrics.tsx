@@ -1,9 +1,9 @@
 import React, { MouseEvent, useState, useEffect, useContext } from "react";
 import { useSelector } from "react-redux";
-import { ThemeContext } from "../../contexts/theme_context";
 import { Annotation, State, Track, Window } from "../../my_types";
-import AnnotationShow from "../annotations/annotation_show";
-import CommentShow from "../comments/comment_show";
+import { ThemeContext } from "../../contexts/theme_context";
+import AnnotationShow from "../annotations/AnnotationShow";
+import CommentShow from "../comments/CommentShow";
 
 declare const window: Window;
 type Highlighted = {
@@ -21,7 +21,7 @@ type HighlightedNode = {
     };
 };
 
-function LyricsShow({ track }: { track: Track }) {
+function Lyrics({ track }: { track: Track }) {
     const { lyrics, title } = track;
 
     const annotations: {[key: number]: Annotation} = useSelector((state: State) => state.entities.annotations);
@@ -67,19 +67,19 @@ function LyricsShow({ track }: { track: Track }) {
             const currentAnnotatedLyrics: Array<JSX.Element> = [];
             let currentIndex: number = 0;
             sortedAnnotations.forEach((annotation: Annotation, idx: number) => {
-                const addIndex: number = idx === 0
-                    ? 0
-                    : sortedAnnotations[idx-1].end_index;
+                const addIndex: number = idx === 0 ?
+                    0 :
+                    sortedAnnotations[idx-1].end_index;
                 const startIndex: number = annotation.start_index;
                 const endIndex: number = annotation.end_index;
                 if (currentIndex === startIndex) {
                     currentAnnotatedLyrics.push(
                         <span
-                            className="lyrics__is-annotation"
-                            key={`is-anno-${annotation.id}`}
+                            className="lyrics-text__body--annotated"
+                            key={`annotated-${annotation.id}`}
                             onClick={() => setSelectedAnnotation(annotation)}
-                            data-name={`is-anno-${annotation.id}`}
-                            data-testid="lyrics__is-annotation"
+                            data-name={`annotated-${annotation.id}`}
+                            data-testid="lyrics-text__body--annotated"
                         >
                             {lyrics.slice(currentIndex, endIndex + 1)}
                         </span>
@@ -87,22 +87,22 @@ function LyricsShow({ track }: { track: Track }) {
                 } else {
                     currentAnnotatedLyrics.push(
                         <span
-                            className="lyrics__not-annotation"
-                            key={`not-anno-${idx}`}
+                            className="lyrics-text__body--not-annotated"
+                            key={`not-annotated${idx}`}
                             data-add={addIndex}
-                            data-name={`not-anno-${idx}`}
-                            data-testid="lyrics__not-annotation"
+                            data-name={`not-annotated${idx}`}
+                            data-testid="lyrics-text__body--not-annotated"
                         >
                             {lyrics.slice(currentIndex, startIndex)}
                         </span>
                     );
                     currentAnnotatedLyrics.push(
                         <span
-                            className="lyrics__is-annotation"
-                            key={`is-anno-${annotation.id}`}
+                            className="lyrics-text__body--annotated"
+                            key={`annotated-${annotation.id}`}
                             onClick={() => setSelectedAnnotation(annotation)}
-                            data-name={`is-anno-${annotation.id}`}
-                            data-testid="lyrics__is-annotation"
+                            data-name={`annotated-${annotation.id}`}
+                            data-testid="lyrics-text__body--annotated"
                         >
                             {lyrics.slice(startIndex, endIndex + 1)}
                         </span>
@@ -111,11 +111,11 @@ function LyricsShow({ track }: { track: Track }) {
                 if (idx === sortedAnnotations.length - 1) {
                     currentAnnotatedLyrics.push(
                         <span
-                            className="lyrics__not-annotation"
-                            key={`not-anno-${idx + 1}`}
+                            className="lyrics-text__body--not-annotated"
+                            key={`not-annotated${idx + 1}`}
                             data-add={endIndex}
-                            data-name={`not-anno-${idx + 1}`}
-                            data-testid="lyrics__not-annotation"
+                            data-name={`not-annotated${idx + 1}`}
+                            data-testid="lyrics-text__body--not-annotated"
                         >
                             {lyrics.slice(endIndex + 1, lyrics.length + 1)}
                         </span>
@@ -123,17 +123,17 @@ function LyricsShow({ track }: { track: Track }) {
                 }
                 currentIndex = endIndex + 1;
             });
-            
+
             setAnnotatedLyrics(currentAnnotatedLyrics);
         } else {
             setAnnotatedLyrics([
                 <span
-                    className="lyrics__not-annotation"
-                    key="not-anno-0"
+                    className="lyrics-text__body--not-annotated"
+                    key="not-annotated0"
                     onMouseUp={handleTextSelect}
                     data-add="0"
-                    data-name={"not-anno-0"}
-                    data-testid="lyrics__not-annotation"
+                    data-name={"not-annotated0"}
+                    data-testid="lyrics-text__body--not-annotated"
                 >
                     {lyrics}
                 </span>
@@ -142,7 +142,7 @@ function LyricsShow({ track }: { track: Track }) {
     }
 
     function handleSelectedAnnotation(annotation: Annotation) {
-        const name = `is-anno-${annotation.id}`
+        const name = `annotated-${annotation.id}`
         let currentLyrics: JSX.Element;
         let currentIndex: number;
         for (let i = 0; i < annotatedLyrics.length; i++) {
@@ -154,9 +154,9 @@ function LyricsShow({ track }: { track: Track }) {
             }
         }
         const element: JSX.Element = <span
-            className="lyrics__highlighted"
+            className="lyrics-text__body--highlighted"
             key="highlighted_1"
-            data-testid="lyrics__highlighted"
+            data-testid="lyrics-text__body--highlighted"
         >
             {currentLyrics}
         </span>;
@@ -215,27 +215,27 @@ function LyricsShow({ track }: { track: Track }) {
         const currentSectionLyrics: string = currentSection.props.children;
         currentSectionWithHighlight.push(
             <span
-                className="lyrics__not-annotation"
+                className="lyrics-text__body--not-annotated"
                 key="highlighted_0"
-                data-testid="lyrics__unhighlighted"
+                data-testid="lyrics-text__body--unhighlighted"
             >
                 {currentSectionLyrics.slice(0, start - add - 1)}
             </span>
         );
         currentSectionWithHighlight.push(
             <span
-                className="lyrics__highlighted"
+                className="lyrics-text__body--highlighted"
                 key="highlighted_1"
-                data-testid="lyrics__highlighted"
+                data-testid="lyrics-text__body--highlighted"
             >
                 {currentSectionLyrics.slice(start - add - 1, end - add)}
             </span>
         );
         currentSectionWithHighlight.push(
             <span
-                className="lyrics__not-annotation"
+                className="lyrics-text__body--not-annotated"
                 key="highlighted_2"
-                data-testid="lyrics__unhighlighted"
+                data-testid="lyrics-text__body--unhighlighted"
             >
                 {currentSectionLyrics.slice(end - add)}
             </span>
@@ -261,26 +261,21 @@ function LyricsShow({ track }: { track: Track }) {
     }
 
     return (
-        <div
-            className={theme === "light"
-                ? "lyrics__shade"
-                : "lyrics__shade--dark"
-            }
-        >
+        <div className={theme === "light" ?
+            "lyrics__shade" :
+            "lyrics__shade--dark"
+        }>
             <div className="lyrics__main" data-testid="lyrics__main">
                 <section
-                    className="lyrics__text"
+                    className="lyrics-text"
                     onMouseDown={handleTextDeselect}
                     onMouseUp={handleTextSelect}
                 >
-                    {title && <p className="lyrics__top">{title.toUpperCase()} LYRICS</p>}
-                    <pre className="lyrics__body" data-testid="lyrics__body">
+                    {title && <p className="lyrics-text__top">{title.toUpperCase()} LYRICS</p>}
+                    <pre className="lyrics-text__body" data-testid="lyrics-text__body">
                         {annotatedLyrics}
                     </pre>
-                    <CommentShow
-                        commentableType="Track"
-                        parent={track}
-                    />
+                    <CommentShow commentableType="Track" parent={track}/>
                 </section>
                 <div className="lyrics__right">
                     <AnnotationShow
@@ -301,4 +296,4 @@ function LyricsShow({ track }: { track: Track }) {
     );
 }
 
-export default LyricsShow;
+export default Lyrics;

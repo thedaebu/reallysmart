@@ -1,18 +1,18 @@
 import React, { Dispatch, useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AnyAction } from "@reduxjs/toolkit";
-import * as AccountActions from "../../actions/account_actions";
 import { ThemeContext } from "../../contexts/theme_context";
-import Navbar from "../navbar/navbar";
-import AccountShowHeader from "./account_show_header";
-import AccountShowProfile from "./account_show_profile";
-import AccountShowAnnotations from "./account_show_annotations";
-import AccountShowComments from "./account_show_comments";
 import { Account, State, User } from "../../my_types";
+import * as AccountActions from "../../actions/account_actions";
+import AccountAnnotations from "./AccountAnnotations";
+import AccountComments from "./AccountComments";
+import AccountHeader from "./AccountHeader";
+import AccountProfile from "./AccountProfile";
+import Navbar from "../navbar/Navbar";
 
 function AccountShow() {
-    const currentUser: User = useSelector((state: State) => state.entities.user);
     const account: Account = useSelector((state: State) => state.entities.account);
+    const currentUser: User = useSelector((state: State) => state.entities.user);
     const { id, username } = currentUser;
     const { annotations, comments } = account;
 
@@ -34,27 +34,27 @@ function AccountShow() {
     function accountShowDisplay() {
         switch (currentTab) {
             case "Profile":
-                return <AccountShowProfile username={username} />;
+                return <AccountProfile username={username} />;
             case "Annotations":
-                return <AccountShowAnnotations annotations={annotations} />;
+                return <AccountAnnotations annotations={annotations} />;
             case "Comments":
-                return <AccountShowComments comments={comments} />;
+                return <AccountComments comments={comments} />;
         }
     }
 
     return (
         <>
             <Navbar />
-            <AccountShowHeader
+            <AccountHeader
                 currentTab={currentTab}
                 handleCurrentTab={handleCurrentTab}
                 username={username}
             />
-            <div className={theme === "light"
-                ? "account-show__shade"
-                : "account-show__shade--dark"
+            <div className={theme === "light" ?
+                "account-show__shade" :
+                "account-show__shade--dark"
             }>
-                <div className="account-show__main" data-testid="account-show__main">
+                <div className="account-show__display" data-testid="account-show__display">
                     {accountShowDisplay()}
                 </div>
             </div>

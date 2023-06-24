@@ -1,10 +1,10 @@
 import React, { ChangeEvent, Dispatch, MouseEvent, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import * as CommentActions from "../../actions/comment_actions";
 import { AnyAction } from "@reduxjs/toolkit";
 import { Annotation, Comment, CommentAction, State, Track, UpdatedComment, User } from "../../my_types";
+import * as CommentActions from "../../actions/comment_actions";
+import VoteShow from "../votes/VoteShow";
 import { AiOutlineLeft } from "react-icons/ai";
-import VoteShow from "../votes/vote_show";
 
 type Props = {
     comment: Comment;
@@ -12,7 +12,7 @@ type Props = {
     parent: Annotation | Track;
 };
 
-function CommentShowItem(props: Props) {
+function CommentItem(props: Props) {
     const { comment, commentableType, parent } = props;
     const currentUser: User = useSelector((state: State) => state.entities.user);
 
@@ -60,44 +60,40 @@ function CommentShowItem(props: Props) {
     }
 
     function updatebuttons() {
-        if (!deleteStatus) {
-            return (
-                <section className="comment-show-item__buttons">
-                    <button
-                        className="comment-show-item__button"
-                        onClick={handleUpdateStatus}
-                        data-testid="comment-show-item__edit"
-                    >
-                        Edit
-                    </button>
-                    <button
-                        className="comment-show-item__button"
-                        onClick={handleDeleteStatus}
-                        data-testid="comment-show-item__delete"
-                    >
-                        Delete
-                    </button>
-                </section>
-            );
-        } else {
-            return (
-                <section className="comment-show-item__buttons" data-testid="comment-show-item__buttons">
-                    <p className="comment-show-item__question">
-                        Are you sure?
-                    </p>
-                    <button className="comment-show-item__button" onClick={handleDeleteSubmit}>
-                        Yes
-                    </button>
-                    <button 
-                        className="comment-show-item__button"
-                        onClick={handleDeleteStatus}
-                        data-testid="comment-show-item__delete"
-                    >
-                        No
-                    </button>
-                </section>
-            );
-        }
+        return !deleteStatus ? (
+            <section className="comment-item__buttons">
+                <button
+                    className="comment-item__button"
+                    onClick={handleUpdateStatus}
+                    data-testid="comment-item__edit"
+                >
+                    Edit
+                </button>
+                <button
+                    className="comment-item__button"
+                    onClick={handleDeleteStatus}
+                    data-testid="comment-item__delete"
+                >
+                    Delete
+                </button>
+            </section>
+        ) : (
+            <section className="comment-item__buttons" data-testid="comment-item__buttons">
+                <p className="comment-item__question">
+                    Are you sure?
+                </p>
+                <button className="comment-item__button" onClick={handleDeleteSubmit}>
+                    Yes
+                </button>
+                <button 
+                    className="comment-item__button"
+                    onClick={handleDeleteStatus}
+                    data-testid="comment-item__delete"
+                >
+                    No
+                </button>
+            </section>
+        );
     }
 
     function handleUpdateStatus(e: MouseEvent<HTMLButtonElement>) {
@@ -111,28 +107,28 @@ function CommentShowItem(props: Props) {
     function updateForm() {
         return (
             <form
-                className="comment-show-form"
+                className="comment-form"
                 onSubmit={handleUpdateSubmit}
-                data-testid="comment-show-form"
+                data-testid="comment-form"
             >
                 <textarea
-                    className={commentableType === "Track" 
-                        ? "comment-show-form__track-text"
-                        : "comment-show-form__annotation-text"
+                    className={commentableType === "Track" ?
+                        "comment-form__body--track" :
+                        "comment-form__body--annotation"
                     }
                     onChange={handleBodyChange()}
                     value={body}
-                    data-testid="comment-show-form__text"
+                    data-testid="comment-form__body"
                 />
                 {errors.length > 0 && errorsDisplay()}
-                <section className="comment-show-form__buttons">
-                    <button className="comment-show-form__submit">
+                <section className="comment-form__buttons">
+                    <button className="comment-form__submit">
                         <p>Save</p>
                     </button>
                     <button
-                        className="comment-show-form__cancel"
+                        className="comment-form__cancel"
                         onClick={handleUpdateStatus}
-                        data-testid="comment-show-form__cancel"
+                        data-testid="comment-form__cancel"
                     >
                         <p>Cancel</p>
                     </button>
@@ -192,35 +188,34 @@ function CommentShowItem(props: Props) {
     return (
         <>
             <li 
-                className={commentableType === "Track" 
-                    ? "comment-show-item--track"
-                    : "comment-show-item--annotation"
+                className={commentableType === "Track" ?
+                    "comment-item--track" :
+                    "comment-item--annotation"
                 }
             >
-                {updateStatus 
-                    ? updateForm()
-                    : (
-                        <div data-testid="comment-show-item">
-                            <div className="comment-show-item__top">
-                                <div>
-                                    <img className="comment-show-item__baby" src="https://assets.genius.com/images/default_avatar_100.png" alt="Baby" />
-                                    <p className="comment-show-item__commenter">{comment.commenter_name}</p>
-                                </div>
-                                <div className="comment-show-item__time">
-                                    {timeDisplay()}
-                                    <p className="comment-show-item__time--tooltip">{dateDisplay(comment.created_at)}</p>
-                                </div>
+                {updateStatus ? (
+                    updateForm()
+                ) : (
+                    <div data-testid="comment-item">
+                        <div className="comment-item__top">
+                            <div>
+                                <img className="comment-item__baby" src="https://assets.genius.com/images/default_avatar_100.png" alt="Baby" />
+                                <p className="comment-item__commenter">{comment.commenter_name}</p>
                             </div>
-                            <p className="comment-show-item__body">{comment.body}</p>
-                            {comment.created_at !== comment.updated_at && <time className="comment-show-item__edited">edited: {`${dateDisplay(comment.updated_at)}`}</time>}
-                            <VoteShow parent={comment} voteableType="Comment" />
-                            {(currentUser && currentUser.id === comment.commenter_id) && updatebuttons()}
+                            <div className="comment-item__time">
+                                {timeDisplay()}
+                                <p className="comment-item__time--tooltip">{dateDisplay(comment.created_at)}</p>
+                            </div>
                         </div>
-                    )
-                }
+                        <p className="comment-item__body">{comment.body}</p>
+                        {comment.created_at !== comment.updated_at && <time className="comment-item__edited">edited: {`${dateDisplay(comment.updated_at)}`}</time>}
+                        <VoteShow parent={comment} voteableType="Comment" />
+                        {(currentUser && currentUser.id === comment.commenter_id) && updatebuttons()}
+                    </div>
+                )}
             </li>
         </>
     );
 }
 
-export default CommentShowItem;
+export default CommentItem;

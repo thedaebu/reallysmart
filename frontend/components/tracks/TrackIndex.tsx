@@ -1,11 +1,11 @@
 import React, { Dispatch, MouseEvent, useState, useEffect, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ThemeContext } from "../../contexts/theme_context";
-import * as TrackActions from "../../actions/track_actions";
 import { AnyAction } from "@reduxjs/toolkit";
 import { IndexTrack, State, Window } from "../../my_types";
-import Navbar from "../navbar/navbar";
-import MemoizedTrackIndexItem, { TrackIndexItem } from "./track_index_item";
+import { ThemeContext } from "../../contexts/theme_context";
+import * as TrackActions from "../../actions/track_actions";
+import MemoizedTrackItem, { TrackItem } from "./TrackItem";
+import Navbar from "../navbar/Navbar";
 
 declare const window: Window;
 
@@ -16,7 +16,7 @@ function TrackIndex() {
     const fetchTracks: Function = () => dispatch(TrackActions.fetchTracks());
 
     const [indexCount, setIndexCount] = useState<number>(5);
-    const [indexTracks, setIndexTracks] = useState<Array<TrackIndexItem>>([]);
+    const [indexTracks, setIndexTracks] = useState<Array<TrackItem>>([]);
 
     const { theme } = useContext(ThemeContext);
 
@@ -28,10 +28,10 @@ function TrackIndex() {
 
     useEffect(() => {
         setIndexTracks(tracks.map((track: IndexTrack, idx: number) => (
-            <MemoizedTrackIndexItem
+            <MemoizedTrackItem
                 listNumber={idx+1}
                 track={track}
-                key={idx+1}
+                key={track.id}
             />
         )));
     }, [tracks.length]);
@@ -84,21 +84,21 @@ function TrackIndex() {
         <>
             <Navbar />
             <div 
-                className={theme === "light"
-                    ? "track-index"
-                    : "track-index--dark"
+                className={theme === "light" ?
+                    "track-index" :
+                    "track-index--dark"
                 }
             >
                 <h1 className="track-index__h1">CHARTS</h1>
                 <h2 className="track-index__h2">REALLY POPULAR ON REALLY SMART</h2>
-                <ul className="track-index__items">
+                <ul className="track-items">
                     {indexTracks.length && trackIndexItems()}
                 </ul>
             </div>
             <div 
-                className={theme === "light"
-                    ? "track-index__bottom"
-                    : "track-index__bottom--dark"
+                className={theme === "light" ?
+                    "track-index__bottom" :
+                    "track-index__bottom--dark"
                 }
             >
                 {extendIndexCountButton()}

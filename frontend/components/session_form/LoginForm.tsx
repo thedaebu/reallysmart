@@ -1,15 +1,15 @@
 import React, { ChangeEvent, Dispatch, FormEvent, useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import * as SessionActions from "../../actions/session_actions";
 import { AnyAction } from "@reduxjs/toolkit";
 import { SessionAction, SessionUser, Window } from "../../my_types";
+import * as SessionActions from "../../actions/session_actions";
 
 declare const window: Window;
 
-function SignupForm() {
+function LoginForm() {
     const dispatch: Dispatch<AnyAction> = useDispatch();
-    const signup: Function = (sessionUser: SessionUser) => dispatch(SessionActions.signup(sessionUser));
+    const login: Function = (sessionUser: SessionUser) => dispatch(SessionActions.login(sessionUser));
 
     const [password, setPassword] = useState<string>("");
     const [sessionErrors, setSessionErrors] = useState<Array<string>>([]);
@@ -20,14 +20,14 @@ function SignupForm() {
         window.scrollTo(0, 0);
     }, []);
 
-    function handleSignupSubmit(e: FormEvent<HTMLFormElement>) {
+    function handleLoginSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
 
         const user: SessionUser = {
             password: password,
             username: username
         };
-        signup(user)
+        login(user)
             .then((result: SessionAction) => {
                 if (result.type === "RECEIVE_SESSION_ERRORS") {
                     setSessionErrors(result.errors);
@@ -38,8 +38,8 @@ function SignupForm() {
     function errorsDisplay() {
         return (
             <div className="session-form__errors">
-                <h2 className="session-form__errors--header">Ruh-roh!</h2>
-                <p className="session-form__errors--caption">Something is wrong</p>
+                <h2 className="session-form__errors__header">Ruh-roh!</h2>
+                <p className="session-form__errors__caption">Something is wrong</p>
                 <ul className="session-form__errors-list">
                     {sessionErrors.map((sessionError: string, idx: number) => (
                         <li key={idx}>{sessionError}</li>
@@ -51,9 +51,8 @@ function SignupForm() {
 
     return (
         <div className="session-form">
-            <h1 className="session-form__signup--h1">SIGN UP</h1>
-            <h2 className="session-form__signup--h2">and show off your really smartness</h2>
-            <form className="session-form__form" onSubmit={handleSignupSubmit}>
+            <h1 className="session-form__login-h1">Log In</h1>
+            <form className="session-form__form" onSubmit={handleLoginSubmit}>
                 {sessionErrors.length > 0 && errorsDisplay()}
                 <label className="session-form__label" htmlFor="session-form__username">Really Smart Nickname
                     <input
@@ -65,6 +64,9 @@ function SignupForm() {
                     />
                 </label>
                 <label className="session-form__label" htmlFor="session-form__password">Really Smart Password
+                    <a className="session-form__forgot-password" href="">
+                        (I forgot my password)
+                    </a>
                     <input
                         id="session-form__password"
                         onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
@@ -73,20 +75,17 @@ function SignupForm() {
                         data-testid="session-form__password"
                     />
                 </label>
-                <p className="session-form__tos">
-                    By clicking “Create Account”, you are indicating that you have read and agree to the <a href="">Terms of Service</a>.
-                </p>
                 <input 
                     id="session-form__submit"
                     type="submit"
-                    value="Create Account"
+                    value="Login"
                 />
             </form>
             <p className="session-form__bottom">
-                Already have an account? <Link to="/login" data-testid="login-form-button">Log in here.</Link>
+                Don't have an account? <Link to="/signup" data-testid="signup-form__button">Sign up here.</Link>
             </p>
         </div>
     );
 }
 
-export default SignupForm;
+export default LoginForm;

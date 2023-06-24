@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { RiCheckboxIndeterminateFill } from "react-icons/ri"
-import * as NotificationAPIUtil from "../../util/api/notification_api_util";
 import { Notification, UpdatedNotification } from "../../my_types";
+import * as NotificationAPIUtil from "../../util/api/notification_api_util";
+import { RiCheckboxIndeterminateFill } from "react-icons/ri"
 
 type Props = {
     changeOpenStatus: Function;
@@ -35,36 +35,36 @@ function NotificationList(props: Props) {
     function notificationItem(notification: Notification) {
         const { body, created_at, track, type } = notification;
         const { artist, title } = track;
-        const name: string = type === "AnnotationAlert"
-            ? notification.commenter_name
-            : notification.mentioner_name;
+        const name: string = type === "AnnotationAlert" ?
+            notification.commenter_name :
+            notification.mentioner_name;
 
         switch (type) {
             case "AnnotationAlert":
                 return (
                     <Link to={`/tracks/${urlify(artist)}__${urlify(title)}`}>
-                        <span className="notification-list__item-highlighted">{`${name} `}</span>
-                        <span className="notification-list__item-regular">commented on your annotation</span>
-                        <span className="notification-list__item-highlighted">{` '${(notificationify(body))}' `}</span>
-                        <span className="notification-list__item-regular">for</span>
-                        <span className="notification-list__item-highlighted">{` ${artist} - ${title}`}</span>
-                        <time className="notification-list__item-date">{` - ${dateDisplay(created_at)}`}</time>
+                        <span className="notification-item__highlighted">{`${name} `}</span>
+                        <span className="notification-item__regular">commented on your annotation</span>
+                        <span className="notification-item__highlighted">{` '${(notificationify(body))}' `}</span>
+                        <span className="notification-item__regular">for</span>
+                        <span className="notification-item__highlighted">{` ${artist} - ${title}`}</span>
+                        <time className="notification-item__date">{` - ${dateDisplay(created_at)}`}</time>
                     </Link>
                 );
             case "Mention":
                 const { commentable_type } = notification;
                 return (
                     <Link to={`/tracks/${urlify(artist)}__${urlify(title)}`}>
-                        <span className="notification-list__item-highlighted">{`${name} `}</span>
-                        <span className="notification-list__item-regular">mentioned you in a comment</span>
+                        <span className="notification-item__highlighted">{`${name} `}</span>
+                        <span className="notification-item__regular">mentioned you in a comment</span>
                         {commentable_type === "Annotation" &&
-                            <span className="notification-list__item-regular">
-                                {' for the annotation '}<span className="notification-list__item-highlighted">{`'${(notificationify(body))}' `}</span>
+                            <span className="notification-item__regular">
+                                {' for the annotation '}<span className="notification-item__highlighted">{`'${(notificationify(body))}' `}</span>
                             </span>
                         }
-                        <span className="notification-list__item-regular">{" for"}</span>
-                        <span className="notification-list__item-highlighted">{` ${artist} - ${title}`}</span>
-                        <time className="notification-list__item-date">{` - ${dateDisplay(created_at)}`}</time>
+                        <span className="notification-item__regular">{" for"}</span>
+                        <span className="notification-item__highlighted">{` ${artist} - ${title}`}</span>
+                        <time className="notification-item__date">{` - ${dateDisplay(created_at)}`}</time>
                     </Link>
                 );
         }
@@ -75,11 +75,9 @@ function NotificationList(props: Props) {
     }
 
     function notificationify(body: string) {
-        return (
-            body.length > 30
-                ? `${body.slice(0,27)}...`
-                : body
-        );
+        return body.length > 30 ?
+            `${body.slice(0,27)}...` :
+            body;
     }
 
     function dateDisplay(dateTime: string) {
@@ -94,20 +92,20 @@ function NotificationList(props: Props) {
     return (
         <div className="notification-list" data-testid="notification-list">
             <div className="notification-list__top">
-                <p className="notification-list__top-notifications">NOTIFICATIONS</p>
+                <p className="notification-list__top__notifications">NOTIFICATIONS</p>
                 <RiCheckboxIndeterminateFill 
-                    className="notification-list__top-exit"
+                    className="notification-list__top__exit"
                     size={16}
                     onClick={() => changeOpenStatus()}
                 />
             </div>
-            <ul>
+            <ul className="notification-items">
                 {notifications.map((notification: Notification, idx: number) => {
                     return (
                         <li
-                            className="notification-list__item"
+                            className="notification-item"
                             key={idx}
-                            data-testid="notification-list__item"
+                            data-testid="notification-item"
                         >
                             {notificationItem(notification)}
                         </li>

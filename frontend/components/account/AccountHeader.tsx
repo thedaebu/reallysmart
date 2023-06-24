@@ -6,7 +6,7 @@ type Props = {
     username: string;
 };
 
-function AccountShowHeader(props: Props) {
+function AccountHeader(props: Props) {
     const { currentTab, handleCurrentTab, username } = props;
 
     const [tabItems, setTabItems] = useState<Array<JSX.Element>>([]);
@@ -19,13 +19,13 @@ function AccountShowHeader(props: Props) {
         const tabNames: Array<string> = ["Profile", "Annotations", "Comments"];
         const tabList: Array<JSX.Element> = tabNames.map((tabName: string, idx: number) => (
             <li
-                className={currentTab === tabName
-                    ? "account-tabdisplay-item__highlighted"
-                    : "account-tabdisplay-item"
+                className={currentTab === tabName ?
+                    "account-header__tablist-item--highlighted" :
+                    "account-header__tablist-item"
                 }
                 onClick={() => handleCurrentTab(tabName)}
                 key={idx}
-                data-testid={`account-tabdisplay-item__${tabName}`}
+                data-testid={`account-header__tablist-item--${tabName}`}
             >
                 {tabName}
             </li>
@@ -35,28 +35,25 @@ function AccountShowHeader(props: Props) {
 
     return (
         <div
-            className="account-show-header__background" 
+            className="account-header__background" 
             style={{
                 backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("https://assets.genius.com/images/default_avatar_300.png?1684337696")`
             }}
-            data-testid="account-show-header"
+            data-testid="account-header"
         >
-            <div className="account-show-header__shade">
-                <div>
-                    <section className="account-show-header__left">
+            <div className="account-header__shade">
+                <div className="account-header__display">
+                    <section className="account-header__left">
                         <div
-                            className="account-show-header__image"
+                            className="account-header__image"
                             style={{
                                 backgroundImage: `url("https://assets.genius.com/images/default_avatar_300.png?1684337696")`
                             }}
                         >
                         </div>
-                        <div className="account-show-header__text">
-                            <p className="account-show-header__username">{username}</p>
-
-                        </div>
+                        <p className="account-header__username">{username}</p>
                     </section>
-                    <ul className="account-tabdisplay">
+                    <ul className="account-header__tablist">
                         {tabItems}
                     </ul>
                 </div>
@@ -65,4 +62,4 @@ function AccountShowHeader(props: Props) {
     );
 }
 
-export default AccountShowHeader;
+export default AccountHeader;

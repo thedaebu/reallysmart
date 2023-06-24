@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Notification, State, User } from "../../my_types";
-import { BiEnvelope } from "react-icons/bi";
-import NotificationList from "./notification_list";
 import { useLocation } from "react-router-dom";
+import { Notification, State, User } from "../../my_types";
+import NotificationList from "./NotificationList";
+import { BiEnvelope } from "react-icons/bi";
 
 function NotificationShow({ cableApp }: { cableApp: any }) {
     const currentUser: User = useSelector((state:State) => state.entities.user);
@@ -53,9 +53,9 @@ function NotificationShow({ cableApp }: { cableApp: any }) {
     return (
         <>
             <BiEnvelope
-                className={readStatus === false
-                    ? "notification-icon__unread"
-                    : "notification-icon__read"
+                className={readStatus === false ?
+                    "notification-icon__unread" :
+                    "notification-icon__read"
                 }
                 size={16}
                 onClick={changeOpenStatus}

@@ -1,11 +1,11 @@
 import React, { Dispatch, MouseEvent, useEffect, useState } from "react";
-import { RiThumbUpLine } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
+import { AnyAction } from "@reduxjs/toolkit";
+import { Annotation, Comment, CreatedVote, State, User, Vote } from "../../my_types";
 import * as AnnotationActions from "../../actions/annotation_actions";
 import * as CommentActions from "../../actions/comment_actions";
 import * as VoteAPIUtil from "../../util/api/vote_api_util";
-import { AnyAction } from "@reduxjs/toolkit";
-import { Annotation, Comment, CreatedVote, State, User, Vote } from "../../my_types";
+import { RiThumbUpLine } from "react-icons/ri";
 
 function VoteShow({ parent, voteableType }: { parent: Annotation | Comment, voteableType: "Annotation" | "Comment" }) {
     const currentUser: User = useSelector((state: State) => state.entities.user);
@@ -30,23 +30,19 @@ function VoteShow({ parent, voteableType }: { parent: Annotation | Comment, vote
     }, [currentUser, votes]);
 
     function voteThumb() {
-        if (currentUserVote) {
-            return (
-                <RiThumbUpLine
-                    className="vote-show__voted"
-                    onClick={handleUpdate}
-                    data-testid="vote-show__voted"
-                />
-            );
-        } else {
-            return (
-                <RiThumbUpLine
-                    className="vote-show__not-voted"
-                    onClick={handleUpdate}
-                    data-testid="vote-show__not-voted"
-                />
-            );
-        } 
+        return currentUserVote ? (
+            <RiThumbUpLine
+                className="vote-show__voted"
+                onClick={handleUpdate}
+                data-testid="vote-show__voted"
+            />
+        ) : (
+            <RiThumbUpLine
+                className="vote-show__not-voted"
+                onClick={handleUpdate}
+                data-testid="vote-show__not-voted"
+            />
+        )
     }
 
     function handleUpdate(e: MouseEvent<HTMLOrSVGElement>) {
@@ -78,19 +74,18 @@ function VoteShow({ parent, voteableType }: { parent: Annotation | Comment, vote
                     setCurrentUserVote(vote);
                     break;
                 }
-            };
+            }
         }
     }
 
     return (
         <div className="vote-show" data-testid="vote-show">
-            {currentUser 
-                ? voteThumb()
-                : <RiThumbUpLine className="vote-show__not-voted" data-testid="vote-show__not-voted" />
-            }
-            <div className="vote-show__count">
-                +{currentNumberOfVotes}
-            </div>
+            {currentUser ? (
+                voteThumb()
+            ) : (
+                <RiThumbUpLine className="vote-show__not-voted" data-testid="vote-show__not-voted" />
+            )}
+            <div className="vote-show__count">+{currentNumberOfVotes}</div>
         </div>
     );
 }

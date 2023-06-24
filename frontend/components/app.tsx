@@ -4,17 +4,17 @@ import { AccountRoute, SessionRoute } from "../util/route_util";
 import { ThemeContext } from "../contexts/theme_context";
 import { useSelector } from "react-redux";
 import { State, User } from "../my_types";
-import AccountShow from "./account/account_show";
-import DemoLogin from "./demo_login/demo_login";
-import FlashMessage from "./flash_message/flash_message";
-import LoginForm from "./session_form/login_form";
-import NotificationShow from "./notifications/notification_show";
-import Searchbar from "./searchbar/searchbar";
-import SessionMenu from "./session_menu/session_menu";
-import SignupForm from "./session_form/signup_form";
-import ThemeToggle from "./theme_toggle/theme_toggle";
-const TrackIndex = lazy(() => import("./tracks/track_index"));
-const TrackShow = lazy(() => import("./tracks/track_show"));
+import AccountShow from "./account/AccountShow";
+import DemoLogin from "./demo_login/DemoLogin";
+import FlashMessage from "./flash_message/FlashMessage";
+import LoginForm from "./session_form/LoginForm";
+import NotificationShow from "./notifications/NotificationShow";
+import Searchbar from "./searches/Searchbar";
+import SessionMenu from "./session_menu/SessionMenu";
+import SignupForm from "./session_form/SignupForm";
+import ThemeToggle from "./theme_toggle/ThemeToggle";
+const TrackIndex = lazy(() => import("./tracks/TrackIndex"));
+const TrackShow = lazy(() => import("./tracks/TrackShow"));
 
 function App({ cableApp }: { cableApp: any}) {
     const currentUser: User = useSelector((state: State) => state.entities.user);
