@@ -102,7 +102,7 @@ function AnnotationPrompt(props: Props) {
             annotator_id: currentUser.id,
             body,
             end_index: endIndex,
-            start_index: startIndex,
+            start_index: startIndex-1,
             track_id: track.id
         };
         createAnnotation(annotation)
