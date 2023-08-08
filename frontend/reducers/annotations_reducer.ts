@@ -3,7 +3,7 @@ import { RECEIVE_TRACK, RECEIVE_TRACKS } from "../actions/track_actions";
 import { AnyAction } from "@reduxjs/toolkit";
 import { Annotation } from "../my_types";
 
-const annotationsReducer = (state: {[key: number]: Annotation} = {}, action: AnyAction) => {
+const annotationsReducer = (state: { [key: number]: Annotation; } = {}, action: AnyAction) => {
     Object.freeze(state);
     const newState: {[key: number]: Annotation} = Object.assign({}, state);
 

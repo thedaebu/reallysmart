@@ -3,7 +3,7 @@ import { RECEIVE_COMMENT, REMOVE_COMMENT } from "../actions/comment_actions";
 import { AnyAction } from "@reduxjs/toolkit";
 import { Comment } from "../my_types";
 
-const commentsReducer = (state: {[key: number]: Comment} = {}, action: AnyAction) => {
+const commentsReducer = (state: { [key: number]: Comment; } = {}, action: AnyAction) => {
     Object.freeze(state);
     const newState: {[key: number]: Comment} = Object.assign({}, state);
 
