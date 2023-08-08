@@ -1,4 +1,4 @@
-class AnnotationValidator < ActiveModel::EachValidator
+class AnnotationValidator < ActiveModel::Validator
   def validate(record)
     if has_intersecting_indices(record) == true
       record.errors.add(:annotation, "There is an error. Please refresh.")
