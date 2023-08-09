@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
+import cableApp from "../../util/action_cable_util";
 import { Notification, State, User } from "../../my_types";
 import NotificationList from "./NotificationList";
 import { BiEnvelope } from "react-icons/bi";
 
-function NotificationShow({ cableApp }: { cableApp: any }) {
+function NotificationShow() {
     const currentUser: User = useSelector((state:State) => state.entities.user);
     const { annotation_alerts, mentions } = currentUser;
 
