@@ -19,6 +19,7 @@ class Api::CommentsController < ApplicationController
         @comment = comment.as_json
         @comment[:commenter_name] = comment.commenter.username
         @comment[:votes] = {}
+        broadcast_comment(comment)
 
         result = {:comment => @comment}
         render json: result

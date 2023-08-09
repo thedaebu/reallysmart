@@ -117,4 +117,15 @@ class ApplicationController < ActionController::Base
 
     NotificationChannel.broadcast_to(user, {notification: temp_mention})
   end
+
+  def broadcast_comment(comment)
+    temp_comment = comment.as_json
+    temp_comment[:commenter_name] = comment.commenter.username
+    temp_comment[:votes] = {}
+    if comment.commentable_type == "Track"
+      TrackChannel.broadcast_to(comment.commentable, {comment: temp_comment})
+    else
+      AnnotationChannel.broadcast_to(comment.commentable, {comment: temp_comment})
+    end
+  end
 end
