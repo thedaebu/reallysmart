@@ -5,10 +5,10 @@ const indexTracksReducer = (state: { [key: number]: IndexTrack; } = {}, action: 
     Object.freeze(state);
 
     switch(action.type) {
-        case RECEIVE_TRACKS:
-            return action.tracks;
         case RECEIVE_TRACK:
             return {};
+        case RECEIVE_TRACKS:
+            return action.tracks;
         default:
             return state;
     }

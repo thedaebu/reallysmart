@@ -14,10 +14,10 @@ const accountReducer = (state: Account = defaultState, action: AnyAction) => {
     Object.freeze(state);
 
     switch (action.type) {
-        case RECEIVE_ACCOUNT:
-            return action.account;
         case LOGOUT_CURRENT_USER:
             return {};
+        case RECEIVE_ACCOUNT:
+            return action.account;
         default:
             return state;
     }
