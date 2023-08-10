@@ -142,7 +142,7 @@ function AnnotationPrompt(props: Props) {
                 createForm()
             ) : (
                 <div className="annotation-prompt--session">
-                    <Link to="/signup" className="annotation-prompt-session__link">Sign Up to Start Really Smarting</Link>
+                    <Link to="/signup" className="annotation-prompt--session__link">Sign Up to Start Really Smarting</Link>
                 </div>
             )}
         </>
