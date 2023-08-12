@@ -1,7 +1,6 @@
 import React, { ChangeEvent, Dispatch, FormEvent, MouseEvent, useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import cableApp from "../../util/action_cable_util";
 import { AnyAction } from "@reduxjs/toolkit";
 import { Annotation, Comment, CommentAction, CreatedComment, State, Track, User } from "../../my_types";
 import { ThemeContext } from "../../contexts/theme_context";
@@ -21,23 +20,6 @@ function CommentShow({ commentableType, parent }: { commentableType: "Track" | "
     const [errors, setErrors] = useState<Array<string>>([]);
 
     const { theme } = useContext(ThemeContext);
-
-    useEffect(() => {
-        if (parent.id) {
-            cableApp.cable.subscriptions.create(
-                {
-                    channel: `${commentableType}Channel`,
-                    commentable_type: commentableType,
-                    parent_id: parent.id
-                },
-                {
-                    received: ({ comment }: { comment: Comment; }) => {
-                        setCurrentComments((comments: Array<Comment>) => [...comments, comment]);
-                    }
-                }
-            );
-        }
-    }, [parent]);
 
     useEffect(() => {
         setCurrentComments(handleCurrentComments(Object.values(comments)));
