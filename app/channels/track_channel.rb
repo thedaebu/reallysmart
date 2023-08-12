@@ -1,10 +1,8 @@
 class TrackChannel < ApplicationCable::Channel
   def subscribed
     stop_all_streams
-    if params[:commentable_type] == "Track"
-        @track = Track.find_by(id: params[:parent_id])
-        stream_for @track
-    end
+    @track = Track.find(params[:track_id])
+    stream_for @track
   end
 
   # def received(data)
