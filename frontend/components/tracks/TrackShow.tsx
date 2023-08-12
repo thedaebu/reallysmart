@@ -1,17 +1,17 @@
 import React, { Dispatch, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import * as TrackActions from "../../actions/track_actions";
-import { AnyAction } from "@reduxjs/toolkit";
-import { State, Track, TrackAction, Window } from "../../my_types";
 import Lyrics from "../lyrics/Lyrics";
 import NavBar from "../navbar/Navbar";
 import TrackHeader from "./TrackHeader";
-import { useParams } from "react-router-dom";
+import { AnyAction } from "@reduxjs/toolkit";
+import { State, Track, TrackAction, Window } from "../../my_types";
 
 declare const window: Window;
 
 function TrackShow() {
-    const { trackName }: { trackName: string } = useParams();
+    const { trackName } = useParams();
 
     const track: Track = useSelector((state: State) => state.entities.track);
 
