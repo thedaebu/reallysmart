@@ -1,19 +1,15 @@
 import React from "react";
 import { cleanup, screen } from "@testing-library/react";
 import * as reactRedux from "react-redux";
-import actionCable, { Cable } from "actioncable";
 import { renderNonShowComponentWithoutUser, renderNonShowComponentWithUser } from "../../test_store_data";
 import App from "../../../components/app";
 
 const useMockDispatch = jest.spyOn(reactRedux, "useDispatch");
 
-const cable: Cable = actionCable.createConsumer(`ws://${window.location.hostname}:3000/cable`);
-const cableApp: {cable: Cable} = {cable};
-
 describe("demo login", () => {
     describe("user irrelevant tests", () => {
         beforeEach(() => {
-            renderNonShowComponentWithoutUser(<App cableApp={cableApp} />);
+            renderNonShowComponentWithoutUser(<App />);
         });
         afterEach(() => {
             cleanup();
@@ -24,7 +20,7 @@ describe("demo login", () => {
     });
     describe("no user tests", () => {
         beforeEach(() => {
-            renderNonShowComponentWithoutUser(<App cableApp={cableApp} />);
+            renderNonShowComponentWithoutUser(<App />);
         });
         afterEach(() => {
             cleanup();
@@ -40,7 +36,7 @@ describe("demo login", () => {
     });
     describe("current user tests", () => {
         beforeEach(() => {
-            renderNonShowComponentWithUser(<App cableApp={cableApp} />);
+            renderNonShowComponentWithUser(<App />);
         });
         afterEach(() => {
             cleanup();

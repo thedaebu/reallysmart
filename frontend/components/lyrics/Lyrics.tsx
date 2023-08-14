@@ -21,10 +21,10 @@ type HighlightedNode = {
     };
 };
 
-function Lyrics({ track }: { track: Track }) {
+function Lyrics({ track }: { track: Track; }) {
     const { lyrics, title } = track;
 
-    const annotations: {[key: number]: Annotation} = useSelector((state: State) => state.entities.annotations);
+    const annotations: { [key: number]: Annotation; } = useSelector((state: State) => state.entities.annotations);
 
     const [annotatedLyrics, setAnnotatedLyrics] = useState<Array<JSX.Element>>([]);
     const [createStatus, setCreateStatus] = useState<boolean>(false);
@@ -50,6 +50,8 @@ function Lyrics({ track }: { track: Track }) {
             const tempAnnotationId = selectedAnnotation.id;
             if (annotations[tempAnnotationId]){
                 setSelectedAnnotation(annotations[tempAnnotationId]);
+            } else {
+                handleTextDeselect();
             }
         }
         annotateLyrics(Object.values(annotations));
@@ -160,18 +162,18 @@ function Lyrics({ track }: { track: Track }) {
         >
             {currentLyrics}
         </span>;
-        const annotatedLyricsWithHighlight: Array<JSX.Element> = [...annotatedLyrics.slice(0, currentIndex), element, ...annotatedLyrics.slice(currentIndex + 1)];
-        setAnnotatedLyrics(annotatedLyricsWithHighlight);
+
+        setAnnotatedLyrics((annotatedLyrics: Array<JSX.Element>) => [...annotatedLyrics.slice(0, currentIndex), element, ...annotatedLyrics.slice(currentIndex + 1)]);
     }
 
     function handleTextSelect(e: MouseEvent<HTMLElement>) {
         e.preventDefault();
 
         setHighlightStatus(true);
-        setYCoord(e.pageY-(e.pageY % 30)-367);
+        setYCoord(e.pageY - (e.pageY % 30) - 367);
         const highlighted: Highlighted = window.getSelection();
         if (highlighted && highlighted.anchorOffset !== highlighted.focusOffset) {
-            const { end, start }: { end: number, start: number } = makeNewIndices(highlighted);
+            const { end, start }: { end: number; start: number; } = makeNewIndices(highlighted);
             setStartIndex(start);
             setEndIndex(end);
             if (startIndex < endIndex) {
@@ -198,7 +200,7 @@ function Lyrics({ track }: { track: Track }) {
     }
 
     function handleHighlight(start: number, end: number, highlighted: Highlighted) {
-        const { name }: { name: string } = highlighted.anchorNode.parentNode.dataset;
+        const { name }: { name: string; } = highlighted.anchorNode.parentNode.dataset;
         const add: number = parseInt(highlighted.anchorNode.parentNode.dataset.add);
         let currentSection: JSX.Element;
         let currentIndex: number;
@@ -241,8 +243,7 @@ function Lyrics({ track }: { track: Track }) {
             </span>
         );
 
-        const annotatedLyricsWithHighlight: Array<JSX.Element> = [...annotatedLyrics.slice(0, currentIndex), ...currentSectionWithHighlight, ...annotatedLyrics.slice(currentIndex + 1)];
-        setAnnotatedLyrics(annotatedLyricsWithHighlight);
+        setAnnotatedLyrics((annotatedLyrics: Array<JSX.Element>) => [...annotatedLyrics.slice(0, currentIndex), ...currentSectionWithHighlight, ...annotatedLyrics.slice(currentIndex + 1)]);
     }
 
     function removeHighlight() {

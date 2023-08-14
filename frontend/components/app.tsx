@@ -16,23 +16,23 @@ import ThemeToggle from "./theme_toggle/ThemeToggle";
 const TrackIndex = lazy(() => import("./tracks/TrackIndex"));
 const TrackShow = lazy(() => import("./tracks/TrackShow"));
 
-function App({ cableApp }: { cableApp: any}) {
+function App() {
     const currentUser: User = useSelector((state: State) => state.entities.user);
     const flashMessage: string = useSelector((state: State) => state.entities.flashMessage);
 
     const { theme } = useContext(ThemeContext);
 
     return (
-        <div className={theme === "light"
-            ? "app"
-            : "app--dark"}
-        >
+        <div className={theme === "light" ?
+            "app" :
+            "app--dark"
+        }>
             {flashMessage && <FlashMessage flashMessage={flashMessage} />}
             <header className="header">
                 <Searchbar theme={theme} />
                 <Link to="/" className="header__logo">REALLYSMART</Link>
                 <section className="session-buttons">
-                    {currentUser && <NotificationShow cableApp={cableApp} />}
+                    {currentUser && <NotificationShow />}
                     <SessionMenu />
                     {!currentUser && <DemoLogin />}
                     <ThemeToggle />

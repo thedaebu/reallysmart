@@ -2,7 +2,6 @@ import React from "react";
 import { cleanup, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import * as reactRedux from "react-redux";
-import actionCable, { Cable } from "actioncable";
 import { renderShowComponentWithoutUser, renderShowComponentWithUser } from "../../test_store_data";
 import * as NotificationAPIUtil from "../../../util/api/notification_api_util";
 import App from "../../../components/app";
@@ -12,13 +11,10 @@ const useMockSelector = jest.spyOn(reactRedux, "useSelector");
 const useMockState = jest.spyOn(React, "useState");
 const useUpdateNotification = jest.spyOn(NotificationAPIUtil, "updateNotification");
 
-const cable: Cable = actionCable.createConsumer(`ws://${window.location.hostname}:3000/cable`);
-const cableApp: { cable: Cable } = {cable};
-
 describe("notification show", () => {
     describe("no user tests", () => {
         beforeEach(() => {
-            renderShowComponentWithoutUser(<App cableApp={cableApp} />);
+            renderShowComponentWithoutUser(<App />);
         });
         afterEach(() => {
             cleanup();
@@ -31,7 +27,7 @@ describe("notification show", () => {
     });
     describe("current user tests", () => {
         beforeEach(() => {
-            renderShowComponentWithUser(<App cableApp={cableApp} />);
+            renderShowComponentWithUser(<App />);
         });
         afterEach(() => {
             cleanup();

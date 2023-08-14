@@ -66,13 +66,13 @@ export type AnnotationAction = {
     annotation: Annotation;
     annotationId: number;
     errors: Array<string>;
-    type: "RECEIVE_ANNOTATION" | "REMOVE_ANNOTATION" | "RECEIVE_ANNOTATION_ERRORS";
+    type: "RECEIVE_ANNOTATION" | "RECEIVE_ANNOTATION_ERRORS" | "REMOVE_ANNOTATION";
 };
 export type CommentAction = {
     comment: Comment;
     commentId: number;
     errors: Array<string>;
-    type: "RECEIVE_COMMENT" | "REMOVE_COMMENT" | "RECEIVE_COMMENT_ERRORS";
+    type: "RECEIVE_COMMENT" | "RECEIVE_COMMENT_ERRORS" | "REMOVE_COMMENT";
 };
 export type SearchAction = {
     searches: { [key: number]: IndexTrack; };
@@ -80,7 +80,7 @@ export type SearchAction = {
 };
 export type SessionAction = {
     errors: Array<string>;
-    type: "RECEIVE_CURRENT_USER" | "LOGOUT_CURRENT_USER" | "RECEIVE_SESSION_ERRORS";
+    type: "LOGOUT_CURRENT_USER" | "RECEIVE_CURRENT_USER" | "RECEIVE_SESSION_ERRORS";
     user: User;
 };
 export type TrackAction = {
@@ -113,7 +113,7 @@ export type AccountAnnotation = {
 export type AccountComment = {
     body: string;
     commentable_body: string;
-    commentable_type: "Track" | "Annotation";
+    commentable_type: "Annotation" | "Track";
     created_at: string;
     track: {
         artist: string;
@@ -145,10 +145,16 @@ export type AnnotationAlert = {
     };
     type: "AnnotationAlert";
 };
+export type BroadcastData = {
+    annotation_data: Annotation;
+    comment_data: Comment;
+    model: "Annotation" | "Comment";
+    operation: "DELETE" | "POST" | "PUT";
+};
 export type Comment = {
     body: string;
     commentable_id: number;
-    commentable_type: "Track" | "Annotation";
+    commentable_type: "Annotation" | "Track";
     commenter_id: number;
     commenter_name: string;
     created_at: string;
@@ -162,7 +168,7 @@ export type IndexTrack = Omit<
 >;
 export type Mention = {
     body: string;
-    commentable_type: "Track" | "Annotation";
+    commentable_type: "Annotation" | "Track";
     created_at: string;
     id: number;
     mentioner_name: string;

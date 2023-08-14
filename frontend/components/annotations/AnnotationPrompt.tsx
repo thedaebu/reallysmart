@@ -102,7 +102,7 @@ function AnnotationPrompt(props: Props) {
             annotator_id: currentUser.id,
             body,
             end_index: endIndex,
-            start_index: startIndex-1,
+            start_index: startIndex,
             track_id: track.id
         };
         createAnnotation(annotation)
@@ -141,8 +141,8 @@ function AnnotationPrompt(props: Props) {
             {currentUser ? (
                 createForm()
             ) : (
-                <div className="annotation-prompt--session" >
-                    <Link to="/signup" className="annotation-prompt-session__link">Sign Up to Start Really Smarting</Link>
+                <div className="annotation-prompt--session">
+                    <Link to="/signup" className="annotation-prompt--session__link">Sign Up to Start Really Smarting</Link>
                 </div>
             )}
         </>

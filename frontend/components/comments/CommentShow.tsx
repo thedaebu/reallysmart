@@ -7,8 +7,8 @@ import { ThemeContext } from "../../contexts/theme_context";
 import * as CommentActions from "../../actions/comment_actions";
 import CommentItem from "./CommentItem";
 
-function CommentShow({ commentableType, parent }: { commentableType: "Track" | "Annotation", parent: Track | Annotation }) {
-    const comments: {[key: number]: Comment} = useSelector((state: State) => state.entities.comments);
+function CommentShow({ commentableType, parent }: { commentableType: "Track" | "Annotation"; parent: Track | Annotation; }) {
+    const comments: { [key: number]: Comment; } = useSelector((state: State) => state.entities.comments);
     const currentUser: User = useSelector((state: State) => state.entities.user);
 
     const dispatch: Dispatch<AnyAction> = useDispatch();
@@ -18,7 +18,7 @@ function CommentShow({ commentableType, parent }: { commentableType: "Track" | "
     const [createStatus, setCreateStatus] = useState<boolean>(false);
     const [currentComments, setCurrentComments] = useState<Array<Comment>>([]);
     const [errors, setErrors] = useState<Array<string>>([]);
-    
+
     const { theme } = useContext(ThemeContext);
 
     useEffect(() => {

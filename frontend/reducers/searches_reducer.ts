@@ -1,7 +1,7 @@
 import { RECEIVE_SEARCHES } from "../actions/search_actions";
 import { IndexTrack, SearchAction } from "../my_types";
 
-const searchesReducer = (state: {[key: number]: IndexTrack} = {}, action: SearchAction) => {
+const searchesReducer = (state: { [key: number]: IndexTrack; } = {}, action: SearchAction) => {
     Object.freeze(state);
 
     switch (action.type) {

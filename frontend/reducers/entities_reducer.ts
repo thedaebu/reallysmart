@@ -7,8 +7,9 @@ import indexTracksReducer from "./index_tracks_reducer";
 import searchesReducer from "./searches_reducer";
 import trackReducer from "./track_reducer";
 import userReducer from "./user_reducer";
+import { Reducer } from "@reduxjs/toolkit";
 
-const entitiesReducer = combineReducers({
+const entitiesReducer: Reducer = combineReducers({
     account: accountReducer,
     annotations: annotationsReducer,
     comments: commentsReducer,

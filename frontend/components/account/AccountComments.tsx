@@ -30,9 +30,7 @@ function AccountComments({ comments }: { comments: Array<AccountComment>; }) {
     }
 
     function notificationify(body: string) {
-        return body.length > 30 ?
-            `${body.slice(0,27)}...` :
-            body;
+        return body.length > 30 ? `${body.slice(0,27)}...` : body;
     }
 
     function dateDisplay(dateTime: string) {
@@ -45,7 +43,7 @@ function AccountComments({ comments }: { comments: Array<AccountComment>; }) {
     }
 
     return (
-        <ul >
+        <ul>
             <h1 className="account-show__h1">Comments</h1>
             {comments.map((comment: AccountComment, idx: number) => (
                 commentItem(comment, idx)

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
+import cableApp from "../../util/action_cable_util";
 import { Notification, State, User } from "../../my_types";
 import NotificationList from "./NotificationList";
 import { BiEnvelope } from "react-icons/bi";
 
-function NotificationShow({ cableApp }: { cableApp: any }) {
+function NotificationShow() {
     const currentUser: User = useSelector((state:State) => state.entities.user);
     const { annotation_alerts, mentions } = currentUser;
 
@@ -16,27 +17,30 @@ function NotificationShow({ cableApp }: { cableApp: any }) {
     const location: string = useLocation().pathname;
 
     useEffect(() => {
+        handleCableApp(currentUser.id);
         const sortedNotifications: Array<Notification> = [...annotation_alerts, ...mentions].sort((a,b) => (new Date(Date.parse(b.created_at)).getTime() - (new Date(Date.parse(a.created_at)).getTime())));
         setNotifications(() => ([...sortedNotifications]));
         checkReadStatus(sortedNotifications);
-
-        cableApp.cable.subscriptions.create(
-            {
-                channel: "NotificationChannel",
-                user_id: currentUser.id
-            },
-            {
-                received: ({ notification }: { notification: Notification }) => {
-                    setNotifications((notifications: Array<Notification>) => [notification, ...notifications]);
-                    setReadStatus(false);
-                }
-            }
-        );
     }, []);
 
     useEffect(() => {
         setOpenStatus(false);
     }, [location]);
+
+    function handleCableApp(userId: number) {
+        cableApp.cable.subscriptions.create(
+            {
+                channel: "NotificationChannel",
+                user_id: userId
+            },
+            {
+                received: ({ notification }: { notification: Notification; }) => {
+                    setNotifications((notifications: Array<Notification>) => [notification, ...notifications]);
+                    setReadStatus(false);
+                }
+            }
+        );
+    }
 
     function checkReadStatus(notifications: Array<Notification>) {
         if (notifications.length && notifications[0].read === false) setReadStatus(false);
@@ -61,7 +65,7 @@ function NotificationShow({ cableApp }: { cableApp: any }) {
                 onClick={changeOpenStatus}
                 data-testid="notification-icon"
             />
-            {openStatus === true && (
+            {openStatus && (
                 <NotificationList
                     changeOpenStatus={changeOpenStatus}
                     makeReadStatusTrue={makeReadStatusTrue}

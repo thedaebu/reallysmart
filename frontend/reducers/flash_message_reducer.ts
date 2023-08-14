@@ -6,20 +6,20 @@ import { AnyAction } from "@reduxjs/toolkit";
 
 const flashMessageReducer = (state: string = "", action: AnyAction) => {
     switch (action.type) {
-        case RECEIVE_CURRENT_USER:
-            return action.flashMessage;
+        case CLEAR_FLASH_MESSAGE:
+            return "";
         case LOGOUT_CURRENT_USER:
             return action.flashMessage;
         case RECEIVE_ANNOTATION:
             return action.flashMessage;
-        case REMOVE_ANNOTATION:
-            return action.flashMessage;
         case RECEIVE_COMMENT:
+            return action.flashMessage;
+        case RECEIVE_CURRENT_USER:
+            return action.flashMessage;
+        case REMOVE_ANNOTATION:
             return action.flashMessage;
         case REMOVE_COMMENT:
             return action.flashMessage;
-        case CLEAR_FLASH_MESSAGE:
-            return "";
         default:
             return state;
     }

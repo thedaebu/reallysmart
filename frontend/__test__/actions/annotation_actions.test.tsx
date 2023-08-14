@@ -25,6 +25,12 @@ describe("annotation actions", () => {
         afterEach(() => {
             store.clearActions();
         });
+        test("receiveAnnotation is exported", () => {
+            expect(typeof AnnotationActions.receiveAnnotation).toEqual("function");
+        });
+        test("removeAnnotation is exported", () => {
+            expect(typeof AnnotationActions.removeAnnotation).toEqual("function");
+        });
         describe("fetchAnnotation", () => {
             test("is exported", () => {
                 expect(typeof AnnotationActions.fetchAnnotation).toEqual("function");
