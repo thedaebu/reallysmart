@@ -6,7 +6,7 @@ export const RECEIVE_COMMENT: string = "RECEIVE_COMMENT";
 export const RECEIVE_COMMENT_ERRORS: string = "RECEIVE_COMMENT_ERRORS";
 export const REMOVE_COMMENT: string = "REMOVE_COMMENT";
 
-const receiveComment: Function = ({ comment }: { comment: Comment; }, flashMessage: string = "") => ({
+export const receiveComment: Function = ({ comment }: { comment: Comment; }, flashMessage: string = "") => ({
     comment,
     flashMessage,
     type: RECEIVE_COMMENT
@@ -15,7 +15,7 @@ const receiveCommentErrors: Function = (errors: Array<string>) => ({
     errors,
     type: RECEIVE_COMMENT_ERRORS
 });
-const removeComment: Function = (commentId: number, flashMessage: string = "") => ({
+export const removeComment: Function = (commentId: number, flashMessage: string = "") => ({
     commentId,
     flashMessage,
     type: REMOVE_COMMENT
