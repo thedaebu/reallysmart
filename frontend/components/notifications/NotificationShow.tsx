@@ -17,27 +17,30 @@ function NotificationShow() {
     const location: string = useLocation().pathname;
 
     useEffect(() => {
+        handleCableApp(currentUser.id);
         const sortedNotifications: Array<Notification> = [...annotation_alerts, ...mentions].sort((a,b) => (new Date(Date.parse(b.created_at)).getTime() - (new Date(Date.parse(a.created_at)).getTime())));
         setNotifications(() => ([...sortedNotifications]));
         checkReadStatus(sortedNotifications);
-
-        cableApp.cable.subscriptions.create(
-            {
-                channel: "NotificationChannel",
-                user_id: currentUser.id
-            },
-            {
-                received: ({ notification }: { notification: Notification }) => {
-                    setNotifications((notifications: Array<Notification>) => [notification, ...notifications]);
-                    setReadStatus(false);
-                }
-            }
-        );
     }, []);
 
     useEffect(() => {
         setOpenStatus(false);
     }, [location]);
+
+    function handleCableApp(userId: number) {
+        cableApp.cable.subscriptions.create(
+            {
+                channel: "NotificationChannel",
+                user_id: userId
+            },
+            {
+                received: ({ notification }: { notification: Notification; }) => {
+                    setNotifications((notifications: Array<Notification>) => [notification, ...notifications]);
+                    setReadStatus(false);
+                }
+            }
+        );
+    }
 
     function checkReadStatus(notifications: Array<Notification>) {
         if (notifications.length && notifications[0].read === false) setReadStatus(false);
