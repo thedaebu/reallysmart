@@ -5,6 +5,12 @@ import { testAccountData } from "../test_store_data";
 import { Account } from "../../my_types";
 
 describe("account reducer", () => {
+    const defaultAccount: Account = {
+        annotations: [],
+        comments: [],
+        id: 0,
+        username: ""
+    };
     const testAccount: Account = testAccountData;
     Object.freeze(testAccount);
 
@@ -12,16 +18,16 @@ describe("account reducer", () => {
         expect(typeof accountReducer).toEqual("function");
     });
     describe("account actions", () => {
-        test("initializes with an empty object as the default state", () => {
-            expect(accountReducer(undefined, {})).toEqual({});
+        test("initializes with a blank account object as the default state", () => {
+            expect(accountReducer(undefined, {type: ""})).toEqual(defaultAccount);
         });
         test("returns the previous state if an action is not matched", () => {
-            const state: Account = accountReducer(testAccountData, { type: "NONACCOUNT_ACTION" });
+            const state: Account = accountReducer(testAccountData, {type: "NONACCOUNT_ACTION"});
             expect(state).toEqual(testAccountData);
         });
         describe("RECEIVE_ACCOUNT action", () => {
             test("returns account data", () => {
-                const state: Account = accountReducer({}, { type: "RECEIVE_ACCOUNT", account: testAccount });
+                const state: Account = accountReducer(defaultAccount, {type: "RECEIVE_ACCOUNT", account: testAccount});
                 expect(state).toEqual(testAccount);
             });
             test("does not modify the previous state", () => {
@@ -30,7 +36,7 @@ describe("account reducer", () => {
         });
         describe("LOGOUT_CURRENT_USER action", () => {
             test("returns an empty object", () => {
-                const state: Account = accountReducer(testAccount, { type: "LOGOUT_CURRENT_USER" });
+                const state: Account = accountReducer(testAccount, {type: "LOGOUT_CURRENT_USER"});
                 expect(state).toEqual({});
             });
             test("does not modify the previous state", () => {
