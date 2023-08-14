@@ -6,19 +6,19 @@ export const RECEIVE_ANNOTATION: string = "RECEIVE_ANNOTATION";
 export const RECEIVE_ANNOTATION_ERRORS: string = "RECEIVE_ANNOTATION_ERRORS";
 export const REMOVE_ANNOTATION: string = "REMOVE_ANNOTATION";
 
-const receiveAnnotation: Function = ({ annotation }: { annotation: Annotation; }, flashMessage: string = "") => ({
+export const receiveAnnotation: Function = ({ annotation }: { annotation: Annotation; }, flashMessage: string = "") => ({
     annotation,
     flashMessage,
     type: RECEIVE_ANNOTATION
 });
-const removeAnnotation: Function = (annotationId: number, flashMessage = "") => ({
-    annotationId,
-    flashMessage,
-    type: REMOVE_ANNOTATION
-});
 const receiveAnnotationErrors: Function = (errors: Array<string>) => ({
     errors,
     type: RECEIVE_ANNOTATION_ERRORS
+});
+export const removeAnnotation: Function = (annotationId: number, flashMessage = "") => ({
+    annotationId,
+    flashMessage,
+    type: REMOVE_ANNOTATION
 });
 
 export const createAnnotation: Function = (createdAnnotation: CreatedAnnotation) => (dispatch: Dispatch<AnnotationAction>) => (
