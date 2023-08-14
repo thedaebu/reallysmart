@@ -3,7 +3,6 @@ import { Provider } from "react-redux";
 import { HashRouter } from "react-router-dom";
 import { AnyAction, Store } from "redux";
 import { ApolloProvider } from "@apollo/client";
-import actionCable, { Cable } from "actioncable";
 import graphQLClient from "../graphql_client/graphql_client";
 import { ThemeContext } from "../contexts/theme_context";
 import App from "./app";
