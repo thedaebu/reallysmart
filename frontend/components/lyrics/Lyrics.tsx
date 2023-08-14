@@ -50,6 +50,8 @@ function Lyrics({ track }: { track: Track; }) {
             const tempAnnotationId = selectedAnnotation.id;
             if (annotations[tempAnnotationId]){
                 setSelectedAnnotation(annotations[tempAnnotationId]);
+            } else {
+                handleTextDeselect();
             }
         }
         annotateLyrics(Object.values(annotations));
