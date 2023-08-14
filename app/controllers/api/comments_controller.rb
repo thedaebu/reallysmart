@@ -19,7 +19,7 @@ class Api::CommentsController < ApplicationController
         @comment = comment.as_json
         @comment[:commenter_name] = comment.commenter.username
         @comment[:votes] = {}
-        broadcast_comment(comment)
+        broadcast_comment(comment, 'POST')
 
         result = {:comment => @comment}
         render json: result
@@ -37,6 +37,7 @@ class Api::CommentsController < ApplicationController
         comment.votes.each do |vote|
           @comment[:votes][vote.id] = vote.slice(:id, :voteable_id, :voteable_type, :voter_id)
         end
+        broadcast_comment(comment, 'PUT')
 
         result = {:comment => @comment}
         render json: result
@@ -49,6 +50,7 @@ class Api::CommentsController < ApplicationController
       comment = Comment.find(params[:id])
       if comment
         comment.destroy
+        broadcast_comment(comment, 'DELETE')
       else
         render json: ['The comment does not exist']
       end
