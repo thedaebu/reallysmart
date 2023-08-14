@@ -21,6 +21,12 @@ describe("comment actions", () => {
         afterEach(() => {
             store.clearActions();
         });
+        test("receiveComment is exported", () => {
+            expect(typeof CommentActions.receiveComment).toEqual("function");
+        });
+        test("removeComment is exported", () => {
+            expect(typeof CommentActions.removeComment).toEqual("function");
+        });
         describe("fetchComment", () => {
             test("is exported", () => {
                 expect(typeof CommentActions.fetchComment).toEqual("function");
