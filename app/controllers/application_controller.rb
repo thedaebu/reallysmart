@@ -118,14 +118,37 @@ class ApplicationController < ActionController::Base
     NotificationChannel.broadcast_to(user, {notification: temp_mention})
   end
 
-  def broadcast_comment(comment)
+  def broadcast_annotation(annotation, operation)
+    broadcast_data = {}
+    temp_annotation = annotation.as_json
+    temp_annotation[:annotator_name] = annotation.annotator.username
+    temp_annotation[:votes] = {}
+    annotation.votes.each do |vote|
+      temp_annotation[:votes][vote.id] = vote.slice(:id, :voteable_id, :voteable_type, :voter_id)
+    end
+    broadcast_data[:annotation_data] = temp_annotation
+    broadcast_data[:comment_data] = {}
+    broadcast_data[:model] = "Annotation"
+    broadcast_data[:operation] = operation
+
+    TrackChannel.broadcast_to(annotation.track, broadcast_data)
+  end
+
+  def broadcast_comment(comment, operation)
+    broadcast_data = {}
     temp_comment = comment.as_json
     temp_comment[:commenter_name] = comment.commenter.username
     temp_comment[:votes] = {}
-    if comment.commentable_type == "Track"
-      TrackChannel.broadcast_to(comment.commentable, {comment: temp_comment})
-    else
-      AnnotationChannel.broadcast_to(comment.commentable, {comment: temp_comment})
+    comment.votes.each do |vote|
+      temp_comment[:votes][vote.id] = vote.slice(:id, :voteable_id, :voteable_type, :voter_id)
     end
+    broadcast_data[:annotation_data] = {}
+    broadcast_data[:comment_data] = temp_comment
+    broadcast_data[:model] = "Comment"
+    broadcast_data[:operation] = operation
+
+    commentable = comment.commentable_type == "Track" ? comment.commentable : comment.commentable.track
+
+    TrackChannel.broadcast_to(commentable, broadcast_data)
   end
 end
