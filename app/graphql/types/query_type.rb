@@ -5,7 +5,7 @@ module Types
     include GraphQL::Types::Relay::HasNodesField
 
     field :account, Types::AccountType, null: false do
-      argument :id, String, require: true
+      argument :id, ID, require: true
     end
     field :annotation, Types::AnnotationType, null: false do
       argument :id, ID, required: true
