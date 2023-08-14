@@ -65,7 +65,7 @@ function NotificationShow() {
                 onClick={changeOpenStatus}
                 data-testid="notification-icon"
             />
-            {openStatus === true && (
+            {openStatus && (
                 <NotificationList
                     changeOpenStatus={changeOpenStatus}
                     makeReadStatusTrue={makeReadStatusTrue}

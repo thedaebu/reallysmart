@@ -14,9 +14,9 @@ function VoteShow({ parent, voteableType }: { parent: Annotation | Comment, vote
     const dispatch: Dispatch<AnyAction> = useDispatch();
     const createVote: Function = (vote: CreatedVote) => VoteAPIUtil.createVote(vote);
     const deleteVote: Function = (voteId: number) => VoteAPIUtil.deleteVote(voteId);
-    const fetchParent: Function = voteableType === "Annotation"
-        ? (annotationId: number) => dispatch(AnnotationActions.fetchAnnotation(annotationId))
-        : (commentId: number) => dispatch(CommentActions.fetchComment(commentId));
+    const fetchParent: Function = voteableType === "Annotation" ?
+        (annotationId: number) => dispatch(AnnotationActions.fetchAnnotation(annotationId)) :
+        (commentId: number) => dispatch(CommentActions.fetchComment(commentId));
 
     const [currentNumberOfVotes, setCurrentNumberOfVotes] = useState<number>(0);
     const [currentUserVote, setCurrentUserVote] = useState<Vote | null>(null);
