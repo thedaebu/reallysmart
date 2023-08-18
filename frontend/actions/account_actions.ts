@@ -9,7 +9,7 @@ const receiveAccount: Function = ({ account }: { account: Account; }) => ({
     type: RECEIVE_ACCOUNT
 });
 
-export const fetchAccount = (userId: number) => (dispatch: Dispatch<AccountAction>) => (
+export const fetchAccount: Function = (userId: number) => (dispatch: Dispatch<AccountAction>) => (
     AccountAPIUtil.fetchAccount(userId)
         .then((account: Account) => dispatch(receiveAccount(account)))
 );
