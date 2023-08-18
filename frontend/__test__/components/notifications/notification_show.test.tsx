@@ -4,7 +4,7 @@ import userEvent from "@testing-library/user-event";
 import * as reactRedux from "react-redux";
 import { renderShowComponentWithoutUser, renderShowComponentWithUser } from "../../test_store_data";
 import * as NotificationAPIUtil from "../../../util/api/notification_api_util";
-import App from "../../../components/app";
+import App from "../../../components/App";
 
 const useMockEffect = jest.spyOn(React, "useEffect");
 const useMockSelector = jest.spyOn(reactRedux, "useSelector");

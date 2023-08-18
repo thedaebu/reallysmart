@@ -1,7 +1,7 @@
 import React from "react";
 import { cleanup, screen, within } from "@testing-library/react";
 import { renderNonShowComponentWithoutUser } from "../../test_store_data";
-import App from "../../../components/app";
+import App from "../../../components/App";
 
 describe("flash message", () => {
     beforeEach(() => {
