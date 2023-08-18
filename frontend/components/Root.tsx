@@ -5,7 +5,9 @@ import { AnyAction, Store } from "redux";
 import { ApolloProvider } from "@apollo/client";
 import graphQLClient from "../graphql_client/graphql_client";
 import { ThemeContext } from "../contexts/theme_context";
-import App from "./app";
+import App from "./App";
+
+declare const window: Window & typeof globalThis;
 
 function Root({ store }: { store: Store<any, AnyAction> }) {
     const [theme, setTheme] = useState<"light" | "dark">(window.sessionStorage.theme ?
