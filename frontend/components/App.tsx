@@ -1,9 +1,8 @@
 import React, { lazy, Suspense, useContext } from "react";
 import { Link, Route, Routes } from "react-router-dom";
-import { AccountRoute, SessionRoute } from "../util/route_util";
-import { ThemeContext } from "../contexts/theme_context";
 import { useSelector } from "react-redux";
-import { State, User } from "../my_types";
+import { ThemeContext } from "../contexts/theme_context";
+import { AccountRoute, SessionRoute } from "../util/route_util";
 import AccountShow from "./account/AccountShow";
 import DemoLogin from "./demo_login/DemoLogin";
 import FlashMessage from "./flash_message/FlashMessage";
@@ -15,6 +14,7 @@ import SignupForm from "./session_form/SignupForm";
 import ThemeToggle from "./theme_toggle/ThemeToggle";
 const TrackIndex = lazy(() => import("./tracks/TrackIndex"));
 const TrackShow = lazy(() => import("./tracks/TrackShow"));
+import { State, User } from "../my_types";
 
 function App() {
     const currentUser: User = useSelector((state: State) => state.entities.user);
