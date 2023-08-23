@@ -4,7 +4,7 @@ class Api::SessionsController < ApplicationController
     user = User.find_by_credentials(user_info[:username], user_info[:password])
     if user
       login!(user)
-      @user = User.add_notifications(user)
+      @user = add_notifications(user)
 
       result = {:user => @user}
       render json: result

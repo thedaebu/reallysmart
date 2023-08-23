@@ -3,7 +3,7 @@ class Api::UsersController < ApplicationController
     created_user = User.new(user_params)
     if created_user.save
       login!(created_user)
-      @user = User.add_notifications(created_user)
+      @user = add_notifications(created_user)
 
       result = {:user => @user}
       render json: result
@@ -18,7 +18,7 @@ class Api::UsersController < ApplicationController
     if updated_user
       if user_info[:updateType] == 'updateUsername'
         if updated_user.update(username: user_info[:updateInfo])
-          @user = User.add_notifications(updated_user)
+          @user = add_notifications(updated_user)
 
           result = {:user => @user}
           render json: result
@@ -27,7 +27,7 @@ class Api::UsersController < ApplicationController
         end
       else
         if updated_user.update(password: user_info[:updateInfo])
-          @user = User.add_notifications(updated_user)
+          @user = add_notifications(updated_user)
 
           result = {:user => @user}
           render json: result
