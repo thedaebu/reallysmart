@@ -104,6 +104,7 @@ export type Account = {
 export type AccountAnnotation = {
     body: string;
     created_at: string;
+    id: number;
     track: {
         artist: string;
         title: string;
@@ -115,6 +116,7 @@ export type AccountComment = {
     commentable_body: string;
     commentable_type: "Annotation" | "Track";
     created_at: string;
+    id: number;
     track: {
         artist: string;
         title: string;
