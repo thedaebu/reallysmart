@@ -2,7 +2,7 @@ class Api::AccountsController < ApplicationController
   def show
     user = User.find(params[:id])
     if user
-      @account = User.add_account_info(user)
+      @account = add_account_info(user)
 
       result = {:account => @account}
       render json: result
