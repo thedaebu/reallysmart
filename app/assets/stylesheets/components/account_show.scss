@@ -129,17 +129,17 @@ account-header-tablist-item {
             }
             .account-item__button {
                 padding: 0px 4px;
-                border: 1px solid rgb(173, 173, 173);
+                border: 1px solid rgb(112, 112, 112);
                 border-radius: 2px;
                 margin: 4px 4px 0px 4px;
-                background-color: rgb(219, 219, 219);
+                background-color: rgb(240, 240, 240);
                 cursor: pointer;
                 line-height: 20px;
                 font-family: $programmereg;
                 color: rgb(112, 112, 112);
                 &:hover {
-                    background-color: rgb(173, 173, 173);
-                    color: rgb(80, 80, 80);
+                    background-color: rgb(112, 112, 112);
+                    color: rgb(197, 197, 197);
                 }
             }
             &:hover {
@@ -216,7 +216,7 @@ account-header-tablist-item {
                 color: rgb(51, 197, 51);
             }
             .account-item__date {
-                color: rgb(140, 140, 140);
+                color: rgb(112, 112, 112);
             }
             .account-item__question {
                 padding-left: 4px;
@@ -227,14 +227,14 @@ account-header-tablist-item {
                 border: 1px solid rgb(140, 140, 140);
                 border-radius: 2px;
                 margin: 4px 4px 0px 4px;
-                background-color: rgb(80, 80, 80);
+                background-color: rgb(50, 50, 50);
                 cursor: pointer;
                 line-height: 20px;
                 font-family: $programmereg;
-                color: rgb(173, 173, 173);
+                color: rgb(140, 140, 140);
                 &:hover {
-                    background-color: rgb(112, 112, 112);
-                        color: rgb(219, 219, 219);
+                    background-color: rgb(80, 80, 80);
+                    color: rgb(219, 219, 219);
                 }
             }
             &:hover {
