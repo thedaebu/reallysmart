@@ -16,7 +16,6 @@ function TrackIndex() {
     const fetchTracks: Function = () => dispatch(TrackActions.fetchTracks());
 
     const [indexCount, setIndexCount] = useState<number>(5);
-    const [indexTracks, setIndexTracks] = useState<Array<TrackItem>>([]);
 
     const { theme } = useContext(ThemeContext);
 
@@ -26,17 +25,14 @@ function TrackIndex() {
         window.scrollTo(0, 0);
     }, []);
 
-    useEffect(() => {
-        setIndexTracks(tracks.map((track: IndexTrack, idx: number) => (
+    function trackIndexItems() {
+        const indexTracks: Array<TrackItem> = tracks.map((track: IndexTrack, idx: number) => (
             <MemoizedTrackItem
                 listNumber={idx+1}
                 track={track}
                 key={track.id}
             />
-        )));
-    }, [tracks.length]);
-
-    function trackIndexItems() {
+        ));
         switch (indexCount) {
             case 5:
                 return indexTracks.slice(0,5);
@@ -92,7 +88,7 @@ function TrackIndex() {
                 <h1 className="track-index__h1">CHARTS</h1>
                 <h2 className="track-index__h2">REALLY POPULAR ON REALLY SMART</h2>
                 <ul className="track-items">
-                    {indexTracks.length && trackIndexItems()}
+                    {tracks.length && trackIndexItems()}
                 </ul>
             </div>
             <div 

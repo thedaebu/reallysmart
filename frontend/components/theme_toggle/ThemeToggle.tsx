@@ -14,7 +14,7 @@ function ThemeToggle() {
         e.preventDefault();
 
         changeTheme();
-        setCheckedStatus(!checkedStatus);
+        setCheckedStatus((status: boolean) => !status);
     }
 
     return (

@@ -11,8 +11,8 @@ function SignupForm() {
     const dispatch: Dispatch<AnyAction> = useDispatch();
     const signup: Function = (sessionUser: SessionUser) => dispatch(SessionActions.signup(sessionUser));
 
+    const [errors, setErrors] = useState<Array<string>>([]);
     const [password, setPassword] = useState<string>("");
-    const [sessionErrors, setSessionErrors] = useState<Array<string>>([]);
     const [username, setUsername] = useState<string>("");
 
     useEffect(() => {
@@ -30,7 +30,7 @@ function SignupForm() {
         signup(user)
             .then((result: SessionAction) => {
                 if (result.type === "RECEIVE_SESSION_ERRORS") {
-                    setSessionErrors(result.errors);
+                    setErrors(result.errors);
                 }
             });
     }
@@ -41,7 +41,7 @@ function SignupForm() {
                 <h2 className="session-form__errors__header">Ruh-roh!</h2>
                 <p className="session-form__errors__caption">Something is wrong</p>
                 <ul className="session-form__errors-list">
-                    {sessionErrors.map((sessionError: string, idx: number) => (
+                    {errors.map((sessionError: string, idx: number) => (
                         <li key={idx}>{sessionError}</li>
                     ))}
                 </ul>
@@ -54,7 +54,7 @@ function SignupForm() {
             <h1 className="session-form__signup__h1">SIGN UP</h1>
             <h2 className="session-form__signup__h2">and show off your really smartness</h2>
             <form className="session-form__form" onSubmit={handleSignupSubmit}>
-                {sessionErrors.length > 0 && errorsDisplay()}
+                {errors.length > 0 && errorsDisplay()}
                 <label className="session-form__label" htmlFor="session-form__username">Really Smart Nickname
                     <input
                         id="session-form__username"

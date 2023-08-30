@@ -3,7 +3,7 @@ import { Track, Window } from "../../my_types";
 
 declare const window: Window;
 
-function TrackHeader({ track }: { track: Track }) {
+function TrackHeader({ track }: { track: Track; }) {
     const { artist, artwork_path, title } = track;
 
     function randomNum() {
