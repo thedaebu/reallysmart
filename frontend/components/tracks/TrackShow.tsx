@@ -30,7 +30,7 @@ function TrackShow() {
     useEffect(() => {
         const trackSearch: Array<string> = formatTrackName(trackName);
         fetchTrack(trackSearch)
-            .then((result: TrackAction) => document.title = `${result.track.artist} - ${result.track.title}`)
+            .then((result: TrackAction) => document.title = `${result.track.artist} - ${result.track.title}`);
         window.scrollTo(0, 0);
     }, [trackName]);
 

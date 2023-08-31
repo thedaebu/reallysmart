@@ -17,7 +17,7 @@ function AccountShow() {
     const { annotations, comments } = account;
 
     const dispatch: Dispatch<AnyAction> = useDispatch();
-    const fetchAccount: Function = (userId: number) => dispatch(AccountActions.fetchAccount(userId));
+    const fetchAccount: Function = (id: number) => dispatch(AccountActions.fetchAccount(id));
 
     const [currentTab, setCurrentTab] = useState<string>("Profile");
 
@@ -36,9 +36,9 @@ function AccountShow() {
             case "Profile":
                 return <AccountProfile username={username} />;
             case "Annotations":
-                return <AccountAnnotations annotations={annotations} />;
+                return <AccountAnnotations annotations={annotations} currentUserId={currentUser.id} />;
             case "Comments":
-                return <AccountComments comments={comments} />;
+                return <AccountComments comments={comments} currentUserId={currentUser.id} />;
         }
     }
 

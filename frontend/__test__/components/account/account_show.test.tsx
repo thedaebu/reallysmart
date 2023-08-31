@@ -187,6 +187,41 @@ describe("account show", () => {
                 const accountItems = screen.queryAllByTestId("account-item");
                 expect(accountItems[0]).toHaveTextContent("2022-04-09");
             });
+            describe("deletion", () => {
+                test("displays delete button for each annotation item", () => {
+                    const accountAnnotationsTab = screen.queryByTestId("account-header__tablist-item--Annotations");
+                    userEvent.click(accountAnnotationsTab);
+                    const accountItems = screen.queryAllByTestId("account-item");
+                    accountItems.forEach(accountItem => {
+                        const accountItemButton = within(accountItem).queryByTestId("account-item__button");
+                        expect(accountItemButton).toHaveTextContent("Delete");
+                    });
+                });
+                test("displays yes or no buttons after delete option is selected", () => {
+                    const accountAnnotationsTab = screen.queryByTestId("account-header__tablist-item--Annotations");
+                    userEvent.click(accountAnnotationsTab);
+                    let accountItem = screen.queryAllByTestId("account-item")[0];
+                    const accountItemButton = within(accountItem).queryByTestId("account-item__button");
+                    userEvent.click(accountItemButton);
+                    accountItem = screen.queryAllByTestId("account-item")[0];
+                    const accountItemButtons = within(accountItem).queryAllByTestId("account-item__button");
+                    expect(accountItemButtons[0]).toHaveTextContent("Yes");
+                    expect(accountItemButtons[1]).toHaveTextContent("No");
+                });
+                test("redisplays delete button when no option is selected", () => {
+                    const accountAnnotationsTab = screen.queryByTestId("account-header__tablist-item--Annotations");
+                    userEvent.click(accountAnnotationsTab);
+                    let accountItem = screen.queryAllByTestId("account-item")[0];
+                    let accountItemButton = within(accountItem).queryByTestId("account-item__button");
+                    userEvent.click(accountItemButton);
+                    accountItem = screen.queryAllByTestId("account-item")[0];
+                    accountItemButton = within(accountItem).queryAllByTestId("account-item__button")[1];
+                    userEvent.click(accountItemButton);
+                    accountItem = screen.queryAllByTestId("account-item")[0];
+                    accountItemButton = within(accountItem).queryByTestId("account-item__button");
+                    expect(accountItemButton).toHaveTextContent("Delete");
+                });
+            });
         });
         describe("comments", () => {
             const comments = testAccountData.comments;
@@ -225,6 +260,41 @@ describe("account show", () => {
                 userEvent.click(accountCommentsTab);
                 const accountItems = screen.queryAllByTestId("account-item");
                 expect(accountItems[0]).toHaveTextContent("2022-04-09");
+            });
+            describe("deletion", () => {
+                test("displays delete button for each annotation item", () => {
+                    const accountAnnotationsTab = screen.queryByTestId("account-header__tablist-item--Annotations");
+                    userEvent.click(accountAnnotationsTab);
+                    const accountItems = screen.queryAllByTestId("account-item");
+                    accountItems.forEach(accountItem => {
+                        const accountItemButton = within(accountItem).queryByTestId("account-item__button");
+                        expect(accountItemButton).toHaveTextContent("Delete");
+                    });
+                });
+                test("displays yes or no buttons after delete option is selected", () => {
+                    const accountAnnotationsTab = screen.queryByTestId("account-header__tablist-item--Annotations");
+                    userEvent.click(accountAnnotationsTab);
+                    let accountItem = screen.queryAllByTestId("account-item")[0];
+                    const accountItemButton = within(accountItem).queryByTestId("account-item__button");
+                    userEvent.click(accountItemButton);
+                    accountItem = screen.queryAllByTestId("account-item")[0];
+                    const accountItemButtons = within(accountItem).queryAllByTestId("account-item__button");
+                    expect(accountItemButtons[0]).toHaveTextContent("Yes");
+                    expect(accountItemButtons[1]).toHaveTextContent("No");
+                });
+                test("redisplays delete button when no option is selected", () => {
+                    const accountAnnotationsTab = screen.queryByTestId("account-header__tablist-item--Annotations");
+                    userEvent.click(accountAnnotationsTab);
+                    let accountItem = screen.queryAllByTestId("account-item")[0];
+                    let accountItemButton = within(accountItem).queryByTestId("account-item__button");
+                    userEvent.click(accountItemButton);
+                    accountItem = screen.queryAllByTestId("account-item")[0];
+                    accountItemButton = within(accountItem).queryAllByTestId("account-item__button")[1];
+                    userEvent.click(accountItemButton);
+                    accountItem = screen.queryAllByTestId("account-item")[0];
+                    accountItemButton = within(accountItem).queryByTestId("account-item__button");
+                    expect(accountItemButton).toHaveTextContent("Delete");
+                });
             });
         });
     });

@@ -19,7 +19,7 @@ function VoteShow({ parent, voteableType }: { parent: Annotation | Comment, vote
         (commentId: number) => dispatch(CommentActions.fetchComment(commentId));
 
     const [currentNumberOfVotes, setCurrentNumberOfVotes] = useState<number>(0);
-    const [currentUserVote, setCurrentUserVote] = useState<Vote | null>(null);
+    const [currentUserVote, setCurrentUserVote] = useState<Vote>(null);
 
     useEffect(() => {
         getCurrentVotes(votes);
@@ -63,7 +63,7 @@ function VoteShow({ parent, voteableType }: { parent: Annotation | Comment, vote
         }
     }
 
-    function getCurrentVotes(votes: {[key: number]: Vote}) {
+    function getCurrentVotes(votes: { [key: number]: Vote; }) {
         const currentVotes: Array<Vote> = Object.values(votes);
         const voteCount: number = currentVotes.length;
         setCurrentNumberOfVotes(voteCount);

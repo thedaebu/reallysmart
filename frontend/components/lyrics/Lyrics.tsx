@@ -31,7 +31,7 @@ function Lyrics({ track }: { track: Track; }) {
     const [endIndex, setEndIndex] = useState<number>(0);
     const [highlightStatus, setHighlightStatus] = useState<boolean>(false);
     const [openStatus, setOpenStatus] = useState<boolean>(false);
-    const [selectedAnnotation, setSelectedAnnotation] = useState<Annotation | null>(null);
+    const [selectedAnnotation, setSelectedAnnotation] = useState<Annotation>(null);
     const [startIndex, setStartIndex] = useState<number>(0);
     const [yCoord, setYCoord] = useState<number>(-367);
 
@@ -144,7 +144,7 @@ function Lyrics({ track }: { track: Track; }) {
     }
 
     function handleSelectedAnnotation(annotation: Annotation) {
-        const name = `annotated-${annotation.id}`
+        const name: string = `annotated-${annotation.id}`;
         let currentLyrics: JSX.Element;
         let currentIndex: number;
         for (let i = 0; i < annotatedLyrics.length; i++) {
@@ -174,8 +174,8 @@ function Lyrics({ track }: { track: Track; }) {
         const highlighted: Highlighted = window.getSelection();
         if (highlighted && highlighted.anchorOffset !== highlighted.focusOffset) {
             const { end, start }: { end: number; start: number; } = makeNewIndices(highlighted);
-            setStartIndex(start);
             setEndIndex(end);
+            setStartIndex(start);
             if (startIndex < endIndex) {
                 handleHighlight(start, end, highlighted);
                 setOpenStatus(true);
@@ -251,14 +251,14 @@ function Lyrics({ track }: { track: Track; }) {
     }
 
     function handleTextDeselect() {
+        setCreateStatus(false);
+        setHighlightStatus(false);
         setOpenStatus(false);
         setSelectedAnnotation(null);
-        setHighlightStatus(false);
-        setCreateStatus(false);
     }
 
     function handleCreateStatus(){
-        setCreateStatus(!createStatus);
+        setCreateStatus((status: boolean) => !status);
     }
 
     return (
@@ -276,7 +276,7 @@ function Lyrics({ track }: { track: Track; }) {
                     <pre className="lyrics-text__body" data-testid="lyrics-text__body">
                         {annotatedLyrics}
                     </pre>
-                    <CommentShow commentableType="Track" parent={track}/>
+                    <CommentShow commentableType="Track" parent={track} />
                 </section>
                 <div className="lyrics__right">
                     <AnnotationShow

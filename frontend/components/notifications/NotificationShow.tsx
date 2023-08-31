@@ -7,7 +7,7 @@ import NotificationList from "./NotificationList";
 import { BiEnvelope } from "react-icons/bi";
 
 function NotificationShow() {
-    const currentUser: User = useSelector((state:State) => state.entities.user);
+    const currentUser: User = useSelector((state: State) => state.entities.user);
     const { annotation_alerts, mentions } = currentUser;
 
     const [notifications, setNotifications] = useState<Array<Notification>>([]);
