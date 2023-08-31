@@ -61,6 +61,7 @@ function AccountComments({ comments, currentUserId }: { comments: Array<AccountC
                     className="account-item__button"
                     onClick={handleDeleteSubmit}
                     data-id={id}
+                    data-testid="account-item__button"
                 >
                     Yes
                 </button>
@@ -68,6 +69,7 @@ function AccountComments({ comments, currentUserId }: { comments: Array<AccountC
                     className="account-item__button"
                     onClick={handleDeleteStatus}
                     data-id={id}
+                    data-testid="account-item__button"
                 >
                     No
                 </button>
@@ -77,6 +79,7 @@ function AccountComments({ comments, currentUserId }: { comments: Array<AccountC
                 className="account-item__button"
                 onClick={handleDeleteStatus}
                 data-id={id}
+                data-testid="account-item__button"
             >
                 Delete
             </button>

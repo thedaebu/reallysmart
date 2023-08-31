@@ -54,6 +54,7 @@ function AccountAnnotations({ annotations, currentUserId }: { annotations: Array
                     className="account-item__button"
                     onClick={handleDeleteSubmit}
                     data-id={id}
+                    data-testid="account-item__button"
                 >
                     Yes
                 </button>
@@ -61,6 +62,7 @@ function AccountAnnotations({ annotations, currentUserId }: { annotations: Array
                     className="account-item__button"
                     onClick={handleDeleteStatus}
                     data-id={id}
+                    data-testid="account-item__button"
                 >
                     No
                 </button>
@@ -70,6 +72,7 @@ function AccountAnnotations({ annotations, currentUserId }: { annotations: Array
                 className="account-item__button"
                 onClick={handleDeleteStatus}
                 data-id={id}
+                data-testid="account-item__button"
             >
                 Delete
             </button>
