@@ -1,3 +1,9 @@
+## Notes 1.2
+- Account page
+    - User will be able to delete submitted annotations and comments through the account tab.
+- Navigation
+        - User will be redirected to previously visited page after successful login or registration.
+
 ## Notes 1.1
 - Account page
         - A user will be able to access the account page through the Account button located at the top menu.

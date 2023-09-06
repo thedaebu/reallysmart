@@ -51,6 +51,7 @@ $ubuntu: 'Ubuntu Condensed', sans-serif;
             .session-form__errors__caption {
                 padding: 20px 32px;
                 font-size: 13px;
+                color: rgb(219, 219, 219);
             }
             .session-form__errors-list {
                 position: relative;
@@ -59,6 +60,7 @@ $ubuntu: 'Ubuntu Condensed', sans-serif;
                 margin-bottom: 10px;
                 list-style: disc;
                 font-size: 14px;
+                color: rgb(219, 219, 219);
             }
         }
         .session-form__label {

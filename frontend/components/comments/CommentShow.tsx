@@ -1,11 +1,11 @@
 import React, { ChangeEvent, Dispatch, FormEvent, MouseEvent, useContext, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { AnyAction } from "@reduxjs/toolkit";
-import { Annotation, Comment, CommentAction, CreatedComment, State, Track, User } from "../../my_types";
+import { useDispatch, useSelector } from "react-redux";
 import { ThemeContext } from "../../contexts/theme_context";
 import * as CommentActions from "../../actions/comment_actions";
 import CommentItem from "./CommentItem";
+import { AnyAction } from "@reduxjs/toolkit";
+import { Annotation, Comment, CommentAction, CreatedComment, State, Track, User } from "../../my_types";
 
 function CommentShow({ commentableType, parent }: { commentableType: "Track" | "Annotation"; parent: Track | Annotation; }) {
     const comments: { [key: number]: Comment; } = useSelector((state: State) => state.entities.comments);
@@ -105,6 +105,7 @@ function CommentShow({ commentableType, parent }: { commentableType: "Track" | "
             commentable_type: commentableType,
             commenter_id: currentUser.id
         };
+        
         createComment(comment)
             .then((result: CommentAction) => {
                 if (result.type === "RECEIVE_COMMENT_ERRORS") {

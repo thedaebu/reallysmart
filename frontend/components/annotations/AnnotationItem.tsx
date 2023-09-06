@@ -1,12 +1,12 @@
 import React, { ChangeEvent, Dispatch, MouseEvent, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as AnnotationActions from "../../actions/annotation_actions";
-import { AnyAction } from "@reduxjs/toolkit";
-import { Annotation, AnnotationAction, State, UpdatedAnnotation, User } from "../../my_types";
 import CommentShow from "../comments/CommentShow";
 import VoteShow from "../votes/VoteShow";
+import { AnyAction } from "@reduxjs/toolkit";
+import { Annotation, AnnotationAction, State, UpdatedAnnotation, User } from "../../my_types";
 
-function AnnotationItem({ annotation, trackId }: { annotation: Annotation, trackId: number }) {
+function AnnotationItem({ annotation, trackId }: { annotation: Annotation; trackId: number; }) {
     const currentUser: User = useSelector((state: State) => state.entities.user);
 
     const dispatch: Dispatch<AnyAction> = useDispatch();
@@ -26,7 +26,7 @@ function AnnotationItem({ annotation, trackId }: { annotation: Annotation, track
     function dateDisplay(dateTime: string) {
         const date: Date = new Date(Date.parse(dateTime));
         const year: string = date.getFullYear().toString();
-        const month: string = (date.getMonth()+1).toString().padStart(2, "0")
+        const month: string = (date.getMonth()+1).toString().padStart(2, "0");
         const day: string = date.getDate().toString().padStart(2, "0");
         const hour: string = date.getHours().toString().padStart(2, "0");
         const minute = date.getMinutes().toString().padStart(2, "0");
@@ -138,6 +138,7 @@ function AnnotationItem({ annotation, trackId }: { annotation: Annotation, track
             start_index: currentAnnotation.start_index,
             track_id: trackId
         };
+
         updateAnnotation(updatedAnnotation)
             .then((result: AnnotationAction) => {
                 if (result.type === "RECEIVE_ANNOTATION_ERRORS") {

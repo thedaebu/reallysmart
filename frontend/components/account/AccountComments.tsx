@@ -6,7 +6,7 @@ import * as CommentActions from "./../../actions/comment_actions";
 import { AnyAction, Dispatch } from "@reduxjs/toolkit";
 import { AccountComment } from "../../my_types";
 
-function AccountComments({ comments, currentUserId }: { comments: Array<AccountComment>; currentUserId: number }) {
+function AccountComments({ comments, currentUserId }: { comments: Array<AccountComment>; currentUserId: number; }) {
     const [deleteStatuses, setDeleteStatuses] = useState<Set<number>>(new Set());
 
     const dispatch: Dispatch<AnyAction> = useDispatch();
@@ -90,6 +90,7 @@ function AccountComments({ comments, currentUserId }: { comments: Array<AccountC
         e.preventDefault();
 
         const id: number = parseInt(e.currentTarget.dataset.id);
+
         deleteComment(id)
             .then(() => {
                 setDeleteStatuses((statuses: Set<number>) => new Set([...statuses].filter((status: number) => status !== id)));
@@ -101,6 +102,7 @@ function AccountComments({ comments, currentUserId }: { comments: Array<AccountC
         e.preventDefault();
 
         const id: number = parseInt(e.currentTarget.dataset.id);
+        
         if (deleteStatuses.has(id)) {
             setDeleteStatuses((statuses: Set<number>) => new Set([...statuses].filter((status: number) => status !== id)));
         } else {

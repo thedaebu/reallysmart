@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { AnyAction, Dispatch } from "@reduxjs/toolkit";
 import * as FlashMessageActions from "../../actions/flash_message_actions";
 import { RiCheckboxIndeterminateFill } from "react-icons/ri";
+import { AnyAction, Dispatch } from "@reduxjs/toolkit";
 
 function FlashMessage({ flashMessage }: { flashMessage: string; }) {
     const dispatch: Dispatch<AnyAction> = useDispatch();

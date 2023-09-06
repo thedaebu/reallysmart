@@ -10,9 +10,9 @@ document.addEventListener("DOMContentLoaded", () => {
     let store: Store;
     if (window.currentUser) {
         const preloadedState: { entities: { user: User; }; } = {
-          entities: {
-            user: window.currentUser
-          }
+            entities: {
+                user: window.currentUser
+            }
         };
         store = configureAppStore(preloadedState);
         delete window.currentUser;

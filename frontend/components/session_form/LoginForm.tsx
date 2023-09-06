@@ -1,15 +1,17 @@
 import React, { ChangeEvent, Dispatch, FormEvent, useState, useEffect } from "react";
+import { Link, NavigateFunction, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import * as SessionActions from "../../actions/session_actions";
 import { AnyAction } from "@reduxjs/toolkit";
 import { SessionAction, SessionUser, Window } from "../../my_types";
-import * as SessionActions from "../../actions/session_actions";
 
 declare const window: Window;
 
 function LoginForm() {
     const dispatch: Dispatch<AnyAction> = useDispatch();
     const login: Function = (sessionUser: SessionUser) => dispatch(SessionActions.login(sessionUser));
+
+    const navigate: NavigateFunction = useNavigate();
 
     const [errors, setErrors] = useState<Array<string>>([]);
     const [password, setPassword] = useState<string>("");
@@ -31,6 +33,8 @@ function LoginForm() {
             .then((result: SessionAction) => {
                 if (result.type === "RECEIVE_SESSION_ERRORS") {
                     setErrors(result.errors);
+                } else {
+                    navigate(-2);
                 }
             });
     }

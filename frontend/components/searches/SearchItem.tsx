@@ -4,7 +4,7 @@ import { IndexTrack, Window } from "../../my_types";
 
 declare const window: Window;
 
-function SearchItem({ track }: { track: IndexTrack }) {
+function SearchItem({ track }: { track: IndexTrack; }) {
     const { artist, artwork_path, title } = track;
 
     function urlify(string: string) {

@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Notification, UpdatedNotification } from "../../my_types";
 import * as NotificationAPIUtil from "../../util/api/notification_api_util";
 import { RiCheckboxIndeterminateFill } from "react-icons/ri"
+import { Notification, UpdatedNotification } from "../../my_types";
 
 type Props = {
     changeOpenStatus: Function;

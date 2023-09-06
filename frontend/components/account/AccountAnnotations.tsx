@@ -83,6 +83,7 @@ function AccountAnnotations({ annotations, currentUserId }: { annotations: Array
         e.preventDefault();
 
         const id: number = parseInt(e.currentTarget.dataset.id);
+
         deleteAnnotation(id)
             .then(() => {
                 setDeleteStatuses((statuses: Set<number>) => new Set([...statuses].filter((status: number) => status !== id)));
@@ -94,6 +95,7 @@ function AccountAnnotations({ annotations, currentUserId }: { annotations: Array
         e.preventDefault();
 
         const id: number = parseInt(e.currentTarget.dataset.id);
+        
         if (deleteStatuses.has(id)) {
             setDeleteStatuses((statuses: Set<number>) => new Set([...statuses].filter((status: number) => status !== id)));
         } else {

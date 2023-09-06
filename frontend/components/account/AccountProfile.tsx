@@ -1,7 +1,7 @@
 import React, { ChangeEvent, Dispatch, FormEvent, useState } from "react";
 import { useDispatch } from "react-redux";
-import { AnyAction } from "@reduxjs/toolkit";
 import * as SessionActions from "../../actions/session_actions"
+import { AnyAction } from "@reduxjs/toolkit";
 import { SessionAction, UpdatedUser } from "../../my_types";
 
 type TargetData = {
@@ -30,64 +30,64 @@ function AccountProfile({ username }: { username: string; }) {
         e.preventDefault();
 
         const formName: string = e.target.dataset.formname;
-        switch (formName) {
-            case "updateUsername":
-                if (!password) {
-                    setUsernameErrors(["Please type password."]);
-                } else if (password !== confirmedPassword) {
-                    setUsernameErrors(["Passwords do not match."]);
-                } else if (!newUsername) {
-                    setUsernameErrors(["Please type new username."]);
-                } else {
-                    const updatedUser: UpdatedUser = {
-                        password,
-                        updateInfo: newUsername,
-                        updateType: "updateUsername",
-                        username
-                    };
-                    updateUser(updatedUser)
-                        .then((result: SessionAction) => {
-                            if (result.type === "RECEIVE_SESSION_ERRORS") {
-                                setUsernameErrors(result.errors);
-                            } else {
-                                setPassword("");
-                                setConfirmedPassword("");
-                                setNewUsername("");
-                                setUsernameErrors([]);
-                            }
-                        });
-                }
-                break;
-            case "updatePassword":
-                if (!oldPassword) {
-                    setPasswordErrors(["Please type old password."]);
-                } else if (oldPassword !== confirmedOldPassword) {
-                    setPasswordErrors(["Old passwords do not match."]);
-                } else if (!newPassword) {
-                    setPasswordErrors(["Please type new password."]);
-                } else if (newPassword !== confirmedNewPassword) {  
-                    setPasswordErrors(["New passwords do not match."]);
-                } else {
-                    const updatedUser: UpdatedUser = {
-                        password: oldPassword,
-                        updateInfo: newPassword,
-                        updateType: "updatePassword",
-                        username
-                    };
-                    updateUser(updatedUser)
-                        .then((result: SessionAction) => {
-                            if (result.type === "RECEIVE_SESSION_ERRORS") {
-                                setPasswordErrors(result.errors);
-                            } else {
-                                setOldPassword("");
-                                setConfirmedOldPassword("");
-                                setNewPassword("");
-                                setConfirmedNewPassword("");
-                                setPasswordErrors([]);
-                            }
-                        });
-                }
-                break;
+
+        if (formName === "updateUsername") {
+            if (!password) {
+                setUsernameErrors(["Please type password."]);
+            } else if (password !== confirmedPassword) {
+                setUsernameErrors(["Passwords do not match."]);
+            } else if (!newUsername) {
+                setUsernameErrors(["Please type new username."]);
+            } else {
+                const updatedUser: UpdatedUser = {
+                    password,
+                    updateInfo: newUsername,
+                    updateType: "updateUsername",
+                    username
+                };
+
+                updateUser(updatedUser)
+                    .then((result: SessionAction) => {
+                        if (result.type === "RECEIVE_SESSION_ERRORS") {
+                            setUsernameErrors(result.errors);
+                        } else {
+                            setPassword("");
+                            setConfirmedPassword("");
+                            setNewUsername("");
+                            setUsernameErrors([]);
+                        }
+                    });
+            }
+        } else {
+            if (!oldPassword) {
+                setPasswordErrors(["Please type old password."]);
+            } else if (oldPassword !== confirmedOldPassword) {
+                setPasswordErrors(["Old passwords do not match."]);
+            } else if (!newPassword) {
+                setPasswordErrors(["Please type new password."]);
+            } else if (newPassword !== confirmedNewPassword) {  
+                setPasswordErrors(["New passwords do not match."]);
+            } else {
+                const updatedUser: UpdatedUser = {
+                    password: oldPassword,
+                    updateInfo: newPassword,
+                    updateType: "updatePassword",
+                    username
+                };
+                
+                updateUser(updatedUser)
+                    .then((result: SessionAction) => {
+                        if (result.type === "RECEIVE_SESSION_ERRORS") {
+                            setPasswordErrors(result.errors);
+                        } else {
+                            setOldPassword("");
+                            setConfirmedOldPassword("");
+                            setNewPassword("");
+                            setConfirmedNewPassword("");
+                            setPasswordErrors([]);
+                        }
+                    });
+            }
         }
     }
 

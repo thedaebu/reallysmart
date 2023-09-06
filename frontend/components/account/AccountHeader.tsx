@@ -30,6 +30,7 @@ function AccountHeader(props: Props) {
                 {tabName}
             </li>
         ));
+        
         setTabItems(tabList);
     }
 

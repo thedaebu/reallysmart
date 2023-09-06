@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { IndexTrack, State } from "../../my_types";
 import MemoizedSearchItem from "./SearchItem";
+import { IndexTrack, State } from "../../my_types";
 
 function SearchIndex({ clearSearchField }: { clearSearchField: Function; }) {
     const searches: { [key: number]: IndexTrack; } = useSelector((state: State) => state.entities.searches);
@@ -10,7 +10,7 @@ function SearchIndex({ clearSearchField }: { clearSearchField: Function; }) {
     return (
         <div className="search-index" data-testid="search-index">
             <p className="search-index__results">SEARCH RESULTS</p>
-            {searchResults.length ? (
+            {searchResults.length > 0 ? (
                 <>
                     <p className="search-index__songs">SONGS</p>
                     <ul className="search-items" onClick={() => clearSearchField()}>

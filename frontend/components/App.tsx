@@ -65,12 +65,13 @@ function App() {
                         <TrackShow />
                     </Suspense>}
                 />
-                <Route path="/account" element={
-                    <AccountRoute
+                <Route
+                    path="/account"
+                    element={<AccountRoute
                         component={AccountShow}
                         loggedIn={!!currentUser}
-                    />
-                } />
+                    />}
+                />
             </Routes>
         </div>
     );

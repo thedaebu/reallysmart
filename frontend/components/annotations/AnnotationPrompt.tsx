@@ -1,9 +1,9 @@
 import React, { ChangeEvent, Dispatch, MouseEvent, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import * as AnnotationActions from "../../actions/annotation_actions";
 import { AnyAction } from "@reduxjs/toolkit";
 import { AnnotationAction, CreatedAnnotation, State, Track, User } from "../../my_types";
-import * as AnnotationActions from "../../actions/annotation_actions";
 
 type Props = {
     createStatus: boolean;
@@ -105,6 +105,7 @@ function AnnotationPrompt(props: Props) {
             start_index: startIndex,
             track_id: track.id
         };
+        
         createAnnotation(annotation)
             .then((result: AnnotationAction) => {
                 if (result.type === "RECEIVE_ANNOTATION_ERRORS") {
