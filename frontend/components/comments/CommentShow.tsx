@@ -147,7 +147,7 @@ function CommentShow({ commentableType, parent }: { commentableType: "Track" | "
                     <p> to comment.</p>
                 </div>
             )}
-            {currentComments.length && (
+            {currentComments.length > 0 && (
                 <ul className="comment-items">
                     {currentComments.map((comment: Comment) => (
                         <CommentItem

@@ -10,7 +10,7 @@ function SearchIndex({ clearSearchField }: { clearSearchField: Function; }) {
     return (
         <div className="search-index" data-testid="search-index">
             <p className="search-index__results">SEARCH RESULTS</p>
-            {searchResults.length ? (
+            {searchResults.length > 0 ? (
                 <>
                     <p className="search-index__songs">SONGS</p>
                     <ul className="search-items" onClick={() => clearSearchField()}>

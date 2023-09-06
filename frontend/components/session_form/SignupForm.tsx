@@ -58,7 +58,7 @@ function SignupForm() {
             <h1 className="session-form__signup__h1">SIGN UP</h1>
             <h2 className="session-form__signup__h2">and show off your really smartness</h2>
             <form className="session-form__form" onSubmit={handleSignupSubmit}>
-                {errors.length && errorsDisplay()}
+                {errors.length > 0 && errorsDisplay()}
                 <label className="session-form__label" htmlFor="session-form__username">Really Smart Nickname
                     <input
                         id="session-form__username"

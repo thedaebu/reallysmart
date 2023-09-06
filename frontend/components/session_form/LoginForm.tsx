@@ -57,7 +57,7 @@ function LoginForm() {
         <div className="session-form">
             <h1 className="session-form__login-h1">Log In</h1>
             <form className="session-form__form" onSubmit={handleLoginSubmit}>
-                {errors.length && errorsDisplay()}
+                {errors.length > 0 && errorsDisplay()}
                 <label className="session-form__label" htmlFor="session-form__username">Really Smart Nickname
                     <input
                         id="session-form__username"

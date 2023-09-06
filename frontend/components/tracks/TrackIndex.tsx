@@ -88,7 +88,7 @@ function TrackIndex() {
                 <h1 className="track-index__h1">CHARTS</h1>
                 <h2 className="track-index__h2">REALLY POPULAR ON REALLY SMART</h2>
                 <ul className="track-items">
-                    {tracks.length && trackIndexItems()}
+                    {tracks.length > 0 && trackIndexItems()}
                 </ul>
             </div>
             <div 
