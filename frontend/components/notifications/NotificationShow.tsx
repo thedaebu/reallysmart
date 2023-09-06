@@ -2,19 +2,19 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import cableApp from "../../util/action_cable_util";
-import { Notification, State, User } from "../../my_types";
 import NotificationList from "./NotificationList";
 import { BiEnvelope } from "react-icons/bi";
+import { Notification, State, User } from "../../my_types";
 
 function NotificationShow() {
     const currentUser: User = useSelector((state: State) => state.entities.user);
     const { annotation_alerts, mentions } = currentUser;
 
+    const location: string = useLocation().pathname;
+
     const [notifications, setNotifications] = useState<Array<Notification>>([]);
     const [openStatus, setOpenStatus] = useState<boolean>(false);
     const [readStatus, setReadStatus] = useState<boolean>(true);
-
-    const location: string = useLocation().pathname;
 
     useEffect(() => {
         handleCableApp(currentUser.id);
@@ -51,7 +51,7 @@ function NotificationShow() {
     }
 
     function changeOpenStatus() {
-        setOpenStatus(!openStatus);
+        setOpenStatus((status: boolean) => !status);
     }
 
     return (

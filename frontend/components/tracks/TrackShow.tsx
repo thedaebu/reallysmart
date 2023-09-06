@@ -71,7 +71,7 @@ function TrackShow() {
         return string.split("_").join(" ");
     }
 
-    return(
+    return (
         <>
             <NavBar />
             {track && (

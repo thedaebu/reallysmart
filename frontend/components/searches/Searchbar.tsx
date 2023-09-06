@@ -1,13 +1,13 @@
 import React, { ChangeEvent, Dispatch, useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
-import { AnyAction } from "@reduxjs/toolkit";
+import { useDispatch } from "react-redux";
 import useDebounce from "../../hooks/debounce_hook";
 import * as SearchActions from "../../actions/search_actions";
 import SearchIndex from "./SearchIndex";
 import { AiOutlineSearch } from "react-icons/ai";
+import { AnyAction } from "@reduxjs/toolkit";
 
-function Searchbar({ theme } : { theme : string }) {
+function Searchbar({ theme } : { theme : string; }) {
     const dispatch: Dispatch<AnyAction> = useDispatch();
     const fetchSearches: Function = (search: string) => dispatch(SearchActions.fetchSearches(search));
 

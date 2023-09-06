@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { IndexTrack, State } from "../../my_types";
 import MemoizedSearchItem from "./SearchItem";
+import { IndexTrack, State } from "../../my_types";
 
 function SearchIndex({ clearSearchField }: { clearSearchField: Function; }) {
     const searches: { [key: number]: IndexTrack; } = useSelector((state: State) => state.entities.searches);

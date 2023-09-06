@@ -1,11 +1,11 @@
 import React, { Dispatch, MouseEvent, useState, useEffect, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AnyAction } from "@reduxjs/toolkit";
-import { IndexTrack, State, Window } from "../../my_types";
-import { ThemeContext } from "../../contexts/theme_context";
 import * as TrackActions from "../../actions/track_actions";
+import { ThemeContext } from "../../contexts/theme_context";
 import MemoizedTrackItem, { TrackItem } from "./TrackItem";
 import Navbar from "../navbar/Navbar";
+import { AnyAction } from "@reduxjs/toolkit";
+import { IndexTrack, State, Window } from "../../my_types";
 
 declare const window: Window;
 

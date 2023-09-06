@@ -1,9 +1,9 @@
 import React, { Dispatch } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import * as SessionActions from "../../actions/session_actions";
 import { AnyAction } from "@reduxjs/toolkit";
 import { State, User } from "../../my_types";
-import * as SessionActions from "../../actions/session_actions";
 
 function SessionMenu() {
     const currentUser: User = useSelector((state: State) => state.entities.user);

@@ -1,9 +1,9 @@
 import React, { MouseEvent, useState, useEffect, useContext } from "react";
 import { useSelector } from "react-redux";
-import { Annotation, State, Track, Window } from "../../my_types";
 import { ThemeContext } from "../../contexts/theme_context";
 import AnnotationShow from "../annotations/AnnotationShow";
 import CommentShow from "../comments/CommentShow";
+import { Annotation, State, Track, Window } from "../../my_types";
 
 declare const window: Window;
 type Highlighted = {
@@ -61,7 +61,7 @@ function Lyrics({ track }: { track: Track; }) {
         if (selectedAnnotation) {
             handleSelectedAnnotation(selectedAnnotation);
         }
-    }, [selectedAnnotation])
+    }, [selectedAnnotation]);
 
     function annotateLyrics(annotations: Array<Annotation>) {
         if (annotations.length) {

@@ -1,10 +1,10 @@
 import React, { ChangeEvent, Dispatch, MouseEvent, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AnyAction } from "@reduxjs/toolkit";
-import { Annotation, Comment, CommentAction, State, Track, UpdatedComment, User } from "../../my_types";
 import * as CommentActions from "../../actions/comment_actions";
 import VoteShow from "../votes/VoteShow";
 import { AiOutlineLeft } from "react-icons/ai";
+import { AnyAction } from "@reduxjs/toolkit";
+import { Annotation, Comment, CommentAction, State, Track, UpdatedComment, User } from "../../my_types";
 
 type Props = {
     comment: Comment;
@@ -51,7 +51,7 @@ function CommentItem(props: Props) {
     function dateDisplay(dateTime: string) {
         const date: Date = new Date(Date.parse(dateTime));
         const year: string = date.getFullYear().toString();
-        const month: string = (date.getMonth()+1).toString().padStart(2, "0")
+        const month: string = (date.getMonth()+1).toString().padStart(2, "0");
         const day: string = date.getDate().toString().padStart(2, "0");
         const hour: string = date.getHours().toString().padStart(2, "0");
         const minute = date.getMinutes().toString().padStart(2, "0");
@@ -151,6 +151,7 @@ function CommentItem(props: Props) {
             commenter_id: currentUser.id,
             id: comment.id
         };
+
         updateComment(updatedComment)
             .then((result: CommentAction) => {
                 if (result.type === "RECEIVE_COMMENT_ERRORS") {

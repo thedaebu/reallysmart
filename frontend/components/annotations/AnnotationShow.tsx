@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { ThemeContext } from "../../contexts/theme_context";
-import { Annotation, Track } from "../../my_types";
 import AnnotationItem from "./AnnotationItem";
 import AnnotationPrompt from "./AnnotationPrompt";
+import { Annotation, Track } from "../../my_types";
 
 type Props = {
     annotation: Annotation | null;

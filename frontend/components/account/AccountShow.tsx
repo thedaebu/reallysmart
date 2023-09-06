@@ -1,14 +1,14 @@
 import React, { Dispatch, useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AnyAction } from "@reduxjs/toolkit";
 import { ThemeContext } from "../../contexts/theme_context";
-import { Account, State, User } from "../../my_types";
 import * as AccountActions from "../../actions/account_actions";
 import AccountAnnotations from "./AccountAnnotations";
 import AccountComments from "./AccountComments";
 import AccountHeader from "./AccountHeader";
 import AccountProfile from "./AccountProfile";
 import Navbar from "../navbar/Navbar";
+import { AnyAction } from "@reduxjs/toolkit";
+import { Account, State, User } from "../../my_types";
 
 function AccountShow() {
     const account: Account = useSelector((state: State) => state.entities.account);
@@ -19,9 +19,9 @@ function AccountShow() {
     const dispatch: Dispatch<AnyAction> = useDispatch();
     const fetchAccount: Function = (id: number) => dispatch(AccountActions.fetchAccount(id));
 
-    const [currentTab, setCurrentTab] = useState<string>("Profile");
-
     const { theme } = useContext(ThemeContext);
+
+    const [currentTab, setCurrentTab] = useState<string>("Profile");
 
     useEffect(() => {
         fetchAccount(id);

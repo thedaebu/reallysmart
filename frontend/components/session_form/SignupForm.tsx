@@ -1,9 +1,9 @@
 import React, { ChangeEvent, Dispatch, FormEvent, useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
 import { Link, NavigateFunction, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import * as SessionActions from "../../actions/session_actions";
 import { AnyAction } from "@reduxjs/toolkit";
 import { SessionAction, SessionUser, Window } from "../../my_types";
-import * as SessionActions from "../../actions/session_actions";
 
 declare const window: Window;
 
@@ -58,7 +58,7 @@ function SignupForm() {
             <h1 className="session-form__signup__h1">SIGN UP</h1>
             <h2 className="session-form__signup__h2">and show off your really smartness</h2>
             <form className="session-form__form" onSubmit={handleSignupSubmit}>
-                {errors.length > 0 && errorsDisplay()}
+                {errors.length && errorsDisplay()}
                 <label className="session-form__label" htmlFor="session-form__username">Really Smart Nickname
                     <input
                         id="session-form__username"

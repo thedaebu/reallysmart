@@ -1,8 +1,8 @@
 import React, { Dispatch, MouseEvent } from "react";
 import { useDispatch } from "react-redux";
+import * as SessionActions from "../../actions/session_actions";
 import { AnyAction } from "@reduxjs/toolkit";
 import { SessionUser } from "../../my_types";
-import * as SessionActions from "../../actions/session_actions";
 
 function DemoLogin() {
     const dispatch: Dispatch<AnyAction> = useDispatch();
@@ -15,6 +15,7 @@ function DemoLogin() {
             password: "notsosmart",
             username: "notsosmart"
         };
+        
         login(demoUser);
     }
 

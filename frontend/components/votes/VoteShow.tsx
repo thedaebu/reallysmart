@@ -1,15 +1,15 @@
 import React, { Dispatch, MouseEvent, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AnyAction } from "@reduxjs/toolkit";
-import { Annotation, Comment, CreatedVote, State, User, Vote } from "../../my_types";
+import * as VoteAPIUtil from "../../util/api/vote_api_util";
 import * as AnnotationActions from "../../actions/annotation_actions";
 import * as CommentActions from "../../actions/comment_actions";
-import * as VoteAPIUtil from "../../util/api/vote_api_util";
 import { RiThumbUpLine } from "react-icons/ri";
+import { AnyAction } from "@reduxjs/toolkit";
+import { Annotation, Comment, CreatedVote, State, User, Vote } from "../../my_types";
 
-function VoteShow({ parent, voteableType }: { parent: Annotation | Comment, voteableType: "Annotation" | "Comment" }) {
+function VoteShow({ parent, voteableType }: { parent: Annotation | Comment; voteableType: "Annotation" | "Comment"; }) {
     const currentUser: User = useSelector((state: State) => state.entities.user);
-    const votes: {[key: number]: Vote} = parent.votes;
+    const votes: { [key: number]: Vote; } = parent.votes;
 
     const dispatch: Dispatch<AnyAction> = useDispatch();
     const createVote: Function = (vote: CreatedVote) => VoteAPIUtil.createVote(vote);
@@ -42,14 +42,14 @@ function VoteShow({ parent, voteableType }: { parent: Annotation | Comment, vote
                 onClick={handleUpdate}
                 data-testid="vote-show__not-voted"
             />
-        )
+        );
     }
 
     function handleUpdate(e: MouseEvent<HTMLOrSVGElement>) {
         e.preventDefault();
 
         if (currentUserVote) {
-            deleteVote(currentUserVote.id)
+            deleteVote(currentUserVote.id);
             setCurrentUserVote(null);
             setCurrentNumberOfVotes(currentNumberOfVotes-1);
         } else {
