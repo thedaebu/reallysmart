@@ -12,6 +12,8 @@ The technologies used in the development of the website were React/Redux for the
 ## Notes 1.2
 - Account page
         - User will be able to delete submitted annotations and comments through the account tab.
+- Navigation
+        - User will be redirected to previously visited page after successful login or registration.
 
 ## Annotations
 Created annotations can be accessed by clicking on the designated text on each track page.
