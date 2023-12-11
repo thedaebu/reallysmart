@@ -1,10 +1,10 @@
-import { resolve } from 'path';
+const path = require('path');
 
 module.exports = {
     context: __dirname,
     entry: './frontend/entry',
     output: {
-        path: resolve(__dirname, 'app', 'assets', 'javascripts'),
+        path: path.resolve(__dirname, 'app', 'assets', 'javascripts'),
         filename: 'bundle.js'
     },
     module: {
@@ -27,7 +27,7 @@ module.exports = {
                     options: {
                         transpileOnly: true,
                         happyPackMode: true,
-                        configFile: resolve(__dirname, 'tsconfig.json')
+                        configFile: path.resolve(__dirname, 'tsconfig.json')
                     }
                 }
             }
